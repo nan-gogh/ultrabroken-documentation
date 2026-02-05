@@ -182,6 +182,43 @@ body::after {
   mix-blend-mode: screen;
 }
 
+/* Floating particles animation */
+@keyframes float-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(0);
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) translateX(100px);
+  }
+}
+
+/* Particle container - creates floating particles from below */
+body::before {
+  content: "";
+  position: fixed;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  pointer-events: none;
+  z-index: 1;
+  background: 
+    radial-gradient(circle, rgba(0,240,194,0.8) 1px, transparent 1px) 0% 0% / 50px 50px,
+    radial-gradient(circle, rgba(0,240,194,0.6) 1.5px, transparent 1.5px) 25px 25px / 80px 80px,
+    radial-gradient(circle, rgba(0,240,194,0.7) 1px, transparent 1px) 10px 60px / 130px 130px;
+  background-repeat: repeat-x;
+  animation: float-up 8s ease-in infinite;
+  opacity: 0.3;
+}
+
 /* Ensure footer sits above the decorative rune */
 /* Note: .md-header must NOT have position: relative to keep it sticky */
 /* Note: .md-main must NOT have z-index or drawer will be blocked */
