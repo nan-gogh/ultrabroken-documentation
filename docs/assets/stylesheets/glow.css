@@ -152,39 +152,56 @@ a:hover {
 
 /* Use local SVG assets for header icons (burger, search, close) */
 label.md-header__button[for="__drawer"] .md-icon {
-  width: 1.05em;
-  height: 1.05em;
-  display: inline-block;
-  text-indent: -9999px !important; /* hide ligature/text fallback */
-  background-image: url('../images/burger-icon.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  width: 1.05em !important;
+  height: 1.05em !important;
+  display: inline-block !important;
+  overflow: hidden !important;
+  text-indent: -9999px !important;
+  background-image: url('../images/burger-icon.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+}
+
+label.md-header__button[for="__drawer"] .md-icon svg {
+  display: none !important;
 }
 
 label.md-header__button[for="__search"] .md-icon,
 .md-search__icon {
-  width: 1.05em;
-  height: 1.05em;
-  display: inline-block;
+  width: 1.05em !important;
+  height: 1.05em !important;
+  display: inline-block !important;
+  overflow: hidden !important;
   text-indent: -9999px !important;
-  background-image: url('../images/search-icon.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  background-image: url('../images/search-icon.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+}
+
+label.md-header__button[for="__search"] .md-icon svg,
+.md-search__icon svg {
+  display: none !important;
 }
 
 /* Close button for search overlay (if present) */
 .md-search__close .md-icon,
 .md-search__button--close .md-icon {
-  width: 1.05em;
-  height: 1.05em;
-  display: inline-block;
+  width: 1.05em !important;
+  height: 1.05em !important;
+  display: inline-block !important;
+  overflow: hidden !important;
   text-indent: -9999px !important;
-  background-image: url('../images/close-icon.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  background-image: url('../images/close-icon.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+}
+
+.md-search__close .md-icon svg,
+.md-search__button--close .md-icon svg {
+  display: none !important;
 }
 
 /* Use the saved share SVG as the permalink icon (hide text and show SVG) */
@@ -215,20 +232,31 @@ label.md-header__button[for="__search"] .md-icon,
 .md-nav__title .md-icon,
 .md-nav__button--back .md-icon,
 .md-nav__button .md-icon[aria-hidden="true"] {
-  width: 1.05em;
-  height: 1.05em;
-  display: inline-block;
+  width: 1.05em !important;
+  height: 1.05em !important;
+  display: inline-block !important;
+  overflow: hidden !important;
   text-indent: -9999px !important;
-  background-image: url('../images/back-icon.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  background-image: url('../images/back-icon.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+}
+
+.md-nav__title .md-icon svg,
+.md-nav__button--back .md-icon svg,
+.md-nav__button .md-icon[aria-hidden="true"] svg {
+  display: none !important;
 }
 
 /* Avoid overriding the logo button */
 .md-nav__button.md-logo .md-icon {
   text-indent: 0 !important;
   background-image: none !important;
+}
+
+.md-nav__button.md-logo .md-icon svg {
+  display: block !important;
 }
 
 /* Sidebar section headers - override ellipsis clipping */
