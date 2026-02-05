@@ -25,17 +25,22 @@
   opacity: 1 !important;
   transition: color .18s ease, text-shadow .18s ease;
 }
+/* Active tabs - bright teal with glow (use multiple approaches) */
+.md-tabs__link:not(:only-child):first-child,
+.md-tabs__link {
+  /* Default: darker teal for non-active */
+}
+/* Try to catch active by looking at the page URL - Home page will have Home active */
+.md-tabs__link[href="/"],
+.md-tabs__link[href*="index.html"],
+body.md-page-home .md-tabs__link:first-child {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+}
+/* General hover state */
 .md-tabs__link:hover {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
-}
-/* Active state - try multiple selectors */
-.md-tabs__link.md-tabs__link--active,
-.md-tabs__link[aria-current="page"],
-.md-tabs__link[aria-selected="true"],
-.md-tabs--active .md-tabs__link {
-  color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
 }
 
 /* Nav link glow on hover and active (sidebar) */
