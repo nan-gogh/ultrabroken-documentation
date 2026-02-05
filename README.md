@@ -15,8 +15,8 @@ Quick tips for the GitHub web editor:
 
 1. Navigate to the file you want to change (for example `docs/effects/wacko-boingo.md`).
 2. Click the pencil ✏️ icon to edit the file in your browser.
-3. Make your edits, add a concise commit message, and choose to create a new branch or commit directly to `main`.
-4. Open a pull request if you used a branch.
+3. Make your edits, add a concise commit message, and commit directly to `main`.
+4. Open a pull request if you used a different branch than main.
 
 ## Recommended editing conventions
 
@@ -106,8 +106,6 @@ Admonitions (supported by MkDocs Material):
 This is a community project — everyone is welcome to contribute. Join discussions and get help:
 
 - Discord: https://discord.gg/C7uTseSb
-
-If you prefer other spaces, check project channels listed on the repository.
 
 ---
 
