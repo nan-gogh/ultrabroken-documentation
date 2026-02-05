@@ -204,36 +204,137 @@ body::after {
   100% { transform: translateY(-100vh) translateX(80px); opacity: 0; }
 }
 
-/* Particle 1 - left side */
-.md-main::before {
+@keyframes float-particle-4 {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  5% { opacity: 0.65; }
+  95% { opacity: 0.65; }
+  100% { transform: translateY(-100vh) translateX(-60px); opacity: 0; }
+}
+
+@keyframes float-particle-5 {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  5% { opacity: 0.75; }
+  95% { opacity: 0.75; }
+  100% { transform: translateY(-100vh) translateX(45px); opacity: 0; }
+}
+
+/* Particle generators on multiple elements for visual randomness */
+.md-main::before,
+.md-header::before,
+.md-nav::before,
+.md-content::before,
+.md-footer::before {
   content: "";
   position: fixed;
   bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0,240,194,0.6);
+}
+
+.md-main::after,
+.md-header::after,
+.md-nav::after,
+.md-content::after,
+.md-footer::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0,240,194,0.5);
+}
+
+/* Particle 1 - .md-main::before (15% from left) */
+.md-main::before {
   left: 15%;
   width: 8px;
   height: 8px;
   background: radial-gradient(circle, rgba(0,240,194,0.9) 0%, rgba(0,240,194,0.3) 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
   animation: float-particle-1 6s ease-in infinite;
-  box-shadow: 0 0 8px rgba(0,240,194,0.6);
 }
 
-/* Particle 2 - center */
+/* Particle 2 - .md-main::after (50% from left) */
 .md-main::after {
-  content: "";
-  position: fixed;
-  bottom: 0;
   left: 50%;
   width: 6px;
   height: 6px;
   background: radial-gradient(circle, rgba(0,240,194,0.85) 0%, rgba(0,240,194,0.2) 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
   animation: float-particle-2 8s ease-in infinite 1s;
-  box-shadow: 0 0 6px rgba(0,240,194,0.5);
+}
+
+/* Particle 3 - .md-header::before (25% from left) */
+.md-header::before {
+  left: 25%;
+  width: 7px;
+  height: 7px;
+  background: radial-gradient(circle, rgba(0,240,194,0.8) 0%, rgba(0,240,194,0.25) 100%);
+  animation: float-particle-3 7s ease-in infinite 0.5s;
+}
+
+/* Particle 4 - .md-header::after (75% from left) */
+.md-header::after {
+  left: 75%;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(0,240,194,0.9) 0%, rgba(0,240,194,0.3) 100%);
+  animation: float-particle-4 9s ease-in infinite 2s;
+}
+
+/* Particle 5 - .md-nav::before (35% from left) */
+.md-nav::before {
+  left: 35%;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(0,240,194,0.75) 0%, rgba(0,240,194,0.2) 100%);
+  animation: float-particle-5 6.5s ease-in infinite 1.5s;
+}
+
+/* Particle 6 - .md-nav::after (65% from left) */
+.md-nav::after {
+  left: 65%;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, rgba(0,240,194,0.85) 0%, rgba(0,240,194,0.25) 100%);
+  animation: float-particle-1 7.5s ease-in infinite 0.8s;
+}
+
+/* Particle 7 - .md-content::before (20% from left) */
+.md-content::before {
+  left: 20%;
+  width: 7px;
+  height: 7px;
+  background: radial-gradient(circle, rgba(0,240,194,0.8) 0%, rgba(0,240,194,0.3) 100%);
+  animation: float-particle-2 8.5s ease-in infinite 2.5s;
+}
+
+/* Particle 8 - .md-content::after (80% from left) */
+.md-content::after {
+  left: 80%;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(0,240,194,0.9) 0%, rgba(0,240,194,0.2) 100%);
+  animation: float-particle-3 7s ease-in infinite 1.2s;
+}
+
+/* Particle 9 - .md-footer::before (40% from left) */
+.md-footer::before {
+  left: 40%;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(0,240,194,0.85) 0%, rgba(0,240,194,0.25) 100%);
+  animation: float-particle-4 6s ease-in infinite 0.3s;
+}
+
+/* Particle 10 - .md-footer::after (60% from left) */
+.md-footer::after {
+  left: 60%;
+  width: 7px;
+  height: 7px;
+  background: radial-gradient(circle, rgba(0,240,194,0.8) 0%, rgba(0,240,194,0.2) 100%);
+  animation: float-particle-5 8s ease-in infinite 1.8s;
 }
 
 /* Ensure footer sits above the decorative rune */
