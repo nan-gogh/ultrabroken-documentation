@@ -52,15 +52,16 @@
 /* Nav link glow on hover and active (sidebar) */
 .md-nav__link {
   transition: color .18s ease, text-shadow .18s ease;
-  overflow: visible !important;
-}
-.md-nav__item {
-  overflow: visible !important;
 }
 .md-nav__link:hover,
 .md-nav__link--active {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
+}
+/* Override ellipsis clipping on sidebar links */
+.md-nav__link .md-ellipsis {
+  overflow: visible !important;
+  text-overflow: clip !important;
 }
 
 /* Header icons (search, toggle) get a soft glow */
