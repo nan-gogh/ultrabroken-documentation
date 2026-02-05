@@ -4,11 +4,11 @@ site_author: NaN Gogh & Community
 copyright: Community-Driven Research
 site_url: https://nan-gogh.github.io/ultrabroken-documentation/
 use_directory_urls: true
-logo: ultrabroken_rune.svg
-favicon: ultrabroken_rune.ico
 
 theme:
   name: material
+  logo: ultrabroken_rune.svg
+  favicon: ultrabroken_rune.ico
   features:
     - navigation.instant
     - navigation.tracking
