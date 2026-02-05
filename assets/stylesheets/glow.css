@@ -120,8 +120,11 @@ body::after {
   z-index: 1;
 }
 
-/* Hide only the "Made with Material for MkDocs" credit link, preserve rest of footer */
-/* The theme inserts this credit in .md-footer-meta via JavaScript or template */
+/* Hide the "Made with Material for MkDocs" credit and copyright text */
+/* Hide copyright section */
+.md-footer__copyright { display: none !important; }
+
+/* Hide "Made with" text and Material credit link in footer-meta */
 .md-footer-meta__inner a[href*="squidfunk"],
 .md-footer-meta__inner a[href*="mkdocs-material"],
 .md-footer__inner a[href*="squidfunk"],
@@ -129,8 +132,10 @@ body::after {
   display: none !important;
 }
 
-/* Alternative: hide the text node "Made with..." if it's bare text */
-.md-footer-meta { font-size: 0; }
+/* Hide the "Made with" text node - fontsize trick to hide bare text while preserving other elements */
+.md-footer-meta { 
+  font-size: 0;
+}
 .md-footer-meta span, 
 .md-footer-meta a {
   font-size: revert;
