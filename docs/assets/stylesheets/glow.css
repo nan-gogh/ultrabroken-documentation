@@ -64,10 +64,34 @@
   text-overflow: clip !important;
 }
 
-/* Header icons (search, toggle) get a soft glow */
-.md-header-nav .md-icon,
-.md-header-nav .md-toggle {
-  filter: drop-shadow(0 0 6px rgba(0,240,194,0.45)) drop-shadow(0 0 12px rgba(0,240,194,0.35));
+/* Header icons (search, toggle, burger menu) - bright teal with glow */
+.md-header__button .md-icon {
+  color: var(--teal-glow) !important;
+  filter: drop-shadow(0 0 8px rgba(0,240,194,0.8)) drop-shadow(0 0 16px rgba(0,240,194,0.6));
+  transition: filter .18s ease;
+}
+.md-header__button .md-icon:hover {
+  filter: drop-shadow(0 0 12px rgba(0,240,194,1)) drop-shadow(0 0 24px rgba(0,240,194,0.8));
+}
+
+/* Search bar and input styling */
+.md-search__input {
+  color: var(--teal-glow) !important;
+  caret-color: var(--teal-glow) !important;
+  border-color: rgba(0,240,194,0.5) !important;
+}
+.md-search__input::placeholder {
+  color: rgba(0,240,194,0.5) !important;
+}
+.md-search__input:focus {
+  border-color: var(--teal-glow) !important;
+  box-shadow: 0 0 8px rgba(0,240,194,0.6) !important;
+}
+
+/* Search icon */
+.md-search__icon {
+  color: var(--teal-glow) !important;
+  filter: drop-shadow(0 0 8px rgba(0,240,194,0.8));
 }
 
 /* Accent headings and links */
