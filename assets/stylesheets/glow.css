@@ -90,3 +90,32 @@ a:hover {
   overflow: visible !important;
   text-overflow: clip !important;
 }
+
+/* Large, barely-visible rune in the lower-right corner */
+body::after {
+  content: "";
+  position: fixed;
+  right: 2vmin;
+  bottom: 2vmin;
+  width: 48vmin;
+  height: 48vmin;
+  max-width: 60vw;
+  max-height: 60vh;
+  background-image: url('../../ultrabroken_rune.svg');
+  background-repeat: no-repeat;
+  background-position: center right bottom;
+  background-size: contain;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+/* Ensure primary layout sits above the decorative rune */
+.md-header,
+.md-main,
+.md-footer,
+.md-nav {
+  position: relative;
+  z-index: 1;
+}
