@@ -68,14 +68,16 @@
   color: var(--teal-glow) !important;
 }
 
-/* Burger menu and palette toggle buttons - bright teal with hover lightup */
+/* Burger menu, search, and palette toggle buttons - bright teal with hover lightup */
 label.md-header__button[for="__drawer"],
+label.md-header__button[for="__search"],
 label.md-header__button[for^="__palette_"] {
   color: var(--teal-glow) !important;
   transition: opacity .18s ease, filter .18s ease;
 }
 
 label.md-header__button[for="__drawer"]:hover,
+label.md-header__button[for="__search"]:hover,
 label.md-header__button[for^="__palette_"]:hover {
   opacity: 1 !important;
   filter: brightness(1.3);
