@@ -211,6 +211,26 @@ label.md-header__button[for="__search"] .md-icon,
   filter: drop-shadow(0 0 8px rgba(0,240,194,0.85)) !important;
 }
 
+/* Back/return arrow in nested sidebar navigation - use local SVG */
+.md-nav__title .md-icon,
+.md-nav__button--back .md-icon,
+.md-nav__button .md-icon[aria-hidden="true"] {
+  width: 1.05em;
+  height: 1.05em;
+  display: inline-block;
+  text-indent: -9999px !important;
+  background-image: url('../images/back-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+/* Avoid overriding the logo button */
+.md-nav__button.md-logo .md-icon {
+  text-indent: 0 !important;
+  background-image: none !important;
+}
+
 /* Sidebar section headers - override ellipsis clipping */
 .md-nav__title {
   overflow: visible !important;
