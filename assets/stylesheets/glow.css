@@ -15,7 +15,11 @@
 .md-header__title,
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 12px rgba(0,240,194,0.9);
+  text-shadow:
+    0 0 4px rgba(0,240,194,0.95),
+    0 0 10px rgba(0,240,194,0.9),
+    0 0 22px rgba(0,240,194,0.8),
+    0 0 44px rgba(0,240,194,0.55);
   font-weight: 600;
 }
 
@@ -28,7 +32,10 @@
 /* Active tabs - bright teal with glow */
 .md-tabs__item--active .md-tabs__link {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+  text-shadow:
+    0 0 4px rgba(0,240,194,0.95) !important,
+    0 0 10px rgba(0,240,194,0.9) !important,
+    0 0 20px rgba(0,240,194,0.8) !important;
 }
 /* Hover state */
 .md-tabs__link:hover {
@@ -43,13 +50,16 @@
 .md-nav__link:hover,
 .md-nav__link--active {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+  text-shadow:
+    0 0 4px rgba(0,240,194,0.95),
+    0 0 10px rgba(0,240,194,0.9),
+    0 0 20px rgba(0,240,194,0.8);
 }
 
 /* Header icons (search, toggle) get a soft glow */
 .md-header-nav .md-icon,
 .md-header-nav .md-toggle {
-  filter: drop-shadow(0 0 6px rgba(0,240,194,0.45));
+  filter: drop-shadow(0 0 6px rgba(0,240,194,0.45)) drop-shadow(0 0 12px rgba(0,240,194,0.35));
 }
 
 /* Accent headings and links */
