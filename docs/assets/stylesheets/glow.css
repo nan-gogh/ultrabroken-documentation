@@ -1,0 +1,39 @@
+/* Glowy teal theme tweaks for MkDocs Material */
+:root {
+  --teal-glow: #00f0c2;
+  --teal-dark: #00796b;
+}
+
+/* Header background subtle teal sheen */
+.md-header {
+  background: linear-gradient(180deg, rgba(0,240,194,0.06), transparent);
+  box-shadow: 0 6px 24px rgba(0,240,194,0.06);
+}
+
+/* Nav link glow on hover and active */
+.md-nav__link {
+  transition: color .18s ease, text-shadow .18s ease;
+}
+.md-nav__link:hover,
+.md-nav__link--active {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+}
+
+/* Header icons (search, toggle) get a soft glow */
+.md-header-nav .md-icon,
+.md-header-nav .md-toggle {
+  filter: drop-shadow(0 0 6px rgba(0,240,194,0.45));
+}
+
+/* Accent headings and links */
+a {
+  color: var(--teal-dark);
+}
+a:hover {
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+}
+
+.md-content h1, .md-content h2, .md-content h3 {
+  text-shadow: 0 0 6px rgba(0,240,194,0.06);
+}

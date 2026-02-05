@@ -16,17 +16,20 @@ theme:
     - search.share
   palette:
     - scheme: default
-      primary: deep-orange
-      accent: orange
+      primary: teal
+      accent: teal
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: deep-orange
-      accent: orange
+      primary: teal
+      accent: teal
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+extra_css:
+  - assets/stylesheets/glow.css
 
 nav:
   - Home: index.md
