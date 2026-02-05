@@ -4,10 +4,19 @@
   --teal-dark: #00796b;
 }
 
-/* Header background subtle teal sheen */
+/* Header background - solid backdrop for better visibility */
 .md-header {
-  background: linear-gradient(180deg, rgba(0,240,194,0.06), transparent);
-  box-shadow: 0 6px 24px rgba(0,240,194,0.06);
+  background: linear-gradient(180deg, #00796b, #00695c) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 24px rgba(0,240,194,0.3);
+}
+
+/* Header title - bright teal with glow */
+.md-header__title,
+.md-header__button.md-logo {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 12px rgba(0,240,194,0.9);
+  font-weight: 600;
 }
 
 /* Lighten navigation tabs (global header navigation) */
@@ -15,9 +24,11 @@
   color: rgba(255,255,255,0.87) !important;
   opacity: 1 !important;
 }
-.md-tabs__link:hover {
+.md-tabs__link:hover,
+.md-tabs__link--active {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 8px rgba(0,240,194,0.75);
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+  font-weight: 500;
 }
 
 /* Nav link glow on hover and active (sidebar) */
