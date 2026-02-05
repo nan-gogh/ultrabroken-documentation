@@ -1,0 +1,85 @@
+site_name: NaN Gogh's Guide to the UltraBroken
+site_description: Comprehensive documentation of the UltraBroken glitch in The Legend of Zelda - Tears of the Kingdom
+site_author: NaN Gogh & Community
+copyright: Community-Driven Research
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.expand
+    - search.highlight
+    - search.share
+  palette:
+    - scheme: default
+      primary: deep-orange
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep-orange
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - UltraBroken Basics:
+    - Overview: ultrabroken/index.md
+    - Introduction: ultrabroken/introduction.md
+    - Requirements: ultrabroken/requirements.md
+    - Procedure: ultrabroken/procedure.md
+    - Exceptions: ultrabroken/exceptions.md
+    - Attributes: ultrabroken/attributes.md
+    - Theories: ultrabroken/theories.md
+    - Datamine: ultrabroken/datamine.md
+  - Effects:
+    - All Effects: effects/index.md
+    - Wacko Boingo (Flight): effects/wacko-boingo.md
+    - Lift Lock: effects/lift-lock.md
+    - Recall Fling: effects/recall-fling.md
+    - Ghost Glue: effects/ghost-glue.md
+    - Remnant Glue: effects/remnant-glue.md
+    - Glue Lock: effects/glue-lock.md
+    - Mass Matching: effects/mass-matching.md
+    - Ghost Smuggle: effects/ghost-smuggle.md
+    - Phantom Smuggle: effects/phantom-smuggle.md
+    - Resurrect Smuggle: effects/resurrect-smuggle.md
+    - Ouija Entanglement: effects/ouija-entanglement.md
+    - Antimass: effects/antimass.md
+    - Freecall: effects/freecall.md
+    - Quantum State Freeze: effects/quantum-state-freeze.md
+    - Fuse Stacking: effects/fuse-stacking.md
+    - Transmigration: effects/transmigration.md
+    - Autobuild Standalones: effects/autobuild-standalones.md
+    - Slidy Cart: effects/slidy-cart.md
+  - Zonai Devices: devices/index.md
+  - Builds & UltraFuses: builds/index.md
+  - Meta & Tips: meta.md
+  - Credits: credits.md
+
+plugins:
+  - search
+  - minify
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com
+
+watch:
+  - docs
