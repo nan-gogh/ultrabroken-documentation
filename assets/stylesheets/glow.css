@@ -132,6 +132,12 @@ a:hover {
   text-shadow: 0 0 6px rgba(0,240,194,0.06);
 }
 
+/* Keep default permalinks/icons from MkDocs Material (don't override) */
+.md-typeset .md-permalink,
+.md-content .md-permalink {
+  color: var(--teal-glow) !important;
+}
+
 /* Sidebar section headers - override ellipsis clipping */
 .md-nav__title {
   overflow: visible !important;
