@@ -11,7 +11,7 @@
   box-shadow: 0 6px 24px rgba(0,240,194,0.3);
 }
 
-/* Header title - bright teal with glow */
+/* Header title - bright teal with glow (override ellipsis clipping) */
 .md-header__title,
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
@@ -21,6 +21,11 @@
     0 0 22px rgba(0,240,194,0.8),
     0 0 44px rgba(0,240,194,0.55);
   font-weight: 600;
+  overflow: visible !important;
+}
+.md-header__title .md-ellipsis {
+  overflow: visible !important;
+  text-overflow: clip !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
@@ -74,4 +79,13 @@ a:hover {
 
 .md-content h1, .md-content h2, .md-content h3 {
   text-shadow: 0 0 6px rgba(0,240,194,0.06);
+}
+
+/* Sidebar section headers - override ellipsis clipping */
+.md-nav__title {
+  overflow: visible !important;
+}
+.md-nav__title .md-ellipsis {
+  overflow: visible !important;
+  text-overflow: clip !important;
 }
