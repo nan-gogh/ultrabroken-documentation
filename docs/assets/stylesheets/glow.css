@@ -150,6 +150,67 @@ a:hover {
   text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
 }
 
+/* Use local SVG assets for header icons (burger, search, close) */
+label.md-header__button[for="__drawer"] .md-icon {
+  width: 1.05em;
+  height: 1.05em;
+  display: inline-block;
+  text-indent: -9999px !important; /* hide ligature/text fallback */
+  background-image: url('../images/burger-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+label.md-header__button[for="__search"] .md-icon,
+.md-search__icon {
+  width: 1.05em;
+  height: 1.05em;
+  display: inline-block;
+  text-indent: -9999px !important;
+  background-image: url('../images/search-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+/* Close button for search overlay (if present) */
+.md-search__close .md-icon,
+.md-search__button--close .md-icon {
+  width: 1.05em;
+  height: 1.05em;
+  display: inline-block;
+  text-indent: -9999px !important;
+  background-image: url('../images/close-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+/* Use the saved share SVG as the permalink icon (hide text and show SVG) */
+.md-typeset .md-permalink,
+.md-content .md-permalink,
+.md-typeset .headerlink,
+.md-content .headerlink {
+  display: inline-block !important;
+  width: 1.05em !important;
+  height: 1.05em !important;
+  text-indent: -9999px !important;
+  overflow: hidden !important;
+  vertical-align: middle !important;
+  background-image: url('../images/share-icon.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 100% 100% !important;
+}
+
+.md-typeset .md-permalink:hover,
+.md-content .md-permalink:hover,
+.md-typeset .headerlink:hover,
+.md-content .headerlink:hover {
+  filter: drop-shadow(0 0 8px rgba(0,240,194,0.85)) !important;
+}
+
 /* Sidebar section headers - override ellipsis clipping */
 .md-nav__title {
   overflow: visible !important;
