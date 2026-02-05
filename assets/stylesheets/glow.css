@@ -49,9 +49,6 @@
 }
 
 /* Nav link glow on hover and active (sidebar) */
-.md-nav {
-  pointer-events: auto !important;
-}
 .md-nav__link {
   transition: color .18s ease, text-shadow .18s ease;
 }
@@ -104,11 +101,10 @@
 /* Mobile drawer overlay - invisible but interactive */
 .md-overlay {
   opacity: 0 !important;
-  background: transparent !important;
-  pointer-events: auto !important;
-}
-
-/* Accent headings and links */
+  background: transparent*/
+.md-overlay {
+  opacity: 0 !important;
+  background: transparent links */
 a {
   color: var(--teal-dark);
 }
@@ -149,9 +145,9 @@ body::after {
   mix-blend-mode: screen;
 }
 
-/* Ensure primary layout sits above the decorative rune */
+/* Ensure footer sits above the decorative rune */
 /* Note: .md-header must NOT have position: relative to keep it sticky */
-.md-main,
+/* Note: .md-main must NOT have z-index or drawer will be blocked */
 .md-footer {
   position: relative;
   z-index: 1;
