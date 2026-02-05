@@ -112,6 +112,18 @@ a:hover {
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
+/* Page content links: bright teal to match navigation */
+.md-content a,
+.md-typeset a {
+  color: var(--teal-glow) !important;
+  text-decoration-color: rgba(0,240,194,0.6) !important;
+}
+.md-content a:hover,
+.md-typeset a:hover {
+  color: var(--teal-glow) !important;
+  text-shadow: none !important;
+}
+
 .md-content h1, .md-content h2, .md-content h3 {
   text-shadow: 0 0 6px rgba(0,240,194,0.06);
 }
