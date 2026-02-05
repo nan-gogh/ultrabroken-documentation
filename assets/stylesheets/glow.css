@@ -98,10 +98,11 @@
   background: transparent !important;
   opacity: 0 !important;
 }
-/* Mobile drawer overlay */
+/* Mobile drawer overlay - invisible but interactive */
 .md-overlay {
   opacity: 0 !important;
   background: transparent !important;
+  pointer-events: auto !important;
 }
 
 /* Accent headings and links */
@@ -148,8 +149,7 @@ body::after {
 /* Ensure primary layout sits above the decorative rune */
 /* Note: .md-header must NOT have position: relative to keep it sticky */
 .md-main,
-.md-footer,
-.md-nav {
+.md-footer {
   position: relative;
   z-index: 1;
 }
