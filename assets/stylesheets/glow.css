@@ -49,6 +49,9 @@
 }
 
 /* Nav link glow on hover and active (sidebar) */
+.md-nav {
+  pointer-events: auto !important;
+}
 .md-nav__link {
   transition: color .18s ease, text-shadow .18s ease;
 }
