@@ -119,7 +119,7 @@ a:hover {
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
-/* Page content links: add hover glow like navigation links */
+/* Page content links: add hover glow effect only, keep original darker colors */
 .md-content a:hover,
 .md-typeset a:hover {
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
