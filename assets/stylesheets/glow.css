@@ -121,11 +121,6 @@ body::after {
 }
 
 /* Hide the "Made with Material for MkDocs" footer credit inserted by the theme */
-/* Target the theme's footer link(s) conservatively by href fragments. */
-.md-footer__meta a[href*="squidfunk"] { display: none !important; }
-.md-footer__meta a[href*="mkdocs-material"] { display: none !important; }
-.md-footer__meta a[href*="material"] { display: none !important; }
-
-/* Fallback: if the theme inserts a plain text credit element, hide the meta area.
-   This will also hide other metadata; keep as a last-resort option. */
+/* Material theme structure: .md-footer-meta contains .md-footer-meta__inner with links */
+.md-footer-meta { display: none !important; }
 .md-footer__meta { display: none !important; }
