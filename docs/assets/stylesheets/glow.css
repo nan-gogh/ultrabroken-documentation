@@ -63,9 +63,14 @@
   text-overflow: clip !important;
 }
 
-/* Header icons (burger menu, toggle) - bright teal, no glow */
+/* Header icons (burger menu, toggle) - bright teal with hover glow */
 .md-header__button .md-icon {
   color: var(--teal-glow) !important;
+  transition: text-shadow .18s ease, filter .18s ease;
+}
+.md-header__button:hover .md-icon {
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+  filter: brightness(1.3);
 }
 
 /* Search bar and input styling - bright teal, no glow */
