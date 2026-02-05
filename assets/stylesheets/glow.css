@@ -142,8 +142,9 @@ a:hover {
 }
 
 /* Hide redundant sidebar header on mobile (drawer already has sticky page header) */
+/* Only hide the PRIMARY nav title, not nested ones (which contain back buttons) */
 @media (max-width: 76.25em) {
-  .md-nav > .md-nav__title {
+  .md-nav--primary > .md-nav__title {
     display: none;
   }
 }
