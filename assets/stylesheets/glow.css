@@ -86,14 +86,7 @@
   color: var(--teal-glow) !important;
 }
 
-/* Hide sidebar drawer (redundant with tab-based navigation) */
-.md-nav {
-  display: none !important;
-}
-.md-header__button[aria-label="Toggle navigation"],
-.md-header__button[data-md-toggle="drawer"] {
-  display: none !important;
-}
+/* Disable Material theme search & mobile-nav overlay effects (blur + darkening) */
 [data-md-toggle="search"]:checked ~ .md-header .md-search__overlay {
   opacity: 0 !important;
 }
