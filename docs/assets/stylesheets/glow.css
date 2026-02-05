@@ -73,14 +73,14 @@ label.md-header__button[for="__drawer"],
 label.md-header__button[for="__search"],
 label.md-header__button[for^="__palette_"] {
   color: var(--teal-glow) !important;
-  transition: opacity .18s ease, filter .18s ease;
+  transition: text-shadow .18s ease, filter .18s ease;
 }
 
 label.md-header__button[for="__drawer"]:hover,
 label.md-header__button[for="__search"]:hover,
 label.md-header__button[for^="__palette_"]:hover {
-  opacity: 1 !important;
-  filter: brightness(1.3);
+  text-shadow: 0 0 10px rgba(0,240,194,0.9), 0 0 15px rgba(255,255,255,0.6);
+  filter: brightness(1.2);
 }
 
 /* Search bar and input styling - bright teal, no glow */
