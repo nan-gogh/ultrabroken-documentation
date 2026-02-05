@@ -120,7 +120,23 @@ body::after {
   z-index: 1;
 }
 
-/* Hide the "Made with Material for MkDocs" footer credit inserted by the theme */
-/* Material theme structure: .md-footer-meta contains .md-footer-meta__inner with links */
-.md-footer-meta { display: none !important; }
-.md-footer__meta { display: none !important; }
+/* Hide only the "Made with Material for MkDocs" credit link, preserve rest of footer */
+/* The theme inserts this credit in .md-footer-meta via JavaScript or template */
+.md-footer-meta__inner a[href*="squidfunk"],
+.md-footer-meta__inner a[href*="mkdocs-material"],
+.md-footer__inner a[href*="squidfunk"],
+.md-footer__inner a[href*="mkdocs-material"] {
+  display: none !important;
+}
+
+/* Alternative: hide the text node "Made with..." if it's bare text */
+.md-footer-meta { font-size: 0; }
+.md-footer-meta span, 
+.md-footer-meta a {
+  font-size: revert;
+}
+.md-footer-meta a[href*="squidfunk"],
+.md-footer-meta a[href*="material"],
+.md-footer-meta a[href*="mkdocs"] {
+  display: none !important;
+}
