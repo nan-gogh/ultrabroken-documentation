@@ -25,10 +25,12 @@
   opacity: 1 !important;
 }
 .md-tabs__link:hover,
-.md-tabs__link--active {
+.md-tabs__link--active,
+.md-tabs__link[aria-selected="true"],
+.md-tabs__item--active .md-tabs__link {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9);
-  font-weight: 500;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+  font-weight: 500 !important;
 }
 
 /* Nav link glow on hover and active (sidebar) */
