@@ -26,18 +26,12 @@
   filter: drop-shadow(0 0 6px rgba(0,240,194,0.45));
 }
 
-/* Global header navigation: lighten non-active items for readability */
-.md-header .md-header-nav .md-nav__link,
-.md-header-nav .md-nav__link {
-  color: rgba(255,255,255,0.92);
-  opacity: 0.92;
-  transition: color .18s ease, opacity .18s ease, text-shadow .18s ease;
+/* Lighten global header nav items for better contrast */
+.md-header-nav__list .md-nav__link {
+  color: rgba(255,255,255,0.85) !important;
 }
-.md-header-nav .md-nav__link:not(.md-nav__link--active) {
-  color: rgba(255,255,255,0.78);
-}
-.md-header-nav .md-nav__link:not(.md-nav__link--active):hover {
-  color: var(--teal-glow);
+.md-header-nav__list .md-nav__link:hover {
+  color: var(--teal-glow) !important;
   text-shadow: 0 0 8px rgba(0,240,194,0.75);
 }
 
