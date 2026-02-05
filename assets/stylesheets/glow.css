@@ -68,9 +68,10 @@
   color: var(--teal-glow) !important;
 }
 
-/* Burger menu and palette toggle buttons - light up on hover */
+/* Burger menu and palette toggle buttons - bright teal with hover lightup */
 label.md-header__button[for="__drawer"],
 label.md-header__button[for^="__palette_"] {
+  color: var(--teal-glow) !important;
   transition: opacity .18s ease, filter .18s ease;
 }
 
