@@ -21,16 +21,21 @@
 
 /* Lighten navigation tabs (global header navigation) */
 .md-tabs__link {
-  color: rgba(255,255,255,0.87) !important;
+  color: rgba(0,240,194,0.6) !important;
   opacity: 1 !important;
+  transition: color .18s ease, text-shadow .18s ease;
 }
-.md-tabs__link:hover,
-.md-tabs__link--active,
+.md-tabs__link:hover {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+}
+/* Active state - try multiple selectors */
+.md-tabs__link.md-tabs__link--active,
+.md-tabs__link[aria-current="page"],
 .md-tabs__link[aria-selected="true"],
-.md-tabs__item--active .md-tabs__link {
+.md-tabs--active .md-tabs__link {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
-  font-weight: 500 !important;
 }
 
 /* Nav link glow on hover and active (sidebar) */
