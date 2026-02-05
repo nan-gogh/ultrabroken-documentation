@@ -7,7 +7,6 @@
 /* Header background - solid backdrop for better visibility */
 .md-header {
   background: linear-gradient(180deg, #00796b, #00695c) !important;
-  backdrop-filter: blur(10px);
   box-shadow: 0 6px 24px rgba(0,240,194,0.3);
 }
 
@@ -85,6 +84,17 @@
 /* Search icon - bright teal, no glow */
 .md-search__icon {
   color: var(--teal-glow) !important;
+}
+
+/* Disable search modal overlay effects (no backdrop blur or darkening) */
+.md-search--active .md-header {
+  backdrop-filter: none !important;
+}
+body.md-search--active {
+  backdrop-filter: none !important;
+}
+.md-search-result {
+  backdrop-filter: none !important;
 }
 
 /* Accent headings and links */
