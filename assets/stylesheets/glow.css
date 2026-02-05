@@ -119,29 +119,3 @@ body::after {
   position: relative;
   z-index: 1;
 }
-
-/* Hide the "Made with Material for MkDocs" credit and copyright text */
-/* Hide copyright section */
-.md-footer__copyright { display: none !important; }
-
-/* Hide "Made with" text and Material credit link in footer-meta */
-.md-footer-meta__inner a[href*="squidfunk"],
-.md-footer-meta__inner a[href*="mkdocs-material"],
-.md-footer__inner a[href*="squidfunk"],
-.md-footer__inner a[href*="mkdocs-material"] {
-  display: none !important;
-}
-
-/* Hide the "Made with" text node - fontsize trick to hide bare text while preserving other elements */
-.md-footer-meta { 
-  font-size: 0;
-}
-.md-footer-meta span, 
-.md-footer-meta a {
-  font-size: revert;
-}
-.md-footer-meta a[href*="squidfunk"],
-.md-footer-meta a[href*="material"],
-.md-footer-meta a[href*="mkdocs"] {
-  display: none !important;
-}
