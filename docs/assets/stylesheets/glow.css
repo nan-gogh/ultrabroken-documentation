@@ -29,10 +29,14 @@
   opacity: 1 !important;
   transition: color .18s ease, text-shadow .18s ease;
 }
-/* Active tabs - bright teal with glow (match hover styling) */
+/* Active tabs - bright teal with glow (override ellipsis clipping) */
 .md-tabs__item--active .md-tabs__link {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+}
+.md-tabs__item--active .md-ellipsis {
+  overflow: visible !important;
+  text-overflow: clip !important;
 }
 /* Hover state */
 .md-tabs__link:hover {
