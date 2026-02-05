@@ -147,13 +147,11 @@ a:hover {
   .md-nav--primary > .md-nav__title {
     font-size: 0; /* Hide original text content */
   }
-  .md-nav--primary > .md-nav__title .md-logo {
-    display: none; /* Hide logo */
-  }
   .md-nav--primary > .md-nav__title::before {
     content: "Navigation";
     font-size: 1rem; /* Restore readable font size */
     display: inline-block;
+    color: var(--teal-glow) !important;
   }
 }
 
