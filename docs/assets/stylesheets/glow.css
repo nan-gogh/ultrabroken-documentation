@@ -145,7 +145,15 @@ a:hover {
 /* Only hide the PRIMARY nav title, not nested ones (which contain back buttons) */
 @media (max-width: 76.25em) {
   .md-nav--primary > .md-nav__title {
-    display: none;
+    font-size: 0; /* Hide original text content */
+  }
+  .md-nav--primary > .md-nav__title .md-logo {
+    display: none; /* Hide logo */
+  }
+  .md-nav--primary > .md-nav__title::before {
+    content: "Navigation";
+    font-size: 1rem; /* Restore readable font size */
+    display: inline-block;
   }
 }
 
