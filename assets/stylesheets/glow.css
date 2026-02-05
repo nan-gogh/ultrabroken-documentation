@@ -25,19 +25,12 @@
   opacity: 1 !important;
   transition: color .18s ease, text-shadow .18s ease;
 }
-/* Active tabs - bright teal with glow (use multiple approaches) */
-.md-tabs__link:not(:only-child):first-child,
-.md-tabs__link {
-  /* Default: darker teal for non-active */
-}
-/* Try to catch active by looking at the page URL - Home page will have Home active */
-.md-tabs__link[href="/"],
-.md-tabs__link[href*="index.html"],
-body.md-page-home .md-tabs__link:first-child {
+/* Active tabs - bright teal with glow */
+.md-tabs__item--active .md-tabs__link {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
 }
-/* General hover state */
+/* Hover state */
 .md-tabs__link:hover {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
