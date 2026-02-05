@@ -10,7 +10,17 @@
   box-shadow: 0 6px 24px rgba(0,240,194,0.06);
 }
 
-/* Nav link glow on hover and active */
+/* Lighten navigation tabs (global header navigation) */
+.md-tabs__link {
+  color: rgba(255,255,255,0.87) !important;
+  opacity: 1 !important;
+}
+.md-tabs__link:hover {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 8px rgba(0,240,194,0.75);
+}
+
+/* Nav link glow on hover and active (sidebar) */
 .md-nav__link {
   transition: color .18s ease, text-shadow .18s ease;
 }
@@ -24,22 +34,6 @@
 .md-header-nav .md-icon,
 .md-header-nav .md-toggle {
   filter: drop-shadow(0 0 6px rgba(0,240,194,0.45));
-}
-
-/* Lighten global header nav items for better contrast */
-.md-header-nav__list {
-  display: flex;
-}
-.md-header-nav__list .md-nav__item {
-  color: rgba(255,255,255,0.85) !important;
-}
-.md-header-nav__list .md-nav__link {
-  color: rgba(255,255,255,0.85) !important;
-  opacity: 1 !important;
-}
-.md-header-nav__list .md-nav__link:hover {
-  color: var(--teal-glow) !important;
-  text-shadow: 0 0 8px rgba(0,240,194,0.75);
 }
 
 /* Accent headings and links */
