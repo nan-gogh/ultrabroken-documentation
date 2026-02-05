@@ -68,6 +68,18 @@
   color: var(--teal-glow) !important;
 }
 
+/* Burger menu and palette toggle buttons - light up on hover */
+label.md-header__button[for="__drawer"],
+label.md-header__button[for^="__palette_"] {
+  transition: opacity .18s ease, filter .18s ease;
+}
+
+label.md-header__button[for="__drawer"]:hover,
+label.md-header__button[for^="__palette_"]:hover {
+  opacity: 1 !important;
+  filter: brightness(1.3);
+}
+
 /* Search bar and input styling - bright teal, no glow */
 .md-search__input {
   color: var(--teal-glow) !important;
