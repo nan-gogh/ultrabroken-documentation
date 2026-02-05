@@ -98,17 +98,18 @@
   background: transparent !important;
   opacity: 0 !important;
 }
-/* Mobile drawer overlay - invisible but interactive */
+/* Mobile drawer overlay */
 .md-overlay {
   opacity: 0 !important;
-  background: transparent*/
-.md-overlay {
-  opacity: 0 !important;
-  background: transparent links */
+  background: transparent !important;
+}
+
+/* Accent headings and links */
 a {
   color: var(--teal-dark);
 }
 a:hover {
+  color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
