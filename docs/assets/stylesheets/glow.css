@@ -80,7 +80,6 @@
 }
 .md-search__input:focus {
   border-color: var(--teal-glow) !important;
-  box-shadow: 0 0 8px rgba(0,240,194,0.6) !important;
 }
 
 /* Search icon - bright teal, no glow */
@@ -130,10 +129,17 @@ body::after {
 }
 
 /* Ensure primary layout sits above the decorative rune */
-.md-header,
+/* Note: .md-header must NOT have position: relative to keep it sticky */
 .md-main,
 .md-footer,
 .md-nav {
   position: relative;
   z-index: 1;
+}
+
+/* Explicitly keep header sticky */
+.md-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1 !important;
 }
