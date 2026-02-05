@@ -1,4 +1,4 @@
-# Ultimate Guide to the UltraBroken
+# Guide to the Ultrabroken
 
 Welcome to the comprehensive guide on **UltraBroken**, the most broken glitch in The Legend of Zelda: Tears of the Kingdom. This is a revered gem among all glitches—a true holy grail and a developer oversight!
 

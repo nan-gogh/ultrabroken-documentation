@@ -1,175 +1,115 @@
-# UltraBroken Documentation Wiki
+# UltraBroken Documentation — Editor Guide
 
-A comprehensive, community-driven wiki documenting the UltraBroken glitch in The Legend of Zelda: Tears of the Kingdom.
+This repository holds the UltraBroken documentation written in Markdown and published with MkDocs + Material.
 
-## 🚀 Getting Started
+This README is focused on editors who will make content changes directly on GitHub. Editors typically do not need to run or build the site locally — just edit, commit, and open a pull request.
 
-This wiki uses **MkDocs** with the Material theme for easy reading and collaborative editing.
+## How editors should contribute
 
-### Prerequisites
+- Use the GitHub web editor or your normal GitHub workflow to edit Markdown files in the `docs/` folder.
+- Make small, focused commits and include a clear title/description for the change.
+- When ready, open a pull request against `main` (or push directly if you have permission).
+- Keep changes scoped to documentation content: avoid editing `mkdocs.yml` or CI workflows unless requested by maintainers.
 
-- Python 3.7 or higher
-- pip (Python package manager)
+Quick tips for the GitHub web editor:
 
-### Installation & Setup
+1. Navigate to the file you want to change (for example `docs/effects/wacko-boingo.md`).
+2. Click the pencil ✏️ icon to edit the file in your browser.
+3. Make your edits, add a concise commit message, and choose to create a new branch or commit directly to `main`.
+4. Open a pull request if you used a branch.
 
-1. **Install MkDocs and Material theme:**
-   ```bash
-   pip install mkdocs mkdocs-material
-   ```
+## Recommended editing conventions
 
-2. **Navigate to the project directory:**
-   ```bash
-   cd ultrabroken-documentation
-   ```
+- Write in present tense and keep instructions concise.
+- Use clear section headings and include example commands or code where useful.
+- Prefer relative links for cross-references inside the docs (e.g. `../effects/index.md`).
+- For images, put files in `docs/assets/images/` and reference them with relative paths.
 
-3. **Run the local development server:**
-   ```bash
-   mkdocs serve
-   ```
+## Markdown quick reference (expanded)
 
-4. **Open in your browser:**
-   ```
-   http://localhost:8000
-   ```
-
-### Building for Deployment
-
-To build the static site for GitHub Pages or other hosting:
-
-```bash
-mkdocs build
-```
-
-This creates a `site/` directory with all the static HTML files ready for deployment.
-
-## 📁 Directory Structure
-
-```
-docs/
-├── index.md                    # Homepage
-├── meta.md                     # Meta & Advanced Tips
-├── credits.md                  # Credits & Contributors
-├── ultrabroken/                # Core mechanic documentation
-│   ├── index.md
-│   ├── introduction.md
-│   ├── requirements.md
-│   ├── procedure.md
-│   ├── exceptions.md
-│   ├── attributes.md
-│   ├── theories.md
-│   └── datamine.md
-├── effects/                    # All effects documentation
-│   ├── index.md
-│   ├── wacko-boingo.md
-│   ├── lift-lock.md
-│   ├── ghost-glue.md
-│   ├── phantom-smuggle.md
-│   └── ... (15+ more effects)
-├── devices/                    # Zonai Device Hacks
-│   └── index.md
-└── builds/                     # UltraFuse Builds
-    └── index.md
-```
-
-## ✏️ Contributing
-
-This wiki is designed for easy collaborative editing. There are two ways to contribute:
-
-### Method 1: GitHub Web Editor (Easiest)
-1. Push this repo to GitHub
-2. Contributors can edit `.md` files directly in the browser
-3. Submit pull requests for review
-4. Changes are automatically deployed via GitHub Pages
-
-### Method 2: Local Editing
-1. Clone the repository
-2. Edit markdown files in the `docs/` folder
-3. Test locally with `mkdocs serve`
-4. Commit and push changes
-
-## 🌐 Deploying to GitHub Pages
-
-To automatically publish this wiki to GitHub Pages:
-
-1. Push the repository to GitHub
-2. Add a GitHub Actions workflow (`.github/workflows/deploy.yml`):
-
-```yaml
-name: Deploy Wiki
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-      - run: pip install mkdocs mkdocs-material
-      - run: mkdocs gh-deploy --force
-```
-
-3. Enable GitHub Pages in repository settings to deploy from `gh-pages` branch
-
-## 📖 Navigation
-
-- **[Full Documentation](docs/index.md)** - Start here for the complete guide
-- **[Quick Start](docs/ultrabroken/introduction.md)** - Get started with the basics
-- **[All Effects](docs/effects/index.md)** - Explore every documented effect
-- **[Device List](docs/devices/index.md)** - Zonai device breakdowns
-- **[Meta & Tips](docs/meta.md)** - Advanced strategies and references
-
-## 🎨 Customization
-
-Edit `mkdocs.yml` to customize:
-- Site name and branding
-- Colors (primary/accent)
-- Navigation structure
-- Theme settings
-
-## 📝 File Format
-
-All documentation uses **Markdown** format. Basic syntax:
+Headings:
 
 ```markdown
-# Heading 1
-## Heading 2
-### Heading 3
-
-**Bold text**
-*Italic text*
-
-- Bullet points
-- Another item
-
-1. Numbered list
-2. Another item
-
-[Link text](path/to/file.md)
+# H1
+## H2
+### H3
 ```
 
-## 🤝 Community
+Emphasis:
 
-This is a community project! All contributors are welcomed. Whether you're:
-- Discovering new effects
-- Refining existing documentation
-- Adding video guides
-- Creating example builds
+```markdown
+**bold**  
+*italic*  
+`inline code`
+```
 
-...your contributions help keep this resource accurate and comprehensive.
+Code blocks (fenced):
 
-## 📄 License
+```markdown
+```bash
+echo "example"
+```
+```
 
-This documentation is community-driven and maintained collaboratively.
+Links and images:
+
+```markdown
+[Link text](path/to/file.md)
+![Alt text](assets/images/example.png)
+```
+
+Lists:
+
+```markdown
+- Unordered item
+- Another item
+
+1. First
+2. Second
+```
+
+Blockquote:
+
+```markdown
+> This is a quote
+```
+
+Tables:
+
+```markdown
+| Column A | Column B |
+|---|---|
+| Value 1 | Value 2 |
+```
+
+Task lists (useful in PRs):
+
+```markdown
+- [ ] Open review
+- [x] Addressed comments
+```
+
+Admonitions (supported by MkDocs Material):
+
+```markdown
+!!! note
+    This is a helpful note.
+```
+
+## Navigation & where to edit
+
+- Top-level docs live in `docs/`.
+- Edit pages directly; to reorganize navigation, ask a maintainer to update `mkdocs.yml`.
+
+## Community
+
+This is a community project — everyone is welcome to contribute. Join discussions and get help:
+
+- Discord: https://discord.gg/C7uTseSb
+
+If you prefer other spaces, check project channels listed on the repository.
 
 ---
 
-**Happy glitching! 🎮**
+Thanks for contributing — keep changes focused, documented, and easy to review.
 
-For questions or discussions, visit the community spaces where this project is coordinated.
