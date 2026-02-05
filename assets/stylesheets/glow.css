@@ -90,3 +90,30 @@ a:hover {
   overflow: visible !important;
   text-overflow: clip !important;
 }
+
+/* Keep logo visible at mobile breakpoints */
+@media (max-width: 840px) {
+  /* Ensure the logo button is shown and not hidden by the theme */
+  .md-header__button.md-logo,
+  .md-logo {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 44px !important;
+    height: 44px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Scale the SVG/IMG inside the logo */
+  .md-header__button.md-logo img,
+  .md-logo svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* Make room so title doesn't overlap the logo */
+  .md-header__inner {
+    gap: 8px !important;
+  }
+}
