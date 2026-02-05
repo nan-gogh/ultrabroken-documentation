@@ -112,9 +112,10 @@ a:hover {
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
-/* Page content links: add hover glow effect only, keep original darker colors */
+/* Page content links: bright teal color and glow on hover only, matching sidebar */
 .md-content a:hover,
 .md-typeset a:hover {
+  color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
