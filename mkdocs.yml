@@ -72,7 +72,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.tasklist
   - toc:
-      permalink: true
+      permalink: "#"
+      permalink_title: Permanent link
 
 extra:
   social:
