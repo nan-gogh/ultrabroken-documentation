@@ -35,13 +35,7 @@ html, body {
   font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }
-.md-header__button.md-logo:active {
-  text-shadow:
-    0 0 4px rgba(0,240,194,0.95),
-    0 0 10px rgba(0,240,194,0.9),
-    0 0 22px rgba(0,240,194,0.8),
-    0 0 44px rgba(0,240,194,0.55);
-}
+
 .md-header__title .md-ellipsis {
   overflow: visible !important;
   text-overflow: clip !important;
@@ -100,13 +94,7 @@ html, body {
   filter: none;
   transition: filter .2s ease, transform .2s ease;
 }
-.md-header .md-logo:active svg,
-.md-header__title .md-logo:active svg,
-.md-header__logo:active svg,
-.md-logo:active svg {
-  filter: drop-shadow(0 0 18px rgba(0,240,194,0.98));
-  transform: translateZ(0);
-}
+
 
 /* Burger menu, search, and palette toggle buttons - bright teal with hover lightup */
 label.md-header__button[for="__drawer"],
@@ -204,10 +192,7 @@ a:hover {
   }
 }
 
-/* Sidebar logo hover effect - match desktop behavior */
-.md-nav__button.md-logo:active {
-  opacity: 0.7;
-}
+/* Sidebar logo - no state effects */
 
 /* Large, barely-visible rune in the lower-right corner */
 body::after {
