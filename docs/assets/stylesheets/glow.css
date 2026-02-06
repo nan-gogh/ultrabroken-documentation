@@ -193,7 +193,7 @@ body::after {
 .ultrabroken-404-overlay {
   position: fixed;
   right: 40vmin; /* moved closer to the rune */
-  bottom: 30vmin; /* lift up near the rune */
+  bottom: 34vmin; /* lift up a bit higher near the rune */
   width: 16vmin;
   height: 16vmin;
   max-width: 20vw;
