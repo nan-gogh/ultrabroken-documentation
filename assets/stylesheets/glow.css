@@ -173,7 +173,7 @@ body::after {
   max-width: 60vw;
   max-height: 60vh;
   /* Base rune only; 404 overlay enabled via `.ultrabroken-404` on body */
-  background-image: url('../ultrabroken_rune.svg');
+  background-image: url('../images/ultrabroken_rune.svg');
   background-repeat: no-repeat;
   background-position: center right bottom;
   background-size: 48vmin 48vmin;
@@ -191,7 +191,7 @@ body::after {
 
 /* When a 404 is detected, add a small question-mark overlay in the rune's upper-left */
 body.ultrabroken-404::after {
-  background-image: url('../ultrabroken_rune.svg'), url('../images/ultrabroken_404.svg');
+  background-image: url('../images/ultrabroken_rune.svg'), url('../images/ultrabroken_404.svg');
   background-repeat: no-repeat, no-repeat;
   background-position: center right bottom, 8% 8%;
   background-size: 48vmin 48vmin, 6vmin 6vmin;
