@@ -149,10 +149,12 @@ a:hover {
 .md-content :is(h1,h2,h3,h4,h5,h6):is(:hover, :focus-within, :target) .md-permalink,
 .md-typeset :is(h1,h2,h3,h4,h5,h6):is(:hover, :focus-within, :target) .headerlink,
 .md-content :is(h1,h2,h3,h4,h5,h6):is(:hover, :focus-within, :target) .headerlink {
-  opacity: 0.65 !important;
+  /* Visible when heading hovered/active, but do not apply highlight */
+  opacity: 0.6 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+  text-shadow: none !important;
+  color: color-mix(in srgb, var(--teal-glow) 55%, currentColor 45%) !important;
 }
 
 /* Also highlight when the permalink itself is hovered or focused (keyboard accessible) */
@@ -164,10 +166,12 @@ a:hover {
 .md-content .md-permalink:focus,
 .md-typeset .headerlink:focus,
 .md-content .headerlink:focus {
+  /* Bright teal and glow when the permalink itself is hovered/focused */
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.95) !important;
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 12px rgba(0,240,194,0.95) !important;
 }
 
 /* Sidebar section headers - override ellipsis clipping */
