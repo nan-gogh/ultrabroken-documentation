@@ -97,10 +97,10 @@ html, body {
   filter: drop-shadow(0 0 8px rgba(0,240,194,0.9));
   transition: filter .2s ease, transform .2s ease;
 }
-.md-header .md-logo:hover svg,
-.md-header__title .md-logo:hover svg,
-.md-header__logo:hover svg,
-.md-logo:hover svg {
+.md-header .md-logo:active svg,
+.md-header__title .md-logo:active svg,
+.md-header__logo:active svg,
+.md-logo:active svg {
   filter: drop-shadow(0 0 18px rgba(0,240,194,0.98));
   transform: translateZ(0);
 }
@@ -202,7 +202,7 @@ a:hover {
 }
 
 /* Sidebar logo hover effect - match desktop behavior */
-.md-nav__button.md-logo:hover {
+.md-nav__button.md-logo:active {
   opacity: 0.7;
 }
 
