@@ -172,10 +172,11 @@ body::after {
   height: 48vmin;
   max-width: 60vw;
   max-height: 60vh;
-  background-image: url('../../ultrabroken_rune.svg');
-  background-repeat: no-repeat;
-  background-position: center right bottom;
-  background-size: contain;
+  /* Rune with small question-mark overlay (upper-left of the rune) */
+  background-image: url('../../ultrabroken_rune.svg'), url('../images/ultrabroken_404.svg');
+  background-repeat: no-repeat, no-repeat;
+  background-position: center right bottom, 8% 8%;
+  background-size: 48vmin 48vmin, 6vmin 6vmin;
   opacity: 0.06;
   pointer-events: none;
   z-index: 0;
