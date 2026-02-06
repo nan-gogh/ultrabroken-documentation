@@ -18,14 +18,18 @@ html, body {
 /* Header background - solid backdrop for better visibility */
 .md-header {
   background: linear-gradient(180deg, #00796b, #00695c) !important;
-  box-shadow: none !important;
+  box-shadow: 0 6px 24px rgba(0,240,194,0.3);
 }
 
 /* Header title - bright teal with glow (override ellipsis clipping) */
 .md-header__title,
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
-  text-shadow: none !important;
+  text-shadow:
+    0 0 4px rgba(0,240,194,0.95),
+    0 0 10px rgba(0,240,194,0.9),
+    0 0 22px rgba(0,240,194,0.8),
+    0 0 44px rgba(0,240,194,0.55);
   font-weight: 600;
   font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
@@ -44,7 +48,7 @@ html, body {
 /* Active tabs - bright teal with glow (override ellipsis clipping) */
 .md-tabs__item--active .md-tabs__link {
   color: var(--teal-glow) !important;
-  text-shadow: none !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
 }
 .md-tabs__item--active .md-ellipsis {
   overflow: visible !important;
@@ -53,7 +57,7 @@ html, body {
 /* Hover state */
 .md-tabs__link:hover {
   color: var(--teal-glow) !important;
-  text-shadow: none !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
 /* Nav link glow on hover and active (sidebar) */
@@ -63,7 +67,7 @@ html, body {
 .md-nav__link:hover,
 .md-nav__link--active {
   color: var(--teal-glow) !important;
-  text-shadow: none !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 /* Override ellipsis clipping on sidebar links */
 .md-nav__link .md-ellipsis {
@@ -135,11 +139,11 @@ a {
 }
 a:hover {
   color: var(--teal-glow) !important;
-  text-shadow: none !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
 .md-content h1, .md-content h2, .md-content h3 {
-  text-shadow: none !important;
+  text-shadow: 0 0 6px rgba(0,240,194,0.06);
 }
 
 /* Using default MkDocs Material permalink styles (no custom permalink overrides) */
@@ -285,7 +289,7 @@ body::after {
   pointer-events: none;
   z-index: 1;
   border-radius: 50%;
-  box-shadow: none !important;
+  box-shadow: 0 0 8px rgba(0,240,194,0.6);
 }
 
 .md-main::after,
@@ -299,7 +303,7 @@ body::after {
   pointer-events: none;
   z-index: 1;
   border-radius: 50%;
-  box-shadow: none !important;
+  box-shadow: 0 0 6px rgba(0,240,194,0.5);
 }
 
 /* Particle 1 - .md-main::before (15% from left) */
@@ -439,9 +443,9 @@ body::before {
   height: max(8vh, 80px);
   pointer-events: none;
   z-index: 0;
-  background: none !important;
-  opacity: 0 !important;
-  animation: none !important;
+  background: linear-gradient(to top, rgba(0,240,194,0.18) 0%, rgba(0,240,194,0.08) 35%, rgba(0,240,194,0.00) 100%);
+  opacity: 0.9;
+  animation: pulseLinear 4200ms ease-in-out infinite;
 }
 
 @keyframes pulseLinear {
@@ -504,7 +508,7 @@ html, body, .md-content, .md-nav, .md-sidebar {
 ::-webkit-scrollbar-thumb:focus {
   background-color: var(--scrollbar-thumb) !important;
   border-color: var(--scrollbar-thumb) !important;
-  box-shadow: none !important;
+  box-shadow: 0 0 8px rgba(0,240,194,0.18) !important;
   opacity: 1 !important;
 }
 
