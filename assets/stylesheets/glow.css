@@ -461,11 +461,13 @@ mark:hover {
   background-color: rgba(0, 240, 194, 0.5) !important;
 }
 
-/* Global scrollbar styling to match site teal theme */
+/* Global scrollbar styling to match site teal theme
+   - idle thumb: dark grey (used when not interacted)
+   - dragged/hovered thumb: bright teal (used on hover/drag) */
 :root {
   --scrollbar-track: rgba(0,0,0,0.04);
-  /*--scrollbar-thumb: rgba(93,95,103,1);*/
-  --scrollbar-thumb: rgba(0,240,194,1);
+  --scrollbar-thumb-idle: rgba(93,95,103,1);
+  --scrollbar-thumb: var(--scrollbar-thumb-idle);
   --scrollbar-thumb-hover: rgba(0,240,194,1);
 }
 
