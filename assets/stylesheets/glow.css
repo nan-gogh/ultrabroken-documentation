@@ -199,15 +199,15 @@ body.ultrabroken-404::before {
   right: 0;
   bottom: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
   mix-blend-mode: screen;
-  opacity: 0.06;
+  opacity: 0.12;
   background-image: url('../images/ultrabroken_404.svg');
   background-repeat: no-repeat;
   /* Position the overlay to the left of the rune (rune lives at bottom-right: 2vmin inset).
      Adjust these values to fine-tune placement without touching the rune. */
   background-position: calc(100% - 70vmin) calc(100% - 35vmin);
-  background-size: 18vmin 18vmin;
+  background-size: 20vmin 20vmin;
 }
 
 @keyframes pulseLogo {
