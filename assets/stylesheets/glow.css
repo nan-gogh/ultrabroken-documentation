@@ -21,8 +21,13 @@ html, body {
   box-shadow: 0 6px 24px rgba(0,240,194,0.3);
 }
 
-/* Header title - bright teal with glow (override ellipsis clipping) */
-.md-header__title,
+.md-header__title {
+  color: var(--teal-glow) !important;
+  text-shadow: none !important;
+  font-weight: 600;
+  font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
+  overflow: visible !important;
+}
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
   text-shadow:
