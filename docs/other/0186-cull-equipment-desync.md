@@ -1,0 +1,52 @@
+---
+title: "Cull Equipment Desync"
+---
+
+# Cull Equipment Desync
+
+## Overview
+Allows to have a weapon equipped that is not in the inventory.
+
+## How To
+```
+1. Cull 
+2. Equip your target item
+3. Close the menu                                                                                                                                                          
+4. Drop your equipped target item 
+5. Close the menu
+6. Uncull
+```
+
+## Metadata
+**Working versions:** 1.0.0
+1.1.0/1.1.1
+1.1.2
+1.2.0
+1.2.1
+**Credit:** Blize, ock
+
+(Cull Arrow Smuggle)
+Blize - October 10, 2023
+**Source:** Discord
+Discord
+**See also:** Object Culling
+**Effects/Extensions:** Arrow Smuggle
+**Examples:** https://discord.com/channels/1086729144307564648/1113557914444111873/1161345697346494587
+
+## Raw row
+```csv
+Glitch: Cull Equipment Desync, Glitch Overview: Allows to have a weapon equipped that is not in the inventory., How To: 1. Cull 
+2. Equip your target item
+3. Close the menu                                                                                                                                                          
+4. Drop your equipped target item 
+5. Close the menu
+6. Uncull, Working Versions: 1.0.0
+1.1.0/1.1.1
+1.1.2
+1.2.0
+1.2.1, Credit: Blize, ock
+
+(Cull Arrow Smuggle)
+Blize, Date: October 10, 2023, Link to Source: Discord
+Discord, See Also: Object Culling, Effects/Extensions: Arrow Smuggle, Example(s): https://discord.com/channels/1086729144307564648/1113557914444111873/1161345697346494587
+```

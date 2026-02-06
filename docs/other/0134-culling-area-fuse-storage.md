@@ -1,0 +1,19 @@
+---
+title: "Culling Area Fuse Storage"
+---
+
+# Culling Area Fuse Storage
+
+## Overview
+A method of Fuse Storage using AreaCulling
+
+## Metadata
+**Credit:** Mozz, pyuk - June 30, 2023
+**See also:** Fuse Storage
+Object Culling
+
+## Raw row
+```csv
+Glitch: Culling Area Fuse Storage, Glitch Overview: A method of Fuse Storage using AreaCulling, Credit: Mozz, pyuk, Date: June 30, 2023, See Also: Fuse Storage
+Object Culling
+```

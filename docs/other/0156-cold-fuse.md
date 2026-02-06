@@ -1,0 +1,69 @@
+---
+title: "Cold Fuse"
+---
+
+# Cold Fuse
+
+## Overview
+Interrupting a fuse causes null fe without destroying the connection to the weapon/shield.
+
+## How To
+```
+Overload Cold Fuse
+Shock Cold Fuse
+Cull Cold Fuse
+```
+
+## Metadata
+**Working versions:** 1.0.0
+1.1.0/1.1.1
+1.1.2
+1.2.0
+1.2.1
+**Credit:** pyuk, Ryan?, Zas - July 23, 2023
+**Source:** Twitter
+**See also:** Zuggle Overload
+Drop Smuggling
+Object Culling
+Memory Buffering
+**Effects/Extensions:** Auto Fe:
+Fusing a cold fused object to its base causes fuse entanglement
+(aka closing the cold fe loop)
+Discord
+Discord
+
+Additionally, purgatorifying cold fused equippment will tie them to their parent
+
+Pseudo Fuse:
+Cold fusing a fuse entangled object causes it to be visually fused in the overworld, but not in the menu
+
+Shield packing:
+Combining pseudo fuse with purgatory items allows you to store multiple objects in a single weapon or shield and spawn them into the overworld by using detenglement.
+Discord (mulberry)
+
+## Raw row
+```csv
+Glitch: Cold Fuse, Glitch Overview: Interrupting a fuse causes null fe without destroying the connection to the weapon/shield., How To: Overload Cold Fuse
+Shock Cold Fuse
+Cull Cold Fuse, Working Versions: 1.0.0
+1.1.0/1.1.1
+1.1.2
+1.2.0
+1.2.1, Credit: pyuk, Ryan?, Zas, Date: July 23, 2023, Link to Source: Twitter, See Also: Zuggle Overload
+Drop Smuggling
+Object Culling
+Memory Buffering, Effects/Extensions: Auto Fe:
+Fusing a cold fused object to its base causes fuse entanglement
+(aka closing the cold fe loop)
+Discord
+Discord
+
+Additionally, purgatorifying cold fused equippment will tie them to their parent
+
+Pseudo Fuse:
+Cold fusing a fuse entangled object causes it to be visually fused in the overworld, but not in the menu
+
+Shield packing:
+Combining pseudo fuse with purgatory items allows you to store multiple objects in a single weapon or shield and spawn them into the overworld by using detenglement.
+Discord (mulberry)
+```

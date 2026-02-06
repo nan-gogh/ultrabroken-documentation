@@ -1,0 +1,30 @@
+---
+title: "Detached Rangeless Active Zonai (DRAZ)"
+---
+
+# Detached Rangeless Active Zonai (DRAZ)
+
+## Overview
+Allows you to leave a Zonai device stuck a single place and activate it remotely from anywhere.
+
+## How To
+```
+1. FE a Zonai device to a shield
+2. Fuse that Zonai device to Mineru, then fuse something else onto that same slot, overriding it
+```
+
+## Metadata
+**Working versions:** 1.0.0
+1.1.0/1.1.1
+1.1.2
+**Credit:** Venaticus - June 15, 2023
+**See also:** Fuse Entanglement
+**Effects/Extensions:** Can be kept permanently active via GAS and can be zuggled for transferring/other zuggle-related things
+
+## Raw row
+```csv
+Glitch: Detached Rangeless Active Zonai (DRAZ), Glitch Overview: Allows you to leave a Zonai device stuck a single place and activate it remotely from anywhere., How To: 1. FE a Zonai device to a shield
+2. Fuse that Zonai device to Mineru, then fuse something else onto that same slot, overriding it, Working Versions: 1.0.0
+1.1.0/1.1.1
+1.1.2, Credit: Venaticus, Date: June 15, 2023, See Also: Fuse Entanglement, Effects/Extensions: Can be kept permanently active via GAS and can be zuggled for transferring/other zuggle-related things
+```

@@ -1,0 +1,54 @@
+---
+title: "Breaking AMS"
+---
+
+# Breaking AMS
+
+## Overview
+By using certain setups, it is possible to ignore the no durability use.
+
+## How To
+```
+Method 1:
+1. Activate arrow smuggle
+2. activate sidons ability
+3. mount mineru
+4. jump off and enter bullet time
+5. jump slash with the ams
+
+Method 2:
+1. Activate arrow smuggle
+2. hold out the bow
+3. side hop
+4. press Y
+```
+
+## Metadata
+**Working versions:** 1.0.0
+1.1.0/1.1.1
+1.1.2
+1.2.0
+1.2.1
+**Credit:** Infrasolid - November 26, 2023
+**Source:** Discord
+**See also:** AMS
+
+## Raw row
+```csv
+Glitch: Breaking AMS, Glitch Overview: By using certain setups, it is possible to ignore the no durability use., How To: Method 1:
+1. Activate arrow smuggle
+2. activate sidons ability
+3. mount mineru
+4. jump off and enter bullet time
+5. jump slash with the ams
+
+Method 2:
+1. Activate arrow smuggle
+2. hold out the bow
+3. side hop
+4. press Y, Working Versions: 1.0.0
+1.1.0/1.1.1
+1.1.2
+1.2.0
+1.2.1, Credit: Infrasolid, Date: November 26, 2023, Link to Source: Discord, See Also: AMS
+```

@@ -1,0 +1,35 @@
+---
+title: "Shock FE"
+---
+
+# Shock FE
+
+## Overview
+Interrupting a fuse to a zuggled item causes FE
+
+## How To
+```
+1. zuggle a shield or a weapon
+2. hold out the same type of equipment
+3. fuse something to it right before getting shocked
+
+The zuggled item will have it FE'd to it
+```
+
+## Metadata
+**Working versions:** 1.0.0
+**Credit:** Zas - September 12, 2023
+**Source:** Twitter
+**See also:** Zuggling
+Fuse Entanglment
+**Effects/Extensions:** performing this twice with the same smuggle and fuse will pseudo fuse it to the other equipment
+
+## Raw row
+```csv
+Glitch: Shock FE, Glitch Overview: Interrupting a fuse to a zuggled item causes FE, How To: 1. zuggle a shield or a weapon
+2. hold out the same type of equipment
+3. fuse something to it right before getting shocked
+
+The zuggled item will have it FE'd to it, Working Versions: 1.0.0, Credit: Zas, Date: September 12, 2023, Link to Source: Twitter, See Also: Zuggling
+Fuse Entanglment, Effects/Extensions: performing this twice with the same smuggle and fuse will pseudo fuse it to the other equipment
+```

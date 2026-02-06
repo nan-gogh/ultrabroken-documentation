@@ -1,0 +1,26 @@
+---
+title: "Surf storage"
+---
+
+# Surf storage
+
+## Overview
+Discord
+When Link surfes onto a slope and his surfing state gets canceled with in a single frame, the game stores his coordinates and the angle that he was surfing.
+
+## How To
+```
+Shield surf against a slope
+```
+
+## Metadata
+**Working versions:** 1.0.0
+**Credit:** Mozz - September 22, 2023
+**Source:** Discord
+**Examples:** https://discord.com/channels/1086729144307564648/1105598687167664239/1155495303642882099
+
+## Raw row
+```csv
+Glitch: Surf storage, Glitch Overview: Discord
+When Link surfes onto a slope and his surfing state gets canceled with in a single frame, the game stores his coordinates and the angle that he was surfing., How To: Shield surf against a slope, Working Versions: 1.0.0, Credit: Mozz, Date: September 22, 2023, Link to Source: Discord, Example(s): https://discord.com/channels/1086729144307564648/1105598687167664239/1155495303642882099
+```

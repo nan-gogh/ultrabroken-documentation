@@ -1,0 +1,32 @@
+---
+title: "Tulin Pumping"
+---
+
+# Tulin Pumping
+
+## Overview
+Preserves the initial boost of tulin
+
+## How To
+```
+jump off a ledge and activate Tulin's ability, then close glider and reopen it for a boost, the closing and reopening can be repeated multiple times
+```
+
+## Metadata
+**Working versions:** 1.0.0
+1.1.0/1.1.1
+1.1.2
+1.2.0
+1.2.1
+**Credit:** Ikkitrix - May 14, 2023
+**Source:** Discord
+**See also:** Tulin Movement (Credit: atz)
+
+## Raw row
+```csv
+Glitch: Tulin Pumping, Glitch Overview: Preserves the initial boost of tulin, How To: jump off a ledge and activate Tulin's ability, then close glider and reopen it for a boost, the closing and reopening can be repeated multiple times, Working Versions: 1.0.0
+1.1.0/1.1.1
+1.1.2
+1.2.0
+1.2.1, Credit: Ikkitrix, Date: May 14, 2023, Link to Source: Discord, See Also: Tulin Movement (Credit: atz)
+```
