@@ -155,16 +155,15 @@ a:hover {
   color: rgba(0,240,194,0.55) !important;
 }
 
-/* Also highlight when the permalink itself is hovered or focused (keyboard accessible) */
-.md-typeset .md-permalink:hover,
-.md-content .md-permalink:hover,
-.md-typeset .headerlink:hover,
-.md-content .headerlink:hover,
-.md-typeset .md-permalink:focus,
-.md-content .md-permalink:focus,
-.md-typeset .headerlink:focus,
-.md-content .headerlink:focus {
-  /* Bright teal and glow when the permalink itself is hovered/focused */
+/* Bright highlight when the permalink itself is hovered or focused (higher specificity) */
+.md-typeset :is(h1,h2,h3,h4,h5,h6) .md-permalink:is(:hover, :focus),
+.md-content :is(h1,h2,h3,h4,h5,h6) .md-permalink:is(:hover, :focus),
+.md-typeset :is(h1,h2,h3,h4,h5,h6) .headerlink:is(:hover, :focus),
+.md-content :is(h1,h2,h3,h4,h5,h6) .headerlink:is(:hover, :focus),
+.md-typeset .md-permalink:is(:hover, :focus),
+.md-content .md-permalink:is(:hover, :focus),
+.md-typeset .headerlink:is(:hover, :focus),
+.md-content .headerlink:is(:hover, :focus) {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
