@@ -461,4 +461,41 @@ mark:hover {
   background-color: rgba(0, 240, 194, 0.5) !important;
 }
 
+/* Always use exact bright teal for all scrollbar thumbs */
+:root {
+  --scrollbar-thumb: rgba(0,240,194,1);
+  --scrollbar-track: rgba(0,0,0,0.04);
+}
+
+/* Firefox */
+html, body, .md-content, .md-nav, .md-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+/* WebKit-based browsers: force thumb color to exact teal */
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb) !important;
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* Ensure hovered/active/focused thumb stays the same exact teal */
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active,
+::-webkit-scrollbar-thumb:focus {
+  background-color: var(--scrollbar-thumb) !important;
+  border-color: var(--scrollbar-thumb) !important;
+  box-shadow: 0 0 8px rgba(0,240,194,0.18) !important;
+  opacity: 1 !important;
+}
+
+/* Keep track transparent for consistent look */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 
