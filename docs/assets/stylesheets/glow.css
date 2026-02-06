@@ -155,6 +155,21 @@ a:hover {
   text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
 }
 
+/* Also highlight when the permalink itself is hovered or focused (keyboard accessible) */
+.md-typeset .md-permalink:hover,
+.md-content .md-permalink:hover,
+.md-typeset .headerlink:hover,
+.md-content .headerlink:hover,
+.md-typeset .md-permalink:focus,
+.md-content .md-permalink:focus,
+.md-typeset .headerlink:focus,
+.md-content .headerlink:focus {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.95) !important;
+}
+
 /* Sidebar section headers - override ellipsis clipping */
 .md-nav__title {
   overflow: visible !important;
