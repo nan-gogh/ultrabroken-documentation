@@ -189,14 +189,24 @@ body::after {
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 
-/* When a 404 is detected, add a small question-mark overlay in the rune's upper-left */
+/* When a 404 is detected, place both the rune and the question-mark on a full-viewport
+   pseudo-element so the 404 graphic can sit to the left of the rune without being clipped. */
 body.ultrabroken-404::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+  opacity: 0.06;
   background-image: url('../images/ultrabroken_rune.svg'), url('../images/ultrabroken_404.svg');
   background-repeat: no-repeat, no-repeat;
-  /* Position: rune at bottom-right, overlay positioned to the left inside the container */
-  background-position: right bottom, left 3% top 25%;
-  /* Make the overlay a little bigger (was 12vmin) */
-  background-size: 48vmin 48vmin, 14vmin 14vmin;
+  /* Rune anchored bottom-right (2vmin inset); overlay moved left/up from the rune */
+  background-position: calc(100% - 2vmin) calc(100% - 2vmin), calc(100% - 70vmin) calc(100% - 35vmin);
+  background-size: 48vmin 48vmin, 18vmin 18vmin;
 }
 
 @keyframes pulseLogo {
