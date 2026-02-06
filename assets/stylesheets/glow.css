@@ -6,8 +6,18 @@
 
 /* Header background - solid backdrop for better visibility */
 .md-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background: linear-gradient(180deg, #00796b, #00695c) !important;
   box-shadow: 0 6px 24px rgba(0,240,194,0.3);
+}
+
+/* Make navigation tabs stick to header */
+.md-tabs {
+  position: sticky;
+  top: 56px;
+  z-index: 999;
 }
 
 /* Header title - bright teal with glow (override ellipsis clipping) */
