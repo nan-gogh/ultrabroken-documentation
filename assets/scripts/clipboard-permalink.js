@@ -1,71 +1,59 @@
 /**
  * Clipboard Permalink Script
  * Click any heading to copy its permalink to clipboard
- * Works with MkDocs instant navigation via MutationObserver
+ * Uses event delegation for instant navigation compatibility
  */
 
-function attachPermalinkListeners() {
-  const headings = document.querySelectorAll(
-    '.md-content h1, ' +
-    '.md-content h2, ' +
-    '.md-content h3, ' +
-    '.md-content h4, ' +
-    '.md-content h5, ' +
-    '.md-content h6'
-  );
-  
-  headings.forEach(heading => {
-    // Skip if already attached
-    if (heading.dataset.permalinkAttached === 'true') return;
+(function() {
+  // Use event delegation - attach ONE listener that works for all headings, 
+  // present and future (handles instant navigation automatically)
+  document.addEventListener('click', function(e) {
+    // Check if the clicked element is a heading within .md-content
+    const heading = e.target.closest('.md-content h1, .md-content h2, .md-content h3, .md-content h4, .md-content h5, .md-content h6');
     
-    heading.style.cursor = 'pointer';
-    heading.title = 'Click to copy permalink';
-    heading.dataset.permalinkAttached = 'true';
-    
-    heading.addEventListener('click', function(e) {
+    if (heading && heading.id) {
       const id = heading.id;
-      if (id) {
-        const permalink = window.location.href.split('#')[0] + '#' + id;
-        navigator.clipboard.writeText(permalink).then(() => {
-          // Show brief visual feedback
-          const originalText = heading.textContent;
-          const originalColor = heading.style.color;
-          heading.textContent = '✓ Copied!';
-          heading.style.color = 'var(--md-accent-fg-color)';
-          
-          setTimeout(() => {
-            heading.textContent = originalText;
-            heading.style.color = originalColor;
-          }, 1500);
-        }).catch(err => {
-          console.error('Failed to copy permalink:', err);
-        });
-      }
-    });
+      const permalink = window.location.href.split('#')[0] + '#' + id;
+      
+      navigator.clipboard.writeText(permalink).then(() => {
+        // Show brief visual feedback
+        const originalText = heading.textContent;
+        const originalColor = heading.style.color;
+        
+        heading.textContent = '✓ Copied!';
+        heading.style.color = 'var(--md-accent-fg-color)';
+        
+        setTimeout(() => {
+          heading.textContent = originalText;
+          heading.style.color = originalColor;
+        }, 1500);
+      }).catch(err => {
+        console.error('Failed to copy permalink:', err);
+      });
+    }
   });
-}
-
-// Attach on initial load
-document.addEventListener('DOMContentLoaded', function() {
-  attachPermalinkListeners();
   
-  // Watch for content changes (handles MkDocs instant navigation)
-  const contentContainer = document.querySelector('.md-content');
-  if (contentContainer) {
-    const observer = new MutationObserver(function(mutations) {
-      // Check if headings were added or content structure changed
-      const hasContentChange = mutations.some(mutation => 
-        mutation.addedNodes.length > 0 || 
-        mutation.removedNodes.length > 0
-      );
-      if (hasContentChange) {
-        attachPermalinkListeners();
-      }
-    });
-    
-    observer.observe(contentContainer, {
-      childList: true,
-      subtree: true
-    });
-  }
-});
+  // Apply pointer cursor and tooltip via CSS injection
+  const style = document.createElement('style');
+  style.textContent = `
+    .md-content h1,
+    .md-content h2,
+    .md-content h3,
+    .md-content h4,
+    .md-content h5,
+    .md-content h6 {
+      cursor: pointer;
+    }
+    .md-content h1:hover::after,
+    .md-content h2:hover::after,
+    .md-content h3:hover::after,
+    .md-content h4:hover::after,
+    .md-content h5:hover::after,
+    .md-content h6:hover::after {
+      content: " 🔗";
+      opacity: 0.5;
+      font-size: 0.8em;
+    }
+  `;
+  document.head.appendChild(style);
+})();
