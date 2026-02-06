@@ -182,6 +182,31 @@ body::after {
   mix-blend-mode: screen;
 }
 
+/* Pulsate the rune subtly in sync with the bottom glow */
+body::after {
+  transform-origin: center;
+  animation: pulseLogo 4200ms ease-in-out infinite;
+}
+
+@keyframes pulseLogo {
+  0% {
+    opacity: 0.04;
+    transform: scale(0.995);
+  }
+  50% {
+    opacity: 0.11;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 0.04;
+    transform: scale(0.995);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none !important; }
+}
+
 /* Floating particles animation */
 @keyframes float-particle-1 {
   0% { transform: translateY(0) translateX(0); opacity: 0; }
