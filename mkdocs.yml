@@ -80,7 +80,13 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com
+      link: https://github.com/nan-gogh/ultrabroken-documentation
+    - icon: fontawesome/brands/twitter
+      link: https://x.com/_nan_gogh
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/xM8NnTetb2
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/uZqvjnwqF3
 
 watch:
   - docs
