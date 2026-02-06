@@ -95,6 +95,16 @@ html, body {
   transition: filter .2s ease, transform .2s ease;
 }
 
+/* Suppress any hover effects on the logo button itself */
+.md-header__button.md-logo,
+.md-header__button.md-logo:hover,
+.md-header__button.md-logo:active,
+.md-header__button.md-logo:focus {
+  text-shadow: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
 
 /* Burger menu, search, and palette toggle buttons - bright teal with hover lightup */
 label.md-header__button[for="__drawer"],
