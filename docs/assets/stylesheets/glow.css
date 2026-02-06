@@ -176,7 +176,8 @@ body::after {
   background-repeat: no-repeat;
   background-position: center right bottom;
   /* Fix background sizing to avoid perceived scaling during animation */
-  background-size: 48vmin 48vmin;
+  /*background-size: 48vmin 48vmin;*/
+  background-size: contain;
   opacity: 0.06;
   pointer-events: none;
   z-index: 0;
@@ -187,8 +188,8 @@ body::after {
 body::after {
   transform-origin: center;
   /* Ensure no transform changes occur; animate only opacity */
-  transform: none !important;
-  will-change: opacity;
+  /*transform: none !important;
+  will-change: opacity;*/
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 
