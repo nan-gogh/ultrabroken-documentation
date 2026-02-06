@@ -141,7 +141,7 @@ a:hover {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-  transition: opacity 0.18s ease, text-shadow 0.18s ease;
+  transition: opacity 0.18s ease, text-shadow 0.18s ease, color 0.18s ease;
 }
 
 /* Reveal permalink when the heading is hovered, focused, or targeted */
@@ -154,7 +154,7 @@ a:hover {
   visibility: visible !important;
   pointer-events: auto !important;
   text-shadow: none !important;
-  color: color-mix(in srgb, var(--teal-glow) 55%, currentColor 45%) !important;
+  color: rgba(0,240,194,0.55) !important;
 }
 
 /* Also highlight when the permalink itself is hovered or focused (keyboard accessible) */
