@@ -80,6 +80,26 @@ html, body {
   color: var(--teal-glow) !important;
 }
 
+/* Header logo SVG glow - target common logo selectors so the rendered
+   SVG shapes receive a teal drop-shadow glow (not the bounding box). */
+.md-header .md-logo svg,
+.md-header__title .md-logo svg,
+.md-header__logo svg,
+.md-logo svg {
+  color: var(--teal-glow) !important;
+  fill: currentColor !important;
+  stroke: none !important;
+  filter: drop-shadow(0 0 8px rgba(0,240,194,0.9));
+  transition: filter .2s ease, transform .2s ease;
+}
+.md-header .md-logo:hover svg,
+.md-header__title .md-logo:hover svg,
+.md-header__logo:hover svg,
+.md-logo:hover svg {
+  filter: drop-shadow(0 0 18px rgba(0,240,194,0.98));
+  transform: translateZ(0);
+}
+
 /* Burger menu, search, and palette toggle buttons - bright teal with hover lightup */
 label.md-header__button[for="__drawer"],
 label.md-header__button[for="__search"],
