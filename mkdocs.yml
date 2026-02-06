@@ -11,6 +11,7 @@ theme:
   favicon: ultrabroken_rune.ico
   icon:
     link: material/share-variant
+    share: material/share-variant
   features:
     - navigation.instant
     - navigation.tracking
