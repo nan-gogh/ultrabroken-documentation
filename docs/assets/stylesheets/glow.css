@@ -181,10 +181,6 @@ body::after {
   pointer-events: none;
   z-index: 0;
   mix-blend-mode: screen;
-}
-
-/* Pulsate the rune subtly in sync with the bottom glow */
-body::after {
   transform-origin: center;
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
