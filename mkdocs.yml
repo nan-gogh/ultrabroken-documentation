@@ -24,6 +24,9 @@ theme:
 extra_css:
   - assets/stylesheets/glow.css
 
+extra_javascript:
+  - assets/scripts/clipboard-permalink.js
+
 nav:
   - Home: index.md
   - UltraBroken Basics:
@@ -72,8 +75,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.tasklist
   - toc:
-      permalink: true
-      permalink_title: Permanent link
+      permalink: false
 
 extra:
   social:
