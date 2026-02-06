@@ -1,8 +1,10 @@
 /**
  * Clipboard Permalink Script
  * Click any heading to copy its permalink to clipboard
+ * Works with MkDocs instant navigation
  */
-document.addEventListener('DOMContentLoaded', function() {
+
+function attachPermalinkListeners() {
   const headings = document.querySelectorAll(
     '.md-content h1, ' +
     '.md-content h2, ' +
@@ -13,8 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
   );
   
   headings.forEach(heading => {
+    // Skip if already attached
+    if (heading.dataset.permalinkAttached === 'true') return;
+    
     heading.style.cursor = 'pointer';
     heading.title = 'Click to copy permalink';
+    heading.dataset.permalinkAttached = 'true';
     
     heading.addEventListener('click', function(e) {
       const id = heading.id;
@@ -37,4 +43,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-});
+}
+
+// Attach on initial load
+document.addEventListener('DOMContentLoaded', attachPermalinkListeners);
+
+// Attach on every content change (handles MkDocs instant navigation)
+document.addEventListener('content', attachPermalinkListeners);
