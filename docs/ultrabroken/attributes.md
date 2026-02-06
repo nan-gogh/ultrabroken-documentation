@@ -22,4 +22,4 @@ These attributes make Ultrabroken objects unique and are the foundation for the 
 
 ---
 
-**Next:** Explore [Theories](theories.md) about how this works, or jump to [Effects](/effects/).
+**Next:** Explore [Theories](theories.md) about how this works, or jump to [Effects](effects/).
