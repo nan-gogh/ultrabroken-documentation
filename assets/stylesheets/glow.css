@@ -132,44 +132,7 @@ a:hover {
   text-shadow: 0 0 6px rgba(0,240,194,0.06);
 }
 
-/* Permalink anchors - hidden by default, visible when its heading is active/hovered */
-.md-typeset .md-permalink,
-.md-content .md-permalink,
-.md-typeset .headerlink,
-.md-content .headerlink {
-  color: var(--teal-glow) !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-}
-
-/* Reveal permalink when the heading is hovered, focused, or targeted */
-.md-typeset :is(h1,h2,h3,h4,h5,h6):is(:hover, :focus-within, :target) .md-permalink,
-.md-content :is(h1,h2,h3,h4,h5,h6):is(:hover, :focus-within, :target) .md-permalink,
-.md-typeset :is(h1,h2,h3,h4,h5,h6):is(:hover, :focus-within, :target) .headerlink,
-.md-content :is(h1,h2,h3,h4,h5,h6):is(:hover, :focus-within, :target) .headerlink {
-  /* Visible when heading hovered/active, but do not apply highlight */
-  opacity: 0.6 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  text-shadow: none !important;
-  color: rgba(0,240,194,0.55) !important;
-}
-
-/* Bright highlight when the permalink itself is hovered or focused (higher specificity) */
-.md-typeset :is(h1,h2,h3,h4,h5,h6) .md-permalink:is(:hover, :focus),
-.md-content :is(h1,h2,h3,h4,h5,h6) .md-permalink:is(:hover, :focus),
-.md-typeset :is(h1,h2,h3,h4,h5,h6) .headerlink:is(:hover, :focus),
-.md-content :is(h1,h2,h3,h4,h5,h6) .headerlink:is(:hover, :focus),
-.md-typeset .md-permalink:is(:hover, :focus),
-.md-content .md-permalink:is(:hover, :focus),
-.md-typeset .headerlink:is(:hover, :focus),
-.md-content .headerlink:is(:hover, :focus) {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  color: var(--teal-glow) !important;
-  text-shadow: 0 0 12px rgba(0,240,194,0.95) !important;
-}
+/* Using default MkDocs Material permalink styles (no custom permalink overrides) */
 
 /* Sidebar section headers - override ellipsis clipping */
 .md-nav__title {
