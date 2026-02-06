@@ -193,7 +193,7 @@ body::after {
 body.ultrabroken-404 .md-main::before {
   content: "";
   position: fixed;
-  right: 65vmin;
+  right: 5vmin;
   bottom: 35vmin;
   width: 14vmin;
   height: 14vmin;
