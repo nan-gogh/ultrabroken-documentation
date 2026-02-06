@@ -189,24 +189,25 @@ body::after {
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 
-/* When a 404 is detected, show the question-mark overlay as an independent element to the left of the rune */
-body.ultrabroken-404 .md-main::after {
+/* When a 404 is detected, place both the rune and the question-mark on the same body::after
+   pseudo-element but expand that pseudo-element to cover the viewport so the overlay
+   can be positioned to the left of the rune without being clipped. */
+body.ultrabroken-404::after {
   content: "";
   position: fixed;
-  right: 2vmin;
-  bottom: 2vmin;
-  width: 48vmin;
-  height: 48vmin;
-  max-width: 60vw;
-  max-height: 60vh;
-  background-image: url('../images/ultrabroken_404.svg');
-  background-repeat: no-repeat;
-  background-position: right bottom;
-  background-size: 48vmin 48vmin;
-  opacity: 0.06;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
   z-index: 0;
   mix-blend-mode: screen;
+  opacity: 0.06;
+  background-image: url('../images/ultrabroken_rune.svg'), url('../images/ultrabroken_404.svg');
+  background-repeat: no-repeat, no-repeat;
+  /* Rune anchored bottom-right, overlay positioned using viewport-based calcs */
+  background-position: calc(100% - 2vmin) calc(100% - 2vmin), calc(100% - 65vmin) calc(100% - 35vmin);
+  background-size: 48vmin 48vmin, 14vmin 14vmin;
 }
 
 @keyframes pulseLogo {
