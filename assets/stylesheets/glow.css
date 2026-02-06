@@ -26,9 +26,10 @@ html, body {
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
   text-shadow:
-    0 0 3px rgba(0,240,194,0.7),
-    0 0 8px rgba(0,240,194,0.55),
-    0 0 16px rgba(0,240,194,0.36);
+    0 0 4px rgba(0,240,194,0.8),
+    0 0 12px rgba(0,240,194,0.65),
+    0 0 28px rgba(0,240,194,0.45),
+    0 0 48px rgba(0,240,194,0.28);
   font-weight: 600;
   overflow: visible !important;
 }
