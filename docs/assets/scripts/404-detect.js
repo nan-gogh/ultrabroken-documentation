@@ -27,10 +27,28 @@
     try {
       const is404 = isLikely404();
       document.body.classList.toggle('ultrabroken-404', is404);
+      // Manage a dedicated overlay element so we can position the 404 SVG freely
+      if (is404) {
+        ensure404Overlay();
+      } else {
+        remove404Overlay();
+      }
     } catch (e) {
       // silent
       console.debug('404-detect error', e);
     }
+  }
+
+  function ensure404Overlay() {
+    if (document.querySelector('.ultrabroken-404-overlay')) return;
+    const el = document.createElement('div');
+    el.className = 'ultrabroken-404-overlay';
+    document.body.appendChild(el);
+  }
+
+  function remove404Overlay() {
+    const el = document.querySelector('.ultrabroken-404-overlay');
+    if (el && el.parentNode) el.parentNode.removeChild(el);
   }
 
   // Run on initial load
