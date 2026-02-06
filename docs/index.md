@@ -8,8 +8,8 @@ Welcome to the comprehensive guide on **Ultrabroken**, the most broken glitch in
 - **[Effects](/ultrabroken-documentation/effects/)** - Explore all known Ultrabroken effects
 - **[Zonai Device Hacks](/ultrabroken-documentation/devices/)** - Individual device breakdowns
 - **[Builds & UltraFuses](/ultrabroken-documentation/builds/)** - Creative constructions and combinations
-- **[Meta & Tips](/ultrabroken-documentation/meta.md)** - Advanced strategies and guidance
-- **[Credits](/ultrabroken-documentation/credits.md)** - Thanks to all contributors
+- **[Meta & Tips](/ultrabroken-documentation/meta/)** - Advanced strategies and guidance
+- **[Credits](/ultrabroken-documentation/credits/)** - Thanks to all contributors
 
 ## What is Ultrabroken?
 

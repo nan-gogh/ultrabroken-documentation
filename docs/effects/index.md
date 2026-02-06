@@ -10,35 +10,35 @@ While Ultrabroken may seem as simple as a single dialogue, it actually opens up 
 
 ### Core Effects
 
-- **[Wacko Boingo](/ultrabroken-documentation/effects/wacko-boingo.md)** - Ultrabroken Flight
-- **[Lift Lock](/ultrabroken-documentation/effects/lift-lock.md)** - When systems become impossible to lift
-- **[Recall Fling](/ultrabroken-documentation/effects/recall-fling.md)** - Objects flung by Recall
-- **[Ghost Glue](/ultrabroken-documentation/effects/ghost-glue.md)** - Invisible attraction connections
-- **[Remnant Glue](/ultrabroken-documentation/effects/remnant-glue.md)** - Ghost Glue remnants
+- **[Wacko Boingo](/ultrabroken-documentation/effects/wacko-boingo/)** - Ultrabroken Flight
+- **[Lift Lock](/ultrabroken-documentation/effects/lift-lock/)** - When systems become impossible to lift
+- **[Recall Fling](/ultrabroken-documentation/effects/recall-fling/)** - Objects flung by Recall
+- **[Ghost Glue](/ultrabroken-documentation/effects/ghost-glue/)** - Invisible attraction connections
+- **[Remnant Glue](/ultrabroken-documentation/effects/remnant-glue/)** - Ghost Glue remnants
 
 ### Advanced Effects
 
-- **[Glue Lock](/ultrabroken-documentation/effects/glue-lock.md)** - When Ultrahand Glue breaks
-- **[Mass Matching](/ultrabroken-documentation/effects/mass-matching.md)** - Understanding object interactions
-- **[Ghost Smuggle](/ultrabroken-documentation/effects/ghost-smuggle.md)** - Portable Ghost Glue systems
-- **[Phantom Smuggle](/ultrabroken-documentation/effects/phantom-smuggle.md)** - Ultra-portable systems
-- **[Resurrect Smuggle](/ultrabroken-documentation/effects/resurrect-smuggle.md)** - *In development*
-- **[Ouija Entanglement](/ultrabroken-documentation/effects/ouija-entanglement.md)** - Velocity linking
+- **[Glue Lock](/ultrabroken-documentation/effects/glue-lock/)** - When Ultrahand Glue breaks
+- **[Mass Matching](/ultrabroken-documentation/effects/mass-matching/)** - Understanding object interactions
+- **[Ghost Smuggle](/ultrabroken-documentation/effects/ghost-smuggle/)** - Portable Ghost Glue systems
+- **[Phantom Smuggle](/ultrabroken-documentation/effects/phantom-smuggle/)** - Ultra-portable systems
+- **[Resurrect Smuggle](/ultrabroken-documentation/effects/resurrect-smuggle/)** - *In development*
+- **[Ouija Entanglement](/ultrabroken-documentation/effects/ouija-entanglement/)** - Velocity linking
 
 ### Quantum Effects
 
-- **[Antimass](/ultrabroken-documentation/effects/antimass.md)** - Weightless objects
-- **[Freecall](/ultrabroken-documentation/effects/freecall.md)** - *In development*
-- **[Quantum State Freeze](/ultrabroken-documentation/effects/quantum-state-freeze.md)** - Frozen states
+- **[Antimass](/ultrabroken-documentation/effects/antimass/)** - Weightless objects
+- **[Freecall](/ultrabroken-documentation/effects/freecall/)** - *In development*
+- **[Quantum State Freeze](/ultrabroken-documentation/effects/quantum-state-freeze/)** - Frozen states
 
 ### Specialized Effects
 
-- **[Fuse Stacking](/ultrabroken-documentation/effects/fuse-stacking.md)** - Equipment combinations
-- **[Transmigration](/ultrabroken-documentation/effects/transmigration.md)** - Item soul removal
-- **[Autobuild Standalones](/ultrabroken-documentation/effects/autobuild-standalones.md)** - Detachable systems
+- **[Fuse Stacking](/ultrabroken-documentation/effects/fuse-stacking/)** - Equipment combinations
+- **[Transmigration](/ultrabroken-documentation/effects/transmigration/)** - Item soul removal
+- **[Autobuild Standalones](/ultrabroken-documentation/effects/autobuild-standalones/)** - Detachable systems
 - **[Zonai Device Hacks](/ultrabroken-documentation/devices/)** - Individual device effects
-- **[Slidy Cart](/ultrabroken-documentation/effects/slidy-cart.md)** - Semi-Ultrabroken friction override
+- **[Slidy Cart](/ultrabroken-documentation/effects/slidy-cart/)** - Semi-Ultrabroken friction override
 
 ---
 
-**Start with:** [Wacko Boingo](/ultrabroken-documentation/effects/wacko-boingo.md) - the most popular effect!
+**Start with:** [Wacko Boingo](/ultrabroken-documentation/effects/wacko-boingo/) - the most popular effect!

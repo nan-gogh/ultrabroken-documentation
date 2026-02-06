@@ -51,4 +51,4 @@ If you encounter a Lift Lock:
 
 ---
 
-**Up Next:** [Recall Fling](/ultrabroken-documentation/effects/recall-fling.md)
+**Up Next:** [Recall Fling](/ultrabroken-documentation/effects/recall-fling/)
