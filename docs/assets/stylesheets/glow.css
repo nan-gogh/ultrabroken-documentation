@@ -4,20 +4,6 @@
   --teal-dark: #00796b;
 }
 
-/* Force exact teal when scrollbar thumb is dragged/active */
-:root {
-  --scrollbar-dragged: rgba(0,240,194,1);
-}
-
-/* WebKit: active/dragged thumb */
-::-webkit-scrollbar-thumb:active,
-::-webkit-scrollbar-thumb:focus {
-  background-color: var(--scrollbar-dragged) !important;
-  border-color: var(--scrollbar-dragged) !important;
-  box-shadow: 0 0 10px rgba(0,240,194,0.28) !important;
-  opacity: 1 !important;
-}
-
 /* Header background - solid backdrop for better visibility */
 .md-header {
   background: linear-gradient(180deg, #00796b, #00695c) !important;
