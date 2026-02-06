@@ -175,7 +175,8 @@ body::after {
   background-image: url('../../ultrabroken_rune.svg');
   background-repeat: no-repeat;
   background-position: center right bottom;
-  background-size: contain;
+  /* Fix background sizing to avoid perceived scaling during animation */
+  background-size: 48vmin 48vmin;
   opacity: 0.06;
   pointer-events: none;
   z-index: 0;
@@ -185,6 +186,9 @@ body::after {
 /* Pulsate the rune subtly in sync with the bottom glow */
 body::after {
   transform-origin: center;
+  /* Ensure no transform changes occur; animate only opacity */
+  transform: none !important;
+  will-change: opacity;
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 
