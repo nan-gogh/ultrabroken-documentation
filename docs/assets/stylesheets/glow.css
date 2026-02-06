@@ -100,22 +100,6 @@ html, body {
   transform: translateZ(0);
 }
 
-/* If the logo is rendered as an external image (<img>), target that too. */
-.md-header .md-logo img,
-.md-header__title .md-logo img,
-.md-header__logo img,
-.md-logo img {
-  filter: drop-shadow(0 0 8px rgba(0,240,194,0.9)) !important;
-  transition: filter .2s ease, transform .2s ease;
-}
-.md-header .md-logo:hover img,
-.md-header__title .md-logo:hover img,
-.md-header__logo:hover img,
-.md-logo:hover img {
-  filter: drop-shadow(0 0 18px rgba(0,240,194,0.98)) !important;
-  transform: translateZ(0);
-}
-
 /* Burger menu, search, and palette toggle buttons - bright teal with hover lightup */
 label.md-header__button[for="__drawer"],
 label.md-header__button[for="__search"],
