@@ -1,7 +1,7 @@
 /*
  * search-cleanup.js
  * Clears search highlighting when the search input is emptied
- * or when instant navigation occurs.
+ * or when instant navigation occurs. Also clears search on page refresh.
  */
 (function() {
   function removeSearchHighlighting() {
@@ -20,6 +20,15 @@
     highlighted.forEach(el => {
       el.classList.remove('search-highlight', 'highlight');
     });
+  }
+
+  // Clear search input on page load/refresh
+  function clearSearchOnLoad() {
+    const searchInput = document.querySelector('.md-search__input');
+    if (searchInput) {
+      searchInput.value = '';
+      removeSearchHighlighting();
+    }
   }
 
   // Monitor search input for clearing
@@ -50,6 +59,7 @@
   }
 
   // Run on page load
+  clearSearchOnLoad();
   setupSearchListener();
   setupInstantNavigationListener();
 
