@@ -79,8 +79,8 @@ label.md-header__button[for^="__palette_"] {
 label.md-header__button[for="__drawer"]:hover,
 label.md-header__button[for="__search"]:hover,
 label.md-header__button[for^="__palette_"]:hover {
-  opacity: 1 !important;
-  /*filter: brightness(1.3);*/
+  /* Subtle darken on hover to match default return-arrow behavior */
+  filter: brightness(0.9);
 }
 
 /* Search bar and input styling - bright teal, no glow */
