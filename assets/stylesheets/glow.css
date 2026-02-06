@@ -4,6 +4,18 @@
   --teal-dark: #00796b;
 }
 
+/* Google Fonts: New Rocker (headings) and Texturina (body) */
+@import url('https://fonts.googleapis.com/css2?family=New+Rocker&family=Texturina:wght@400;700&display=swap');
+
+/* Apply fonts: Texturina for body, New Rocker for headings/navigation/title */
+body {
+  font-family: 'Texturina', Georgia, 'Times New Roman', serif;
+}
+.md-content h1, .md-content h2, .md-content h3, .md-content h4, .md-content h5, .md-content h6,
+.md-nav__title, .md-header__title, .md-tabs__link {
+  font-family: 'New Rocker', 'Texturina', Georgia, serif;
+}
+
 /* Header background - solid backdrop for better visibility */
 .md-header {
   background: linear-gradient(180deg, #00796b, #00695c) !important;
