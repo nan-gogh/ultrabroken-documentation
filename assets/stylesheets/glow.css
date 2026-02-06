@@ -464,8 +464,8 @@ mark:hover {
 /* Global scrollbar styling to match site teal theme */
 :root {
   --scrollbar-track: rgba(0,0,0,0.04);
-  --scrollbar-thumb: rgba(0,240,194,0.28);
-  --scrollbar-thumb-hover: rgba(0,240,194,0.45);
+  --scrollbar-thumb: rgba(93, 95, 103,0.28);
+  --scrollbar-thumb-hover: rgba(0,240,194,0.8);
 }
 
 /* Firefox */
