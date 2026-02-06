@@ -193,16 +193,16 @@ body::after {
 body.ultrabroken-404 .md-main::before {
   content: "";
   position: fixed;
-  right: 5vmin;
-  bottom: 35vmin;
-  width: 14vmin;
-  height: 14vmin;
-  max-width: 20vw;
-  max-height: 20vh;
+  right: 2vmin;
+  bottom: 2vmin;
+  width: 48vmin;
+  height: 48vmin;
+  max-width: 60vw;
+  max-height: 60vh;
   background-image: url('../images/ultrabroken_404.svg');
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  background-position: right bottom;
+  background-size: 48vmin 48vmin;
   opacity: 0.06;
   pointer-events: none;
   z-index: 0;
