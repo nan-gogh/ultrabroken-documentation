@@ -497,6 +497,13 @@ html, body, .md-content, .md-nav, .md-sidebar {
   box-shadow: 0 0 8px rgba(0,240,194,0.22);
 }
 
+/* Active / dragged / focused thumb to match other scrollbars */
+::-webkit-scrollbar-thumb:active,
+::-webkit-scrollbar-thumb:focus {
+  background-color: var(--scrollbar-thumb-hover) !important;
+  box-shadow: 0 0 10px rgba(0,240,194,0.28) !important;
+}
+
 /* Ensure consistent track on wide containers */
 .md-nav, .md-content, body {
   --webkit-overflow-scrolling: touch;
