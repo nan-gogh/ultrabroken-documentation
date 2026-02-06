@@ -446,20 +446,19 @@ body::before {
   body::before { height: max(6vh, 56px); }
 }
 
-/* Search highlighting - custom teal glow style */
+/* Search highlighting - clean teal background without spacing */
 mark {
-  background-color: rgba(0, 240, 194, 0.25) !important;
+  background-color: rgba(0, 240, 194, 0.3) !important;
   color: inherit !important;
-  padding: 2px 4px;
-  border-radius: 2px;
-  box-shadow: 0 0 8px rgba(0, 240, 194, 0.6), inset 0 0 4px rgba(0, 240, 194, 0.2);
-  font-weight: 500;
-  transition: all 200ms ease;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-weight: inherit !important;
 }
 
 mark:hover {
-  background-color: rgba(0, 240, 194, 0.4) !important;
-  box-shadow: 0 0 12px rgba(0, 240, 194, 0.8), inset 0 0 6px rgba(0, 240, 194, 0.3);
+  background-color: rgba(0, 240, 194, 0.5) !important;
 }
 
 
