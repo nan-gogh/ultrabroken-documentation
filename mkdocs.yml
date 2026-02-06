@@ -28,6 +28,7 @@ extra_javascript:
   - assets/scripts/clipboard-permalink.js
   - assets/scripts/404-detect.js
   - assets/scripts/search-cleanup.js
+  - assets/scripts/search-enter-fix.js
   
 
 nav:
