@@ -43,3 +43,6 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local spreadsheet exported for research (private)
+TotK Glitch Spreadsheet - TotK Glitches.csv
