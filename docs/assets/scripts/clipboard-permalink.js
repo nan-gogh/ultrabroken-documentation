@@ -1,7 +1,7 @@
 /**
  * Clipboard Permalink Script
  * Click any heading to copy its permalink to clipboard
- * Works with MkDocs instant navigation
+ * Works with MkDocs instant navigation via MutationObserver
  */
 
 function attachPermalinkListeners() {
@@ -46,7 +46,26 @@ function attachPermalinkListeners() {
 }
 
 // Attach on initial load
-document.addEventListener('DOMContentLoaded', attachPermalinkListeners);
-
-// Attach on every content change (handles MkDocs instant navigation)
-document.addEventListener('content', attachPermalinkListeners);
+document.addEventListener('DOMContentLoaded', function() {
+  attachPermalinkListeners();
+  
+  // Watch for content changes (handles MkDocs instant navigation)
+  const contentContainer = document.querySelector('.md-content');
+  if (contentContainer) {
+    const observer = new MutationObserver(function(mutations) {
+      // Check if headings were added or content structure changed
+      const hasContentChange = mutations.some(mutation => 
+        mutation.addedNodes.length > 0 || 
+        mutation.removedNodes.length > 0
+      );
+      if (hasContentChange) {
+        attachPermalinkListeners();
+      }
+    });
+    
+    observer.observe(contentContainer, {
+      childList: true,
+      subtree: true
+    });
+  }
+});
