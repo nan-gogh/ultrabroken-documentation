@@ -1,23 +1,21 @@
 /*
  * search-cleanup.js
- * Sophisticated solution for clearing search highlighting when search is cleared.
- * Integrates with MkDocs Material's search system and instant navigation.
+ * Clears search highlighting when search is emptied or dialog closes.
+ * Minimal interference with Material's search state management.
  */
 (function() {
   'use strict';
 
-  // Clear highlight parameter from URL immediately (before Material processes it)
+  // Clear highlight parameter from URL
   function clearHighlightFromURL() {
     const url = new URL(window.location.href);
     if (url.searchParams.has('h')) {
       url.searchParams.delete('h');
       history.replaceState(null, '', url.toString());
-      return true;
     }
-    return false;
   }
 
-  // Remove all highlighting marks from the page
+  // Remove all highlighting marks
   function removeHighlighting() {
     document.querySelectorAll('mark').forEach(mark => {
       const text = mark.textContent;
@@ -25,64 +23,44 @@
     });
   }
 
-  // Main cleanup function
+  // Clean up marks when search is cleared
   function cleanupSearch() {
     clearHighlightFromURL();
     removeHighlighting();
   }
 
-  // Set up monitoring of search input
-  function monitorSearchInput() {
+  // Initialize
+  function init() {
+    // Clear URL parameter immediately on page load
+    clearHighlightFromURL();
+    removeHighlighting();
+
+    // Monitor search input for user clearing it
     const searchInput = document.querySelector('.md-search__input');
     if (searchInput) {
-      // Listen for input changes
-      searchInput.addEventListener('input', function(e) {
+      searchInput.addEventListener('input', function() {
         if (this.value.trim() === '') {
-          cleanupSearch();
+          removeHighlighting();
         }
       });
+    }
 
-      // Listen for search dialog close
-      const searchToggle = document.querySelector('[data-md-toggle="search"]');
-      if (searchToggle) {
-        searchToggle.addEventListener('change', function() {
-          if (!this.checked && searchInput.value.trim() === '') {
+    // Clean up when search dialog closes and search is empty
+    const searchToggle = document.querySelector('[data-md-toggle="search"]');
+    if (searchToggle) {
+      searchToggle.addEventListener('change', function() {
+        // If dialog is closing (unchecked)
+        if (!this.checked) {
+          const input = document.querySelector('.md-search__input');
+          if (input && input.value.trim() === '') {
             cleanupSearch();
           }
-        });
-      }
+        }
+      });
     }
   }
 
-  // Watch for marks being added and remove them if search is empty
-  function watchForMarks() {
-    const observer = new MutationObserver(() => {
-      const searchInput = document.querySelector('.md-search__input');
-      if (!searchInput || searchInput.value.trim() === '') {
-        removeHighlighting();
-      }
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-  }
-
-  // Initialize on page load
-  function init() {
-    // Clear URL parameter IMMEDIATELY on load
-    clearHighlightFromURL();
-
-    // Small delay to let DOM settle, then remove any marks
-    setTimeout(() => {
-      removeHighlighting();
-      monitorSearchInput();
-      watchForMarks();
-    }, 0);
-  }
-
-  // Run when DOM is ready
+  // Run on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
