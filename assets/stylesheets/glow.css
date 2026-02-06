@@ -37,6 +37,11 @@ html, body {
   text-overflow: clip !important;
 }
 
+/* Use Texturina specifically for the header title for better legibility */
+.md-header__title {
+  font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
+}
+
 /* Lighten navigation tabs (global header navigation) */
 .md-tabs__link {
   color: rgba(0,240,194,0.6) !important;
