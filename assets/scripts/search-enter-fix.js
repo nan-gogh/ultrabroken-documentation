@@ -14,17 +14,20 @@
       // Only handle Enter key
       if (e.key !== 'Enter') return;
 
-      // Let Material handle the navigation first
+      // After material handles the navigation, reset the search box and dialog
       setTimeout(() => {
-        // After navigation, reset search state so dialog works properly again
+        // Clear the search input entirely
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+        
+        // Try to close the search dialog
         const searchToggle = document.querySelector('[data-md-toggle="search"]');
         if (searchToggle && searchToggle.checked) {
-          // Force dialog state reset by unchecking and rechecking
+          // Uncheck to close dialog
           searchToggle.checked = false;
-          // Trigger change event to notify Material
           searchToggle.dispatchEvent(new Event('change', { bubbles: true }));
         }
-      }, 50);
+      }, 100);
     });
   }
 
