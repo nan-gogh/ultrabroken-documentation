@@ -33,7 +33,8 @@ extra_javascript:
 
 nav:
   - Home: index.md
-  - Ultrabroken Basics:
+  - Glitch Index: other/index.md
+  - Basics:
     - Overview: ultrabroken/index.md
     - Introduction: ultrabroken/introduction.md
     - Requirements: ultrabroken/requirements.md
@@ -62,9 +63,9 @@ nav:
     - Transmigration: effects/transmigration.md
     - Autobuild Standalones: effects/autobuild-standalones.md
     - Slidy Cart: effects/slidy-cart.md
-  - Zonai Devices: devices/index.md
-  - Builds & UltraFuses: builds/index.md
-  - Meta & Tips: meta.md
+  - Devices: devices/index.md
+  - Builds: builds/index.md
+  - Tips: meta.md
   - Credits: credits.md
 
 plugins:
