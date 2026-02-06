@@ -483,14 +483,13 @@ html, body, .md-content, .md-nav, .md-sidebar {
   opacity: 1 !important;
 }
 
-/* Ensure hovered/active/focused thumb stays the same exact teal without darkening */
+/* Ensure hovered/active/focused thumb stays the same exact teal */
 ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active,
 ::-webkit-scrollbar-thumb:focus {
   background-color: var(--scrollbar-thumb) !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-  background-clip: padding-box !important;
+  border-color: var(--scrollbar-thumb) !important;
+  box-shadow: 0 0 8px rgba(0,240,194,0.18) !important;
   opacity: 1 !important;
 }
 
