@@ -4,7 +4,7 @@
 
 ## Description
 
-As the madness slowly reaches its crescendo, UltraBroken unveils a highly intriguing effect on Autobuild Zonai Systems. These systems can now be detached into individual standalone objects, expanding our creative possibilities, especially regarding equipment and materials.
+As the madness slowly reaches its crescendo, Ultrabroken unveils a highly intriguing effect on Autobuild Zonai Systems. These systems can now be detached into individual standalone objects, expanding our creative possibilities, especially regarding equipment and materials.
 
 ## Exemplary Setup
 
@@ -21,18 +21,18 @@ As the madness slowly reaches its crescendo, UltraBroken unveils a highly intrig
 4. Finish the dialogue
 5. Let the cutscene do its magic
 6. Find the Autobuild Zonai System
-7. Check if the Autobuild Zonai System is UltraBroken
+7. Check if the Autobuild Zonai System is Ultrabroken
 8. Keep detaching
 
 ## Termination
 
-- Exceed the Distance Unload Radius of the Semi-UltraBroken Object
-- Trigger a dialogue or cutscene that deletes objects while a Semi-UltraBroken Object is nearby
-- Expose the Semi-UltraBroken Object to a shockwave that despawns objects
-- Feed the Semi-UltraBroken Object to a lifeform that devours objects
-- Warp anywhere without performing Zuggle Load Object Transfer on the UltraBroken Object
-- Transition into another map without performing Zuggle Load Object Transfer on the UltraBroken Object
-- Load another save without performing Zuggle Load Object Transfer on the UltraBroken Object
+- Exceed the Distance Unload Radius of the Semi-Ultrabroken Object
+- Trigger a dialogue or cutscene that deletes objects while a Semi-Ultrabroken Object is nearby
+- Expose the Semi-Ultrabroken Object to a shockwave that despawns objects
+- Feed the Semi-Ultrabroken Object to a lifeform that devours objects
+- Warp anywhere without performing Zuggle Load Object Transfer on the Ultrabroken Object
+- Transition into another map without performing Zuggle Load Object Transfer on the Ultrabroken Object
+- Load another save without performing Zuggle Load Object Transfer on the Ultrabroken Object
 
 ---
 

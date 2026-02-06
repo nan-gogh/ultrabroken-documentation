@@ -1,15 +1,15 @@
 # Meta & Advanced Tips
 
-## Glued UltraBroken vs Glue-Free UltraBroken
+## Glued Ultrabroken vs Glue-Free Ultrabroken
 
 These two setup types have different capabilities and constraints:
 
-### Glued UltraBroken
+### Glued Ultrabroken
 - Can use most effects
 - Cannot be used directly in UltraFuses
 - Requires glued objects in the setup
 
-### Glue-Free UltraBroken
+### Glue-Free Ultrabroken
 - **Fusable** - Can be fused to weapons/shields
 - **Phantom Glue capable** - Can create Phantom Glue connections
 - **Sometimes needs Antimass** - Multiple objects may require Antimass for effects to work
@@ -35,7 +35,7 @@ There are means to transfer objects back in time:
 - **ZLOT** - Time-based object transfer
 - **Zuggle** - Alternative object preservation method
 
-Always use these methods to preserve your UltraBroken equipment before closing the game.
+Always use these methods to preserve your Ultrabroken equipment before closing the game.
 
 ## Terminology Quick Reference
 

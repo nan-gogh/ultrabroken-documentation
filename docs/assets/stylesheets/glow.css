@@ -361,7 +361,7 @@ body::after {
 .md-content h6 {
   cursor: pointer;
 }
-
+/*
 .md-content h1:hover::after,
 .md-content h2:hover::after,
 .md-content h3:hover::after,
@@ -371,4 +371,4 @@ body::after {
   content: " 🔗";
   opacity: 0.5;
   font-size: 0.8em;
-}
+}*/

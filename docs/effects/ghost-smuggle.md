@@ -4,7 +4,7 @@
 
 ## Description
 
-If you've reached this point: Congratulations! You're halfway there, and now the fun part begins! Ghost Smuggling is an amusing technique that involves utilizing Ghost Glue between UltraBroken Equipment and various objects that can be glued together. From this stage onward, it becomes crucial to consider Mass Matching.
+If you've reached this point: Congratulations! You're halfway there, and now the fun part begins! Ghost Smuggling is an amusing technique that involves utilizing Ghost Glue between Ultrabroken Equipment and various objects that can be glued together. From this stage onward, it becomes crucial to consider Mass Matching.
 
 This technique is also commonly referred to as "Ghost Glue Smuggling".
 
@@ -25,18 +25,18 @@ This technique is also commonly referred to as "Ghost Glue Smuggling".
 5. Finish the dialogue
 6. Let the cutscene do its magic
 7. Find the Zonai Cart
-8. Check if the Zonai Cart is UltraBroken
-9. Pick up the UltraBroken Shield while having no other shield equipped
-10. Drop the UltraBroken Shield next to the UltraBroken Zonai Cart
-11. Ghost Glue the UltraBroken Shield to the UltraBroken Zonai Cart
-12. Ghost Glue the UltraBroken Cart to the UltraBroken Shield
-13. Pick up the UltraBroken Shield
+8. Check if the Zonai Cart is Ultrabroken
+9. Pick up the Ultrabroken Shield while having no other shield equipped
+10. Drop the Ultrabroken Shield next to the Ultrabroken Zonai Cart
+11. Ghost Glue the Ultrabroken Shield to the Ultrabroken Zonai Cart
+12. Ghost Glue the Ultrabroken Cart to the Ultrabroken Shield
+13. Pick up the Ultrabroken Shield
 14. Start moving
 
 ## Termination
 
-- Drop the UltraBroken Equipment to cancel the Ghost Smuggle
-- Put UltraBroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
+- Drop the Ultrabroken Equipment to cancel the Ghost Smuggle
+- Put Ultrabroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
 - Put an object involved in a Spooky Interaction into the inventory to cancel it
 - Exceed the Distance Unload Radius of one object involved in a Spooky Interaction to cancel it
 - Trigger a dialogue or cutscene that deletes objects while an object involved in a Spooky Interaction is nearby to cancel it

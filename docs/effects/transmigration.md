@@ -6,7 +6,7 @@
 
 As we approach the depths of our exploration, we encounter the Transmigration effect, which grants us the ability to temporarily remove the Item Soul from items, rendering them uncollectible. This ability proves to be a real lifesaver for UltraFuses that involve items or equipment.
 
-Various methods involving Antimass and the Quantum State Freeze Effect Consistency can trigger this UltraBroken Effect. However, there is one specific case where Transmigration becomes particularly useful, though the specifics may vary.
+Various methods involving Antimass and the Quantum State Freeze Effect Consistency can trigger this Ultrabroken Effect. However, there is one specific case where Transmigration becomes particularly useful, though the specifics may vary.
 
 ## Exemplary Setup
 
@@ -26,16 +26,16 @@ Various methods involving Antimass and the Quantum State Freeze Effect Consisten
 5. Finish the dialogue
 6. Let the cutscene do its magic
 7. Find the shield
-8. Check if the shield is UltraBroken
-9. Glue a regular shield to the UltraBroken Shield
-10. Pick up the UltraBroken Shield
+8. Check if the shield is Ultrabroken
+9. Glue a regular shield to the Ultrabroken Shield
+10. Pick up the Ultrabroken Shield
 11. Press +
 12. Press + again
 
 ## Termination
 
-- Detach objects glued to the UltraBroken Equipment to cancel Phantom Smuggle
-- Put UltraBroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
+- Detach objects glued to the Ultrabroken Equipment to cancel Phantom Smuggle
+- Put Ultrabroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
 - Put an object involved in a Spooky Interaction into the inventory to cancel it
 - Exceed the Distance Unload Radius of one object involved in a Spooky Interaction to cancel it
 - Trigger a dialogue or cutscene that deletes objects while an object involved in a Spooky Interaction is nearby to cancel it

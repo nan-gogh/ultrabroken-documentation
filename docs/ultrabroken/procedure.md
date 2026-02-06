@@ -1,8 +1,8 @@
-# The UltraBroken Procedure
+# The Ultrabroken Procedure
 
 ## Basic Setup (99% Success Rate)
 
-The fundamental process of UltraBroken is relatively straightforward and efficient. If you bear with me, we will encounter variations of this setup numerous times. The intricacies arise later on with UltraFuses. The following setup works in 99% of the time.
+The fundamental process of Ultrabroken is relatively straightforward and efficient. If you bear with me, we will encounter variations of this setup numerous times. The intricacies arise later on with UltraFuses. The following setup works in 99% of the time.
 
 ### Steps
 
@@ -15,8 +15,8 @@ The fundamental process of UltraBroken is relatively straightforward and efficie
 
 ### What Happens?
 
-The object you placed will become UltraBroken, gaining special properties and unlocking a vast array of effects and interactions.
+The object you placed will become Ultrabroken, gaining special properties and unlocking a vast array of effects and interactions.
 
 ---
 
-**Next:** Learn what [Exceptions](exceptions.md) exist and what [Attributes](attributes.md) UltraBroken objects have.
+**Next:** Learn what [Exceptions](exceptions.md) exist and what [Attributes](attributes.md) Ultrabroken objects have.

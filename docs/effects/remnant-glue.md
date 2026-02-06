@@ -6,7 +6,7 @@
 
 A mysterious phenomenon known as a Spooky Interaction pops in and out of existence wherever Ghost Glue is tampered with. While it can often be disregarded, certain outcomes suggest that particular Remnant Glue arrangements are responsible for Glue Locks.
 
-Moreover, there is a belief that Remnant Glue from previous UltraBroken sessions can unexpectedly reappear in future UltraBroken sessions, adding complexity to the situation.
+Moreover, there is a belief that Remnant Glue from previous Ultrabroken sessions can unexpectedly reappear in future Ultrabroken sessions, adding complexity to the situation.
 
 ## Exemplary Setup
 
@@ -24,16 +24,16 @@ Moreover, there is a belief that Remnant Glue from previous UltraBroken sessions
 4. Finish the dialogue
 5. Let the cutscene do its magic
 6. Find the object
-7. Check if the Zonai Cart is UltraBroken
-8. Put the regular Zonai Cart next to the UltraBroken Zonai Cart
-9. Glue the regular Zonai Cart to the UltraBroken Zonai Cart
-10. Ultrahand the UltraBroken Zonai Cart
-11. Detach the UltraBroken Zonai Cart
+7. Check if the Zonai Cart is Ultrabroken
+8. Put the regular Zonai Cart next to the Ultrabroken Zonai Cart
+9. Glue the regular Zonai Cart to the Ultrabroken Zonai Cart
+10. Ultrahand the Ultrabroken Zonai Cart
+11. Detach the Ultrabroken Zonai Cart
 
 ## Termination
 
 - Exceed the Distance Unload Radius of the Remnant Glue
-- Put UltraBroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
+- Put Ultrabroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
 - Put an object involved in a Spooky Interaction into the inventory to cancel it
 - Exceed the Distance Unload Radius of one object involved in a Spooky Interaction to cancel it
 - Trigger a dialogue or cutscene that deletes objects while an object involved in a Spooky Interaction is nearby to cancel it

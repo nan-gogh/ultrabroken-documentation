@@ -4,7 +4,7 @@
 
 ## Overview
 
-Congratulations on reaching the deepest depths of the UltraBroken rabbit hole! Below is valuable information regarding individual UltraBroken Effects for various Zonai Devices. While some effects prove to be more advantageous than others, here is a list of the currently known UltraBroken Effects on individual Zonai Devices.
+Congratulations on reaching the deepest depths of the Ultrabroken rabbit hole! Below is valuable information regarding individual Ultrabroken Effects for various Zonai Devices. While some effects prove to be more advantageous than others, here is a list of the currently known Ultrabroken Effects on individual Zonai Devices.
 
 ## Device List
 
@@ -18,7 +18,7 @@ Congratulations on reaching the deepest depths of the UltraBroken rabbit hole! B
 - **Sled** - (Needs more testing)
 - **Big Wheel** - Consistency, Permanence, Self-Sufficiency, Autoflux quirks, Disanimation, Antimass effects
 - **Small Wheel** - Consistency, Permanence, Self-Sufficiency, Active Autoflux, Disanimated to inactive
-- **Steering Stick** - Cancels Autoflux of some UltraBroken devices (Needs testing)
+- **Steering Stick** - Cancels Autoflux of some Ultrabroken devices (Needs testing)
 
 ### Hazards & Effects
 
@@ -46,7 +46,7 @@ Congratulations on reaching the deepest depths of the UltraBroken rabbit hole! B
 
 ### Special Devices
 
-- **Stake** - Can't be displaced by UltraBroken (Needs more testing)
+- **Stake** - Can't be displaced by Ultrabroken (Needs more testing)
 - **Homing Cart** - Consistency, Permanence, Self-Sufficiency, Active Autoflux, Disanimation
 - **Construct Head** - Consistency, Permanence, Self-Sufficiency, Active Autoflux (socket), Inactive Autoflux (head), Disanimation, Disjointed by Antimass
 - **Shrine Propeller** - Consistency, Permanence, Self-Sufficiency, Active Autoflux(?), Disanimation(?), Wind gusts get stuck
@@ -68,17 +68,17 @@ Congratulations on reaching the deepest depths of the UltraBroken rabbit hole! B
 5. Finish the dialogue
 6. Let the cutscene do its magic
 7. Find the Zonai Battery
-8. Check if the Zonai Battery is UltraBroken
-9. Connect any battery-powered Zonai System to the UltraBroken Zonai Battery
+8. Check if the Zonai Battery is Ultrabroken
+9. Connect any battery-powered Zonai System to the Ultrabroken Zonai Battery
 
 ### Termination
 
-- Exceed the Distance Unload Radius of the UltraBroken Object
-- Trigger a dialogue or cutscene that deletes objects while an UltraBroken Object is nearby
-- Feed the UltraBroken Object to a lifeform that devours objects
-- Warp anywhere without performing Zuggle Load Object Transfer on the UltraBroken Object
-- Transition into another map without performing Zuggle Load Object Transfer on the UltraBroken Object
-- Load another save without performing Zuggle Load Object Transfer on the UltraBroken Object
+- Exceed the Distance Unload Radius of the Ultrabroken Object
+- Trigger a dialogue or cutscene that deletes objects while an Ultrabroken Object is nearby
+- Feed the Ultrabroken Object to a lifeform that devours objects
+- Warp anywhere without performing Zuggle Load Object Transfer on the Ultrabroken Object
+- Transition into another map without performing Zuggle Load Object Transfer on the Ultrabroken Object
+- Load another save without performing Zuggle Load Object Transfer on the Ultrabroken Object
 
 ---
 

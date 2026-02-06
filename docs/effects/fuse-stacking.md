@@ -27,20 +27,20 @@ Fancy text coming soon.
 9. Finish the dialogue
 10. Let the cutscene do its magic
 11. Find the shield
-12. Check if the shields are UltraBroken
-13. Pick up an UltraBroken Shield
-14. Fuse an UltraBroken Shield to it
-15. Drop the UltraBroken Shield-Shield
-16. Pick up the last UltraBroken Shield
-17. Fuse the UltraBroken Shield-Shield to it
+12. Check if the shields are Ultrabroken
+13. Pick up an Ultrabroken Shield
+14. Fuse an Ultrabroken Shield to it
+15. Drop the Ultrabroken Shield-Shield
+16. Pick up the last Ultrabroken Shield
+17. Fuse the Ultrabroken Shield-Shield to it
 
 ### Termination
 
-- Put UltraBroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
-- Exceed the Distance Unload Radius of the UltraBroken Object
-- Trigger a dialogue or cutscene that deletes objects while an UltraBroken Object is nearby
-- Feed the UltraBroken Object to a lifeform that devours objects
-- Load another save without performing Zuggle Load Object Transfer on the UltraBroken Object
+- Put Ultrabroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
+- Exceed the Distance Unload Radius of the Ultrabroken Object
+- Trigger a dialogue or cutscene that deletes objects while an Ultrabroken Object is nearby
+- Feed the Ultrabroken Object to a lifeform that devours objects
+- Load another save without performing Zuggle Load Object Transfer on the Ultrabroken Object
 
 ## Exemplary Setup B - Massive Autobuild
 
@@ -54,11 +54,11 @@ Fancy text coming soon.
 
 ### Termination
 
-- Put UltraBroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
-- Exceed the Distance Unload Radius of the UltraBroken Object
-- Trigger a dialogue or cutscene that deletes objects while an UltraBroken Object is nearby
-- Feed the UltraBroken Object to a lifeform that devours objects
-- Load another save without performing Zuggle Load Object Transfer on the UltraBroken Object
+- Put Ultrabroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
+- Exceed the Distance Unload Radius of the Ultrabroken Object
+- Trigger a dialogue or cutscene that deletes objects while an Ultrabroken Object is nearby
+- Feed the Ultrabroken Object to a lifeform that devours objects
+- Load another save without performing Zuggle Load Object Transfer on the Ultrabroken Object
 
 ---
 

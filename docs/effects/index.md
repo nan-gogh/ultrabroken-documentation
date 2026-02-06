@@ -1,16 +1,16 @@
-# UltraBroken Effects
+# Ultrabroken Effects
 
-While UltraBroken may seem as simple as a single dialogue, it actually opens up a profound rabbit hole. Within this realm, numerous mind-bending outcomes and effects can be achieved through specific, and at times rather intricate, configurations.
+While Ultrabroken may seem as simple as a single dialogue, it actually opens up a profound rabbit hole. Within this realm, numerous mind-bending outcomes and effects can be achieved through specific, and at times rather intricate, configurations.
 
 ## Important Note
 
-**UltraBroken Effects are not limited to the objects used in the following setups and they can be stacked, so feel free to experiment with any kind or number of objects and combine effects at whim.**
+**Ultrabroken Effects are not limited to the objects used in the following setups and they can be stacked, so feel free to experiment with any kind or number of objects and combine effects at whim.**
 
 ## Available Effects
 
 ### Core Effects
 
-- **[Wacko Boingo](wacko-boingo.md)** - UltraBroken Flight
+- **[Wacko Boingo](wacko-boingo.md)** - Ultrabroken Flight
 - **[Lift Lock](lift-lock.md)** - When systems become impossible to lift
 - **[Recall Fling](recall-fling.md)** - Objects flung by Recall
 - **[Ghost Glue](ghost-glue.md)** - Invisible attraction connections
@@ -37,7 +37,7 @@ While UltraBroken may seem as simple as a single dialogue, it actually opens up 
 - **[Transmigration](transmigration.md)** - Item soul removal
 - **[Autobuild Standalones](autobuild-standalones.md)** - Detachable systems
 - **[Zonai Device Hacks](../devices/)** - Individual device effects
-- **[Slidy Cart](slidy-cart.md)** - Semi-UltraBroken friction override
+- **[Slidy Cart](slidy-cart.md)** - Semi-Ultrabroken friction override
 
 ---
 

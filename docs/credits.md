@@ -1,6 +1,6 @@
 # Credits
 
-UltraBroken has been researched and documented by many dedicated researchers. Thank you to everyone for adding your effort to this legacy!
+Ultrabroken has been researched and documented by many dedicated researchers. Thank you to everyone for adding your effort to this legacy!
 
 ## Researchers & Contributors
 
@@ -36,7 +36,7 @@ Special recognition to:
 - **MrCheeze** - Datamining the root cause
 - **Flash** - Pinpointing trigger conditions
 
-This community-driven research represents hours of dedication, experimentation, and discovery. Without these researchers, the depths of UltraBroken would remain unexplored.
+This community-driven research represents hours of dedication, experimentation, and discovery. Without these researchers, the depths of Ultrabroken would remain unexplored.
 
 ---
 

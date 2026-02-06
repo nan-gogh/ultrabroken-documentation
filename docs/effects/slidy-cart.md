@@ -4,7 +4,7 @@
 
 ## Description
 
-Shortly after the discovery of UltraBroken, a Semi-UltraBroken Effect emerged, which involves overriding the friction properties of Cart wheels in particular. Often referred to as "Wacko Wheels," this effect operates independently of The Riverside Trolls, making it a suitable companion for UltraBroken Equipment.
+Shortly after the discovery of Ultrabroken, a Semi-Ultrabroken Effect emerged, which involves overriding the friction properties of Cart wheels in particular. Often referred to as "Wacko Wheels," this effect operates independently of The Riverside Trolls, making it a suitable companion for Ultrabroken Equipment.
 
 ## Setup
 
@@ -22,19 +22,19 @@ Shortly after the discovery of UltraBroken, a Semi-UltraBroken Effect emerged, w
 3. Talk to the stable receptionist
 4. Choose to change horse gear
 5. Quit out of the dialogue
-6. Put the Semi-UltraBroken Zonai Cart on top of a hill
+6. Put the Semi-Ultrabroken Zonai Cart on top of a hill
 7. Quickly step on it
 
 ## Termination
 
-- Exceed the Distance Unload Radius of the Semi-UltraBroken Object
-- Trigger a dialogue or cutscene that deletes objects while a Semi-UltraBroken Object is nearby
-- Expose the Semi-UltraBroken Object to a shockwave that despawns objects
-- Feed the Semi-UltraBroken Object to a lifeform that devours objects
-- Warp anywhere without performing Zuggle Load Object Transfer on the UltraBroken Object
-- Transition into another map without performing Zuggle Load Object Transfer on the UltraBroken Object
-- Load another save without performing Zuggle Load Object Transfer on the UltraBroken Object
+- Exceed the Distance Unload Radius of the Semi-Ultrabroken Object
+- Trigger a dialogue or cutscene that deletes objects while a Semi-Ultrabroken Object is nearby
+- Expose the Semi-Ultrabroken Object to a shockwave that despawns objects
+- Feed the Semi-Ultrabroken Object to a lifeform that devours objects
+- Warp anywhere without performing Zuggle Load Object Transfer on the Ultrabroken Object
+- Transition into another map without performing Zuggle Load Object Transfer on the Ultrabroken Object
+- Load another save without performing Zuggle Load Object Transfer on the Ultrabroken Object
 
 ---
 
-**Note:** This doesn't require The Riverside Trolls and can be combined with other UltraBroken Equipment!
+**Note:** This doesn't require The Riverside Trolls and can be combined with other Ultrabroken Equipment!

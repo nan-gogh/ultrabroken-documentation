@@ -4,18 +4,18 @@
 
 ## Description
 
-The most vexing UltraBroken Effect completely disables the Ultrahand Ability, rendering Ghost Glue inaccessible for UltraBroken Objects, or in some cases, preventing any objects from being glued at all. Discovering the solution to this issue may offer a clue as to its underlying cause.
+The most vexing Ultrabroken Effect completely disables the Ultrahand Ability, rendering Ghost Glue inaccessible for Ultrabroken Objects, or in some cases, preventing any objects from being glued at all. Discovering the solution to this issue may offer a clue as to its underlying cause.
 
 ## Exemplary Setup
 
 ### Requirements
 
 - Ultrahand Glue
-- UltraBroken Objects
+- Ultrabroken Objects
 
 ### Procedure
 
-1. Use regular Ultrahand Glue mechanics on UltraBroken Objects
+1. Use regular Ultrahand Glue mechanics on Ultrabroken Objects
 
 ## Fixes
 
@@ -30,7 +30,7 @@ The most vexing UltraBroken Effect completely disables the Ultrahand Ability, re
 
 ## Termination
 
-- Put UltraBroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
+- Put Ultrabroken Equipment into the inventory without equipping it, put it on a mount or give it to the Break Apart shop to restore it
 - Put an object involved in a Spooky Interaction into the inventory to cancel it
 - Exceed the Distance Unload Radius of one object involved in a Spooky Interaction to cancel it
 - Trigger a dialogue or cutscene that deletes objects while an object involved in a Spooky Interaction is nearby to cancel it
