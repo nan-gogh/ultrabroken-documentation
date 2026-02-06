@@ -9,9 +9,6 @@ theme:
   name: material
   logo: ultrabroken_rune.svg
   favicon: ultrabroken_rune.ico
-  icon:
-    link: material/share-variant
-    share: material/share-variant
   features:
     - navigation.instant
     - navigation.tracking
@@ -75,7 +72,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.tasklist
   - toc:
-      permalink: true
+      permalink: "#"
       permalink_title: Permanent link
 
 extra:
