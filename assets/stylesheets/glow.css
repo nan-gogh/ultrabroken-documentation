@@ -89,7 +89,7 @@ html, body {
 }
 
 /* Header logo SVG glow - target common logo selectors so the rendered
-   SVG shapes receive a teal drop-shadow glow (not the bounding box). */
+   SVG shapes receive a teal drop-shadow glow only on press (:active). */
 .md-header .md-logo svg,
 .md-header__title .md-logo svg,
 .md-header__logo svg,
@@ -97,7 +97,7 @@ html, body {
   color: var(--teal-glow) !important;
   fill: currentColor !important;
   stroke: none !important;
-  filter: drop-shadow(0 0 8px rgba(0,240,194,0.9));
+  filter: none;
   transition: filter .2s ease, transform .2s ease;
 }
 .md-header .md-logo:active svg,
