@@ -32,28 +32,4 @@
       });
     }
   });
-  
-  // Apply pointer cursor and tooltip via CSS injection
-  const style = document.createElement('style');
-  style.textContent = `
-    .md-content h1,
-    .md-content h2,
-    .md-content h3,
-    .md-content h4,
-    .md-content h5,
-    .md-content h6 {
-      cursor: pointer;
-    }
-    .md-content h1:hover::after,
-    .md-content h2:hover::after,
-    .md-content h3:hover::after,
-    .md-content h4:hover::after,
-    .md-content h5:hover::after,
-    .md-content h6:hover::after {
-      content: " 🔗";
-      opacity: 0.5;
-      font-size: 0.8em;
-    }
-  `;
-  document.head.appendChild(style);
 })();

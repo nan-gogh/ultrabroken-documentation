@@ -351,3 +351,24 @@ body::after {
   top: 0 !important;
   z-index: 4 !important;
 }
+
+/* Clickable headings for permalink copy - cursor pointer and hover link icon */
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4,
+.md-content h5,
+.md-content h6 {
+  cursor: pointer;
+}
+
+.md-content h1:hover::after,
+.md-content h2:hover::after,
+.md-content h3:hover::after,
+.md-content h4:hover::after,
+.md-content h5:hover::after,
+.md-content h6:hover::after {
+  content: " 🔗";
+  opacity: 0.5;
+  font-size: 0.8em;
+}
