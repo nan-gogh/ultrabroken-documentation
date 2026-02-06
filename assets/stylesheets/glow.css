@@ -31,6 +31,7 @@ html, body {
     0 0 22px rgba(0,240,194,0.8),
     0 0 44px rgba(0,240,194,0.55);
   font-weight: 600;
+  font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }
 .md-header__title .md-ellipsis {
@@ -154,6 +155,11 @@ a:hover {
 .md-nav__title .md-ellipsis {
   overflow: visible !important;
   text-overflow: clip !important;
+}
+
+/* Ensure nav titles also use Texturina for consistency */
+.md-nav__title {
+  font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
 }
 
 /* Hide redundant sidebar header on mobile (drawer already has sticky page header) */
