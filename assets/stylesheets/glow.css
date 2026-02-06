@@ -372,3 +372,56 @@ body::after {
   opacity: 0.5;
   font-size: 0.8em;
 }*/
+
+/* Pulsating bottom glow that adapts to viewport width */
+body::before {
+  content: "";
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(1400px, 95vw);
+  height: max(8vh, 120px);
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(50% 100% at 50% 100%, rgba(0,240,194,0.18) 0%, rgba(0,240,194,0.08) 30%, rgba(0,240,194,0.00) 70%);
+  filter: blur(36px);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  animation: pulseGlow 4200ms ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: translateX(-50%) translateY(8%);
+    opacity: 0.75;
+    filter: blur(28px) saturate(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0%);
+    opacity: 1;
+    filter: blur(44px) saturate(1.12);
+  }
+  100% {
+    transform: translateX(-50%) translateY(8%);
+    opacity: 0.75;
+    filter: blur(28px) saturate(1);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Smaller viewports: reduce height and blur so glow stays subtle */
+@media (max-width: 640px) {
+  body::before {
+    height: max(6vh, 80px);
+    filter: blur(22px);
+  }
+}
+
