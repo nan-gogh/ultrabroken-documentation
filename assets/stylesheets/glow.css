@@ -190,7 +190,7 @@ body::after {
 }
 
 /* When a 404 is detected, show the question-mark overlay as an independent element to the left of the rune */
-body.ultrabroken-404 .md-main::before {
+body.ultrabroken-404 .md-main::after {
   content: "";
   position: fixed;
   right: 2vmin;
