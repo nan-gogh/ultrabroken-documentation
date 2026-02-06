@@ -193,8 +193,8 @@ body::after {
 body.ultrabroken-404::after {
   background-image: url('../images/ultrabroken_rune.svg'), url('../images/ultrabroken_404.svg');
   background-repeat: no-repeat, no-repeat;
-  /* Position: rune at bottom-right, overlay positioned independently to the left */
-  background-position: right bottom, left 12% top 20%;
+  /* Position: rune at bottom-right, overlay positioned to the left outside the rune */
+  background-position: right bottom, left -5vmin top 30%;
   /* Make the overlay a little bigger (was 12vmin) */
   background-size: 48vmin 48vmin, 14vmin 14vmin;
 }
