@@ -373,38 +373,39 @@ body::after {
   font-size: 0.8em;
 }*/
 
-/* Pulsating bottom glow that adapts to viewport width */
+/* Pulsating bottom linear glow that adapts to viewport width */
 body::before {
   content: "";
   position: fixed;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: min(1400px, 95vw);
-  height: max(8vh, 120px);
+  width: min(1400px, 100vw);
+  height: max(10vh, 120px);
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(50% 100% at 50% 100%, rgba(0,240,194,0.18) 0%, rgba(0,240,194,0.08) 30%, rgba(0,240,194,0.00) 70%);
+  /* Linear gradient rising from the bottom */
+  background: linear-gradient(to top, rgba(0,240,194,0.20) 0%, rgba(0,240,194,0.10) 35%, rgba(0,240,194,0.00) 100%);
   filter: blur(36px);
   mix-blend-mode: screen;
-  opacity: 0.9;
-  animation: pulseGlow 4200ms ease-in-out infinite;
+  opacity: 0.85;
+  animation: pulseGlowLinear 4200ms ease-in-out infinite;
 }
 
-@keyframes pulseGlow {
+@keyframes pulseGlowLinear {
   0% {
-    transform: translateX(-50%) translateY(8%);
-    opacity: 0.75;
+    transform: translateX(-50%) translateY(6%);
+    opacity: 0.65;
     filter: blur(28px) saturate(1);
   }
   50% {
     transform: translateX(-50%) translateY(0%);
     opacity: 1;
-    filter: blur(44px) saturate(1.12);
+    filter: blur(44px) saturate(1.08);
   }
   100% {
-    transform: translateX(-50%) translateY(8%);
-    opacity: 0.75;
+    transform: translateX(-50%) translateY(6%);
+    opacity: 0.65;
     filter: blur(28px) saturate(1);
   }
 }
