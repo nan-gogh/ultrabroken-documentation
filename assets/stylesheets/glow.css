@@ -26,21 +26,16 @@ html, body {
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
   text-shadow:
-    0 0 4px rgba(0,240,194,0.8),
-    0 0 12px rgba(0,240,194,0.65),
-    0 0 28px rgba(0,240,194,0.45),
-    0 0 48px rgba(0,240,194,0.28);
+    0 0 4px rgba(0,240,194,0.95),
+    0 0 10px rgba(0,240,194,0.9),
+    0 0 22px rgba(0,240,194,0.8),
+    0 0 44px rgba(0,240,194,0.55);
   font-weight: 600;
   overflow: visible !important;
 }
 .md-header__title .md-ellipsis {
   overflow: visible !important;
   text-overflow: clip !important;
-}
-
-/* Use Texturina specifically for the header title for better legibility */
-.md-header__title {
-  font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
