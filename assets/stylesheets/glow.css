@@ -446,20 +446,6 @@ body::before {
   body::before { height: max(6vh, 56px); }
 }
 
-/* Prevent sidebar scrollbar layout shift - reserve space for scrollbar */
-.md-sidebar {
-  scrollbar-gutter: stable;
-  overflow-y: overlay;
-}
-
-/* Fallback for browsers that don't support scrollbar-gutter */
-@supports not (scrollbar-gutter: stable) {
-  .md-sidebar {
-    overflow-y: scroll;
-    flex-shrink: 0;
-  }
-}
-
 /* Search highlighting - clean teal background without spacing */
 mark {
   background-color: rgba(0, 240, 194, 0.3) !important;
