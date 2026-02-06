@@ -80,25 +80,6 @@ html, body {
   color: var(--teal-glow) !important;
 }
 
-/* Glow the SVG shape itself (not the bounding box). Uses drop-shadow filter so
-   only the rendered shape receives the glow. Applied to header, nav and tab icons. */
-.md-header__button .md-icon svg,
-.md-nav__button .md-icon svg,
-.md-tabs__link .md-icon svg,
-.md-search__icon svg {
-  color: var(--teal-glow) !important;
-  fill: currentColor !important;
-  filter: drop-shadow(0 0 6px rgba(0,240,194,0.85));
-  transition: filter .18s ease, transform .18s ease;
-}
-
-.md-header__button:hover .md-icon svg,
-.md-nav__button:hover .md-icon svg,
-.md-tabs__link:hover .md-icon svg,
-.md-search__icon:hover svg {
-  filter: drop-shadow(0 0 14px rgba(0,240,194,0.95));
-}
-
 /* Burger menu, search, and palette toggle buttons - bright teal with hover lightup */
 label.md-header__button[for="__drawer"],
 label.md-header__button[for="__search"],
