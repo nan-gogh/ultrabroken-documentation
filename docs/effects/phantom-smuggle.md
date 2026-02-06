@@ -53,4 +53,4 @@ Also known as "Phantom Glue Smuggling".
 
 ---
 
-**Related:** [Ghost Smuggle](ghost-smuggle.md) for a comparison, or [Transmigration](transmigration.md) for equipment fusing.
+**Related:** [Ghost Smuggle](/ultrabroken-documentation/effects/ghost-smuggle.md) for a comparison, or [Transmigration](/ultrabroken-documentation/effects/transmigration.md) for equipment fusing.

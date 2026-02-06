@@ -4,16 +4,16 @@ Welcome to the foundation of the Ultrabroken phenomenon. This section covers eve
 
 ## Sections
 
-- **[Introduction](introduction.md)** - What is Ultrabroken?
-- **[Zorona & Kairo](introduction.md#zorona-and-kairo)** - Meet the Riverside Trolls
-- **[Etymology](introduction.md#etymology)** - How it got its name
-- **[Requirements](requirements.md)** - What you need to trigger it
-- **[Procedure](procedure.md)** - Step-by-step setup (works 99% of the time)
-- **[Exceptions](exceptions.md)** - Objects that don't break
-- **[Attributes](attributes.md)** - How to identify Ultrabroken objects
-- **[Theories](theories.md)** - Technical speculation
-- **[Datamine](datamine.md)** - The root cause explained
+- **[Introduction](/ultrabroken-documentation/ultrabroken/introduction.md)** - What is Ultrabroken?
+- **[Zorona & Kairo](/ultrabroken-documentation/ultrabroken/introduction.md#zorona-and-kairo)** - Meet the Riverside Trolls
+- **[Etymology](/ultrabroken-documentation/ultrabroken/introduction.md#etymology)** - How it got its name
+- **[Requirements](/ultrabroken-documentation/ultrabroken/requirements.md)** - What you need to trigger it
+- **[Procedure](/ultrabroken-documentation/ultrabroken/procedure.md)** - Step-by-step setup (works 99% of the time)
+- **[Exceptions](/ultrabroken-documentation/ultrabroken/exceptions.md)** - Objects that don't break
+- **[Attributes](/ultrabroken-documentation/ultrabroken/attributes.md)** - How to identify Ultrabroken objects
+- **[Theories](/ultrabroken-documentation/ultrabroken/theories.md)** - Technical speculation
+- **[Datamine](/ultrabroken-documentation/ultrabroken/datamine.md)** - The root cause explained
 
 ---
 
-**Next:** Read [Introduction](introduction.md) to get started!
+**Next:** Read [Introduction](/ultrabroken-documentation/ultrabroken/introduction.md) to get started!

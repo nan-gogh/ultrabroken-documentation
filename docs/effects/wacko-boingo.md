@@ -40,4 +40,4 @@ One of the most widely recognized Ultrabroken Effects grants the ability to perf
 
 ---
 
-**Up Next:** Learn about [Lift Lock](lift-lock.md), a problematic side effect.
+**Up Next:** Learn about [Lift Lock](/ultrabroken-documentation/effects/lift-lock.md), a problematic side effect.

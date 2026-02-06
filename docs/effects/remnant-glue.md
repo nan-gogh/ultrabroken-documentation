@@ -44,4 +44,4 @@ Moreover, there is a belief that Remnant Glue from previous Ultrabroken sessions
 
 ---
 
-**Related:** See [Glue Lock](glue-lock.md) which may be caused by Remnant Glue issues.
+**Related:** See [Glue Lock](/ultrabroken-documentation/effects/glue-lock.md) which may be caused by Remnant Glue issues.

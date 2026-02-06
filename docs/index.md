@@ -4,12 +4,12 @@ Welcome to the comprehensive guide on **Ultrabroken**, the most broken glitch in
 
 ## Quick Navigation
 
-- **[Ultrabroken Basics](ultrabroken/)** - Learn what Ultrabroken is and how to trigger it
-- **[Effects](effects/)** - Explore all known Ultrabroken effects
-- **[Zonai Device Hacks](devices/)** - Individual device breakdowns
-- **[Builds & UltraFuses](builds/)** - Creative constructions and combinations
-- **[Meta & Tips](meta.md)** - Advanced strategies and guidance
-- **[Credits](credits.md)** - Thanks to all contributors
+- **[Ultrabroken Basics](/ultrabroken-documentation/ultrabroken/)** - Learn what Ultrabroken is and how to trigger it
+- **[Effects](/ultrabroken-documentation/effects/)** - Explore all known Ultrabroken effects
+- **[Zonai Device Hacks](/ultrabroken-documentation/devices/)** - Individual device breakdowns
+- **[Builds & UltraFuses](/ultrabroken-documentation/builds/)** - Creative constructions and combinations
+- **[Meta & Tips](/ultrabroken-documentation/meta.md)** - Advanced strategies and guidance
+- **[Credits](/ultrabroken-documentation/credits.md)** - Thanks to all contributors
 
 ## What is Ultrabroken?
 
