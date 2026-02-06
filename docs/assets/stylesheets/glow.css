@@ -194,7 +194,7 @@ body.ultrabroken-404::after {
   background-image: url('../images/ultrabroken_rune.svg'), url('../images/ultrabroken_404.svg');
   background-repeat: no-repeat, no-repeat;
   background-position: center right bottom, 8% 8%;
-  background-size: 48vmin 48vmin, 6vmin 6vmin;
+  background-size: 48vmin 48vmin, 12vmin 12vmin;
 }
 
 @keyframes pulseLogo {
