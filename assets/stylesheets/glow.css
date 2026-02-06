@@ -194,7 +194,7 @@ body.ultrabroken-404::after {
   background-image: url('../images/ultrabroken_rune.svg'), url('../images/ultrabroken_404.svg');
   background-repeat: no-repeat, no-repeat;
   /* Move the overlay further left and slightly down */
-  background-position: center right bottom, -6% 6%;
+  background-position: center right bottom, -20% 6%;
   /* Make the overlay a little bigger than before (was 12vmin) */
   background-size: 48vmin 48vmin, 14vmin 14vmin;
 }
