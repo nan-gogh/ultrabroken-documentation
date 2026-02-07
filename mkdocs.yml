@@ -35,7 +35,7 @@ nav:
   - Home:
      - Welcome: index.md
      - Ultrabroken: ultrabroken/index.md
-     - Fuse Entanglement: fuse-entanglement/index.md
+     - Entanglement: entanglement/index.md
      - Zuggling: zuggling/index.md
      - Glitchcraft: glitchcraft/index.md
   - Ultrabroken: 
@@ -73,7 +73,21 @@ nav:
      - Builds: ultrabroken/builds/index.md
      - Tips: ultrabroken/meta.md
      - Credits: ultrabroken/credits.md
-  - Fuse Entanglement: fuse-entanglement/index.md
+  - Entanglement:
+    - Overview: entanglement/index.md
+    - Fuse Entanglement: entanglement/0051-fuse-entanglement.md
+    - Fuse Entanglement Desync: entanglement/0056-fuse-entanglement-desync-fed.md
+    - Fuse Entanglement Clipping: entanglement/0108-fuse-entanglement-clipping-fec.md
+    - Fuse Storage Fuse Entanglement: entanglement/0114-fuse-storage-fuse-entanglement-fsfe.md
+    - Cull Fuse Entanglement: entanglement/0180-cull-fuse-entanglement-cull-fe.md
+    - Mineru Fuse Entanglement: entanglement/0187-mineru-fuse-entanglement-mineru-fe.md
+    - Resync Fuse Entanglement: entanglement/0202-resync-fuse-entanglement-resync-fe.md
+    - Double Shield Desync Clip Fuse Entanglement: entanglement/0240-double-shield-desync-clip-fuse-entanglement-double-sdc-fe.md
+    - Construct Fuse Entanglement: entanglement/0242-construct-fuse-entanglement.md
+    - Overload Fuse Entanglement: entanglement/0247-overload-fuse-entanglement.md
+    - Replacement Actor Fuse Entanglement: entanglement/0259-replacement-actor-fuse-entanglement.md
+    - Fuse Overload Fuse Entanglement: entanglement/0277-fuse-overload-fuse-entanglement-fofe.md
+    - Detanglement: entanglement/0172-detanglement.md
   - Zuggling: zuggling/index.md
   - Glitchcraft: glitchcraft/index.md
 
