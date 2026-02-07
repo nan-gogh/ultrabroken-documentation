@@ -32,7 +32,7 @@ extra_javascript:
   
 
 nav:
-  - Home: ultrabroken/index.md
+  - Home: index.md
   - Ultrabroken: ultrabroken/index.md
     # - Overview: ultrabroken/basics/index.md
     # - Introduction: ultrabroken/basics/introduction.md

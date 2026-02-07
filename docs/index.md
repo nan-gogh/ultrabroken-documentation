@@ -1,0 +1,45 @@
+---
+title: Ultrabroken Documentation
+---
+
+# Ultrabroken Documentation
+
+Welcome — this is the main index for the Ultrabroken Documentation site. Use the links below to jump to major sections.
+
+- **Ultrabroken (core docs):** [Ultrabroken section](ultrabroken/)
+- **Glitchcraft (glitch library):** [Glitchcraft index](glitchcraft/)
+- **Credits & Community:** [Credits](ultrabroken/credits.md)
+
+If you expect a different landing structure, tell me and I can adjust the navigation or expand this index.
+# Introduction
+
+Welcome to the comprehensive guide on **Ultrabroken**, the most broken glitch in The Legend of Zelda: Tears of the Kingdom. This is a revered gem among all glitches—a true holy grail and a developer oversight!
+
+## Quick Navigation
+
+- **[Ultrabroken Basics](/ultrabroken-documentation/ultrabroken/)** - Learn what Ultrabroken is and how to trigger it
+- **[Effects](/ultrabroken-documentation/effects/)** - Explore all known Ultrabroken effects
+- **[Zonai Device Hacks](/ultrabroken-documentation/devices/)** - Individual device breakdowns
+- **[Builds & UltraFuses](/ultrabroken-documentation/builds/)** - Creative constructions and combinations
+- **[Meta & Tips](/ultrabroken-documentation/meta/)** - Advanced strategies and guidance
+- **[Credits](/ultrabroken-documentation/credits/)** - Thanks to all contributors
+
+## What is Ultrabroken?
+
+Ultrabroken unleashes a multitude of effects on the game, enhancing the already stellar gameplay and ultimately leading to the discovery of UltraFuses. However, it's important to note that this glitch only works on game versions **prior to 1.2** and comes with its own set of sacrifices.
+
+### Key Warning
+
+**DO NOT HARD SAVE** after performing Ultrabroken! There are ways to transfer your objects back in time (ZLOT, Zuggle), so preserve your work properly.
+
+## The Basics
+
+1. Meet **Zorona and Kairo** at Riverside Stable (The Riverside Trolls)
+2. Place an object you can stand on using Ultrahand
+3. Step on the object
+4. Talk to one of the NPCs
+5. Finish the dialogue and let the cutscene run
+6. The object becomes Ultrabroken!
+
+Explore the sections above to dive deeper into this ocean of madness.
+
