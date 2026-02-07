@@ -24,13 +24,14 @@ html, body {
 .md-header__title {
   position: relative !important;
   color: var(--teal-glow) !important;
-  /* Slight left nudge to avoid icon overlap */
-  transform: translateX(-20px) !important;
-  /* Text-shadow on parent so it's not clipped by child's overflow:hidden */
-  text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
+  /* Fill available header space so title doesn't truncate early */
+  flex: 1 !important;
+  min-width: 0 !important; /* allow flex shrink below content width */
+  /* Glow via filter — applies AFTER child compositing, not clipped by child overflow */
+  filter: drop-shadow(0 0 8px rgba(0,240,194,0.6)) drop-shadow(0 0 4px rgba(0,240,194,0.4)) !important;
 }
 
 /* Glow effect layer behind the text, not subject to child overflow clipping */
@@ -56,9 +57,7 @@ html, body {
 }
 
 .md-header__title .md-ellipsis {
-  display: inline-block !important;
-  max-width: calc(100vw - 80px) !important; /* minimal reserve for icons - title clips much later */
-  vertical-align: middle !important;
+  display: block !important; /* fill parent width naturally */
   overflow: hidden !important; /* required for ellipsis */
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
