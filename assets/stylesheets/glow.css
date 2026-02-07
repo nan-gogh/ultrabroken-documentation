@@ -25,14 +25,14 @@ html, body {
   color: var(--teal-glow) !important;
   text-shadow: none !important;
   font-weight: 600;
-  font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
+  font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
   text-shadow: none !important;
   font-weight: 600;
-  font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
+  font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }
 
