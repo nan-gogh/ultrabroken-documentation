@@ -297,7 +297,6 @@ This page lists generated glitch stubs created from the community CSV.
 - [Weapon Dash GAS](./0289-weapon-dash-gas.md)
 - [Dialog Permacull](./0290-dialog-permacull.md)
 - [Void Dipping](./0291-void-dipping.md)
-- [DIVIDER](./0292-divider.md)
 - [Proxy Glitches](./0293-proxy-glitches.md)
 - [Zuggle Overload Desync](./0294-zuggle-overload-desync.md)
 - [Anti-Gravity Objects](./0295-anti-gravity-objects.md)

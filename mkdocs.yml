@@ -32,9 +32,14 @@ extra_javascript:
   
 
 nav:
-  - Home: index.md
+  - Home:
+     - Welcome: index.md
+     - Ultrabroken: ultrabroken/index.md
+     - Fuse Entanglement: fuse-entanglement/index.md
+     - Zuggling: zuggling/index.md
+     - Glitchcraft: glitchcraft/index.md
   - Ultrabroken: 
-     - Overview: ultrabroken/index.md
+     - Introduction: ultrabroken/index.md
      - Basics: 
         - Overview: ultrabroken/basics/index.md
         - Introduction: ultrabroken/basics/introduction.md
