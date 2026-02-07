@@ -1,45 +1,27 @@
 ---
-title: Ultrabroken Documentation
+title: Glitch Encyclopedia
 ---
 
-# Ultrabroken Documentation
+# The Legend of Zelda: Tears of the Kingdom — Glitch Encyclopedia
 
-Welcome — this is the main index for the Ultrabroken Documentation site. Use the links below to jump to major sections.
+Welcome — this site is a community-driven encyclopedia documenting glitches, techniques and investigations for The Legend of Zelda: Tears of the Kingdom.
 
-- **Ultrabroken (core docs):** [Ultrabroken section](ultrabroken/)
-- **Glitchcraft (glitch library):** [Glitchcraft index](glitchcraft/)
-- **Credits & Community:** [Credits](ultrabroken/credits.md)
+Major sections
 
-If you expect a different landing structure, tell me and I can adjust the navigation or expand this index.
-# Introduction
+- **Glitchcraft:** A curated library of individual glitch reports and techniques (community spreadsheet extract). Browse: [Glitchcraft index](glitchcraft/)
+- **Ultrabroken:** In-depth investigations and theory centered around the Ultrabroken phenomenon. Browse: [Ultrabroken section](ultrabroken/)
+- **Devices & Components:** Zonai device breakdowns and per-device notes. Browse: [Devices index](ultrabroken/devices/)
+- **Builds & UltraFuses:** Creative constructions, combinations, and example builds. Browse: [Builds index](ultrabroken/builds/)
+- **Effects:** High-level effect reference and the effects index. Browse: [Effects index](ultrabroken/effects/)
+- **Credits & Community:** Contributor acknowledgements and community links. Browse: [Credits](ultrabroken/credits.md)
 
-Welcome to the comprehensive guide on **Ultrabroken**, the most broken glitch in The Legend of Zelda: Tears of the Kingdom. This is a revered gem among all glitches—a true holy grail and a developer oversight!
+Community credits and sources
 
-## Quick Navigation
+This site's content is the result of extensive community research and curation. Please credit the following communities and contributors when sharing or referencing material from this site:
 
-- **[Ultrabroken Basics](/ultrabroken-documentation/ultrabroken/)** - Learn what Ultrabroken is and how to trigger it
-- **[Effects](/ultrabroken-documentation/effects/)** - Explore all known Ultrabroken effects
-- **[Zonai Device Hacks](/ultrabroken-documentation/devices/)** - Individual device breakdowns
-- **[Builds & UltraFuses](/ultrabroken-documentation/builds/)** - Creative constructions and combinations
-- **[Meta & Tips](/ultrabroken-documentation/meta/)** - Advanced strategies and guidance
-- **[Credits](/ultrabroken-documentation/credits/)** - Thanks to all contributors
+- The Hyrule Engineering Club — community contributions and discussion: https://discord.gg/uZqvjnwqF3
+- Zelda: Tears of the Kingdom Speedrunning — primary spreadsheet curation and glitch hunting: https://discord.gg/xM8NnTetb2
+- The entire `ultrabroken` section was compiled and maintained by NaN Gogh: https://x.com/_nan_gogh
+- The `Glitchcraft` library is a direct extract from the community-maintained glitch spreadsheet curated by the Zelda: Tears of the Kingdom Speedrunning community and its spreadsheet managers.
 
-## What is Ultrabroken?
-
-Ultrabroken unleashes a multitude of effects on the game, enhancing the already stellar gameplay and ultimately leading to the discovery of UltraFuses. However, it's important to note that this glitch only works on game versions **prior to 1.2** and comes with its own set of sacrifices.
-
-### Key Warning
-
-**DO NOT HARD SAVE** after performing Ultrabroken! There are ways to transfer your objects back in time (ZLOT, Zuggle), so preserve your work properly.
-
-## The Basics
-
-1. Meet **Zorona and Kairo** at Riverside Stable (The Riverside Trolls)
-2. Place an object you can stand on using Ultrahand
-3. Step on the object
-4. Talk to one of the NPCs
-5. Finish the dialogue and let the cutscene run
-6. The object becomes Ultrabroken!
-
-Explore the sections above to dive deeper into this ocean of madness.
-
+All glitches documented here are the product of a phenomenal community glitch hunt and collaborative research effort in The Legend of Zelda: Tears of the Kingdom.

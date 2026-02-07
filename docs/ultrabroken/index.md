@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the comprehensive guide on **Ultrabroken**, the most broken glitch in The Legend of Zelda: Tears of the Kingdom. This is a revered gem among all glitches—a true holy grail and a developer oversight!
+Enter **Ultrabroken**, the most broken glitch in The Legend of Zelda: Tears of the Kingdom. This is a revered gem among all glitches—a true holy grail and a developer oversight!
 
 ## Quick Navigation
 
