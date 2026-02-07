@@ -54,15 +54,14 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  max-width: calc(100vw - 160px) !important; /* reserve space for icons/search */
+  max-width: calc(100vw - 100px) !important; /* reserve space for icons/search (increased) */
   vertical-align: middle !important;
-  overflow: visible !important; /* allow glow to extend beyond bounds */
+  overflow: hidden !important;
   white-space: nowrap !important;
-  text-overflow: clip !important; /* can't use ellipsis with overflow: visible */
-  text-shadow: 0 0 12px rgba(0,240,194,0.9), 0 0 8px rgba(0,240,194,0.7), 0 0 4px rgba(0,240,194,0.5) !important;
-  /* Create manual fade-out effect at the end */
-  mask-image: linear-gradient(to right, black calc(100% - 30px), transparent 100%) !important;
-  -webkit-mask-image: linear-gradient(to right, black calc(100% - 30px), transparent 100%) !important;
+  text-overflow: ellipsis !important;
+  padding: 0.5em 1em !important; /* padding to fit glow within clipped bounds */
+  margin: -0.5em -1em !important; /* negative margin to compensate */
+  text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
