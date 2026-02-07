@@ -39,8 +39,8 @@ html, body {
   right: 0;
   height: 100%;
   transform: translateY(-50%);
-  background: radial-gradient(ellipse at center, rgba(0,240,194,0.15) 0%, transparent 70%);
-  filter: blur(12px);
+  background: transparent !important;
+  filter: none !important;
   pointer-events: none;
   z-index: -1;
 }
@@ -61,7 +61,7 @@ html, body {
   text-overflow: ellipsis !important;
   padding: 0.5em 1em !important; /* padding to fit glow within clipped bounds */
   margin: -0.5em -1em !important; /* negative margin to compensate */
-  text-shadow: 0 0 6px rgba(0,240,194,0.7), 0 0 4px rgba(0,240,194,0.5) !important;
+  text-shadow: none !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
