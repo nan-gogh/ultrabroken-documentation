@@ -37,5 +37,6 @@ By annihilating mass entirely, we can construct highly efficient and amusing Ult
 
 ---
 
-**Related:** [Quantum State Freeze](ultrabroken/effects/quantum-state-freeze/) includes Antimass interactions.
+**Related:** [Quantum State Freeze](../quantum-state-freeze/) includes Antimass interactions.
+
 

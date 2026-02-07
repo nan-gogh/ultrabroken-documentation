@@ -4,10 +4,10 @@ Welcome to the comprehensive guide on **Ultrabroken**, the most broken glitch in
 
 ## Quick Navigation
 
-- **[Ultrabroken Basics](ultrabroken/)** - Learn what Ultrabroken is and how to trigger it
-- **[Effects](ultrabroken/effects/)** - Explore all known Ultrabroken effects
-- **[Zonai Device Hacks](ultrabroken/devices/)** - Individual device breakdowns
-- **[Builds & UltraFuses](ultrabroken/builds/)** - Creative constructions and combinations
+- **[Ultrabroken Basics](.)** - Learn what Ultrabroken is and how to trigger it
+- **[Effects](effects/)** - Explore all known Ultrabroken effects
+- **[Zonai Device Hacks](devices/)** - Individual device breakdowns
+- **[Builds & UltraFuses](builds/)** - Creative constructions and combinations
 - **[Meta & Tips](/ultrabroken-documentation/meta/)** - Advanced strategies and guidance
 - **[Credits](/ultrabroken-documentation/credits/)** - Thanks to all contributors
 
@@ -29,5 +29,6 @@ Ultrabroken unleashes a multitude of effects on the game, enhancing the already 
 6. The object becomes Ultrabroken!
 
 Explore the sections above to dive deeper into this ocean of madness.
+
 
 

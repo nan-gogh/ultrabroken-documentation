@@ -29,5 +29,6 @@ The `IsWaitEnd` being set to `False` instead of `True` causes the system to fail
 
 ---
 
-**Now that you understand the core mechanic, explore the [Effects](ultrabroken/effects/)!**
+**Now that you understand the core mechanic, explore the [Effects](../../effects/)!**
+
 

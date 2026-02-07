@@ -41,5 +41,6 @@ The most vexing Ultrabroken Effect completely disables the Ultrahand Ability, re
 
 ---
 
-**Related:** [Remnant Glue](ultrabroken/effects/remnant-glue/) may be the underlying cause.
+**Related:** [Remnant Glue](../remnant-glue/) may be the underlying cause.
+
 

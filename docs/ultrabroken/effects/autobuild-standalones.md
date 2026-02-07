@@ -36,5 +36,6 @@ As the madness slowly reaches its crescendo, Ultrabroken unveils a highly intrig
 
 ---
 
-**Related:** [Zonai Device Hacks](ultrabroken/devices/) and [Slidy Cart](ultrabroken/effects/slidy-cart/).
+**Related:** [Zonai Device Hacks](../../devices/) and [Slidy Cart](../slidy-cart/).
+
 

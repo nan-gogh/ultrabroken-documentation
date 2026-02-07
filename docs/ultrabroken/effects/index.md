@@ -10,36 +10,37 @@ While Ultrabroken may seem as simple as a single dialogue, it actually opens up 
 
 ### Core Effects
 
-- **[Wacko Boingo](ultrabroken/effects/wacko-boingo/)** - Ultrabroken Flight
-- **[Lift Lock](ultrabroken/effects/lift-lock/)** - When systems become impossible to lift
-- **[Recall Fling](ultrabroken/effects/recall-fling/)** - Objects flung by Recall
-- **[Ghost Glue](ultrabroken/effects/ghost-glue/)** - Invisible attraction connections
-- **[Remnant Glue](ultrabroken/effects/remnant-glue/)** - Ghost Glue remnants
+- **[Wacko Boingo](../wacko-boingo/)** - Ultrabroken Flight
+- **[Lift Lock](../lift-lock/)** - When systems become impossible to lift
+- **[Recall Fling](../recall-fling/)** - Objects flung by Recall
+- **[Ghost Glue](../ghost-glue/)** - Invisible attraction connections
+- **[Remnant Glue](../remnant-glue/)** - Ghost Glue remnants
 
 ### Advanced Effects
 
-- **[Glue Lock](ultrabroken/effects/glue-lock/)** - When Ultrahand Glue breaks
-- **[Mass Matching](ultrabroken/effects/mass-matching/)** - Understanding object interactions
-- **[Ghost Smuggle](ultrabroken/effects/ghost-smuggle/)** - Portable Ghost Glue systems
-- **[Phantom Smuggle](ultrabroken/effects/phantom-smuggle/)** - Ultra-portable systems
-- **[Resurrect Smuggle](ultrabroken/effects/resurrect-smuggle/)** - *In development*
-- **[Ouija Entanglement](ultrabroken/effects/ouija-entanglement/)** - Velocity linking
+- **[Glue Lock](../glue-lock/)** - When Ultrahand Glue breaks
+- **[Mass Matching](../mass-matching/)** - Understanding object interactions
+- **[Ghost Smuggle](../ghost-smuggle/)** - Portable Ghost Glue systems
+- **[Phantom Smuggle](../phantom-smuggle/)** - Ultra-portable systems
+- **[Resurrect Smuggle](../resurrect-smuggle/)** - *In development*
+- **[Ouija Entanglement](../ouija-entanglement/)** - Velocity linking
 
 ### Quantum Effects
 
-- **[Antimass](ultrabroken/effects/antimass/)** - Weightless objects
-- **[Freecall](ultrabroken/effects/freecall/)** - *In development*
-- **[Quantum State Freeze](ultrabroken/effects/quantum-state-freeze/)** - Frozen states
+- **[Antimass](../antimass/)** - Weightless objects
+- **[Freecall](../freecall/)** - *In development*
+- **[Quantum State Freeze](../quantum-state-freeze/)** - Frozen states
 
 ### Specialized Effects
 
-- **[Fuse Stacking](ultrabroken/effects/fuse-stacking/)** - Equipment combinations
-- **[Transmigration](ultrabroken/effects/transmigration/)** - Item soul removal
-- **[Autobuild Standalones](ultrabroken/effects/autobuild-standalones/)** - Detachable systems
-- **[Zonai Device Hacks](ultrabroken/devices/)** - Individual device effects
-- **[Slidy Cart](ultrabroken/effects/slidy-cart/)** - Semi-Ultrabroken friction override
+- **[Fuse Stacking](../fuse-stacking/)** - Equipment combinations
+- **[Transmigration](../transmigration/)** - Item soul removal
+- **[Autobuild Standalones](../autobuild-standalones/)** - Detachable systems
+- **[Zonai Device Hacks](../../devices/)** - Individual device effects
+- **[Slidy Cart](../slidy-cart/)** - Semi-Ultrabroken friction override
 
 ---
 
-**Start with:** [Wacko Boingo](ultrabroken/effects/wacko-boingo/) - the most popular effect!
+**Start with:** [Wacko Boingo](../wacko-boingo/) - the most popular effect!
+
 
