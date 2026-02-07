@@ -56,13 +56,13 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  max-width: calc(100vw - 40px) !important; /* reserve space for icons/search (increased) */
+  max-width: calc(100vw - 150px) !important; /* reserve space for icons/search */
   vertical-align: middle !important;
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
-  padding: 0.5em 1em !important; /* padding to fit glow within clipped bounds */
-  margin: -0.5em -1em !important; /* negative margin to compensate */
+  padding: 0.5em 0 !important; /* vertical padding only - no horizontal padding eating text space */
+  margin: -0.5em 0 !important; /* compensate vertical padding */
   text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
 }
 
