@@ -28,6 +28,7 @@ html, body {
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
+  filter: drop-shadow(0 0 12px rgba(0,240,194,0.7)) drop-shadow(0 0 8px rgba(0,240,194,0.5)) !important;
 }
 
 /* Glow effect layer behind the text, not subject to child overflow clipping */
@@ -54,14 +55,13 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  max-width: calc(100vw - 72px) !important; /* account for 40px reserve + 32px padding */
+  max-width: calc(100vw - 40px) !important; /* reserve for right edge */
   vertical-align: middle !important;
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
-  padding: 0.5em 1em !important; /* padding to fit glow within clipped bounds */
+  padding: 0.5em 1em !important; /* padding for visual spacing */
   margin: -0.5em -1em !important; /* negative margin to compensate */
-  text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
