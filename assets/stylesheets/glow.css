@@ -26,7 +26,8 @@ html, body {
   color: var(--teal-glow) !important;
   /* Slight left nudge to avoid icon overlap */
   transform: translateX(-20px) !important;
-  /*filter: drop-shadow(0 0 10px rgba(0,240,194,0.7)) !important;*/
+  /* Text-shadow on parent so it's not clipped by child's overflow:hidden */
+  text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
@@ -56,14 +57,11 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  max-width: calc(100vw - 150px) !important; /* reserve space for icons/search */
+  max-width: calc(100vw - 80px) !important; /* minimal reserve for icons - title clips much later */
   vertical-align: middle !important;
-  overflow: hidden !important;
+  overflow: hidden !important; /* required for ellipsis */
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
-  padding: 0.5em 0 !important; /* vertical padding only - no horizontal padding eating text space */
-  margin: -0.5em 0 !important; /* compensate vertical padding */
-  text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
