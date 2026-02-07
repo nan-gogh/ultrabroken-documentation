@@ -23,14 +23,14 @@ html, body {
 
 .md-header__title {
   color: var(--teal-glow) !important;
-  text-shadow: none !important;
+  text-shadow: 0 0 8px rgba(0,240,194,0.18) !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
-  text-shadow: none !important;
+  text-shadow: 0 0 8px rgba(0,240,194,0.18) !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
@@ -91,7 +91,7 @@ html, body {
   color: var(--teal-glow) !important;
   fill: currentColor !important;
   stroke: none !important;
-  filter: none;
+  filter: drop-shadow(0 0 6px rgba(0,240,194,0.12)) !important;
   transition: filter .2s ease, transform .2s ease;
 }
 
