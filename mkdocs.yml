@@ -33,15 +33,16 @@ extra_javascript:
 
 nav:
   - Home: index.md
-  - Ultrabroken: ultrabroken/index.md
-    # - Overview: ultrabroken/basics/index.md
-    # - Introduction: ultrabroken/basics/introduction.md
-    # - Requirements: ultrabroken/basics/requirements.md
-    # - Procedure: ultrabroken/basics/procedure.md
-    # - Exceptions: ultrabroken/basics/exceptions.md
-    # - Attributes: ultrabroken/basics/attributes.md
-    # - Theories: ultrabroken/basics/theories.md
-    # - Datamine: ultrabroken/basics/datamine.md
+  - Ultrabroken: 
+     - Overview: ultrabroken/index.md
+     - Basics: ultrabroken/basics/index.md
+     - Introduction: ultrabroken/basics/introduction.md
+     - Requirements: ultrabroken/basics/requirements.md
+     - Procedure: ultrabroken/basics/procedure.md
+     - Exceptions: ultrabroken/basics/exceptions.md
+     - Attributes: ultrabroken/basics/attributes.md
+     - Theories: ultrabroken/basics/theories.md
+     - Datamine: ultrabroken/basics/datamine.md
   # - Effects:
   #   - All Effects: ultrabroken/effects/index.md
   #   - Wacko Boingo (Flight): ultrabroken/effects/wacko-boingo.md
