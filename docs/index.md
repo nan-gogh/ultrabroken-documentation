@@ -6,22 +6,16 @@ title: Glitch Encyclopedia
 
 Welcome — this site is a community-driven encyclopedia documenting glitches, techniques and investigations for The Legend of Zelda: Tears of the Kingdom.
 
-Major sections
+## Quick Navigation
 
-- **Glitchcraft:** A curated library of individual glitch reports and techniques (community spreadsheet extract). Browse: [Glitchcraft index](glitchcraft/)
-- **Ultrabroken:** In-depth investigations and theory centered around the Ultrabroken phenomenon. Browse: [Ultrabroken section](ultrabroken/)
-- **Devices & Components:** Zonai device breakdowns and per-device notes. Browse: [Devices index](ultrabroken/devices/)
-- **Builds & UltraFuses:** Creative constructions, combinations, and example builds. Browse: [Builds index](ultrabroken/builds/)
-- **Effects:** High-level effect reference and the effects index. Browse: [Effects index](ultrabroken/effects/)
-- **Credits & Community:** Contributor acknowledgements and community links. Browse: [Credits](ultrabroken/credits.md)
+- **[Ultrabroken section](ultrabroken/)** - In-depth investigations and documentation centered around the Ultrabroken phenomenon
+- **[Glitchcraft index](glitchcraft/)** - A curated library of individual glitch reports and techniques (community spreadsheet extract)
 
-Community credits and sources
+## Community
 
-This site's content is the result of extensive community research and curation. Please credit the following communities and contributors when sharing or referencing material from this site:
+This site's content is the result of extensive community research and curation. All glitches documented here are the product of a phenomenal community glitch hunt and collaborative research effort in The Legend of Zelda: Tears of the Kingdom. Please credit the following communities and contributors when sharing or referencing material from this site:
 
-- The Hyrule Engineering Club — community contributions and discussion: https://discord.gg/uZqvjnwqF3
-- Zelda: Tears of the Kingdom Speedrunning — primary spreadsheet curation and glitch hunting: https://discord.gg/xM8NnTetb2
-- The entire `ultrabroken` section was compiled and maintained by NaN Gogh: https://x.com/_nan_gogh
+- **[The Hyrule Engineering Club](https://discord.gg/uZqvjnwqF3)** — Vanilla and glitched builds
+- **[elda: Tears of the Kingdom Speedrunning](https://discord.gg/xM8NnTetb2)** — Primary spreadsheet curation and glitch hunting
+- **[NaN Gogh](https://x.com/_nan_gogh)** Curator of this page and main author of the `Ultrabroken` section
 - The `Glitchcraft` library is a direct extract from the community-maintained glitch spreadsheet curated by the Zelda: Tears of the Kingdom Speedrunning community and its spreadsheet managers.
-
-All glitches documented here are the product of a phenomenal community glitch hunt and collaborative research effort in The Legend of Zelda: Tears of the Kingdom.
