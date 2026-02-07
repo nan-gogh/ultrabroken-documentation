@@ -6,7 +6,7 @@ Fuse Entanglement describes interactions where objects and game state become lin
 
 ## Quick Navigation
 
-- **[Fuse Entanglement](0051-fuse-entanglement.md)** Basic setups for Fuse Entanglement
+- **[Fuse Entanglement](0051-fuse-entanglement/)** Basic setups for Fuse Entanglement
 
 ## What is Fuse Entanglement?
 
