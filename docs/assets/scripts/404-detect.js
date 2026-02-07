@@ -60,7 +60,9 @@
 
   // Observe content changes (covers Material instant navigation)
   function attachObserver() {
-    const target = document.querySelector('.md-content') || document.body;
+    // Observe the whole document body to reliably catch Material's instant
+    // navigation which often replaces nodes rather than mutating them.
+    const target = document.body;
     if (!target) return;
 
     const mo = new MutationObserver(() => {
@@ -71,6 +73,13 @@
 
     // Also update on history navigation
     window.addEventListener('popstate', applyClassFor404);
+    // Detect pushState/navigate calls by intercepting history API
+    const _pushState = history.pushState;
+    history.pushState = function () {
+      _pushState.apply(this, arguments);
+      // small timeout to let the platform swap content
+      setTimeout(applyClassFor404, 50);
+    };
   }
 
   // Attempt to attach observer once DOM is ready
