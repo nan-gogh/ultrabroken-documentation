@@ -87,6 +87,7 @@ nav:
     - Replacement Actor Fuse Entanglement: glitchcraft/0259-replacement-actor-fuse-entanglement.md
     - Fuse Overload Fuse Entanglement: glitchcraft/0277-fuse-overload-fuse-entanglement-fofe.md
     - Detanglement: glitchcraft/0172-detanglement.md
+    - Collection: entanglement/entanglement-collection.md
   - Zuggling:
     - Introduction: zuggling/index.md
     - Zuggle: glitchcraft/0023-zuggle.md
@@ -133,7 +134,7 @@ nav:
     - Ocklusion Hovering: glitchcraft/0284-ocklusion-hovering.md
     - Void Dipping (smuggle/zuggle effects): glitchcraft/0291-void-dipping.md
     - Zuggle Overload Desync: glitchcraft/0294-zuggle-overload-desync.md
-    - Collection: glitchcraft/zuggle-collection.md
+    - Collection: zuggling/zuggle-collection.md
   - Desync: desync/index.md
   - OOB: oob/index.md
   - MNF: mnf/index.md
