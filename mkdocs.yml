@@ -32,41 +32,41 @@ extra_javascript:
   
 
 nav:
-  - Home: index.md
+  - Home: ultrabroken/index.md
   - Basics:
-    - Overview: ultrabroken/index.md
-    - Introduction: ultrabroken/introduction.md
-    - Requirements: ultrabroken/requirements.md
-    - Procedure: ultrabroken/procedure.md
-    - Exceptions: ultrabroken/exceptions.md
-    - Attributes: ultrabroken/attributes.md
-    - Theories: ultrabroken/theories.md
-    - Datamine: ultrabroken/datamine.md
+    - Overview: ultrabroken/basics/index.md
+    - Introduction: ultrabroken/basics/introduction.md
+    - Requirements: ultrabroken/basics/requirements.md
+    - Procedure: ultrabroken/basics/procedure.md
+    - Exceptions: ultrabroken/basics/exceptions.md
+    - Attributes: ultrabroken/basics/attributes.md
+    - Theories: ultrabroken/basics/theories.md
+    - Datamine: ultrabroken/basics/datamine.md
   - Effects:
-    - All Effects: effects/index.md
-    - Wacko Boingo (Flight): effects/wacko-boingo.md
-    - Lift Lock: effects/lift-lock.md
-    - Recall Fling: effects/recall-fling.md
-    - Ghost Glue: effects/ghost-glue.md
-    - Remnant Glue: effects/remnant-glue.md
-    - Glue Lock: effects/glue-lock.md
-    - Mass Matching: effects/mass-matching.md
-    - Ghost Smuggle: effects/ghost-smuggle.md
-    - Phantom Smuggle: effects/phantom-smuggle.md
-    - Resurrect Smuggle: effects/resurrect-smuggle.md
-    - Ouija Entanglement: effects/ouija-entanglement.md
-    - Antimass: effects/antimass.md
-    - Freecall: effects/freecall.md
-    - Quantum State Freeze: effects/quantum-state-freeze.md
-    - Fuse Stacking: effects/fuse-stacking.md
-    - Transmigration: effects/transmigration.md
-    - Autobuild Standalones: effects/autobuild-standalones.md
-    - Slidy Cart: effects/slidy-cart.md
-  - Devices: devices/index.md
-  - Builds: builds/index.md
-  - Tips: meta.md
-  - Credits: credits.md
-  - Glitchcraft: other/index.md
+    - All Effects: ultrabroken/effects/index.md
+    - Wacko Boingo (Flight): ultrabroken/effects/wacko-boingo.md
+    - Lift Lock: ultrabroken/effects/lift-lock.md
+    - Recall Fling: ultrabroken/effects/recall-fling.md
+    - Ghost Glue: ultrabroken/effects/ghost-glue.md
+    - Remnant Glue: ultrabroken/effects/remnant-glue.md
+    - Glue Lock: ultrabroken/effects/glue-lock.md
+    - Mass Matching: ultrabroken/effects/mass-matching.md
+    - Ghost Smuggle: ultrabroken/effects/ghost-smuggle.md
+    - Phantom Smuggle: ultrabroken/effects/phantom-smuggle.md
+    - Resurrect Smuggle: ultrabroken/effects/resurrect-smuggle.md
+    - Ouija Entanglement: ultrabroken/effects/ouija-entanglement.md
+    - Antimass: ultrabroken/effects/antimass.md
+    - Freecall: ultrabroken/effects/freecall.md
+    - Quantum State Freeze: ultrabroken/effects/quantum-state-freeze.md
+    - Fuse Stacking: ultrabroken/effects/fuse-stacking.md
+    - Transmigration: ultrabroken/effects/transmigration.md
+    - Autobuild Standalones: ultrabroken/effects/autobuild-standalones.md
+    - Slidy Cart: ultrabroken/effects/slidy-cart.md
+  - Devices: ultrabroken/devices/index.md
+  - Builds: ultrabroken/builds/index.md
+  - Tips: ultrabroken/meta.md
+  - Credits: ultrabroken/credits.md
+  - Glitchcraft: glitchcraft/index.md
 
 plugins:
   - search
