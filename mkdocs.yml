@@ -88,9 +88,54 @@ nav:
     - Replacement Actor Fuse Entanglement: glitchcraft/0259-replacement-actor-fuse-entanglement.md
     - Fuse Overload Fuse Entanglement: glitchcraft/0277-fuse-overload-fuse-entanglement-fofe.md
     - Detanglement: glitchcraft/0172-detanglement.md
-  - Zuggling: zuggling/index.md
+    - Zuggling:
+      - Introduction: zuggling/zuggle-smuggle-index.md
+      - 0023 - Zuggle: glitchcraft/0023-zuggle.md
+      - 0024 - Equipment Collision Zuggle: glitchcraft/0024-equipment-collision-zuggle.md
+      - 0030 - Zuggle Overload: glitchcraft/0030-zuggle-overload.md
+      - 0049 - Map Zuggling (MZ): glitchcraft/0049-map-zuggling-mz.md
+      - 0050 - Save Load Zuggling (SLZ): glitchcraft/0050-save-load-zuggling-slz.md
+      - 0061 - Pickup Smuggling: glitchcraft/0061-pickup-smuggling.md
+      - 0070 - Drop Smuggling: glitchcraft/0070-drop-smuggling.md
+      - 0073 - Equipment Smuggle: glitchcraft/0073-equipment-smuggle.md
+      - 0074 - Shock Smuggle: glitchcraft/0074-shock-smuggle.md
+      - 0076 - Arrow Smuggling: glitchcraft/0076-arrow-smuggling.md
+      - 0078 - Smuggle Stacking Zuggle (SSZ): glitchcraft/0078-smuggle-stacking-zuggle-ssz.md
+      - 0079 - Drop Delay Zuggle (DDZ): glitchcraft/0079-drop-delay-zuggle-ddz.md
+      - 0080 - Force Equip Zuggling (FEZ): glitchcraft/0080-force-equip-zuggling-fez.md
+      - 0082 - Zuggle Load Object Transfering (ZLOT): glitchcraft/0082-zuggle-load-object-transfering-zlot.md
+      - 0090 - Overload Drop Smuggling: glitchcraft/0090-overload-drop-smuggling.md
+      - 0095 - Like-Like Smuggling: glitchcraft/0095-like-like-smuggling.md
+      - 0096 - Like-Like Drop Smuggling: glitchcraft/0096-like-like-drop-smuggling.md
+      - 0097 - Like-Like Zuggling: glitchcraft/0097-like-like-zuggling.md
+      - 0099 - Drop Zuggle: glitchcraft/0099-drop-zuggle.md
+      - 0131 - Cull Smuggle: glitchcraft/0131-cull-smuggle.md
+      - 0143 - Hold Smuggling: glitchcraft/0143-hold-smuggling.md
+      - 0145 - Quick Smuggling: glitchcraft/0145-quick-smuggling.md
+      - 0151 - Hand Locked Equipment Smuggling (HLES): glitchcraft/0151-hand-locked-equipment-smuggling-hles.md
+      - 0171 - Dynamic Zuggle: glitchcraft/0171-dynamic-zuggle.md
+      - 0185 - LikeLike Stick Smuggling: glitchcraft/0185-likelike-stick-smuggling.md
+      - 0191 - Master Sword Zuggling: glitchcraft/0191-master-sword-zuggling-decayed-master-sword-zuggling.md
+      - 0203 - Mineru Hold Smuggle (MHS): glitchcraft/0203-mineru-hold-smuggle-mhs.md
+      - 0206 - Wuggle (Weird Zuggle): glitchcraft/0206-wuggle-weird-zuggle.md
+      - 0208 - Invizuggle: glitchcraft/0208-invizuggle.md
+      - 0221 - Lift Smuggle: glitchcraft/0221-lift-smuggle.md
+      - 0225 - Kilovictor's Quicksmuggle: glitchcraft/0225-kilovictor-s-quicksmuggle.md
+      - 0228 - Portacull Invismuggle: glitchcraft/0228-portacull-invismuggle.md
+      - 0231 - Weapon Stand Dynamic Zuggle: glitchcraft/0231-weapon-stand-dynamic-zuggle.md
+      - 0233 - Quick Drop Smuggle (QDS): glitchcraft/0233-quick-drop-smuggle-qds.md
+      - 0238 - Chasm Delay Zuggle (CDZ): glitchcraft/0238-chasm-delay-zuggle-cdz.md
+      - 0245 - Dpadlock-less Invizuggle: glitchcraft/0245-dpadlock-less-invizuggle.md
+      - 0246 - Cull Storage Zuggle (CSZ): glitchcraft/0246-cull-storage-zuggle-csz.md
+      - 0262 - Smuggle Retrieval: glitchcraft/0262-smuggle-retrieval.md
+      - 0268 - Dynamic Purgatory Zuggle: glitchcraft/0268-dynamic-purgatory-zuggle.md
+      - 0273 - Cull Pickup Dynamic Zuggle: glitchcraft/0273-cull-pickup-dynamic-zuggle.md
+      - 0274 - Overload Dynamic Zuggle: glitchcraft/0274-overload-dynamic-zuggle.md
+      - 0278 - Double Bypass Zuggle (DBZ): glitchcraft/0278-double-bypass-zuggle-dbz.md
+      - 0284 - Ocklusion Hovering (Pickup Smuggling): glitchcraft/0284-ocklusion-hovering.md
+      - 0291 - Void Dipping (effects mention smuggle/zuggle): glitchcraft/0291-void-dipping.md
+      - 0294 - Zuggle Overload Desync: glitchcraft/0294-zuggle-overload-desync.md
   - Glitchcraft: glitchcraft/index.md
-  - Zuggle & Smuggle Index: glitchcraft/zuggle-smuggle-index.md
 
 plugins:
   - search
