@@ -22,31 +22,15 @@ html, body {
 }
 
 .md-header__title {
-  position: relative !important;
   color: var(--teal-glow) !important;
-  transform: translateX(-12px) !important; /* nudge title left */
+  text-shadow: 0 0 8px rgba(0,240,194,0.8) !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }
-
-/* Glow effect layer behind the text, not subject to child overflow clipping */
-.md-header__title::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 100%;
-  transform: translateY(-50%);
-  background: transparent !important;
-  filter: none !important;
-  pointer-events: none;
-  z-index: -1;
-}
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
-  /*text-shadow: 0 0 8px rgba(0,240,194,0.8) !important;*/
+  text-shadow: 0 0 8px rgba(0,240,194,0.8) !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
@@ -54,14 +38,11 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  max-width: calc(100vw - 80px) !important; /* reduced reserve for later clipping */
+  max-width: calc(100vw - 140px) !important; /* reserve space for icons/search (increased) */
   vertical-align: middle !important;
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
-  padding: 0.5em 1em !important; /* padding to fit glow within clipped bounds */
-  margin: -0.5em -1em !important; /* negative margin to compensate */
-  text-shadow: none !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
