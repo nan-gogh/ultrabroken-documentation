@@ -36,14 +36,14 @@ nav:
   - Ultrabroken: 
      - Overview: ultrabroken/index.md
      - Basics: 
-          - Overview: ultrabroken/basics/index.md
-          - Introduction: ultrabroken/basics/introduction.md
-          - Requirements: ultrabroken/basics/requirements.md
-          - Procedure: ultrabroken/basics/procedure.md
-          - Exceptions: ultrabroken/basics/exceptions.md
-          - Attributes: ultrabroken/basics/attributes.md
-          - Theories: ultrabroken/basics/theories.md
-          - Datamine: ultrabroken/basics/datamine.md
+        - Overview: ultrabroken/basics/index.md
+        - Introduction: ultrabroken/basics/introduction.md
+        - Requirements: ultrabroken/basics/requirements.md
+        - Procedure: ultrabroken/basics/procedure.md
+        - Exceptions: ultrabroken/basics/exceptions.md
+        - Attributes: ultrabroken/basics/attributes.md
+        - Theories: ultrabroken/basics/theories.md
+        - Datamine: ultrabroken/basics/datamine.md
      - Effects:
         - Overview: ultrabroken/effects/index.md
         - Wacko Boingo (Flight): ultrabroken/effects/wacko-boingo.md
@@ -64,13 +64,12 @@ nav:
         - Transmigration: ultrabroken/effects/transmigration.md
         - Autobuild Standalones: ultrabroken/effects/autobuild-standalones.md
         - Slidy Cart: ultrabroken/effects/slidy-cart.md
-        - Devices: ultrabroken/devices/index.md
-        - Tips: ultrabroken/meta.md
-        - Credits: ultrabroken/credits.md
-    - Devices: ultrabroken/devices/index.md
-    - Builds: ultrabroken/builds/index.md
-    - Tips: ultrabroken/meta.md
-    - Credits: ultrabroken/credits.md
+     - Devices: ultrabroken/devices/index.md
+     - Builds: ultrabroken/builds/index.md
+     - Tips: ultrabroken/meta.md
+     - Credits: ultrabroken/credits.md
+  - Fuse Entanglement: fuse-entanglement/index.md
+  - Zuggling: zuggling/index.md
   - Glitchcraft: glitchcraft/index.md
 
 plugins:
