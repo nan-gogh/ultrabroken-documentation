@@ -18,19 +18,19 @@ html, body {
 /* Header background - solid backdrop for better visibility */
 .md-header {
   background: linear-gradient(180deg, #00796b, #00695c) !important;
-  box-shadow: 0 6px 24px rgba(0,240,194,0.3);
+  /*box-shadow: 0 6px 24px rgba(0,240,194,0.3);*/
 }
 
 .md-header__title {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 8px rgba(0,240,194,0.18) !important;
+  text-shadow: 0 0 8px rgba(0,240,194,1) !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 8px rgba(0,240,194,0.18) !important;
+  text-shadow: 0 0 8px rgba(0,240,194,1) !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
