@@ -8,7 +8,7 @@ use_directory_urls: true
 theme:
   name: material
   logo: assets/images/ultrabroken_rune.svg
-  favicon: assets/images/ultrabroken_rune.ico
+  favicon: assets/images/ultrabroken_favicon.ico
   features:
     - navigation.instant
     - navigation.tracking
@@ -76,7 +76,6 @@ nav:
   - Entanglement:
     - Introduction: entanglement/index.md
     - Fuse Entanglement: glitchcraft/0051-fuse-entanglement.md
-    - Fuse Entanglement Desync: glitchcraft/0056-fuse-entanglement-desync-fed.md
     - Fuse Storage Fuse Entanglement: glitchcraft/0114-fuse-storage-fuse-entanglement-fsfe.md
     - Cull Fuse Entanglement: glitchcraft/0180-cull-fuse-entanglement-cull-fe.md
     - Mineru Fuse Entanglement: glitchcraft/0187-mineru-fuse-entanglement-mineru-fe.md
@@ -131,8 +130,6 @@ nav:
     - Cull Pickup Dynamic Zuggle: glitchcraft/0273-cull-pickup-dynamic-zuggle.md
     - Overload Dynamic Zuggle: glitchcraft/0274-overload-dynamic-zuggle.md
     - Double Bypass Zuggle: glitchcraft/0278-double-bypass-zuggle-dbz.md
-    - Ocklusion Hovering: glitchcraft/0284-ocklusion-hovering.md
-    - Void Dipping (smuggle/zuggle effects): glitchcraft/0291-void-dipping.md
     - Zuggle Overload Desync: glitchcraft/0294-zuggle-overload-desync.md
     - Collection: zuggling/zuggle-collection.md
   - Desync: desync/index.md
