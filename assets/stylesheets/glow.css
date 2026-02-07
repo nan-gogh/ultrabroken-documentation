@@ -59,8 +59,8 @@ html, body {
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
-  padding: 0.5em 1em !important; /* padding to fit glow within clipped bounds */
-  margin: -0.5em -1em !important; /* negative margin to compensate */
+  padding: 0.5em 0 !important; /* remove horizontal padding to let max-width work */
+  margin: -0.5em 0 !important; /* compensate vertical padding only */
   text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
 }
 
