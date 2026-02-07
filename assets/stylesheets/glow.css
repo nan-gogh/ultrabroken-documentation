@@ -28,6 +28,9 @@ html, body {
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
+  /* Fill available header space so title can expand */
+  flex: 1 1 auto !important;
+  min-width: 0 !important; /* allow shrinking below content width for ellipsis */
 }
 
 /* Glow effect layer behind the text, not subject to child overflow clipping */
@@ -53,14 +56,12 @@ html, body {
 }
 
 .md-header__title .md-ellipsis {
-  display: inline-block !important;
-  max-width: calc(100vw - 80px) !important; /* reserve for search icon - now adjustable! */
-  vertical-align: middle !important;
+  display: block !important; /* fill parent width naturally */
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
-  padding: 0.5em 0 !important; /* only vertical padding - horizontal removed so max-width works */
-  margin: -0.5em 0 !important; /* compensate vertical padding only */
+  padding: 0.5em 0 !important; /* only vertical padding */
+  margin: -0.5em 0 !important;
   text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
 }
 
