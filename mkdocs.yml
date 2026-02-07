@@ -36,10 +36,29 @@ nav:
   - Ultrabroken: 
      - Overview: ultrabroken/index.md
      - Basics: ultrabroken/basics/index.md
-     - Effects: ultrabroken/effects/index.md
-     - Devices: ultrabroken/devices/index.md
-     - Tips: ultrabroken/meta.md
-     - Credits: ultrabroken/credits.md
+     - Effects:
+        - All Effects: ultrabroken/effects/index.md
+        - Wacko Boingo (Flight): ultrabroken/effects/wacko-boingo.md
+        - Lift Lock: ultrabroken/effects/lift-lock.md
+        - Recall Fling: ultrabroken/effects/recall-fling.md
+        - Ghost Glue: ultrabroken/effects/ghost-glue.md
+        - Remnant Glue: ultrabroken/effects/remnant-glue.md
+        - Glue Lock: ultrabroken/effects/glue-lock.md
+        - Mass Matching: ultrabroken/effects/mass-matching.md
+        - Ghost Smuggle: ultrabroken/effects/ghost-smuggle.md
+        - Phantom Smuggle: ultrabroken/effects/phantom-smuggle.md
+        - Resurrect Smuggle: ultrabroken/effects/resurrect-smuggle.md
+        - Ouija Entanglement: ultrabroken/effects/ouija-entanglement.md
+        - Antimass: ultrabroken/effects/antimass.md
+        - Freecall: ultrabroken/effects/freecall.md
+        - Quantum State Freeze: ultrabroken/effects/quantum-state-freeze.md
+        - Fuse Stacking: ultrabroken/effects/fuse-stacking.md
+        - Transmigration: ultrabroken/effects/transmigration.md
+        - Autobuild Standalones: ultrabroken/effects/autobuild-standalones.md
+        - Slidy Cart: ultrabroken/effects/slidy-cart.md
+        - Devices: ultrabroken/devices/index.md
+        - Tips: ultrabroken/meta.md
+        - Credits: ultrabroken/credits.md
     #  - Introduction: ultrabroken/basics/introduction.md
     #  - Requirements: ultrabroken/basics/requirements.md
     #  - Procedure: ultrabroken/basics/procedure.md
