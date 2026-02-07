@@ -50,7 +50,7 @@ html, body {
   box-sizing: border-box !important;
   flex: 1 1 auto !important;
   min-width: 0 !important; /* required so flex child can shrink for ellipsis */
-  width: calc(100% - 56px) !important; /* make ellipsis parent-relative and reserve space for icons */
+  width: calc(100% - 16px) !important; /* minimal reserve so title extends far right */
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
