@@ -6,6 +6,8 @@ title: "Glitchcraft"
 
 This page lists generated glitch stubs created from the community CSV.
 
+## Entries
+
 - [L Sprinting](./0001-l-sprinting.md)
 - [New Item Desync (equipment duping)](./0002-new-item-desync-equipment-duping.md)
 - [Extended Throw Sprinting (ETS)](./0003-extended-throw-sprinting-ets.md)
