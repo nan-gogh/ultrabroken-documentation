@@ -9,10 +9,6 @@
          <lastmod>2026-02-07</lastmod>
     </url>
     <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/glitchcraft/</loc>
-         <lastmod>2026-02-07</lastmod>
-    </url>
-    <url>
          <loc>https://nan-gogh.github.io/ultrabroken-documentation/glitchcraft/0001-l-sprinting/</loc>
          <lastmod>2026-02-07</lastmod>
     </url>
@@ -1213,7 +1209,7 @@
          <lastmod>2026-02-07</lastmod>
     </url>
     <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/glitchcraft/zuggle-smuggle-index/</loc>
+         <loc>https://nan-gogh.github.io/ultrabroken-documentation/glitchcraft/glitchcraft-grimoire/</loc>
          <lastmod>2026-02-07</lastmod>
     </url>
     <url>
@@ -1345,7 +1341,11 @@
          <lastmod>2026-02-07</lastmod>
     </url>
     <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/zuggling/zuggle-smuggle-index/</loc>
+         <loc>https://nan-gogh.github.io/ultrabroken-documentation/zuggling/</loc>
+         <lastmod>2026-02-07</lastmod>
+    </url>
+    <url>
+         <loc>https://nan-gogh.github.io/ultrabroken-documentation/zuggling/zuggle-collection/</loc>
          <lastmod>2026-02-07</lastmod>
     </url>
 </urlset>
