@@ -24,7 +24,7 @@ html, body {
 .md-header__title {
   position: relative !important;
   color: var(--teal-glow) !important;
-  /*filter: drop-shadow(0 0 10px rgba(0,240,194,0.7)) !important;*/
+  transform: translateX(-12px) !important; /* nudge title left */
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
@@ -54,14 +54,14 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  max-width: calc(100vw - 120px) !important; /* reserve space for icons/search (increased) */
+  max-width: calc(100vw - 80px) !important; /* reduced reserve for later clipping */
   vertical-align: middle !important;
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
   padding: 0.5em 1em !important; /* padding to fit glow within clipped bounds */
   margin: -0.5em -1em !important; /* negative margin to compensate */
-  text-shadow: 0 0 12px rgba(0,240,194,0.9), 0 0 8px rgba(0,240,194,0.8) !important;
+  text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
