@@ -11,6 +11,7 @@ Welcome — this site is a community-driven encyclopedia documenting glitches, t
 ## Quick Navigation
 
 - **[Ultrabroken section](ultrabroken/)** - In-depth investigations and documentation centered around the Ultrabroken phenomenon
+- **[Entanglement section](entanglement/)** - Compilation of glitches revolving around Fuse Entanglement
 - **[Glitchcraft library](glitchcraft/)** - A curated library of individual glitch reports and techniques
 
 ## Community
