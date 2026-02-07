@@ -24,7 +24,7 @@ html, body {
 .md-header__title {
   position: relative !important;
   color: var(--teal-glow) !important;
-  filter: drop-shadow(0 0 10px rgba(0,240,194,0.7)) !important;
+  /*filter: drop-shadow(0 0 10px rgba(0,240,194,0.7)) !important;*/
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
@@ -46,7 +46,7 @@ html, body {
 }
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 8px rgba(0,240,194,0.8) !important;
+  /*text-shadow: 0 0 8px rgba(0,240,194,0.8) !important;*/
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
@@ -54,7 +54,7 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  max-width: calc(100vw - 140px) !important; /* reserve space for icons/search (increased) */
+  max-width: calc(100vw - 120px) !important; /* reserve space for icons/search (increased) */
   vertical-align: middle !important;
   overflow: hidden !important;
   white-space: nowrap !important;
