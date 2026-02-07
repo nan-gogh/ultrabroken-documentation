@@ -17,6 +17,6 @@ This allows you to selectively preserve certain items while breaking others in t
 
 ---
 
-**Next:** Understand how to [Identify Ultrabroken Objects](attributes/) and their unique properties.
+**Next:** Understand how to [Identify Ultrabroken Objects](../attributes/) and their unique properties.
 
 

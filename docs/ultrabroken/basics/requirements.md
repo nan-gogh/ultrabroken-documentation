@@ -11,6 +11,6 @@ Once these conditions are met, you can head to Riverside Stable and begin the Ul
 
 ---
 
-**Next:** Follow the [Procedure](procedure/) to execute the glitch.
+**Next:** Follow the [Procedure](../procedure/) to execute the glitch.
 
 
