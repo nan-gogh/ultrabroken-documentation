@@ -24,8 +24,7 @@ html, body {
 .md-header__title {
   position: relative !important;
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 12px rgba(0,240,194,0.9) !important;
-  filter: drop-shadow(0 0 6px rgba(0,240,194,0.45)) !important;
+  /*filter: drop-shadow(0 0 10px rgba(0,240,194,0.7)) !important;*/
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
@@ -55,12 +54,14 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  /* Reserve extra right-side space so truncation doesn't collide with header icons */
-  max-width: calc(100vw - 220px) !important;
+  max-width: calc(100vw - 100px) !important; /* reserve space for icons/search (increased) */
   vertical-align: middle !important;
-  overflow: hidden !important; /* keep truncation behavior */
+  overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
+  padding: 0.5em 1em !important; /* padding to fit glow within clipped bounds */
+  margin: -0.5em -1em !important; /* negative margin to compensate */
+  text-shadow: 0 0 12px rgba(0,240,194,0.7), 0 0 8px rgba(0,240,194,0.5) !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
