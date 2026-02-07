@@ -57,7 +57,7 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  max-width: calc(100% - 40px) !important; /* clip 40px from parent's right edge */
+  max-width: calc(100% - 8px) !important; /* clip 8px from parent's right edge (less aggressive) */
   vertical-align: middle !important;
   overflow: hidden !important;
   white-space: nowrap !important;
