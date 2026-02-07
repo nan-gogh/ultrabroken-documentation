@@ -37,8 +37,12 @@ html, body {
 }
 
 .md-header__title .md-ellipsis {
-  overflow: visible !important;
-  text-overflow: clip !important;
+  display: inline-block !important;
+  max-width: calc(100vw - 160px) !important; /* reserve space for icons/search */
+  vertical-align: middle !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
