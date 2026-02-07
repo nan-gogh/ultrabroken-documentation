@@ -41,4 +41,5 @@ While there may not be any significant untapped potential in this phenomenon, it
 
 ---
 
-**Related:** [Phantom Smuggle](/ultrabroken-documentation/effects/phantom-smuggle/) also uses Glue-Less Ultrabroken.
+**Related:** [Phantom Smuggle](ultrabroken/effects/phantom-smuggle/) also uses Glue-Less Ultrabroken.
+

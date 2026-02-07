@@ -20,4 +20,5 @@ As research progressed and more Ultrabroken Effects came to light, a collective 
 
 ---
 
-**Next:** Learn the [Requirements](/ultrabroken-documentation/ultrabroken/requirements/) to trigger Ultrabroken.
+**Next:** Learn the [Requirements](ultrabroken/requirements/) to trigger Ultrabroken.
+

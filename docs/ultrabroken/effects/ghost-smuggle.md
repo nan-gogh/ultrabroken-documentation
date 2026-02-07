@@ -47,4 +47,5 @@ This technique is also commonly referred to as "Ghost Glue Smuggling".
 
 ---
 
-**Related:** [Phantom Smuggle](/ultrabroken-documentation/effects/phantom-smuggle/) - even more powerful!
+**Related:** [Phantom Smuggle](ultrabroken/effects/phantom-smuggle/) - even more powerful!
+

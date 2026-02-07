@@ -4,16 +4,17 @@ Welcome to the foundation of the Ultrabroken phenomenon. This section covers eve
 
 ## Sections
 
-- **[Introduction](/ultrabroken-documentation/ultrabroken/introduction/)** - What is Ultrabroken?
-- **[Zorona & Kairo](/ultrabroken-documentation/ultrabroken/introduction/#zorona-and-kairo)** - Meet the Riverside Trolls
-- **[Etymology](/ultrabroken-documentation/ultrabroken/introduction/#etymology)** - How it got its name
-- **[Requirements](/ultrabroken-documentation/ultrabroken/requirements/)** - What you need to trigger it
-- **[Procedure](/ultrabroken-documentation/ultrabroken/procedure/)** - Step-by-step setup (works 99% of the time)
-- **[Exceptions](/ultrabroken-documentation/ultrabroken/exceptions/)** - Objects that don't break
-- **[Attributes](/ultrabroken-documentation/ultrabroken/attributes/)** - How to identify Ultrabroken objects
-- **[Theories](/ultrabroken-documentation/ultrabroken/theories/)** - Technical speculation
-- **[Datamine](/ultrabroken-documentation/ultrabroken/datamine/)** - The root cause explained
+- **[Introduction](ultrabroken/introduction/)** - What is Ultrabroken?
+- **[Zorona & Kairo](ultrabroken/introduction/#zorona-and-kairo)** - Meet the Riverside Trolls
+- **[Etymology](ultrabroken/introduction/#etymology)** - How it got its name
+- **[Requirements](ultrabroken/requirements/)** - What you need to trigger it
+- **[Procedure](ultrabroken/procedure/)** - Step-by-step setup (works 99% of the time)
+- **[Exceptions](ultrabroken/exceptions/)** - Objects that don't break
+- **[Attributes](ultrabroken/attributes/)** - How to identify Ultrabroken objects
+- **[Theories](ultrabroken/theories/)** - Technical speculation
+- **[Datamine](ultrabroken/datamine/)** - The root cause explained
 
 ---
 
-**Next:** Read [Introduction](/ultrabroken-documentation/ultrabroken/introduction/) to get started!
+**Next:** Read [Introduction](ultrabroken/introduction/) to get started!
+

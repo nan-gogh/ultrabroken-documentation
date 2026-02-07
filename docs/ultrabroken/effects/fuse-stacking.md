@@ -62,4 +62,5 @@ Fancy text coming soon.
 
 ---
 
-**Related:** [Transmigration](/ultrabroken-documentation/effects/transmigration/) for equipment interaction.
+**Related:** [Transmigration](ultrabroken/effects/transmigration/) for equipment interaction.
+

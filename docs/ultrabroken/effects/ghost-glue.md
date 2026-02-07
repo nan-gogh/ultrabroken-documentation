@@ -49,4 +49,5 @@ This effect is also known as "Duncan's Ghost Glue."
 
 ---
 
-**Related:** See [Mass Matching](/ultrabroken-documentation/effects/mass-matching/) for understanding Ghost Glue connections, or [Ghost Smuggle](/ultrabroken-documentation/effects/ghost-smuggle/) for advanced techniques.
+**Related:** See [Mass Matching](ultrabroken/effects/mass-matching/) for understanding Ghost Glue connections, or [Ghost Smuggle](ultrabroken/effects/ghost-smuggle/) for advanced techniques.
+

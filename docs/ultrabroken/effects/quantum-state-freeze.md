@@ -98,4 +98,5 @@ Numerous Ultrabroken Zonai Devices exhibiting this effect remain locked in the a
 
 ---
 
-**Related:** See [Zonai Device Hacks](/ultrabroken-documentation/devices/) for per-device breakdowns of these effects.
+**Related:** See [Zonai Device Hacks](ultrabroken/devices/) for per-device breakdowns of these effects.
+

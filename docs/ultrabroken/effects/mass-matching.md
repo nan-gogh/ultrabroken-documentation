@@ -74,4 +74,5 @@ Weaker Ghost Glue connections are commonly referred to as "Puppet Glue" and "Pup
 
 ---
 
-**Essential for:** [Ghost Smuggle](/ultrabroken-documentation/effects/ghost-smuggle/) and advanced techniques.
+**Essential for:** [Ghost Smuggle](ultrabroken/effects/ghost-smuggle/) and advanced techniques.
+

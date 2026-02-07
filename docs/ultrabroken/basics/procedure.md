@@ -19,4 +19,5 @@ The object you placed will become Ultrabroken, gaining special properties and un
 
 ---
 
-**Next:** Learn what [Exceptions](/ultrabroken-documentation/ultrabroken/exceptions/) exist and what [Attributes](/ultrabroken-documentation/ultrabroken/attributes/) Ultrabroken objects have.
+**Next:** Learn what [Exceptions](ultrabroken/exceptions/) exist and what [Attributes](ultrabroken/attributes/) Ultrabroken objects have.
+

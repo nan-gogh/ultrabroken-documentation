@@ -8,4 +8,5 @@ During the golden era of Wacko Boingo, there has been extensive speculation and 
 
 ---
 
-**Next:** See the [Datamine](/ultrabroken-documentation/ultrabroken/datamine/) to learn what the code actually reveals.
+**Next:** See the [Datamine](ultrabroken/datamine/) to learn what the code actually reveals.
+

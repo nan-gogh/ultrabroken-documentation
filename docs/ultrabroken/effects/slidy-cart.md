@@ -38,3 +38,4 @@ Shortly after the discovery of Ultrabroken, a Semi-Ultrabroken Effect emerged, w
 ---
 
 **Note:** This doesn't require The Riverside Trolls and can be combined with other Ultrabroken Equipment!
+
