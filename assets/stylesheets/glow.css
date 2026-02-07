@@ -24,6 +24,8 @@ html, body {
 .md-header__title {
   position: relative !important;
   color: var(--teal-glow) !important;
+  /* Slight left nudge to avoid icon overlap */
+  transform: translateX(-6px) !important;
   /*filter: drop-shadow(0 0 10px rgba(0,240,194,0.7)) !important;*/
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
