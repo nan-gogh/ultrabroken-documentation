@@ -21,12 +21,19 @@ html, body {
   box-shadow: 0 6px 24px rgba(0,240,194,0.3);
 }
 
+/* Prevent accidental horizontal scroll from header content */
+.md-header {
+  overflow-x: hidden !important;
+}
+
 .md-header__title {
   color: var(--teal-glow) !important;
   text-shadow: none !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
+  flex: 1 1 auto !important; /* fill available header space so title can be truncated correctly */
+  min-width: 0 !important; /* allow child to shrink for ellipsis */
 }
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
@@ -37,8 +44,14 @@ html, body {
 }
 
 .md-header__title .md-ellipsis {
-  overflow: visible !important;
-  text-overflow: clip !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  max-width: 100% !important; /* parent-relative; will fit remaining header space */
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  padding: 0.5em 1em !important;
+  margin: -0.5em -1em !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
