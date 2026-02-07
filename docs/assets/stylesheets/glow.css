@@ -32,6 +32,8 @@ html, body {
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
+  display: flex !important;
+  align-items: center !important;
   flex: 1 1 auto !important; /* fill available header space so title can be truncated correctly */
   min-width: 0 !important; /* allow child to shrink for ellipsis */
 }
@@ -46,12 +48,14 @@ html, body {
 .md-header__title .md-ellipsis {
   display: block !important;
   box-sizing: border-box !important;
-  max-width: calc(100% + 30px) !important; /* reserve small gap to avoid overlapping icons */
+  flex: 1 1 auto !important;
+  min-width: 0 !important; /* required so flex child can shrink for ellipsis */
+  width: calc(100% - 56px) !important; /* make ellipsis parent-relative and reserve space for icons */
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
-  padding: 0.5em 0.5em !important; /* smaller horizontal padding so text has more room */
-  margin: -0.5em -0.5em !important;
+  padding: 0.5em 0.5em !important; /* horizontal padding kept small */
+  margin: -0.5em 0 !important; /* vertical compensation only */
 }
 
 /* Lighten navigation tabs (global header navigation) */
