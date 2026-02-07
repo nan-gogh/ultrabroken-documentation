@@ -1,4 +1,4 @@
-# Ultrabroken Documentation — Editor Guide
+# Ultrabroken Docs — Editor Guide
 
 This repository holds the Ultrabroken documentation written in Markdown and published with MkDocs + Material.
 
@@ -105,7 +105,8 @@ Admonitions (supported by MkDocs Material):
 
 This is a community project — everyone is welcome to contribute. Join discussions and get help:
 
-- Discord: https://discord.gg/C7uTseSb
+- **[The Hyrule Engineering Club](https://discord.gg/uZqvjnwqF3)** — Vanilla and glitched constructions ad absurdum
+- **[Zelda: Tears of the Kingdom Speedrunning](https://discord.gg/xM8NnTetb2)** — Primary spreadsheet curation and glitch hunting
 
 ---
 
