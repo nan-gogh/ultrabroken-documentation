@@ -74,20 +74,20 @@ nav:
      - Tips: ultrabroken/meta.md
      - Credits: ultrabroken/credits.md
   - Entanglement:
-    - Overview: entanglement/index.md
-    - Fuse Entanglement: entanglement/0051-fuse-entanglement.md
-    - Fuse Entanglement Desync: entanglement/0056-fuse-entanglement-desync-fed.md
-    - Fuse Entanglement Clipping: entanglement/0108-fuse-entanglement-clipping-fec.md
-    - Fuse Storage Fuse Entanglement: entanglement/0114-fuse-storage-fuse-entanglement-fsfe.md
-    - Cull Fuse Entanglement: entanglement/0180-cull-fuse-entanglement-cull-fe.md
-    - Mineru Fuse Entanglement: entanglement/0187-mineru-fuse-entanglement-mineru-fe.md
-    - Resync Fuse Entanglement: entanglement/0202-resync-fuse-entanglement-resync-fe.md
-    - Double Shield Desync Clip Fuse Entanglement: entanglement/0240-double-shield-desync-clip-fuse-entanglement-double-sdc-fe.md
-    - Construct Fuse Entanglement: entanglement/0242-construct-fuse-entanglement.md
-    - Overload Fuse Entanglement: entanglement/0247-overload-fuse-entanglement.md
-    - Replacement Actor Fuse Entanglement: entanglement/0259-replacement-actor-fuse-entanglement.md
-    - Fuse Overload Fuse Entanglement: entanglement/0277-fuse-overload-fuse-entanglement-fofe.md
-    - Detanglement: entanglement/0172-detanglement.md
+    - Overview: glitchcraft/index.md
+    - Fuse Entanglement: glitchcraft/0051-fuse-entanglement.md
+    - Fuse Entanglement Desync: glitchcraft/0056-fuse-entanglement-desync-fed.md
+    - Fuse Entanglement Clipping: glitchcraft/0108-fuse-entanglement-clipping-fec.md
+    - Fuse Storage Fuse Entanglement: glitchcraft/0114-fuse-storage-fuse-entanglement-fsfe.md
+    - Cull Fuse Entanglement: glitchcraft/0180-cull-fuse-entanglement-cull-fe.md
+    - Mineru Fuse Entanglement: glitchcraft/0187-mineru-fuse-entanglement-mineru-fe.md
+    - Resync Fuse Entanglement: glitchcraft/0202-resync-fuse-entanglement-resync-fe.md
+    - Double Shield Desync Clip Fuse Entanglement: glitchcraft/0240-double-shield-desync-clip-fuse-entanglement-double-sdc-fe.md
+    - Construct Fuse Entanglement: glitchcraft/0242-construct-fuse-entanglement.md
+    - Overload Fuse Entanglement: glitchcraft/0247-overload-fuse-entanglement.md
+    - Replacement Actor Fuse Entanglement: glitchcraft/0259-replacement-actor-fuse-entanglement.md
+    - Fuse Overload Fuse Entanglement: glitchcraft/0277-fuse-overload-fuse-entanglement-fofe.md
+    - Detanglement: glitchcraft/0172-detanglement.md
   - Zuggling: zuggling/index.md
   - Glitchcraft: glitchcraft/index.md
 
