@@ -54,7 +54,7 @@ html, body {
 
 .md-header__title .md-ellipsis {
   display: inline-block !important;
-  max-width: calc(100vw - 80px) !important; /* reduced reserve for later clipping */
+  max-width: calc(100vw - 40px) !important; /* reduce reserve to show more text further right */
   vertical-align: middle !important;
   overflow: hidden !important;
   white-space: nowrap !important;
