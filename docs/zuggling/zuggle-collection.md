@@ -4,6 +4,12 @@ This page collects Glitchcraft entries related to Zuggling, Zuggle, Smuggling an
 
 ## Entries
 
+# Zuggle & Smuggle Index
+
+This page collects Glitchcraft entries related to Zuggling, Zuggle, Smuggling and Smuggle for quick reference.
+
+## Entries
+
 - [0023 - Zuggle](./0023-zuggle.md)
 - [0024 - Equipment Collision Zuggle](./0024-equipment-collision-zuggle.md)
 - [0030 - Zuggle Overload](./0030-zuggle-overload.md)
@@ -33,13 +39,13 @@ This page collects Glitchcraft entries related to Zuggling, Zuggle, Smuggling an
 - [0151 - Hand Locked Equipment Smuggling (HLES)](./0151-hand-locked-equipment-smuggling-hles.md)
 - [0171 - Dynamic Zuggle](./0171-dynamic-zuggle.md)
 - [0185 - LikeLike Stick Smuggling](./0185-likelike-stick-smuggling.md)
-- [0191 - Master Sword Zuggling / Decayed Master Sword Zuggling](./0191-master-sword-zuggling-decayed-master-sword-zuggling.md)
+- [0191 - Master Sword Zuggling](./0191-master-sword-zuggling-decayed-master-sword-zuggling.md)
 - [0203 - Mineru Hold Smuggle (MHS)](./0203-mineru-hold-smuggle-mhs.md)
 - [0206 - Wuggle (Weird Zuggle)](./0206-wuggle-weird-zuggle.md)
 - [0208 - Invizuggle](./0208-invizuggle.md)
 - [0219 - Persistent Save Load Object Transfer (PSLOT)](./0219-persistent-save-load-object-transfer-pslot.md)
 - [0221 - Lift Smuggle](./0221-lift-smuggle.md)
-- [0225 - Kilovictor's quicksmuggle](./0225-kilovictor-s-quicksmuggle.md)
+- [0225 - Kilovictor's Quicksmuggle](./0225-kilovictor-s-quicksmuggle.md)
 - [0228 - Portacull Invismuggle](./0228-portacull-invismuggle.md)
 - [0231 - Weapon Stand Dynamic Zuggle](./0231-weapon-stand-dynamic-zuggle.md)
 - [0233 - Quick Drop Smuggle (QDS)](./0233-quick-drop-smuggle-qds.md)

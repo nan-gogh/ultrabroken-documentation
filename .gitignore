@@ -44,8 +44,5 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# Local spreadsheet exported for research (private)
-TotK Glitch Spreadsheet - TotK Glitches.csv
-
 # Local scripts used for repo maintenance
-scripts/
+resources/
