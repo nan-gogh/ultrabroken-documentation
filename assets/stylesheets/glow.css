@@ -18,31 +18,27 @@ html, body {
 /* Header background - solid backdrop for better visibility */
 .md-header {
   background: linear-gradient(180deg, #00796b, #00695c) !important;
-  /*box-shadow: 0 6px 24px rgba(0,240,194,0.3);*/
+  box-shadow: 0 6px 24px rgba(0,240,194,0.3);
 }
 
 .md-header__title {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 8px rgba(0,240,194,0.8) !important;
+  text-shadow: none !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 8px rgba(0,240,194,0.8) !important;
+  text-shadow: none !important;
   font-weight: 600;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }
 
 .md-header__title .md-ellipsis {
-  display: inline-block !important;
-  max-width: calc(100vw - 140px) !important; /* reserve space for icons/search (increased) */
-  vertical-align: middle !important;
-  overflow: hidden !important;
-  white-space: nowrap !important;
-  text-overflow: ellipsis !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
 }
 
 /* Lighten navigation tabs (global header navigation) */
@@ -95,7 +91,7 @@ html, body {
   color: var(--teal-glow) !important;
   fill: currentColor !important;
   stroke: none !important;
-  filter: drop-shadow(0 0 6px rgba(0,240,194,0.12)) !important;
+  filter: none;
   transition: filter .2s ease, transform .2s ease;
 }
 
