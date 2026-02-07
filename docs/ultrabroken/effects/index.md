@@ -36,7 +36,7 @@ While Ultrabroken may seem as simple as a single dialogue, it actually opens up 
 - **[Fuse Stacking](fuse-stacking/)** - Equipment combinations
 - **[Transmigration](transmigration/)** - Item soul removal
 - **[Autobuild Standalones](autobuild-standalones/)** - Detachable systems
-- **[Zonai Device Hacks](../../devices/)** - Individual device effects
+- **[Zonai Device Hacks](../devices/)** - Individual device effects
 - **[Slidy Cart](slidy-cart/)** - Semi-Ultrabroken friction override
 
 ---
