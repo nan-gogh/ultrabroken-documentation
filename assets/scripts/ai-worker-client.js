@@ -530,12 +530,13 @@
         if (has) {
           try{ if (w.clear) { w.clear.style.display = 'flex'; w.clear.disabled = false; } }catch(e){}
           try{ if (w.btn)   { w.btn.style.display   = 'flex'; w.btn.disabled   = false; } }catch(e){}
+          // Share: visible with input text; enabled only when a response is available to copy
+          try{ if (w.share) { w.share.style.display = 'flex'; w.share.disabled = !w._lastResponseText; } }catch(e){}
         } else {
           try{ if (w.clear) { w.clear.style.display = 'none'; w.clear.disabled = true; } }catch(e){}
           try{ if (w.btn)   { w.btn.style.display   = 'none'; w.btn.disabled   = true; } }catch(e){}
+          try{ if (w.share) { w.share.style.display = 'none'; w.share.disabled = true; } }catch(e){}
         }
-        // Share: always visible; enabled only when a raw response is available to copy
-        try{ if (w.share) { w.share.style.display = 'flex'; w.share.disabled = !w._lastResponseText; } }catch(e){}
         setTimeout(resizeIcons, 0);
       };
 
@@ -663,8 +664,7 @@
         } catch (e) {}
         // Start hidden; only show when the input has text (mirrors clear button behavior)
         w.btn.style.display = 'none';
-        // Share is always visible but starts disabled until a response is available to copy
-        if (w.share) { w.share.style.display = 'flex'; w.share.disabled = true; }
+        if (w.share) { w.share.style.display = 'none'; w.share.disabled = true; }
 
         // Share button: copy a permalink that encodes the query so it can be shared
         if (w.share) {
@@ -673,13 +673,19 @@
               try {
                 const responseText = w._lastResponseText;
                 if (!responseText) return;
+                // Prepend the user's query as a ## heading
+                let queryHeading = '';
+                try {
+                  const q = String((typeof w.getValue === 'function' ? w.getValue() : (w.input && w.input.value || '')) || '').trim();
+                  if (q) queryHeading = '## ' + q + '\n\n';
+                } catch(e){}
                 // Build plain-text sources footer from rendered evidence titles
                 let sourcesFooter = '';
                 try {
                   const titles = w._lastSources || [];
                   if (titles.length) sourcesFooter = '\n\nSources:\n' + titles.map(t => '- ' + t).join('\n');
                 } catch(e){}
-                const text = responseText.trim() + sourcesFooter;
+                const text = queryHeading + responseText.trim() + sourcesFooter;
                 navigator.clipboard.writeText(text).then(() => {
                   try { showCopiedToast && showCopiedToast('Copied to clipboard'); } catch (e) {}
                 }).catch(err => {
