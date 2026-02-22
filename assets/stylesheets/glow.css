@@ -315,15 +315,16 @@ body::after {
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 
-/* Dedicated DOM overlay for 404 question-mark, centered inside the rune */
+/* Dedicated DOM overlay for 404 question-mark, to the left of the rune */
 .ultrabroken-404-overlay {
   position: fixed;
-  left: 50%;
+  /* Rune is 48vmin wide, centered at 50% → left edge at calc(50% - 24vmin).
+     Place the 404 mark 4vmin further left. SVG aspect ≈ 29.81:65.49 (portrait),
+     sized at 10vmin wide × 22vmin tall. */
+  left: calc(50% - 24vmin - 4vmin - 10vmin);
   top: 50%;
-  /* 404 SVG aspect ratio ≈ 29.81 : 65.49 (portrait). Size it to fit visibly
-     inside the rune without overwhelming it. */
-  width: 9vmin;
-  height: 20vmin;
+  width: 10vmin;
+  height: 22vmin;
   background-image: url('../images/ultrabroken_404.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -333,7 +334,7 @@ body::after {
   z-index: 2;
   mix-blend-mode: screen;
   transform-origin: center;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 

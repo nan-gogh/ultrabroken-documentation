@@ -7,14 +7,15 @@
 (function() {
   function isLikely404() {
     const title = (document.title || '').trim();
-    if (/\b404\b|page not found|not found|could not find/i.test(title)) return true;
+    if (/\b404\b|page not found|could not find/i.test(title)) return true;
 
     const main = document.querySelector('.md-content');
     if (!main) return false;
 
     // Check primary headings for common 404 markers
+    // Deliberately avoid bare "not found" — too broad (e.g. "Message Not Found" pages)
     const heading = main.querySelector('h1, h2, h3');
-    if (heading && /\b404\b|page not found|not found/i.test(heading.textContent)) return true;
+    if (heading && /\b404\b|page not found/i.test(heading.textContent)) return true;
 
     // Fallback: look for the phrase "page not found" inside the content
     const text = (main.textContent || '').slice(0, 400).toLowerCase();
