@@ -882,7 +882,7 @@ li.task-list-item a, li.task-list a {
 }
 /* Visually muted when no response is available */
 .ub-ai-share:disabled {
-  opacity: 0.28;
+  /*opacity: 0.28;*/
   cursor: default;
   filter: brightness(0.45);
 }
