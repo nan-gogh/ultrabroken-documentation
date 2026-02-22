@@ -157,9 +157,9 @@
     const evidenceWrap = el('div', { class: 'ub-ai-evidence' }, '');
     inputWrap.appendChild(input);
     row.appendChild(inputWrap);
-    row.appendChild(clearBtn);
     row.appendChild(askBtn);
     row.appendChild(shareBtn);
+    row.appendChild(clearBtn);
     
     root.appendChild(row);
     root.appendChild(out);
