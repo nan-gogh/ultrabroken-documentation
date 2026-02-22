@@ -295,43 +295,39 @@ button.search-link:focus,
 body::after {
   content: "";
   position: fixed;
-  right: 2vmin;
+  left: 50%;
   bottom: 2vmin;
   width: 48vmin;
   height: 48vmin;
   max-width: 60vw;
   max-height: 60vh;
-  /* Base rune only; 404 overlay enabled via `.ultrabroken-404` on body */
+  /* Rune always centered; 404 overlay added via JS when on a 404 page */
   background-image: url('../images/ultrabroken_rune.svg');
   background-repeat: no-repeat;
-  background-position: right bottom;
+  background-position: center bottom;
   background-size: 48vmin 48vmin;
   opacity: 0.06;
   pointer-events: none;
   z-index: 0;
   mix-blend-mode: screen;
   transform-origin: center;
+  transform: translateX(-50%);
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 
-/* Center rune variant for AI page (librarian). Toggled via JS when
-   `#ai-search-root` is present. Keeps same visual but centers it. */
+/* ultrabroken-center-rune is now a no-op since centering is the default,
+   but kept for backwards compatibility. */
 body.ultrabroken-center-rune::after {
-  left: 50%;
-  right: auto;
-  /* Keep rune anchored near the bottom while centered horizontally */
-  bottom: 2vmin;
-  background-position: center bottom;
-  transform: translateX(-50%);
-  background-size: 48vmin 48vmin;
-  opacity: 0.06;
+  /* already centered by default */
 }
 
-/* Dedicated DOM overlay for 404 question-mark so it can be positioned independently */
+/* Dedicated DOM overlay for 404 question-mark, centered above the rune */
 .ultrabroken-404-overlay {
   position: fixed;
-  right: 40vmin; /* moved closer to the rune */
-  bottom: 34vmin; /* lift up a bit higher near the rune */
+  left: 50%;
+  /* rune sits at bottom: 2vmin, height: 48vmin → top of rune ≈ 50vmin from bottom;
+     place the 404 mark just above with a small gap */
+  bottom: 52vmin;
   width: 16vmin;
   height: 16vmin;
   max-width: 20vw;
@@ -345,6 +341,7 @@ body.ultrabroken-center-rune::after {
   z-index: 2;
   mix-blend-mode: screen;
   transform-origin: center;
+  transform: translateX(-50%);
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 
