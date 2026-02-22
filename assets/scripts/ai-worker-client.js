@@ -455,6 +455,7 @@
         const DEL_SPEED   = 30;   // ms per char deleted
         const PAUSE_TYPED = 360;  // tiny pause right after last char lands
         const PAUSE_END   = 1600; // pause at full string before deleting
+        const PAUSE_INIT  = 3200; // longer pause on first page-load pre-fill before deleting
         const PAUSE_START = 350;  // pause after full delete before next word
         const typeNext = ()=>{
           if (document.activeElement === w.input){ stopPhAnim(); w.input.textContent = ''; return; }
@@ -485,7 +486,7 @@
           pos = text.length;
           try{ w.input.textContent = text; }catch(e){}
           if (w._idleMode) { try{ w.out.textContent = idleText(); }catch(e){} }
-          _phAnimHandle = setTimeout(delNext, PAUSE_END);
+          _phAnimHandle = setTimeout(delNext, PAUSE_INIT);
         } else {
           _phAnimHandle = setTimeout(typeNext, 300);
         }
