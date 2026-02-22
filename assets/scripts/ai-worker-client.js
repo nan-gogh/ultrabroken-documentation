@@ -295,7 +295,7 @@
         }
         // Render model-provided structured `r.sources` as links when present
         try{
-          const base = 'https://nan-gogh.github.io/ultrabroken-documentation/wiki/';
+          //const base = 'https://nan-gogh.github.io/ultrabroken-documentation/wiki/';
           const modelSources = Array.isArray(r.sources) ? r.sources : [];
           const showModelSources = SHOW_MODEL_SOURCES && modelSources && modelSources.length;
           // When rendering as homepage search links we need to dedupe model-provided
@@ -331,7 +331,7 @@
                   href = siteRoot + p;
                 } else {
                   const slug = p.replace(/^\/+|\/+$/g,'').replace(/\.md$/,'');
-                  href = base + encodeURI(slug);
+                  href = WIKI_SEARCH_BASE + encodeURI(slug);
                 }
                 const a = el('a', { href: href, target: '_blank', rel: 'noopener noreferrer' }, text);
                 const li = el('li', {}, a);
@@ -364,7 +364,7 @@
                   const li = el('li', {}, a);
                   list.appendChild(li);
                 } else {
-                  const href = base + encodeURI(slug);
+                  const href = WIKI_SEARCH_BASE + encodeURI(slug);
                   const a = el('a', { href: href, target: '_blank', rel: 'noopener noreferrer' }, text);
                   const li = el('li', {}, a);
                   list.appendChild(li);
@@ -686,7 +686,7 @@
                 let sourcesFooter = '';
                 try {
                   const titles = w._lastSources || [];
-                  if (titles.length) sourcesFooter = '\n\nSources:\n' + titles.map(t => '- ' + t).join('\n');
+                  if (titles.length) sourcesFooter = '\n\nSources:\n' + titles.map(t => '- [' + t + '](' + WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(t) + ')').join('\n');
                 } catch(e){}
                 const text = queryHeading + responseText.trim() + sourcesFooter;
                 navigator.clipboard.writeText(text).then(() => {
