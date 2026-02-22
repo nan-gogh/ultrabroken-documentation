@@ -870,7 +870,7 @@ li.task-list-item a, li.task-list a {
   background: transparent;
   padding: 0.10rem;
   box-sizing: border-box;
-  display: none; /* hidden until input has content */
+  display: flex; /* always visible; JS controls disabled state */
   align-items: center;
   justify-content: center;
   border-radius: 0.2rem;
@@ -878,6 +878,13 @@ li.task-list-item a, li.task-list a {
   height: 1.44rem;
   border: none;
   cursor: pointer;
+  transition: opacity 0.15s ease, filter 0.15s ease;
+}
+/* Visually muted when no response is available */
+.ub-ai-share:disabled {
+  opacity: 0.28;
+  cursor: default;
+  filter: brightness(0.45);
 }
 
 /* Align the small control buttons to the text baseline so their bottom

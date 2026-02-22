@@ -202,6 +202,8 @@
       const w = render(placeholder);
       w._idleMode = true;    // true while showing idle/cleared state; false while showing a query result
       w._silenceMode = false; // true after a silence response while the user hasn't yet focused the input
+      w._lastResponseText = null; // raw markdown response text stored for share-to-clipboard
+      w._lastSources = [];        // rendered source titles extracted after response, for share footer
       // No user-facing toggle: `SHOW_MODEL_SOURCES` controls whether model-
       // returned `Source:` lines are rendered. This is intentionally internal.
       // The Worker now returns structured `response_text`, optional `response_sources` (text block)
@@ -213,6 +215,9 @@
         if (q.length > MAX_QUERY_CHARS) q = q.slice(0, MAX_QUERY_CHARS).trim();
         try{ if (typeof lockInput === 'function') lockInput(); }catch(e){}
         w._idleMode = false;
+        w._lastResponseText = null;
+        w._lastSources = [];
+        try{ if (typeof updateVisibility === 'function') updateVisibility(); }catch(e){}
         w.out.textContent = LOADING_TEXT;
         if (w.evidence) w.evidence.innerHTML = '';
         const r = await askWorker(q);
@@ -231,6 +236,7 @@
         // `r.response_sources` is the textual Sources block (present only when APPEND_RESPONSE_SOURCES enabled).
         // `r.sources` is the structured array of source entries.
         let responseText = r.response_text || r.answer || '';
+        if (responseText) w._lastResponseText = responseText; // store raw markdown before HTML rendering
         let responseSources = (typeof r.response_sources !== 'undefined') ? r.response_sources : null;
         // `r.answer` fallback exists for older worker responses during transition; prefer structured fields.
         if (responseText) {
@@ -364,6 +370,17 @@
             }
           }catch(e){ /* ignore rendering errors */ }
         }catch(e){ /* ignore model source parsing errors */ }
+        // Collect rendered source titles from the evidence list for share-to-clipboard
+        try{
+          w._lastSources = [];
+          if (w.evidence) {
+            w.evidence.querySelectorAll('.ub-ai-evidence-list a').forEach(a => {
+              const t = a.getAttribute('data-query') || a.textContent || '';
+              if (t.trim()) w._lastSources.push(t.trim());
+            });
+          }
+          try{ updateVisibility(); }catch(e){}
+        }catch(e){}
         // If nothing was rendered and there was no answer, show silence
         if (!w.out.textContent && (!r.evidence || !r.evidence.length)) w.out.textContent = 'silence';
         // Silence response: unlock the input so the user can edit/correct their query.
@@ -476,7 +493,6 @@
       const lockInput = ()=>{
         try{ w.input.setAttribute('contenteditable', 'false'); w.input._inputLocked = true; }catch(e){}
         try{ if (w.btn)   { w.btn.style.display   = 'flex'; w.btn.disabled   = false; } }catch(e){}
-        try{ if (w.share) { w.share.style.display = 'flex'; w.share.disabled = false; } }catch(e){}
         try{ if (w.clear) { w.clear.style.display = 'flex'; w.clear.disabled = false; } }catch(e){}
       };
       const unlockInput = ()=>{
@@ -485,6 +501,8 @@
       // Declared at outer scope so the silence-timeout in handleAsk can close over it.
       const doClear = () => {
         w._idleMode = true;
+        w._lastResponseText = null;
+        w._lastSources = [];
         try{ if (typeof unlockInput === 'function') unlockInput(); }catch(e){}
         try{ if (typeof w.setValue === 'function') w.setValue(''); else if (w.input) w.input.value = ''; }catch(e){}
         // Only show idle text immediately if input is not focused; otherwise let the typewriter callback restore it.
@@ -512,12 +530,12 @@
         if (has) {
           try{ if (w.clear) { w.clear.style.display = 'flex'; w.clear.disabled = false; } }catch(e){}
           try{ if (w.btn)   { w.btn.style.display   = 'flex'; w.btn.disabled   = false; } }catch(e){}
-          try{ if (w.share) { w.share.style.display = 'flex'; w.share.disabled = false; } }catch(e){}
         } else {
           try{ if (w.clear) { w.clear.style.display = 'none'; w.clear.disabled = true; } }catch(e){}
           try{ if (w.btn)   { w.btn.style.display   = 'none'; w.btn.disabled   = true; } }catch(e){}
-          try{ if (w.share) { w.share.style.display = 'none'; w.share.disabled = true; } }catch(e){}
         }
+        // Share: always visible; enabled only when a raw response is available to copy
+        try{ if (w.share) { w.share.style.display = 'flex'; w.share.disabled = !w._lastResponseText; } }catch(e){}
         setTimeout(resizeIcons, 0);
       };
 
@@ -645,21 +663,28 @@
         } catch (e) {}
         // Start hidden; only show when the input has text (mirrors clear button behavior)
         w.btn.style.display = 'none';
-        if (w.share) w.share.style.display = 'none';
+        // Share is always visible but starts disabled until a response is available to copy
+        if (w.share) { w.share.style.display = 'flex'; w.share.disabled = true; }
 
         // Share button: copy a permalink that encodes the query so it can be shared
         if (w.share) {
           try {
             w.share.addEventListener('click', () => {
               try {
-                const q = String((typeof w.getValue === 'function' ? w.getValue() : (w.input && w.input.value || '')) || '').trim();
-                if (!q) return;
-                // Copy only the user's prompt text to the clipboard (no URL)
-                navigator.clipboard.writeText(q).then(() => {
+                const responseText = w._lastResponseText;
+                if (!responseText) return;
+                // Build plain-text sources footer from rendered evidence titles
+                let sourcesFooter = '';
+                try {
+                  const titles = w._lastSources || [];
+                  if (titles.length) sourcesFooter = '\n\nSources:\n' + titles.map(t => '- ' + t).join('\n');
+                } catch(e){}
+                const text = responseText.trim() + sourcesFooter;
+                navigator.clipboard.writeText(text).then(() => {
                   try { showCopiedToast && showCopiedToast('Copied to clipboard'); } catch (e) {}
                 }).catch(err => {
                   try { showCopiedToast && showCopiedToast('Copy failed'); } catch (e) {}
-                  console.error('copy prompt failed', err);
+                  console.error('copy response failed', err);
                 });
               } catch (err) { console.error('share click error', err); }
             });
