@@ -296,52 +296,44 @@ body::after {
   content: "";
   position: fixed;
   left: 50%;
-  bottom: 2vmin;
+  top: 50%;
   width: 48vmin;
   height: 48vmin;
   max-width: 60vw;
   max-height: 60vh;
-  /* Rune always centered; 404 overlay added via JS when on a 404 page */
+  /* Rune centered both axes; 404 overlay added via JS when on a 404 page */
   background-image: url('../images/ultrabroken_rune.svg');
   background-repeat: no-repeat;
-  background-position: center bottom;
+  background-position: center;
   background-size: 48vmin 48vmin;
   opacity: 0.06;
   pointer-events: none;
   z-index: 0;
   mix-blend-mode: screen;
   transform-origin: center;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 
-/* ultrabroken-center-rune is now a no-op since centering is the default,
-   but kept for backwards compatibility. */
-body.ultrabroken-center-rune::after {
-  /* already centered by default */
-}
-
-/* Dedicated DOM overlay for 404 question-mark, centered above the rune */
+/* Dedicated DOM overlay for 404 question-mark, centered inside the rune */
 .ultrabroken-404-overlay {
   position: fixed;
   left: 50%;
-  /* rune sits at bottom: 2vmin, height: 48vmin → top of rune ≈ 50vmin from bottom;
-     place the 404 mark just above with a small gap */
-  bottom: 52vmin;
-  width: 16vmin;
-  height: 16vmin;
-  max-width: 20vw;
-  max-height: 20vh;
+  top: 50%;
+  /* 404 SVG aspect ratio ≈ 29.81 : 65.49 (portrait). Size it to fit visibly
+     inside the rune without overwhelming it. */
+  width: 9vmin;
+  height: 20vmin;
   background-image: url('../images/ultrabroken_404.svg');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100% 100%;
+  background-size: contain;
   opacity: 0.14;
   pointer-events: none;
   z-index: 2;
   mix-blend-mode: screen;
   transform-origin: center;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   animation: pulseLogo 4200ms ease-in-out infinite;
 }
 
@@ -361,17 +353,7 @@ body.ultrabroken-center-rune::after {
   body::after { animation: none !important; }
 }
 
-/* On narrow viewports the rune can be occluded by the footer. Raise it
-   vertically (only on small screens) so it sits above the footer without
-   altering its size or z-index. */
-@media (max-width: 640px) {
-  body::after {
-    bottom: 25vmin; /* move rune further upward on the y axis */
-  }
-  body.ultrabroken-center-rune::after {
-    bottom: 25vmin; /* same adjustment when centered */
-  }
-}
+
 
 /* Floating particles animation */
 @keyframes float-particle-1 {
