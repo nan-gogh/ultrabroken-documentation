@@ -8,18 +8,28 @@
  * Configurable via CSS custom properties:
  *   --ub-marquee-speed      scroll speed in px/sec  (default 40)
  *   --ub-marquee-pause-ms   pause at each end in ms (default 1200)
+ *
+ * Handles Material for MkDocs instant navigation by observing the header
+ * for DOM mutations (element replacement) and text mutations (content swap
+ * without replacement), as well as pushState / popstate navigation.
  */
-document.addEventListener('DOMContentLoaded', () => {
+(function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const root = document.documentElement;
-  const cssSpeed  = parseFloat(getComputedStyle(root).getPropertyValue('--ub-marquee-speed')) || 0;
-  const SPEED     = cssSpeed > 0 ? cssSpeed : 40;
-  const cssPause  = parseInt(getComputedStyle(root).getPropertyValue('--ub-marquee-pause-ms'), 10) || 0;
-  const PAUSE     = cssPause > 0 ? cssPause : 1200;
+  const root   = document.documentElement;
+  const SPEED  = (parseFloat(getComputedStyle(root).getPropertyValue('--ub-marquee-speed'))  || 0) || 40;
+  const PAUSE  = (parseInt(getComputedStyle(root).getPropertyValue('--ub-marquee-pause-ms'), 10) || 0) || 1200;
 
-  document.querySelectorAll('.md-header__title .md-ellipsis').forEach(el => {
-    if (el.dataset.ubMarquee) return;
+  /* Per-element instance registry so we can re-check without re-initialising */
+  const registry = new WeakMap(); // el → { stop, check }
+
+  function initEl(el) {
+    /* ---- If already init'd, just re-check (handles text-only mutations) ---- */
+    if (el.dataset.ubMarquee) {
+      const inst = registry.get(el);
+      if (inst) { inst.stop(); requestAnimationFrame(inst.check); }
+      return;
+    }
     el.dataset.ubMarquee = '1';
 
     /* ---- clean up DOM left by earlier marquee versions ---- */
@@ -33,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ---- animation state ---- */
     let raf   = null;
-    let prev  = 0;      // previous rAF timestamp
-    let pos   = 0;      // virtual scrollLeft position
-    let dir   = 1;      // 1 = forward (right), -1 = backward (left)
+    let prev  = 0;
+    let pos   = 0;
+    let dir   = 1;
     let going = false;
 
     function maxScroll() {
@@ -47,11 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!prev) { prev = ts; raf = requestAnimationFrame(tick); return; }
       const dt = (ts - prev) / 1000;
       prev = ts;
-
       pos += SPEED * dt * dir;
       const mx = maxScroll();
 
-      /* hit far end */
       if (dir === 1 && pos >= mx) {
         pos = mx;
         el.scrollLeft = pos;
@@ -59,8 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { dir = -1; prev = 0; going = true; raf = requestAnimationFrame(tick); }, PAUSE);
         return;
       }
-
-      /* hit home end */
       if (dir === -1 && pos <= 0) {
         pos = 0;
         el.scrollLeft = 0;
@@ -101,7 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    /* ---- observers ---- */
+    registry.set(el, { stop, check });
+
+    /* ---- resize observer ---- */
     if (window.ResizeObserver) {
       new ResizeObserver(() => { stop(); requestAnimationFrame(check); }).observe(el);
     } else {
@@ -110,5 +118,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     requestAnimationFrame(check);
     setTimeout(check, 600);
-  });
-});
+  }
+
+  /* Initialise all current .md-ellipsis elements inside the header title */
+  function scan() {
+    document.querySelectorAll('.md-header__title .md-ellipsis').forEach(initEl);
+  }
+
+  function wireNavigation() {
+    /* MutationObserver on the header title area covers two cases:
+       1. childList  → Material replaces the .md-ellipsis element entirely
+       2. characterData (subtree) → Material swaps text in-place without
+          replacing the element; ResizeObserver won't fire in this case */
+    const titleEl = document.querySelector('.md-header__title');
+    if (titleEl && window.MutationObserver) {
+      new MutationObserver(() => scan())
+        .observe(titleEl, { childList: true, subtree: true, characterData: true });
+    }
+
+    /* Belt-and-suspenders: also catch pushState / popstate navigations */
+    const _push = history.pushState;
+    history.pushState = function () {
+      _push.apply(this, arguments);
+      setTimeout(scan, 80);
+    };
+    window.addEventListener('popstate', () => setTimeout(scan, 80));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => { scan(); wireNavigation(); });
+  } else {
+    scan();
+    wireNavigation();
+  }
+})();
