@@ -320,8 +320,8 @@
               if (USE_TITLE_SEARCH_LINKS) {
                 if (seenQueries.has(query)) return; // skip duplicate
                 seenQueries.add(query);
-                const href = WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(query);
-                const a = el('a', { href: href, 'data-query': query }, text);
+                const href = 'search:' + encodeURIComponent(query);
+                const a = el('a', { href: href, class: 'search-link', 'data-query': query }, text);
                 const li = el('li', {}, a);
                 list.appendChild(li);
               } else {
@@ -359,8 +359,8 @@
                   const query = String(text).trim();
                   if (seenQueries.has(query)) return; // already emitted by model sources
                   seenQueries.add(query);
-                  const href = WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(query);
-                  const a = el('a', { href: href, 'data-query': query }, text);
+                  const href = 'search:' + encodeURIComponent(query);
+                  const a = el('a', { href: href, class: 'search-link', 'data-query': query }, text);
                   const li = el('li', {}, a);
                   list.appendChild(li);
                 } else {
