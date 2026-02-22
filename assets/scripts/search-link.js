@@ -178,6 +178,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   try { enhanceTasklistClickable(); } catch (e) {}
 
+  // Auto-trigger search from ?q= URL param — populated by source links in the AI widget
+  // when they navigate to the wiki homepage with a pre-encoded query.
+  try {
+    const _autoQ = new URLSearchParams(window.location.search).get('q');
+    if (_autoQ && _autoQ.trim()) {
+      const _autoSearch = (attempt) => {
+        const input = findSearchInput();
+        if (input) { openSearchUI(); setTimeout(() => setSearchQueryAndSubmit(input, _autoQ.trim()), 80); return; }
+        if (attempt < 25) setTimeout(() => _autoSearch(attempt + 1), 100);
+      };
+      // Delay slightly to let MkDocs finish rendering the search input
+      setTimeout(() => _autoSearch(0), 350);
+    }
+  } catch (e) {}
+
   // Use capture phase so this handler runs before other click handlers that may close the search UI.
   document.body.addEventListener('click', function (ev) {
     const a = ev.target.closest && ev.target.closest('.search-link');

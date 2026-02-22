@@ -16,10 +16,13 @@
   // This is intentionally an internal toggle (not user-facing). Set to `true`
   // to enable rendering of model-supplied sources, or `false` to disable.
   const SHOW_MODEL_SOURCES = true;
-  // Internal toggle: when true, model-supplied source titles are rendered
-  // as `search:Title` links (intercepted by `search-link.js`). When false
-  // they render as normal page links. Default: false.
+  // Internal toggle: when true, model-supplied source titles are rendered as
+  // homepage search links (`/wiki/?q=Title`) that navigate to the wiki root
+  // and auto-trigger the search bar via the `?q=` param handler in search-link.js.
+  // When false they render as direct wiki page links.
   const USE_TITLE_SEARCH_LINKS = true;
+  // Base URL used to build `?q=` search links when USE_TITLE_SEARCH_LINKS is true.
+  const WIKI_SEARCH_BASE = 'https://nan-gogh.github.io/ultrabroken-documentation/wiki/';
   // Hard cap on query length sent to the worker. Configurable via `window.AI_MAX_QUERY_CHARS`.
   const MAX_QUERY_CHARS = 50;
   // Idle texts shown in the output area before any query is made and after
@@ -295,7 +298,7 @@
           const base = 'https://nan-gogh.github.io/ultrabroken-documentation/wiki/';
           const modelSources = Array.isArray(r.sources) ? r.sources : [];
           const showModelSources = SHOW_MODEL_SOURCES && modelSources && modelSources.length;
-          // When rendering as `search:` links we need to dedupe model-provided
+          // When rendering as homepage search links we need to dedupe model-provided
           // sources and Worker-provided evidence so the final list contains
           // unique search queries. `seenQueries` tracks already-emitted queries
           // (case-sensitive, using the display string) and ensures the uppermost
@@ -317,8 +320,8 @@
               if (USE_TITLE_SEARCH_LINKS) {
                 if (seenQueries.has(query)) return; // skip duplicate
                 seenQueries.add(query);
-                const href = 'search:' + encodeURIComponent(query);
-                const a = el('a', { href: href, class: 'search-link', 'data-query': query }, text);
+                const href = WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(query);
+                const a = el('a', { href: href, 'data-query': query }, text);
                 const li = el('li', {}, a);
                 list.appendChild(li);
               } else {
@@ -356,8 +359,8 @@
                   const query = String(text).trim();
                   if (seenQueries.has(query)) return; // already emitted by model sources
                   seenQueries.add(query);
-                  const href = 'search:' + encodeURIComponent(query);
-                  const a = el('a', { href: href, class: 'search-link', 'data-query': query }, text);
+                  const href = WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(query);
+                  const a = el('a', { href: href, 'data-query': query }, text);
                   const li = el('li', {}, a);
                   list.appendChild(li);
                 } else {
@@ -374,7 +377,7 @@
         try{
           w._lastSources = [];
           if (w.evidence) {
-            w.evidence.querySelectorAll('.ub-ai-evidence-list a').forEach(a => {
+            w.evidence.querySelectorAll('.ub-ai-evidence-list a, .ub-ai-evidence-list button').forEach(a => {
               const t = a.getAttribute('data-query') || a.textContent || '';
               if (t.trim()) w._lastSources.push(t.trim());
             });
