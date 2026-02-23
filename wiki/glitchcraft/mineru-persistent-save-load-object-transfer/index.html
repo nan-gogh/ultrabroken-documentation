@@ -12,7 +12,7 @@
         <meta name="author" content="NaN Gogh & Community">
       
       
-        <link rel="canonical" href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/yee-fuse-entanglement.md/">
+        <link rel="canonical" href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/mineru-persistent-save-load-object-transfer/">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>Yee Fuse Entanglement - Ultrabroken Archives</title>
+        <title>Mineru Persistent Save Load Object Transfer - Ultrabroken Archives</title>
       
     
     
@@ -61,17 +61,17 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Yee Fuse Entanglement - Ultrabroken Archives" />
+<meta property="og:title" content="Mineru Persistent Save Load Object Transfer - Ultrabroken Archives" />
 <meta property="og:description" content="Community-driven encyclopedia documenting glitches, techniques and investigations for The Legend of Zelda Tears of the Kingdom" />
-<meta property="og:image" content="https://nan-gogh.github.io/ultrabroken-documentation/assets/images/social/wiki/glitchcraft/yee-fuse-entanglement.md.png" />
+<meta property="og:image" content="https://nan-gogh.github.io/ultrabroken-documentation/assets/images/social/wiki/glitchcraft/mineru-persistent-save-load-object-transfer.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/yee-fuse-entanglement.md/" />
+<meta property="og:url" content="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/mineru-persistent-save-load-object-transfer/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Yee Fuse Entanglement - Ultrabroken Archives" />
+<meta property="twitter:title" content="Mineru Persistent Save Load Object Transfer - Ultrabroken Archives" />
 <meta property="twitter:description" content="Community-driven encyclopedia documenting glitches, techniques and investigations for The Legend of Zelda Tears of the Kingdom" />
-<meta property="twitter:image" content="https://nan-gogh.github.io/ultrabroken-documentation/assets/images/social/wiki/glitchcraft/yee-fuse-entanglement.md.png" />
+<meta property="twitter:image" content="https://nan-gogh.github.io/ultrabroken-documentation/assets/images/social/wiki/glitchcraft/mineru-persistent-save-load-object-transfer.png" />
 </head>
   
   
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#yee-fuse-entanglement" class="md-skip">
+        <a href="#mineru-persistent-save-load-object-transfer-mpslot" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Yee Fuse Entanglement
+              Mineru Persistent Save Load Object Transfer
             
           </span>
         </div>
@@ -1944,38 +1944,34 @@
 
 
 
-<h1 id="yee-fuse-entanglement">Yee Fuse Entanglement</h1>
-<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code></p>
+<h1 id="mineru-persistent-save-load-object-transfer-mpslot">Mineru Persistent Save Load Object Transfer <code>MPSLOT</code></h1>
+<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1+</code></p>
 <h2 id="summary">Summary</h2>
 <hr />
-<p>Uses culling with mineru and an sdc stick to fuse entangle</p>
-<p><em>Yee, mulberry - 20 February 2024</em></p>
+<p>Using Mineru Culling it's possible to send a piece of equipment to culled purgatory portably, allowing for PSLOT</p>
+<p><em>Discovered by mulberry, setup by Armindo, Emiya - 27 July 2024</em></p>
 <h2 id="instructions">Instructions</h2>
 <hr />
-<ol>
-<li>Perform sdc with the cold fuse base (for 1.2.0-1.2.1), overload, or fe base </li>
-<li>Fuse the sdc steering stick to mineru</li>
-<li>Fuse before link culls</li>
-</ol>
-<p>Yeefe can also be set up using the String Feory method (<a href="https://www.youtube.com/channel/UCdJgWquwZxJlfc8rDMmmilA">ofstrings2</a>):
-1. Mineru FE any equipment
-2. Pick it up
-3. Attempt to fuse a steering stick to the equipment just before it culls, similar to yeefe, if you time it correctly, you get a fuse effect without the item fusing (cold fuse)
-4. Perform Cold Fuse SDC, but instead of swapping like you would normally do, drop the cold fuse base and mount the stick instantly (like you would do with regular FE SDC). This allows to keep the Mineru FE connection.
-5. Fuse the SDC stick to the Mineru FEd equipment (you may mount Mineru/a steering stick to unlock the rune wheel in order to access Fuse)
-This equipment can be used as a portacull, but also as a way to cull Link.</p>
+<p>Versions 1.2+:
+0. Prepare a SDC stick through Mineru Cold Fuse or any other method, and fuse it to Mineru, as well as a portacull weapon, and a rocket shield
+1. Mineru FE a shield A.
+2. Map Invizuggle it.
+3. Cull/uncull Mineru to uncull the invizuggle, don't detangle it.
+4. YeeFE your target to a shield B, this will FE to both shield A and B.
+5. Portacull Invismuggle shield B.
+6. Fuse a rocket to a shield
+7. Rezuggle shield A by invizuggling it and cull/unculling Mineru.
+8. Use the rocket shield to detangle.</p>
+<p>Versions 1.0-1.1.2 have a slightly easier setup, they can use another zuggle method for steps 1-3, such as Map Zuggle or Drop Delay Zuggle. Step 4 can be done through L Cancel FE. Step 5 is slightly different: cull Link through Mineru, and drop shield B while culled. This sends shield A to culled purgatory. In order to uncull the target you may cull Link through Mineru while having shield A equipped. Afterwards, just Map Zuggle or DDZ then detangle to finish the PSLOT.</p>
 <h2 id="notes">Notes</h2>
 <hr />
-<p>Spears can be used to yeefe hoverstones, they cause the hoverstone to fe next to link (normally they fe on top of link and softlock)
- (ofstrings2)
-Test on more versions</p>
+<p>—</p>
 <h2 id="resources">Resources</h2>
 <hr />
 <ul>
-<li><a href="https://discord.com/channels/1086729144307564648/1112801830821449798/1209443743581736980">Discord</a></li>
-<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1224074388983250975">DHoverstone YeeFe</a></li>
-<li><a href="search:Fuse Entanglement">Fuse Entanglement</a></li>
-<li><a href="search:Stick Desync">Stick Desync</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1266787525855547463">Discord</a></li>
+<li><a href="search:PSLOT">PSLOT</a></li>
+<li><a href="search:Portacull Invismuggle">Portacull Invismuggle</a></li>
 </ul>
 
 
