@@ -20,7 +20,7 @@
   // homepage search links (`/wiki/?q=Title`) that navigate to the wiki root
   // and auto-trigger the search bar via the `?q=` param handler in search-link.js.
   // When false they render as direct wiki page links.
-  const USE_TITLE_SEARCH_LINKS = true;
+  const USE_TITLE_SEARCH_LINKS = false;
   // Base URL used to build `?q=` search links when USE_TITLE_SEARCH_LINKS is true.
   const WIKI_SEARCH_BASE = 'https://nan-gogh.github.io/ultrabroken-documentation/wiki/';
   // Hard cap on query length sent to the worker. Configurable via `window.AI_MAX_QUERY_CHARS`.
