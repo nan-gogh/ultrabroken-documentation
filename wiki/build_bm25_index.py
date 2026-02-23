@@ -1,9 +1,26 @@
 """
 Build a simple BM25-compatible index from the `docs/` markdown tree.
 
-This script walks `docs/`, extracts plain text from markdown, optionally
-chunks long pages, and writes `site/wiki_index.json` (or gzipped) containing
-an array of objects with at least `title`, `text`, and `path` (and `id`).
+This script walks `docs/`, extracts plain text from markdown (enriched with
+frontmatter fields such as abbreviation, description, aliases, tags, credits, and
+versions), optionally chunks long pages, and writes `site/wiki_index.json`
+(or gzipped) containing an array of objects suitable for BM25 retrieval.
+
+Each index item includes:
+  - id, title, path, chunk_index, text
+  - abbreviation         – the short abbreviation (e.g. "ETS")
+  - description  – one-line summary from frontmatter
+  - aliases      – list of alternative names / slugs
+  - tags         – list of category tags
+  - credits      – list of credited discoverers / developers
+  - versions     – list of game version strings
+  - date         – ISO 8601 discovery / documentation date
+
+The `text` field for every chunk is prefixed with a compact metadata header
+so that abbreviation / tag / alias lookups resolve correctly even when the
+body text is chunked. The header format is:
+
+  [Title (ABBR) — description. Aliases: a1, a2. Tags: t1, t2.]
 
 Usage:
   python build_bm25_index.py --output site/wiki_index.json --gzip
@@ -32,6 +49,87 @@ def find_repo_root(start: Path = None) -> Path:
 
 ROOT = find_repo_root()
 DOCS = ROOT / 'docs'
+
+
+def _parse_yaml_value(val: str):
+    """Parse a simple YAML scalar or JSON-array value into a Python object."""
+    val = val.strip()
+    if val.startswith('['):
+        try:
+            return json.loads(val)
+        except Exception:
+            # Fallback: strip brackets and split on commas
+            inner = val[1:-1]
+            items = [s.strip().strip('"').strip("'") for s in inner.split(',') if s.strip()]
+            return items
+    # bare or quoted scalar
+    return val.strip('"').strip("'")
+
+
+def extract_frontmatter(md_path: Path) -> dict:
+    """Return a dict of all YAML frontmatter fields found in *md_path*.
+
+    Supports the glitchcraft frontmatter schema:
+      title, abbreviation, description, versions, credits, date, aliases, tags
+    """
+    try:
+        raw = md_path.read_text(encoding='utf-8-sig')
+    except Exception:
+        return {}
+    m = re.match(r'^---\s*\n([\s\S]*?)\n---', raw)
+    if not m:
+        return {}
+    fields: dict = {}
+    for line in m.group(1).splitlines():
+        km = re.match(r'^([a-zA-Z_]\w*):\s*(.*)', line)
+        if not km:
+            continue
+        key, raw_val = km.group(1), km.group(2)
+        fields[key] = _parse_yaml_value(raw_val)
+    return fields
+
+
+def _build_metadata_header(fm: dict) -> str:
+    """Build a compact, human-readable prefix that encodes the key frontmatter
+    fields into plain text so BM25 can match them alongside body text.
+
+    Format (omits empty sections):
+      Title (ABBR) — description. Aliases: a1, a2. Tags: t1, t2. Credits: c1, c2. Versions: v1, v2.
+    """
+    parts: list[str] = []
+
+    title = fm.get('title', '')
+    abbreviation = fm.get('abbreviation', '')
+    description = fm.get('description', '')
+
+    # Title + abbreviation
+    if title and abbreviation:
+        parts.append(f"{title} ({abbreviation})")
+    elif title:
+        parts.append(title)
+    elif abbreviation:
+        parts.append(abbreviation)
+
+    if description:
+        parts.append(description)
+
+    aliases = fm.get('aliases', [])
+    if aliases:
+        parts.append("Aliases: " + ", ".join(aliases))
+
+    tags = fm.get('tags', [])
+    if tags:
+        parts.append("Tags: " + ", ".join(tags))
+
+    credits_ = fm.get('credits', [])
+    if credits_:
+        parts.append("Credits: " + ", ".join(credits_))
+
+    versions = fm.get('versions', [])
+    if versions:
+        parts.append("Versions: " + ", ".join(versions))
+
+    return ". ".join(parts).rstrip('.') + '.' if parts else ''
 
 
 def extract_text(md_path: Path) -> str:
@@ -119,12 +217,15 @@ def walk_docs(chunk: bool = True):
         # skip hidden or dot folders
         if rel.parts and str(rel.parts[0]).startswith('.'):
             continue
+
+        fm = extract_frontmatter(p)
+
         # prefer an extracted title (YAML frontmatter, H1/H2, Setext), fall back to filename stem
-        title = extract_title(p) or rel.stem
+        title = fm.get('title') or extract_title(p) or rel.stem
         full_text = extract_text(p)
-        text = full_text
-        if not text:
+        if not full_text:
             continue
+
         # Normalize site-relative paths. When indexing the `wiki` subtree
         # produce paths under `/wiki/...`. Otherwise keep the site root
         # index at `/`.
@@ -137,12 +238,39 @@ def walk_docs(chunk: bool = True):
                 parts = ['wiki'] + parts
             path = '/' + '/'.join(parts) + '/'
 
+        # Structured metadata fields extracted from frontmatter
+        meta = {
+            'abbreviation':        fm.get('abbreviation', ''),
+            'description': fm.get('description', ''),
+            'aliases':     fm.get('aliases', []),
+            'tags':        fm.get('tags', []),
+            'credits':     fm.get('credits', []),
+            'versions':    fm.get('versions', []),
+            'date':        fm.get('date', ''),
+        }
+
+        # Compact header prepended to every chunk so abbreviation/tag/alias queries
+        # resolve regardless of which chunk is retrieved.
+        header = _build_metadata_header(fm)
+
+        def make_item(text_chunk: str, chunk_index: int) -> dict:
+            enriched_text = (header + ' ' + text_chunk).strip() if header else text_chunk
+            return {
+                'id': str(rel),
+                'title': title,
+                'path': path,
+                'chunk_index': chunk_index,
+                'text': enriched_text,
+                **meta,
+            }
+
         if chunk:
-            chunks = chunk_text_words(text)
+            chunks = chunk_text_words(full_text)
             for i, c in enumerate(chunks):
-                items.append({'id': str(rel), 'title': title, 'path': path, 'text': c, 'chunk_index': i})
+                items.append(make_item(c, i))
         else:
-            items.append({'id': str(rel), 'title': title, 'path': path, 'text': text})
+            items.append(make_item(full_text, 0))
+
     return items
 
 def build_index(output: str, gzip_output: bool = False, chunk: bool = True):
