@@ -12,7 +12,7 @@
         <meta name="author" content="NaN Gogh & Community">
       
       
-        <link rel="canonical" href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/entanglement/entanglement-library/">
+        <link rel="canonical" href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/overload-persistent-save-load-object-transfer.md/">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>Entanglement Library - Ultrabroken Archives</title>
+        <title>Overload Persistent Save Load Object Transfer - Ultrabroken Archives</title>
       
     
     
@@ -61,17 +61,17 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Entanglement Library - Ultrabroken Archives" />
+<meta property="og:title" content="Overload Persistent Save Load Object Transfer - Ultrabroken Archives" />
 <meta property="og:description" content="Community-driven encyclopedia documenting glitches, techniques and investigations for The Legend of Zelda Tears of the Kingdom" />
-<meta property="og:image" content="https://nan-gogh.github.io/ultrabroken-documentation/assets/images/social/wiki/entanglement/entanglement-library.png" />
+<meta property="og:image" content="https://nan-gogh.github.io/ultrabroken-documentation/assets/images/social/wiki/glitchcraft/overload-persistent-save-load-object-transfer.md.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://nan-gogh.github.io/ultrabroken-documentation/wiki/entanglement/entanglement-library/" />
+<meta property="og:url" content="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/overload-persistent-save-load-object-transfer.md/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Entanglement Library - Ultrabroken Archives" />
+<meta property="twitter:title" content="Overload Persistent Save Load Object Transfer - Ultrabroken Archives" />
 <meta property="twitter:description" content="Community-driven encyclopedia documenting glitches, techniques and investigations for The Legend of Zelda Tears of the Kingdom" />
-<meta property="twitter:image" content="https://nan-gogh.github.io/ultrabroken-documentation/assets/images/social/wiki/entanglement/entanglement-library.png" />
+<meta property="twitter:image" content="https://nan-gogh.github.io/ultrabroken-documentation/assets/images/social/wiki/glitchcraft/overload-persistent-save-load-object-transfer.md.png" />
 </head>
   
   
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#entanglement-library" class="md-skip">
+        <a href="#overload-persistent-save-load-object-transfer" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Entanglement Library
+              Overload Persistent Save Load Object Transfer
             
           </span>
         </div>
@@ -260,7 +260,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../" class="md-tabs__link">
+        <a href="../../entanglement/" class="md-tabs__link">
           
   
   
@@ -374,7 +374,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../glitchcraft/glitchcraft-grimoire/" class="md-tabs__link">
+      <a href="../glitchcraft-grimoire/" class="md-tabs__link">
         
   
   
@@ -1607,7 +1607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../entanglement/" class="md-nav__link">
         
   
   
@@ -1837,7 +1837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../glitchcraft/glitchcraft-grimoire/" class="md-nav__link">
+      <a href="../glitchcraft-grimoire/" class="md-nav__link">
         
   
   
@@ -1884,10 +1884,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#index" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Index
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resources
       
     </span>
   </a>
@@ -1911,32 +1944,30 @@
 
 
 
-<h1 id="entanglement-library">Entanglement Library</h1>
-<p>This page complies Fuse Entanglement related glitches for quick reference.</p>
-<h2 id="index">Index</h2>
+<h1 id="overload-persistent-save-load-object-transfer">Overload Persistent Save Load Object Transfer</h1>
+<p><code>1.2.0</code> <code>1.2.1+</code></p>
+<h2 id="summary">Summary</h2>
+<hr />
+<p>Using Overload it's possible to fully portably PSLOT on current versions</p>
+<p><em>mulberry - 26 July 2024</em></p>
+<h2 id="instructions">Instructions</h2>
+<hr />
+<ol>
+<li>Drop Zuggle 2 shields with overload and portacull.</li>
+<li>Overload Cold Fuse your target to a shield, this will FE to both shields.</li>
+<li>Pick up one of the shields and portacull invismuggle by drop swapping your portacull equipment, and dropping your target, pause buffering and swapping to another equipment.</li>
+<li>Equip the other parent shield, trigger portacull to uncull your target object.</li>
+<li>Detangle by drop zuggling the parent again and using a rocket shield.</li>
+</ol>
+<h2 id="notes">Notes</h2>
+<hr />
+<p>—</p>
+<h2 id="resources">Resources</h2>
 <hr />
 <ul>
-<li><a href="../../glitchcraft/fuse-entanglement/">Fuse Entanglement</a></li>
-<li><a href="../../glitchcraft/entanglement-height-glitch/">Entanglement Height Glitch</a></li>
-<li><a href="../../glitchcraft/fuse-entanglement-desync-fed/">Fuse Entanglement Desync</a></li>
-<li><a href="../../glitchcraft/fuse-entanglement-clipping-fec/">Fuse Entanglement Clipping</a></li>
-<li><a href="../../glitchcraft/fuse-storage-fuse-entanglement-fsfe/">Fuse Storage Fuse Entanglement</a></li>
-<li><a href="../../glitchcraft/fuse-entanglement-drop-smuggling/">Fuse Entanglement Drop Smuggling</a></li>
-<li><a href="../../glitchcraft/detanglement/">Detanglement</a></li>
-<li><a href="../../glitchcraft/cull-fuse-entanglement-cull-fe/">Cull Fuse Entanglement</a></li>
-<li><a href="../../glitchcraft/mineru-fuse-entanglement-mineru-fe/">Mineru Fuse Entanglement</a></li>
-<li><a href="../../glitchcraft/resync-fuse-entanglement-resync-fe/">Resync Fuse Entanglement</a></li>
-<li><a href="../../glitchcraft/persistent-save-load-object-transfer-pslot/">Persistent Save Load Object Transfer</a></li>
-<li><a href="../../glitchcraft/ultra-save-load-object-transfer/">Ultra Save Load Object Transfer</a></li>
-<li><a href="../../glitchcraft/double-shield-desync-clip-fuse-entanglement-double-sdc-fe/">Double Shield Desync Clip Fuse Entanglement</a></li>
-<li><a href="../../glitchcraft/construct-fuse-entanglement/">Construct Fuse Entanglement</a></li>
-<li><a href="../../glitchcraft/overload-fuse-entanglement/">Overload Fuse Entanglement</a></li>
-<li><a href="../../glitchcraft/aeroculling/">Aeroculling</a></li>
-<li><a href="../../glitchcraft/zapshield/">Zapshield</a></li>
-<li><a href="../../glitchcraft/shadow-void-icons/">Shadow / Void Icons</a></li>
-<li><a href="../../glitchcraft/replacement-actor-fuse-entanglement/">Replacement Actor Fuse Entanglement</a></li>
-<li><a href="../../glitchcraft/cull-pickup-dynamic-zuggle/">Cull Pickup Dynamic Zuggle</a></li>
-<li><a href="../../glitchcraft/void-dipping/">Void Dipping</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1266400937778610206">Discord</a></li>
+<li><a href="search:PSLOT">PSLOT</a></li>
+<li><a href="search:Portacull Invismuggle">Portacull Invismuggle</a></li>
 </ul>
 
 
