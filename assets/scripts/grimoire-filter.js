@@ -59,17 +59,12 @@
      Data
      ================================================================ */
   function fetchData(cb) {
-    fetch('../_grimoire-data.json').then(function (r) {
+    fetch('../../assets/data/grimoire-data.json').then(function (r) {
       if (!r.ok) throw new Error(r.status);
       return r.json();
-    }).then(cb).catch(function () {
-      fetch('./_grimoire-data.json').then(function (r) {
-        if (!r.ok) throw new Error(r.status);
-        return r.json();
-      }).then(cb).catch(function (e) {
-        console.error('[Grimoire] load failed', e);
-        cb(null);
-      });
+    }).then(cb).catch(function (e) {
+      console.error('[Grimoire] load failed', e);
+      cb(null);
     });
   }
 

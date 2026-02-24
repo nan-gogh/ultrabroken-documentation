@@ -19,7 +19,7 @@ from pathlib import Path
 
 _CONTRIBUTORS_JSON = (
     Path(__file__).parent.parent  # docs/assets/
-    / 'scripts' / 'hunter-socials.json'
+    / 'data' / 'hunter-socials.json'
 )
 
 # Loaded once per build on first page processed
