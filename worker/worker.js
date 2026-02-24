@@ -383,7 +383,35 @@ export default {
           const overlap = Math.max(setA && Object.keys(setA).length ? inter / Math.max(Object.keys(setA).length,1) : 0, 0);
           titleBoost = overlap; // 0..1
         }
-        const finalScore = score * (1 + (titleBoost * 0.25));
+        // Abbreviation exact-match boost: if any query token exactly matches the
+        // page's abbreviation field, apply a strong boost so e.g. "SDC" reliably
+        // surfaces the Stick Desync Clip page above pages that merely mention "SDC".
+        let abbrBoost = 0;
+        if (it.abbreviation){
+          const abbrLower = String(it.abbreviation).toLowerCase();
+          for (const t of qTokens){
+            if (String(t).toLowerCase() === abbrLower){ abbrBoost = 1.0; break; }
+          }
+        }
+        // Alias matching boost: phrase hit (full alias in query) is stronger than
+        // token hit (any query token matches any alias token).
+        let aliasBoost = 0;
+        if (Array.isArray(it.aliases) && it.aliases.length) {
+          const queryLower = query.toLowerCase();
+          const qTokenSet = Object.create(null);
+          for (const t of qTokens) qTokenSet[String(t).toLowerCase()] = 1;
+          let phraseHit = false;
+          let tokenHit = false;
+          for (const alias of it.aliases) {
+            const aLower = String(alias).toLowerCase();
+            if (queryLower.includes(aLower)) { phraseHit = true; break; }
+            for (const at of tokenize(aLower)) {
+              if (qTokenSet[at]) { tokenHit = true; break; }
+            }
+          }
+          aliasBoost = phraseHit ? 0.75 : tokenHit ? 0.35 : 0;
+        }
+        const finalScore = score * (1 + (titleBoost * 0.25) + abbrBoost + aliasBoost);
         return { item: it, score: finalScore, raw_score: score };
         });
       }
@@ -402,14 +430,14 @@ export default {
         evidences.push(s);
         seenPaths[key] = 1;
       }
-      if (evidences.length >= 3) break;
+      if (evidences.length >= 6) break;
     }
 
     // Prepare a stable evidence list (title + short preview) to return with answers
     // Use full `text` for model context but provide a small `text_preview` for UI.
     // Include referencing files (backlinks) for each evidence to provide independent file references
     const maps = index.__maps || {};
-    const evidenceList = evidences.slice(0,3).map(s=>{
+    const evidenceList = evidences.slice(0,6).map(s=>{
       const item = s.item;
       const canonicalPath = (item.path || item.id || '').replace(/\/$/, '');
       const refs = (maps.backlinks && maps.backlinks[canonicalPath]) || [];
