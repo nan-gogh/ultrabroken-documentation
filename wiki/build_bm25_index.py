@@ -394,7 +394,7 @@ def build_leaderboard(hof_path: str):
         if 4 <= rank <= 10:
             medal = f'🏅{medal}'
         elif rank > 10:
-            medal = f'📃 {medal}'
+            medal = f'📜 {medal}'
         # Linkify if we have a profile URL
         if name in contributor_links:
             display = f'[{name}]({contributor_links[name]})'
@@ -403,7 +403,18 @@ def build_leaderboard(hof_path: str):
         lines.append(f'| {medal} | {display} | {count} |')
         prev_count = count
 
-    block = '\n'.join(lines)
+    # Wrap table with CSS for fixed layout and ellipsis on long names
+    table = '\n'.join(lines)
+    block = (
+        '<div style="overflow-x: auto;">\n\n'
+        + table + '\n\n'
+        + '</div>\n\n'
+        + '<style>\n'
+        + '.md-typeset table { table-layout: fixed; width: 100%; }\n'
+        + '.md-typeset table td { overflow: hidden; text-overflow: ellipsis; }\n'
+        + '.md-typeset table td:nth-child(2) { white-space: nowrap; }\n'
+        + '</style>'
+    )
 
     hof = Path(hof_path)
     content = hof.read_text(encoding='utf-8')
