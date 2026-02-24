@@ -334,11 +334,11 @@ def build_grimoire_data(output: str):
 
 
 
-_CONTRIBUTORS_JSON = ROOT / 'docs' / 'wiki' / 'glitchcraft' / '_contributors.json'
+_CONTRIBUTORS_JSON = ROOT / 'docs' / 'wiki' / 'contributors.json'
 
 
 def build_leaderboard(hof_path: str):
-    """Update the ## Glitch Hunters & Contributors leaderboard in hall-of-fame.md.
+    """Update the ## Glitch Hunters & Contributors leaderboard in memorial.md.
 
     Scans docs/wiki/glitchcraft/ for all credit entries, tallies them per name,
     and rewrites the content between LEADERBOARD_START/LEADERBOARD_END markers
@@ -383,8 +383,13 @@ def build_leaderboard(hof_path: str):
     lines.append('')
     lines.append('| Rank | Contributor | Glitches |')
     lines.append('|------|-------------|:--------:|')
-    for i, (name, count) in enumerate(ranked, 1):
-        medal = medals.get(i, str(i))
+    rank = 1
+    prev_count = None
+    for name, count in ranked:
+        # Increment rank by 1 after each count group (handles ties with sequential ranks)
+        if prev_count is not None and count != prev_count:
+            rank += 1
+        medal = medals.get(rank, str(rank))
         # Linkify if we have a profile URL
         if name in contributor_links:
             display = f'[{name}]({contributor_links[name]})'
@@ -394,6 +399,7 @@ def build_leaderboard(hof_path: str):
         if count >= 5:
             display = f'**{display}**'
         lines.append(f'| {medal} | {display} | {count} |')
+        prev_count = count
 
     block = '\n'.join(lines)
 
@@ -432,8 +438,8 @@ def main():
                    help='Skip generating grimoire-data.json')
     p.add_argument(
         '--leaderboard-output', '-l',
-        default=str(ROOT / 'docs' / 'wiki' / 'hall-of-fame.md'),
-        help='Path to hall-of-fame.md to update the leaderboard in',
+        default=str(ROOT / 'docs' / 'wiki' / 'memorial.md'),
+        help='Path to memorial.md to update the leaderboard in',
     )
     p.add_argument('--no-leaderboard', dest='leaderboard', action='store_false',
                    help='Skip updating the Hall of Fame leaderboard')
