@@ -395,10 +395,13 @@ def build_leaderboard(hof_path: str):
             display = f'[{name}]({contributor_links[name]})'
         else:
             display = name
-        # Bold top contributors (5+ glitches)
-        if count >= 5:
-            display = f'**{display}**'
-        lines.append(f'| {medal} | {display} | {count} |')
+        # Highlight top 10 with background color
+        if rank <= 10:
+            display = f'<span style="background-color: #ffd700; padding: 2px 4px; border-radius: 3px;">{display}</span>'
+            count_str = f'<span style="background-color: #ffd700; padding: 2px 4px; border-radius: 3px;">{count}</span>'
+        else:
+            count_str = str(count)
+        lines.append(f'| {medal} | {display} | {count_str} |')
         prev_count = count
 
     block = '\n'.join(lines)
