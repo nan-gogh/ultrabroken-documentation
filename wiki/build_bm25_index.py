@@ -307,7 +307,7 @@ def build_grimoire_data(output: str):
       credits   – frontmatter credits list
       href      – relative link to the .md file, e.g. "./l-sprinting.md"
     """
-    _SKIP = {'glitchcraft-grimoire'}  # non-entry pages to exclude
+    _SKIP = {'_glitchcraft-grimoire'}  # non-entry pages to exclude
 
     glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
     entries = []

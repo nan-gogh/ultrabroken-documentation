@@ -3,7 +3,7 @@
  */
 
 // Synonym sets extracted to JSON for easier editing and reuse
-import RAW_SYNONYM_SETS from './synonyms.json' assert { type: 'json' };
+import RAW_SYNONYM_SETS from '../assets/data/synonyms.json' assert { type: 'json' };
 
 // Increase TOP_K to collect more candidates (we'll deduplicate by path for evidence)
 const TOP_K = 12;
