@@ -342,7 +342,7 @@ def build_leaderboard(json_path: str):
 
     Scans docs/wiki/glitchcraft/ for all credit entries, tallies per name,
     and writes a JSON file consumed by leaderboard.js to render the table
-    client-side in memorial.md.
+    client-side in memorandum.md.
 
     Contributor profile URLs are read from contributors.json (manually maintained).
     """
