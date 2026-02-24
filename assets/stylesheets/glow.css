@@ -1157,13 +1157,14 @@ li.task-list-item a, li.task-list a {
 /* Asset publish trigger: do not remove - used to trigger asset-only workflow */
 /* timestamp: 2026-02-13T00:00:00Z */
 
-/* ── Leaderboard table ──────────────────────────────────────────────────── */
+/* ── Leaderboard table ────────────────────────────────────────────────────── */
 #leaderboard-root .leaderboard-table {
   table-layout: fixed;
   width: 100%;
+  border-collapse: collapse;
 }
 #leaderboard-root .leaderboard-table tbody tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 240, 194, 0.25);
 }
 #leaderboard-root .leaderboard-table tbody tr:last-child {
   border-bottom: none;
