@@ -1162,20 +1162,29 @@ li.task-list-item a, li.task-list a {
   table-layout: fixed;
   width: 100%;
 }
-#leaderboard-root .leaderboard-table th:first-child,
-#leaderboard-root .leaderboard-table td:first-child {
-  width: 5em;
-  white-space: nowrap;
+#leaderboard-root .leaderboard-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-#leaderboard-root .leaderboard-table th:last-child,
-#leaderboard-root .leaderboard-table td:last-child {
+#leaderboard-root .leaderboard-table tbody tr:last-child {
+  border-bottom: none;
+}
+#leaderboard-root .leaderboard-table th:first-child,
+#leaderboard-root .leaderboard-table td.cell-rank {
   width: 5em;
   text-align: center;
+  white-space: nowrap;
 }
-#leaderboard-root .leaderboard-table td:nth-child(2) {
+#leaderboard-root .leaderboard-table th:nth-child(2),
+#leaderboard-root .leaderboard-table td.cell-name {
+  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+#leaderboard-root .leaderboard-table th:last-child,
+#leaderboard-root .leaderboard-table td.cell-count {
+  width: 5em;
+  text-align: center;
 }
 
 /* Align AI widget with main content (measured delta: 16px)

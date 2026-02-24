@@ -46,7 +46,7 @@
       var name = e.url
         ? '<a href="' + esc(e.url) + '">' + esc(e.name) + '</a>'
         : esc(e.name);
-      return '<tr><td>' + esc(medal(e.rank)) + '</td><td>' + name + '</td><td>' + e.count + '</td></tr>';
+      return '<tr><td class="cell-rank">' + esc(medal(e.rank)) + '</td><td class="cell-name">' + name + '</td><td class="cell-count">' + e.count + '</td></tr>';
     }).join('');
 
     root.innerHTML =
