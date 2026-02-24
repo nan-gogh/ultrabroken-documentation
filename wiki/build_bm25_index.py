@@ -288,17 +288,71 @@ def build_index(output: str, gzip_output: bool = False, chunk: bool = True):
     print('WROTE', out)
 
 
+def build_grimoire_data(output: str):
+    """Generate grimoire-data.json for the grimoire sort/filter UI.
+
+    Scans docs/wiki/glitchcraft/ for glitch entry files, extracts frontmatter
+    fields, and writes a compact JSON array identical in schema to the previously
+    hand-maintained grimoire-data.json it replaces.
+
+    Non-glitch files (those without a frontmatter `title` field, or known
+    index/meta pages) are skipped.
+
+    Schema per entry:
+      name      – frontmatter title
+      abbr      – frontmatter abbreviation
+      date      – frontmatter date (ISO 8601 string)
+      tags      – frontmatter tags list
+      versions  – frontmatter versions list
+      credits   – frontmatter credits list
+      href      – relative link to the .md file, e.g. "./l-sprinting.md"
+    """
+    _SKIP = {'glitchcraft-grimoire'}  # non-entry pages to exclude
+
+    glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
+    entries = []
+    for p in sorted(glitchcraft_dir.glob('*.md')):
+        if p.stem in _SKIP:
+            continue
+        fm = extract_frontmatter(p)
+        title = fm.get('title', '')
+        if not title:
+            continue  # skip pages without a title (index/meta pages)
+        entries.append({
+            'name':     title,
+            'abbr':     fm.get('abbreviation', ''),
+            'date':     fm.get('date', ''),
+            'tags':     fm.get('tags', []),
+            'versions': fm.get('versions', []),
+            'credits':  fm.get('credits', []),
+            'href':     f'./{p.name}',
+        })
+    out = Path(output)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(entries, ensure_ascii=False), encoding='utf-8')
+    print('WROTE', out)
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--output', '-o', default='site/wiki_index.json')
     p.add_argument('--gzip', action='store_true')
     p.add_argument('--no-chunk', dest='chunk', action='store_false', help='Do not chunk pages; emit one item per page')
     p.add_argument('--docs-dir', default='docs', help='Path under the repo root to read markdown from (e.g. docs/wiki)')
+    p.add_argument(
+        '--grimoire-output', '-g',
+        default=str(ROOT / 'docs' / 'wiki' / 'glitchcraft' / 'grimoire-data.json'),
+        help='Path to write grimoire-data.json (default: docs/wiki/glitchcraft/grimoire-data.json)',
+    )
+    p.add_argument('--no-grimoire', dest='grimoire', action='store_false',
+                   help='Skip generating grimoire-data.json')
     args = p.parse_args()
     # allow overriding which docs subtree to index (default 'docs')
     global DOCS
     DOCS = ROOT / args.docs_dir
     build_index(args.output, gzip_output=args.gzip, chunk=args.chunk)
+    if args.grimoire:
+        build_grimoire_data(args.grimoire_output)
 
 
 if __name__ == '__main__':
