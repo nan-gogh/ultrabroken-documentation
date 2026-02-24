@@ -334,7 +334,7 @@ def build_grimoire_data(output: str):
 
 
 
-_CONTRIBUTORS_JSON = ROOT / 'docs' / 'assets' / 'scripts' / 'hunter-socials.json'
+_CONTRIBUTORS_JSON = ROOT / 'docs' / 'assets' / 'data' / 'hunter-socials.json'
 
 
 def build_leaderboard(json_path: str):
@@ -400,15 +400,15 @@ def main():
     p.add_argument('--docs-dir', default='docs', help='Path under the repo root to read markdown from (e.g. docs/wiki)')
     p.add_argument(
         '--grimoire-output', '-g',
-        default=str(ROOT / 'docs' / 'wiki' / 'glitchcraft' / '_grimoire-data.json'),
-        help='Path to write _grimoire-data.json (default: docs/wiki/glitchcraft/_grimoire-data.json)',
+        default=str(ROOT / 'docs' / 'assets' / 'data' / 'grimoire-data.json'),
+        help='Path to write grimoire-data.json (default: docs/assets/data/grimoire-data.json)',
     )
     p.add_argument('--no-grimoire', dest='grimoire', action='store_false',
                    help='Skip generating grimoire-data.json')
     p.add_argument(
         '--leaderboard-output', '-l',
-        default=str(ROOT / 'docs' / 'assets' / 'scripts' / 'leaderboard-data.json'),
-        help='Path to write leaderboard-data.json (default: docs/assets/scripts/leaderboard-data.json)',
+        default=str(ROOT / 'docs' / 'assets' / 'data' / 'leaderboard-data.json'),
+        help='Path to write leaderboard-data.json (default: docs/assets/data/leaderboard-data.json)',
     )
     p.add_argument('--no-leaderboard', dest='leaderboard', action='store_false',
                    help='Skip updating the Hall of Fame leaderboard')
