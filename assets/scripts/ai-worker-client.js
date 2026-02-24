@@ -20,7 +20,7 @@
   // homepage search links (`/wiki/?q=Title`) that navigate to the wiki root
   // and auto-trigger the search bar via the `?q=` param handler in search-link.js.
   // When false they render as direct wiki page links.
-  const USE_TITLE_SEARCH_LINKS = true;
+  const USE_TITLE_SEARCH_LINKS = false;
   // Base URL used to build `?q=` search links when USE_TITLE_SEARCH_LINKS is true.
   const WIKI_SEARCH_BASE = 'https://nan-gogh.github.io/ultrabroken-documentation/wiki/';
   // Hard cap on query length sent to the worker. Configurable via `window.AI_MAX_QUERY_CHARS`.
@@ -273,22 +273,21 @@
                   const raw = marked.parse(clean);
                   const sanitized = DOMPurify.sanitize(raw);
                   const normalized = normalizeHtmlWhitespace(sanitized);
-                  return normalized;
-                }catch(e){ return clean.replace(/\s+$/,''); }
+                  w.out.innerHTML = normalized;
+                }catch(e){ w.out.textContent = clean.replace(/\s+$/,''); }
               } else {
-                return clean.replace(/\s+$/,'');
+                w.out.textContent = clean.replace(/\s+$/,'');
               }
-            }catch(e){ return clean.replace(/\s+$/,''); }
+            }catch(e){ w.out.textContent = clean.replace(/\s+$/,''); }
           };
-          // Display main answer with "Response" h2 heading, optionally followed by
-          // raw sources block when configured to show the response's sources section.
-          w.out.innerHTML = '';
-          const responseHeading = el('h2', { class: 'ub-ai-response-heading md-typeset', style: 'margin: 0.5em 0 0.5em 0; cursor: default; pointer-events: none;' }, 'Response');
-          w.out.appendChild(responseHeading);
-          const responseContent = el('div', { class: 'ub-ai-response-content' }, '');
-          const textToRender = responseSources != null ? responseText + '\n\n' + responseSources : responseText;
-          responseContent.innerHTML = safeRender(textToRender);
-          w.out.appendChild(responseContent);
+          // Display main answer; optionally append the raw sources block
+          // when configured to show the response's sources section.
+          // Append raw response_sources only when Worker provided them.
+          if (responseSources != null) {
+            safeRender(responseText + '\n\n' + responseSources);
+          } else {
+            safeRender(responseText);
+          }
         } else if (r.debug) {
           w.out.textContent = JSON.stringify(r.debug, null, 2);
         } else {
@@ -307,7 +306,7 @@
           const seenQueries = new Set();
           if (showModelSources){
             if (w.evidence && !w.evidence.querySelector('.ub-ai-resources')){
-              const heading = el('h2', { class: 'ub-ai-resources md-typeset', style: 'margin: 0.5em 0 0.5em 0; cursor: default; pointer-events: none;' }, 'Resources');
+              const heading = el('h2', { class: 'ub-ai-resources md-typeset' }, 'Resources');
               if (w.evidence) w.evidence.appendChild(heading);
               const sep = el('hr', { class: 'ub-ai-resources-sep' }, '');
               if (w.evidence) w.evidence.appendChild(sep);

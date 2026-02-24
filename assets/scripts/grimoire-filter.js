@@ -59,7 +59,7 @@
      Data
      ================================================================ */
   function fetchData(cb) {
-    fetch('../../assets/data/grimoire-data.json').then(function (r) {
+    fetch('../../../assets/data/grimoire-data.json').then(function (r) {
       if (!r.ok) throw new Error(r.status);
       return r.json();
     }).then(cb).catch(function (e) {
