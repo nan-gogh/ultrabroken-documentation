@@ -334,7 +334,7 @@ def build_grimoire_data(output: str):
 
 
 
-_CONTRIBUTORS_JSON = ROOT / 'docs' / 'wiki' / 'contributors.json'
+_CONTRIBUTORS_JSON = ROOT / 'docs' / 'assets' / 'scripts' / 'hunter-socials.json'
 
 
 def build_leaderboard(json_path: str):
@@ -407,8 +407,8 @@ def main():
                    help='Skip generating grimoire-data.json')
     p.add_argument(
         '--leaderboard-output', '-l',
-        default=str(ROOT / 'docs' / 'wiki' / '_leaderboard-data.json'),
-        help='Path to write _leaderboard-data.json (default: docs/wiki/_leaderboard-data.json)',
+        default=str(ROOT / 'docs' / 'assets' / 'scripts' / 'leaderboard-data.json'),
+        help='Path to write leaderboard-data.json (default: docs/assets/scripts/leaderboard-data.json)',
     )
     p.add_argument('--no-leaderboard', dest='leaderboard', action='store_false',
                    help='Skip updating the Hall of Fame leaderboard')
