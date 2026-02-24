@@ -917,6 +917,22 @@ li.task-list-item a, li.task-list a {
   margin: 0 0 0.3rem 0;
 }
 
+/* AI response and resources headings — no spacing, no clickability */
+.ub-ai-response-heading, .ub-ai-resources {
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+/* Remove Material's heading anchor links from AI headings */
+.ub-ai-response-heading a, .ub-ai-resources a {
+  cursor: default !important;
+  pointer-events: none !important;
+}
+.ub-ai-response-heading::after, .ub-ai-resources::after {
+  display: none !important;
+}
+
 /* Use New Rocker for the AI widget's input to match header/search styling */
 .ub-ai-input {
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
