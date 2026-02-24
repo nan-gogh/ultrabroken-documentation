@@ -390,9 +390,11 @@ def build_leaderboard(hof_path: str):
         if prev_count is not None and count != prev_count:
             rank += 1
         medal = medals.get(rank, str(rank))
-        # Add certificate to ranks 4-10 (top 3 already have special medals)
+        # Add medal to ranks 4-10 (top 3 already have special medals)
         if 4 <= rank <= 10:
             medal = f'🏅{medal}'
+        elif rank > 10:
+            medal = f'📃 {medal}'
         # Linkify if we have a profile URL
         if name in contributor_links:
             display = f'[{name}]({contributor_links[name]})'
