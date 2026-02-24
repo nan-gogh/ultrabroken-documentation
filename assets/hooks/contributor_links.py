@@ -19,7 +19,7 @@ from pathlib import Path
 
 _CONTRIBUTORS_JSON = (
     Path(__file__).parent.parent.parent  # docs/
-    / 'wiki' / 'glitchcraft' / '_contributors.json'
+    / 'wiki' / 'contributors.json'
 )
 
 # Loaded once per build on first page processed
