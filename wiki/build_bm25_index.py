@@ -333,17 +333,31 @@ def build_grimoire_data(output: str):
     print('WROTE', out)
 
 
+
+_CONTRIBUTORS_JSON = ROOT / 'docs' / 'wiki' / 'glitchcraft' / '_contributors.json'
+
+
 def build_leaderboard(hof_path: str):
     """Update the ## Glitch Hunters & Contributors leaderboard in hall-of-fame.md.
 
     Scans docs/wiki/glitchcraft/ for all credit entries, tallies them per name,
     and rewrites the content between LEADERBOARD_START/LEADERBOARD_END markers
     with a ranked markdown table sorted by contribution count descending.
+
+    Contributor profile links are read from _contributors.json (manually maintained).
     """
     from collections import Counter
     from datetime import date
 
-    _SKIP = {'glitchcraft-grimoire'}
+    # Load manually-maintained contributor links
+    contributor_links: dict[str, str] = {}
+    if _CONTRIBUTORS_JSON.exists():
+        try:
+            contributor_links = json.loads(_CONTRIBUTORS_JSON.read_text(encoding='utf-8'))
+        except Exception:
+            pass
+
+    _SKIP = {'_glitchcraft-grimoire'}
     glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
 
     counts: Counter = Counter()
@@ -371,7 +385,14 @@ def build_leaderboard(hof_path: str):
     lines.append('|------|-------------|:--------:|')
     for i, (name, count) in enumerate(ranked, 1):
         medal = medals.get(i, str(i))
-        display = f'**{name}**' if count >= 5 else name
+        # Linkify if we have a profile URL
+        if name in contributor_links:
+            display = f'[{name}]({contributor_links[name]})'
+        else:
+            display = name
+        # Bold top contributors (5+ glitches)
+        if count >= 5:
+            display = f'**{display}**'
         lines.append(f'| {medal} | {display} | {count} |')
 
     block = '\n'.join(lines)
@@ -404,8 +425,8 @@ def main():
     p.add_argument('--docs-dir', default='docs', help='Path under the repo root to read markdown from (e.g. docs/wiki)')
     p.add_argument(
         '--grimoire-output', '-g',
-        default=str(ROOT / 'docs' / 'wiki' / 'glitchcraft' / 'grimoire-data.json'),
-        help='Path to write grimoire-data.json (default: docs/wiki/glitchcraft/grimoire-data.json)',
+        default=str(ROOT / 'docs' / 'wiki' / 'glitchcraft' / '_grimoire-data.json'),
+        help='Path to write _grimoire-data.json (default: docs/wiki/glitchcraft/_grimoire-data.json)',
     )
     p.add_argument('--no-grimoire', dest='grimoire', action='store_false',
                    help='Skip generating grimoire-data.json')
