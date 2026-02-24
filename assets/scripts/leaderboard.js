@@ -31,15 +31,10 @@
      ================================================================ */
 
   function fetchData(cb) {
-    fetch('../_leaderboard-data.json')
+    fetch('/assets/scripts/leaderboard-data.json')
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(cb)
-      .catch(function () {
-        fetch('./_leaderboard-data.json')
-          .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-          .then(cb)
-          .catch(function () { cb(null); });
-      });
+      .catch(function () { cb(null); });
   }
 
   /* ================================================================
