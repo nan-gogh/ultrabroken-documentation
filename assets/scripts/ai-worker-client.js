@@ -153,7 +153,7 @@
     // Output area (answer + evidence). `out` holds the model answer; `evidenceWrap` holds clickable evidence links returned by the Worker.
     // Starts blank; the typewriter callback populates it after the first cycle.
     const out = el('div', { class: 'ub-ai-out' }, '');
-    const evidenceWrap = el('div', { class: 'ub-ai-evidence' }, '');
+    const evidenceWrap = el('div', { class: 'ub-ai-evidence md-typeset' }, '');
     inputWrap.appendChild(input);
     row.appendChild(inputWrap);
     row.appendChild(askBtn);
@@ -295,7 +295,7 @@
         try{
           const ev = r.evidence || [];
           if (Array.isArray(ev) && ev.length && w.evidence){
-            const heading = el('h2', { class: 'ub-ai-resources md-typeset' }, 'Resources');
+            const heading = el('h2', { class: 'ub-ai-resources' }, 'Resources');
             w.evidence.appendChild(heading);
             const sep = el('hr', { class: 'ub-ai-resources-sep' }, '');
             w.evidence.appendChild(sep);
@@ -304,7 +304,7 @@
             ev.forEach(item => {
               const id = item.id || item.path || '';
               const titleText = item.title || '';
-              let slug = String(id).replace(/\.md$/,'').replace(/^\/+|\/+$/g, '');
+              let slug = String(id).replace(/\.md$/,'').replace(/^\/+|\/+$/g, '').replace(/\/index$/, '');
               const text = titleText || slug || id;
               if (!text.trim()) return;
               // Build direct wiki link
@@ -326,7 +326,7 @@
         try{
           const modelSources = Array.isArray(r.sources) ? r.sources : [];
           if (SHOW_MODEL_SOURCES && modelSources.length && w.evidence){
-            const heading = el('h2', { class: 'ub-ai-related md-typeset' }, 'Related');
+            const heading = el('h2', { class: 'ub-ai-related' }, 'Related');
             w.evidence.appendChild(heading);
             const sep = el('hr', { class: 'ub-ai-related-sep' }, '');
             w.evidence.appendChild(sep);

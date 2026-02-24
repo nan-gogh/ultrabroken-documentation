@@ -922,6 +922,10 @@ li.task-list-item a, li.task-list a {
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
 }
 
+/* Suppress Material permalink anchor injection on evidence/related headings */
+.ub-ai-evidence h2 { cursor: default !important; }
+.ub-ai-evidence h2 .headerlink { display: none !important; }
+
 /* ================================================================
    Grimoire of Glitchcraft – Filter & Sort UI
    ================================================================ */
