@@ -1157,6 +1157,27 @@ li.task-list-item a, li.task-list a {
 /* Asset publish trigger: do not remove - used to trigger asset-only workflow */
 /* timestamp: 2026-02-13T00:00:00Z */
 
+/* ── Leaderboard table ──────────────────────────────────────────────────── */
+#leaderboard-root .leaderboard-table {
+  table-layout: fixed;
+  width: 100%;
+}
+#leaderboard-root .leaderboard-table th:first-child,
+#leaderboard-root .leaderboard-table td:first-child {
+  width: 5em;
+  white-space: nowrap;
+}
+#leaderboard-root .leaderboard-table th:last-child,
+#leaderboard-root .leaderboard-table td:last-child {
+  width: 5em;
+  text-align: center;
+}
+#leaderboard-root .leaderboard-table td:nth-child(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* Align AI widget with main content (measured delta: 16px)
    Adjusts the AI input container and its overlay so the textarea and
    fake placeholder visually align with `.md-content`. If this needs
