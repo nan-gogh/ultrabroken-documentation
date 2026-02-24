@@ -273,21 +273,22 @@
                   const raw = marked.parse(clean);
                   const sanitized = DOMPurify.sanitize(raw);
                   const normalized = normalizeHtmlWhitespace(sanitized);
-                  w.out.innerHTML = normalized;
-                }catch(e){ w.out.textContent = clean.replace(/\s+$/,''); }
+                  return normalized;
+                }catch(e){ return clean.replace(/\s+$/,''); }
               } else {
-                w.out.textContent = clean.replace(/\s+$/,'');
+                return clean.replace(/\s+$/,'');
               }
-            }catch(e){ w.out.textContent = clean.replace(/\s+$/,''); }
+            }catch(e){ return clean.replace(/\s+$/,''); }
           };
-          // Display main answer; optionally append the raw sources block
-          // when configured to show the response's sources section.
-          // Append raw response_sources only when Worker provided them.
-          if (responseSources != null) {
-            safeRender(responseText + '\n\n' + responseSources);
-          } else {
-            safeRender(responseText);
-          }
+          // Display main answer with "Response" h2 heading, optionally followed by
+          // raw sources block when configured to show the response's sources section.
+          w.out.innerHTML = '';
+          const responseHeading = el('h2', { class: 'md-typeset' }, 'Response');
+          w.out.appendChild(responseHeading);
+          const responseContent = el('div', { class: 'ub-ai-response-content' }, '');
+          const textToRender = responseSources != null ? responseText + '\n\n' + responseSources : responseText;
+          responseContent.innerHTML = safeRender(textToRender);
+          w.out.appendChild(responseContent);
         } else if (r.debug) {
           w.out.textContent = JSON.stringify(r.debug, null, 2);
         } else {
