@@ -649,13 +649,13 @@
                 let resourcesFooter = '';
                 try {
                   const res = w._lastResources || [];
-                  if (res.length) resourcesFooter = '\n\n### Resources\n' + res.map(r => '- [' + r.text + '](' + r.href + ')').join('\n');
+                  if (res.length) resourcesFooter = '\n\n## Resources\n' + res.map(r => '- [' + r.text + '](' + r.href + ')').join('\n');
                 } catch(e){}
                 // Build Related footer with search links
                 let relatedFooter = '';
                 try {
                   const rel = w._lastRelated || [];
-                  if (rel.length) relatedFooter = '\n\n### Related\n' + rel.map(r => '- [' + r.text + '](' + WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(r.query) + ')').join('\n');
+                  if (rel.length) relatedFooter = '\n\n## Related\n' + rel.map(r => '- [' + r.text + '](' + WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(r.query) + ')').join('\n');
                 } catch(e){}
                 const disclaimer = '\n\n### Disclaimer\nThis response was synthesized by [The Librarian](https://nan-gogh.github.io/ultrabroken-documentation/wiki/about/#ai-search). Take it with a grain of salt — always verify against the source pages.';
                 const text = queryHeading + responseText.trim() + resourcesFooter + relatedFooter + disclaimer;
