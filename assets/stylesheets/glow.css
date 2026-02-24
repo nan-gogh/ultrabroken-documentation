@@ -1163,6 +1163,9 @@ li.task-list-item a, li.task-list a {
   width: 100%;
   border-collapse: collapse;
 }
+#leaderboard-root .leaderboard-table thead tr {
+  border-bottom: 1px solid rgba(0, 240, 194, 0.4);
+}
 #leaderboard-root .leaderboard-table tbody tr {
   border-bottom: 1px solid rgba(0, 240, 194, 0.25);
 }

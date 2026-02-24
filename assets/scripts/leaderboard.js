@@ -17,7 +17,10 @@
 
   var MEDALS = { 1: '\uD83E\uDD47', 2: '\uD83E\uDD48', 3: '\uD83E\uDD49' };  // 🥇🥈🥉
   function medal(rank) {
-    return MEDALS[rank] || (rank <= 10 ? '\uD83C\uDFC5' + rank : '\uD83D\uDCDC ' + rank);  // 🏅 📜
+    return String(rank);
+  }
+  function emoji(rank) {
+    return MEDALS[rank] || (rank <= 10 ? '\uD83C\uDFC5' : '\uD83D\uDCDC');  // 🏅 📜
   }
 
   function esc(s) {
@@ -46,7 +49,7 @@
       var name = e.url
         ? '<a href="' + esc(e.url) + '">' + esc(e.name) + '</a>'
         : esc(e.name);
-      return '<tr><td class="cell-rank">' + esc(medal(e.rank)) + '</td><td class="cell-name">' + name + '</td><td class="cell-count">' + e.count + '</td></tr>';
+      return '<tr><td class="cell-rank">' + esc(medal(e.rank)) + '</td><td class="cell-name">' + name + '</td><td class="cell-count">' + e.count + ' ' + emoji(e.rank) + '</td></tr>';
     }).join('');
 
     root.innerHTML =
