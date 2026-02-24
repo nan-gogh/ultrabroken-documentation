@@ -12,17 +12,13 @@
     return e;
   }
   
-  // Internal flag: controls whether model-returned `Source:` lines are rendered.
-  // This is intentionally an internal toggle (not user-facing). Set to `true`
-  // to enable rendering of model-supplied sources, or `false` to disable.
+  // Internal flag: controls whether model-returned source titles are rendered
+  // under a "Related" heading as search links. Set to `true` to enable, `false`
+  // to hide them entirely. Worker evidence ("Resources") is always shown.
   const SHOW_MODEL_SOURCES = true;
-  // Internal toggle: when true, model-supplied source titles are rendered as
-  // homepage search links (`/wiki/?q=Title`) that navigate to the wiki root
-  // and auto-trigger the search bar via the `?q=` param handler in search-link.js.
-  // When false they render as direct wiki page links.
-  const USE_TITLE_SEARCH_LINKS = false;
-  // Base URL used to build `?q=` search links when USE_TITLE_SEARCH_LINKS is true.
-  const WIKI_SEARCH_BASE = 'https://nan-gogh.github.io/ultrabroken-documentation/wiki/';
+  // Site root and wiki base used to build direct page links and search links.
+  const SITE_ROOT = 'https://nan-gogh.github.io/ultrabroken-documentation';
+  const WIKI_SEARCH_BASE = SITE_ROOT + '/wiki/';
   // Hard cap on query length sent to the worker. Configurable via `window.AI_MAX_QUERY_CHARS`.
   const MAX_QUERY_CHARS = 50;
   // Idle texts shown in the output area before any query is made and after
@@ -206,7 +202,8 @@
       w._idleMode = true;    // true while showing idle/cleared state; false while showing a query result
       w._silenceMode = false; // true after a silence response while the user hasn't yet focused the input
       w._lastResponseText = null; // raw markdown response text stored for share-to-clipboard
-      w._lastSources = [];        // rendered source titles extracted after response, for share footer
+      w._lastResources = [];      // rendered Resource entries [{text, href}] (direct wiki links)
+      w._lastRelated = [];        // rendered Related entries [{text, query}] (search links)
       // No user-facing toggle: `SHOW_MODEL_SOURCES` controls whether model-
       // returned `Source:` lines are rendered. This is intentionally internal.
       // The Worker now returns structured `response_text`, optional `response_sources` (text block)
@@ -219,7 +216,8 @@
         try{ if (typeof lockInput === 'function') lockInput(); }catch(e){}
         w._idleMode = false;
         w._lastResponseText = null;
-        w._lastSources = [];
+        w._lastResources = [];
+        w._lastRelated = [];
         try{ if (typeof updateVisibility === 'function') updateVisibility(); }catch(e){}
         w.out.textContent = LOADING_TEXT;
         if (w.evidence) w.evidence.innerHTML = '';
@@ -293,97 +291,60 @@
         } else {
           w.out.textContent = '';
         }
-        // Render model-provided structured `r.sources` as links when present
+        // ── Resources: Worker-provided evidence as direct wiki links ──
         try{
-          //const base = 'https://nan-gogh.github.io/ultrabroken-documentation/wiki/';
-          const modelSources = Array.isArray(r.sources) ? r.sources : [];
-          const showModelSources = SHOW_MODEL_SOURCES && modelSources && modelSources.length;
-          // When rendering as homepage search links we need to dedupe model-provided
-          // sources and Worker-provided evidence so the final list contains
-          // unique search queries. `seenQueries` tracks already-emitted queries
-          // (case-sensitive, using the display string) and ensures the uppermost
-          // instance is kept.
-          const seenQueries = new Set();
-          if (showModelSources){
-            if (w.evidence && !w.evidence.querySelector('.ub-ai-resources')){
-              const heading = el('h2', { class: 'ub-ai-resources md-typeset' }, 'Resources');
-              if (w.evidence) w.evidence.appendChild(heading);
-              const sep = el('hr', { class: 'ub-ai-resources-sep' }, '');
-              if (w.evidence) w.evidence.appendChild(sep);
-            }
-            let list = el('ul', { class: 'ub-ai-evidence-list' }, []);
-            if (w.evidence) w.evidence.appendChild(list);
-            const siteRoot = 'https://nan-gogh.github.io/ultrabroken-documentation';
-            modelSources.forEach(s => {
-              const text = s.title || (s.path||s.id) || '';
-              const query = String(text).trim();
-              if (USE_TITLE_SEARCH_LINKS) {
-                if (seenQueries.has(query)) return; // skip duplicate
-                seenQueries.add(query);
-                const href = 'search:' + encodeURIComponent(query);
-                const a = el('a', { href: href, class: 'search-link', 'data-query': query }, text);
-                const li = el('li', {}, a);
-                list.appendChild(li);
+          const ev = r.evidence || [];
+          if (Array.isArray(ev) && ev.length && w.evidence){
+            const heading = el('h2', { class: 'ub-ai-resources md-typeset' }, 'Resources');
+            w.evidence.appendChild(heading);
+            const sep = el('hr', { class: 'ub-ai-resources-sep' }, '');
+            w.evidence.appendChild(sep);
+            const list = el('ul', { class: 'ub-ai-evidence-list' }, []);
+            w.evidence.appendChild(list);
+            ev.forEach(item => {
+              const id = item.id || item.path || '';
+              const titleText = item.title || '';
+              let slug = String(id).replace(/\.md$/,'').replace(/^\/+|\/+$/g, '');
+              const text = titleText || slug || id;
+              if (!text.trim()) return;
+              // Build direct wiki link
+              let href;
+              if (slug.startsWith('wiki/')) {
+                href = SITE_ROOT + '/' + slug + '/';
               } else {
-                const p = (s.path || s.id || '').toString();
-                let href;
-                if (p && p.startsWith('/wiki/')) {
-                  href = siteRoot + p;
-                } else {
-                  const slug = p.replace(/^\/+|\/+$/g,'').replace(/\.md$/,'');
-                  href = WIKI_SEARCH_BASE + encodeURI(slug);
-                }
-                const a = el('a', { href: href, target: '_blank', rel: 'noopener noreferrer' }, text);
-                const li = el('li', {}, a);
-                list.appendChild(li);
+                href = SITE_ROOT + '/wiki/' + slug + '/';
               }
+              const a = el('a', { href: href, target: '_blank', rel: 'noopener noreferrer' }, text);
+              const li = el('li', {}, a);
+              list.appendChild(li);
+              w._lastResources.push({ text: text.trim(), href: href });
             });
           }
+        }catch(e){ /* ignore evidence rendering errors */ }
 
-          // Always render Worker-provided evidence as authoritative clickable links
-          try{
-            const ev = r.evidence || [];
-            // Worker evidence rendering controlled by internal flag.
-            if (Array.isArray(ev) && ev.length){
-              // reuse existing list if model sources created one, otherwise create
-              let list = w.evidence && w.evidence.querySelector && w.evidence.querySelector('.ub-ai-evidence-list');
-              if (!list) { list = el('ul', { class: 'ub-ai-evidence-list' }, []); if (w.evidence) w.evidence.appendChild(list); }
-              ev.forEach(item => {
-                const id = item.id || item.path || '';
-                // Prefer item.title for search queries; fallback to normalized id
-                const titleText = item.title || '';
-                // Normalize id to a wiki path without .md
-                let slug = String(id).replace(/\.md$/,'').replace(/^\/+|\/+$/g, '');
-                const text = titleText || slug || id;
-                if (USE_TITLE_SEARCH_LINKS) {
-                  const query = String(text).trim();
-                  if (seenQueries.has(query)) return; // already emitted by model sources
-                  seenQueries.add(query);
-                  const href = 'search:' + encodeURIComponent(query);
-                  const a = el('a', { href: href, class: 'search-link', 'data-query': query }, text);
-                  const li = el('li', {}, a);
-                  list.appendChild(li);
-                } else {
-                  const href = WIKI_SEARCH_BASE + encodeURI(slug);
-                  const a = el('a', { href: href, target: '_blank', rel: 'noopener noreferrer' }, text);
-                  const li = el('li', {}, a);
-                  list.appendChild(li);
-                }
-              });
-            }
-          }catch(e){ /* ignore rendering errors */ }
-        }catch(e){ /* ignore model source parsing errors */ }
-        // Collect rendered source titles from the evidence list for share-to-clipboard
+        // ── Related: Model-provided sources as search links ──
         try{
-          w._lastSources = [];
-          if (w.evidence) {
-            w.evidence.querySelectorAll('.ub-ai-evidence-list a, .ub-ai-evidence-list button').forEach(a => {
-              const t = a.getAttribute('data-query') || a.textContent || '';
-              if (t.trim()) w._lastSources.push(t.trim());
+          const modelSources = Array.isArray(r.sources) ? r.sources : [];
+          if (SHOW_MODEL_SOURCES && modelSources.length && w.evidence){
+            const heading = el('h2', { class: 'ub-ai-related md-typeset' }, 'Related');
+            w.evidence.appendChild(heading);
+            const sep = el('hr', { class: 'ub-ai-related-sep' }, '');
+            w.evidence.appendChild(sep);
+            const list = el('ul', { class: 'ub-ai-related-list' }, []);
+            w.evidence.appendChild(list);
+            modelSources.forEach(s => {
+              const text = s.title || (s.path || s.id) || '';
+              const query = String(text).trim();
+              if (!query) return;
+              const href = 'search:' + encodeURIComponent(query);
+              const a = el('a', { href: href, class: 'search-link', 'data-query': query }, text);
+              const li = el('li', {}, a);
+              list.appendChild(li);
+              w._lastRelated.push({ text: query, query: query });
             });
           }
-          try{ updateVisibility(); }catch(e){}
-        }catch(e){}
+        }catch(e){ /* ignore model source rendering errors */ }
+        try{ updateVisibility(); }catch(e){}
         // If nothing was rendered and there was no answer, show silence
         if (!w.out.textContent && (!r.evidence || !r.evidence.length)) w.out.textContent = 'silence';
         // Silence response: unlock the input so the user can edit/correct their query.
@@ -506,7 +467,8 @@
       const doClear = () => {
         w._idleMode = true;
         w._lastResponseText = null;
-        w._lastSources = [];
+        w._lastResources = [];
+        w._lastRelated = [];
         try{ if (typeof unlockInput === 'function') unlockInput(); }catch(e){}
         try{ if (typeof w.setValue === 'function') w.setValue(''); else if (w.input) w.input.value = ''; }catch(e){}
         // Only show idle text immediately if input is not focused; otherwise let the typewriter callback restore it.
@@ -534,7 +496,7 @@
         if (has) {
           try{ if (w.clear) { w.clear.style.display = 'flex'; w.clear.disabled = false; } }catch(e){}
           try{ if (w.btn)   { w.btn.style.display   = 'flex'; w.btn.disabled   = false; } }catch(e){}
-          // Share: visible with input text; enabled only when a response is available to copy
+          // Share: visible with input text; enabled only when a response is available
           try{ if (w.share) { w.share.style.display = 'flex'; w.share.disabled = !w._lastResponseText; } }catch(e){}
         } else {
           try{ if (w.clear) { w.clear.style.display = 'none'; w.clear.disabled = true; } }catch(e){}
@@ -683,14 +645,20 @@
                   const q = String((typeof w.getValue === 'function' ? w.getValue() : (w.input && w.input.value || '')) || '').trim();
                   if (q) queryHeading = '## ' + q + '\n\n';
                 } catch(e){}
-                // Build plain-text sources footer from rendered evidence titles
-                let sourcesFooter = '';
+                // Build Resources footer with direct wiki links
+                let resourcesFooter = '';
                 try {
-                  const titles = w._lastSources || [];
-                  if (titles.length) sourcesFooter = '\n\n### Sources\n' + titles.map(t => '- [' + t + '](' + WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(t) + ')').join('\n');
+                  const res = w._lastResources || [];
+                  if (res.length) resourcesFooter = '\n\n### Resources\n' + res.map(r => '- [' + r.text + '](' + r.href + ')').join('\n');
+                } catch(e){}
+                // Build Related footer with search links
+                let relatedFooter = '';
+                try {
+                  const rel = w._lastRelated || [];
+                  if (rel.length) relatedFooter = '\n\n### Related\n' + rel.map(r => '- [' + r.text + '](' + WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(r.query) + ')').join('\n');
                 } catch(e){}
                 const disclaimer = '\n\n### Disclaimer\nThis response was synthesized by [The Librarian](https://nan-gogh.github.io/ultrabroken-documentation/wiki/about/#ai-search). Take it with a grain of salt — always verify against the source pages.';
-                const text = queryHeading + responseText.trim() + sourcesFooter + disclaimer;
+                const text = queryHeading + responseText.trim() + resourcesFooter + relatedFooter + disclaimer;
                 navigator.clipboard.writeText(text).then(() => {
                   try { showCopiedToast && showCopiedToast('Copied to clipboard'); } catch (e) {}
                 }).catch(err => {
