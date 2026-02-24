@@ -337,17 +337,18 @@ def build_grimoire_data(output: str):
 _CONTRIBUTORS_JSON = ROOT / 'docs' / 'wiki' / 'contributors.json'
 
 
-def build_leaderboard(hof_path: str):
-    """Update the ## Glitch Hunters & Contributors leaderboard in memorial.md.
+def build_leaderboard(json_path: str):
+    """Write _leaderboard-data.json with pre-computed ranked contributor counts.
 
-    Scans docs/wiki/glitchcraft/ for all credit entries, tallies them per name,
-    and rewrites the content between LEADERBOARD_START/LEADERBOARD_END markers
-    with a ranked markdown table sorted by contribution count descending.
+    Scans docs/wiki/glitchcraft/ for all credit entries, tallies per name,
+    and writes a JSON file consumed by leaderboard.js to render the table
+    client-side in memorial.md.
 
-    Contributor profile links are read from _contributors.json (manually maintained).
+    Contributor profile URLs are read from contributors.json (manually maintained).
     """
     from collections import Counter
     from datetime import date
+    from itertools import groupby
 
     # Load manually-maintained contributor links
     contributor_links: dict[str, str] = {}
@@ -368,72 +369,27 @@ def build_leaderboard(hof_path: str):
         if not fm.get('title'):
             continue
         for name in fm.get('credits', []):
-            name = name.strip()
-            if name:
+            if name := name.strip():
                 counts[name] += 1
 
     ranked = sorted(counts.items(), key=lambda x: (-x[1], x[0].lower()))
     total = len(ranked)
     updated = date.today().isoformat()
 
-    medals = {1: '🥇', 2: '🥈', 3: '🥉'}
+    entries = []
+    for rank, (count, group) in enumerate(groupby(ranked, key=lambda x: x[1]), start=1):
+        for name, _ in group:
+            entries.append({
+                'rank': rank,
+                'name': name,
+                'url': contributor_links.get(name),
+                'count': count,
+            })
 
-    lines = []
-    lines.append(f'_{total} contributors — last updated {updated}_')
-    lines.append('')
-    lines.append('| Rank | Contributor | Glitches |')
-    lines.append('|------|-------------|:--------:|')
-    rank = 1
-    prev_count = None
-    for name, count in ranked:
-        # Increment rank by 1 after each count group (handles ties with sequential ranks)
-        if prev_count is not None and count != prev_count:
-            rank += 1
-        medal = medals.get(rank, str(rank))
-        # Add medal to ranks 4-10 (top 3 already have special medals)
-        if 4 <= rank <= 10:
-            medal = f'🏅{medal}'
-        elif rank > 10:
-            medal = f'📜 {medal}'
-        # Linkify if we have a profile URL
-        if name in contributor_links:
-            display = f'[{name}]({contributor_links[name]})'
-        else:
-            display = name
-        lines.append(f'| {medal} | {display} | {count} |')
-        prev_count = count
-
-    # Wrap table with CSS for fixed layout and ellipsis on long names
-    table = '\n'.join(lines)
-    block = (
-        '<div style="overflow-x: auto;">\n\n'
-        + table + '\n\n'
-        + '</div>\n\n'
-        + '<style>\n'
-        + '.md-typeset table { table-layout: fixed; width: 100%; }\n'
-        + '.md-typeset table td { overflow: hidden; text-overflow: ellipsis; }\n'
-        + '.md-typeset table td:nth-child(2) { white-space: nowrap; }\n'
-        + '</style>'
-    )
-
-    hof = Path(hof_path)
-    content = hof.read_text(encoding='utf-8')
-
-    start_marker = '<!-- LEADERBOARD_START -->'
-    end_marker   = '<!-- LEADERBOARD_END -->'
-    pattern = re.compile(
-        re.escape(start_marker) + r'[\s\S]*?' + re.escape(end_marker),
-        re.MULTILINE,
-    )
-    replacement = f'{start_marker}\n{block}\n{end_marker}'
-
-    if start_marker not in content:
-        print(f'WARNING: {start_marker} marker not found in {hof_path} — skipping leaderboard update')
-        return
-
-    new_content = pattern.sub(replacement, content)
-    hof.write_text(new_content, encoding='utf-8')
-    print(f'WROTE leaderboard ({total} contributors) -> {hof_path}')
+    payload = {'total': total, 'updated': updated, 'entries': entries}
+    out = Path(json_path)
+    out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f'WROTE leaderboard ({total} contributors) -> {json_path}')
 
 
 def main():
@@ -451,8 +407,8 @@ def main():
                    help='Skip generating grimoire-data.json')
     p.add_argument(
         '--leaderboard-output', '-l',
-        default=str(ROOT / 'docs' / 'wiki' / 'memorial.md'),
-        help='Path to memorial.md to update the leaderboard in',
+        default=str(ROOT / 'docs' / 'wiki' / '_leaderboard-data.json'),
+        help='Path to write _leaderboard-data.json (default: docs/wiki/_leaderboard-data.json)',
     )
     p.add_argument('--no-leaderboard', dest='leaderboard', action='store_false',
                    help='Skip updating the Hall of Fame leaderboard')
