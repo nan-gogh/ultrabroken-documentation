@@ -333,6 +333,69 @@ def build_grimoire_data(output: str):
     print('WROTE', out)
 
 
+def build_leaderboard(hof_path: str):
+    """Update the ## Glitch Hunters & Contributors leaderboard in hall-of-fame.md.
+
+    Scans docs/wiki/glitchcraft/ for all credit entries, tallies them per name,
+    and rewrites the content between LEADERBOARD_START/LEADERBOARD_END markers
+    with a ranked markdown table sorted by contribution count descending.
+    """
+    from collections import Counter
+    from datetime import date
+
+    _SKIP = {'glitchcraft-grimoire'}
+    glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
+
+    counts: Counter = Counter()
+    for p in glitchcraft_dir.glob('*.md'):
+        if p.stem in _SKIP:
+            continue
+        fm = extract_frontmatter(p)
+        if not fm.get('title'):
+            continue
+        for name in fm.get('credits', []):
+            name = name.strip()
+            if name:
+                counts[name] += 1
+
+    ranked = sorted(counts.items(), key=lambda x: (-x[1], x[0].lower()))
+    total = len(ranked)
+    updated = date.today().isoformat()
+
+    medals = {1: '🥇', 2: '🥈', 3: '🥉'}
+
+    lines = []
+    lines.append(f'_{total} contributors — last updated {updated}_')
+    lines.append('')
+    lines.append('| Rank | Contributor | Glitches |')
+    lines.append('|------|-------------|:--------:|')
+    for i, (name, count) in enumerate(ranked, 1):
+        medal = medals.get(i, str(i))
+        display = f'**{name}**' if count >= 5 else name
+        lines.append(f'| {medal} | {display} | {count} |')
+
+    block = '\n'.join(lines)
+
+    hof = Path(hof_path)
+    content = hof.read_text(encoding='utf-8')
+
+    start_marker = '<!-- LEADERBOARD_START -->'
+    end_marker   = '<!-- LEADERBOARD_END -->'
+    pattern = re.compile(
+        re.escape(start_marker) + r'[\s\S]*?' + re.escape(end_marker),
+        re.MULTILINE,
+    )
+    replacement = f'{start_marker}\n{block}\n{end_marker}'
+
+    if start_marker not in content:
+        print(f'WARNING: {start_marker} marker not found in {hof_path} — skipping leaderboard update')
+        return
+
+    new_content = pattern.sub(replacement, content)
+    hof.write_text(new_content, encoding='utf-8')
+    print(f'WROTE leaderboard ({total} contributors) -> {hof_path}')
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--output', '-o', default='site/wiki_index.json')
@@ -346,6 +409,13 @@ def main():
     )
     p.add_argument('--no-grimoire', dest='grimoire', action='store_false',
                    help='Skip generating grimoire-data.json')
+    p.add_argument(
+        '--leaderboard-output', '-l',
+        default=str(ROOT / 'docs' / 'wiki' / 'hall-of-fame.md'),
+        help='Path to hall-of-fame.md to update the leaderboard in',
+    )
+    p.add_argument('--no-leaderboard', dest='leaderboard', action='store_false',
+                   help='Skip updating the Hall of Fame leaderboard')
     args = p.parse_args()
     # allow overriding which docs subtree to index (default 'docs')
     global DOCS
@@ -353,6 +423,8 @@ def main():
     build_index(args.output, gzip_output=args.gzip, chunk=args.chunk)
     if args.grimoire:
         build_grimoire_data(args.grimoire_output)
+    if args.leaderboard:
+        build_leaderboard(args.leaderboard_output)
 
 
 if __name__ == '__main__':
