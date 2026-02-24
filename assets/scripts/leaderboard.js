@@ -31,7 +31,7 @@
      ================================================================ */
 
   function fetchData(cb) {
-    fetch('./leaderboard-data.json')
+    fetch('../../assets/scripts/leaderboard-data.json')
       .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(cb)
       .catch(function () { cb(null); });
