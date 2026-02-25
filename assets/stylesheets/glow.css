@@ -1151,7 +1151,8 @@ li.task-list-item a, li.task-list a {
 @media (max-width: 600px) {
   .grim-label { min-width: 100%; margin-bottom: 0.1rem; }
   .grim-reset { margin-left: 0; }
-  .grim-dd-panel { min-width: 180px; max-height: 45vh; }
+  /* Right-align panel so it expands leftward, preventing right-side overflow */
+  .grim-dd-panel { left: auto; right: 0; min-width: 180px; max-height: 45vh; }
 }
 
 /* Asset publish trigger: do not remove - used to trigger asset-only workflow */
