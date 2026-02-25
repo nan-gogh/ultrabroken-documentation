@@ -1192,53 +1192,60 @@ li.task-list-item a, li.task-list a {
   transform: translateX(-16px);
 }*/
 
-/* Custom styling for MkDocs Material admonitions (notes/warnings/etc.) */
+/* ── Admonition (note/tip/warning) styling ─────────────────────────────────── */
 .md-content .admonition {
-  background: linear-gradient(180deg, rgba(2,12,10,0.48), rgba(4,20,18,0.42));
-  border-left: 4px solid var(--teal-glow);
-  color: #e8fff9;
-  padding: 0.9rem 1rem;
-  border-radius: 10px;
-  display: block;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  border: 1px solid rgba(0,240,194,0.18);
+  border-left: 3px solid var(--teal-glow);
+  border-radius: 6px;
+  background: rgba(0,30,24,0.55);
+  box-shadow: none;
+  padding: 0;
+  margin: 0.9em 0;
 }
 
+/* Title row */
 .md-content .admonition .admonition-title {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 700;
+  background: rgba(0,240,194,0.07);
   color: var(--teal-glow);
-  margin-bottom: 0.35rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem 0.35rem 0.6rem;
+  margin: 0;
+  border-bottom: 1px solid rgba(0,240,194,0.10);
+  border-radius: 4px 4px 0 0;
 }
 
+/* Material renders the icon via mask-image on ::before — just size and tint it */
 .md-content .admonition .admonition-title::before {
-  content: "i";
-  display: inline-flex;
-  width: 32px;
-  height: 32px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(180deg, var(--teal-glow), var(--teal-dark));
-  color: rgba(6,10,8,0.95);
-  box-shadow: 0 0 12px rgba(0,240,194,0.22);
-  font-weight: 800;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--teal-glow);
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.md-content .admonition p,
-.md-content .admonition li {
-  color: #dffbf3;
-  margin: 0.25rem 0;
+/* Body text */
+.md-content .admonition > p:not(.admonition-title),
+.md-content .admonition > ul,
+.md-content .admonition > ol {
+  padding: 0.45rem 0.75rem;
+  margin: 0;
+  color: rgba(220,255,245,0.88);
+  font-size: 0.87rem;
 }
 
-/* Slightly different accent for 'note' visitors vs warnings */
-.md-content .admonition.note { border-left-color: var(--teal-glow); }
-.md-content .admonition.tip { border-left-color: #ffd966; }
-.md-content .admonition.warning { border-left-color: #ff9f43; }
+/* Per-type accent colours */
+.md-content .admonition.tip  { border-left-color: #ffd966; }
+.md-content .admonition.tip  .admonition-title { color: #ffd966; background: rgba(255,217,102,0.07); }
+.md-content .admonition.tip  .admonition-title::before { background-color: #ffd966; }
 
-/* Keep admonition content compact on small screens */
-@media (max-width: 640px) {
-  .md-content .admonition { padding: 0.75rem; }
-  .md-content .admonition .admonition-title::before { width: 26px; height: 26px; }
-}
+.md-content .admonition.warning  { border-left-color: #ff9f43; }
+.md-content .admonition.warning  .admonition-title { color: #ff9f43; background: rgba(255,159,67,0.07); }
+.md-content .admonition.warning  .admonition-title::before { background-color: #ff9f43; }
+
+.md-content .admonition.danger  { border-left-color: #ee5a5a; }
+.md-content .admonition.danger  .admonition-title { color: #ee5a5a; background: rgba(238,90,90,0.07); }
+.md-content .admonition.danger  .admonition-title::before { background-color: #ee5a5a; }
