@@ -238,7 +238,8 @@
         if (!wasOpen) {
           dd.classList.add('open');
           var si = dd.querySelector('.grim-dd-search');
-          if (si) si.focus();
+          /* Only focus on desktop; mobile keyboard auto-appears and is annoying */
+          if (si && window.innerWidth > 600) si.focus();
         }
       });
     });
