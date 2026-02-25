@@ -1028,7 +1028,7 @@ li.task-list-item a, li.task-list a {
   left: 0;
   z-index: 120;
   min-width: 200px;
-  max-width: min(320px, calc(100% - 2rem));
+  max-width: min(320px, calc(100vw - 2rem));
   max-height: 300px;
   background: #1a1a2e;
   border: 1px solid rgba(0, 240, 194, 0.18);
@@ -1052,8 +1052,6 @@ li.task-list-item a, li.task-list a {
   font-size: 0.78rem;
   outline: none;
   flex-shrink: 0;
-  width: 100%;
-  box-sizing: border-box;
 }
 .grim-dd-search:focus { border-color: var(--teal-glow); }
 .grim-dd-search::placeholder { color: var(--muted-text); }
