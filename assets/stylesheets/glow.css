@@ -1090,6 +1090,12 @@ li.task-list-item a, li.task-list a {
   padding-bottom: 0.4rem;
 }
 
+/* Results list (prevent inherited padding from .md-content) */
+#grim-list {
+  margin: 0;
+  padding: 0;
+}
+
 /* Results list */
 .grim-ol {
   list-style: none;
