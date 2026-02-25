@@ -1103,6 +1103,11 @@ li.task-list-item a, li.task-list a {
   padding: 0;
   counter-reset: grim;
 }
+/* Override Material's .md-typeset ol padding-left which wins on specificity */
+.md-typeset .grim-ol {
+  padding-left: 0;
+  margin-left: 0;
+}
 .grim-li {
   counter-increment: grim;
   display: flex;
