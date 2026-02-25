@@ -2103,11 +2103,13 @@
 <h2 id="despawn-reasons">Despawn reasons</h2>
 <hr />
 <p>When a piece of equipment dies, the game provides a reason for the despawning, so that it knows how to handle the despawn (e.g. a fade out for void, a simple actor deletion).
-For example, death reasons include:
-- <code>FallIntoAbyss</code> for voiding out.
-- <code>Eaten</code> for getting eaten by a frox or a molduga.
-- <code>PickedUp</code> for picking up an item when something else is equipped.
-Each reason corresponds to a number in an internal enumeration.</p>
+For example, death reasons include:</p>
+<ul>
+<li><code>FallIntoAbyss</code> for voiding out.</li>
+<li><code>Eaten</code> for getting eaten by a frox or a molduga.</li>
+<li><code>PickedUp</code> for picking up an item when something else is equipped.
+Each reason corresponds to a number in an internal enumeration.</li>
+</ul>
 <p>The two kinds of despawn we are able to interrupt are <code>FallIntoAbyss</code> and <code>Eaten</code>.
 This splits DI into two sub-glitches: <code>FallIntoAbyss</code> DI, aka Void Dipping, and <code>Eaten</code> DI.
 The behavioural changes stem from the way the game handles killing an already dead actor: the death will only go through if the newer death reason number is smaller than the older death reason number.
