@@ -365,17 +365,19 @@
       el.innerHTML = '<p class="grim-empty">No glitches match the current filters.</p>';
       return;
     }
-    var h = '<ol class="grim-ol">';
+    var h = '<div class="grim-ol">';
     for (var i = 0; i < list.length; i++) {
       var e = list[i];
       var dl = unk(e.date) ? 'Unknown' : e.date;
       var ab = e.abbr
         ? ' <span class="grim-abbr">(' + esc(e.abbr) + ')</span>' : '';
-      h += '<li class="grim-li"><a href="' + at(toHref(e.href)) + '">'
+      h += '<div class="grim-li">'
+         + '<span class="grim-num">' + (i + 1) + '.</span>'
+         + '<a href="' + at(toHref(e.href)) + '">'
          + esc(e.name) + ab + '</a>'
-         + '<span class="grim-date">' + esc(dl) + '</span></li>';
+         + '<span class="grim-date">' + esc(dl) + '</span></div>';
     }
-    el.innerHTML = h + '</ol>';
+    el.innerHTML = h + '</div>';
   }
 
   function renderStatus(n) {

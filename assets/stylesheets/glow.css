@@ -1098,10 +1098,8 @@ li.task-list-item a, li.task-list a {
 
 /* Results list */
 .grim-ol {
-  list-style: none;
   margin: 0;
   padding: 0;
-  counter-reset: grim;
 }
 /* Override Material's .md-typeset ol padding-left which wins on specificity */
 .md-typeset .grim-ol {
@@ -1109,21 +1107,18 @@ li.task-list-item a, li.task-list a {
   margin-left: 0;
 }
 .grim-li {
-  counter-increment: grim;
   display: flex;
   align-items: baseline;
   padding: 0.25rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  gap: 0;
+  gap: 0.35rem;
 }
-.grim-li::before {
-  content: counter(grim) ".";
+.grim-num {
   min-width: 2.2rem;
   text-align: right;
   color: var(--muted-text);
   font-size: 0.78rem;
   flex-shrink: 0;
-  padding-right: 0;
 }
 .grim-li a {
   flex: 1 1 0;
