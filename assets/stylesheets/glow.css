@@ -1114,8 +1114,8 @@ li.task-list-item a, li.task-list a {
   gap: 0.35rem;
 }
 .grim-num {
-  min-width: 2.2rem;
-  text-align: left;
+  min-width: 1rem;
+  text-align: right;
   color: var(--muted-text);
   font-size: 0.78rem;
   flex-shrink: 0;
