@@ -1191,3 +1191,54 @@ li.task-list-item a, li.task-list a {
 .ub-ai-input-wrap {
   transform: translateX(-16px);
 }*/
+
+/* Custom styling for MkDocs Material admonitions (notes/warnings/etc.) */
+.md-content .admonition {
+  background: linear-gradient(180deg, rgba(2,12,10,0.48), rgba(4,20,18,0.42));
+  border-left: 4px solid var(--teal-glow);
+  color: #e8fff9;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+.md-content .admonition .admonition-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  color: var(--teal-glow);
+  margin-bottom: 0.35rem;
+}
+
+.md-content .admonition .admonition-title::before {
+  content: "i";
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--teal-glow), var(--teal-dark));
+  color: rgba(6,10,8,0.95);
+  box-shadow: 0 0 12px rgba(0,240,194,0.22);
+  font-weight: 800;
+}
+
+.md-content .admonition p,
+.md-content .admonition li {
+  color: #dffbf3;
+  margin: 0.25rem 0;
+}
+
+/* Slightly different accent for 'note' visitors vs warnings */
+.md-content .admonition.note { border-left-color: var(--teal-glow); }
+.md-content .admonition.tip { border-left-color: #ffd966; }
+.md-content .admonition.warning { border-left-color: #ff9f43; }
+
+/* Keep admonition content compact on small screens */
+@media (max-width: 640px) {
+  .md-content .admonition { padding: 0.75rem; }
+  .md-content .admonition .admonition-title::before { width: 26px; height: 26px; }
+}
