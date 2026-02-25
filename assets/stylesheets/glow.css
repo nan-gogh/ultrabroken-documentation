@@ -1103,8 +1103,8 @@ li.task-list-item a, li.task-list a {
   align-items: baseline;
   padding: 0.25rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  gap: 0.35rem;
-  /*gap: 0;*/
+  /*gap: 0.35rem;*/
+  gap: 0;
 }
 .grim-li::before {
   content: counter(grim) ".";
@@ -1114,7 +1114,7 @@ li.task-list-item a, li.task-list a {
   color: var(--muted-text);
   font-size: 0.78rem;
   flex-shrink: 0;
-  padding-right: 0.25rem;
+  padding-right: 0;
 }
 .grim-li a {
   flex: 1 1 0;
