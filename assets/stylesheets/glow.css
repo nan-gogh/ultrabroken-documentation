@@ -1107,7 +1107,12 @@ li.task-list-item a, li.task-list a {
 }
 .grim-li::before {
   content: counter(grim) ".";
-  display: none;
+  min-width: 2.2rem;
+  text-align: right;
+  color: var(--muted-text);
+  font-size: 0.78rem;
+  flex-shrink: 0;
+  padding-right: 0;
 }
 .grim-li a {
   flex: 1 1 0;
