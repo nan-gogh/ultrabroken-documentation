@@ -50,6 +50,13 @@ def on_page_markdown(markdown: str, page, config, files, **kwargs) -> str:
     if not contributors:
         return markdown
 
+    # Skip entries with empty URLs — these are auto-aggregated names pending
+    # manual social link registration in hunter-socials.json. They render as
+    # plain text until a URL is provided.
+    contributors = {k: v for k, v in contributors.items() if v and v.strip()}
+    if not contributors:
+        return markdown
+
     # Build patterns once: match name (with optional trailing underscore),
     # but NOT when already inside a markdown link label (preceded by `[`).
     patterns: list[tuple[re.Pattern, str]] = []
