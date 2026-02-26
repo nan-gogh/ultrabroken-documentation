@@ -345,11 +345,11 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
 
 
 
-_CONTRIBUTORS_JSON = ROOT / 'docs' / 'assets' / 'data' / 'hunter-socials.json'
+_CONTRIBUTORS_JSON = ROOT / 'docs' / 'assets' / 'data' / 'credits.json'
 
 
 def aggregate_contributors(discovered_credits: set[str]) -> None:
-    """Merge newly-discovered credit names into hunter-socials.json.
+    """Merge newly-discovered credit names into credits.json.
 
     New names are added with an empty URL ("") as a pending placeholder
     indicating that a social link is pending manual entry. Existing entries
@@ -376,7 +376,7 @@ def aggregate_contributors(discovered_credits: set[str]) -> None:
         json.dumps(existing, ensure_ascii=False, indent=2),
         encoding='utf-8'
     )
-    print(f'UPDATED hunter-socials.json (+{len(new_names)} pending: {', '.join(new_names)})')
+    print(f'UPDATED credits.json (+{len(new_names)} pending: {', '.join(new_names)})')
 
 
 def build_leaderboard(json_path: str, discovered_credits: Counter | None = None):
@@ -387,7 +387,7 @@ def build_leaderboard(json_path: str, discovered_credits: Counter | None = None)
     files a second time. Otherwise falls back to scanning docs/wiki/glitchcraft/
     directly.
 
-    Note: Aggregation of new names into hunter-socials.json is handled by the
+    Note: Aggregation of new names into credits.json is handled by the
     caller (main()) right after build_grimoire_data(), so it happens exactly
     once and before this function is called.
     """
@@ -463,7 +463,7 @@ def main():
     p.add_argument(
         '--socials-output',
         default=None,
-        help='If given, also copy the updated hunter-socials.json to this path (e.g. site/assets/data/hunter-socials.json)',
+        help='If given, also copy the updated credits.json to this path (e.g. site/assets/data/credits.json)',
     )
     args = p.parse_args()
     # allow overriding which docs subtree to index (default 'docs')
@@ -476,13 +476,13 @@ def main():
     # Aggregate newly-discovered credits exactly once, before leaderboard generation
     if credit_counts:
         aggregate_contributors(set(credit_counts.keys()))
-    # Optionally copy the (now-updated) hunter-socials.json into the site directory
+    # Optionally copy the (now-updated) credits.json into the site directory
     if args.socials_output:
         import shutil
         dest = Path(args.socials_output)
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(_CONTRIBUTORS_JSON, dest)
-        print(f'COPIED hunter-socials.json -> {dest}')
+        print(f'COPIED credits.json -> {dest}')
     if args.leaderboard:
         build_leaderboard(args.leaderboard_output, discovered_credits=credit_counts)
 
