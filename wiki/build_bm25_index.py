@@ -381,20 +381,21 @@ def aggregate_contributors(discovered_credits: set[str]) -> None:
         print(f'WARNING: credits.json contains {len(orphans)} orphan(s) not in frontmatter: {', '.join(orphans)}')
 
     new_names = sorted(name for name in discovered_credits if name and name not in existing)
-    if not new_names:
-        return
-
     for name in new_names:
         existing[name] = ''
 
     # Sort keys alphabetically for cleaner diffs
     sorted_existing = dict(sorted(existing.items(), key=lambda x: x[0].lower()))
 
-    _CONTRIBUTORS_JSON.write_text(
-        json.dumps(sorted_existing, ensure_ascii=False, indent=2),
-        encoding='utf-8'
-    )
-    print(f'UPDATED credits.json (+{len(new_names)} pending: {', '.join(new_names)})')
+    if list(existing.keys()) != list(sorted_existing.keys()) or new_names:
+        _CONTRIBUTORS_JSON.write_text(
+            json.dumps(sorted_existing, ensure_ascii=False, indent=2),
+            encoding='utf-8'
+        )
+        if new_names:
+            print(f'UPDATED credits.json (+{len(new_names)} pending: {', '.join(new_names)})')
+        else:
+            print('NORMALIZED credits.json (re-sorted keys)')
 
 
 def aggregate_tags(discovered_tags: set[str]) -> None:
@@ -420,20 +421,21 @@ def aggregate_tags(discovered_tags: set[str]) -> None:
         print(f'WARNING: tags.json contains {len(orphans)} orphan(s) not in frontmatter: {", ".join(orphans)}')
 
     new_tags = sorted(tag for tag in discovered_tags if tag and tag not in existing)
-    if not new_tags:
-        return
-
     for tag in new_tags:
         existing[tag] = ''
 
     # Sort keys alphabetically for cleaner diffs
     sorted_existing = dict(sorted(existing.items(), key=lambda x: x[0].lower()))
 
-    _TAGS_JSON.write_text(
-        json.dumps(sorted_existing, ensure_ascii=False, indent=2),
-        encoding='utf-8'
-    )
-    print(f'UPDATED tags.json (+{len(new_tags)} new tags: {", ".join(new_tags)})')
+    if list(existing.keys()) != list(sorted_existing.keys()) or new_tags:
+        _TAGS_JSON.write_text(
+            json.dumps(sorted_existing, ensure_ascii=False, indent=2),
+            encoding='utf-8'
+        )
+        if new_tags:
+            print(f'UPDATED tags.json (+{len(new_tags)} new tags: {", ".join(new_tags)})')
+        else:
+            print('NORMALIZED tags.json (re-sorted keys)')
 
 
 def build_leaderboard(json_path: str, discovered_credits: Counter | None = None):
