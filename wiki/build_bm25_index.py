@@ -460,6 +460,11 @@ def main():
     )
     p.add_argument('--no-leaderboard', dest='leaderboard', action='store_false',
                    help='Skip updating the Hall of Fame leaderboard')
+    p.add_argument(
+        '--socials-output',
+        default=None,
+        help='If given, also copy the updated hunter-socials.json to this path (e.g. site/assets/data/hunter-socials.json)',
+    )
     args = p.parse_args()
     # allow overriding which docs subtree to index (default 'docs')
     global DOCS
@@ -471,6 +476,13 @@ def main():
     # Aggregate newly-discovered credits exactly once, before leaderboard generation
     if credit_counts:
         aggregate_contributors(set(credit_counts.keys()))
+    # Optionally copy the (now-updated) hunter-socials.json into the site directory
+    if args.socials_output:
+        import shutil
+        dest = Path(args.socials_output)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(_CONTRIBUTORS_JSON, dest)
+        print(f'COPIED hunter-socials.json -> {dest}')
     if args.leaderboard:
         build_leaderboard(args.leaderboard_output, discovered_credits=credit_counts)
 
