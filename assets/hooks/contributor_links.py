@@ -19,7 +19,7 @@ from pathlib import Path
 
 _CONTRIBUTORS_JSON = (
     Path(__file__).parent.parent  # docs/assets/
-    / 'data' / 'hunter-socials.json'
+    / 'data' / 'credits.json'
 )
 
 # Loaded once per build on first page processed
@@ -51,7 +51,7 @@ def on_page_markdown(markdown: str, page, config, files, **kwargs) -> str:
         return markdown
 
     # Skip entries with empty URLs — these are auto-aggregated names pending
-    # manual social link registration in hunter-socials.json. They render as
+    # manual social link registration in credits.json. They render as
     # plain text until a URL is provided.
     contributors = {k: v for k, v in contributors.items() if v and v.strip()}
     if not contributors:
