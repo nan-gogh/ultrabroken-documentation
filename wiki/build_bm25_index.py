@@ -29,6 +29,7 @@ This is intended to be lightweight and run in CI or locally. It does NOT
 produce embeddings — the Worker uses BM25 lexical retrieval over this index.
 """
 from pathlib import Path
+from collections import Counter
 import argparse
 import re
 import json
@@ -288,7 +289,7 @@ def build_index(output: str, gzip_output: bool = False, chunk: bool = True):
     print('WROTE', out)
 
 
-def build_grimoire_data(output: str):
+def build_grimoire_data(output: str) -> tuple[list, Counter]:
     """Generate grimoire-data.json for the grimoire sort/filter UI.
 
     Scans docs/wiki/glitchcraft/ for glitch entry files, extracts frontmatter
@@ -306,11 +307,17 @@ def build_grimoire_data(output: str):
       versions  – frontmatter versions list
       credits   – frontmatter credits list
       href      – relative link to the .md file, e.g. "./l-sprinting.md"
+
+    Returns:
+      (entries, all_credits) where all_credits is a Counter of {name: count}
+      tallied across all glitch files. Passed directly to build_leaderboard()
+      to avoid scanning the same files a second time.
     """
     _SKIP = {'_glitchcraft-grimoire'}  # non-entry pages to exclude
 
     glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
     entries = []
+    all_credits: Counter = Counter()
     for p in sorted(glitchcraft_dir.glob('*.md')):
         if p.stem in _SKIP:
             continue
@@ -318,39 +325,76 @@ def build_grimoire_data(output: str):
         title = fm.get('title', '')
         if not title:
             continue  # skip pages without a title (index/meta pages)
+        credits_list = [c.strip() for c in fm.get('credits', []) if c.strip()]
+        for name in credits_list:
+            all_credits[name] += 1
         entries.append({
             'name':     title,
             'abbr':     fm.get('abbreviation', ''),
             'date':     fm.get('date', ''),
             'tags':     fm.get('tags', []),
             'versions': fm.get('versions', []),
-            'credits':  fm.get('credits', []),
+            'credits':  credits_list,
             'href':     f'./{p.name}',
         })
     out = Path(output)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(entries, ensure_ascii=False), encoding='utf-8')
     print('WROTE', out)
+    return entries, all_credits
 
 
 
 _CONTRIBUTORS_JSON = ROOT / 'docs' / 'assets' / 'data' / 'hunter-socials.json'
 
 
-def build_leaderboard(json_path: str):
-    """Write _leaderboard-data.json with pre-computed ranked contributor counts.
+def aggregate_contributors(discovered_credits: set[str]) -> None:
+    """Merge newly-discovered credit names into hunter-socials.json.
 
-    Scans docs/wiki/glitchcraft/ for all credit entries, tallies per name,
-    and writes a JSON file consumed by leaderboard.js to render the table
-    client-side in memorandum.md.
+    New names are added with an empty URL ("") as a pending placeholder
+    indicating that a social link is pending manual entry. Existing entries
+    are never overwritten.
 
-    Contributor profile URLs are read from contributors.json (manually maintained).
+    Empty-URL entries are intentionally skipped by contributor_links.py so
+    they render as plain text (not broken links) until a URL is provided.
     """
-    from collections import Counter
+    existing: dict[str, str] = {}
+    if _CONTRIBUTORS_JSON.exists():
+        try:
+            existing = json.loads(_CONTRIBUTORS_JSON.read_text(encoding='utf-8'))
+        except Exception:
+            pass
+
+    new_names = sorted(name for name in discovered_credits if name and name not in existing)
+    if not new_names:
+        return
+
+    for name in new_names:
+        existing[name] = ''
+
+    _CONTRIBUTORS_JSON.write_text(
+        json.dumps(existing, ensure_ascii=False, indent=2),
+        encoding='utf-8'
+    )
+    print(f'UPDATED hunter-socials.json (+{len(new_names)} pending: {', '.join(new_names)})')
+
+
+def build_leaderboard(json_path: str, discovered_credits: Counter | None = None):
+    """Write leaderboard-data.json with pre-computed ranked contributor counts.
+
+    If discovered_credits (a Counter of {name: count}) is provided — passed
+    from build_grimoire_data() — it is used directly to avoid scanning glitch
+    files a second time. Otherwise falls back to scanning docs/wiki/glitchcraft/
+    directly.
+
+    Note: Aggregation of new names into hunter-socials.json is handled by the
+    caller (main()) right after build_grimoire_data(), so it happens exactly
+    once and before this function is called.
+    """
     from datetime import date
     from itertools import groupby
 
-    # Load manually-maintained contributor links
+    # Load contributor social links (already updated with pending entries by main).
     contributor_links: dict[str, str] = {}
     if _CONTRIBUTORS_JSON.exists():
         try:
@@ -358,19 +402,22 @@ def build_leaderboard(json_path: str):
         except Exception:
             pass
 
-    _SKIP = {'_glitchcraft-grimoire'}
-    glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
-
-    counts: Counter = Counter()
-    for p in glitchcraft_dir.glob('*.md'):
-        if p.stem in _SKIP:
-            continue
-        fm = extract_frontmatter(p)
-        if not fm.get('title'):
-            continue
-        for name in fm.get('credits', []):
-            if name := name.strip():
-                counts[name] += 1
+    # Use pre-computed credit counts if available, else scan glitch files directly.
+    if discovered_credits is not None:
+        counts: Counter = discovered_credits
+    else:
+        _SKIP = {'_glitchcraft-grimoire'}
+        glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
+        counts = Counter()
+        for p in glitchcraft_dir.glob('*.md'):
+            if p.stem in _SKIP:
+                continue
+            fm = extract_frontmatter(p)
+            if not fm.get('title'):
+                continue
+            for name in fm.get('credits', []):
+                if name := name.strip():
+                    counts[name] += 1
 
     ranked = sorted(counts.items(), key=lambda x: (-x[1], x[0].lower()))
     total = len(ranked)
@@ -379,10 +426,11 @@ def build_leaderboard(json_path: str):
     entries = []
     for rank, (count, group) in enumerate(groupby(ranked, key=lambda x: x[1]), start=1):
         for name, _ in group:
+            url = contributor_links.get(name, '')
             entries.append({
                 'rank': rank,
                 'name': name,
-                'url': contributor_links.get(name),
+                'url': url if url else None,  # normalize "" to None for clean JSON
                 'count': count,
             })
 
@@ -417,10 +465,14 @@ def main():
     global DOCS
     DOCS = ROOT / args.docs_dir
     build_index(args.output, gzip_output=args.gzip, chunk=args.chunk)
+    credit_counts: Counter | None = None
     if args.grimoire:
-        build_grimoire_data(args.grimoire_output)
+        _, credit_counts = build_grimoire_data(args.grimoire_output)
+    # Aggregate newly-discovered credits exactly once, before leaderboard generation
+    if credit_counts:
+        aggregate_contributors(set(credit_counts.keys()))
     if args.leaderboard:
-        build_leaderboard(args.leaderboard_output)
+        build_leaderboard(args.leaderboard_output, discovered_credits=credit_counts)
 
 
 if __name__ == '__main__':
