@@ -73,6 +73,8 @@
   // Interaction
   var hoveredNode  = null;
   var dragNode     = null;
+  var dragTargetX  = 0;     // cursor position in world coords — physics cannot override this
+  var dragTargetY  = 0;
   var isPanning    = false;
   var panStartX, panStartY, panCamX, panCamY;
   var pointer = { x: 0, y: 0 };
@@ -412,12 +414,16 @@
     if (!running) return;
     // While dragging, maintain a gentle alpha floor so connected nodes
     // follow softly — but never pump it higher than what's already there
-    if (dragNode && simAlpha < 0.05) simAlpha = 0.05;
+    if (dragNode && simAlpha < 0.02) simAlpha = 0.02;
     // Keep ticking while simulation is hot or being dragged
     // Hover is visual-only and must NOT burn alpha
     if (!isSettled()) {
       tick();
     }
+    // Physics (collision + center-of-mass) shifts all positions each tick,
+    // including the dragged node. Restore it to the cursor target so it
+    // stays pinned to the mouse regardless of what the simulation does.
+    if (dragNode) { dragNode.x = dragTargetX; dragNode.y = dragTargetY; }
     draw();
     requestAnimationFrame(frame);
   }
@@ -453,6 +459,8 @@
       var w = screenToWorld(sx, sy);
       dragNode.x = w.x;
       dragNode.y = w.y;
+      dragTargetX = w.x;
+      dragTargetY = w.y;
       return;
     }
 
@@ -486,6 +494,8 @@
       var hit = hitTest(w.x, w.y);
       if (hit) {
         dragNode = hit;
+        dragTargetX = w.x;
+        dragTargetY = w.y;
         reheat(0.3);
         e.preventDefault();
       }
@@ -554,6 +564,8 @@
       var hit = hitTest(w.x, w.y);
       if (hit) {
         dragNode = hit;
+        dragTargetX = hit.x;
+        dragTargetY = hit.y;
         touchId = t.identifier;
         reheat(0.3);
         e.preventDefault();
@@ -602,6 +614,8 @@
           var w = screenToWorld(sx, sy);
           dragNode.x = w.x;
           dragNode.y = w.y;
+          dragTargetX = w.x;
+          dragTargetY = w.y;
           e.preventDefault();
         } else if (isPanning) {
           camX = panCamX - (sx - panStartX) / zoom;
