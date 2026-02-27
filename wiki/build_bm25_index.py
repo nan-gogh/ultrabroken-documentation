@@ -512,6 +512,111 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
     print(f'WROTE glossary.json ({len(glossary)} entries) -> {_GLOSSARY_JSON}')
 
 
+_GRAPH_JSON = ROOT / 'docs' / 'assets' / 'data' / 'graph.json'
+
+
+def build_graph(glossary_entries: list | None = None) -> None:
+    """Build graph.json — a node/edge graph of how glitchcraft pages reference each other.
+
+    For each glitchcraft page, reads its markdown body and checks which other
+    glossary entries (by name, abbreviation, or alias) are mentioned. Produces
+    a graph suitable for a force-directed visualisation.
+
+    Schema:
+      {
+        "nodes": [{"id": "wiki/glitchcraft/slug/", "name": "Glitch Name", "abbr": "GN"}],
+        "edges": [{"source": "wiki/glitchcraft/a/", "target": "wiki/glitchcraft/b/"}]
+      }
+
+    Edges are directional: source mentions target. Duplicate edges are removed.
+    Self-references are excluded.
+    """
+    # Load glossary entries if not provided
+    if glossary_entries is None:
+        if _GLOSSARY_JSON.exists():
+            glossary_entries = json.loads(_GLOSSARY_JSON.read_text(encoding='utf-8'))
+        else:
+            print('SKIP graph.json — glossary.json not found')
+            return
+
+    # Build lookup: list of (compiled_regex, path) sorted longest-first
+    patterns: list[tuple[re.Pattern, str]] = []
+    for entry in glossary_entries:
+        name = entry.get('name', '')
+        abbr = entry.get('abbr', '')
+        aliases = entry.get('aliases', [])
+        path = entry.get('path', '')
+        if not name or not path:
+            continue
+        # Name — case-insensitive
+        patterns.append((re.compile(r'(?<!\w)' + re.escape(name) + r'(?!\w)', re.IGNORECASE), path))
+        # Abbreviation — case-sensitive
+        if abbr and len(abbr) >= 2:
+            patterns.append((re.compile(r'(?<!\w)' + re.escape(abbr) + r'(?!\w)'), path))
+        # Aliases — case-insensitive
+        for alias in (aliases or []):
+            if alias and alias.lower() != name.lower():
+                patterns.append((re.compile(r'(?<!\w)' + re.escape(alias) + r'(?!\w)', re.IGNORECASE), path))
+
+    # Build path→stem lookup for reading markdown files
+    path_to_stem: dict[str, str] = {}
+    for e in glossary_entries:
+        p = e.get('path', '')
+        # "wiki/glitchcraft/foo-bar/" → "foo-bar"
+        stem = p.rstrip('/').rsplit('/', 1)[-1] if '/' in p else p
+        path_to_stem[p] = stem
+
+    glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
+    nodes = []
+    edges_set: set[tuple[str, str]] = set()
+
+    for entry in glossary_entries:
+        path = entry.get('path', '')
+        name = entry.get('name', '')
+        abbr = entry.get('abbr', '')
+        if not path or not name:
+            continue
+
+        nodes.append({'id': path, 'name': name, 'abbr': abbr})
+
+        # Read the markdown body for this page
+        stem = path_to_stem.get(path, '')
+        md_file = glitchcraft_dir / f'{stem}.md'
+        if not md_file.exists():
+            continue
+
+        try:
+            body = md_file.read_text(encoding='utf-8-sig')
+        except Exception:
+            continue
+
+        # Strip frontmatter
+        body = re.sub(r'^---[\s\S]*?---\s*', '', body)
+        # Strip code blocks
+        body = re.sub(r'```[\s\S]*?```', '', body)
+
+        # Check which other entries this page mentions
+        targets_found: set[str] = set()
+        for pat, target_path in patterns:
+            if target_path == path:
+                continue  # skip self
+            if target_path in targets_found:
+                continue  # already found this target
+            if pat.search(body):
+                targets_found.add(target_path)
+                edges_set.add((path, target_path))
+
+    edges = [{'source': s, 'target': t} for s, t in sorted(edges_set)]
+
+    graph = {'nodes': nodes, 'edges': edges}
+    _GRAPH_JSON.parent.mkdir(parents=True, exist_ok=True)
+    _GRAPH_JSON.write_text(
+        json.dumps(graph, ensure_ascii=False, indent=2),
+        encoding='utf-8'
+    )
+    print(f'WROTE graph.json ({len(nodes)} nodes, {len(edges)} edges) -> {_GRAPH_JSON}')
+
+
 def build_leaderboard(json_path: str, discovered_credits: Counter | None = None):
     """Write leaderboard-data.json with pre-computed ranked contributor counts.
 
@@ -617,6 +722,13 @@ def main():
     )
     p.add_argument('--no-glossary', dest='glossary', action='store_false',
                    help='Skip generating glossary.json')
+    p.add_argument('--no-graph', dest='graph', action='store_false',
+                   help='Skip generating graph.json')
+    p.add_argument(
+        '--graph-output',
+        default=None,
+        help='If given, also copy the updated graph.json to this path (e.g. site/assets/data/graph.json)',
+    )
     args = p.parse_args()
     # allow overriding which docs subtree to index (default 'docs')
     global DOCS
@@ -659,6 +771,20 @@ def main():
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(_GLOSSARY_JSON, dest)
         print(f'COPIED glossary.json -> {dest}')
+    # Build graph.json for the interactive graph view
+    if args.graph:
+        # Reuse glossary entries already in memory if glossary was built
+        glossary_for_graph = None
+        if _GLOSSARY_JSON.exists():
+            glossary_for_graph = json.loads(_GLOSSARY_JSON.read_text(encoding='utf-8'))
+        build_graph(glossary_for_graph)
+    # Optionally copy graph.json into the site directory
+    if args.graph_output:
+        import shutil
+        dest = Path(args.graph_output)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(_GRAPH_JSON, dest)
+        print(f'COPIED graph.json -> {dest}')
 
 
 if __name__ == '__main__':
