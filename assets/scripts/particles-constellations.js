@@ -202,19 +202,25 @@
 
     var area = (W * H) / (1366 * 768);
     var target = Math.max(12, Math.round(cfg.baseCount * area));
-    while (particles.length < target) particles.push(makeParticle(true));
-    // When culling, preserve burst particles (from clicks).
-    // Only remove non-burst particles to maintain the target pool.
-    while (particles.length > target) {
-      var removed = false;
-      for (var i = particles.length - 1; i >= 0; i--) {
-        if (!particles[i].burst) {
-          particles.splice(i, 1);
-          removed = true;
-          break;
+    // Only adjust the particle pool when the canvas actually grew.
+    // Scroll-triggered resize events (e.g. mobile address-bar toggle)
+    // that don't change dimensions should never touch particles.
+    if (cleared || force) {
+      while (particles.length < target) particles.push(makeParticle(true));
+      while (particles.length > target) {
+        var removed = false;
+        for (var i = particles.length - 1; i >= 0; i--) {
+          if (!particles[i].burst) {
+            particles.splice(i, 1);
+            removed = true;
+            break;
+          }
         }
+        if (!removed) break; // all remaining particles are bursts, stop
       }
-      if (!removed) break; // all remaining particles are bursts, stop
+    } else if (particles.length < target) {
+      // Still allow spawning new particles to fill the pool, just never cull.
+      while (particles.length < target) particles.push(makeParticle(true));
     }
 
     // If we just cleared the bitmap, repaint synchronously so there is
