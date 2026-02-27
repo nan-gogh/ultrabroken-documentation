@@ -363,11 +363,11 @@ button.search-link:focus,
   position: fixed !important;
   left: 0 !important;
   top: 0 !important;
-  width: 100% !important;
-  /* Use 100vh (not 100%) — on mobile, 100% on a fixed element tracks the
-     visual viewport which bounces as the URL-bar shows / hides.  100vh is
-     the stable "large viewport" height and prevents canvas jumping. */
-  height: 100vh !important;
+  width: 100vw !important;
+  /* Height is set in px by JS (ratcheted to the largest innerHeight seen)
+     so mobile browser-chrome toggling never causes a CSS layout shift.
+     The fallback below only applies until the first JS resize() call. */
+  height: 100vh;
   pointer-events: none !important;
   /* Promote to its own GPU layer so mobile browsers don't discard the
      painted content during scroll recomposites (fixes flicker on iOS/Android). */

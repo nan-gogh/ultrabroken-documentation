@@ -55,11 +55,10 @@
   function createCanvas() {
     var c = document.createElement('canvas');
     c.className = 'ub-particles-canvas';
-    // Use 100vh (not 100%) for height — on mobile browsers 100% on a
-    // position:fixed element tracks the *visual* viewport which changes as
-    // the URL-bar shows/hides, causing the canvas to resize and jump.
-    // 100vh is the "large viewport" height and stays constant.
-    c.style.cssText = 'width:100%;height:100vh;position:fixed;left:0;top:0;pointer-events:none;z-index:0;will-change:transform;';
+    // No CSS height — we set canvas.width / canvas.height and the CSS
+    // display size from JS so mobile browser-chrome toggling can never
+    // cause a CSS-level layout shift.
+    c.style.cssText = 'position:fixed;left:0;top:0;width:100vw;pointer-events:none;z-index:0;will-change:transform;';
     document.body.appendChild(c);
     return c;
   }
@@ -119,21 +118,38 @@
   /* ------------------------------------------------------------------ */
   /*  Resize handling                                                   */
   /* ------------------------------------------------------------------ */
+  // Capture the *largest* innerHeight we've ever seen.  On mobile the
+  // first measurement is usually with the chrome visible (smaller);
+  // once the user scrolls the chrome hides and innerHeight grows.
+  // We lock to the max so the canvas never shrinks when the chrome
+  // reappears, which is what causes the visible jumping.
+  var lockedH = 0;
+
   function resize(force) {
     DPR = Math.max(1, window.devicePixelRatio || 1);
-    // Use innerWidth / innerHeight which, combined with height:100vh on
-    // the canvas, gives stable values that won't bounce with the mobile
-    // browser chrome (URL-bar show/hide).
     var newW = Math.max(300, Math.floor(window.innerWidth));
-    var newH = Math.max(200, Math.floor(window.innerHeight));
+    var rawH = Math.max(200, Math.floor(window.innerHeight));
 
-    // Guard: skip re-allocation if dimensions barely changed (mobile
-    // chrome toggling typically shifts height by ≤ 80 px).  Width
-    // changes always count (orientation flip, window resize, etc.).
-    if (!force && W > 0 && newW === W && Math.abs(newH - H) < 100) return;
+    // On orientation change the width flips significantly — reset the
+    // height lock so we re-measure for the new orientation.
+    if (W > 0 && Math.abs(newW - W) > 100) lockedH = 0;
+
+    // Ratchet: only ever grow the locked height.  This means address-bar
+    // show/hide (which only changes height by ~60-80 px) never causes a
+    // canvas resize or visual shift.
+    if (rawH > lockedH) lockedH = rawH;
+    var newH = lockedH;
+
+    // Skip re-allocation if nothing meaningful changed.
+    if (!force && W === newW && H === newH) return;
 
     W = newW;
     H = newH;
+
+    // Set the CSS display size explicitly in pixels — no viewport units,
+    // so the browser can never cause a CSS-level layout shift.
+    canvas.style.height = H + 'px';
+
     canvas.width = Math.floor(W * DPR);
     canvas.height = Math.floor(H * DPR);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
