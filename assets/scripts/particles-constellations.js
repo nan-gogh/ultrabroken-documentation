@@ -53,10 +53,18 @@
   /*  Canvas setup                                                      */
   /* ------------------------------------------------------------------ */
   function createCanvas() {
+    // The canvas must NOT be position:fixed itself — mobile Chromium
+    // browsers discard fixed-position canvas GPU layers during address-
+    // bar transitions.  Instead we wrap it in a fixed <div> (trivially
+    // cheap for the compositor to retain) and make the canvas absolute
+    // inside it.  Visually identical, but the canvas is never treated
+    // as a special fixed compositing layer.
+    var wrapper = document.createElement('div');
+    wrapper.className = 'ub-canvas-wrapper';
     var c = document.createElement('canvas');
     c.className = 'ub-particles-canvas';
-    c.style.cssText = 'position:fixed;left:0;top:0;width:100vw;pointer-events:none;z-index:0;will-change:transform;';
-    document.body.appendChild(c);
+    wrapper.appendChild(c);
+    document.body.appendChild(wrapper);
     return c;
   }
 
@@ -139,8 +147,8 @@
     W = newW;
     H = newH;
 
-    // Set CSS height in fixed px (width stays at 100vw via stylesheet).
-    canvas.style.height = H + 'px';
+    // Set the wrapper's CSS height in fixed px (canvas fills 100% of it).
+    canvas.parentNode.style.height = H + 'px';
 
     // Set the backing-store resolution.
     canvas.width  = Math.floor(W * DPR);

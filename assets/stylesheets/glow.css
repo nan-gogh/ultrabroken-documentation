@@ -359,28 +359,31 @@ button.search-link:focus,
    canvas-driven now — see particles-constellations.js */
 
 /* Fullscreen particle canvas for subtle rising particles and constellation lines */
-.ub-particles-canvas {
+/* Fixed wrapper + absolute canvas pattern.
+   The wrapper is the fixed-position element — a trivially cheap empty box
+   that the mobile compositor retains across address-bar transitions.
+   The canvas paints into its parent's layer as position:absolute, so it's
+   never tagged as a fixed compositing layer that browsers discard. */
+.ub-canvas-wrapper {
   position: fixed !important;
   left: 0 !important;
   top: 0 !important;
   width: 100vw !important;
-  /* Height is set in px by JS (ratcheted to the largest innerHeight
-     seen).  The fallback below applies only until the first resize(). */
+  /* Height set to ratcheted px by JS; 100vh is the pre-init fallback. */
   height: 100vh;
   pointer-events: none !important;
-  /* The ratcheted height may be slightly taller than the current viewport
-     when the address bar is visible.  overflow:hidden tells the browser
-     there is nothing to scroll or clip, preventing GPU layer invalidation
-     during address-bar transitions. */
   overflow: hidden !important;
-  /* Promote to its own GPU layer so mobile browsers keep the painted
-     bitmap during scroll recomposites (prevents flicker). */
   will-change: transform;
-  /* Put canvas behind normal page content without changing layout.
-     Using a negative z-index avoids creating stacking contexts on
-     theme elements like `.md-content`/`.md-main`, which can interfere
-     with sticky headers or drawers. */
   z-index: -1 !important;
+}
+
+.ub-particles-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* Ensure main content sits above the canvas */
