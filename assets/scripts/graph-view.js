@@ -412,8 +412,9 @@
 
   function frame() {
     if (!running) return;
-    // Keep ticking while simulation is hot, or during interaction
-    if (!isSettled() || dragNode || hoveredNode) {
+    // Keep ticking while simulation is hot or being dragged
+    // Hover is visual-only and must NOT burn alpha
+    if (!isSettled()) {
       tick();
     }
     draw();
