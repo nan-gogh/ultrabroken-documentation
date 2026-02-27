@@ -55,7 +55,11 @@
   function createCanvas() {
     var c = document.createElement('canvas');
     c.className = 'ub-particles-canvas';
-    c.style.cssText = 'width:100%;height:100%;position:fixed;left:0;top:0;pointer-events:none;z-index:0;will-change:transform;';
+    // Use 100vh (not 100%) for height — on mobile browsers 100% on a
+    // position:fixed element tracks the *visual* viewport which changes as
+    // the URL-bar shows/hides, causing the canvas to resize and jump.
+    // 100vh is the "large viewport" height and stays constant.
+    c.style.cssText = 'width:100%;height:100vh;position:fixed;left:0;top:0;pointer-events:none;z-index:0;will-change:transform;';
     document.body.appendChild(c);
     return c;
   }
@@ -67,16 +71,21 @@
   var particles = [];
 
   /* ------------------------------------------------------------------ */
-  /*  Rune image loading                                                */
+  /*  Site-root detection (used for asset URLs)                          */
   /* ------------------------------------------------------------------ */
+  // The script tag lives at <site-root>/assets/scripts/particles-constellations.js
+  // so stripping that suffix gives us the site root reliably, regardless of
+  // what page we're on or whether a canonical link exists.
+  var _scriptEl = document.currentScript;
+  var _siteRoot = (_scriptEl && _scriptEl.src)
+    ? _scriptEl.src.replace(/assets\/scripts\/[^/]+$/, '')
+    : (location.href.replace(/\/[^/]*$/, '/'));   // last-resort fallback
+
   var runeImg = null;
   var runeReady = false;
   (function loadRune() {
     var img = new Image();
-    // Resolve relative to site root (works for local dev and gh-pages)
-    var base = (document.querySelector('link[rel="canonical"]') || {}).href || location.href;
-    var siteRoot = base.replace(/\/[^/]*$/, '/');
-    img.src = siteRoot + 'assets/images/ultrabroken_rune.svg';
+    img.src = _siteRoot + 'assets/images/ultrabroken_rune.svg';
     img.onload = function () {
       runeReady = true;
       // If reduced-motion froze a frame before the SVG was ready, re-render now
@@ -110,11 +119,21 @@
   /* ------------------------------------------------------------------ */
   /*  Resize handling                                                   */
   /* ------------------------------------------------------------------ */
-  function resize() {
+  function resize(force) {
     DPR = Math.max(1, window.devicePixelRatio || 1);
-    var rect = canvas.getBoundingClientRect();
-    W = Math.max(300, Math.floor(rect.width));
-    H = Math.max(200, Math.floor(rect.height));
+    // Use innerWidth / innerHeight which, combined with height:100vh on
+    // the canvas, gives stable values that won't bounce with the mobile
+    // browser chrome (URL-bar show/hide).
+    var newW = Math.max(300, Math.floor(window.innerWidth));
+    var newH = Math.max(200, Math.floor(window.innerHeight));
+
+    // Guard: skip re-allocation if dimensions barely changed (mobile
+    // chrome toggling typically shifts height by ≤ 80 px).  Width
+    // changes always count (orientation flip, window resize, etc.).
+    if (!force && W > 0 && newW === W && Math.abs(newH - H) < 100) return;
+
+    W = newW;
+    H = newH;
     canvas.width = Math.floor(W * DPR);
     canvas.height = Math.floor(H * DPR);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -314,7 +333,7 @@
 
   /** Render a single frozen frame (reduced motion). */
   function renderFrozen() {
-    resize();
+    resize(true);
     render(0);
   }
 
