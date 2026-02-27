@@ -73,6 +73,25 @@
   var DPR = Math.max(1, window.devicePixelRatio || 1);
   var W = 0, H = 0;
   var particles = [];
+  var contextLost = false;
+
+  /* ------------------------------------------------------------------ */
+  /*  Canvas context-loss recovery                                      */
+  /* ------------------------------------------------------------------ */
+  // Mobile browsers can invalidate the 2D context during GPU memory
+  // pressure (e.g. address-bar transitions, tab switching).  After loss
+  // every draw call is a silent no-op — the canvas stays blank until we
+  // re-acquire the context.
+  canvas.addEventListener('contextlost', function (e) {
+    e.preventDefault();          // request the browser to restore later
+    contextLost = true;
+  });
+  canvas.addEventListener('contextrestored', function () {
+    contextLost = false;
+    ctx = canvas.getContext('2d');
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    render(performance.now());   // repaint immediately
+  });
 
   /* ------------------------------------------------------------------ */
   /*  Site-root detection (used for asset URLs)                          */
@@ -131,6 +150,7 @@
   var lockedH = 0;
 
   function resize(force) {
+    if (contextLost) return;     // nothing useful we can do without a context
     DPR = Math.max(1, window.devicePixelRatio || 1);
     var newW = Math.max(300, Math.floor(window.innerWidth));
     var rawH = Math.max(200, Math.floor(window.innerHeight));
@@ -147,18 +167,31 @@
     W = newW;
     H = newH;
 
-    // Set the wrapper's CSS height in fixed px (canvas fills 100% of it).
+    // Set the wrapper’s CSS height in fixed px (canvas fills 100% of it).
     canvas.parentNode.style.height = H + 'px';
 
-    // Set the backing-store resolution.
-    canvas.width  = Math.floor(W * DPR);
-    canvas.height = Math.floor(H * DPR);
+    // Only reallocate the backing store if the pixel dimensions actually
+    // changed.  Setting canvas.width / canvas.height ALWAYS clears the
+    // bitmap — even to the same value — which causes a visible blank
+    // frame on mobile during address-bar transitions.
+    var needW = Math.floor(W * DPR);
+    var needH = Math.floor(H * DPR);
+    var cleared = false;
+    if (canvas.width !== needW || canvas.height !== needH) {
+      canvas.width  = needW;
+      canvas.height = needH;
+      cleared = true;
+    }
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
     var area = (W * H) / (1366 * 768);
     var target = Math.max(12, Math.round(cfg.baseCount * area));
     while (particles.length < target) particles.push(makeParticle(true));
     while (particles.length > target) particles.pop();
+
+    // If we just cleared the bitmap, repaint synchronously so there is
+    // never a blank frame visible to the user.
+    if (cleared) render(performance.now());
   }
 
   /* ------------------------------------------------------------------ */
@@ -243,6 +276,7 @@
   /*  Render                                                            */
   /* ------------------------------------------------------------------ */
   function render(now) {
+    if (contextLost) return;
     ctx.clearRect(0, 0, W, H);
 
     /* ---- Bottom glow bar ---- */
@@ -341,7 +375,7 @@
   var loopRunning = false;
 
   function step(now) {
-    if (!loopRunning) return;
+    if (!loopRunning || contextLost) return;
     var dt = Math.min(60, now - last);
     last = now;
     update(dt);
