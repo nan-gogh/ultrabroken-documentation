@@ -146,8 +146,13 @@
   // address bar toggling changes innerHeight by ~60-80 px.  By never
   // shrinking, the canvas buffer is never re-allocated, which is what
   // triggers the browser to discard the GPU layer and flicker.
+  //
+  // Pre-size with a 100 px buffer over the current innerHeight.  This
+  // ensures the "address bar hidden" height is already covered from the
+  // very first frame, so the first collapse never triggers a resize.
+  // The wrapper has overflow:hidden, so the extra pixels are invisible.
   // On orientation change the width changes drastically, so we reset.
-  var lockedH = 0;
+  var lockedH = Math.floor(window.innerHeight) + 100;
 
   function resize(force) {
     if (contextLost) return;     // nothing useful we can do without a context
@@ -156,7 +161,8 @@
     var rawH = Math.max(200, Math.floor(window.innerHeight));
 
     // Orientation change: width shifts by more than 100 px → reset lock.
-    if (W > 0 && Math.abs(newW - W) > 100) lockedH = 0;
+    // Re-init with a fresh buffer for the new orientation.
+    if (W > 0 && Math.abs(newW - W) > 100) lockedH = rawH + 100;
 
     // Ratchet: only grow.
     if (rawH > lockedH) lockedH = rawH;
