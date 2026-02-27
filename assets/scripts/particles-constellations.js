@@ -203,7 +203,19 @@
     var area = (W * H) / (1366 * 768);
     var target = Math.max(12, Math.round(cfg.baseCount * area));
     while (particles.length < target) particles.push(makeParticle(true));
-    while (particles.length > target) particles.pop();
+    // When culling, preserve burst particles (from clicks).
+    // Only remove non-burst particles to maintain the target pool.
+    while (particles.length > target) {
+      var removed = false;
+      for (var i = particles.length - 1; i >= 0; i--) {
+        if (!particles[i].burst) {
+          particles.splice(i, 1);
+          removed = true;
+          break;
+        }
+      }
+      if (!removed) break; // all remaining particles are bursts, stop
+    }
 
     // If we just cleared the bitmap, repaint synchronously so there is
     // never a blank frame visible to the user.
