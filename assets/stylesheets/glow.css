@@ -368,8 +368,8 @@ button.search-link:focus,
   position: fixed !important;
   left: 0 !important;
   top: 0 !important;
-  width: 100vw !important;
-  /* Height set to ratcheted px by JS; 100vh is the pre-init fallback. */
+  /* Both dimensions set to ratcheted px by JS; vw/vh are pre-init fallbacks. */
+  width: 100vw;
   height: 100vh;
   pointer-events: none !important;
   overflow: hidden !important;

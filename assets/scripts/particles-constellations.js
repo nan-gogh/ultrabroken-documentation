@@ -142,30 +142,38 @@
   /* ------------------------------------------------------------------ */
   /*  Resize handling                                                   */
   /* ------------------------------------------------------------------ */
-  // Height ratchet: we only ever *grow* the locked height.  On mobile the
-  // address bar toggling changes innerHeight by ~60-80 px.  By never
-  // shrinking, the canvas buffer is never re-allocated, which is what
-  // triggers the browser to discard the GPU layer and flicker.
+  // Dimension ratchets: we only ever *grow* the locked values.  On mobile
+  // the address bar toggling changes innerHeight (portrait) or innerWidth
+  // (landscape) by ~60-100 px.  By never shrinking, the canvas buffer is
+  // never re-allocated, preventing GPU layer discard and flicker.
   //
-  // Pre-size with a 100 px buffer over the current innerHeight.  This
-  // ensures the "address bar hidden" height is already covered from the
-  // very first frame, so the first collapse never triggers a resize.
-  // The wrapper has overflow:hidden, so the extra pixels are invisible.
-  // On orientation change the width changes drastically, so we reset.
-  var lockedH = Math.floor(window.innerHeight) + 100;
+  // Pre-size each axis with a 100 px buffer so the "chrome hidden" size
+  // is already covered from the very first frame - the first collapse in
+  // either orientation never triggers a resize.  The wrapper's
+  // overflow:hidden clips any extra pixels invisibly.
+  var BUFFER = 100;
+  var lockedW = Math.floor(window.innerWidth)  + BUFFER;
+  var lockedH = Math.floor(window.innerHeight) + BUFFER;
 
   function resize(force) {
     if (contextLost) return;     // nothing useful we can do without a context
     DPR = Math.max(1, window.devicePixelRatio || 1);
-    var newW = Math.max(300, Math.floor(window.innerWidth));
+    var rawW = Math.max(300, Math.floor(window.innerWidth));
     var rawH = Math.max(200, Math.floor(window.innerHeight));
 
-    // Orientation change: width shifts by more than 100 px → reset lock.
-    // Re-init with a fresh buffer for the new orientation.
-    if (W > 0 && Math.abs(newW - W) > 100) lockedH = rawH + 100;
+    // Orientation change: either axis shifts by >100 px - reset both
+    // locks with a fresh buffer for the new orientation.
+    var wDelta = W > 0 ? Math.abs(rawW - W) : 0;
+    var hDelta = W > 0 ? Math.abs(rawH - H) : 0;
+    if (wDelta > 100 || hDelta > 100) {
+      lockedW = rawW + BUFFER;
+      lockedH = rawH + BUFFER;
+    }
 
     // Ratchet: only grow.
+    if (rawW > lockedW) lockedW = rawW;
     if (rawH > lockedH) lockedH = rawH;
+    var newW = lockedW;
     var newH = lockedH;
 
     if (!force && W === newW && H === newH) return;
@@ -173,12 +181,14 @@
     W = newW;
     H = newH;
 
-    // Set the wrapper’s CSS height in fixed px (canvas fills 100% of it).
-    canvas.parentNode.style.height = H + 'px';
+    // Set the wrapper's CSS size in fixed px (canvas fills 100% of it).
+    var wrapper = canvas.parentNode;
+    wrapper.style.width  = W + 'px';
+    wrapper.style.height = H + 'px';
 
     // Only reallocate the backing store if the pixel dimensions actually
     // changed.  Setting canvas.width / canvas.height ALWAYS clears the
-    // bitmap — even to the same value — which causes a visible blank
+    // bitmap - even to the same value - which causes a visible blank
     // frame on mobile during address-bar transitions.
     var needW = Math.floor(W * DPR);
     var needH = Math.floor(H * DPR);
