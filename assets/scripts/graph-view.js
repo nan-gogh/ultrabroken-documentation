@@ -4,33 +4,48 @@
  * Renders a Canvas-based graph visualisation of how glitchcraft pages
  * reference each other, similar to Obsidian's graph view.
  *
- * Data source: assets/data/graph.json  (built by build_bm25_index.py)
+ * Physics model: d3-force-inspired velocity Verlet integration with
+ *   - Alpha (temperature) decay for smooth convergence
+ *   - Barnes-Hut-style many-body repulsion (O(n²) brute-force, fine for <1k)
+ *   - Spring link force with degree-weighted strength
+ *   - Center-of-mass translation (not per-node spring)
+ *   - Velocity decay (friction) per tick
  *
- * Features:
- *   - Force-directed layout (repulsion + attraction + centering)
- *   - Zoom (scroll wheel) and pan (middle-click or Ctrl+drag)
- *   - Drag nodes
- *   - Hover highlights node + direct connections, dims everything else
- *   - Click a node to navigate to its page
- *   - Node size scaled by connection count (degree)
- *   - Teal glow aesthetic consistent with site theme
- *   - Responsive — fills its container
+ * Data source: assets/data/graph.json  (built by build_bm25_index.py)
  */
 
 (function () {
   'use strict';
 
-  /* ── constants ───────────────────────────────────────────────── */
-  var REPULSION     = 800;      // charge repulsion strength
-  var ATTRACTION    = 0.008;    // spring constant for edges
-  var CENTER_PULL   = 0.01;     // pull toward center of canvas
-  var DAMPING       = 0.92;     // velocity damping per tick
-  var DT            = 1;        // timestep
-  var EDGE_LENGTH   = 120;      // preferred edge rest length
-  var MIN_NODE_R    = 4;
-  var MAX_NODE_R    = 18;
-  var FONT          = '11px Texturina, Georgia, serif';
-  var FONT_BOLD     = 'bold 12px Texturina, Georgia, serif';
+  /* ── simulation parameters (d3-force model) ──────────────────── */
+
+  // Alpha (temperature) system — simulation cools as alpha → 0
+  var ALPHA         = 1;        // current temperature (set during warmup)
+  var ALPHA_MIN     = 0.001;    // stop when alpha falls below this
+  var ALPHA_DECAY   = 0.0228;   // ~300 ticks to converge: 1 - pow(0.001, 1/300)
+  var ALPHA_TARGET  = 0;        // target alpha (0 = cool to rest)
+  var VELOCITY_DECAY = 0.4;     // friction: vel *= (1 - this) each tick
+
+  // Many-body (repulsion) — negative = repel
+  var CHARGE        = -800;     // long-range repulsion strength
+  var DIST_MIN      = 1;        // avoid infinite force at coincident points
+  var DIST_MAX      = 2000;     // repulsion effective over very large range
+
+  // Short-range collision (nuclear-style hard repulsion)
+  var COLLIDE_RADIUS = 30;      // minimum spacing between node centres
+  var COLLIDE_STRENGTH = 0.7;   // how strongly overlaps are resolved (0–1)
+
+  // Link (spring attraction)
+  var LINK_DIST     = 200;      // resting spring length (wide spacing)
+
+  // Max velocity cap to prevent explosion
+  var MAX_VEL       = 50;
+
+  // Node sizing
+  var MIN_NODE_R    = 3;
+  var MAX_NODE_R    = 14;
+  var FONT          = '8px Texturina, Georgia, serif';
+  var FONT_BOLD     = 'bold 9px Texturina, Georgia, serif';
 
   /* colours */
   var CLR_BG        = '#1a1a2e';
@@ -44,8 +59,8 @@
   var CLR_NODE_HOVER = '#ffffff';
 
   /* ── state ───────────────────────────────────────────────────── */
-  var nodes = [];           // [{id,name,abbr,x,y,vx,vy,r,degree,edges:[]}]
-  var edges = [];           // [{source:nodeRef, target:nodeRef}]
+  var nodes = [];           // [{id,name,abbr,x,y,vx,vy,r,degree,edges:[],linkStrength}]
+  var edges = [];           // [{source:nodeRef, target:nodeRef, strength:n}]
   var nodeMap = {};         // id → node
 
   var canvas, ctx, W, H;
@@ -63,7 +78,7 @@
   var pointer = { x: 0, y: 0 };
 
   var running = true;
-  var settled = false;
+  var simAlpha = 1;          // live simulation alpha
   var tickCount = 0;
 
   /* ── helpers ─────────────────────────────────────────────────── */
@@ -113,16 +128,21 @@
     var rawNodes = data.nodes || [];
     var rawEdges = data.edges || [];
 
-    // Create node objects with random initial positions
-    var spread = Math.sqrt(rawNodes.length) * 30;
+    // Phyllotaxis spiral for deterministic, evenly-spaced initial positions
+    // (same approach as d3-force)
+    var PHI = (1 + Math.sqrt(5)) / 2;  // golden ratio
+    var spacing = 10;
+
     for (var i = 0; i < rawNodes.length; i++) {
       var rn = rawNodes[i];
+      var angle = i * PHI * 2 * Math.PI;
+      var radius = spacing * Math.sqrt(i + 0.5);
       var node = {
         id:     rn.id,
         name:   rn.name || '',
         abbr:   rn.abbr || '',
-        x:      (Math.random() - 0.5) * spread,
-        y:      (Math.random() - 0.5) * spread,
+        x:      Math.cos(angle) * radius,
+        y:      Math.sin(angle) * radius,
         vx:     0,
         vy:     0,
         r:      MIN_NODE_R,
@@ -139,12 +159,21 @@
       var s = nodeMap[re.source];
       var t = nodeMap[re.target];
       if (!s || !t) continue;
-      var edge = { source: s, target: t };
+      var edge = { source: s, target: t, strength: 0 };
       edges.push(edge);
       s.degree++;
       t.degree++;
       s.edges.push(edge);
       t.edges.push(edge);
+    }
+
+    // Compute per-edge strength: 1 / min(degree_source, degree_target)
+    // This automatically weakens links to heavily-connected hub nodes
+    // (d3-force default), preventing hubs from being ripped apart
+    for (var ei = 0; ei < edges.length; ei++) {
+      var e = edges[ei];
+      var minDeg = Math.min(e.source.degree || 1, e.target.degree || 1);
+      e.strength = 1 / minDeg;
     }
 
     // Scale node radius by degree
@@ -157,64 +186,129 @@
     }
   }
 
-  /* ── physics simulation ──────────────────────────────────────── */
+  /* ── physics simulation (d3-force model) ──────────────────────── */
 
   function tick() {
     var i, j, n, n2, edge, dx, dy, dist, force, fx, fy;
-    var totalV = 0;
 
-    // Repulsion (Barnes-Hut would be better for 1000+ nodes, but brute force
-    // is fine for ~300)
+    // ① Update alpha (simulated annealing cooldown)
+    simAlpha += (ALPHA_TARGET - simAlpha) * ALPHA_DECAY;
+
+    // ② Many-body repulsion: each pair pushes apart, scaled by alpha
     for (i = 0; i < nodes.length; i++) {
       n = nodes[i];
       for (j = i + 1; j < nodes.length; j++) {
         n2 = nodes[j];
         dx = n2.x - n.x;
         dy = n2.y - n.y;
-        dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        force = REPULSION / (dist * dist);
+        dist = Math.sqrt(dx * dx + dy * dy);
+
+        // Enforce minimum distance to avoid singularity
+        if (dist < DIST_MIN) dist = DIST_MIN;
+        // Skip if beyond max range
+        if (dist > DIST_MAX) continue;
+
+        // Coulomb-like: F = alpha * charge / dist²
+        force = simAlpha * CHARGE / (dist * dist);
         fx = (dx / dist) * force;
         fy = (dy / dist) * force;
-        n.vx  -= fx * DT;
-        n.vy  -= fy * DT;
-        n2.vx += fx * DT;
-        n2.vy += fy * DT;
+        // Negative charge = repulsion, so this pushes nodes apart
+        n.vx  -= fx;
+        n.vy  -= fy;
+        n2.vx += fx;
+        n2.vy += fy;
       }
     }
 
-    // Attraction along edges
+    // ③ Link spring force: pull linked nodes toward LINK_DIST
+    //    Strength is per-edge: 1/min(deg_source, deg_target) × alpha
     for (i = 0; i < edges.length; i++) {
       edge = edges[i];
       dx = edge.target.x - edge.source.x;
       dy = edge.target.y - edge.source.y;
       dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      force = ATTRACTION * (dist - EDGE_LENGTH);
-      fx = (dx / dist) * force;
-      fy = (dy / dist) * force;
-      edge.source.vx += fx * DT;
-      edge.source.vy += fy * DT;
-      edge.target.vx -= fx * DT;
-      edge.target.vy -= fy * DT;
+
+      // Spring: F = strength * alpha * (dist - restLength) / dist
+      force = edge.strength * simAlpha * (dist - LINK_DIST) / dist;
+      fx = dx * force;
+      fy = dy * force;
+      edge.source.vx += fx;
+      edge.source.vy += fy;
+      edge.target.vx -= fx;
+      edge.target.vy -= fy;
     }
 
-    // Center pull + damping + integrate
+    // ④ Collision force: short-range hard repulsion like nuclear force
+    //    Prevents nodes from overlapping regardless of charge
+    for (i = 0; i < nodes.length; i++) {
+      n = nodes[i];
+      var ri = n.r + COLLIDE_RADIUS;
+      for (j = i + 1; j < nodes.length; j++) {
+        n2 = nodes[j];
+        dx = n2.x - n.x;
+        dy = n2.y - n.y;
+        dist = Math.sqrt(dx * dx + dy * dy);
+        var minSep = ri + n2.r + COLLIDE_RADIUS;
+        if (dist < minSep && dist > 0) {
+          // Push apart proportional to overlap
+          var overlap = (minSep - dist) / dist * COLLIDE_STRENGTH * 0.5;
+          var ox = dx * overlap;
+          var oy = dy * overlap;
+          n.x  -= ox;
+          n.y  -= oy;
+          n2.x += ox;
+          n2.y += oy;
+        }
+      }
+    }
+
+    // ⑤ Center force: translate all nodes so center-of-mass is at origin
+    //    (modifies positions directly, not velocities — avoids oscillation)
+    var cx = 0, cy = 0;
+    for (i = 0; i < nodes.length; i++) {
+      cx += nodes[i].x;
+      cy += nodes[i].y;
+    }
+    cx /= nodes.length;
+    cy /= nodes.length;
+    for (i = 0; i < nodes.length; i++) {
+      nodes[i].x -= cx;
+      nodes[i].y -= cy;
+    }
+
+    // ⑥ Velocity decay (friction) + velocity cap + position integration
+    var decay = 1 - VELOCITY_DECAY;
     for (i = 0; i < nodes.length; i++) {
       n = nodes[i];
       if (n === dragNode) { n.vx = 0; n.vy = 0; continue; }
-      n.vx -= n.x * CENTER_PULL;
-      n.vy -= n.y * CENTER_PULL;
-      n.vx *= DAMPING;
-      n.vy *= DAMPING;
-      n.x  += n.vx * DT;
-      n.y  += n.vy * DT;
-      totalV += Math.abs(n.vx) + Math.abs(n.vy);
+
+      // Apply friction
+      n.vx *= decay;
+      n.vy *= decay;
+
+      // Clamp velocity to prevent explosion
+      var speed = Math.sqrt(n.vx * n.vx + n.vy * n.vy);
+      if (speed > MAX_VEL) {
+        n.vx = (n.vx / speed) * MAX_VEL;
+        n.vy = (n.vy / speed) * MAX_VEL;
+      }
+
+      // Integrate position
+      n.x += n.vx;
+      n.y += n.vy;
     }
 
     tickCount++;
-    // After initial settling, reduce tick rate
-    if (tickCount > 300 && totalV < 0.5 * nodes.length) {
-      settled = true;
-    }
+  }
+
+  /** Check if simulation has cooled enough to stop auto-ticking */
+  function isSettled() {
+    return simAlpha < ALPHA_MIN && !dragNode;
+  }
+
+  /** Reheat simulation (e.g. during interaction) */
+  function reheat(alpha) {
+    if (simAlpha < alpha) simAlpha = alpha;
   }
 
   /* ── rendering ───────────────────────────────────────────────── */
@@ -284,7 +378,7 @@
     }
 
     // Draw labels (only when zoomed in enough, or for hovered + connected)
-    var showAll = zoom > 0.7;
+    var showAll = zoom > 1.4;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
 
@@ -300,7 +394,7 @@
       ctx.fillStyle = isH ? CLR_LABEL_HI : dim ? 'rgba(192,192,192,0.2)' : CLR_LABEL;
 
       // Show abbreviation when zoomed out, full name when zoomed in or hovered
-      var label = (isH || zoom > 1.2) ? nd.name : (nd.abbr || nd.name);
+      var label = (isH || zoom > 2.0) ? nd.name : (nd.abbr || nd.name);
       ctx.fillText(label, nd.x, nd.y + nd.r + 3);
     }
 
@@ -318,7 +412,8 @@
 
   function frame() {
     if (!running) return;
-    if (!settled || dragNode || hoveredNode) {
+    // Keep ticking while simulation is hot, or during interaction
+    if (!isSettled() || dragNode || hoveredNode) {
       tick();
     }
     draw();
@@ -335,7 +430,6 @@
     canvas.height = H * dpr;
     canvas.style.width  = W + 'px';
     canvas.style.height = H + 'px';
-    settled = false; // redraw
   }
 
   /* ── input handlers ──────────────────────────────────────────── */
@@ -357,7 +451,7 @@
       var w = screenToWorld(sx, sy);
       dragNode.x = w.x;
       dragNode.y = w.y;
-      settled = false;
+      reheat(0.3);
       return;
     }
 
@@ -366,7 +460,6 @@
     if (hit !== hoveredNode) {
       hoveredNode = hit;
       canvas.style.cursor = hit ? 'pointer' : 'default';
-      settled = false;
     }
   }
 
@@ -392,7 +485,7 @@
       var hit = hitTest(w.x, w.y);
       if (hit) {
         dragNode = hit;
-        settled = false;
+        reheat(0.3);
         e.preventDefault();
       }
     }
@@ -435,8 +528,6 @@
     var wAfter = screenToWorld(sx, sy);
     camX += wBefore.x - wAfter.x;
     camY += wBefore.y - wAfter.y;
-
-    settled = false;
   }
 
   function navigate(node) {
@@ -463,7 +554,7 @@
       if (hit) {
         dragNode = hit;
         touchId = t.identifier;
-        settled = false;
+        reheat(0.3);
         e.preventDefault();
       } else {
         // Start pan
@@ -495,7 +586,6 @@
       if (newZoom < minZoom) newZoom = minZoom;
       if (newZoom > maxZoom) newZoom = maxZoom;
       zoom = newZoom;
-      settled = false;
       e.preventDefault();
       return;
     }
@@ -511,12 +601,11 @@
           var w = screenToWorld(sx, sy);
           dragNode.x = w.x;
           dragNode.y = w.y;
-          settled = false;
+          reheat(0.3);
           e.preventDefault();
         } else if (isPanning) {
           camX = panCamX - (sx - panStartX) / zoom;
           camY = panCamY - (sy - panStartY) / zoom;
-          settled = false;
         }
         break;
       }
@@ -563,7 +652,7 @@
     resetBtn.textContent = 'Reset View';
     resetBtn.className = 'graph-reset-btn';
     resetBtn.addEventListener('click', function () {
-      camX = 0; camY = 0; zoom = 1; settled = false;
+      camX = 0; camY = 0; zoom = 1;
     });
     controls.appendChild(resetBtn);
 
@@ -590,9 +679,17 @@
 
     // Load data and start
     load(function (data) {
+      // Clear loading message
+      var loadMsg = root.querySelector('p');
+      if (loadMsg) loadMsg.style.display = 'none';
+
       init(data);
-      // Auto-fit after a short simulated warmup
-      for (var i = 0; i < 150; i++) tick();
+
+      // Run synchronous warmup: full 300-tick convergence
+      // (alpha decays from 1 → ~0.001 over 300 ticks)
+      simAlpha = 1;
+      for (var i = 0; i < 300; i++) tick();
+
       fitAll();
       frame();
     });
@@ -613,7 +710,6 @@
     var graphH = maxY - minY + 100;
     zoom = Math.min(W / graphW, H / graphH, 2);
     if (zoom < minZoom) zoom = minZoom;
-    settled = false;
   }
 
   /* ── entry point ─────────────────────────────────────────────── */
