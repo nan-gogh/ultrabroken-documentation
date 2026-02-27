@@ -112,7 +112,7 @@ def _current_page_path(page) -> str:
 
 
 def on_page_content(html: str, page, config, files) -> str:
-    """Post-render hook: replace first occurrence of each glitch mention."""
+    """Post-render hook: replace ALL unprotected occurrences of each glitch mention."""
     glossary = _load_glossary()
     if not glossary:
         return html
@@ -123,53 +123,44 @@ def on_page_content(html: str, page, config, files) -> str:
 
     current_path = _current_page_path(page)
 
-    # Split HTML into protected (tags that must not be modified) and
-    # unprotected segments. Only modify the unprotected segments.
-    # We work on the rendered HTML, not markdown, to avoid interfering
-    # with markdown link syntax.
+    site_url = config.get('site_url', '') or ''
+    base = site_url.rstrip('/')
 
-    # Build positions of all protected regions.
-    protected: list[tuple[int, int]] = []
-    for m in _PROTECTED_RE.finditer(html):
-        protected.append((m.start(), m.end()))
-
-    def _in_protected(start: int, end: int) -> bool:
-        for ps, pe in protected:
-            if start >= ps and end <= pe:
-                return True
-        return False
-
-    seen_paths: set[str] = set()
-    # Process each pattern, replacing only the first unprotected occurrence.
+    # Process each pattern, replacing ALL unprotected occurrences.
+    # Patterns are sorted longest-first so full names are matched before
+    # their abbreviations — once a span of text is wrapped in an <a> tag
+    # it becomes protected and won't be double-linked.
     for pattern, path, display in lookup:
         # Skip self-links
         if path == current_path:
             continue
-        # Skip if we already linked to this glitch (by any of its names)
-        if path in seen_paths:
-            continue
 
-        # Find the first match that isn't inside a protected tag.
+        href = f'{base}/{path}'.rstrip('/') + '/'
+
+        # Scan for all matches, replacing from right to left so earlier
+        # offsets stay valid after each insertion.
+        # Build fresh protected regions for each pattern pass.
+        protected: list[tuple[int, int]] = []
+        for pm in _PROTECTED_RE.finditer(html):
+            protected.append((pm.start(), pm.end()))
+
+        def _in_protected(start: int, end: int) -> bool:
+            for ps, pe in protected:
+                if start >= ps and end <= pe:
+                    return True
+            return False
+
+        # Collect all unprotected match positions.
+        replacements: list[tuple[int, int, str]] = []
         for m in pattern.finditer(html):
             if _in_protected(m.start(), m.end()):
                 continue
-
             matched_text = m.group(0)
-            # Build the site-root-relative URL.
-            # MkDocs Material uses trailing-slash URLs by default.
-            site_url = config.get('site_url', '') or ''
-            base = site_url.rstrip('/')
-            href = f'{base}/{path}'.rstrip('/')  + '/'
-
             link = f'<a href="{href}" class="glitch-autolink" title="{display}">{matched_text}</a>'
-            html = html[:m.start()] + link + html[m.end():]
+            replacements.append((m.start(), m.end(), link))
 
-            # Re-compute protected regions since offsets shifted.
-            protected = []
-            for pm in _PROTECTED_RE.finditer(html):
-                protected.append((pm.start(), pm.end()))
-
-            seen_paths.add(path)
-            break
+        # Apply replacements right-to-left to preserve offsets.
+        for start, end, link in reversed(replacements):
+            html = html[:start] + link + html[end:]
 
     return html
