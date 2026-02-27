@@ -75,6 +75,8 @@
   var dragNode     = null;
   var dragTargetX  = 0;     // cursor position in world coords — physics cannot override this
   var dragTargetY  = 0;
+  var dragStartSX  = 0;     // screen-pixel position at drag start (for click-vs-drag)
+  var dragStartSY  = 0;
   var isPanning    = false;
   var panStartX, panStartY, panCamX, panCamY;
   var pointer = { x: 0, y: 0 };
@@ -496,7 +498,8 @@
         dragNode = hit;
         dragTargetX = w.x;
         dragTargetY = w.y;
-        reheat(0.3);
+        dragStartSX = sx;
+        dragStartSY = sy;
         e.preventDefault();
       }
     }
@@ -509,13 +512,12 @@
       return;
     }
     if (dragNode) {
-      // If barely moved, treat as click → navigate
+      // Only treat as click if pointer barely moved in screen pixels
       var rect = canvas.getBoundingClientRect();
       var sx = e.clientX - rect.left;
       var sy = e.clientY - rect.top;
-      var w = screenToWorld(sx, sy);
-      var dx = w.x - dragNode.x, dy = w.y - dragNode.y;
-      if (dx * dx + dy * dy < 4) {
+      var dsx = sx - dragStartSX, dsy = sy - dragStartSY;
+      if (dsx * dsx + dsy * dsy < 36) {
         navigate(dragNode);
       }
       dragNode = null;
@@ -566,8 +568,9 @@
         dragNode = hit;
         dragTargetX = hit.x;
         dragTargetY = hit.y;
+        dragStartSX = sx;
+        dragStartSY = sy;
         touchId = t.identifier;
-        reheat(0.3);
         e.preventDefault();
       } else {
         // Start pan
@@ -632,9 +635,8 @@
       var rect = canvas.getBoundingClientRect();
       var sx = t.clientX - rect.left;
       var sy = t.clientY - rect.top;
-      var w = screenToWorld(sx, sy);
-      var dx = w.x - dragNode.x, dy = w.y - dragNode.y;
-      if (dx * dx + dy * dy < 16) {
+      var dsx = sx - dragStartSX, dsy = sy - dragStartSY;
+      if (dsx * dsx + dsy * dsy < 36) {
         navigate(dragNode);
       }
     }
