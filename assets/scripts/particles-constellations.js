@@ -55,9 +55,8 @@
   function createCanvas() {
     var c = document.createElement('canvas');
     c.className = 'ub-particles-canvas';
-    // Height is handled by CSS (100lvh — the "large viewport" height)
-    // which is stable across mobile chrome show/hide.
-    c.style.cssText = 'position:fixed;left:0;top:0;pointer-events:none;z-index:0;will-change:transform;';
+    // All sizing is done by JS in resize(). No CSS width/height — avoids
+    // any viewport-unit recomputation that causes jumping on mobile.
     document.body.appendChild(c);
     return c;
   }
@@ -67,6 +66,11 @@
   var DPR = Math.max(1, window.devicePixelRatio || 1);
   var W = 0, H = 0;
   var particles = [];
+
+  // True on touch-capable devices (phones, tablets).  On these devices
+  // we use screen.width / screen.height (hardware constants) instead of
+  // innerWidth / innerHeight to avoid address-bar-toggle jitter.
+  var isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
   /* ------------------------------------------------------------------ */
   /*  Site-root detection (used for asset URLs)                          */
@@ -117,22 +121,53 @@
   /* ------------------------------------------------------------------ */
   /*  Resize handling                                                   */
   /* ------------------------------------------------------------------ */
+  /**
+   * Return a stable (w, h) pair.
+   *
+   * Mobile: screen.width / screen.height are hardware constants in CSS
+   * pixels.  They NEVER change when the browser chrome shows or hides,
+   * so the canvas never jumps.  We orient-correct them because some
+   * browsers don't swap them on rotation.
+   *
+   * Desktop: window.innerWidth / innerHeight, which is fine because
+   * desktop browsers don't have a toggling address bar.
+   */
+  function getStableSize() {
+    if (isMobile) {
+      var sw = window.screen.width;
+      var sh = window.screen.height;
+      // Orient-correct: ensure the larger value is on the axis that
+      // is actually taller right now.
+      var portrait = window.innerHeight >= window.innerWidth;
+      return {
+        w: portrait ? Math.min(sw, sh) : Math.max(sw, sh),
+        h: portrait ? Math.max(sw, sh) : Math.min(sw, sh)
+      };
+    }
+    return { w: window.innerWidth, h: window.innerHeight };
+  }
+
   function resize(force) {
     DPR = Math.max(1, window.devicePixelRatio || 1);
-    // Read the CSS-resolved size of the canvas.  Because the stylesheet
-    // sets height to 100lvh (large-viewport-height) this value is stable
-    // across mobile address-bar show/hide — no JS ratcheting needed.
-    var rect = canvas.getBoundingClientRect();
-    var newW = Math.max(300, Math.floor(rect.width));
-    var newH = Math.max(200, Math.floor(rect.height));
+    var sz = getStableSize();
+    var newW = Math.max(300, Math.floor(sz.w));
+    var newH = Math.max(200, Math.floor(sz.h));
 
     if (!force && W === newW && H === newH) return;
 
     W = newW;
     H = newH;
-    canvas.width = Math.floor(W * DPR);
+
+    // Set the CSS display size in fixed pixels — zero viewport-unit
+    // involvement means zero browser-triggered layout shifts.
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+
+    // Set the backing-store resolution.
+    canvas.width  = Math.floor(W * DPR);
     canvas.height = Math.floor(H * DPR);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
     var area = (W * H) / (1366 * 768);
     var target = Math.max(12, Math.round(cfg.baseCount * area));
     while (particles.length < target) particles.push(makeParticle(true));

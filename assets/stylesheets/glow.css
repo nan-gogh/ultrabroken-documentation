@@ -363,18 +363,22 @@ button.search-link:focus,
   position: fixed !important;
   left: 0 !important;
   top: 0 !important;
-  width: 100vw !important;
-  /* 100lvh = "large viewport height" — the screen height with browser
-     chrome fully hidden.  This is a constant per orientation, so mobile
-     address-bar show/hide never causes a layout shift or canvas jump.
-     Fallback: 100vh for browsers that don't support lvh (pre-2022). */
-  height: 100vh;
-  height: 100lvh;
+  /* Width and height are set in px by JS (from screen.width/height on
+     mobile, innerWidth/innerHeight on desktop) so no viewport-unit
+     recomputation can ever cause a layout shift. */
   pointer-events: none !important;
-  /* Promote to its own GPU layer so mobile browsers keep the painted
-     bitmap during scroll recomposites (prevents flicker). */
-  will-change: transform;
-  /* Put canvas behind normal page content without changing layout. */
+  /* Force a dedicated GPU compositing layer.  translateZ(0) is more
+     reliable than will-change across mobile WebKit / Blink — it
+     guarantees the bitmap is retained during scroll recomposites
+     instead of being discarded and causing flicker. */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  /* Prevent iOS Safari from tearing the layer during recomposite. */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Tell the browser this element's layout and paint are fully
+     independent — skip it during page reflow calculations. */
+  contain: strict;
   z-index: -1 !important;
 }
 
