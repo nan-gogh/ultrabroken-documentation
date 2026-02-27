@@ -2045,7 +2045,7 @@
 <p><em>Basic stub</em></p>
 <h2 id="introduction">Introduction</h2>
 <hr />
-<p>Despawn Interrupt refers to interrupting the despawning of an actor. When a piece of equipment despawns, the game sets its state as "dead". By interrupting the process, we get to keep the usable weapon in this "dead" state, which is what is known as a DI'd piece of equipment. This state is really powerful, as it makes the equipment not be affected by D-Pad Lock, as well as giving it infinite durability. On top of that, DI can be propagated to other equipment anywhere easily.</p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/despawn-interrupt/" class="glitch-autolink" title="Despawn Interrupt">Despawn Interrupt</a> refers to interrupting the despawning of an actor. When a piece of equipment despawns, the game sets its state as "dead". By interrupting the process, we get to keep the usable weapon in this "dead" state, which is what is known as a DI'd piece of equipment. This state is really powerful, as it makes the equipment not be affected by D-Pad Lock, as well as giving it infinite durability. On top of that, DI can be propagated to other equipment anywhere easily.</p>
 <h2 id="quick-navigation">Quick Navigation</h2>
 <hr />
 <ul>
@@ -2065,7 +2065,7 @@ For example, death reasons include:</p>
 Each reason corresponds to a number in an internal enumeration.</li>
 </ul>
 <p>The two kinds of despawn we are able to interrupt are <code>FallIntoAbyss</code> and <code>Eaten</code>.
-This splits DI into two sub-glitches: <code>FallIntoAbyss</code> DI, aka Void Dipping, and <code>Eaten</code> DI.
+This splits DI into two sub-glitches: <code>FallIntoAbyss</code> DI, aka <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/void-dipping/" class="glitch-autolink" title="Void Dipping">Void Dipping</a>, and <code>Eaten</code> DI.
 The behavioural changes stem from the way the game handles killing an already dead actor: the death will only go through if the newer death reason number is smaller than the older death reason number.
 For example, <code>PickedUp</code> has a reason number of 7.
 <code>FallIntoAbyss</code>'s number is 13, so picking up a void dipped item will properly delete it (7 &lt; 13, death goes through). However, <code>Eaten</code>'s reason number is 6, and 6 &lt; 7, so picking up a eaten DI'd piece of equipment will not delete it, putting a copy in the inventory but staying alive.

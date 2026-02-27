@@ -345,6 +345,7 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
             'tags':     fm.get('tags', []),
             'versions': fm.get('versions', []),
             'credits':  credits_list,
+            'aliases':  fm.get('aliases', []),
             'href':     f'./{p.name}',
         })
     out = Path(output)
@@ -356,6 +357,8 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
 
 
 _CONTRIBUTORS_JSON = ROOT / 'docs' / 'assets' / 'data' / 'credits.json'
+
+_GLOSSARY_JSON = ROOT / 'docs' / 'assets' / 'data' / 'glossary.json'
 
 
 _TAGS_JSON = ROOT / 'docs' / 'assets' / 'data' / 'tags.json'
@@ -442,6 +445,71 @@ def aggregate_tags(discovered_tags: set[str]) -> None:
             print(f'UPDATED tags.json (+{len(new_tags)} new tags: {", ".join(new_tags)})')
         else:
             print('NORMALIZED tags.json (re-sorted keys)')
+
+
+def build_glossary(grimoire_entries: list | None = None) -> None:
+    """Build glossary.json from glitchcraft frontmatter.
+
+    Each entry maps a glitch to its name, abbreviation, aliases, and path
+    so the glitch_autolink MkDocs hook can link mentions by any of those
+    strings to the corresponding glitch page.
+
+    Schema per entry:
+      name    – frontmatter title (e.g. "Extended Throw Sprinting")
+      abbr    – frontmatter abbreviation (e.g. "ETS")
+      aliases – list of alternative names (e.g. ["extended-throw-sprinting"])
+      path    – site-relative path (e.g. "wiki/glitchcraft/extended-throw-sprinting/")
+
+    If *grimoire_entries* is provided (from build_grimoire_data) it is reused
+    to avoid scanning the filesystem a second time.
+    """
+    if grimoire_entries is None:
+        glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
+        grimoire_entries = []
+        for p in sorted(glitchcraft_dir.glob('*.md')):
+            if p.stem.startswith('_'):
+                continue
+            fm = extract_frontmatter(p)
+            title = fm.get('title', '')
+            if not title:
+                continue
+            grimoire_entries.append({
+                'name': title,
+                'abbr': fm.get('abbreviation', ''),
+                'aliases': fm.get('aliases', []),
+                'href': f'./{p.name}',
+            })
+
+    glossary = []
+    for entry in grimoire_entries:
+        name = entry.get('name', '')
+        if not name:
+            continue
+        # Convert href "./foo-bar.md" to site path "wiki/glitchcraft/foo-bar/"
+        href = entry.get('href', '')
+        stem = href.replace('./', '').replace('.md', '')
+        path = f'wiki/glitchcraft/{stem}/'
+
+        aliases = entry.get('aliases', [])
+        if isinstance(aliases, str):
+            aliases = [aliases]
+
+        glossary.append({
+            'name': name,
+            'abbr': entry.get('abbr', ''),
+            'aliases': aliases,
+            'path': path,
+        })
+
+    # Sort by name for stable output
+    glossary.sort(key=lambda e: e['name'].lower())
+
+    _GLOSSARY_JSON.parent.mkdir(parents=True, exist_ok=True)
+    _GLOSSARY_JSON.write_text(
+        json.dumps(glossary, ensure_ascii=False, indent=2),
+        encoding='utf-8'
+    )
+    print(f'WROTE glossary.json ({len(glossary)} entries) -> {_GLOSSARY_JSON}')
 
 
 def build_leaderboard(json_path: str, discovered_credits: Counter | None = None):
@@ -542,6 +610,13 @@ def main():
         default=None,
         help='If given, also copy the updated tags.json to this path (e.g. site/assets/data/tags.json)',
     )
+    p.add_argument(
+        '--glossary-output',
+        default=None,
+        help='If given, also copy the updated glossary.json to this path (e.g. site/assets/data/glossary.json)',
+    )
+    p.add_argument('--no-glossary', dest='glossary', action='store_false',
+                   help='Skip generating glossary.json')
     args = p.parse_args()
     # allow overriding which docs subtree to index (default 'docs')
     global DOCS
@@ -549,8 +624,9 @@ def main():
     build_index(args.output, gzip_output=args.gzip, chunk=args.chunk, exclude=args.exclude)
     credit_counts: Counter | None = None
     discovered_tags: set[str] | None = None
+    grimoire_entries: list | None = None
     if args.grimoire:
-        _, credit_counts, discovered_tags = build_grimoire_data(args.grimoire_output)
+        grimoire_entries, credit_counts, discovered_tags = build_grimoire_data(args.grimoire_output)
     # Aggregate newly-discovered credits exactly once, before leaderboard generation
     if credit_counts:
         aggregate_contributors(set(credit_counts.keys()))
@@ -573,6 +649,16 @@ def main():
         print(f'COPIED tags.json -> {dest}')
     if args.leaderboard:
         build_leaderboard(args.leaderboard_output, discovered_credits=credit_counts)
+    # Build glossary.json for glitch autolink hook
+    if args.glossary:
+        build_glossary(grimoire_entries)
+    # Optionally copy glossary.json into the site directory
+    if args.glossary_output:
+        import shutil
+        dest = Path(args.glossary_output)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(_GLOSSARY_JSON, dest)
+        print(f'COPIED glossary.json -> {dest}')
 
 
 if __name__ == '__main__':
