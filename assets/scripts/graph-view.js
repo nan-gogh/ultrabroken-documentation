@@ -410,6 +410,9 @@
 
   function frame() {
     if (!running) return;
+    // While dragging, maintain a gentle alpha floor so connected nodes
+    // follow softly — but never pump it higher than what's already there
+    if (dragNode && simAlpha < 0.05) simAlpha = 0.05;
     // Keep ticking while simulation is hot or being dragged
     // Hover is visual-only and must NOT burn alpha
     if (!isSettled()) {
@@ -450,7 +453,6 @@
       var w = screenToWorld(sx, sy);
       dragNode.x = w.x;
       dragNode.y = w.y;
-      reheat(0.3);
       return;
     }
 
@@ -600,7 +602,6 @@
           var w = screenToWorld(sx, sy);
           dragNode.x = w.x;
           dragNode.y = w.y;
-          reheat(0.3);
           e.preventDefault();
         } else if (isPanning) {
           camX = panCamX - (sx - panStartX) / zoom;
