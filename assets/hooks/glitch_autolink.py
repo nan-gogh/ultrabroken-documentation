@@ -156,7 +156,7 @@ def on_page_content(html: str, page, config, files) -> str:
             if _in_protected(m.start(), m.end()):
                 continue
             matched_text = m.group(0)
-            link = f'<a href="{href}" class="glitch-autolink" title="{display}">{matched_text}</a>'
+            link = f'<a href="{href}" class="glitch-autolink" title="{display}" target="_blank" rel="noopener noreferrer">{matched_text}</a>'
             replacements.append((m.start(), m.end(), link))
 
         # Apply replacements right-to-left to preserve offsets.
