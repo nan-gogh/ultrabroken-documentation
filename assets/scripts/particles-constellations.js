@@ -55,8 +55,7 @@
   function createCanvas() {
     var c = document.createElement('canvas');
     c.className = 'ub-particles-canvas';
-    // All sizing is done by JS in resize(). No CSS width/height — avoids
-    // any viewport-unit recomputation that causes jumping on mobile.
+    c.style.cssText = 'position:fixed;left:0;top:0;width:100vw;pointer-events:none;z-index:0;will-change:transform;';
     document.body.appendChild(c);
     return c;
   }
@@ -158,9 +157,7 @@
     W = newW;
     H = newH;
 
-    // Set the CSS display size in fixed pixels — zero viewport-unit
-    // involvement means zero browser-triggered layout shifts.
-    canvas.style.width  = W + 'px';
+    // Set CSS height in fixed px (width stays at 100vw via stylesheet).
     canvas.style.height = H + 'px';
 
     // Set the backing-store resolution.
