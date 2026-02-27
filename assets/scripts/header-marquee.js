@@ -14,7 +14,8 @@
  * without replacement), as well as pushState / popstate navigation.
  */
 (function () {
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  /* Marquee runs regardless of prefers-reduced-motion — it's a
+     functional UI element (shows clipped title), not a decorative effect. */
 
   const root   = document.documentElement;
   const SPEED  = (parseFloat(getComputedStyle(root).getPropertyValue('--ub-marquee-speed'))  || 0) || 40;
