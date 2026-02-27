@@ -339,16 +339,14 @@
     for (var i = 0; i < edges.length; i++) {
       var edge = edges[i];
       var hi = hNode && (edge.source === hNode || edge.target === hNode);
+      // Only draw edges connected to the hovered node (hide all otherwise)
+      if (hNode && !hi) continue;
       ctx.strokeStyle = hi ? CLR_EDGE_HI : CLR_EDGE;
       ctx.lineWidth   = hi ? 1.5 : 0.5;
-      if (hNode && !hi) {
-        ctx.globalAlpha = 0.15;
-      }
       ctx.beginPath();
       ctx.moveTo(edge.source.x, edge.source.y);
       ctx.lineTo(edge.target.x, edge.target.y);
       ctx.stroke();
-      ctx.globalAlpha = 1;
     }
 
     // Draw nodes
