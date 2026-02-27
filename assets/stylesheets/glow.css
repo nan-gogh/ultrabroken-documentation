@@ -364,18 +364,17 @@ button.search-link:focus,
   left: 0 !important;
   top: 0 !important;
   width: 100vw !important;
-  /* Height is set in px by JS (ratcheted to the largest innerHeight seen)
-     so mobile browser-chrome toggling never causes a CSS layout shift.
-     The fallback below only applies until the first JS resize() call. */
+  /* 100lvh = "large viewport height" — the screen height with browser
+     chrome fully hidden.  This is a constant per orientation, so mobile
+     address-bar show/hide never causes a layout shift or canvas jump.
+     Fallback: 100vh for browsers that don't support lvh (pre-2022). */
   height: 100vh;
+  height: 100lvh;
   pointer-events: none !important;
-  /* Promote to its own GPU layer so mobile browsers don't discard the
-     painted content during scroll recomposites (fixes flicker on iOS/Android). */
+  /* Promote to its own GPU layer so mobile browsers keep the painted
+     bitmap during scroll recomposites (prevents flicker). */
   will-change: transform;
-  /* Put canvas behind normal page content without changing layout.
-     Using a negative z-index avoids creating stacking contexts on
-     theme elements like `.md-content`/`.md-main`, which can interfere
-     with sticky headers or drawers. */
+  /* Put canvas behind normal page content without changing layout. */
   z-index: -1 !important;
 }
 
