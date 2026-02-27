@@ -200,28 +200,15 @@
     }
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
+    // Spawn particles to fill the pool for the current viewport.
+    // NEVER cull particles here — resize fires on scroll due to
+    // mobile address-bar transitions and would destroy click-burst
+    // particles. update() already handles the full particle lifecycle:
+    // ambient particles recycle at the screen top, burst particles
+    // are removed when off-screen, and burst-cluster spawns have a cap.
     var area = (W * H) / (1366 * 768);
     var target = Math.max(12, Math.round(cfg.baseCount * area));
-    // Only adjust the particle pool when the canvas actually grew.
-    // Scroll-triggered resize events (e.g. mobile address-bar toggle)
-    // that don't change dimensions should never touch particles.
-    if (cleared || force) {
-      while (particles.length < target) particles.push(makeParticle(true));
-      while (particles.length > target) {
-        var removed = false;
-        for (var i = particles.length - 1; i >= 0; i--) {
-          if (!particles[i].burst) {
-            particles.splice(i, 1);
-            removed = true;
-            break;
-          }
-        }
-        if (!removed) break; // all remaining particles are bursts, stop
-      }
-    } else if (particles.length < target) {
-      // Still allow spawning new particles to fill the pool, just never cull.
-      while (particles.length < target) particles.push(makeParticle(true));
-    }
+    while (particles.length < target) particles.push(makeParticle(true));
 
     // If we just cleared the bitmap, repaint synchronously so there is
     // never a blank frame visible to the user.
