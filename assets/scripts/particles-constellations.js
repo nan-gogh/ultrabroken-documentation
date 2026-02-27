@@ -55,7 +55,7 @@
   function createCanvas() {
     var c = document.createElement('canvas');
     c.className = 'ub-particles-canvas';
-    c.style.cssText = 'width:100%;height:100%;position:fixed;left:0;top:0;pointer-events:none;z-index:0;';
+    c.style.cssText = 'width:100%;height:100%;position:fixed;left:0;top:0;pointer-events:none;z-index:0;will-change:transform;';
     document.body.appendChild(c);
     return c;
   }
@@ -77,7 +77,11 @@
     var base = (document.querySelector('link[rel="canonical"]') || {}).href || location.href;
     var siteRoot = base.replace(/\/[^/]*$/, '/');
     img.src = siteRoot + 'assets/images/ultrabroken_rune.svg';
-    img.onload = function () { runeReady = true; };
+    img.onload = function () {
+      runeReady = true;
+      // If reduced-motion froze a frame before the SVG was ready, re-render now
+      if (reducedMotion && !loopRunning) renderFrozen();
+    };
     runeImg = img;
   })();
 
@@ -313,6 +317,22 @@
     resize();
     render(0);
   }
+
+  /**
+   * On mobile, position:fixed canvases can lose their painted content
+   * when the browser recomposites during scroll.  Re-paint the frozen
+   * frame on scroll so it never goes blank.  Throttled to ~1 per frame.
+   */
+  var scrollRepaintPending = false;
+  window.addEventListener('scroll', function () {
+    if (!reducedMotion || loopRunning) return;
+    if (scrollRepaintPending) return;
+    scrollRepaintPending = true;
+    requestAnimationFrame(function () {
+      scrollRepaintPending = false;
+      render(0);
+    });
+  }, { passive: true });
 
   /** Start / resume the live animation loop. */
   function startLoop() {

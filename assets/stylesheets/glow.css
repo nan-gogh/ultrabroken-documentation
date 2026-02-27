@@ -366,6 +366,9 @@ button.search-link:focus,
   width: 100% !important;
   height: 100% !important;
   pointer-events: none !important;
+  /* Promote to its own GPU layer so mobile browsers don't discard the
+     painted content during scroll recomposites (fixes flicker on iOS/Android). */
+  will-change: transform;
   /* Put canvas behind normal page content without changing layout.
      Using a negative z-index avoids creating stacking contexts on
      theme elements like `.md-content`/`.md-main`, which can interfere
