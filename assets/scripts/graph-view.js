@@ -339,8 +339,8 @@
     for (var i = 0; i < edges.length; i++) {
       var edge = edges[i];
       var hi = hNode && (edge.source === hNode || edge.target === hNode);
-      // Only draw edges connected to the hovered node (hide all otherwise)
-      if (hNode && !hi) continue;
+      // Only draw edges when connected to hovered node; hide all otherwise
+      if (!hi) continue;
       ctx.strokeStyle = hi ? CLR_EDGE_HI : CLR_EDGE;
       ctx.lineWidth   = hi ? 1.5 : 0.5;
       ctx.beginPath();
