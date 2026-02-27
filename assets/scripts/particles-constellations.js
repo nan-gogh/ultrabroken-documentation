@@ -152,7 +152,7 @@
   // either orientation never triggers a resize.  The wrapper's
   // overflow:hidden clips any extra pixels invisibly.
   var BUFFER = 100;
-  var lockedW = Math.floor(window.innerWidth)  + BUFFER;
+  var lockedW = Math.floor(window.innerWidth);
   var lockedH = Math.floor(window.innerHeight) + BUFFER;
 
   function resize(force) {
@@ -166,7 +166,7 @@
     var wDelta = W > 0 ? Math.abs(rawW - W) : 0;
     var hDelta = W > 0 ? Math.abs(rawH - H) : 0;
     if (wDelta > 100 || hDelta > 100) {
-      lockedW = rawW + BUFFER;
+      lockedW = rawW;
       lockedH = rawH + BUFFER;
     }
 

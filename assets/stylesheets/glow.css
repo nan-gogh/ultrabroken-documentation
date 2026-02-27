@@ -368,7 +368,7 @@ button.search-link:focus,
   position: fixed !important;
   left: 0 !important;
   top: 0 !important;
-  width: 100vw !important;
+  width: 100vw;
   /* Height set to ratcheted px by JS; 100vh is the pre-init fallback. */
   height: 100vh;
   pointer-events: none !important;
