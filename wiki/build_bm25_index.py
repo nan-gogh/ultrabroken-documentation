@@ -211,12 +211,18 @@ def extract_title(md_path: Path) -> str:
     return None
 
 
-def walk_docs(chunk: bool = True):
+def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
+    import fnmatch
+    _exclude = exclude or []
     items = []
     for p in sorted(DOCS.rglob('*.md')):
         rel = p.relative_to(DOCS)
         # skip hidden or dot folders
         if rel.parts and str(rel.parts[0]).startswith('.'):
+            continue
+        # skip paths matching any --exclude glob pattern
+        rel_posix = rel.as_posix()
+        if any(fnmatch.fnmatch(rel_posix, pat) for pat in _exclude):
             continue
 
         fm = extract_frontmatter(p)
@@ -274,8 +280,8 @@ def walk_docs(chunk: bool = True):
 
     return items
 
-def build_index(output: str, gzip_output: bool = False, chunk: bool = True):
-    items = walk_docs(chunk=chunk)
+def build_index(output: str, gzip_output: bool = False, chunk: bool = True, exclude: list[str] | None = None):
+    items = walk_docs(chunk=chunk, exclude=exclude)
     out = Path(output)
     out.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(items, ensure_ascii=False)
@@ -506,6 +512,13 @@ def main():
     p.add_argument('--no-chunk', dest='chunk', action='store_false', help='Do not chunk pages; emit one item per page')
     p.add_argument('--docs-dir', default='docs', help='Path under the repo root to read markdown from (e.g. docs/wiki)')
     p.add_argument(
+        '--exclude', '-x',
+        action='append',
+        default=[],
+        metavar='GLOB',
+        help='Glob pattern (relative to docs dir) to exclude from indexing. May be repeated.',
+    )
+    p.add_argument(
         '--grimoire-output', '-g',
         default=str(ROOT / 'docs' / 'assets' / 'data' / 'grimoire-data.json'),
         help='Path to write grimoire-data.json (default: docs/assets/data/grimoire-data.json)',
@@ -533,7 +546,7 @@ def main():
     # allow overriding which docs subtree to index (default 'docs')
     global DOCS
     DOCS = ROOT / args.docs_dir
-    build_index(args.output, gzip_output=args.gzip, chunk=args.chunk)
+    build_index(args.output, gzip_output=args.gzip, chunk=args.chunk, exclude=args.exclude)
     credit_counts: Counter | None = None
     discovered_tags: set[str] | None = None
     if args.grimoire:
