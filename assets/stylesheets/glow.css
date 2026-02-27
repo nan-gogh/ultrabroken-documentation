@@ -364,10 +364,15 @@ button.search-link:focus,
   left: 0 !important;
   top: 0 !important;
   width: 100vw !important;
-  /* Height is set in px by JS (using screen.height on mobile for
-     stability).  The fallback below applies until the first resize(). */
+  /* Height is set in px by JS (ratcheted to the largest innerHeight
+     seen).  The fallback below applies only until the first resize(). */
   height: 100vh;
   pointer-events: none !important;
+  /* The ratcheted height may be slightly taller than the current viewport
+     when the address bar is visible.  overflow:hidden tells the browser
+     there is nothing to scroll or clip, preventing GPU layer invalidation
+     during address-bar transitions. */
+  overflow: hidden !important;
   /* Promote to its own GPU layer so mobile browsers keep the painted
      bitmap during scroll recomposites (prevents flicker). */
   will-change: transform;
