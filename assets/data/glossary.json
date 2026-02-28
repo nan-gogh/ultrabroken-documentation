@@ -2249,6 +2249,15 @@
     "path": "wiki/glitchcraft/void-holding/"
   },
   {
+    "name": "Vortaculling",
+    "abbr": "VC",
+    "aliases": [
+      "vortacull",
+      "vortaculling"
+    ],
+    "path": "wiki/glitchcraft/vortaculling/"
+  },
+  {
     "name": "Wacko Attacko",
     "abbr": "WATK",
     "aliases": [

@@ -1381,6 +1381,11 @@
       "abbr": "VH"
     },
     {
+      "id": "wiki/glitchcraft/vortaculling/",
+      "name": "Vortaculling",
+      "abbr": "VC"
+    },
+    {
       "id": "wiki/glitchcraft/wacko-attacko/",
       "name": "Wacko Attacko",
       "abbr": "WATK"
@@ -1988,6 +1993,10 @@
     {
       "source": "wiki/glitchcraft/double-bypass-zuggle/",
       "target": "wiki/glitchcraft/stick-desync-clip/"
+    },
+    {
+      "source": "wiki/glitchcraft/double-bypass-zuggle/",
+      "target": "wiki/glitchcraft/vortaculling/"
     },
     {
       "source": "wiki/glitchcraft/double-bypass-zuggle/",
@@ -2688,6 +2697,10 @@
     {
       "source": "wiki/glitchcraft/mineru-cull-storage/",
       "target": "wiki/glitchcraft/swap-resync/"
+    },
+    {
+      "source": "wiki/glitchcraft/mineru-cull-storage/",
+      "target": "wiki/glitchcraft/vortaculling/"
     },
     {
       "source": "wiki/glitchcraft/mineru-cull-storage/",
@@ -3508,6 +3521,42 @@
     {
       "source": "wiki/glitchcraft/void-hold-storage/",
       "target": "wiki/glitchcraft/void-holding/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/aeroculling/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/cold-fuse/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/cull-storage/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/fuse-entanglement/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/invizuggle/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/mineru-cull-storage/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/persistent-save-load-object-transfer/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/stick-desync-clip/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/zuggle/"
     },
     {
       "source": "wiki/glitchcraft/warp-bumping/",
