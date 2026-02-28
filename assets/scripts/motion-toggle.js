@@ -23,16 +23,15 @@
   window.__ubReducedMotion = reduced;
 
   /* ── SVG icons (play / pause) ──────────────────────────────── */
-  // "Running" state icon — three wavy motion lines
+  // "Running" state icon — pause (two vertical bars)
   var ICON_ON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
-    + '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
-    + 'd="M3 12h4l3-8 4 16 3-8h4"/>'
+    + '<rect fill="currentColor" x="6" y="4" width="4" height="16" rx="1"/>'
+    + '<rect fill="currentColor" x="14" y="4" width="4" height="16" rx="1"/>'
     + '</svg>';
 
-  // "Paused" state icon — flat line (like a flatline / EKG stopped)
+  // "Paused" state icon — play (triangle)
   var ICON_OFF = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
-    + '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
-    + 'd="M3 12h18"/>'
+    + '<polygon fill="currentColor" points="6,4 20,12 6,20"/>'
     + '</svg>';
 
   /* ── Create button ─────────────────────────────────────────── */
