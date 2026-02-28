@@ -169,9 +169,6 @@ label.md-header__button[for^="__palette_"]:hover {
   vertical-align: middle;
   line-height: 1;
 }
-.ub-motion-toggle:hover {
-  filter: brightness(0.9);
-}
 .ub-motion-toggle svg {
   width: 20px;
   height: 20px;
