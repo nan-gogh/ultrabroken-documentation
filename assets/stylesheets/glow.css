@@ -165,9 +165,15 @@ label.md-header__button[for^="__palette_"]:hover {
   padding: 4px;
   margin: 0 4px;
   color: var(--teal-glow) !important;
-  transition: opacity .18s ease, filter .18s ease;
   vertical-align: middle;
   line-height: 1;
+}
+.ub-motion-toggle:hover,
+.ub-motion-toggle:focus,
+.ub-motion-toggle:active {
+  opacity: 1 !important;
+  filter: none !important;
+  color: var(--teal-glow) !important;
 }
 .ub-motion-toggle svg {
   width: 20px;
