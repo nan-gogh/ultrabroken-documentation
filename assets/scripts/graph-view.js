@@ -4,11 +4,12 @@
  * Renders a Canvas-based graph visualisation of how glitchcraft pages
  * reference each other, similar to Obsidian's graph view.
  *
- * Physics model: d3-force-inspired velocity Verlet integration with
+ * Physics model: Obsidian-style force-directed graph with
  *   - Alpha (temperature) decay for smooth convergence
- *   - Barnes-Hut-style many-body repulsion (O(n²) brute-force, fine for <1k)
+ *   - Many-body repulsion (Coulomb 1/dist², O(n²) brute-force)
  *   - Spring link force with degree-weighted strength
- *   - Center-of-mass translation (not per-node spring)
+ *   - Per-node center gravity (Obsidian "center force")
+ *   - All forces have a minimum alpha floor so the lattice self-heals
  *   - Velocity decay (friction) per tick
  *
  * Data source: assets/data/graph.json  (built by build_bm25_index.py)
@@ -38,10 +39,9 @@
   // Link (spring attraction)
   var LINK_DIST     = 200;      // resting spring length (wide spacing)
 
-  // Soft boundary: stray nodes beyond this radius get a gentle fixed-magnitude
-  // inward nudge — NOT proportional to distance, so no chaos from far-out nodes
-  var BOUNDARY_R        = 2000; // world-unit radius before nudge activates
-  var BOUNDARY_STRENGTH = 1.5;  // velocity units added per tick toward origin
+  // Center gravity: per-node pull toward origin (Obsidian's "center force")
+  // Keeps the graph cohesive and pulls strays back — always-on via alpha floor
+  var CENTER_STRENGTH = 0.5;    // Obsidian default ≈ 0.48
 
   // Max velocity cap to prevent explosion
   var MAX_VEL       = 50;
@@ -203,7 +203,11 @@
     // ① Update alpha (simulated annealing cooldown)
     simAlpha += (ALPHA_TARGET - simAlpha) * ALPHA_DECAY;
 
-    // ② Many-body repulsion: each pair pushes apart, scaled by alpha
+    // Minimum alpha floor — all variable forces use this so the lattice
+    // is always weakly self-correcting even after the sim has "cooled"
+    var effectiveAlpha = Math.max(simAlpha, 0.01);
+
+    // ② Many-body repulsion: each pair pushes apart
     for (i = 0; i < nodes.length; i++) {
       n = nodes[i];
       for (j = i + 1; j < nodes.length; j++) {
@@ -217,8 +221,8 @@
         // Skip if beyond max range
         if (dist > DIST_MAX) continue;
 
-        // Coulomb-like: F = alpha * charge / dist²
-        force = simAlpha * CHARGE / (dist * dist);
+        // Coulomb-like: F = effectiveAlpha * charge / dist²
+        force = effectiveAlpha * CHARGE / (dist * dist);
         fx = (dx / dist) * force;
         fy = (dy / dist) * force;
         // Negative charge = repulsion, so this pushes nodes apart
@@ -231,17 +235,14 @@
 
     // ③ Link spring force: pull linked nodes toward LINK_DIST
     //    Strength is per-edge: 1/min(deg_source, deg_target)
-    //    Uses max(alpha, 0.01) so links always weakly attract — this is what
-    //    makes strays fall back into the lattice (Obsidian-style behaviour)
-    var linkAlpha = Math.max(simAlpha, 0.01);
     for (i = 0; i < edges.length; i++) {
       edge = edges[i];
       dx = edge.target.x - edge.source.x;
       dy = edge.target.y - edge.source.y;
       dist = Math.sqrt(dx * dx + dy * dy) || 1;
 
-      // Spring: F = strength * linkAlpha * (dist - restLength) / dist
-      force = edge.strength * linkAlpha * (dist - LINK_DIST) / dist;
+      // Spring: F = strength * effectiveAlpha * (dist - restLength) / dist
+      force = edge.strength * effectiveAlpha * (dist - LINK_DIST) / dist;
       fx = dx * force;
       fy = dy * force;
       edge.source.vx += fx;
@@ -274,18 +275,13 @@
       }
     }
 
-    // ⑤ Center force: translate all nodes so center-of-mass is at origin
-    //    (modifies positions directly, not velocities — avoids oscillation)
-    var cx = 0, cy = 0;
+    // ⑤ Center force: per-node pull toward origin (Obsidian-style gravity)
+    //    Uses effectiveAlpha so it's always weakly active
+    var centerK = effectiveAlpha * CENTER_STRENGTH;
     for (i = 0; i < nodes.length; i++) {
-      cx += nodes[i].x;
-      cy += nodes[i].y;
-    }
-    cx /= nodes.length;
-    cy /= nodes.length;
-    for (i = 0; i < nodes.length; i++) {
-      nodes[i].x -= cx;
-      nodes[i].y -= cy;
+      n = nodes[i];
+      n.vx -= n.x * centerK;
+      n.vy -= n.y * centerK;
     }
 
     // ⑥ Velocity decay (friction) + velocity cap + position integration
@@ -293,16 +289,6 @@
     for (i = 0; i < nodes.length; i++) {
       n = nodes[i];
       if (n === dragNode) { n.vx = 0; n.vy = 0; continue; }
-
-      // Soft boundary: fixed-magnitude inward nudge for strays only
-      // Force is normalised by distance so it's the SAME strength at any range
-      var bd2 = n.x * n.x + n.y * n.y;
-      if (bd2 > BOUNDARY_R * BOUNDARY_R) {
-        var bd = Math.sqrt(bd2);
-        var bk = BOUNDARY_STRENGTH / bd; // direction-only, fixed magnitude
-        n.vx -= n.x * bk;
-        n.vy -= n.y * bk;
-      }
 
       // Apply friction
       n.vx *= decay;
