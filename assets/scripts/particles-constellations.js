@@ -4,18 +4,20 @@
  * Combines: particles + constellations, background rune, bottom glow bar,
  * and 404 detection (rune flips upside-down on 404 pages).
  *
- * Reduced-motion behavior:
- *   OFF → everything animates normally (particles move, rune/glow pulse)
- *   ON  → a single frozen frame is rendered (no requestAnimationFrame loop)
+ * Three background modes (driven by motion-toggle.js):
+ *   'animate' → everything animates normally (particles move, rune/glow pulse)
+ *   'frozen'  → a single frozen frame is rendered (no requestAnimationFrame loop)
+ *   'hidden'  → canvas wrapper hidden entirely, plain background colour
  *
- * Reduced-motion state is driven by the in-page toggle (motion-toggle.js)
- * via the 'motion-toggle' CustomEvent and localStorage('ub-reduced-motion').
+ * Mode is driven by the in-page toggle (motion-toggle.js)
+ * via the 'motion-toggle' CustomEvent and localStorage('ub-bg-mode').
  */
 (function () {
   /* ------------------------------------------------------------------ */
-  /*  Reduced-motion detection (from in-page toggle)                     */
+  /*  Background mode detection (from in-page toggle)                    */
   /* ------------------------------------------------------------------ */
-  var reducedMotion = !!window.__ubReducedMotion;
+  var bgMode = window.__ubBgMode || 'animate';
+  var reducedMotion = bgMode !== 'animate';
 
   /* ------------------------------------------------------------------ */
   /*  Configuration                                                     */
@@ -423,14 +425,30 @@
   }
 
   /* ------------------------------------------------------------------ */
-  /*  Reduced-motion live toggle (from in-page button)                   */
+  /*  Background mode live toggle (from in-page button)                  */
   /* ------------------------------------------------------------------ */
+  function showCanvas()  {
+    var w = canvas.parentNode;
+    if (w) w.style.display = '';
+  }
+  function hideCanvas()  {
+    var w = canvas.parentNode;
+    if (w) w.style.display = 'none';
+  }
+
   window.addEventListener('motion-toggle', function (e) {
-    reducedMotion = !!(e.detail && e.detail.reduced);
-    if (reducedMotion) {
+    bgMode = (e.detail && e.detail.mode) || 'animate';
+    reducedMotion = bgMode !== 'animate';
+
+    if (bgMode === 'hidden') {
       stopLoop();
+      hideCanvas();
+    } else if (bgMode === 'frozen') {
+      stopLoop();
+      showCanvas();
       renderFrozen();
     } else {
+      showCanvas();
       startLoop();
     }
   });
@@ -453,7 +471,9 @@
     refresh404();
     attach404Observer();
 
-    if (reducedMotion) {
+    if (bgMode === 'hidden') {
+      hideCanvas();
+    } else if (bgMode === 'frozen') {
       renderFrozen();
     } else {
       startLoop();
