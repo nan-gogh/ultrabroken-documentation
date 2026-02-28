@@ -543,8 +543,6 @@
       var dsx = sx - dragStartSX, dsy = sy - dragStartSY;
       if (dsx * dsx + dsy * dsy < 36) {
         navigate(dragNode);
-      } else {
-        reheat(0.3);
       }
       dragNode = null;
       return;
@@ -664,8 +662,6 @@
       var dsx = sx - dragStartSX, dsy = sy - dragStartSY;
       if (dsx * dsx + dsy * dsy < 36) {
         navigate(dragNode);
-      } else {
-        reheat(0.3);
       }
     }
     dragNode = null;
