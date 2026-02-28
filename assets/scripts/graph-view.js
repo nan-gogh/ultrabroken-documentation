@@ -41,7 +41,8 @@
 
   // Center gravity: per-node pull toward origin (Obsidian's "center force")
   // Keeps the graph cohesive and pulls strays back — always-on via alpha floor
-  var CENTER_STRENGTH = 0.5;    // Obsidian default ≈ 0.48
+  // Much lower than Obsidian's 0.48 because our repulsion model differs
+  var CENTER_STRENGTH = 0.03;
 
   // Max velocity cap to prevent explosion
   var MAX_VEL       = 50;
