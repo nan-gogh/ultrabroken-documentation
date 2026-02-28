@@ -38,10 +38,6 @@
   // Link (spring attraction)
   var LINK_DIST     = 200;      // resting spring length (wide spacing)
 
-  // Gravity: constant pull toward origin so stray nodes always return
-  // NOT alpha-scaled — persists even after the sim has cooled
-  var GRAVITY       = 0.015;
-
   // Max velocity cap to prevent explosion
   var MAX_VEL       = 50;
 
@@ -290,10 +286,6 @@
       n = nodes[i];
       if (n === dragNode) { n.vx = 0; n.vy = 0; continue; }
 
-      // Gravity toward origin — not alpha-scaled so it always pulls strays home
-      n.vx -= GRAVITY * n.x;
-      n.vy -= GRAVITY * n.y;
-
       // Apply friction
       n.vx *= decay;
       n.vy *= decay;
@@ -527,9 +519,6 @@
       var dsx = sx - dragStartSX, dsy = sy - dragStartSY;
       if (dsx * dsx + dsy * dsy < 36) {
         navigate(dragNode);
-      } else {
-        // Drag was real — reheat so gravity can pull stray nodes back
-        reheat(0.15);
       }
       dragNode = null;
       return;
@@ -649,9 +638,6 @@
       var dsx = sx - dragStartSX, dsy = sy - dragStartSY;
       if (dsx * dsx + dsy * dsy < 36) {
         navigate(dragNode);
-      } else {
-        // Drag was real — reheat so gravity can pull stray nodes back
-        reheat(0.15);
       }
     }
     dragNode = null;
