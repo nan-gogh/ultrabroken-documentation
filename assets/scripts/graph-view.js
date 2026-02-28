@@ -230,15 +230,18 @@
     }
 
     // ③ Link spring force: pull linked nodes toward LINK_DIST
-    //    Strength is per-edge: 1/min(deg_source, deg_target) × alpha
+    //    Strength is per-edge: 1/min(deg_source, deg_target)
+    //    Uses max(alpha, 0.01) so links always weakly attract — this is what
+    //    makes strays fall back into the lattice (Obsidian-style behaviour)
+    var linkAlpha = Math.max(simAlpha, 0.01);
     for (i = 0; i < edges.length; i++) {
       edge = edges[i];
       dx = edge.target.x - edge.source.x;
       dy = edge.target.y - edge.source.y;
       dist = Math.sqrt(dx * dx + dy * dy) || 1;
 
-      // Spring: F = strength * alpha * (dist - restLength) / dist
-      force = edge.strength * simAlpha * (dist - LINK_DIST) / dist;
+      // Spring: F = strength * linkAlpha * (dist - restLength) / dist
+      force = edge.strength * linkAlpha * (dist - LINK_DIST) / dist;
       fx = dx * force;
       fy = dy * force;
       edge.source.vx += fx;
@@ -320,18 +323,15 @@
     tickCount++;
   }
 
-  /** Check if simulation has cooled enough to stop auto-ticking */
-  function hasStrays() {
-    var r2 = BOUNDARY_R * BOUNDARY_R;
+  /** Check if simulation has cooled — velocity-based so the sim stays
+   *  alive as long as any node is actually moving (e.g. stray returning) */
+  function isSettled() {
+    if (dragNode) return false;
     for (var i = 0; i < nodes.length; i++) {
       var n = nodes[i];
-      if (n.x * n.x + n.y * n.y > r2) return true;
+      if (n.vx * n.vx + n.vy * n.vy > 0.0001) return false;
     }
-    return false;
-  }
-
-  function isSettled() {
-    return simAlpha < ALPHA_MIN && !dragNode && !hasStrays();
+    return true;
   }
 
   /** Reheat simulation (e.g. during interaction) */
