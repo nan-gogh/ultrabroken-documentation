@@ -38,6 +38,11 @@
   // Link (spring attraction)
   var LINK_DIST     = 200;      // resting spring length (wide spacing)
 
+  // Soft boundary: stray nodes beyond this radius get a gentle fixed-magnitude
+  // inward nudge — NOT proportional to distance, so no chaos from far-out nodes
+  var BOUNDARY_R        = 2000; // world-unit radius before nudge activates
+  var BOUNDARY_STRENGTH = 1.5;  // velocity units added per tick toward origin
+
   // Max velocity cap to prevent explosion
   var MAX_VEL       = 50;
 
@@ -286,6 +291,16 @@
       n = nodes[i];
       if (n === dragNode) { n.vx = 0; n.vy = 0; continue; }
 
+      // Soft boundary: fixed-magnitude inward nudge for strays only
+      // Force is normalised by distance so it's the SAME strength at any range
+      var bd2 = n.x * n.x + n.y * n.y;
+      if (bd2 > BOUNDARY_R * BOUNDARY_R) {
+        var bd = Math.sqrt(bd2);
+        var bk = BOUNDARY_STRENGTH / bd; // direction-only, fixed magnitude
+        n.vx -= n.x * bk;
+        n.vy -= n.y * bk;
+      }
+
       // Apply friction
       n.vx *= decay;
       n.vy *= decay;
@@ -306,8 +321,17 @@
   }
 
   /** Check if simulation has cooled enough to stop auto-ticking */
+  function hasStrays() {
+    var r2 = BOUNDARY_R * BOUNDARY_R;
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      if (n.x * n.x + n.y * n.y > r2) return true;
+    }
+    return false;
+  }
+
   function isSettled() {
-    return simAlpha < ALPHA_MIN && !dragNode;
+    return simAlpha < ALPHA_MIN && !dragNode && !hasStrays();
   }
 
   /** Reheat simulation (e.g. during interaction) */
