@@ -154,6 +154,30 @@ label.md-header__button[for^="__palette_"]:hover {
   filter: brightness(0.9);
 }
 
+/* Motion toggle button — matches header icon buttons */
+.ub-motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin: 0 4px;
+  color: var(--teal-glow) !important;
+  transition: opacity .18s ease, filter .18s ease;
+  vertical-align: middle;
+  line-height: 1;
+}
+.ub-motion-toggle:hover {
+  filter: brightness(0.9);
+}
+.ub-motion-toggle svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
 /* Search bar and input styling - bright teal, no glow */
 .md-search__input {
   color: var(--teal-glow) !important;

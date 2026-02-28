@@ -8,15 +8,14 @@
  *   OFF → everything animates normally (particles move, rune/glow pulse)
  *   ON  → a single frozen frame is rendered (no requestAnimationFrame loop)
  *
- * The OS reduced-motion preference is tracked live: if the user toggles it
- * while browsing, the canvas smoothly freezes or resumes.
+ * Reduced-motion state is driven by the in-page toggle (motion-toggle.js)
+ * via the 'motion-toggle' CustomEvent and localStorage('ub-reduced-motion').
  */
 (function () {
   /* ------------------------------------------------------------------ */
-  /*  Reduced-motion detection                                          */
+  /*  Reduced-motion detection (from in-page toggle)                     */
   /* ------------------------------------------------------------------ */
-  var mql = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
-  var reducedMotion = mql ? mql.matches : false;
+  var reducedMotion = !!window.__ubReducedMotion;
 
   /* ------------------------------------------------------------------ */
   /*  Configuration                                                     */
@@ -424,19 +423,17 @@
   }
 
   /* ------------------------------------------------------------------ */
-  /*  Reduced-motion live toggle                                        */
+  /*  Reduced-motion live toggle (from in-page button)                   */
   /* ------------------------------------------------------------------ */
-  if (mql && mql.addEventListener) {
-    mql.addEventListener('change', function (e) {
-      reducedMotion = e.matches;
-      if (reducedMotion) {
-        stopLoop();
-        renderFrozen();
-      } else {
-        startLoop();
-      }
-    });
-  }
+  window.addEventListener('motion-toggle', function (e) {
+    reducedMotion = !!(e.detail && e.detail.reduced);
+    if (reducedMotion) {
+      stopLoop();
+      renderFrozen();
+    } else {
+      startLoop();
+    }
+  });
 
   /* ------------------------------------------------------------------ */
   /*  Click burst                                                       */
