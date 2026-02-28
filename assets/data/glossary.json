@@ -456,6 +456,15 @@
     "path": "wiki/glitchcraft/culling-area-fuse-storage-fuse-entanglement/"
   },
   {
+    "name": "Cursed (Pseudo) Fuse",
+    "abbr": "CPF",
+    "aliases": [
+      "cursed-fuse",
+      "cursed-pseudo-fuse"
+    ],
+    "path": "wiki/glitchcraft/cursed-fuse/"
+  },
+  {
     "name": "Cutscene Combo Amplifier",
     "abbr": "CCA",
     "aliases": [

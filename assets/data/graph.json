@@ -281,6 +281,11 @@
       "abbr": "CFSFE"
     },
     {
+      "id": "wiki/glitchcraft/cursed-fuse/",
+      "name": "Cursed (Pseudo) Fuse",
+      "abbr": "CPF"
+    },
+    {
       "id": "wiki/glitchcraft/cutscene-combo-amplifier/",
       "name": "Cutscene Combo Amplifier",
       "abbr": "CCA"
@@ -1901,6 +1906,14 @@
     {
       "source": "wiki/glitchcraft/culling-area-fuse-storage/",
       "target": "wiki/glitchcraft/object-culling/"
+    },
+    {
+      "source": "wiki/glitchcraft/cursed-fuse/",
+      "target": "wiki/glitchcraft/cold-fuse/"
+    },
+    {
+      "source": "wiki/glitchcraft/cursed-fuse/",
+      "target": "wiki/glitchcraft/fuse-entanglement/"
     },
     {
       "source": "wiki/glitchcraft/cutscene-combo-amplifier/",
