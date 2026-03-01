@@ -17,8 +17,8 @@
     },
     {
       "id": "wiki/glitchcraft/anti-gravity-gas/",
-      "name": "Anti-gravity GAS",
-      "abbr": "AGAS"
+      "name": "Anti-Gravity GAS",
+      "abbr": "AG GAS"
     },
     {
       "id": "wiki/glitchcraft/anti-gravity-glitch/",
@@ -43,7 +43,7 @@
     {
       "id": "wiki/glitchcraft/arrow-smuggling/",
       "name": "Arrow Smuggling",
-      "abbr": "ASMU"
+      "abbr": "AS"
     },
     {
       "id": "wiki/glitchcraft/arrow-unlink/",
@@ -113,7 +113,7 @@
     {
       "id": "wiki/glitchcraft/banc-storage/",
       "name": "Banc Storage",
-      "abbr": "BANC"
+      "abbr": "BS"
     },
     {
       "id": "wiki/glitchcraft/bomb-skew/",
@@ -133,7 +133,7 @@
     {
       "id": "wiki/glitchcraft/bow-sprinting/",
       "name": "Bow Sprinting",
-      "abbr": "BS"
+      "abbr": "BSP"
     },
     {
       "id": "wiki/glitchcraft/breaking-awakened-master-sword/",
@@ -143,7 +143,7 @@
     {
       "id": "wiki/glitchcraft/bthrow-sprinting/",
       "name": "BThrow Sprinting",
-      "abbr": "BTS"
+      "abbr": "BTSP"
     },
     {
       "id": "wiki/glitchcraft/bundled-item-duplication/",
@@ -213,7 +213,7 @@
     {
       "id": "wiki/glitchcraft/crouch-sprinting/",
       "name": "Crouch Sprinting",
-      "abbr": "CS"
+      "abbr": "CSP"
     },
     {
       "id": "wiki/glitchcraft/crouch-throw-tap-sprinting/",
@@ -323,7 +323,7 @@
     {
       "id": "wiki/glitchcraft/dispenser-storage/",
       "name": "Dispenser Storage",
-      "abbr": "DISP"
+      "abbr": "DSTR"
     },
     {
       "id": "wiki/glitchcraft/display-duping/",
@@ -363,7 +363,7 @@
     {
       "id": "wiki/glitchcraft/dpadlock-less-invizuggle/",
       "name": "Dpadlock-less Invizuggle",
-      "abbr": "DLI"
+      "abbr": "DLIZ"
     },
     {
       "id": "wiki/glitchcraft/drop-delay-zuggle/",
@@ -378,7 +378,7 @@
     {
       "id": "wiki/glitchcraft/drop-smuggling/",
       "name": "Drop Smuggling",
-      "abbr": "DSMU"
+      "abbr": "DS"
     },
     {
       "id": "wiki/glitchcraft/drop-zuggle/",
@@ -388,7 +388,7 @@
     {
       "id": "wiki/glitchcraft/durability/",
       "name": "Durability-",
-      "abbr": "DUR"
+      "abbr": "DUR-"
     },
     {
       "id": "wiki/glitchcraft/dynamic-purgatory-zuggle/",
@@ -438,7 +438,7 @@
     {
       "id": "wiki/glitchcraft/extended-throw-sprinting/",
       "name": "Extended Throw Sprinting",
-      "abbr": "ETS"
+      "abbr": "ETSP"
     },
     {
       "id": "wiki/glitchcraft/fall-damage-cancel/",
@@ -521,7 +521,7 @@
       "abbr": "FSFE"
     },
     {
-      "id": "wiki/glitchcraft/gas-launching-previously-known-as-ascend-launching/",
+      "id": "wiki/glitchcraft/gas-launching/",
       "name": "GAS Launching",
       "abbr": "GASL"
     },
@@ -628,7 +628,7 @@
     {
       "id": "wiki/glitchcraft/invizuggle/",
       "name": "Invizuggle",
-      "abbr": "IVZ"
+      "abbr": "IZ"
     },
     {
       "id": "wiki/glitchcraft/item-save-load-transfer/",
@@ -653,17 +653,17 @@
     {
       "id": "wiki/glitchcraft/kilovictor-s-quicksmuggle/",
       "name": "Kilovictor's quicksmuggle",
-      "abbr": "KQS"
+      "abbr": "KVQS"
     },
     {
-      "id": "wiki/glitchcraft/kinematic_weapons/",
+      "id": "wiki/glitchcraft/kinematic-weapons/",
       "name": "Kinematic Weapons",
       "abbr": "KW"
     },
     {
       "id": "wiki/glitchcraft/l-sprinting/",
       "name": "L Sprinting",
-      "abbr": "LS"
+      "abbr": "LSP"
     },
     {
       "id": "wiki/glitchcraft/lag-machines/",
@@ -777,7 +777,7 @@
     },
     {
       "id": "wiki/glitchcraft/master-sword-zuggling-decayed-master-sword-zuggling/",
-      "name": "Master Sword Zuggling/ Decayed Master Sword Zuggling",
+      "name": "Master Sword Zuggling / Decayed Master Sword Zuggling",
       "abbr": "MSZ"
     },
     {
@@ -878,7 +878,7 @@
     {
       "id": "wiki/glitchcraft/model-teleport-desync/",
       "name": "Model Teleport Desync",
-      "abbr": "MTEL"
+      "abbr": "MTPD"
     },
     {
       "id": "wiki/glitchcraft/modifier-deletion-weapon-state-transfer-modifier-deletion-wst/",
@@ -913,7 +913,7 @@
     {
       "id": "wiki/glitchcraft/msnf-glowing/",
       "name": "MSNF glowing",
-      "abbr": "MG"
+      "abbr": "MNFG"
     },
     {
       "id": "wiki/glitchcraft/mulberry-s-out-of-body-experience/",
@@ -928,7 +928,7 @@
     {
       "id": "wiki/glitchcraft/no-bow-sprinting/",
       "name": "No Bow Sprinting",
-      "abbr": "NBS"
+      "abbr": "NBSP"
     },
     {
       "id": "wiki/glitchcraft/null-dropping/",
@@ -978,7 +978,7 @@
     {
       "id": "wiki/glitchcraft/overload-dynamic-zuggle/",
       "name": "Overload Dynamic Zuggle",
-      "abbr": "ODZ"
+      "abbr": "ODZGL"
     },
     {
       "id": "wiki/glitchcraft/overload-fuse-entanglement/",
@@ -1018,12 +1018,12 @@
     {
       "id": "wiki/glitchcraft/portable-culling/",
       "name": "Portable Culling",
-      "abbr": "PCULL"
+      "abbr": "PC"
     },
     {
       "id": "wiki/glitchcraft/portacull-invismuggle/",
       "name": "Portacull Invismuggle",
-      "abbr": "PCI"
+      "abbr": "PCIS"
     },
     {
       "id": "wiki/glitchcraft/prologue-escape/",
@@ -1043,7 +1043,7 @@
     {
       "id": "wiki/glitchcraft/pyroculling/",
       "name": "Pyroculling",
-      "abbr": "PYR"
+      "abbr": "PYRC"
     },
     {
       "id": "wiki/glitchcraft/quantum-linking/",
@@ -1083,12 +1083,12 @@
     {
       "id": "wiki/glitchcraft/recall-launch/",
       "name": "Recall Launch",
-      "abbr": "RL"
+      "abbr": "RLNCH"
     },
     {
       "id": "wiki/glitchcraft/recall-locking/",
       "name": "Recall Locking",
-      "abbr": "RLK"
+      "abbr": "RL"
     },
     {
       "id": "wiki/glitchcraft/recall-sluggle/",
@@ -1301,7 +1301,7 @@
       "abbr": "TTS"
     },
     {
-      "id": "wiki/glitchcraft/throwless-storage-previously-known-as-beam-storage/",
+      "id": "wiki/glitchcraft/throwless-storage/",
       "name": "Throwless Storage",
       "abbr": "THS"
     },
@@ -1317,7 +1317,7 @@
     },
     {
       "id": "wiki/glitchcraft/travel-medallion-storage/",
-      "name": "Travel Medallion storage",
+      "name": "Travel Medallion Storage",
       "abbr": "TMS"
     },
     {
@@ -1338,7 +1338,7 @@
     {
       "id": "wiki/glitchcraft/ultra-save-load-object-transfer/",
       "name": "Ultra Save Load Object Transfer",
-      "abbr": "USLOT"
+      "abbr": "UltraSLOT"
     },
     {
       "id": "wiki/glitchcraft/ultrabroken/",
@@ -1473,7 +1473,7 @@
     {
       "id": "wiki/glitchcraft/zapshield/",
       "name": "Zapshield",
-      "abbr": "ZAP"
+      "abbr": "ZAPSH"
     },
     {
       "id": "wiki/glitchcraft/zl-animation-reset/",
@@ -1542,6 +1542,10 @@
     {
       "source": "wiki/glitchcraft/aeroculling/",
       "target": "wiki/glitchcraft/object-culling/"
+    },
+    {
+      "source": "wiki/glitchcraft/aeroculling/",
+      "target": "wiki/glitchcraft/portable-culling/"
     },
     {
       "source": "wiki/glitchcraft/aeroculling/",
@@ -2320,11 +2324,11 @@
       "target": "wiki/glitchcraft/weapon-fuse-entanglement/"
     },
     {
-      "source": "wiki/glitchcraft/gas-launching-previously-known-as-ascend-launching/",
+      "source": "wiki/glitchcraft/gas-launching/",
       "target": "wiki/glitchcraft/guard-less-active-shield/"
     },
     {
-      "source": "wiki/glitchcraft/gas-launching-previously-known-as-ascend-launching/",
+      "source": "wiki/glitchcraft/gas-launching/",
       "target": "wiki/glitchcraft/hydro-clipping/"
     },
     {
@@ -2401,7 +2405,7 @@
     },
     {
       "source": "wiki/glitchcraft/hydro-clipping/",
-      "target": "wiki/glitchcraft/throwless-storage-previously-known-as-beam-storage/"
+      "target": "wiki/glitchcraft/throwless-storage/"
     },
     {
       "source": "wiki/glitchcraft/infinite-damage-2-0/",
@@ -2468,19 +2472,19 @@
       "target": "wiki/glitchcraft/object-culling/"
     },
     {
-      "source": "wiki/glitchcraft/kinematic_weapons/",
+      "source": "wiki/glitchcraft/kinematic-weapons/",
       "target": "wiki/glitchcraft/despawn-interrupt/"
     },
     {
-      "source": "wiki/glitchcraft/kinematic_weapons/",
+      "source": "wiki/glitchcraft/kinematic-weapons/",
       "target": "wiki/glitchcraft/persistent-save-load-object-transfer/"
     },
     {
-      "source": "wiki/glitchcraft/kinematic_weapons/",
+      "source": "wiki/glitchcraft/kinematic-weapons/",
       "target": "wiki/glitchcraft/zuggle-overload/"
     },
     {
-      "source": "wiki/glitchcraft/kinematic_weapons/",
+      "source": "wiki/glitchcraft/kinematic-weapons/",
       "target": "wiki/glitchcraft/zuggle/"
     },
     {
@@ -2777,11 +2781,19 @@
     },
     {
       "source": "wiki/glitchcraft/mineru-persistent-save-load-object-transfer/",
+      "target": "wiki/glitchcraft/portable-culling/"
+    },
+    {
+      "source": "wiki/glitchcraft/mineru-persistent-save-load-object-transfer/",
       "target": "wiki/glitchcraft/portacull-invismuggle/"
     },
     {
       "source": "wiki/glitchcraft/mineru-persistent-save-load-object-transfer/",
       "target": "wiki/glitchcraft/stick-desync-clip/"
+    },
+    {
+      "source": "wiki/glitchcraft/mineru-persistent-save-load-object-transfer/",
+      "target": "wiki/glitchcraft/yee-fuse-entanglement/"
     },
     {
       "source": "wiki/glitchcraft/mineru-persistent-save-load-object-transfer/",
@@ -2849,6 +2861,10 @@
     },
     {
       "source": "wiki/glitchcraft/moe-enlargement/",
+      "target": "wiki/glitchcraft/yee-fuse-entanglement/"
+    },
+    {
+      "source": "wiki/glitchcraft/moe-enlargement/",
       "target": "wiki/glitchcraft/zuggle/"
     },
     {
@@ -2882,6 +2898,10 @@
     {
       "source": "wiki/glitchcraft/ocklusion-hovering/",
       "target": "wiki/glitchcraft/pickup-smuggling/"
+    },
+    {
+      "source": "wiki/glitchcraft/ocklusion/",
+      "target": "wiki/glitchcraft/portable-culling/"
     },
     {
       "source": "wiki/glitchcraft/octo-balloon-detanglement/",
@@ -3002,6 +3022,10 @@
     {
       "source": "wiki/glitchcraft/overload-persistent-save-load-object-transfer/",
       "target": "wiki/glitchcraft/persistent-save-load-object-transfer/"
+    },
+    {
+      "source": "wiki/glitchcraft/overload-persistent-save-load-object-transfer/",
+      "target": "wiki/glitchcraft/portable-culling/"
     },
     {
       "source": "wiki/glitchcraft/overload-persistent-save-load-object-transfer/",
@@ -3381,6 +3405,10 @@
     },
     {
       "source": "wiki/glitchcraft/super-fuse-overload/",
+      "target": "wiki/glitchcraft/portable-culling/"
+    },
+    {
+      "source": "wiki/glitchcraft/super-fuse-overload/",
       "target": "wiki/glitchcraft/swap-resync-zuggle/"
     },
     {
@@ -3398,6 +3426,10 @@
     {
       "source": "wiki/glitchcraft/swap-resync-zuggle/",
       "target": "wiki/glitchcraft/zuggle/"
+    },
+    {
+      "source": "wiki/glitchcraft/swap-resync/",
+      "target": "wiki/glitchcraft/portable-culling/"
     },
     {
       "source": "wiki/glitchcraft/swap-resync/",
@@ -3424,7 +3456,7 @@
       "target": "wiki/glitchcraft/mulberry-s-out-of-body-experience/"
     },
     {
-      "source": "wiki/glitchcraft/throwless-storage-previously-known-as-beam-storage/",
+      "source": "wiki/glitchcraft/throwless-storage/",
       "target": "wiki/glitchcraft/memory-buffering/"
     },
     {
@@ -3561,6 +3593,10 @@
     },
     {
       "source": "wiki/glitchcraft/vortaculling/",
+      "target": "wiki/glitchcraft/portable-culling/"
+    },
+    {
+      "source": "wiki/glitchcraft/vortaculling/",
       "target": "wiki/glitchcraft/stick-desync-clip/"
     },
     {
@@ -3642,6 +3678,10 @@
     {
       "source": "wiki/glitchcraft/yee-fuse-entanglement/",
       "target": "wiki/glitchcraft/fuse-entanglement/"
+    },
+    {
+      "source": "wiki/glitchcraft/yee-fuse-entanglement/",
+      "target": "wiki/glitchcraft/portable-culling/"
     },
     {
       "source": "wiki/glitchcraft/yee-fuse-entanglement/",
@@ -3773,6 +3813,10 @@
     },
     {
       "source": "wiki/glitchcraft/zuggle/",
+      "target": "wiki/glitchcraft/durability/"
+    },
+    {
+      "source": "wiki/glitchcraft/zuggle/",
       "target": "wiki/glitchcraft/equipment-collision-zuggle/"
     },
     {
@@ -3789,7 +3833,7 @@
     },
     {
       "source": "wiki/glitchcraft/zuggle/",
-      "target": "wiki/glitchcraft/master-sword-zuggling-decayed-master-sword-zuggling/"
+      "target": "wiki/glitchcraft/portable-culling/"
     },
     {
       "source": "wiki/glitchcraft/zuggle/",
@@ -3798,6 +3842,14 @@
     {
       "source": "wiki/glitchcraft/zuggle/",
       "target": "wiki/glitchcraft/smuggle-stacking-zuggle/"
+    },
+    {
+      "source": "wiki/glitchcraft/zuggle/",
+      "target": "wiki/glitchcraft/ultra-save-load-object-transfer/"
+    },
+    {
+      "source": "wiki/glitchcraft/zuggle/",
+      "target": "wiki/glitchcraft/yee-fuse-entanglement/"
     }
   ]
 }

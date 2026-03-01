@@ -20,8 +20,8 @@
     "path": "wiki/glitchcraft/animation-swap/"
   },
   {
-    "name": "Anti-gravity GAS",
-    "abbr": "AGAS",
+    "name": "Anti-Gravity GAS",
+    "abbr": "AG GAS",
     "aliases": [
       "anti-gravity-gas"
     ],
@@ -64,7 +64,7 @@
   },
   {
     "name": "Arrow Smuggling",
-    "abbr": "ASMU",
+    "abbr": "AS",
     "aliases": [
       "arrow-smuggling"
     ],
@@ -181,7 +181,7 @@
   },
   {
     "name": "Banc Storage",
-    "abbr": "BANC",
+    "abbr": "BS",
     "aliases": [
       "banc-storage"
     ],
@@ -213,7 +213,7 @@
   },
   {
     "name": "Bow Sprinting",
-    "abbr": "BS",
+    "abbr": "BSP",
     "aliases": [
       "bow sprint",
       "bow-sprinting"
@@ -230,7 +230,7 @@
   },
   {
     "name": "BThrow Sprinting",
-    "abbr": "BTS",
+    "abbr": "BTSP",
     "aliases": [
       "bthrow sprint",
       "bthrow-sprinting"
@@ -343,7 +343,7 @@
   },
   {
     "name": "Crouch Sprinting",
-    "abbr": "CS",
+    "abbr": "CSP",
     "aliases": [
       "crouch sprint",
       "crouch-sprint",
@@ -524,7 +524,7 @@
   },
   {
     "name": "Dispenser Storage",
-    "abbr": "DISP",
+    "abbr": "DSTR",
     "aliases": [
       "dispenser-storage"
     ],
@@ -595,7 +595,7 @@
   },
   {
     "name": "Dpadlock-less Invizuggle",
-    "abbr": "DLI",
+    "abbr": "DLIZ",
     "aliases": [
       "dpadlock-less-invizuggle"
     ],
@@ -619,7 +619,7 @@
   },
   {
     "name": "Drop Smuggling",
-    "abbr": "DSMU",
+    "abbr": "DS",
     "aliases": [
       "drop-smuggling"
     ],
@@ -635,7 +635,7 @@
   },
   {
     "name": "Durability-",
-    "abbr": "DUR",
+    "abbr": "DUR-",
     "aliases": [],
     "path": "wiki/glitchcraft/durability/"
   },
@@ -714,7 +714,7 @@
   },
   {
     "name": "Extended Throw Sprinting",
-    "abbr": "ETS",
+    "abbr": "ETSP",
     "aliases": [
       "extended-throw-sprinting"
     ],
@@ -850,7 +850,7 @@
     "aliases": [
       "gas-launching"
     ],
-    "path": "wiki/glitchcraft/gas-launching-previously-known-as-ascend-launching/"
+    "path": "wiki/glitchcraft/gas-launching/"
   },
   {
     "name": "GAS Warping",
@@ -1016,7 +1016,7 @@
   },
   {
     "name": "Invizuggle",
-    "abbr": "IVZ",
+    "abbr": "IZ",
     "aliases": [],
     "path": "wiki/glitchcraft/invizuggle/"
   },
@@ -1059,7 +1059,7 @@
   },
   {
     "name": "Kilovictor's quicksmuggle",
-    "abbr": "KQS",
+    "abbr": "KVQS",
     "aliases": [
       "kilovictor's-quicksmuggle"
     ],
@@ -1072,11 +1072,11 @@
       "kinematic equipment",
       "unmovable equipment"
     ],
-    "path": "wiki/glitchcraft/kinematic_weapons/"
+    "path": "wiki/glitchcraft/kinematic-weapons/"
   },
   {
     "name": "L Sprinting",
-    "abbr": "LS",
+    "abbr": "LSP",
     "aliases": [
       "l-sprinting"
     ],
@@ -1262,7 +1262,7 @@
     "path": "wiki/glitchcraft/master-sword-liberation/"
   },
   {
-    "name": "Master Sword Zuggling/ Decayed Master Sword Zuggling",
+    "name": "Master Sword Zuggling / Decayed Master Sword Zuggling",
     "abbr": "MSZ",
     "aliases": [
       "master-sword-zuggling"
@@ -1435,7 +1435,7 @@
   },
   {
     "name": "Model Teleport Desync",
-    "abbr": "MTEL",
+    "abbr": "MTPD",
     "aliases": [
       "model-teleport-desync"
     ],
@@ -1495,7 +1495,7 @@
   },
   {
     "name": "MSNF glowing",
-    "abbr": "MG",
+    "abbr": "MNFG",
     "aliases": [
       "msnf-glowing"
     ],
@@ -1519,7 +1519,7 @@
   },
   {
     "name": "No Bow Sprinting",
-    "abbr": "NBS",
+    "abbr": "NBSP",
     "aliases": [
       "no-bow-sprinting"
     ],
@@ -1595,7 +1595,7 @@
   },
   {
     "name": "Overload Dynamic Zuggle",
-    "abbr": "ODZ",
+    "abbr": "ODZGL",
     "aliases": [
       "overload-dynamic-zuggle"
     ],
@@ -1660,15 +1660,16 @@
   },
   {
     "name": "Portable Culling",
-    "abbr": "PCULL",
+    "abbr": "PC",
     "aliases": [
-      "portable-culling"
+      "portable-culling",
+      "portacull"
     ],
     "path": "wiki/glitchcraft/portable-culling/"
   },
   {
     "name": "Portacull Invismuggle",
-    "abbr": "PCI",
+    "abbr": "PCIS",
     "aliases": [
       "portacull-invismuggle"
     ],
@@ -1700,7 +1701,7 @@
   },
   {
     "name": "Pyroculling",
-    "abbr": "PYR",
+    "abbr": "PYRC",
     "aliases": [],
     "path": "wiki/glitchcraft/pyroculling/"
   },
@@ -1763,7 +1764,7 @@
   },
   {
     "name": "Recall Launch",
-    "abbr": "RL",
+    "abbr": "RLNCH",
     "aliases": [
       "recall launch",
       "recall launch glitch",
@@ -1773,7 +1774,7 @@
   },
   {
     "name": "Recall Locking",
-    "abbr": "RLK",
+    "abbr": "RL",
     "aliases": [
       "recall-locking"
     ],
@@ -2121,7 +2122,7 @@
     "aliases": [
       "throwless-storage"
     ],
-    "path": "wiki/glitchcraft/throwless-storage-previously-known-as-beam-storage/"
+    "path": "wiki/glitchcraft/throwless-storage/"
   },
   {
     "name": "Time Bomb cancel",
@@ -2140,7 +2141,7 @@
     "path": "wiki/glitchcraft/toti-saucery/"
   },
   {
-    "name": "Travel Medallion storage",
+    "name": "Travel Medallion Storage",
     "abbr": "TMS",
     "aliases": [
       "travel-medallion-storage"
@@ -2177,9 +2178,10 @@
   },
   {
     "name": "Ultra Save Load Object Transfer",
-    "abbr": "USLOT",
+    "abbr": "UltraSLOT",
     "aliases": [
-      "ultra-save-load-object-transfer"
+      "ultra-save-load-object-transfer",
+      "ultraslot"
     ],
     "path": "wiki/glitchcraft/ultra-save-load-object-transfer/"
   },
@@ -2392,13 +2394,14 @@
     "name": "Yee Fuse Entanglement",
     "abbr": "YEEFE",
     "aliases": [
-      "yee-fuse-entanglement"
+      "yee-fuse-entanglement",
+      "yeefe"
     ],
     "path": "wiki/glitchcraft/yee-fuse-entanglement/"
   },
   {
     "name": "Zapshield",
-    "abbr": "ZAP",
+    "abbr": "ZAPSH",
     "aliases": [],
     "path": "wiki/glitchcraft/zapshield/"
   },
