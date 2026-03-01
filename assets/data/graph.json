@@ -3813,10 +3813,6 @@
     },
     {
       "source": "wiki/glitchcraft/zuggle/",
-      "target": "wiki/glitchcraft/durability/"
-    },
-    {
-      "source": "wiki/glitchcraft/zuggle/",
       "target": "wiki/glitchcraft/equipment-collision-zuggle/"
     },
     {
@@ -3833,23 +3829,11 @@
     },
     {
       "source": "wiki/glitchcraft/zuggle/",
-      "target": "wiki/glitchcraft/portable-culling/"
-    },
-    {
-      "source": "wiki/glitchcraft/zuggle/",
       "target": "wiki/glitchcraft/save-load-zuggling/"
     },
     {
       "source": "wiki/glitchcraft/zuggle/",
       "target": "wiki/glitchcraft/smuggle-stacking-zuggle/"
-    },
-    {
-      "source": "wiki/glitchcraft/zuggle/",
-      "target": "wiki/glitchcraft/ultra-save-load-object-transfer/"
-    },
-    {
-      "source": "wiki/glitchcraft/zuggle/",
-      "target": "wiki/glitchcraft/yee-fuse-entanglement/"
     }
   ]
 }
