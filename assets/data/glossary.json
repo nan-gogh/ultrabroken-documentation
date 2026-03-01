@@ -456,15 +456,6 @@
     "path": "wiki/glitchcraft/culling-area-fuse-storage-fuse-entanglement/"
   },
   {
-    "name": "Cursed (Pseudo) Fuse",
-    "abbr": "CPF",
-    "aliases": [
-      "cursed-fuse",
-      "cursed-pseudo-fuse"
-    ],
-    "path": "wiki/glitchcraft/cursed-fuse/"
-  },
-  {
     "name": "Cutscene Combo Amplifier",
     "abbr": "CCA",
     "aliases": [
@@ -1795,6 +1786,14 @@
       "recall-sluggle"
     ],
     "path": "wiki/glitchcraft/recall-sluggle/"
+  },
+  {
+    "name": "Recall Telekinesis",
+    "abbr": "RTK",
+    "aliases": [
+      "recall-telekinesis"
+    ],
+    "path": "wiki/glitchcraft/recall-telekinesis/"
   },
   {
     "name": "Recipe Storage",

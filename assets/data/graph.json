@@ -281,11 +281,6 @@
       "abbr": "CFSFE"
     },
     {
-      "id": "wiki/glitchcraft/cursed-fuse/",
-      "name": "Cursed (Pseudo) Fuse",
-      "abbr": "CPF"
-    },
-    {
       "id": "wiki/glitchcraft/cutscene-combo-amplifier/",
       "name": "Cutscene Combo Amplifier",
       "abbr": "CCA"
@@ -1101,6 +1096,11 @@
       "abbr": "RSL"
     },
     {
+      "id": "wiki/glitchcraft/recall-telekinesis/",
+      "name": "Recall Telekinesis",
+      "abbr": "RTK"
+    },
+    {
       "id": "wiki/glitchcraft/recipe-storage/",
       "name": "Recipe Storage",
       "abbr": "RS"
@@ -1906,14 +1906,6 @@
     {
       "source": "wiki/glitchcraft/culling-area-fuse-storage/",
       "target": "wiki/glitchcraft/object-culling/"
-    },
-    {
-      "source": "wiki/glitchcraft/cursed-fuse/",
-      "target": "wiki/glitchcraft/cold-fuse/"
-    },
-    {
-      "source": "wiki/glitchcraft/cursed-fuse/",
-      "target": "wiki/glitchcraft/fuse-entanglement/"
     },
     {
       "source": "wiki/glitchcraft/cutscene-combo-amplifier/",
@@ -3174,6 +3166,10 @@
     {
       "source": "wiki/glitchcraft/recall-sluggle/",
       "target": "wiki/glitchcraft/slugging/"
+    },
+    {
+      "source": "wiki/glitchcraft/recall-telekinesis/",
+      "target": "wiki/glitchcraft/freecall/"
     },
     {
       "source": "wiki/glitchcraft/recipe-storage/",
