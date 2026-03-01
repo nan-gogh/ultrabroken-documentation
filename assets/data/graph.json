@@ -1908,14 +1908,6 @@
       "target": "wiki/glitchcraft/object-culling/"
     },
     {
-      "source": "wiki/glitchcraft/cursed-fuse/",
-      "target": "wiki/glitchcraft/cold-fuse/"
-    },
-    {
-      "source": "wiki/glitchcraft/cursed-fuse/",
-      "target": "wiki/glitchcraft/fuse-entanglement/"
-    },
-    {
       "source": "wiki/glitchcraft/cutscene-combo-amplifier/",
       "target": "wiki/glitchcraft/infinite-damage/"
     },
