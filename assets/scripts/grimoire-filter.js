@@ -528,16 +528,7 @@
 
   /* Listen for storage consent changes */
   window.addEventListener('storage-toggle', function(e) {
-    if (e.detail && e.detail.enabled === false) {
-      /* Storage just got disabled — reset in-memory state to defaults */
-      state = freshState();
-      var root = document.getElementById(APP);
-      if (root && root._grim) {
-        /* Sync UI back to defaults */
-        syncUI(root);
-        refresh();
-      }
-    } else if (e.detail && e.detail.enabled === true) {
+    if (e.detail && e.detail.enabled === true) {
       /* Storage just got enabled — save current state */
       if (state) saveApp();
     }
