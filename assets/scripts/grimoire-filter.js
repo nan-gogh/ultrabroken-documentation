@@ -18,44 +18,40 @@
   var _scroll = false;  // global scroll listener bound once
 
   /* ================================================================
-     State Persistence
+     State Persistence (uses storage-manager.js)
      ================================================================ */
+  var GRIM_STATE_KEY = 'grim-state';   // Will be prefixed with 'ub-'
+  var GRIM_SCROLL_KEY = 'grim-scroll'; // Will be prefixed with 'ub-'
+
   function canStore() {
-    return typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed();
+    return window.__ubStorage && window.__ubStorage.allowed();
   }
 
   function saveApp() {
     if (!canStore() || !state) return;
-    try { localStorage.setItem('grim_state', JSON.stringify(state)); } catch (e) {}
+    window.__ubStorage.setJSON(GRIM_STATE_KEY, state);
   }
 
   function loadState() {
     if (!canStore()) return freshState();
-    try {
-      var s = localStorage.getItem('grim_state');
-      if (s) {
-        var p = JSON.parse(s);
-        if (p && typeof p === 'object' && 'sort' in p && 'dir' in p && 'q' in p) {
-          return p;
-        }
-      }
-    } catch (e) {}
+    var p = window.__ubStorage.getJSON(GRIM_STATE_KEY);
+    if (p && typeof p === 'object' && 'sort' in p && 'dir' in p && 'q' in p) {
+      return p;
+    }
     return freshState();
   }
 
   function saveScroll() {
     if (!canStore() || !document.getElementById(APP)) return;
-    try { localStorage.setItem('grim_scroll', window.scrollY); } catch (e) {}
+    window.__ubStorage.set(GRIM_SCROLL_KEY, String(window.scrollY));
   }
 
   function loadScroll() {
     if (!canStore()) return;
-    try {
-      var y = localStorage.getItem('grim_scroll');
-      if (y) {
-        requestAnimationFrame(function() { window.scrollTo(0, parseInt(y, 10) || 0); });
-      }
-    } catch (e) {}
+    var y = window.__ubStorage.get(GRIM_SCROLL_KEY);
+    if (y) {
+      requestAnimationFrame(function() { window.scrollTo(0, parseInt(y, 10) || 0); });
+    }
   }
 
   /* ================================================================
@@ -529,4 +525,21 @@
       init();
     }
   }
+
+  /* Listen for storage consent changes */
+  window.addEventListener('storage-toggle', function(e) {
+    if (e.detail && e.detail.enabled === false) {
+      /* Storage just got disabled — reset in-memory state to defaults */
+      state = freshState();
+      var root = document.getElementById(APP);
+      if (root && root._grim) {
+        /* Sync UI back to defaults */
+        syncUI(root);
+        refresh();
+      }
+    } else if (e.detail && e.detail.enabled === true) {
+      /* Storage just got enabled — save current state */
+      if (state) saveApp();
+    }
+  });
 })();

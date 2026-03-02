@@ -9,7 +9,7 @@
  *   'frozen'  → static frame (no animation)
  *   'hidden'  → rune hidden entirely
  *
- * State is persisted in localStorage('ub-bg-mode') only if storage is allowed.
+ * Relies on storage-manager.js for persisting state.
  * Other scripts listen for the 'motion-toggle' CustomEvent on window:
  *   e.detail.mode  — 'animate' | 'frozen' | 'hidden'
  *
@@ -18,17 +18,15 @@
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'ub-bg-mode';
+  var STORAGE_KEY = 'bg-mode';  // Will be prefixed with 'ub-' by storage manager
   var MODES = ['animate', 'frozen', 'hidden'];
 
   /* ── Read persisted state (default: animate) ───────────────── */
   var mode = 'animate';
-  try {
-    if (typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed()) {
-      var stored = localStorage.getItem(STORAGE_KEY);
-      if (stored && MODES.indexOf(stored) !== -1) mode = stored;
-    }
-  } catch (e) {}
+  if (window.__ubStorage) {
+    var stored = window.__ubStorage.get(STORAGE_KEY);
+    if (stored && MODES.indexOf(stored) !== -1) mode = stored;
+  }
 
   /* ── Expose global for scripts that load later ─────────────── */
   window.__ubBgMode = mode;
@@ -92,11 +90,9 @@
     window.__ubBgMode = mode;
     window.__ubReducedMotion = mode !== 'animate';
 
-    try {
-      if (typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed()) {
-        localStorage.setItem(STORAGE_KEY, mode);
-      }
-    } catch (e) {}
+    if (window.__ubStorage) {
+      window.__ubStorage.set(STORAGE_KEY, mode);
+    }
 
     // Stamp html element so CSS tracks current mode
     document.documentElement.setAttribute('data-ub-bg', mode);
@@ -116,11 +112,9 @@
 
   /* ── Listen for storage toggle events ──────────────────────── */
   window.addEventListener('storage-toggle', function(e) {
-    if (e.detail && e.detail.enabled) {
+    if (e.detail && e.detail.enabled && window.__ubStorage) {
       // Storage just got enabled, save current state
-      try {
-        localStorage.setItem(STORAGE_KEY, mode);
-      } catch (err) {}
+      window.__ubStorage.set(STORAGE_KEY, mode);
     }
   });
 

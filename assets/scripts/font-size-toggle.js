@@ -9,22 +9,20 @@
  *   'large'   → 125% font size on content areas
  *
  * The header is excluded from font scaling — only content changes.
- * State is persisted in localStorage('ub-font-size') only if storage is allowed.
+ * Relies on storage-manager.js for persisting state.
  */
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'ub-font-size';
+  var STORAGE_KEY = 'font-size';  // Will be prefixed with 'ub-' by storage manager
   var MODES = ['regular', 'large'];
 
   /* ── Read persisted state (default: regular) ───────────────── */
   var mode = 'regular';
-  try {
-    if (typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed()) {
-      var stored = localStorage.getItem(STORAGE_KEY);
-      if (stored && MODES.indexOf(stored) !== -1) mode = stored;
-    }
-  } catch (e) {}
+  if (window.__ubStorage) {
+    var stored = window.__ubStorage.get(STORAGE_KEY);
+    if (stored && MODES.indexOf(stored) !== -1) mode = stored;
+  }
 
   /* ── Stamp html element immediately ────────────────────────── */
   document.documentElement.setAttribute('data-ub-font', mode);
@@ -70,11 +68,9 @@
     var idx = MODES.indexOf(mode);
     mode = MODES[(idx + 1) % MODES.length];
 
-    try {
-      if (typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed()) {
-        localStorage.setItem(STORAGE_KEY, mode);
-      }
-    } catch (e) {}
+    if (window.__ubStorage) {
+      window.__ubStorage.set(STORAGE_KEY, mode);
+    }
 
     document.documentElement.setAttribute('data-ub-font', mode);
 
@@ -87,11 +83,9 @@
 
   /* ── Listen for storage toggle events ──────────────────────── */
   window.addEventListener('storage-toggle', function(e) {
-    if (e.detail && e.detail.enabled) {
+    if (e.detail && e.detail.enabled && window.__ubStorage) {
       // Storage just got enabled, save current state
-      try {
-        localStorage.setItem(STORAGE_KEY, mode);
-      } catch (err) {}
+      window.__ubStorage.set(STORAGE_KEY, mode);
     }
   });
 
