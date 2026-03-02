@@ -106,9 +106,9 @@
 
   /* ── Inject into header ─────────────────────────────────────── */
   function inject() {
-    // Find the header title element
-    var header = document.querySelector('.md-header__title');
-    if (!header) return false;
+    // Find the palette toggle button in the header
+    var paletteToggle = document.querySelector('label[for^="__palette_"]');
+    if (!paletteToggle) return false;
 
     // Don't double-inject (instant navigation re-runs scripts)
     if (document.querySelector('.ub-motion-toggle')) return true;
@@ -118,13 +118,8 @@
     if (!container) {
       container = document.createElement('div');
       container.className = 'ub-header-toggles';
-      // Insert after the title's ellipsis span
-      var ellipsis = header.querySelector('.md-ellipsis');
-      if (ellipsis && ellipsis.nextSibling) {
-        header.insertBefore(container, ellipsis.nextSibling);
-      } else {
-        header.appendChild(container);
-      }
+      // Insert after the palette toggle
+      paletteToggle.parentNode.insertBefore(container, paletteToggle.nextSibling);
     }
 
     container.insertBefore(createButton(), container.firstChild);
