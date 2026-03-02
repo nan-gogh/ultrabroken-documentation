@@ -78,7 +78,10 @@
     if (typeof document$ !== 'undefined') {
       document$.subscribe(function() {
         // Defer to ensure new .md-content is in place before detecting
-        setTimeout(refresh404, 0);
+        setTimeout(function() {
+          refresh404();
+          lockImageVerticalPosition();
+        }, 0);
       });
     } else {
       if (!document.body) return;
@@ -108,14 +111,16 @@
       var rect = img.getBoundingClientRect();
       var imgHeight = rect.height || img.offsetHeight;
       if (imgHeight === 0) return; // Not yet rendered, skip
-      
+
       var screenCenterY = window.screen.height / 2;
       var topPosition = screenCenterY - (imgHeight / 2);
-      
+
       img.style.position = 'fixed';
       img.style.top = topPosition + 'px';
       img.style.left = '50%';
-      img.style.transform = 'translateX(-50%)';
+      // Apply both translateX and scaleY if on 404 page
+      var is404 = detect404();
+      img.style.transform = is404 ? 'translateX(-50%) scaleY(-1)' : 'translateX(-50%)';
       img.style.zIndex = '-1';
       img.style.pointerEvents = 'none';
     }, 0);
