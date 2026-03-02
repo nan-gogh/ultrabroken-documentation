@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=New+Rocker&family=Texturina:wght@400;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=New+Rocker&family=Texturina:wght@400;700&display=swap');
 
 /* Glowy teal theme tweaks for MkDocs Material */
 :root {
@@ -390,19 +390,12 @@ button.search-link:focus,
 
 
 /* ── Background rune (watermark) ──────────────────────────────────── */
-/* A fixed container for the rune SVG.
-   Uses height:100lvh (large viewport height = screen height with address bar
-   hidden). This value NEVER changes when the address bar appears or when the
-   user pinch-zooms, so the rune stays at 50% of the physical screen height
-   at all times. This is the exact CSS equivalent of the old canvas ratchet:
-   the canvas was also locked to the maximum (address-bar-hidden) height and
-   the rune was drawn at H/2. overflow:hidden clips the excess invisibly. */
+/* Wrapper: zero-footprint fixed layer used only as a hook for
+   the hidden/frozen mode CSS selectors and overflow clipping.
+   Positioning is driven entirely by the img using bottom-anchored lvh. */
 .ub-rune-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100lvh;   /* large viewport height: never shrinks with address bar */
+  inset: 0;
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
@@ -410,15 +403,30 @@ button.search-link:focus,
 
 .ub-rune-img {
   position: absolute;
-  top: 50%;
+
+  /* ── Bottom-anchored screen center ──────────────────────────────────
+     Address bars appear at the TOP of the screen on all mobile
+     browsers. The viewport BOTTOM never shifts — it is always at
+     the stable screen bottom/nav-bar edge.
+
+     bottom: 50lvh  → bottom edge of element is at exactly half the
+                       large (full-screen) viewport height above the
+                       stable viewport bottom = physical screen centre.
+     translateY(50%) → shifts the element DOWN by half its own height
+                       so its CENTRE lands on that screen-centre point.
+
+     Result: rune locked to physical screen centre regardless of
+     address bar state. No JS, no viewport events, no shifting. */
+  bottom: 50lvh;
   left: 50%;
+  transform: translate(-50%, 50%);
+
   width: 48vmin;
   max-width: 60vw;
-  max-height: 60lvh;   /* lvh so the cap doesn’t shrink when address bar appears */
+  max-height: 60lvh;
   aspect-ratio: 1 / 1;
   opacity: 0.07;
   animation: ub-rune-pulse 4.2s ease-in-out infinite;
-  transform: translate(-50%, -50%);
 }
 
 @keyframes ub-rune-pulse {
@@ -441,7 +449,7 @@ button.search-link:focus,
 /* 404: flip rune upside-down. Must include the centering translate so
    this rule doesn’t overwrite it and lose the absolute positioning. */
 .ultrabroken-404 .ub-rune-img {
-  transform: translate(-50%, -50%) scaleY(-1);
+  transform: translate(-50%, 50%) scaleY(-1);
 }
 
 /* Keep content above the rune without forcing layout changes on core
