@@ -232,13 +232,12 @@ label.md-header__button[for^="__palette_"]:hover {
   display: block;
 }
 
-/* Footer toggle container */
-.ub-footer-toggles {
+/* Header toggle container */
+.ub-header-toggles {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-left: auto;
-  padding-right: 16px;
+  gap: 8px;
+  margin-left: 12px;
 }
 
 /* Search bar and input styling - bright teal, no glow */
