@@ -5,20 +5,21 @@
  * all page content.  Pure HTML/CSS — no <canvas>, no animation loop, no DPR
  * tracking, no resize handler.
  *
- * WHY THIS WORKS WITHOUT ZOOM BUGS
- * ─────────────────────────────────
- * • The rune img uses position:fixed + top:50% + left:50%, so it is always
- *   centred in the CSS-pixel viewport.
- * • CSS `transition: top 999999s` on the img freezes any viewport-height-
- *   driven recomputation: when the mobile address bar shows/hides the browser
- *   resizes the viewport and re-evaluates top/left percentages, which would
- *   normally make the element jump.  The near-infinite transition duration
- *   makes that movement invisible (it would take ~11 days to complete).
- * • On genuine orientation changes, a JS orientationchange listener removes
- *   the transition for two frames so the rune snaps to the correct position
- *   immediately, then the freeze is re-applied.
- * • Desktop Ctrl+zoom shrinks the CSS-pixel viewport proportionally; fixed
- *   elements stay at the same screen position — no JS needed.
+ * WHY THIS WORKS WITHOUT ADDRESS-BAR JUMPING
+ * ──────────────────────────────────────────────
+ * • The wrapper (.ub-rune-bg) gets a FIXED pixel height on page load:
+ *   height = window.innerHeight (the initial viewport height in pixels).
+ * • This locks the wrapper to a static size, immune to viewport height changes.
+ * • When the mobile address bar appears, the viewport shrinks, but the wrapper
+ *   keeps its fixed height. The img inside stays centred in the larger wrapper,
+ *   which now extends beyond the physical viewport — but that is fine, it is
+ *   behind all content (z-index: -1).
+ * • A resize listener detects real orientation changes by checking if the
+ *   VIEWPORT WIDTH changed. If it did → orientation change → update the
+ *   wrapper height to the new window.innerHeight. If width stayed the same →
+ *   address bar change → ignore it.
+ * • Desktop Ctrl+zoom: the CSS-pixel viewport shrinks proportionally, and
+ *   fixed elements stay at CSS-pixel coordinates — no update needed.
  * • The opacity pulse is a CSS @keyframes animation — the compositor runs
  *   it off the main thread.
  *
@@ -93,29 +94,32 @@
     };
   }
 
-  /* ── Orientation-change handler ───────────────────────────────── */
-  // The CSS uses `transition: top 999999s` to freeze the rune against the
-  // micro-resize that address-bar show/hide causes.  That transition must
-  // be removed for actual orientation changes (portrait ↔ landscape) so
-  // the rune snaps into the correct position immediately.
-  function attachOrientationReset() {
-    window.addEventListener('orientationchange', function () {
-      // Remove the freeze transition so the element snaps on orientation change.
-      img.style.transition = 'none';
-      // Re-enable after the browser has had one frame to repaint.
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          img.style.transition = '';
-        });
-      });
+  /* ── Viewport-height lock with orientation detection ─────────────────── */
+  var initialInnerWidth = window.innerWidth;
+  var initialInnerHeight = window.innerHeight;
+
+  function setWrapperHeight() {
+    wrapper.style.height = window.innerHeight + 'px';
+  }
+
+  function attachResizeListener() {
+    window.addEventListener('resize', function () {
+      var newWidth = window.innerWidth;
+      // Only update if the viewport WIDTH changed (orientation change),
+      // not on height-only changes (address bar show/hide).
+      if (newWidth !== initialInnerWidth) {
+        initialInnerWidth = newWidth;
+        setWrapperHeight();
+      }
     });
   }
 
   /* ── Bootstrap ─────────────────────────────────────────────────── */
   function init() {
+    setWrapperHeight();
+    attachResizeListener();
     refresh404();
     attach404Observer();
-    attachOrientationReset();
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {

@@ -390,9 +390,12 @@ button.search-link:focus,
 
 
 /* ── Background rune (watermark) ──────────────────────────────────── */
-/* Wrapper: zero-footprint fixed layer used only as a hook for
-   the hidden/frozen mode CSS selectors and overflow clipping.
-   Positioning is driven entirely by the img (position: fixed). */
+/* Wrapper: fixed-size container (height set to window.innerHeight by JS).
+   Remains at that fixed height even when the mobile address bar appears and
+   the viewport shrinks, keeping the centred img visible. The img is absolutely
+   positioned at 50%/50% within this fixed-height wrapper, so it stays centred
+   regardless of viewport changes. Box extends beyond physical viewport but is
+   behind all content (z-index: -1, pointer-events: none). */
 .ub-rune-bg {
   position: fixed;
   inset: 0;
@@ -402,10 +405,13 @@ button.search-link:focus,
 }
 
 .ub-rune-img {
-  /* position: fixed + top/left: 50% centres the element in the viewport.
-     The transition below prevents the address-bar-resize jump; see comment
-     at the bottom of this block. */
-  position: fixed;
+  /* position: absolute + top/left: 50% + translate(-50%, -50%) centres the element
+     within its parent. The parent (wrapper) has a fixed px height set by JS
+     (width-change detection = orientation change only). When the mobile address
+     bar appears, the viewport shrinks but the wrapper keeps its original height,
+     so the img stays centred in the wrapper, which now extends beyond the
+     viewport — but is behind all content (z-index: -1). */
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -416,15 +422,6 @@ button.search-link:focus,
   aspect-ratio: 1 / 1;
   opacity: 0.07;
   animation: ub-rune-pulse 4.2s ease-in-out infinite;
-
-  /* Freeze against address-bar-driven viewport resize.
-     When the address bar shows/hides the browser resizes the viewport and
-     recomputes top/left percentages, causing a visible jump.  By giving
-     top and left a transition of effectively infinite duration the position
-     never visibly updates during those micro-resizes.  A JS orientationchange
-     listener removes this transition momentarily so real rotations snap into
-     place immediately. */
-  transition: top 999999s linear, left 999999s linear;
 }
 
 @keyframes ub-rune-pulse {
@@ -436,8 +433,6 @@ button.search-link:focus,
 [data-ub-bg="frozen"] .ub-rune-img {
   animation: none;
   opacity: 0.07;
-  /* Keep the position freeze even in frozen mode */
-  transition: top 999999s linear, left 999999s linear;
 }
 
 /* Hidden mode: remove entirely (data-ub-bg is set synchronously by
