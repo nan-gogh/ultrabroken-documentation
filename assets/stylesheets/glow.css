@@ -404,6 +404,13 @@ button.search-link:focus,
   z-index: -1 !important;
 }
 
+/* Hide canvas wrapper immediately on load when bg mode is hidden.
+   This attribute is set by motion-toggle.js synchronously before the
+   canvas is ever created, preventing any flash on reload. */
+[data-ub-bg="hidden"] .ub-canvas-wrapper {
+  display: none !important;
+}
+
 .ub-particles-canvas {
   position: absolute;
   left: 0;

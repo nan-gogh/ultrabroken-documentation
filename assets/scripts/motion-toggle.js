@@ -34,6 +34,11 @@
   // Legacy compat — particles-constellations.js checks this on init
   window.__ubReducedMotion = mode !== 'animate';
 
+  /* ── Stamp html element immediately (before canvas is created) ── */
+  // CSS rule hides .ub-canvas-wrapper when this attribute is present,
+  // so the canvas is never visible even for a single frame on reload.
+  document.documentElement.setAttribute('data-ub-bg', mode);
+
   /* ── SVG icons ─────────────────────────────────────────────── */
   // Animate: pause icon (two vertical bars)
   var ICON_ANIMATE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
@@ -82,6 +87,9 @@
     window.__ubReducedMotion = mode !== 'animate';
 
     try { localStorage.setItem(STORAGE_KEY, mode); } catch (e) {}
+
+    // Stamp html element so CSS tracks current mode
+    document.documentElement.setAttribute('data-ub-bg', mode);
 
     // Update button visuals
     var btn = document.querySelector('.ub-motion-toggle');
