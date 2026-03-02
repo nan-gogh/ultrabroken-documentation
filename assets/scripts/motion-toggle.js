@@ -104,21 +104,27 @@
     }));
   }
 
-  /* ── Inject into footer ─────────────────────────────────────── */
+  /* ── Inject into header ─────────────────────────────────────── */
   function inject() {
-    // Find the footer meta inner container
-    var footer = document.querySelector('.md-footer-meta__inner');
-    if (!footer) return false;
+    // Find the header title element
+    var header = document.querySelector('.md-header__title');
+    if (!header) return false;
 
     // Don't double-inject (instant navigation re-runs scripts)
     if (document.querySelector('.ub-motion-toggle')) return true;
 
     // Create or find the toggle container
-    var container = document.querySelector('.ub-footer-toggles');
+    var container = document.querySelector('.ub-header-toggles');
     if (!container) {
       container = document.createElement('div');
-      container.className = 'ub-footer-toggles';
-      footer.appendChild(container);
+      container.className = 'ub-header-toggles';
+      // Insert after the title's ellipsis span
+      var ellipsis = header.querySelector('.md-ellipsis');
+      if (ellipsis && ellipsis.nextSibling) {
+        header.insertBefore(container, ellipsis.nextSibling);
+      } else {
+        header.appendChild(container);
+      }
     }
 
     container.insertBefore(createButton(), container.firstChild);

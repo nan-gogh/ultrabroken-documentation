@@ -61,10 +61,6 @@
 
   /* ── Cycle handler ─────────────────────────────────────────── */
   function cycle() {
-    // Check if user is near the bottom before changing font size
-    var scrollable = document.documentElement;
-    var isAtBottom = (scrollable.scrollHeight - scrollable.scrollTop - scrollable.clientHeight) < 10;
-
     var idx = MODES.indexOf(mode);
     mode = MODES[(idx + 1) % MODES.length];
 
@@ -77,31 +73,29 @@
       btn.innerHTML = iconForMode(mode);
       btn.setAttribute('title', TITLES[mode]);
     }
-
-    // If they were at the bottom, scroll them to the new bottom
-    if (isAtBottom) {
-      // Use a tiny timeout to allow the DOM to reflow with the new font size
-      setTimeout(function() {
-        window.scrollTo(0, document.body.scrollHeight);
-      }, 10);
-    }
   }
 
-  /* ── Inject into footer ────────────────────────────────────── */
+  /* ── Inject into header ────────────────────────────────────── */
   function inject() {
-    // Find or create the toggle container in the footer
-    var footer = document.querySelector('.md-footer-meta__inner');
-    if (!footer) return false;
+    // Find the header title element
+    var header = document.querySelector('.md-header__title');
+    if (!header) return false;
 
     // Don't double-inject
     if (document.querySelector('.ub-font-toggle')) return true;
 
     // Create or find the toggle container
-    var container = document.querySelector('.ub-footer-toggles');
+    var container = document.querySelector('.ub-header-toggles');
     if (!container) {
       container = document.createElement('div');
-      container.className = 'ub-footer-toggles';
-      footer.appendChild(container);
+      container.className = 'ub-header-toggles';
+      // Insert after the title's ellipsis span
+      var ellipsis = header.querySelector('.md-ellipsis');
+      if (ellipsis && ellipsis.nextSibling) {
+        header.insertBefore(container, ellipsis.nextSibling);
+      } else {
+        header.appendChild(container);
+      }
     }
 
     container.appendChild(createButton());
