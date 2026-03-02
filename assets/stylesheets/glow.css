@@ -27,8 +27,10 @@
 [data-ub-font="large"] .md-content h3 { font-size: 1.25rem; }
 [data-ub-font="large"] .md-content h4 { font-size: 1.0625rem; }
 
-/* Also scale the sidebar navigation text for readability */
-[data-ub-font="large"] .md-nav {
+/* Also scale the sidebar navigation and ToC text for readability */
+[data-ub-font="large"] .md-nav__link,
+[data-ub-font="large"] .md-nav__title,
+[data-ub-font="large"] .md-toc {
   font-size: 112.5%;
 }
 
