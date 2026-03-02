@@ -89,17 +89,13 @@
     };
   }
 
-  /* ── Fixed distance lock (mobile only) ────────────────────────────── */
-  // On mobile, position the rune at a fixed pixel distance from the top of the
-  // physical screen (screen.height / 2). Since physical screen dimensions never
-  // change when address bars appear/disappear, the rune stays locked vertically.
-  // Measure the rendered image height and subtract half of it to centre at that
-  // pixel point. On desktop, leave CSS flex defaults (no address bars exist).
-  var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
+  /* ── Fixed distance lock (all devices) ────────────────────────────────── */
+  // Position the rune at a fixed pixel distance from the top of the physical
+  // screen (screen.height / 2). Since physical screen dimensions never change
+  // when address bars appear/disappear or viewports shift, the rune stays
+  // vertically locked. Measure the rendered image height and subtract half of
+  // it to centre at that pixel point.
   function lockImageVerticalPosition() {
-    if (!isTouchDevice) return; // Desktop: leave CSS defaults
-    
     // Allow layout to settle so we can measure the image
     setTimeout(function () {
       var rect = img.getBoundingClientRect();
@@ -119,7 +115,6 @@
   }
 
   function attachOrientationListener() {
-    if (!isTouchDevice) return;
     window.addEventListener('orientationchange', function () {
       // Re-apply lock after orientation change (screen.w/h swap)
       setTimeout(lockImageVerticalPosition, 100);

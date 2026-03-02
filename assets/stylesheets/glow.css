@@ -409,8 +409,10 @@ button.search-link:focus,
 }
 
 .ub-rune-img {
-  /* Desktop: centred via flex within wrapper.
-     Mobile: JS positions absolutely at fixed pixel distance from screen top. */
+  /* JS positions absolutely at fixed pixel distance from screen top
+     (screen.height / 2 minus half the image height). This ensures the rune
+     stays vertically centred regardless of viewport shifts from address bars
+     or resize events. Measured and updated on init and orientation change. */
   width: 48vmin;
   max-width: 60vw;
   max-height: 60vh;
