@@ -77,7 +77,8 @@
     // MkDocs Material provides an observable (document$) that emits on layout swap
     if (typeof document$ !== 'undefined') {
       document$.subscribe(function() {
-        refresh404();
+        // Defer to ensure new .md-content is in place before detecting
+        setTimeout(refresh404, 0);
       });
     } else {
       if (!document.body) return;
