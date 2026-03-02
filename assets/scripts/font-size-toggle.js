@@ -94,12 +94,13 @@
     // Block pinch-zoom on touch devices. This is tricky, especially during
     // momentum scroll. We need multiple layers of prevention.
     
-    // Layer 1: Early-exit listener on window capture phase.
-    // This fires before the event even reaches the target element, giving us
-    // the best chance to cancel it.
+    // Layer 1: Early-exit listener on window capture phase. This is the most
+    // aggressive and most likely to succeed. We stop the event dead in its
+    // tracks before it can propagate to any other listeners.
     window.addEventListener('touchmove', function (e) {
       if (e.touches.length > 1) {
         e.preventDefault();
+        e.stopImmediatePropagation();
       }
     }, { passive: false, capture: true });
 
