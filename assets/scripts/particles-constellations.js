@@ -42,6 +42,8 @@
   img.alt = '';
   img.draggable = false;
   img.src = siteRoot + 'assets/images/ultrabroken_rune.svg';
+  img.style.visibility = 'hidden'; // Hide until positioned
+
 
   wrapper.appendChild(img);
 
@@ -123,6 +125,7 @@
       img.style.transform = is404 ? 'translateX(-50%) scaleY(-1)' : 'translateX(-50%)';
       img.style.zIndex = '-1';
       img.style.pointerEvents = 'none';
+      img.style.visibility = 'visible'; // Now reveal after positioning
     }, 0);
   }
 
