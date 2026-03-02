@@ -181,6 +181,15 @@ label.md-header__button[for^="__palette_"]:hover {
   display: block;
 }
 
+/* Hide motion toggle when search is expanded on narrow screens,
+   mirroring how MkDocs Material hides the palette toggle.
+   Breakpoint 59.9375em matches Material's mobile/tablet threshold. */
+@media screen and (max-width: 59.9375em) {
+  [data-md-toggle="search"]:checked ~ .md-header .ub-motion-toggle {
+    display: none;
+  }
+}
+
 /* Search bar and input styling - bright teal, no glow */
 .md-search__input {
   color: var(--teal-glow) !important;
