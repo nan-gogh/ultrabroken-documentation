@@ -175,12 +175,18 @@
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
+  // MkDocs Material provides an observable (document$) that emits when the
+  // layout is fully swapped on instant navigation, or on standard initial load.
+  if (typeof document$ !== 'undefined') {
+    document$.subscribe(function() {
+      boot();
+    });
   } else {
-    boot();
+    // Fallback if instant loading / observables aren't active
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
   }
-
-  // MkDocs instant navigation replaces the page content, but the header
-  // persists — no need to re-inject on location change.
 })();
