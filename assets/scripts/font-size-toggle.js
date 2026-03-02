@@ -77,9 +77,9 @@
 
   /* ── Inject into header ────────────────────────────────────── */
   function inject() {
-    // Find the header nav container where all header buttons live
-    var headerNav = document.querySelector('.md-header-nav');
-    if (!headerNav) return false;
+    // Find the search button in the header
+    var searchBtn = document.querySelector('label[for="__search"]');
+    if (!searchBtn) return false;
 
     // Don't double-inject
     if (document.querySelector('.ub-font-toggle')) return true;
@@ -89,8 +89,8 @@
     if (!container) {
       container = document.createElement('div');
       container.className = 'ub-header-toggles';
-      // Append to the header nav (at the end, after all other controls)
-      headerNav.appendChild(container);
+      // Insert after the search button
+      searchBtn.parentNode.insertBefore(container, searchBtn.nextSibling);
     }
 
     container.appendChild(createButton());
