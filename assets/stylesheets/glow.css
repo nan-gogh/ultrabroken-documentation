@@ -381,11 +381,12 @@ button.search-link:focus,
    the unified canvas in particles-constellations.js */
 
 
-/* Ensure footer sits above the decorative rune */
+/* Ensure footer sits above the decorative rune and stays sticky at bottom */
 /* Note: .md-header must NOT have position: relative to keep it sticky */
 /* Note: .md-main must NOT have z-index or drawer will be blocked */
 .md-footer {
-  position: relative;
+  position: sticky;
+  bottom: 0;
   z-index: 1;
 }
 
