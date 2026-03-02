@@ -87,35 +87,50 @@
     };
   }
 
-  /* ── Vertical lock (touch/mobile only) ───────────────────────────────── */
-  // Mobile address bars change viewport HEIGHT only. By fixing the wrapper's
-  // height to the physical screen.height, it becomes a stable container that
-  // is immune to the address bar appearing or disappearing. The inner image
-  // is then centered perfectly within this stable wrapper via CSS.
-  // We only manipulate the height, letting CSS handle the width (100%).
+  /* ── Screen lock (touch/mobile only) ────────────────────────────────── */
+  // Address bars: screen.width/height are physical pixels — they never change
+  // when the address bar appears or disappears, so sizing the wrapper to them
+  // makes the rune immune to that vertical viewport shift.
+  //
+  // Zoom: when the user pinch-zooms and pans, visualViewport.offsetLeft/Top
+  // report exactly how far the visual viewport has shifted inside the layout
+  // viewport. Tracking those offsets keeps the wrapper (and rune) visually
+  // anchored to the physical screen centre regardless of zoom level or panning.
+  // offsetTop/Left are 0 when the user has not panned, so address-bar
+  // transitions (which only change vv.height, not vv.offset*) cause no drift.
+  //
   // Desktop: leave CSS defaults (wrapper fills viewport via inset:0).
   var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
   function lockToScreen() {
     if (!isTouchDevice) return; // Desktop: leave CSS defaults alone
-    // Fix wrapper vertical dimensions to physical screen (immune to address bar)
+    var vv = window.visualViewport;
+    // Physical screen dimensions — immune to address bar and zoom
+    wrapper.style.width  = window.screen.width  + 'px';
     wrapper.style.height = window.screen.height + 'px';
-    wrapper.style.top = '0';
-    // Let CSS handle width: auto/100% and horizontal centering.
+    // Track visual viewport offset so rune doesn't drift during zoom + pan
+    wrapper.style.left = vv ? (vv.offsetLeft + 'px') : '0';
+    wrapper.style.top  = vv ? (vv.offsetTop  + 'px') : '0';
   }
 
-  function attachOrientationListener() {
-    // On orientation change screen.w/h swap — re-apply dimensions.
+  function attachViewportListeners() {
+    if (!isTouchDevice) return;
+    // Orientation change swaps screen.w/h — re-apply with a brief defer
+    // because some browsers report stale values synchronously.
     window.addEventListener('orientationchange', function () {
-      // Briefly defer: some browsers report the old dimensions synchronously.
       setTimeout(lockToScreen, 100);
     });
+    // visualViewport fires scroll + resize during pinch-zoom and pan
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('scroll', lockToScreen);
+      window.visualViewport.addEventListener('resize', lockToScreen);
+    }
   }
 
   /* ── Bootstrap ─────────────────────────────────────────────────── */
   function init() {
     lockToScreen();
-    attachOrientationListener();
+    attachViewportListeners();
     refresh404();
     attach404Observer();
   }
