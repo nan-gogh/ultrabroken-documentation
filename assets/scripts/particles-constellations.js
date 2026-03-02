@@ -89,44 +89,15 @@
     };
   }
 
-  /* ── Address-bar + screen-center lock ──────────────────────────── */
-  // Keep rune centred on the physical screen even as the address bar
-  // appears/disappears. visualViewport.offsetTop/offsetLeft give the
-  // displacement between layout viewport (where CSS layout happens) and
-  // visual viewport (what the user sees). We counteract this offset with
-  // a transform so the rune stays visually centred on the screen.
-  function attachScreenCenterLock() {
-    function lockToScreenCenter() {
-      var vv = window.visualViewport;
-      if (!vv) return;
-
-      var offsetX = vv.offsetLeft || 0;
-      var offsetY = vv.offsetTop || 0;
-
-      if (Math.abs(offsetX) < 0.5 && Math.abs(offsetY) < 0.5) {
-        // No meaningful offset—clear the correction.
-        img.style.transform = 'translate(-50%, -50%)';
-        return;
-      }
-
-      // Push the rune by the offset so it visually stays at screen centre.
-      img.style.transform =
-        'translate(calc(-50% - ' + offsetX + 'px), calc(-50% - ' + offsetY + 'px))';
-    }
-
-    var vv = window.visualViewport;
-    if (vv) {
-      vv.addEventListener('resize', lockToScreenCenter);
-      vv.addEventListener('scroll', lockToScreenCenter);
-    }
-    window.addEventListener('resize', lockToScreenCenter);
-  }
-
   /* ── Bootstrap ─────────────────────────────────────────────────── */
+  // No JS needed for address-bar or zoom handling.
+  // The CSS container uses height:100lvh (large viewport = screen height,
+  // never shrinks when the address bar appears), so the rune at top:50%
+  // is always at 50% of the physical screen height — same logic as the
+  // old canvas ratchet, but handled natively by the browser.
   function init() {
     refresh404();
     attach404Observer();
-    attachScreenCenterLock();
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {

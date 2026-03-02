@@ -391,19 +391,18 @@ button.search-link:focus,
 
 /* ── Background rune (watermark) ──────────────────────────────────── */
 /* A fixed container for the rune SVG.
-   Uses 100dvh (dynamic viewport height) which tracks the actual visible
-   viewport in real time — when the address bar appears/disappears, the
-   container resizes with zero JS.
-   The rune is absolutely centred at top:50%;left:50% to stay at the visual
-   center regardless of address-bar transitions or viewport changes.
-   This is the CSS equivalent to the old canvas ratchet logic, but simpler:
-   let the browser handle the viewport tracking. */
+   Uses height:100lvh (large viewport height = screen height with address bar
+   hidden). This value NEVER changes when the address bar appears or when the
+   user pinch-zooms, so the rune stays at 50% of the physical screen height
+   at all times. This is the exact CSS equivalent of the old canvas ratchet:
+   the canvas was also locked to the maximum (address-bar-hidden) height and
+   the rune was drawn at H/2. overflow:hidden clips the excess invisibly. */
 .ub-rune-bg {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 100dvh;   /* dynamic viewport height: always current visible size */
+  height: 100lvh;   /* large viewport height: never shrinks with address bar */
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
@@ -415,12 +414,10 @@ button.search-link:focus,
   left: 50%;
   width: 48vmin;
   max-width: 60vw;
-  max-height: 60dvh;
+  max-height: 60lvh;   /* lvh so the cap doesn’t shrink when address bar appears */
   aspect-ratio: 1 / 1;
   opacity: 0.07;
   animation: ub-rune-pulse 4.2s ease-in-out infinite;
-  /* Centre the image at its own mid-point so top:50%;left:50% places
-     the image centre at the viewport centre. */
   transform: translate(-50%, -50%);
 }
 
@@ -441,9 +438,10 @@ button.search-link:focus,
   display: none !important;
 }
 
-/* 404: flip rune upside-down */
+/* 404: flip rune upside-down. Must include the centering translate so
+   this rule doesn’t overwrite it and lose the absolute positioning. */
 .ultrabroken-404 .ub-rune-img {
-  transform: scaleY(-1);
+  transform: translate(-50%, -50%) scaleY(-1);
 }
 
 /* Keep content above the rune without forcing layout changes on core
