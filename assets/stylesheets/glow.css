@@ -229,6 +229,31 @@ label.md-header__button[for^="__palette_"]:hover {
   display: block;
 }
 
+/* Storage toggle button */
+.ub-storage-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--teal-glow) !important;
+  vertical-align: middle;
+  line-height: 1;
+  transition: none;
+}
+.ub-storage-toggle:hover,
+.ub-storage-toggle:focus,
+.ub-storage-toggle:active {
+  color: var(--teal-glow) !important;
+}
+.ub-storage-toggle svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
 /* Header toggle container */
 .ub-header-toggles {
   display: flex;

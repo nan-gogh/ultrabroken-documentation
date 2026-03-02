@@ -9,7 +9,7 @@
  *   'frozen'  → static frame (no animation)
  *   'hidden'  → rune hidden entirely
  *
- * State is persisted in localStorage('ub-bg-mode').
+ * State is persisted in localStorage('ub-bg-mode') only if storage is allowed.
  * Other scripts listen for the 'motion-toggle' CustomEvent on window:
  *   e.detail.mode  — 'animate' | 'frozen' | 'hidden'
  *
@@ -24,8 +24,10 @@
   /* ── Read persisted state (default: animate) ───────────────── */
   var mode = 'animate';
   try {
-    var stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && MODES.indexOf(stored) !== -1) mode = stored;
+    if (typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed()) {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (stored && MODES.indexOf(stored) !== -1) mode = stored;
+    }
   } catch (e) {}
 
   /* ── Expose global for scripts that load later ─────────────── */
@@ -90,7 +92,11 @@
     window.__ubBgMode = mode;
     window.__ubReducedMotion = mode !== 'animate';
 
-    try { localStorage.setItem(STORAGE_KEY, mode); } catch (e) {}
+    try {
+      if (typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed()) {
+        localStorage.setItem(STORAGE_KEY, mode);
+      }
+    } catch (e) {}
 
     // Stamp html element so CSS tracks current mode
     document.documentElement.setAttribute('data-ub-bg', mode);
@@ -107,6 +113,16 @@
       detail: { mode: mode }
     }));
   }
+
+  /* ── Listen for storage toggle events ──────────────────────── */
+  window.addEventListener('storage-toggle', function(e) {
+    if (e.detail && e.detail.enabled) {
+      // Storage just got enabled, save current state
+      try {
+        localStorage.setItem(STORAGE_KEY, mode);
+      } catch (err) {}
+    }
+  });
 
   /* ── Detect if we're in mobile/compact view ───────────────── */
   function isMobileView() {

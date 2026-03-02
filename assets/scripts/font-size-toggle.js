@@ -9,7 +9,7 @@
  *   'large'   → 125% font size on content areas
  *
  * The header is excluded from font scaling — only content changes.
- * State is persisted in localStorage('ub-font-size').
+ * State is persisted in localStorage('ub-font-size') only if storage is allowed.
  */
 (function () {
   'use strict';
@@ -20,8 +20,10 @@
   /* ── Read persisted state (default: regular) ───────────────── */
   var mode = 'regular';
   try {
-    var stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && MODES.indexOf(stored) !== -1) mode = stored;
+    if (typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed()) {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (stored && MODES.indexOf(stored) !== -1) mode = stored;
+    }
   } catch (e) {}
 
   /* ── Stamp html element immediately ────────────────────────── */
@@ -68,7 +70,11 @@
     var idx = MODES.indexOf(mode);
     mode = MODES[(idx + 1) % MODES.length];
 
-    try { localStorage.setItem(STORAGE_KEY, mode); } catch (e) {}
+    try {
+      if (typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed()) {
+        localStorage.setItem(STORAGE_KEY, mode);
+      }
+    } catch (e) {}
 
     document.documentElement.setAttribute('data-ub-font', mode);
 
@@ -78,6 +84,16 @@
       btn.setAttribute('title', TITLES[mode]);
     }
   }
+
+  /* ── Listen for storage toggle events ──────────────────────── */
+  window.addEventListener('storage-toggle', function(e) {
+    if (e.detail && e.detail.enabled) {
+      // Storage just got enabled, save current state
+      try {
+        localStorage.setItem(STORAGE_KEY, mode);
+      } catch (err) {}
+    }
+  });
 
   /* ── Detect if we're in mobile/compact view ───────────────── */
   function isMobileView() {
