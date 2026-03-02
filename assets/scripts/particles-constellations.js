@@ -186,9 +186,43 @@
   var lockedW = Math.floor(window.innerWidth);
   var lockedH = Math.floor(window.innerHeight) + BUFFER;
 
+  // Zoom detection baseline.  baseDPR is the devicePixelRatio at the
+  // time the canvas was last genuinely sized.  During a Ctrl+zoom the
+  // DPR changes but the physical (hardware) pixel area stays constant;
+  // during a genuine resize or monitor switch, the physical area changes.
+  var baseDPR   = DPR;
+  var basePhysW = window.innerWidth  * DPR;
+  var basePhysH = window.innerHeight * DPR;
+
   function resize(force) {
     if (contextLost) return;     // nothing useful we can do without a context
-    DPR = Math.max(1, window.devicePixelRatio || 1);
+    var newDPR = Math.max(1, window.devicePixelRatio || 1);
+
+    // ── Skip during mobile pinch-zoom (compensate() handles it) ──
+    var vv = window.visualViewport;
+    if (vv && vv.scale > 1.01) { DPR = newDPR; return; }
+
+    // ── Skip during desktop Ctrl+zoom ──
+    // DPR changed but physical display area is roughly constant.
+    if (!force && Math.abs(newDPR - baseDPR) > 0.01) {
+      var physW = window.innerWidth  * newDPR;
+      var physH = window.innerHeight * newDPR;
+      if (Math.abs(physW - basePhysW) < basePhysW * 0.12 &&
+          Math.abs(physH - basePhysH) < basePhysH * 0.12) {
+        // Pure desktop zoom — compensate() applies a counter-transform.
+        DPR = newDPR;
+        return;
+      }
+      // DPR changed AND physical pixels changed → monitor switch.
+      // Reset zoom baseline and fall through to full re-layout.
+      baseDPR   = newDPR;
+      basePhysW = physW;
+      basePhysH = physH;
+      var wrapper = canvas.parentNode;
+      if (wrapper) wrapper.style.transform = '';
+    }
+
+    DPR = newDPR;
     var rawW = Math.max(300, Math.floor(window.innerWidth));
     var rawH = Math.max(200, Math.floor(window.innerHeight));
 
@@ -540,37 +574,57 @@
   }
 
   /* ------------------------------------------------------------------ */
-  /*  Zoom compensation (visual viewport)                               */
+  /*  Zoom compensation (mobile pinch + desktop Ctrl+zoom)              */
   /* ------------------------------------------------------------------ */
-  // Mobile pinch-zoom scales everything including position:fixed elements.
-  // We counter-scale the wrapper so the background stays at 1× like a
-  // wallpaper.  On desktop, visualViewport.scale is always 1 even during
-  // Ctrl+zoom (that changes CSS-pixel size instead), so this is a no-op
-  // there — the normal resize handler already adapts the canvas.
+  // Two kinds of zoom exist:
+  //  • Mobile pinch / trackpad pinch → visualViewport.scale changes.
+  //  • Desktop Ctrl+±  → devicePixelRatio changes, vv.scale stays 1,
+  //    but vv.width/height change (CSS-pixel viewport shrinks/grows).
+  //
+  // In both cases we apply a single CSS counter-transform on the wrapper
+  // so the background stays at its original apparent size & position,
+  // like a wallpaper unaffected by zoom.
   function attachZoomCompensation() {
-    var vv = window.visualViewport;
-    if (!vv) return;   // very old browsers — degrade gracefully
-
+    var vv      = window.visualViewport;
     var wrapper = canvas.parentNode;
     if (!wrapper) return;
 
     function compensate() {
-      var s = vv.scale;
-      if (s <= 1.001) {
-        // No zoom — clear any leftover transform.
+      // Pinch-zoom factor (mobile / trackpad).  Always 1 on desktop
+      // Ctrl+zoom.
+      var pinchScale = vv ? vv.scale : 1;
+
+      // Desktop Ctrl+zoom factor.  DPR rises when zooming in, while
+      // baseDPR records the value at last genuine (non-zoom) resize.
+      var currentDPR = Math.max(1, window.devicePixelRatio || 1);
+      var dprZoom    = baseDPR > 0 ? (currentDPR / baseDPR) : 1;
+
+      var totalZoom = pinchScale * dprZoom;
+
+      if (totalZoom > 0.999 && totalZoom < 1.001) {
+        // No effective zoom — clear any leftover transform.
         wrapper.style.transform = '';
         return;
       }
-      // Counter-scale so the wrapper stays at layout-viewport size.
-      // Shift it to the visual-viewport origin so it covers the visible
-      // area exactly.
+
+      // Visual-viewport offset (non-zero only during pinch-zoom).
+      var offX = vv ? vv.offsetLeft : 0;
+      var offY = vv ? vv.offsetTop  : 0;
+
       wrapper.style.transform =
-        'translate(' + vv.offsetLeft + 'px, ' + vv.offsetTop + 'px) ' +
-        'scale(' + (1 / s) + ')';
+        'translate(' + offX + 'px, ' + offY + 'px) ' +
+        'scale(' + (1 / totalZoom) + ')';
     }
 
-    vv.addEventListener('resize', compensate);
-    vv.addEventListener('scroll', compensate);
+    // visualViewport events cover pinch-zoom AND desktop Ctrl+zoom
+    // (viewport dimensions change in both cases).
+    if (vv) {
+      vv.addEventListener('resize', compensate);
+      vv.addEventListener('scroll', compensate);
+    }
+    // Fallback / belt-and-suspenders for browsers or edge cases where
+    // visualViewport doesn't fire.  compensate() is cheap & idempotent.
+    window.addEventListener('resize', compensate);
   }
 
   /* ------------------------------------------------------------------ */
