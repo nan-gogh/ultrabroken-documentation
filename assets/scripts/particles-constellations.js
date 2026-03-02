@@ -5,16 +5,18 @@
  * all page content.  Pure HTML/CSS — no <canvas>, no animation loop, no DPR
  * tracking, no resize handler.
  *
- * WHY THIS WORKS WITHOUT ADDRESS-BAR JUMPING
- * ――――――――――――――――――――――――――――――――――――――――――――
- * screen.width / screen.height are the physical screen dimensions in CSS
- * pixels.  They are FIXED — never affected by address bars, viewport resize,
- * pinch zoom, or Ctrl+zoom.  By sizing the wrapper to exactly screen.width ×
- * screen.height and centering it with CSS transform, the rune is always
- * locked to the physical screen centre.  No body/html hacks needed, so
- * MkDocs scrolling, TOC, anchors and back-to-top all work normally.
- * Orientation change (portrait ↔ landscape) swaps screen.w/h, so a single
- * orientationchange listener re-applies the dimensions.
+ * WHY THIS WORKS WITHOUT A CANVAS
+ * ─────────────────────────────────
+ * • position:fixed + inset:0 fills the current viewport automatically,
+ *   including during mobile address-bar transitions.
+ * • CSS viewport units (vmin/vw/vh) handle sizing; on desktop Ctrl+zoom
+ *   the CSS-pixel viewport shrinks but each pixel scales up proportionally,
+ *   so the rune keeps the exact same physical screen size — zero JS needed.
+ * • The opacity pulse is a CSS @keyframes animation — the compositor runs
+ *   it off the main thread.
+ * • Only mobile pinch-zoom (which magnifies fixed elements) requires JS:
+ *   a lightweight visualViewport counter-transform, applied synchronously
+ *   inside the compositor's own event so there is no inter-frame lag.
  *
  * Three background modes (driven by motion-toggle.js via data-ub-bg):
  *   'animate' → rune pulse animates via CSS @keyframes
@@ -87,50 +89,13 @@
     };
   }
 
-  /* ── Screen lock (touch/mobile only) ────────────────────────────────── */
-  // Address bars: screen.width/height are physical pixels — they never change
-  // when the address bar appears or disappears, so sizing the wrapper to them
-  // makes the rune immune to that vertical viewport shift.
-  //
-  // Zoom: when the user pinch-zooms and pans, visualViewport.offsetLeft/Top
-  // report exactly how far the visual viewport has shifted inside the layout
-  // viewport. Tracking those offsets keeps the wrapper (and rune) visually
-  // anchored to the physical screen centre regardless of zoom level or panning.
-  // offsetTop/Left are 0 when the user has not panned, so address-bar
-  // transitions (which only change vv.height, not vv.offset*) cause no drift.
-  //
-  // Desktop: leave CSS defaults (wrapper fills viewport via inset:0).
-  var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-  function lockToScreen() {
-    if (!isTouchDevice) return; // Desktop: leave CSS defaults alone
-    var vv = window.visualViewport;
-    // Physical screen dimensions — immune to address bar and zoom
-    wrapper.style.width  = window.screen.width  + 'px';
-    wrapper.style.height = window.screen.height + 'px';
-    // Track visual viewport offset so rune doesn't drift during zoom + pan
-    wrapper.style.left = vv ? (vv.offsetLeft + 'px') : '0';
-    wrapper.style.top  = vv ? (vv.offsetTop  + 'px') : '0';
-  }
-
-  function attachViewportListeners() {
-    if (!isTouchDevice) return;
-    // Orientation change swaps screen.w/h — re-apply with a brief defer
-    // because some browsers report stale values synchronously.
-    window.addEventListener('orientationchange', function () {
-      setTimeout(lockToScreen, 100);
-    });
-    // visualViewport fires scroll + resize during pinch-zoom and pan
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('scroll', lockToScreen);
-      window.visualViewport.addEventListener('resize', lockToScreen);
-    }
-  }
-
   /* ── Bootstrap ─────────────────────────────────────────────────── */
+  // No JS zoom compensation: visualViewport events fire after the frame is
+  // already composited, so any counter-transform produces visible jitter.
+  // position:fixed + CSS viewport units (vmin/vw/vh) give correct behaviour
+  // natively — the rune scales proportionally with pinch-zoom, staying
+  // centred, with zero JS intervention and zero jitter.
   function init() {
-    lockToScreen();
-    attachViewportListeners();
     refresh404();
     attach404Observer();
   }
