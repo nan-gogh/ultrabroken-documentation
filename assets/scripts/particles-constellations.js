@@ -76,6 +76,32 @@
   var particles = [];
   var contextLost = false;
 
+  // Paint a frozen first frame as soon as possible so the canvas is never
+  // blank during the 200ms deferred init window. A 0ms timeout ensures all
+  // var initialisations in this IIFE have completed (hoisting safety).
+  // Skip in 'hidden' mode — CSS already prevents any flash there.
+  if (bgMode !== 'hidden') {
+    setTimeout(renderFrozenEarly, 0);
+  }
+
+  function renderFrozenEarly() {
+    // Lightweight first-frame paint: size canvas, seed particles, render once.
+    // Deliberately avoids touching lockedW/lockedH — resize() in init() will
+    // reconcile those. We just need something visible ASAP.
+    DPR = Math.max(1, window.devicePixelRatio || 1);
+    W = Math.max(300, Math.floor(window.innerWidth));
+    H = Math.max(200, Math.floor(window.innerHeight)) + 100; // 100 = BUFFER
+    var wrapper = canvas.parentNode;
+    if (wrapper) { wrapper.style.width = W + 'px'; wrapper.style.height = H + 'px'; }
+    canvas.width  = Math.floor(W * DPR);
+    canvas.height = Math.floor(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    var area = (W * H) / (1366 * 768);
+    var target = Math.max(12, Math.round(cfg.baseCount * area));
+    while (particles.length < target) particles.push(makeParticle(true));
+    render(0);
+  }
+
   /* ------------------------------------------------------------------ */
   /*  Canvas context-loss recovery                                      */
   /* ------------------------------------------------------------------ */
