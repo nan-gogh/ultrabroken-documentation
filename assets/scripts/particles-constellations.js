@@ -6,20 +6,19 @@
  * tracking, no resize handler.
  *
  * WHY THIS WORKS WITHOUT ADDRESS-BAR JUMPING
- * ──────────────────────────────────────────────
- * • The wrapper (.ub-rune-bg) gets a FIXED pixel height on page load:
- *   height = window.innerHeight (the initial viewport height in pixels).
- * • This locks the wrapper to a static size, immune to viewport height changes.
- * • When the mobile address bar appears, the viewport shrinks, but the wrapper
- *   keeps its fixed height. The img inside stays centred in the larger wrapper,
- *   which now extends beyond the physical viewport — but that is fine, it is
- *   behind all content (z-index: -1).
- * • A resize listener detects real orientation changes by checking if the
- *   VIEWPORT WIDTH changed. If it did → orientation change → update the
- *   wrapper height to the new window.innerHeight. If width stayed the same →
- *   address bar change → ignore it.
- * • Desktop Ctrl+zoom: the CSS-pixel viewport shrinks proportionally, and
- *   fixed elements stay at CSS-pixel coordinates — no update needed.
+ * ――――――――――――――――――――――――――――――――――――――――――――
+ * The key technique (from proven StackOverflow mobile solutions):
+ * • CSS sets body { position: fixed; width: 100vw; height: 100vh; }
+ *   This unanchors the body from viewport changes.
+ * • When the address bar shows/hides and the viewport height changes,
+ *   the body stays at its original size.
+ * • The rune wrapper (.ub-rune-bg) is position: fixed; inset: 0, filling
+ *   the body (now a stable frame, not the shifting viewport).
+ * • The img is position: absolute at top/left: 50% inside the wrapper,
+ *   staying perfectly centred. No viewport resizing → no recomputation.
+ * • Result: Mobile address bar show/hide does NOT jump the rune.
+ *   Desktop Ctrl+zoom does NOT jump the rune.
+ *   No JS running on every resize → no lag.
  * • The opacity pulse is a CSS @keyframes animation — the compositor runs
  *   it off the main thread.
  *
@@ -94,32 +93,27 @@
     };
   }
 
-  /* ── Viewport-height lock with orientation detection ─────────────────── */
+  /* Viewport-height lock not needed with body { position: fixed } */
   var initialInnerWidth = window.innerWidth;
-  var initialInnerHeight = window.innerHeight;
 
-  function setWrapperHeight() {
-    wrapper.style.height = window.innerHeight + 'px';
-  }
-
-  function attachResizeListener() {
-    window.addEventListener('resize', function () {
-      var newWidth = window.innerWidth;
-      // Only update if the viewport WIDTH changed (orientation change),
-      // not on height-only changes (address bar show/hide).
-      if (newWidth !== initialInnerWidth) {
-        initialInnerWidth = newWidth;
-        setWrapperHeight();
-      }
+  function attachOrientationListener() {
+    // Orientation changes trigger a meaningful recalculation of layout
+    // (e.g., portrait to landscape), but with body { position: fixed }
+    // the rune stays stable even during address-bar changes.
+    window.addEventListener('orientationchange', function () {
+      // Force a repaint in case MkDocs layout needs adjustment
+      document.body.style.display = 'none';
+      setTimeout(function () {
+        document.body.style.display = '';
+      }, 0);
     });
   }
 
   /* ── Bootstrap ─────────────────────────────────────────────────── */
   function init() {
-    setWrapperHeight();
-    attachResizeListener();
     refresh404();
     attach404Observer();
+    attachOrientationListener();
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {

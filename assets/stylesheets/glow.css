@@ -21,8 +21,18 @@
   /*color: #ffffff !important;*/
 }
 /* Apply fonts: Texturina for body, New Rocker for headings/navigation/title */
-html, body {
+html {
+  height: 100%;
+  overflow: hidden;
+}
+body {
   font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 .md-content h1, .md-content h2, .md-content h3, .md-content h4, .md-content h5, .md-content h6,
 .md-nav__title, .md-header__title, .md-tabs__link {
@@ -390,12 +400,9 @@ button.search-link:focus,
 
 
 /* ── Background rune (watermark) ──────────────────────────────────── */
-/* Wrapper: fixed-size container (height set to window.innerHeight by JS).
-   Remains at that fixed height even when the mobile address bar appears and
-   the viewport shrinks, keeping the centred img visible. The img is absolutely
-   positioned at 50%/50% within this fixed-height wrapper, so it stays centred
-   regardless of viewport changes. Box extends beyond physical viewport but is
-   behind all content (z-index: -1, pointer-events: none). */
+/* Wrapper: fixed-size container (body { position: fixed } unanchors viewport changes).
+   The wrapper fills the body (now a stable frame). The img is absolutely
+   positioned at 50%/50% within this stable wrapper, staying perfectly centred. */
 .ub-rune-bg {
   position: fixed;
   inset: 0;
@@ -406,11 +413,9 @@ button.search-link:focus,
 
 .ub-rune-img {
   /* position: absolute + top/left: 50% + translate(-50%, -50%) centres the element
-     within its parent. The parent (wrapper) has a fixed px height set by JS
-     (width-change detection = orientation change only). When the mobile address
-     bar appears, the viewport shrinks but the wrapper keeps its original height,
-     so the img stays centred in the wrapper, which now extends beyond the
-     viewport — but is behind all content (z-index: -1). */
+     within its parent wrapper. The wrapper is position: fixed; inset: 0 on a
+     body that's position: fixed (stable frame, not shifting viewport).
+     Result: rune centred and stable through address bar changes and zoom. */
   position: absolute;
   top: 50%;
   left: 50%;
