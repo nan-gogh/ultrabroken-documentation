@@ -390,34 +390,38 @@ button.search-link:focus,
 
 
 /* ── Background rune (watermark) ──────────────────────────────────── */
-/* A fixed container with the rune SVG centred via flexbox.
-   Uses 100lvh (large viewport height = address bar hidden size) so the
-   container never shrinks when the address bar appears — identical to the
-   old canvas ratchet approach, but as a single CSS unit with no JS.
-   overflow:hidden clips the extra pixels invisibly.
-   On desktop Ctrl+zoom, CSS viewport units keep the rune at the same
-   physical size automatically — zero JS. */
+/* A fixed container for the rune SVG.
+   Uses 100dvh (dynamic viewport height) which tracks the actual visible
+   viewport in real time — when the address bar appears/disappears, the
+   container resizes with zero JS.
+   The rune is absolutely centred at top:50%;left:50% to stay at the visual
+   center regardless of address-bar transitions or viewport changes.
+   This is the CSS equivalent to the old canvas ratchet logic, but simpler:
+   let the browser handle the viewport tracking. */
 .ub-rune-bg {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 100lvh;   /* large viewport height: never shrinks with address bar */
+  height: 100dvh;   /* dynamic viewport height: always current visible size */
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .ub-rune-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 48vmin;
   max-width: 60vw;
-  max-height: 60lvh;
+  max-height: 60dvh;
   aspect-ratio: 1 / 1;
   opacity: 0.07;
   animation: ub-rune-pulse 4.2s ease-in-out infinite;
+  /* Centre the image at its own mid-point so top:50%;left:50% places
+     the image centre at the viewport centre. */
+  transform: translate(-50%, -50%);
 }
 
 @keyframes ub-rune-pulse {
