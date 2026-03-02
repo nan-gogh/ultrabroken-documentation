@@ -15,6 +15,48 @@
   var facets  = null;   // { years, versions, tags, credits }
   var state   = null;   // current filters & sort
   var _click  = false;  // global click listener bound once
+  var _scroll = false;  // global scroll listener bound once
+
+  /* ================================================================
+     State Persistence
+     ================================================================ */
+  function canStore() {
+    return typeof window.__ubStorageAllowed === 'function' && window.__ubStorageAllowed();
+  }
+
+  function saveApp() {
+    if (!canStore() || !state) return;
+    try { localStorage.setItem('grim_state', JSON.stringify(state)); } catch (e) {}
+  }
+
+  function loadState() {
+    if (!canStore()) return freshState();
+    try {
+      var s = localStorage.getItem('grim_state');
+      if (s) {
+        var p = JSON.parse(s);
+        if (p && typeof p === 'object' && 'sort' in p && 'dir' in p && 'q' in p) {
+          return p;
+        }
+      }
+    } catch (e) {}
+    return freshState();
+  }
+
+  function saveScroll() {
+    if (!canStore() || !document.getElementById(APP)) return;
+    try { localStorage.setItem('grim_scroll', window.scrollY); } catch (e) {}
+  }
+
+  function loadScroll() {
+    if (!canStore()) return;
+    try {
+      var y = localStorage.getItem('grim_scroll');
+      if (y) {
+        requestAnimationFrame(function() { window.scrollTo(0, parseInt(y, 10) || 0); });
+      }
+    } catch (e) {}
+  }
 
   /* ================================================================
      Helpers
@@ -135,6 +177,45 @@
        + '<div id="grim-list"></div>';
 
     root.innerHTML = h;
+  }
+
+  function syncUI(root) {
+    if (!state) return;
+
+    /* search */
+    var qEl = root.querySelector('#grim-q');
+    if (qEl) qEl.value = state.q || '';
+
+    /* sort buttons */
+    root.querySelectorAll('[data-sort]').forEach(function (b) {
+      if (b.dataset.sort === state.sort) b.classList.add('active');
+      else b.classList.remove('active');
+    });
+
+    /* direction */
+    var dirBtn = root.querySelector('#grim-dir');
+    if (dirBtn) dirBtn.textContent = state.dir === 'asc' ? '\u2191' : '\u2193';
+
+    /* years */
+    root.querySelectorAll('.grim-chip[data-year]').forEach(function (c) {
+      var y = c.dataset.year || c.getAttribute('data-year');
+      if (state.years && state.years.indexOf(y) >= 0) c.classList.add('active');
+      else c.classList.remove('active');
+    });
+
+    function syncCheckboxes(sel, key, singular) {
+      var dd = root.querySelector(sel);
+      if (!dd) return;
+      var arr = state[key] || [];
+      dd.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+        cb.checked = arr.indexOf(cb.value) >= 0;
+      });
+      labelDD(dd, singular);
+    }
+
+    syncCheckboxes('#grim-dd-ver', 'versions', 'version');
+    syncCheckboxes('#grim-dd-tag', 'tags', 'tag');
+    syncCheckboxes('#grim-dd-cred', 'credits', 'credit');
   }
 
   function ddHTML(id, label, singular, items, searchable) {
@@ -393,6 +474,7 @@
     var result = applySort(applyFilter());
     renderList(result);
     renderStatus(result.length);
+    saveApp();
   }
 
   /* ================================================================
@@ -402,10 +484,10 @@
     var root = document.getElementById(APP);
     if (!root || root._grim) return;
     root._grim = true;
-    state = freshState();
+    state = loadState();
 
     /* data already cached from a previous visit */
-    if (data) { buildUI(root); wire(root); refresh(); return; }
+    if (data) { buildUI(root); syncUI(root); wire(root); refresh(); loadScroll(); return; }
 
     root.innerHTML = '<p class="grim-loading">Loading glitch data\u2026</p>';
 
@@ -418,9 +500,21 @@
       data   = json;
       facets = extractFacets(json);
       buildUI(root);
+      syncUI(root);
       wire(root);
       refresh();
+      loadScroll();
     });
+
+    if (!_scroll) {
+      _scroll = true;
+      var stimer;
+      window.addEventListener('scroll', function() {
+        if (!document.getElementById(APP)) return;
+        clearTimeout(stimer);
+        stimer = setTimeout(saveScroll, 100);
+      });
+    }
   }
 
   // MkDocs Material provides an observable (document$) that emits on layout swap
