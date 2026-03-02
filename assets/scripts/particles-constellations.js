@@ -5,18 +5,15 @@
  * all page content.  Pure HTML/CSS — no <canvas>, no animation loop, no DPR
  * tracking, no resize handler.
  *
- * WHY THIS WORKS WITHOUT A CANVAS
- * ─────────────────────────────────
- * • position:fixed + inset:0 fills the current viewport automatically,
- *   including during mobile address-bar transitions.
- * • CSS viewport units (vmin/vw/vh) handle sizing; on desktop Ctrl+zoom
- *   the CSS-pixel viewport shrinks but each pixel scales up proportionally,
- *   so the rune keeps the exact same physical screen size — zero JS needed.
+ * WHY THIS WORKS
+ * ──────────────
+ * • Browser zoom is disabled site-wide (meta viewport + CSS touch-action + JS
+ *   event blocking). A font-size toggle provides accessibility instead.
+ * • The rune is positioned at a fixed pixel distance from the top of the
+ *   physical screen (screen.height / 2). Since screen dimensions never change
+ *   when address bars appear/disappear, the rune stays vertically locked.
  * • The opacity pulse is a CSS @keyframes animation — the compositor runs
  *   it off the main thread.
- * • Only mobile pinch-zoom (which magnifies fixed elements) requires JS:
- *   a lightweight visualViewport counter-transform, applied synchronously
- *   inside the compositor's own event so there is no inter-frame lag.
  *
  * Three background modes (driven by motion-toggle.js via data-ub-bg):
  *   'animate' → rune pulse animates via CSS @keyframes
