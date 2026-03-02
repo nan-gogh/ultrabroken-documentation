@@ -5,18 +5,22 @@
  * all page content.  Pure HTML/CSS — no <canvas>, no animation loop, no DPR
  * tracking, no resize handler.
  *
- * WHY THIS WORKS WITHOUT A CANVAS
+ * WHY THIS WORKS WITHOUT ZOOM BUGS
  * ─────────────────────────────────
- * • position:fixed + inset:0 fills the current viewport automatically,
- *   including during mobile address-bar transitions.
- * • CSS viewport units (vmin/vw/vh) handle sizing; on desktop Ctrl+zoom
- *   the CSS-pixel viewport shrinks but each pixel scales up proportionally,
- *   so the rune keeps the exact same physical screen size — zero JS needed.
+ * • The rune img uses position:fixed + top:50% + left:50%, so it is always
+ *   centred in the CSS-pixel viewport.
+ * • CSS `transition: top 999999s` on the img freezes any viewport-height-
+ *   driven recomputation: when the mobile address bar shows/hides the browser
+ *   resizes the viewport and re-evaluates top/left percentages, which would
+ *   normally make the element jump.  The near-infinite transition duration
+ *   makes that movement invisible (it would take ~11 days to complete).
+ * • On genuine orientation changes, a JS orientationchange listener removes
+ *   the transition for two frames so the rune snaps to the correct position
+ *   immediately, then the freeze is re-applied.
+ * • Desktop Ctrl+zoom shrinks the CSS-pixel viewport proportionally; fixed
+ *   elements stay at the same screen position — no JS needed.
  * • The opacity pulse is a CSS @keyframes animation — the compositor runs
  *   it off the main thread.
- * • Only mobile pinch-zoom (which magnifies fixed elements) requires JS:
- *   a lightweight visualViewport counter-transform, applied synchronously
- *   inside the compositor's own event so there is no inter-frame lag.
  *
  * Three background modes (driven by motion-toggle.js via data-ub-bg):
  *   'animate' → rune pulse animates via CSS @keyframes
@@ -89,15 +93,29 @@
     };
   }
 
+  /* ── Orientation-change handler ───────────────────────────────── */
+  // The CSS uses `transition: top 999999s` to freeze the rune against the
+  // micro-resize that address-bar show/hide causes.  That transition must
+  // be removed for actual orientation changes (portrait ↔ landscape) so
+  // the rune snaps into the correct position immediately.
+  function attachOrientationReset() {
+    window.addEventListener('orientationchange', function () {
+      // Remove the freeze transition so the element snaps on orientation change.
+      img.style.transition = 'none';
+      // Re-enable after the browser has had one frame to repaint.
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          img.style.transition = '';
+        });
+      });
+    });
+  }
+
   /* ── Bootstrap ─────────────────────────────────────────────────── */
-  // No JS needed for address-bar or zoom handling.
-  // The CSS container uses height:100lvh (large viewport = screen height,
-  // never shrinks when the address bar appears), so the rune at top:50%
-  // is always at 50% of the physical screen height — same logic as the
-  // old canvas ratchet, but handled natively by the browser.
   function init() {
     refresh404();
     attach404Observer();
+    attachOrientationReset();
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
