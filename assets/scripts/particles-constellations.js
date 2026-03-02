@@ -89,13 +89,47 @@
     };
   }
 
+  /* ── Fixed distance lock (mobile only) ────────────────────────────── */
+  // On mobile, position the rune at a fixed pixel distance from the top of the
+  // physical screen (screen.height / 2). Since physical screen dimensions never
+  // change when address bars appear/disappear, the rune stays locked vertically.
+  // Measure the rendered image height and subtract half of it to centre at that
+  // pixel point. On desktop, leave CSS flex defaults (no address bars exist).
+  var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+  function lockImageVerticalPosition() {
+    if (!isTouchDevice) return; // Desktop: leave CSS defaults
+    
+    // Allow layout to settle so we can measure the image
+    setTimeout(function () {
+      var rect = img.getBoundingClientRect();
+      var imgHeight = rect.height || img.offsetHeight;
+      if (imgHeight === 0) return; // Not yet rendered, skip
+      
+      var screenCenterY = window.screen.height / 2;
+      var topPosition = screenCenterY - (imgHeight / 2);
+      
+      img.style.position = 'fixed';
+      img.style.top = topPosition + 'px';
+      img.style.left = '50%';
+      img.style.transform = 'translateX(-50%)';
+      img.style.zIndex = '-1';
+      img.style.pointerEvents = 'none';
+    }, 0);
+  }
+
+  function attachOrientationListener() {
+    if (!isTouchDevice) return;
+    window.addEventListener('orientationchange', function () {
+      // Re-apply lock after orientation change (screen.w/h swap)
+      setTimeout(lockImageVerticalPosition, 100);
+    });
+  }
+
   /* ── Bootstrap ─────────────────────────────────────────────────── */
-  // No JS zoom compensation: visualViewport events fire after the frame is
-  // already composited, so any counter-transform produces visible jitter.
-  // position:fixed + CSS viewport units (vmin/vw/vh) give correct behaviour
-  // natively — the rune scales proportionally with pinch-zoom, staying
-  // centred, with zero JS intervention and zero jitter.
   function init() {
+    lockImageVerticalPosition();
+    attachOrientationListener();
     refresh404();
     attach404Observer();
   }

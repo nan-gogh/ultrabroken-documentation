@@ -409,6 +409,8 @@ button.search-link:focus,
 }
 
 .ub-rune-img {
+  /* Desktop: centred via flex within wrapper.
+     Mobile: JS positions absolutely at fixed pixel distance from screen top. */
   width: 48vmin;
   max-width: 60vw;
   max-height: 60vh;
