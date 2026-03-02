@@ -7,20 +7,14 @@
  *
  * WHY THIS WORKS WITHOUT ADDRESS-BAR JUMPING
  * ――――――――――――――――――――――――――――――――――――――――――――
- * The key technique (from proven StackOverflow mobile solutions):
- * • CSS sets body { position: fixed; width: 100vw; height: 100vh; }
- *   This unanchors the body from viewport changes.
- * • When the address bar shows/hides and the viewport height changes,
- *   the body stays at its original size.
- * • The rune wrapper (.ub-rune-bg) is position: fixed; inset: 0, filling
- *   the body (now a stable frame, not the shifting viewport).
- * • The img is position: absolute at top/left: 50% inside the wrapper,
- *   staying perfectly centred. No viewport resizing → no recomputation.
- * • Result: Mobile address bar show/hide does NOT jump the rune.
- *   Desktop Ctrl+zoom does NOT jump the rune.
- *   No JS running on every resize → no lag.
- * • The opacity pulse is a CSS @keyframes animation — the compositor runs
- *   it off the main thread.
+ * screen.width / screen.height are the physical screen dimensions in CSS
+ * pixels.  They are FIXED — never affected by address bars, viewport resize,
+ * pinch zoom, or Ctrl+zoom.  By sizing the wrapper to exactly screen.width ×
+ * screen.height and centering it with CSS transform, the rune is always
+ * locked to the physical screen centre.  No body/html hacks needed, so
+ * MkDocs scrolling, TOC, anchors and back-to-top all work normally.
+ * Orientation change (portrait ↔ landscape) swaps screen.w/h, so a single
+ * orientationchange listener re-applies the dimensions.
  *
  * Three background modes (driven by motion-toggle.js via data-ub-bg):
  *   'animate' → rune pulse animates via CSS @keyframes
@@ -93,27 +87,32 @@
     };
   }
 
-  /* Viewport-height lock not needed with body { position: fixed } */
-  var initialInnerWidth = window.innerWidth;
+  /* ── Screen-dimension lock ───────────────────────────────────────────── */
+  // screen.width/height are immune to address-bar, viewport, and zoom changes.
+  function lockToScreen() {
+    var sw = window.screen.width;
+    var sh = window.screen.height;
+    wrapper.style.width  = sw + 'px';
+    wrapper.style.height = sh + 'px';
+    wrapper.style.top    = '50%';
+    wrapper.style.left   = '50%';
+    wrapper.style.transform = 'translate(-50%, -50%)';
+  }
 
   function attachOrientationListener() {
-    // Orientation changes trigger a meaningful recalculation of layout
-    // (e.g., portrait to landscape), but with body { position: fixed }
-    // the rune stays stable even during address-bar changes.
+    // On orientation change screen.w/h swap — re-apply dimensions.
     window.addEventListener('orientationchange', function () {
-      // Force a repaint in case MkDocs layout needs adjustment
-      document.body.style.display = 'none';
-      setTimeout(function () {
-        document.body.style.display = '';
-      }, 0);
+      // Briefly defer: some browsers report the old dimensions synchronously.
+      setTimeout(lockToScreen, 100);
     });
   }
 
   /* ── Bootstrap ─────────────────────────────────────────────────── */
   function init() {
+    lockToScreen();
+    attachOrientationListener();
     refresh404();
     attach404Observer();
-    attachOrientationListener();
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {

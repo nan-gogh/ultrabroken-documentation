@@ -21,18 +21,9 @@
   /*color: #ffffff !important;*/
 }
 /* Apply fonts: Texturina for body, New Rocker for headings/navigation/title */
-html {
-  height: 100%;
-}
-body {
+/* Apply fonts: Texturina for body, New Rocker for headings/navigation/title */
+html, body {
   font-family: 'Texturina', Georgia, 'Times New Roman', serif !important;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 .md-content h1, .md-content h2, .md-content h3, .md-content h4, .md-content h5, .md-content h6,
 .md-nav__title, .md-header__title, .md-tabs__link {
@@ -400,22 +391,21 @@ button.search-link:focus,
 
 
 /* ── Background rune (watermark) ──────────────────────────────────── */
-/* Wrapper: fixed-size container (body { position: fixed } unanchors viewport changes).
-   The wrapper fills the body (now a stable frame). The img is absolutely
-   positioned at 50%/50% within this stable wrapper, staying perfectly centred. */
+/* Wrapper: sized to screen dimensions by JS (screen.width/height — immune to
+   address bar, pinch zoom, and viewport changes). Centered via transform.
+   The img sits at 50%/50% inside this stable frame. */
 .ub-rune-bg {
   position: fixed;
-  inset: 0;
+  /* width/height/top/left/transform set by JS using screen.width/height */
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
 }
 
 .ub-rune-img {
-  /* position: absolute + top/left: 50% + translate(-50%, -50%) centres the element
-     within its parent wrapper. The wrapper is position: fixed; inset: 0 on a
-     body that's position: fixed (stable frame, not shifting viewport).
-     Result: rune centred and stable through address bar changes and zoom. */
+  /* Centred within the wrapper via absolute positioning.
+     The wrapper is sized to screen.width/height by JS, so this
+     always lands at the physical screen centre regardless of viewport. */
   position: absolute;
   top: 50%;
   left: 50%;
