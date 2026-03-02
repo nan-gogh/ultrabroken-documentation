@@ -89,45 +89,15 @@
     };
   }
 
-  /* ── Pinch-zoom compensation ───────────────────────────────────── */
-  // Desktop Ctrl+zoom needs no JS: CSS viewport units + position:fixed
-  // adapt automatically (physical rune size stays constant).
-  //
-  // Mobile pinch-zoom magnifies fixed elements because the layout viewport
-  // is unchanged — only the visual viewport shrinks.  We counter-transform
-  // the wrapper so the rune appears unaffected.
-  //
-  // The visualViewport events fire synchronously during the compositor's
-  // paint cycle, so the correction is applied in the same frame as the
-  // zoom gesture — no inter-frame jitter.
-  function attachZoomCompensation() {
-    var vv = window.visualViewport;
-    if (!vv) return;  // graceful degradation for very old browsers
-
-    function compensate() {
-      var s = vv.scale;
-      if (s < 1.005) {
-        // No meaningful zoom — clear any residual transform.
-        wrapper.style.transform = '';
-        return;
-      }
-      // Translate to visual-viewport origin, then shrink by 1/scale.
-      // With transform-origin:0 0 (set in CSS), this maps the wrapper
-      // exactly onto the visible portion of the screen at 1× size.
-      wrapper.style.transform =
-        'translate(' + vv.offsetLeft + 'px,' + vv.offsetTop + 'px) ' +
-        'scale(' + (1 / s) + ')';
-    }
-
-    vv.addEventListener('resize', compensate);
-    vv.addEventListener('scroll', compensate);
-  }
-
   /* ── Bootstrap ─────────────────────────────────────────────────── */
+  // No JS zoom compensation: visualViewport events fire after the frame is
+  // already composited, so any counter-transform produces visible jitter.
+  // position:fixed + CSS viewport units (vmin/vw/vh) give correct behaviour
+  // natively — the rune scales proportionally with pinch-zoom, staying
+  // centred, with zero JS intervention and zero jitter.
   function init() {
     refresh404();
     attach404Observer();
-    attachZoomCompensation();
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
