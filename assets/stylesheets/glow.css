@@ -31,6 +31,8 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .md-content h1, .md-content h2, .md-content h3, .md-content h4, .md-content h5, .md-content h6,
 .md-nav__title, .md-header__title, .md-tabs__link {
