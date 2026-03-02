@@ -34,9 +34,9 @@
   // Legacy compat — particles-constellations.js checks this on init
   window.__ubReducedMotion = mode !== 'animate';
 
-  /* ── Stamp html element immediately (before canvas is created) ── */
-  // CSS rule hides .ub-canvas-wrapper when this attribute is present,
-  // so the canvas is never visible even for a single frame on reload.
+  /* ── Stamp html element immediately (before rune element is created) ─ */
+  // CSS rule hides .ub-rune-bg when this attribute is present,
+  // so the rune is never visible even for a single frame on reload.
   document.documentElement.setAttribute('data-ub-bg', mode);
 
   /* ── SVG icons ─────────────────────────────────────────────── */

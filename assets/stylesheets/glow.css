@@ -389,53 +389,59 @@ button.search-link:focus,
 }
 
 
-/* Bottom glow bar, rune 404 flip, and reduced-motion handling are all
-   canvas-driven now — see particles-constellations.js */
-
-/* Fullscreen particle canvas for subtle rising particles and constellation lines */
-/* Fixed wrapper + absolute canvas pattern.
-   The wrapper is the fixed-position element — a trivially cheap empty box
-   that the mobile compositor retains across address-bar transitions.
-   The canvas paints into its parent's layer as position:absolute, so it's
-   never tagged as a fixed compositing layer that browsers discard. */
-.ub-canvas-wrapper {
-  position: fixed !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 100vw;
-  /* Height set to ratcheted px by JS; 100vh is the pre-init fallback. */
-  height: 100vh;
-  pointer-events: none !important;
-  overflow: hidden !important;
-  will-change: transform;
-  /* Anchor counter-scale transform at top-left so the wrapper covers
-     the visual viewport exactly during pinch-zoom compensation. */
-  transform-origin: 0 0;
-  z-index: -1 !important;
+/* ── Background rune (watermark) ──────────────────────────────────── */
+/* A fixed full-viewport container with the rune SVG centred via flexbox.
+   Uses position:fixed + inset:0 which tracks the actual viewport during
+   mobile address-bar transitions (no JS resize needed).
+   Sizing uses viewport-relative units; on desktop Ctrl+zoom the CSS-pixel
+   viewport shrinks but pixels scale up, so the rune keeps the same physical
+   screen size — zero JS.  Only mobile pinch-zoom needs a lightweight JS
+   counter-transform (see particles-constellations.js). */
+.ub-rune-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 0 0;        /* anchor for pinch-zoom counter-transform */
 }
 
-/* Hide canvas wrapper immediately on load when bg mode is hidden.
-   This attribute is set by motion-toggle.js synchronously before the
-   canvas is ever created, preventing any flash on reload. */
-[data-ub-bg="hidden"] .ub-canvas-wrapper {
+.ub-rune-img {
+  width: 48vmin;
+  max-width: 60vw;
+  max-height: 60vh;
+  aspect-ratio: 1 / 1;
+  opacity: 0.07;
+  animation: ub-rune-pulse 4.2s ease-in-out infinite;
+}
+
+@keyframes ub-rune-pulse {
+  0%, 100% { opacity: 0.04; }
+  50%      { opacity: 0.10; }
+}
+
+/* Frozen mode: hold at mid opacity, no animation */
+[data-ub-bg="frozen"] .ub-rune-img {
+  animation: none;
+  opacity: 0.07;
+}
+
+/* Hidden mode: remove entirely (data-ub-bg is set synchronously by
+   motion-toggle.js before the element is appended — no flash) */
+[data-ub-bg="hidden"] .ub-rune-bg {
   display: none !important;
 }
 
-.ub-particles-canvas {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
+/* 404: flip rune upside-down */
+.ultrabroken-404 .ub-rune-img {
+  transform: scaleY(-1);
 }
 
-/* Ensure main content sits above the canvas */
-/* Keep canvas behind content without forcing layout changes on core layout elements.
-   Avoid setting `position: relative` on `.md-main`, `.md-nav`, or `.md-header` because
-   it can interfere with the theme's sticky/drawer behavior and cause the sidebar
-   to be pushed below the header. The header already has a higher z-index defined
-   earlier to sit above decorative layers. */
+/* Keep content above the rune without forcing layout changes on core
+   layout elements.  The header already has a higher z-index. */
 
 /* Search highlighting - clean teal background without spacing */
 mark {
