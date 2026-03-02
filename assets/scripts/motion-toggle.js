@@ -106,9 +106,9 @@
 
   /* ── Inject into header ─────────────────────────────────────── */
   function inject() {
-    // Find the palette toggle button in the header
-    var paletteToggle = document.querySelector('label[for^="__palette_"]');
-    if (!paletteToggle) return false;
+    // Find the header nav container where all header buttons live
+    var headerNav = document.querySelector('.md-header-nav');
+    if (!headerNav) return false;
 
     // Don't double-inject (instant navigation re-runs scripts)
     if (document.querySelector('.ub-motion-toggle')) return true;
@@ -118,8 +118,8 @@
     if (!container) {
       container = document.createElement('div');
       container.className = 'ub-header-toggles';
-      // Insert after the palette toggle
-      paletteToggle.parentNode.insertBefore(container, paletteToggle.nextSibling);
+      // Append to the header nav (at the end, after all other controls)
+      headerNav.appendChild(container);
     }
 
     container.insertBefore(createButton(), container.firstChild);

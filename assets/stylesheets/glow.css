@@ -237,7 +237,6 @@ label.md-header__button[for^="__palette_"]:hover {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: 12px;
 }
 
 /* Search bar and input styling - bright teal, no glow */
