@@ -89,15 +89,44 @@
     };
   }
 
+  /* ── Address-bar + screen-center lock ──────────────────────────── */
+  // Keep rune centred on the physical screen even as the address bar
+  // appears/disappears. visualViewport.offsetTop/offsetLeft give the
+  // displacement between layout viewport (where CSS layout happens) and
+  // visual viewport (what the user sees). We counteract this offset with
+  // a transform so the rune stays visually centred on the screen.
+  function attachScreenCenterLock() {
+    function lockToScreenCenter() {
+      var vv = window.visualViewport;
+      if (!vv) return;
+
+      var offsetX = vv.offsetLeft || 0;
+      var offsetY = vv.offsetTop || 0;
+
+      if (Math.abs(offsetX) < 0.5 && Math.abs(offsetY) < 0.5) {
+        // No meaningful offset—clear the correction.
+        img.style.transform = 'translate(-50%, -50%)';
+        return;
+      }
+
+      // Push the rune by the offset so it visually stays at screen centre.
+      img.style.transform =
+        'translate(calc(-50% - ' + offsetX + 'px), calc(-50% - ' + offsetY + 'px))';
+    }
+
+    var vv = window.visualViewport;
+    if (vv) {
+      vv.addEventListener('resize', lockToScreenCenter);
+      vv.addEventListener('scroll', lockToScreenCenter);
+    }
+    window.addEventListener('resize', lockToScreenCenter);
+  }
+
   /* ── Bootstrap ─────────────────────────────────────────────────── */
-  // No JS zoom compensation: visualViewport events fire after the frame is
-  // already composited, so any counter-transform produces visible jitter.
-  // position:fixed + CSS viewport units (vmin/vw/vh) give correct behaviour
-  // natively — the rune scales proportionally with pinch-zoom, staying
-  // centred, with zero JS intervention and zero jitter.
   function init() {
     refresh404();
     attach404Observer();
+    attachScreenCenterLock();
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
