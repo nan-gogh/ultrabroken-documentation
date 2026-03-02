@@ -2,13 +2,13 @@
 Build a simple BM25-compatible index from the `docs/` markdown tree.
 
 This script walks `docs/`, extracts plain text from markdown (enriched with
-frontmatter fields such as abbreviation, description, aliases, tags, credits, and
+frontmatter fields such as tag, description, aliases, tags, credits, and
 versions), optionally chunks long pages, and writes `site/wiki_index.json`
 (or gzipped) containing an array of objects suitable for BM25 retrieval.
 
 Each index item includes:
   - id, title, path, chunk_index, text
-  - abbreviation         – the short abbreviation (e.g. "ETS")
+  - tag          – the short tag/abbreviation (e.g. "ETS")
   - description  – one-line summary from frontmatter
   - aliases      – list of alternative names / slugs
   - tags         – list of category tags
@@ -17,7 +17,7 @@ Each index item includes:
   - date         – ISO 8601 discovery / documentation date
 
 The `text` field for every chunk is prefixed with a compact metadata header
-so that abbreviation / tag / alias lookups resolve correctly even when the
+so that tag / alias lookups resolve correctly even when the
 body text is chunked. The header format is:
 
   [Title (ABBR) — description. Aliases: a1, a2. Tags: t1, t2.]
@@ -71,7 +71,7 @@ def extract_frontmatter(md_path: Path) -> dict:
     """Return a dict of all YAML frontmatter fields found in *md_path*.
 
     Supports the glitchcraft frontmatter schema:
-      title, abbreviation, description, versions, credits, date, aliases, tags
+      title, tag, description, versions, credits, date, aliases, tags
     """
     try:
         raw = md_path.read_text(encoding='utf-8-sig')
@@ -100,16 +100,16 @@ def _build_metadata_header(fm: dict) -> str:
     parts: list[str] = []
 
     title = fm.get('title', '')
-    abbreviation = fm.get('abbreviation', '')
+    tag = fm.get('tag', '')
     description = fm.get('description', '')
 
-    # Title + abbreviation
-    if title and abbreviation:
-        parts.append(f"{title} ({abbreviation})")
+    # Title + tag
+    if title and tag:
+        parts.append(f"{title} ({tag})")
     elif title:
         parts.append(title)
-    elif abbreviation:
-        parts.append(abbreviation)
+    elif tag:
+        parts.append(tag)
 
     if description:
         parts.append(description)
@@ -247,7 +247,7 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
 
         # Structured metadata fields extracted from frontmatter
         meta = {
-            'abbreviation':        fm.get('abbreviation', ''),
+            'tag':         fm.get('tag', ''),
             'description': fm.get('description', ''),
             'aliases':     fm.get('aliases', []),
             'tags':        fm.get('tags', []),
@@ -256,7 +256,7 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
             'date':        fm.get('date', ''),
         }
 
-        # Compact header prepended to every chunk so abbreviation/tag/alias queries
+        # Compact header prepended to every chunk so tag/alias queries
         # resolve regardless of which chunk is retrieved.
         header = _build_metadata_header(fm)
 
@@ -307,7 +307,7 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
 
     Schema per entry:
       name      – frontmatter title
-      abbr      – frontmatter abbreviation
+      abbr      – frontmatter tag
       date      – frontmatter date (ISO 8601 string)
       tags      – frontmatter tags list
       versions  – frontmatter versions list
@@ -340,7 +340,7 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
                 tags_set.add(t)
         entries.append({
             'name':     title,
-            'abbr':     fm.get('abbreviation', ''),
+            'tag':      fm.get('tag', ''),
             'date':     fm.get('date', ''),
             'tags':     fm.get('tags', []),
             'versions': fm.get('versions', []),
@@ -456,7 +456,7 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
 
     Schema per entry:
       name    – frontmatter title (e.g. "Extended Throw Sprinting")
-      abbr    – frontmatter abbreviation (e.g. "ETS")
+      abbr      – frontmatter tag (e.g. "ETS")
       aliases – list of alternative names (e.g. ["extended-throw-sprinting"])
       path    – site-relative path (e.g. "wiki/glitchcraft/extended-throw-sprinting/")
 
@@ -475,7 +475,7 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
                 continue
             grimoire_entries.append({
                 'name': title,
-                'abbr': fm.get('abbreviation', ''),
+                'tag': fm.get('tag', ''),
                 'aliases': fm.get('aliases', []),
                 'href': f'./{p.name}',
             })
@@ -496,7 +496,7 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
 
         glossary.append({
             'name': name,
-            'abbr': entry.get('abbr', ''),
+            'tag': entry.get('tag', ''),
             'aliases': aliases,
             'path': path,
         })
@@ -519,12 +519,12 @@ def build_graph(glossary_entries: list | None = None) -> None:
     """Build graph.json — a node/edge graph of how glitchcraft pages reference each other.
 
     For each glitchcraft page, reads its markdown body and checks which other
-    glossary entries (by name, abbreviation, or alias) are mentioned. Produces
+    glossary entries (by name, tag, or alias) are mentioned. Produces
     a graph suitable for a force-directed visualisation.
 
     Schema:
       {
-        "nodes": [{"id": "wiki/glitchcraft/slug/", "name": "Glitch Name", "abbr": "GN"}],
+        "nodes": [{"id": "wiki/glitchcraft/slug/", "name": "Glitch Name", "tag": "GN"}],
         "edges": [{"source": "wiki/glitchcraft/a/", "target": "wiki/glitchcraft/b/"}]
       }
 
@@ -543,16 +543,16 @@ def build_graph(glossary_entries: list | None = None) -> None:
     patterns: list[tuple[re.Pattern, str]] = []
     for entry in glossary_entries:
         name = entry.get('name', '')
-        abbr = entry.get('abbr', '')
+        tag = entry.get('tag', '')
         aliases = entry.get('aliases', [])
         path = entry.get('path', '')
         if not name or not path:
             continue
         # Name — case-insensitive
         patterns.append((re.compile(r'(?<!\w)' + re.escape(name) + r'(?!\w)', re.IGNORECASE), path))
-        # Abbreviation — case-sensitive
-        if abbr and len(abbr) >= 2:
-            patterns.append((re.compile(r'(?<!\w)' + re.escape(abbr) + r'(?!\w)'), path))
+        # Tag — case-sensitive
+        if tag and len(tag) >= 2:
+            patterns.append((re.compile(r'(?<!\w)' + re.escape(tag) + r'(?!\w)'), path))
         # Aliases — case-insensitive
         for alias in (aliases or []):
             if alias and alias.lower() != name.lower():
@@ -573,11 +573,11 @@ def build_graph(glossary_entries: list | None = None) -> None:
     for entry in glossary_entries:
         path = entry.get('path', '')
         name = entry.get('name', '')
-        abbr = entry.get('abbr', '')
+        tag = entry.get('tag', '')
         if not path or not name:
             continue
 
-        nodes.append({'id': path, 'name': name, 'abbr': abbr})
+        nodes.append({'id': path, 'name': name, 'tag': tag})
 
         # Read the markdown body for this page
         stem = path_to_stem.get(path, '')
@@ -683,7 +683,7 @@ def main():
     p.add_argument('--output', '-o', default='site/wiki_index.json')
     p.add_argument('--gzip', action='store_true')
     p.add_argument('--no-chunk', dest='chunk', action='store_false', help='Do not chunk pages; emit one item per page')
-    p.add_argument('--docs-dir', default='docs', help='Path under the repo root to read markdown from (e.g. docs/wiki)')
+    p.add_argument('--docs-dir', default='docs/wiki', help='Path under the repo root to read markdown from (e.g. docs/wiki)')
     p.add_argument(
         '--exclude', '-x',
         action='append',

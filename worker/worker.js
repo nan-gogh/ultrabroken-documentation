@@ -383,12 +383,12 @@ export default {
           const overlap = Math.max(setA && Object.keys(setA).length ? inter / Math.max(Object.keys(setA).length,1) : 0, 0);
           titleBoost = overlap; // 0..1
         }
-        // Abbreviation exact-match boost: if any query token exactly matches the
-        // page's abbreviation field, apply a strong boost so e.g. "SDC" reliably
+        // Tag exact-match boost: if any query token exactly matches the
+        // page's tag field, apply a strong boost so e.g. "SDC" reliably
         // surfaces the Stick Desync Clip page above pages that merely mention "SDC".
         let abbrBoost = 0;
-        if (it.abbreviation){
-          const abbrLower = String(it.abbreviation).toLowerCase();
+        if (it.tag){
+          const abbrLower = String(it.tag).toLowerCase();
           for (const t of qTokens){
             if (String(t).toLowerCase() === abbrLower){ abbrBoost = 1.0; break; }
           }
