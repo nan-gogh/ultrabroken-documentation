@@ -89,32 +89,13 @@
     };
   }
 
-  /* ── Mobile address-bar fix ───────────────────────────────────── */
-  // On mobile, the address bar shrinks the viewport height, which would
-  // shift the vertical centering. Fix by setting wrapper height to the
-  // physical screen.height (immutable) and anchoring to top:0.
-  // On desktop: leave CSS defaults (address bars don't exist).
-  var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
-  function lockWrapperHeight() {
-    if (!isTouchDevice) return;
-    wrapper.style.height = window.screen.height + 'px';
-    wrapper.style.top = '0';
-  }
-
-  function attachOrientationListener() {
-    if (!isTouchDevice) return;
-    // When device orientation changes, screen.w/h swap — re-apply lock.
-    window.addEventListener('orientationchange', function () {
-      // Brief defer: some browsers report stale values synchronously.
-      setTimeout(lockWrapperHeight, 100);
-    });
-  }
-
   /* ── Bootstrap ─────────────────────────────────────────────────── */
+  // No JS zoom compensation: visualViewport events fire after the frame is
+  // already composited, so any counter-transform produces visible jitter.
+  // position:fixed + CSS viewport units (vmin/vw/vh) give correct behaviour
+  // natively — the rune scales proportionally with pinch-zoom, staying
+  // centred, with zero JS intervention and zero jitter.
   function init() {
-    lockWrapperHeight();
-    attachOrientationListener();
     refresh404();
     attach404Observer();
   }

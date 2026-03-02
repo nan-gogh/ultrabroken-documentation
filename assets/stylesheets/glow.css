@@ -398,9 +398,6 @@ button.search-link:focus,
    screen size — zero JS.  Only mobile pinch-zoom needs a lightweight JS
    counter-transform (see particles-constellations.js). */
 .ub-rune-bg {
-  /* Desktop: fills viewport via inset:0 (address bars don't exist).
-     Mobile: JS sets height to screen.height + top:0 (immune to address bar).
-     Both: flex centering works perfectly regardless of wrapper size. */
   position: fixed;
   inset: 0;
   z-index: -1;
