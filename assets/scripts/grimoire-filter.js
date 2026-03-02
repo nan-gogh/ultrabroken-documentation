@@ -423,14 +423,16 @@
     });
   }
 
-  /* initial page load */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  // MkDocs Material provides an observable (document$) that emits on layout swap
+  if (typeof document$ !== 'undefined') {
+    document$.subscribe(function() {
+      init();
+    });
   } else {
-    init();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   }
-
-  /* MkDocs Material instant navigation – re-init when content changes */
-  new MutationObserver(function () { init(); })
-    .observe(document.body, { childList: true, subtree: true });
 })();

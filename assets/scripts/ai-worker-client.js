@@ -842,18 +842,23 @@
     }catch(e){ console.debug('updateCenteredRune error', e); }
   }
 
-  // Reuse the project's established navigation-detection pattern: observe
-  // body mutations, listen to popstate, and wrap pushState so we initialize
-  // the widget after client-side navigation.
+  // Monitor navigation using MkDocs Material's built-in observable
   function attachNavObserver(){
-    try{
-      const target = document.body; if (!target) return;
-      const mo = new MutationObserver(()=>{ updateCenteredRune(); setTimeout(initAIWidget, 50); });
-      mo.observe(target, { childList: true, subtree: true });
-      window.addEventListener('popstate', ()=>{ updateCenteredRune(); setTimeout(initAIWidget, 50); });
-      const _pushState = history.pushState;
-      history.pushState = function () { _pushState.apply(this, arguments); updateCenteredRune(); setTimeout(initAIWidget, 50); };
-    }catch(e){ console.debug('attachNavObserver error', e); }
+    if (typeof document$ !== 'undefined') {
+      document$.subscribe(function() {
+        updateCenteredRune(); 
+        setTimeout(initAIWidget, 50);
+      });
+    } else {
+      try{
+        const target = document.body; if (!target) return;
+        const mo = new MutationObserver(()=>{ updateCenteredRune(); setTimeout(initAIWidget, 50); });
+        mo.observe(target, { childList: true, subtree: true });
+        window.addEventListener('popstate', ()=>{ updateCenteredRune(); setTimeout(initAIWidget, 50); });
+        const _pushState = history.pushState;
+        history.pushState = function () { _pushState.apply(this, arguments); updateCenteredRune(); setTimeout(initAIWidget, 50); };
+      }catch(e){ console.debug('attachNavObserver error', e); }
+    }
   }
 
   if (document.readyState === 'loading') {

@@ -74,18 +74,25 @@
 
   /* ── 404 observer ──────────────────────────────────────────────── */
   function attach404Observer() {
-    if (!document.body) return;
+    // MkDocs Material provides an observable (document$) that emits on layout swap
+    if (typeof document$ !== 'undefined') {
+      document$.subscribe(function() {
+        refresh404();
+      });
+    } else {
+      if (!document.body) return;
 
-    new MutationObserver(function () { refresh404(); })
-      .observe(document.body, { childList: true, subtree: true });
+      new MutationObserver(function () { refresh404(); })
+        .observe(document.body, { childList: true, subtree: true });
 
-    window.addEventListener('popstate', refresh404);
+      window.addEventListener('popstate', refresh404);
 
-    var _push = history.pushState;
-    history.pushState = function () {
-      _push.apply(this, arguments);
-      setTimeout(refresh404, 50);
-    };
+      var _push = history.pushState;
+      history.pushState = function () {
+        _push.apply(this, arguments);
+        setTimeout(refresh404, 50);
+      };
+    }
   }
 
   /* ── Fixed distance lock (all devices) ────────────────────────────────── */

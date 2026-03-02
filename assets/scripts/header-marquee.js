@@ -127,23 +127,30 @@
   }
 
   function wireNavigation() {
-    /* MutationObserver on the header title area covers two cases:
-       1. childList  → Material replaces the .md-ellipsis element entirely
-       2. characterData (subtree) → Material swaps text in-place without
-          replacing the element; ResizeObserver won't fire in this case */
-    const titleEl = document.querySelector('.md-header__title');
-    if (titleEl && window.MutationObserver) {
-      new MutationObserver(() => scan())
-        .observe(titleEl, { childList: true, subtree: true, characterData: true });
-    }
+    // MkDocs Material built-in observable covers template swapping
+    if (typeof document$ !== 'undefined') {
+      document$.subscribe(function() {
+        scan();
+      });
+    } else {
+      /* MutationObserver on the header title area covers two cases:
+         1. childList  → Material replaces the .md-ellipsis element entirely
+         2. characterData (subtree) → Material swaps text in-place without
+            replacing the element; ResizeObserver won't fire in this case */
+      const titleEl = document.querySelector('.md-header__title');
+      if (titleEl && window.MutationObserver) {
+        new MutationObserver(() => scan())
+          .observe(titleEl, { childList: true, subtree: true, characterData: true });
+      }
 
-    /* Belt-and-suspenders: also catch pushState / popstate navigations */
-    const _push = history.pushState;
-    history.pushState = function () {
-      _push.apply(this, arguments);
-      setTimeout(scan, 80);
-    };
-    window.addEventListener('popstate', () => setTimeout(scan, 80));
+      /* Belt-and-suspenders: also catch pushState / popstate navigations */
+      const _push = history.pushState;
+      history.pushState = function () {
+        _push.apply(this, arguments);
+        setTimeout(scan, 80);
+      };
+      window.addEventListener('popstate', () => setTimeout(scan, 80));
+    }
   }
 
   if (document.readyState === 'loading') {
