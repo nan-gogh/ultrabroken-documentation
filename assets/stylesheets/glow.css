@@ -234,8 +234,7 @@ label.md-header__button[for^="__palette_"]:hover {
   display: flex;
   align-items: center;
   gap: 0;
-  margin-left: -0.2rem;
-  margin-right: 0.4rem;
+  margin: 0 auto;
 }
 
 /* Sidebar toggle containers (mobile/compact view) */
