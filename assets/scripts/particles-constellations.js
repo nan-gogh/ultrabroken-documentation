@@ -87,9 +87,16 @@
     };
   }
 
-  /* ── Screen-dimension lock ───────────────────────────────────────────── */
-  // screen.width/height are immune to address-bar, viewport, and zoom changes.
+  /* ── Screen-dimension lock (touch/mobile only) ─────────────────────────── */
+  // On desktop the browser window is smaller than screen.width/height (the
+  // monitor resolution), so we must NOT apply this there.
+  // On mobile, screen dimensions == physical screen == immune to address-bar.
+  // On desktop, position:fixed + inset:0 (set in CSS) works perfectly since
+  // address bars don't exist and viewport matches the window.
+  var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
   function lockToScreen() {
+    if (!isTouchDevice) return; // Desktop: leave CSS defaults alone
     var sw = window.screen.width;
     var sh = window.screen.height;
     wrapper.style.width  = sw + 'px';
