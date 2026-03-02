@@ -372,7 +372,7 @@
       var dl = unk(e.date) ? 'Unknown' : e.date;
       var ab = e.tag
         ? ' <span class="grim-abbr">(' + esc(e.tag) + ')</span>' : '';
-      h += '<div class="grim-li">''
+      h += '<div class="grim-li">'
          + '<span class="grim-num">' + (i + 1) + '.</span>'
          + '<a href="' + at(toHref(e.href)) + '">'
          + esc(e.name) + ab + '</a>'
