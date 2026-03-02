@@ -28,20 +28,20 @@
   document.documentElement.setAttribute('data-ub-font', mode);
 
   /* ── SVG icons ─────────────────────────────────────────────── */
-  // Regular: small A
+  // Regular: A+ (can enlarge)
   var ICON_REGULAR = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
-    + '<text x="12" y="18" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="currentColor" text-anchor="middle">A</text>'
-    + '</svg>';
-
-  // Large: large A with plus
-  var ICON_LARGE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
     + '<text x="10" y="18" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="currentColor" text-anchor="middle">A</text>'
     + '<text x="19" y="10" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="currentColor" text-anchor="middle">+</text>'
     + '</svg>';
 
+  // Large: A (currently enlarged)
+  var ICON_LARGE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
+    + '<text x="12" y="18" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="currentColor" text-anchor="middle">A</text>'
+    + '</svg>';
+
   var TITLES = {
-    regular: 'Font size: regular — click for large',
-    large:   'Font size: large — click for regular'
+    regular: 'Font size: regular (A+) — click to enlarge',
+    large:   'Font size: large (A) — click to reduce'
   };
 
   function iconForMode(m) {

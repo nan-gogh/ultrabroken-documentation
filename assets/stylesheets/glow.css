@@ -42,7 +42,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px;
+  min-width: 32px;
+  min-height: 32px;
   color: var(--teal-glow) !important;
   vertical-align: middle;
   line-height: 1;
@@ -214,7 +216,9 @@ label.md-header__button[for^="__palette_"]:hover {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px;
+  min-width: 32px;
+  min-height: 32px;
   color: var(--teal-glow) !important;
   vertical-align: middle;
   line-height: 1;
