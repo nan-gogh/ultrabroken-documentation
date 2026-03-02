@@ -391,9 +391,10 @@ button.search-link:focus,
 
 
 /* ── Background rune (watermark) ──────────────────────────────────── */
-/* Wrapper: sized to screen dimensions by JS (screen.width/height — immune to
-   address bar, pinch zoom, and viewport changes). Centered via transform.
-   The img sits at 50%/50% inside this stable frame. */
+/* Wrapper: sized to screen dimensions (screen.width/height — immune to address bar,
+   viewport, and zoom changes) by JS and anchored to screen corner (top: 0; left: 0 via JS).
+   Fills the screen at fixed pixel dimensions. The img inside stays centred via
+   absolute positioning within this stable frame. */
 .ub-rune-bg {
   position: fixed;
   /* width/height/top/left/transform set by JS using screen.width/height */

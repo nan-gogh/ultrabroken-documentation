@@ -94,9 +94,9 @@
     var sh = window.screen.height;
     wrapper.style.width  = sw + 'px';
     wrapper.style.height = sh + 'px';
-    wrapper.style.top    = '50%';
-    wrapper.style.left   = '50%';
-    wrapper.style.transform = 'translate(-50%, -50%)';
+    wrapper.style.top    = '0';
+    wrapper.style.left   = '0';
+    wrapper.style.transform = 'none';
   }
 
   function attachOrientationListener() {
