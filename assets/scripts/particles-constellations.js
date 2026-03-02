@@ -87,23 +87,23 @@
     };
   }
 
-  /* ── Screen-dimension lock (touch/mobile only) ─────────────────────────── */
-  // On desktop the browser window is smaller than screen.width/height (the
-  // monitor resolution), so we must NOT apply this there.
-  // On mobile, screen dimensions == physical screen == immune to address-bar.
-  // On desktop, position:fixed + inset:0 (set in CSS) works perfectly since
-  // address bars don't exist and viewport matches the window.
+  /* ── Vertical position lock (touch/mobile only) ──────────────────────── */
+  // Mobile address bars change viewport HEIGHT only (not WIDTH).  By fixing
+  // the rune's vertical position to screen.height / 2 (physical screen pixels),
+  // it stays centred vertically even as the viewport shrinks/expands.
+  // Horizontal centering stays CSS-based (left: 50%; translateX(-50%)) since
+  // address bars don't affect viewport width.
+  // Desktop: leave CSS defaults (top: 50%; left: 50%; translate(-50%, -50%))
   var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
   function lockToScreen() {
     if (!isTouchDevice) return; // Desktop: leave CSS defaults alone
-    var sw = window.screen.width;
-    var sh = window.screen.height;
-    wrapper.style.width  = sw + 'px';
-    wrapper.style.height = sh + 'px';
-    wrapper.style.top    = '0';
-    wrapper.style.left   = '0';
-    wrapper.style.transform = 'none';
+    // Fix image vertical position to screen centre (immune to address bar)
+    var screenCenterY = window.screen.height / 2;
+    img.style.top = screenCenterY + 'px';
+    // Horizontal centering via CSS left + X-only translation (no Y shift)
+    img.style.left = '50%';
+    img.style.transform = 'translateX(-50%)';
   }
 
   function attachOrientationListener() {

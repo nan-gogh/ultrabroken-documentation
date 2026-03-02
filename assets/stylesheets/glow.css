@@ -405,9 +405,10 @@ button.search-link:focus,
 
 .ub-rune-img {
   /* Centred within the wrapper via absolute positioning.
-     On desktop the wrapper is inset:0 (= viewport). On mobile the wrapper
-     is fixed to screen.width/height by JS, so in both cases 50%/50% always
-     lands at the physical screen centre. */
+     Desktop: CSS defaults (top: 50%; translate both X and Y).
+     Mobile (JS override): top set to screen.height/2 pixels (immune to address
+     bar height changes), and transform set to translateX only (horizontal stays
+     CSS-based since address bar doesn't affect viewport width). */
   position: absolute;
   top: 50%;
   left: 50%;
