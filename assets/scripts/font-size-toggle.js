@@ -55,7 +55,11 @@
     btn.setAttribute('aria-label', 'Toggle font size');
     btn.setAttribute('title', TITLES[mode]);
     btn.innerHTML = iconForMode(mode);
-    btn.addEventListener('click', cycle);
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      cycle();
+    });
     return btn;
   }
 
@@ -87,15 +91,15 @@
     if (document.querySelector('.ub-font-toggle')) return true;
 
     if (isMobileView()) {
-      // Mobile: inject into sidebar after the nav
-      var navDiv = document.querySelector('.md-nav');
-      if (!navDiv) return false;
+      // Mobile: inject into sidebar header field
+      var navTitle = document.querySelector('.md-nav--primary > .md-nav__title');
+      if (!navTitle) return false;
 
-      var sidebarContainer = document.querySelector('.ub-sidebar-toggles-font');
+      var sidebarContainer = document.querySelector('.ub-sidebar-toggles');
       if (!sidebarContainer) {
         sidebarContainer = document.createElement('div');
-        sidebarContainer.className = 'ub-sidebar-toggles-font';
-        navDiv.parentNode.insertBefore(sidebarContainer, navDiv.nextSibling);
+        sidebarContainer.className = 'ub-sidebar-toggles';
+        navTitle.appendChild(sidebarContainer);
       }
       sidebarContainer.appendChild(createButton());
     } else {

@@ -75,7 +75,11 @@
     btn.setAttribute('aria-label', 'Toggle background mode');
     btn.setAttribute('title', TITLES[mode]);
     btn.innerHTML = iconForMode(mode);
-    btn.addEventListener('click', cycle);
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      cycle();
+    });
     return btn;
   }
 
@@ -116,15 +120,15 @@
     if (document.querySelector('.ub-motion-toggle')) return true;
 
     if (isMobileView()) {
-      // Mobile: inject into sidebar
-      var navDiv = document.querySelector('.md-nav');
-      if (!navDiv) return false;
+      // Mobile: inject into sidebar header field
+      var navTitle = document.querySelector('.md-nav--primary > .md-nav__title');
+      if (!navTitle) return false;
 
-      var sidebarContainer = document.querySelector('.ub-sidebar-toggles-motion');
+      var sidebarContainer = document.querySelector('.ub-sidebar-toggles');
       if (!sidebarContainer) {
         sidebarContainer = document.createElement('div');
-        sidebarContainer.className = 'ub-sidebar-toggles-motion';
-        navDiv.parentNode.insertBefore(sidebarContainer, navDiv.nextSibling);
+        sidebarContainer.className = 'ub-sidebar-toggles';
+        navTitle.appendChild(sidebarContainer);
       }
       sidebarContainer.insertBefore(createButton(), sidebarContainer.firstChild);
     } else {

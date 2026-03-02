@@ -239,17 +239,13 @@ label.md-header__button[for^="__palette_"]:hover {
 }
 
 /* Sidebar toggle containers (mobile/compact view) */
-.ub-sidebar-toggles-font,
-.ub-sidebar-toggles-motion {
+.ub-sidebar-toggles {
   display: flex;
   align-items: center;
   gap: 0;
-  padding: 0.5rem 0;
-  border-top: 1px solid rgba(0,240,194,0.1);
-  border-bottom: 1px solid rgba(0,240,194,0.1);
-  margin: 0.5rem 0;
+  font-size: 1rem;
+  margin-left: auto; /* push to the right side if container is flex */
 }
-
 /* Search bar and input styling - bright teal, no glow */
 .md-search__input {
   color: var(--teal-glow) !important;
@@ -376,6 +372,9 @@ button.search-link:focus,
 @media (max-width: 76.25em) {
   .md-nav--primary > .md-nav__title {
     font-size: 0; /* Hide original text content */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   .md-nav--primary > .md-nav__title::before {
     content: "Navigation";
