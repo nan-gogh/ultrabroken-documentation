@@ -135,12 +135,16 @@
   var runeReady = false;
   (function loadRune() {
     var img = new Image();
-    img.src = _siteRoot + 'assets/images/ultrabroken_rune.svg';
     img.onload = function () {
       runeReady = true;
       // If reduced-motion froze a frame before the SVG was ready, re-render now
       if (reducedMotion && !loopRunning) renderFrozen();
     };
+    img.src = _siteRoot + 'assets/images/ultrabroken_rune.svg';
+    // For cached images the browser may have already loaded the resource before
+    // onload fires (or img.complete is true right after src is set).
+    // Detect this synchronously so the very first frame includes the rune.
+    if (img.complete) runeReady = true;
     runeImg = img;
   })();
 
