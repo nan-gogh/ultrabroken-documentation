@@ -12,21 +12,9 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ZOOM PREVENTION + FONT SIZE TOGGLE
-   Zoom is disabled site-wide (meta viewport + CSS + JS). A font-size toggle
-   provides the accessibility function that zoom normally serves.
+   FONT SIZE TOGGLE
+   Provides an accessibility option to increase content font size.
    ═══════════════════════════════════════════════════════════════════════════ */
-
-/* Prevent pinch-zoom on touch devices */
-html {
-  touch-action: pan-x pan-y;
-}
-
-/* Dynamically applied class to disable touch actions during multi-touch,
-   which helps prevent zoom during momentum scroll. */
-body.ub-no-zoom {
-  touch-action: none !important;
-}
 
 /* Large font mode — applies 125% scaling to content areas only.
    Header, navigation, and search are excluded to maintain layout. */
@@ -199,7 +187,7 @@ label.md-header__button[for^="__palette_"]:hover {
   filter: brightness(0.9);
 }
 
-/* Motion toggle button — matches header icon buttons */
+/* Motion toggle button */
 .ub-motion-toggle {
   display: inline-flex;
   align-items: center;
@@ -208,10 +196,11 @@ label.md-header__button[for^="__palette_"]:hover {
   border: none;
   cursor: pointer;
   padding: 4px;
-  margin: 0 4px;
   color: var(--teal-glow) !important;
   vertical-align: middle;
   line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
 }
 .ub-motion-toggle:hover,
 .ub-motion-toggle:focus,
@@ -226,11 +215,12 @@ label.md-header__button[for^="__palette_"]:hover {
   display: block;
 }
 
-/* Hide motion toggle when search is expanded (all screen sizes).
-   Clicks outside the expanded search bar collapse it, making the
-   button unreachable anyway. */
-[data-md-toggle="search"]:checked ~ .md-header .ub-motion-toggle {
-  display: none;
+/* Footer toggle container */
+.ub-footer-toggles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
 }
 
 /* Search bar and input styling - bright teal, no glow */

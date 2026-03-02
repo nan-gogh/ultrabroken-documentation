@@ -1,8 +1,8 @@
 /**
  * font-size-toggle.js — In-page font size toggle
  * ───────────────────────────────────────────────
- * Injects a toggle into the MkDocs Material header (next to the motion toggle)
- * that switches between regular and large font sizes.
+ * Injects a toggle into the MkDocs Material footer that switches between
+ * regular and large font sizes.
  *
  * Two modes (cycle on click):
  *   'regular' → default font sizes
@@ -10,9 +10,6 @@
  *
  * The header is excluded from font scaling — only content changes.
  * State is persisted in localStorage('ub-font-size').
- *
- * Also blocks browser zoom (Ctrl+scroll, pinch) since this toggle provides
- * the accessibility function that zoom normally serves.
  */
 (function () {
   'use strict';
@@ -54,7 +51,7 @@
   /* ── Create button ─────────────────────────────────────────── */
   function createButton() {
     var btn = document.createElement('button');
-    btn.className = 'md-header__button ub-font-toggle';
+    btn.className = 'ub-font-toggle';
     btn.setAttribute('aria-label', 'Toggle font size');
     btn.setAttribute('title', TITLES[mode]);
     btn.innerHTML = iconForMode(mode);
@@ -78,83 +75,40 @@
     }
   }
 
-  /* ── Block browser zoom ────────────────────────────────────── */
-  function blockZoom() {
-    // Block Ctrl+scroll / Ctrl+plus/minus on desktop
-    document.addEventListener('wheel', function (e) {
-      if (e.ctrlKey) e.preventDefault();
-    }, { passive: false });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
-        e.preventDefault();
-      }
-    });
-
-    // Block pinch-zoom on touch devices. This is tricky, especially during
-    // momentum scroll. We need multiple layers of prevention.
-    
-    // Layer 1: Early-exit listener on window capture phase. This is the most
-    // aggressive and most likely to succeed. We stop the event dead in its
-    // tracks before it can propagate to any other listeners.
-    window.addEventListener('touchmove', function (e) {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-      }
-    }, { passive: false, capture: true });
-
-    // Layer 2: Dynamically toggle a CSS class on the body to set
-    // `touch-action: none`, a direct hint to the compositor.
-    document.addEventListener('touchstart', function (e) {
-      if (e.touches.length > 1) {
-        document.body.classList.add('ub-no-zoom');
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    document.addEventListener('touchend', function (e) {
-      if (e.touches.length < 2) {
-        document.body.classList.remove('ub-no-zoom');
-      }
-    });
-
-    // Layer 3: Redundant gesture event blocking for Safari.
-    document.addEventListener('gesturestart', function (e) { e.preventDefault(); }, { passive: false });
-    document.addEventListener('gesturechange', function (e) { e.preventDefault(); }, { passive: false });
-    document.addEventListener('gestureend', function (e) { e.preventDefault(); }, { passive: false });
-  }
-
-  /* ── Inject into header ────────────────────────────────────── */
+  /* ── Inject into footer ────────────────────────────────────── */
   function inject() {
-    // Find the header nav (where search icon lives)
-    var headerNav = document.querySelector('.md-header__inner > nav.md-header__source, .md-header__inner .md-header__source');
-    if (!headerNav) {
-      // Fallback: place before the search form
-      var searchForm = document.querySelector('.md-search');
-      if (searchForm && searchForm.parentNode) {
-        searchForm.parentNode.insertBefore(createButton(), searchForm);
-        return;
-      }
+    // Find or create the toggle container in the footer
+    var footer = document.querySelector('.md-footer-meta__inner');
+    if (!footer) return false;
+
+    // Don't double-inject
+    if (document.querySelector('.ub-font-toggle')) return true;
+
+    // Create or find the toggle container
+    var container = document.querySelector('.ub-footer-toggles');
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'ub-footer-toggles';
+      footer.appendChild(container);
     }
-    // Place before the source link/nav if present
-    if (headerNav && headerNav.parentNode) {
-      headerNav.parentNode.insertBefore(createButton(), headerNav);
-      return;
-    }
-    // Final fallback: append to header inner
-    var headerInner = document.querySelector('.md-header__inner');
-    if (headerInner) {
-      headerInner.appendChild(createButton());
-    }
+
+    container.appendChild(createButton());
+    return true;
   }
 
   /* ── Bootstrap ─────────────────────────────────────────────── */
-  blockZoom();
+  function boot() {
+    if (!inject()) {
+      var tries = 0;
+      var timer = setInterval(function () {
+        if (inject() || ++tries > 20) clearInterval(timer);
+      }, 100);
+    }
+  }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', inject);
+    document.addEventListener('DOMContentLoaded', boot);
   } else {
-    inject();
+    boot();
   }
 })();

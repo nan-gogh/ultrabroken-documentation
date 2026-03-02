@@ -1,13 +1,13 @@
 /**
  * motion-toggle.js — In-page background mode toggle
  * ──────────────────────────────────────────────────
- * Injects a triple-cycling toggle into the MkDocs Material header
- * (to the left of the search icon) that controls the canvas background.
+ * Injects a triple-cycling toggle into the MkDocs Material footer
+ * that controls the background rune animation.
  *
  * Three modes (cycle on click):
- *   'animate' → full animation (particles move, rune/glow pulse)
- *   'frozen'  → single static frame (no rAF loop)
- *   'hidden'  → canvas hidden entirely, plain background colour
+ *   'animate' → full animation (rune pulse)
+ *   'frozen'  → static frame (no animation)
+ *   'hidden'  → rune hidden entirely
  *
  * State is persisted in localStorage('ub-bg-mode').
  * Other scripts listen for the 'motion-toggle' CustomEvent on window:
@@ -71,7 +71,7 @@
   /* ── Create button ─────────────────────────────────────────── */
   function createButton() {
     var btn = document.createElement('button');
-    btn.className = 'md-header__button ub-motion-toggle';
+    btn.className = 'ub-motion-toggle';
     btn.setAttribute('aria-label', 'Toggle background mode');
     btn.setAttribute('title', TITLES[mode]);
     btn.innerHTML = iconForMode(mode);
@@ -104,19 +104,24 @@
     }));
   }
 
-  /* ── Inject into header ────────────────────────────────────── */
+  /* ── Inject into footer ─────────────────────────────────────── */
   function inject() {
-    // MkDocs Material header structure:
-    //   .md-header__inner > [ logo, title/topic, spacer, search-label, ... ]
-    // We want our button just before the search label.
-    var searchLabel = document.querySelector('label.md-header__button[for="__search"]');
-    if (!searchLabel) return false;
+    // Find the footer meta inner container
+    var footer = document.querySelector('.md-footer-meta__inner');
+    if (!footer) return false;
 
     // Don't double-inject (instant navigation re-runs scripts)
     if (document.querySelector('.ub-motion-toggle')) return true;
 
-    var btn = createButton();
-    searchLabel.parentNode.insertBefore(btn, searchLabel);
+    // Create or find the toggle container
+    var container = document.querySelector('.ub-footer-toggles');
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'ub-footer-toggles';
+      footer.appendChild(container);
+    }
+
+    container.insertBefore(createButton(), container.firstChild);
     return true;
   }
 
