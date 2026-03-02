@@ -34,12 +34,29 @@
 
 /* Font toggle button styling */
 .ub-font-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 4px;
+  color: var(--teal-glow) !important;
+  vertical-align: middle;
+  line-height: 1;
   opacity: 0.7;
   transition: opacity 0.15s ease;
 }
-.ub-font-toggle:hover {
-  opacity: 1;
+.ub-font-toggle:hover,
+.ub-font-toggle:focus,
+.ub-font-toggle:active {
+  opacity: 1 !important;
+  color: var(--teal-glow) !important;
+}
+.ub-font-toggle svg {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════ */
@@ -219,8 +236,9 @@ label.md-header__button[for^="__palette_"]:hover {
 .ub-footer-toggles {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   margin-left: auto;
+  padding-right: 16px;
 }
 
 /* Search bar and input styling - bright teal, no glow */
