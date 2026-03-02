@@ -75,27 +75,61 @@
     }
   }
 
-  /* ── Inject into header ────────────────────────────────────── */
-  function inject() {
-    // Find the search button in the header
-    var searchBtn = document.querySelector('label[for="__search"]');
-    if (!searchBtn) return false;
+  /* ── Detect if we're in mobile/compact view ───────────────── */
+  function isMobileView() {
+    // MkDocs Material compact breakpoint is 76.25em (1220px)
+    return window.innerWidth < 1220;
+  }
 
+  /* ── Inject into header (desktop) or sidebar (mobile) ────────── */
+  function inject() {
     // Don't double-inject
     if (document.querySelector('.ub-font-toggle')) return true;
 
-    // Create or find the toggle container
-    var container = document.querySelector('.ub-header-toggles');
-    if (!container) {
-      container = document.createElement('div');
-      container.className = 'ub-header-toggles';
-      // Insert after the search button
-      searchBtn.parentNode.insertBefore(container, searchBtn.nextSibling);
-    }
+    if (isMobileView()) {
+      // Mobile: inject into sidebar after the nav
+      var navDiv = document.querySelector('.md-nav');
+      if (!navDiv) return false;
 
-    container.appendChild(createButton());
+      var sidebarContainer = document.querySelector('.ub-sidebar-toggles-font');
+      if (!sidebarContainer) {
+        sidebarContainer = document.createElement('div');
+        sidebarContainer.className = 'ub-sidebar-toggles-font';
+        navDiv.parentNode.insertBefore(sidebarContainer, navDiv.nextSibling);
+      }
+      sidebarContainer.appendChild(createButton());
+    } else {
+      // Desktop: inject into header
+      var searchBtn = document.querySelector('label[for="__search"]');
+      if (!searchBtn) return false;
+
+      var container = document.querySelector('.ub-header-toggles');
+      if (!container) {
+        container = document.createElement('div');
+        container.className = 'ub-header-toggles';
+        searchBtn.parentNode.insertBefore(container, searchBtn.nextSibling);
+      }
+      container.appendChild(createButton());
+    }
     return true;
   }
+
+  /* ── Handle window resize to move toggles between header/sidebar */
+  function onResize() {
+    var toggle = document.querySelector('.ub-font-toggle');
+    if (toggle) {
+      // Remove from current location
+      toggle.parentNode.removeChild(toggle);
+      // Re-inject to correct location
+      inject();
+    }
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(onResize, 200);
+  });
 
   /* ── Bootstrap ─────────────────────────────────────────────── */
   function boot() {

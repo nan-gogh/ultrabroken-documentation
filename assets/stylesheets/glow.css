@@ -238,6 +238,18 @@ label.md-header__button[for^="__palette_"]:hover {
   margin-right: 0.4rem;
 }
 
+/* Sidebar toggle containers (mobile/compact view) */
+.ub-sidebar-toggles-font,
+.ub-sidebar-toggles-motion {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(0,240,194,0.1);
+  border-bottom: 1px solid rgba(0,240,194,0.1);
+  margin: 0.5rem 0;
+}
+
 /* Search bar and input styling - bright teal, no glow */
 .md-search__input {
   color: var(--teal-glow) !important;
