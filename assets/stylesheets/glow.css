@@ -408,6 +408,9 @@ button.search-link:focus,
   pointer-events: none !important;
   overflow: hidden !important;
   will-change: transform;
+  /* Anchor counter-scale transform at top-left so the wrapper covers
+     the visual viewport exactly during pinch-zoom compensation. */
+  transform-origin: 0 0;
   z-index: -1 !important;
 }
 

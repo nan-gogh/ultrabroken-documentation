@@ -497,6 +497,7 @@
   function init() {
     resize();
     window.addEventListener('resize', throttle(resize, 250));
+    attachZoomCompensation();
 
     refresh404();
     attach404Observer();
@@ -536,6 +537,40 @@
         if (reducedMotion) renderFrozen();
       }, 50);
     };
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Zoom compensation (visual viewport)                               */
+  /* ------------------------------------------------------------------ */
+  // Mobile pinch-zoom scales everything including position:fixed elements.
+  // We counter-scale the wrapper so the background stays at 1× like a
+  // wallpaper.  On desktop, visualViewport.scale is always 1 even during
+  // Ctrl+zoom (that changes CSS-pixel size instead), so this is a no-op
+  // there — the normal resize handler already adapts the canvas.
+  function attachZoomCompensation() {
+    var vv = window.visualViewport;
+    if (!vv) return;   // very old browsers — degrade gracefully
+
+    var wrapper = canvas.parentNode;
+    if (!wrapper) return;
+
+    function compensate() {
+      var s = vv.scale;
+      if (s <= 1.001) {
+        // No zoom — clear any leftover transform.
+        wrapper.style.transform = '';
+        return;
+      }
+      // Counter-scale so the wrapper stays at layout-viewport size.
+      // Shift it to the visual-viewport origin so it covers the visible
+      // area exactly.
+      wrapper.style.transform =
+        'translate(' + vv.offsetLeft + 'px, ' + vv.offsetTop + 'px) ' +
+        'scale(' + (1 / s) + ')';
+    }
+
+    vv.addEventListener('resize', compensate);
+    vv.addEventListener('scroll', compensate);
   }
 
   /* ------------------------------------------------------------------ */
