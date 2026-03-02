@@ -100,7 +100,7 @@
     /* search */
     h += '<div class="grim-row">'
        + '<input id="grim-q" class="grim-search" type="text"'
-       + ' placeholder="Search name, abbreviation, tag, or credit\u2026"'
+       + ' placeholder="Search name, tag, category, or credit\u2026"'
        + ' autocomplete="off" spellcheck="false">'
        + '</div>';
 
@@ -320,7 +320,7 @@
   function applyFilter() {
     return data.filter(function (e) {
       if (state.q) {
-        var hay = [e.name, e.abbr]
+        var hay = [e.name, e.tag]
                     .concat(e.tags || [], e.credits || [])
                     .join(' ').toLowerCase();
         if (hay.indexOf(state.q) < 0) return false;
@@ -370,9 +370,9 @@
     for (var i = 0; i < list.length; i++) {
       var e = list[i];
       var dl = unk(e.date) ? 'Unknown' : e.date;
-      var ab = e.abbr
-        ? ' <span class="grim-abbr">(' + esc(e.abbr) + ')</span>' : '';
-      h += '<div class="grim-li">'
+      var ab = e.tag
+        ? ' <span class="grim-abbr">(' + esc(e.tag) + ')</span>' : '';
+      h += '<div class="grim-li">''
          + '<span class="grim-num">' + (i + 1) + '.</span>'
          + '<a href="' + at(toHref(e.href)) + '">'
          + esc(e.name) + ab + '</a>'

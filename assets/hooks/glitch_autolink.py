@@ -67,7 +67,7 @@ def _build_lookup(glossary: list[dict]) -> list[tuple[re.Pattern, str, str]]:
 
     for entry in glossary:
         name = entry.get('name', '')
-        abbr = entry.get('abbr', '')
+        tag = entry.get('tag', '')
         aliases = entry.get('aliases', [])
         path = entry.get('path', '')
         if not name or not path:
@@ -76,9 +76,9 @@ def _build_lookup(glossary: list[dict]) -> list[tuple[re.Pattern, str, str]]:
         # Full name — case-insensitive
         raw.append((name, path, name, False))
 
-        # Abbreviation — case-sensitive (avoid false positives)
-        if abbr:
-            raw.append((abbr, path, abbr, True))
+        # Tag — case-sensitive (avoid false positives)
+        if tag:
+            raw.append((tag, path, tag, True))
 
         # Aliases — case-insensitive
         for alias in aliases:
