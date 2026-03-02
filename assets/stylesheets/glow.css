@@ -389,6 +389,54 @@ button.search-link:focus,
   z-index: 1;
 }
 
+/* Back-to-top button styling */
+.md-top {
+  background-color: var(--teal-glow) !important;
+  border-radius: 50%;
+  z-index: 10 !important;
+}
+
+.md-top:hover {
+  background-color: rgba(0, 240, 194, 0.8) !important;
+}
+
+/* Custom back-to-top button (ub-back-to-top.js) */
+.ub-back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--teal-glow);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  color: #1a1a1a;
+}
+
+.ub-back-to-top:hover {
+  background-color: rgba(0, 240, 194, 0.8);
+  box-shadow: 0 0 8px rgba(0, 240, 194, 0.4);
+}
+
+.ub-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ub-back-to-top svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
 /* Explicitly keep header sticky */
 .md-header {
   position: sticky !important;
