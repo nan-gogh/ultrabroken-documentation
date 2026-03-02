@@ -148,20 +148,17 @@
   }
 
   /* ── Handle window resize to move toggles between header/sidebar */
-  function onResize() {
-    var toggle = document.querySelector('.ub-motion-toggle');
-    if (toggle) {
-      // Remove from current location
-      toggle.parentNode.removeChild(toggle);
-      // Re-inject to correct location
-      inject();
-    }
-  }
-
-  var resizeTimer;
+  var wasMobile = isMobileView();
   window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(onResize, 200);
+    var isMobile = isMobileView();
+    if (isMobile !== wasMobile) {
+      wasMobile = isMobile;
+      var toggle = document.querySelector('.ub-motion-toggle');
+      if (toggle) {
+        toggle.parentNode.removeChild(toggle);
+        inject();
+      }
+    }
   });
 
   /* ── Bootstrap ─────────────────────────────────────────────── */
