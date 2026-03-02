@@ -1,0 +1,177 @@
+[
+  {
+    "filename": "death-persistent-save-load-object-transfer.md",
+    "name": "Death Persistent Save Load Object Transfer",
+    "versions": [
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "despawn-interrupt.md",
+    "name": "Despawn Interrupt",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0",
+      "1.2.1"
+    ]
+  },
+  {
+    "filename": "double-bypass-zuggle.md",
+    "name": "Double Bypass Zuggle",
+    "versions": [
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "fuse-overload-fuse-entanglement.md",
+    "name": "Fuse Overload Fuse Entanglement",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "mineru-persistent-save-load-object-transfer.md",
+    "name": "Mineru Persistent Save Load Object Transfer",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "moe-enlargement.md",
+    "name": "Moe Enlargement",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0",
+      "1.2.1"
+    ]
+  },
+  {
+    "filename": "overload-persistent-save-load-object-transfer.md",
+    "name": "Overload Persistent Save Load Object Transfer",
+    "versions": [
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "portacull-invismuggle.md",
+    "name": "Portacull Invismuggle",
+    "versions": [
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "pyroculling.md",
+    "name": "Pyroculling",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "recall-telekinesis.md",
+    "name": "Recall Telekinesis",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0",
+      "1.2.1"
+    ]
+  },
+  {
+    "filename": "shadow-void-icons.md",
+    "name": "Shadow/Void Icons",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "smuggle-retrieval.md",
+    "name": "Smuggle Retrieval",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "split-item-duplication.md",
+    "name": "Split Item Duplication",
+    "versions": [
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "stack-splitting.md",
+    "name": "Stack Splitting",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "super-fuse-overload.md",
+    "name": "Super Fuse Overload",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0",
+      "1.2.1"
+    ]
+  },
+  {
+    "filename": "swap-resync-zuggle.md",
+    "name": "Swap Resync Zuggle",
+    "versions": [
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "swap-resync.md",
+    "name": "Swap Resync",
+    "versions": [
+      "1.0.0",
+      "1.1.0",
+      "1.1.1",
+      "1.1.2",
+      "1.2.0"
+    ]
+  },
+  {
+    "filename": "vortaculling.md",
+    "name": "Vortaculling",
+    "versions": [
+      "1.2.0",
+      "1.2.1+",
+      "Switch 2"
+    ]
+  }
+]
