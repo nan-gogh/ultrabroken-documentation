@@ -89,12 +89,14 @@
     };
   }
 
-  /* ── Fixed distance lock (all devices) ────────────────────────────────── */
+  /* ── Fixed distance lock with zoom compensation ────────────────────────── */
   // Position the rune at a fixed pixel distance from the top of the physical
   // screen (screen.height / 2). Since physical screen dimensions never change
-  // when address bars appear/disappear or viewports shift, the rune stays
-  // vertically locked. Measure the rendered image height and subtract half of
-  // it to centre at that pixel point.
+  // when address bars appear/disappear, the rune stays locked vertically.
+  // Measure the rendered image height and subtract half of it to centre at
+  // that pixel point. Account for zoom level via visualViewport.scale: when
+  // the user zooms in, divide the top position by the scale so the rune
+  // maintains the same screen-space distance from the top edge.
   function lockImageVerticalPosition() {
     // Allow layout to settle so we can measure the image
     setTimeout(function () {
@@ -105,8 +107,12 @@
       var screenCenterY = window.screen.height / 2;
       var topPosition = screenCenterY - (imgHeight / 2);
       
+      // Compensate for zoom level: at 2x zoom, use half the distance
+      var zoomScale = (window.visualViewport && window.visualViewport.scale) || 1;
+      var zoomedTopPosition = topPosition / zoomScale;
+      
       img.style.position = 'fixed';
-      img.style.top = topPosition + 'px';
+      img.style.top = zoomedTopPosition + 'px';
       img.style.left = '50%';
       img.style.transform = 'translateX(-50%)';
       img.style.zIndex = '-1';
@@ -121,10 +127,20 @@
     });
   }
 
+  function attachZoomListener() {
+    // visualViewport fires resize + scroll events during pinch-zoom (mobile)
+    // and potentially during browser zoom (desktop). Re-position on zoom.
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', lockImageVerticalPosition);
+      window.visualViewport.addEventListener('scroll', lockImageVerticalPosition);
+    }
+  }
+
   /* ── Bootstrap ─────────────────────────────────────────────────── */
   function init() {
     lockImageVerticalPosition();
     attachOrientationListener();
+    attachZoomListener();
     refresh404();
     attach404Observer();
   }
