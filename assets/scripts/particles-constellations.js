@@ -5,13 +5,15 @@
  * all page content.  Pure HTML/CSS — no <canvas>, no animation loop, no DPR
  * tracking, no resize handler.
  *
- * WHY THIS WORKS
- * ──────────────
- * • Browser zoom is disabled site-wide (meta viewport + CSS touch-action + JS
- *   event blocking). A font-size toggle provides accessibility instead.
- * • The rune is positioned at a fixed pixel distance from the top of the
- *   physical screen (screen.height / 2). Since screen dimensions never change
- *   when address bars appear/disappear, the rune stays vertically locked.
+ * HOW IT AVOIDS VERTICAL JUMPING
+ * ───────────────────────────────
+ * • The image is positioned at a fixed pixel distance from the physical screen
+ *   top (screen.height / 2 minus half the image height).
+ * • Physical screen dimensions (screen.width/height) are immutable — they never
+ *   change when address bars appear/disappear or viewports shift.
+ * • Thus the rune stays vertically locked regardless of viewport changes.
+ * • On orientation change (portrait ↔ landscape), screen.w/h swap, so we
+ *   re-measure and reposition via orientationchange listener.
  * • The opacity pulse is a CSS @keyframes animation — the compositor runs
  *   it off the main thread.
  *

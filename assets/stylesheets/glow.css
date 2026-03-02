@@ -425,22 +425,17 @@ button.search-link:focus,
 
 
 /* ── Background rune (watermark) ──────────────────────────────────── */
-/* A fixed full-viewport container with the rune SVG centred via flexbox.
-   Uses position:fixed + inset:0 which tracks the actual viewport during
-   mobile address-bar transitions (no JS resize needed).
-   Sizing uses viewport-relative units; on desktop Ctrl+zoom the CSS-pixel
-   viewport shrinks but pixels scale up, so the rune keeps the same physical
-   screen size — zero JS.  Only mobile pinch-zoom needs a lightweight JS
-   counter-transform (see particles-constellations.js). */
+/* SVG image centred via JavaScript positioning. The image is placed at a
+   fixed pixel distance from the physical screen top (screen.height / 2 minus
+   half the image height). Since screen dimensions are immutable, the rune
+   stays vertically locked even when address bars appear/disappear or zoom
+   changes the viewport. When orientation changes, the lock is re-applied. */
 .ub-rune-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .ub-rune-img {
