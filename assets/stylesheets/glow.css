@@ -22,6 +22,12 @@ html {
   touch-action: pan-x pan-y;
 }
 
+/* Dynamically applied class to disable touch actions during multi-touch,
+   which helps prevent zoom during momentum scroll. */
+body.ub-no-zoom {
+  touch-action: none !important;
+}
+
 /* Large font mode — applies 125% scaling to content areas only.
    Header, navigation, and search are excluded to maintain layout. */
 [data-ub-font="large"] .md-content {

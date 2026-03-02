@@ -82,50 +82,46 @@
   function blockZoom() {
     // Block Ctrl+scroll / Ctrl+plus/minus on desktop
     document.addEventListener('wheel', function (e) {
-      if (e.ctrlKey) {
-        e.preventDefault();
-      }
+      if (e.ctrlKey) e.preventDefault();
     }, { passive: false });
 
     document.addEventListener('keydown', function (e) {
-      // Ctrl+plus, Ctrl+minus, Ctrl+0
       if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
         e.preventDefault();
       }
     });
 
-    // Block pinch-zoom on touch devices — must use touchmove to catch
-    // zoom gestures that start during momentum scroll (CSS touch-action alone
-    // doesn't block these). Track touch count and prevent when > 1 finger.
-    var touchCount = 0;
-
-    document.addEventListener('touchstart', function (e) {
-      touchCount = e.touches.length;
-      if (touchCount > 1) {
+    // Block pinch-zoom on touch devices. This is tricky, especially during
+    // momentum scroll. We need multiple layers of prevention.
+    
+    // Layer 1: Early-exit listener on window capture phase.
+    // This fires before the event even reaches the target element, giving us
+    // the best chance to cancel it.
+    window.addEventListener('touchmove', function (e) {
+      if (e.touches.length > 1) {
         e.preventDefault();
       }
-    }, { passive: false });
+    }, { passive: false, capture: true });
 
-    document.addEventListener('touchmove', function (e) {
+    // Layer 2: Dynamically toggle a CSS class on the body to set
+    // `touch-action: none`, a direct hint to the compositor.
+    document.addEventListener('touchstart', function (e) {
       if (e.touches.length > 1) {
+        document.body.classList.add('ub-no-zoom');
         e.preventDefault();
       }
     }, { passive: false });
 
     document.addEventListener('touchend', function (e) {
-      touchCount = e.touches.length;
-    }, { passive: true });
+      if (e.touches.length < 2) {
+        document.body.classList.remove('ub-no-zoom');
+      }
+    });
 
-    // Safari gesture events (WebKit-specific)
-    document.addEventListener('gesturestart', function (e) {
-      e.preventDefault();
-    }, { passive: false });
-    document.addEventListener('gesturechange', function (e) {
-      e.preventDefault();
-    }, { passive: false });
-    document.addEventListener('gestureend', function (e) {
-      e.preventDefault();
-    }, { passive: false });
+    // Layer 3: Redundant gesture event blocking for Safari.
+    document.addEventListener('gesturestart', function (e) { e.preventDefault(); }, { passive: false });
+    document.addEventListener('gesturechange', function (e) { e.preventDefault(); }, { passive: false });
+    document.addEventListener('gestureend', function (e) { e.preventDefault(); }, { passive: false });
   }
 
   /* ── Inject into header ────────────────────────────────────── */
