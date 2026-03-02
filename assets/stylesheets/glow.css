@@ -392,7 +392,7 @@ button.search-link:focus,
 /* ── Background rune (watermark) ──────────────────────────────────── */
 /* Wrapper: zero-footprint fixed layer used only as a hook for
    the hidden/frozen mode CSS selectors and overflow clipping.
-   Positioning is driven entirely by the img using bottom-anchored lvh. */
+   Positioning is driven entirely by the img (position: fixed). */
 .ub-rune-bg {
   position: fixed;
   inset: 0;
@@ -402,28 +402,17 @@ button.search-link:focus,
 }
 
 .ub-rune-img {
-  position: absolute;
-
-  /* ── Bottom-anchored screen center ──────────────────────────────────
-     Address bars appear at the TOP of the screen on all mobile
-     browsers. The viewport BOTTOM never shifts — it is always at
-     the stable screen bottom/nav-bar edge.
-
-     bottom: 50lvh  → bottom edge of element is at exactly half the
-                       large (full-screen) viewport height above the
-                       stable viewport bottom = physical screen centre.
-     translateY(50%) → shifts the element DOWN by half its own height
-                       so its CENTRE lands on that screen-centre point.
-
-     Result: rune locked to physical screen centre regardless of
-     address bar state. No JS, no viewport events, no shifting. */
-  bottom: 50lvh;
+  /* position: fixed makes percentages resolve against the visual viewport
+     directly, so top/left: 50% always means the visual centre regardless
+     of address-bar state or pinch zoom. CSS layout is immune to both. */
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, -50%);
 
   width: 48vmin;
   max-width: 60vw;
-  max-height: 60lvh;
+  max-height: 60dvh;
   aspect-ratio: 1 / 1;
   opacity: 0.07;
   animation: ub-rune-pulse 4.2s ease-in-out infinite;
@@ -449,7 +438,7 @@ button.search-link:focus,
 /* 404: flip rune upside-down. Must include the centering translate so
    this rule doesn’t overwrite it and lose the absolute positioning. */
 .ultrabroken-404 .ub-rune-img {
-  transform: translate(-50%, 50%) scaleY(-1);
+  transform: translate(-50%, -50%) scaleY(-1);
 }
 
 /* Keep content above the rune without forcing layout changes on core
