@@ -94,17 +94,38 @@
       }
     });
 
-    // Block pinch-zoom on touch devices via touch-action CSS
-    // (handled in glow.css), but also prevent gesture events
+    // Block pinch-zoom on touch devices — must use touchmove to catch
+    // zoom gestures that start during momentum scroll (CSS touch-action alone
+    // doesn't block these). Track touch count and prevent when > 1 finger.
+    var touchCount = 0;
+
+    document.addEventListener('touchstart', function (e) {
+      touchCount = e.touches.length;
+      if (touchCount > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchmove', function (e) {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchend', function (e) {
+      touchCount = e.touches.length;
+    }, { passive: true });
+
+    // Safari gesture events (WebKit-specific)
     document.addEventListener('gesturestart', function (e) {
       e.preventDefault();
-    });
+    }, { passive: false });
     document.addEventListener('gesturechange', function (e) {
       e.preventDefault();
-    });
+    }, { passive: false });
     document.addEventListener('gestureend', function (e) {
       e.preventDefault();
-    });
+    }, { passive: false });
   }
 
   /* ── Inject into header ────────────────────────────────────── */
