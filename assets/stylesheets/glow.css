@@ -18,33 +18,24 @@
 
 /* Large font mode — applies 125% scaling to content areas only.
    Header, navigation, and search are excluded to maintain layout.
-   Explicitly scale all text elements to ensure body text also grows. */
+   Material's .md-typeset uses 0.8rem which bypasses parent scaling,
+   so we override it to 0.8em to inherit the 125% from .md-content.
+   All children (p, li, td, code, etc.) then scale naturally through
+   inheritance — no per-element overrides needed, no compounding. */
 [data-ub-font="large"] .md-content {
   font-size: 125%;
 }
 
-/* Scale body text and general elements */
-[data-ub-font="large"] .md-content p,
-[data-ub-font="large"] .md-content li,
-[data-ub-font="large"] .md-content td,
-[data-ub-font="large"] .md-content th,
-[data-ub-font="large"] .md-content code,
-[data-ub-font="large"] .md-content pre,
-[data-ub-font="large"] .md-content blockquote,
-[data-ub-font="large"] .md-content table {
-  font-size: 1.25em;
+[data-ub-font="large"] .md-content .md-typeset {
+  font-size: 0.8em;
 }
 
-/* Heading overrides with explicit 125% scaling */
+/* Heading overrides — explicit sizes for large mode (headings may use
+   rem in some Material versions, so we pin them explicitly) */
 [data-ub-font="large"] .md-content h1 { font-size: 2.125rem; }
 [data-ub-font="large"] .md-content h2 { font-size: 1.5625rem; }
 [data-ub-font="large"] .md-content h3 { font-size: 1.25rem; }
 [data-ub-font="large"] .md-content h4 { font-size: 1.0625rem; }
-
-/* Scale grimoire filter elements */
-[data-ub-font="large"] #grimoire-app {
-  font-size: 125%;
-}
 
 /* Also scale the sidebar navigation and ToC text for readability */
 [data-ub-font="large"] .md-nav__link,
