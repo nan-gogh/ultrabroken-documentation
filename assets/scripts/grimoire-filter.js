@@ -447,9 +447,10 @@
       var dl = unk(e.date) ? 'Unknown' : e.date;
       var ab = e.label || e.uid
         ? ' <span class="grim-abbr">(' + esc(e.label || '') + (e.uid ? ' ' + esc(e.uid) : '') + ')</span>' : '';
+      var queryStr = '?' + encodeURIComponent((e.name || '').replace(/\s+/g, '-'));
       h += '<div class="grim-li">'
          + '<span class="grim-num">' + (i + 1) + '.</span>'
-         + '<a href="' + at(toHref(e.href)) + '" target="_blank" rel="noopener noreferrer">'
+         + '<a href="' + at(toHref(e.href)) + queryStr + '" target="_blank" rel="noopener noreferrer">'
          + esc(e.name) + ab + '</a>'
          + '<span class="grim-date">' + esc(dl) + '</span></div>';
     }
