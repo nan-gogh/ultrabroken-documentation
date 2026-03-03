@@ -90,7 +90,7 @@
 
   function freshState() {
     return { sort: 'date', dir: 'asc', q: '',
-             years: [], versions: [], tags: [], credits: [] };
+             years: [], versions: [], labels: [], credits: [] };
   }
 
   /* ================================================================
@@ -107,11 +107,11 @@
   }
 
   function extractFacets(entries) {
-    var yS = new Set(), vS = new Set(), tS = new Set(), cS = new Set();
+    var yS = new Set(), vS = new Set(), lS = new Set(), cS = new Set();
     entries.forEach(function (e) {
       yS.add(yearOf(e.date));
       (e.versions || []).forEach(function (x) { vS.add(x); });
-      (e.labels    || []).forEach(function (x) { tS.add(x); });
+      if (e.label) lS.add(e.label);
       (e.credits || []).forEach(function (x) { cS.add(x); });
     });
     var tail = function (a, b) {
@@ -121,7 +121,7 @@
     return {
       years:    Array.from(yS).sort(tail),
       versions: Array.from(vS).sort(cmpVer),
-      tags:     Array.from(tS).sort(tail),
+      labels:   Array.from(lS).sort(tail),
       credits:  Array.from(cS).sort(function (a, b) {
         if (unk(a)) return 1; if (unk(b)) return -1;
         return a.localeCompare(b, undefined, { sensitivity: 'base' });
@@ -165,7 +165,7 @@
 
     /* dropdowns */
     h += ddHTML('grim-dd-ver',  'Version', 'version', facets.versions, false);
-    h += ddHTML('grim-dd-tag',  'Tag',     'tag',     facets.tags,     true);
+    h += ddHTML('grim-dd-lbl',  'Label',   'label',   facets.labels,   true);
     h += ddHTML('grim-dd-cred', 'Credit',  'credit',  facets.credits,  true);
 
     /* status + list */
@@ -210,7 +210,7 @@
     }
 
     syncCheckboxes('#grim-dd-ver', 'versions', 'version');
-    syncCheckboxes('#grim-dd-tag', 'tags', 'tag');
+    syncCheckboxes('#grim-dd-lbl', 'labels', 'label');
     syncCheckboxes('#grim-dd-cred', 'credits', 'credit');
   }
 
@@ -334,7 +334,7 @@
 
     /* dropdown checkbox delegation */
     wireDDCB(root, '#grim-dd-ver',  'versions', 'version');
-    wireDDCB(root, '#grim-dd-tag',  'tags',     'tag');
+    wireDDCB(root, '#grim-dd-lbl',  'labels',   'label');
     wireDDCB(root, '#grim-dd-cred', 'credits',  'credit');
 
     /* dropdown search inputs */
@@ -409,9 +409,7 @@
             return (e.versions || []).indexOf(v) >= 0;
           })) return false;
       if (state.labels.length &&
-          !state.labels.some(function (t) {
-            return (e.labels || []).indexOf(t) >= 0;
-          })) return false;
+          state.labels.indexOf(e.label) < 0) return false;
       if (state.credits.length &&
           !state.credits.some(function (c) {
             return (e.credits || []).indexOf(c) >= 0;
