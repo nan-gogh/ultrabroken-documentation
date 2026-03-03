@@ -436,11 +436,22 @@ button.search-link:focus,
   z-index: 1;
 }
 
-/* Back-to-top button styling */
+/* Back-to-top button styling (navigation.top) */
 .md-top {
-  background-color: var(--teal-glow) !important;
-  border-radius: 50%;
-  z-index: 10 !important;
+  background: var(--teal-glow) url('/ultrabroken-documentation/assets/images/back-to-top%20icon.svg') no-repeat center center !important;
+  background-size: 1rem 1rem !important;
+  border-radius: 50% !important;
+  z-index: 3 !important; /* below search overlay */
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  padding: 0 !important;
+  min-width: unset !important;
+}
+
+/* Hide default icon and text */
+.md-top svg,
+.md-top span {
+  display: none !important;
 }
 
 .md-top:hover {
