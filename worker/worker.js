@@ -447,11 +447,11 @@ export default {
         const k = r.id || r.path || r.title;
         if (!k || seen[k]) continue;
         seen[k]=1;
-        uniqueRefs.push({ id: r.id||r.path, title: r.title, text_preview: (r.text||'').split('\n').slice(0,2).join(' ').slice(0,200) });
+        uniqueRefs.push({ id: r.path||r.id, title: r.title, text_preview: (r.text||'').split('\n').slice(0,2).join(' ').slice(0,200) });
         if (uniqueRefs.length >= 3) break;
       }
       return {
-        id: item.id||item.path,
+        id: item.path||item.id,
         similarity: s.score,
         title: item.title,
         text_preview: (item.text || '').split('\n').slice(0,2).join(' ').slice(0,200),
@@ -461,7 +461,7 @@ export default {
 
     // If debug requested, return top candidate scores to help tune threshold.
     if (body && body.debug) {
-      const dbg = topCandidates.map(s=>({ id: s.item.id||s.item.path, score: s.score, title: s.item.title }));
+      const dbg = topCandidates.map(s=>({ id: s.item.path||s.item.id, score: s.score, title: s.item.title }));
       return new Response(JSON.stringify({ debug: true, query, tokens: qTokens, top: dbg, threshold: SIMILARITY_THRESHOLD, index_len: index.length }), { headers: Object.assign({'Content-Type':'application/json'}, CORS_HEADERS) });
     }
 
@@ -476,7 +476,7 @@ export default {
     };
 
     if (!evidences || evidences.length === 0) {
-      const dbg = topCandidates.map(s=>({ id: s.item.id||s.item.path, score: s.score, title: s.item.title }));
+      const dbg = topCandidates.map(s=>({ id: s.item.path||s.item.id, score: s.score, title: s.item.title }));
       return respondFailure({ answer: null, evidence: dbg.slice(0,3), did_answer: false, debug: { query, tokens: qTokens, top: dbg, threshold: SIMILARITY_THRESHOLD, index_len: index.length } });
     }
 
@@ -488,7 +488,7 @@ export default {
       try {
         // Prefer a cleaned `excerpt` and include `title` separately so the model sees the canonical title
         const contextItems = topCandidates.map(s=>({
-          id: s.item.id || s.item.path || null,
+          id: s.item.path || s.item.id || null,
           title: s.item.title || null,
           // Prefer the full chunk `text` so the model sees step-by-step
           // instructions; fall back to `title` if `text` is not present.
@@ -692,7 +692,7 @@ export default {
     // rather than an unconditional silence so the UI can surface the retrieved candidates.
     // Provide title and a short preview for UI/evidence rendering (prefer `text`).
     // `evidenceList` was prepared earlier so we can return it with model answers.
-    const debugPayload = { query, tokens: qTokens, top: topCandidates.map(s=>({ id: s.item.id||s.item.path, score: s.score, title: s.item.title })), threshold: SIMILARITY_THRESHOLD, index_len: index.length, has_openrouter_key, openrouter_error };
+    const debugPayload = { query, tokens: qTokens, top: topCandidates.map(s=>({ id: s.item.path||s.item.id, score: s.score, title: s.item.title })), threshold: SIMILARITY_THRESHOLD, index_len: index.length, has_openrouter_key, openrouter_error };
     if (typeof openrouter_debug !== 'undefined' && openrouter_debug) debugPayload.openrouter_debug = openrouter_debug;
     return respondFailure({ answer: null, evidence: evidenceList, did_answer: false, debug: debugPayload });
   }
