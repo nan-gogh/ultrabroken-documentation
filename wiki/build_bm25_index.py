@@ -418,7 +418,8 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
             'versions': fm.get('versions', []),
             'credits':  credits_list,
             'aliases':  fm.get('aliases', []),
-            'href':     f'./{p.name}',
+            'href':     f'./{uid}/',
+            'filename': p.name,
         })
     out = Path(output)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -543,14 +544,15 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
                 continue
             fm = extract_frontmatter(p)
             title = fm.get('title', '')
+            uid = fm.get('uid', '')
             if not title:
                 continue
             grimoire_entries.append({
                 'name': title,
-                'uid': fm.get('uid', ''),
+                'uid': uid,
                 'label': fm.get('label', ''),
                 'aliases': fm.get('aliases', []),
-                'href': f'./{p.name}',
+                'href': f'./{uid}/',
             })
 
     glossary = []
@@ -558,26 +560,29 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
         name = entry.get('name', '')
         if not name:
             continue
-        # Convert href "./foo-bar.md" to site path "wiki/glitchcraft/foo-bar/"
-        href = entry.get('href', '')
-        stem = href.replace('./', '').replace('.md', '')
-        path = f'wiki/glitchcraft/{stem}/'
+        
+        uid = entry.get('uid', '')
+        filename = entry.get('filename')
+        
+        if uid:
+            path = f'wiki/glitchcraft/{uid}/'
+        elif filename:
+            path = f'wiki/glitchcraft/{filename.replace(".md", "")}/'
+        else:
+            path = f'wiki/glitchcraft/{entry.get("href", "").replace("./", "").replace(".md", "")}/'
 
         aliases = entry.get('aliases', [])
         if isinstance(aliases, str):
             aliases = [aliases]
-
+            
         glossary.append({
             'name': name,
-            'uid': entry.get('uid', ''),
+            'uid': uid,
             'label': entry.get('label', ''),
             'aliases': aliases,
             'path': path,
+            'filename': filename
         })
-
-    # Sort by name for stable output
-    glossary.sort(key=lambda e: e['name'].lower())
-
     _GLOSSARY_JSON.parent.mkdir(parents=True, exist_ok=True)
     _GLOSSARY_JSON.write_text(
         json.dumps(glossary, ensure_ascii=False, indent=2),
@@ -633,12 +638,16 @@ def build_graph(glossary_entries: list | None = None) -> None:
                 patterns.append((re.compile(r'(?<!\w)' + re.escape(alias) + r'(?!\w)', re.IGNORECASE), path))
 
     # Build path→stem lookup for reading markdown files
-    path_to_stem: dict[str, str] = {}
+    path_to_filename: dict[str, str] = {}
     for e in glossary_entries:
         p = e.get('path', '')
-        # "wiki/glitchcraft/foo-bar/" → "foo-bar"
-        stem = p.rstrip('/').rsplit('/', 1)[-1] if '/' in p else p
-        path_to_stem[p] = stem
+        filename = e.get('filename')
+        if filename:
+            path_to_filename[p] = filename
+        else:
+            # Fallback
+            stem = p.rstrip('/').rsplit('/', 1)[-1] if '/' in p else p
+            path_to_filename[p] = f"{stem}.md"
 
     glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
     nodes = []
@@ -655,8 +664,11 @@ def build_graph(glossary_entries: list | None = None) -> None:
         nodes.append({'id': path, 'uid': uid, 'name': name, 'label': label})
 
         # Read the markdown body for this page
-        stem = path_to_stem.get(path, '')
-        md_file = glitchcraft_dir / f'{stem}.md'
+        filename = path_to_filename.get(path, '')
+        if not filename:
+            continue
+            
+        md_file = glitchcraft_dir / filename
         if not md_file.exists():
             continue
 
