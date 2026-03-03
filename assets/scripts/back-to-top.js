@@ -5,7 +5,7 @@
  * when the user scrolls down the page. Clicking it smoothly
  * scrolls back to the top.
  *
- * Uses the project's teal color for consistency with the theme.
+ * Uses the back-to-top icon SVG for consistency with the theme.
  */
 (function () {
   'use strict';
@@ -20,12 +20,7 @@
     var btn = document.createElement('button');
     btn.className = 'ub-back-to-top';
     btn.setAttribute('aria-label', 'Back to top');
-    btn.setAttribute('title', 'Back to top (or press End key)');
-    
-    // SVG up arrow icon
-    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
-      + '<polygon fill="currentColor" points="12,5 18,14 6,14"/>'
-      + '</svg>';
+    btn.setAttribute('type', 'button');
     
     btn.addEventListener('click', scrollToTop);
     return btn;

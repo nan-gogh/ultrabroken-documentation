@@ -437,42 +437,54 @@ button.search-link:focus,
 }
 
 /* Back-to-top button styling (navigation.top) */
-/* Back-to-top button styling (navigation.top) */
-.md-top {
-  background: url('/ultrabroken-documentation/assets/images/back-to-top%20icon.svg') no-repeat center center !important;
-  background-size: 2rem 2.5rem !important;
-  border-radius: 0 !important;
-  z-index: 3 !important; /* below search overlay */
+/* Back-to-top button styling (custom script) */
+.ub-back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 3; /* below header (4), same as .md-top */
   width: 3rem !important;
   height: 3rem !important;
-  padding: 0 !important;
-  min-width: unset !important;
-  box-shadow: none !important;
+  background: url('/ultrabroken-documentation/assets/images/back-to-top%20icon.svg') no-repeat center center !important;
+  background-size: 2rem 2.5rem !important;
   border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.25s ease, visibility 0.25s ease !important;
   color: transparent !important;
-  font-size: 0 !important; /* Hide all text */
+  font-size: 0 !important;
 }
 
-/* Hide all child elements (SVG icons, text, etc.) */
-.md-top svg,
-.md-top span,
-.md-top::before,
-.md-top::after {
+/* Hide any child elements */
+.ub-back-to-top svg,
+.ub-back-to-top span,
+.ub-back-to-top::before,
+.ub-back-to-top::after {
   display: none !important;
   visibility: hidden !important;
 }
 
 /* No hover state to prevent mobile stickiness */
-.md-top:hover {
-  background-color: transparent !important;
-  opacity: 1;
-  filter: none;
+.ub-back-to-top:hover {
+  opacity: 1 !important;
+  filter: none !important;
 }
 
 /* Press state: active click/tap with teal glow */
-.md-top:active {
+.ub-back-to-top:active {
   filter: drop-shadow(0 0 12px rgba(0, 240, 194, 0.9)) !important;
   opacity: 0.9 !important;
+}
+
+.ub-back-to-top.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Explicitly keep header sticky */
