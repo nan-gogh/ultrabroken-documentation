@@ -20,7 +20,8 @@
    Material's .md-typeset uses 0.8rem by default (16px scaled relative to root 20px).
    By setting it to 1rem, we effectively apply a 1.25x (125%) multiplier smoothly
    across all typest components without compounding. */
-[data-ub-font="large"] .md-typeset {
+[data-ub-font="large"] .md-typeset,
+[data-ub-font="large"] .ub-ai-input {
   font-size: 1rem;
 }
 
