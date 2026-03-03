@@ -28,11 +28,28 @@
 
       var niceUrlParam = encodeURIComponent(titleText.replace(/\s+/g, '-'));
 
-      // Use URL fragment (hash) for cosmetic title; preserves search parameters if present
-      var finalHash = '#' + niceUrlParam;
+      // Keep MkDocs built-in parameters like 'h' (search highlight) or 'q' (search query) if present
+      var params = new URLSearchParams(window.location.search);
+      var preserved = [];
+      
+      // NodeList/Iterable support for IE/legacy? MkDocs Material modern so for/of over entries is usually fine,
+      // but let's use a safe iterator just in case, since URLSearchParams.entries is widely supported.
+      try {
+        var entries = params.entries();
+        for (var pair = entries.next(); !pair.done; pair = entries.next()) {
+          var k = pair.value[0];
+          var v = pair.value[1];
+          if (k === 'h' || k === 'q') {
+            preserved.push(encodeURIComponent(k) + '=' + encodeURIComponent(v));
+          }
+        }
+      } catch(e) {}
 
-      if (window.location.hash !== finalHash) {
-        var newUrl = window.location.pathname + window.location.search + finalHash;
+      // Combine: "?Cosmetic-Title&h=searchterm"
+      var finalSearch = '?' + niceUrlParam + (preserved.length > 0 ? '&' + preserved.join('&') : '');
+
+      if (window.location.search !== finalSearch) {
+        var newUrl = window.location.pathname + finalSearch + window.location.hash;
         window.history.replaceState(null, '', newUrl);
       }
     }
