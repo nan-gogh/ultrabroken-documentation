@@ -437,28 +437,42 @@ button.search-link:focus,
 }
 
 /* Back-to-top button styling (navigation.top) */
+/* Back-to-top button styling (navigation.top) */
 .md-top {
   background: url('/ultrabroken-documentation/assets/images/back-to-top%20icon.svg') no-repeat center center !important;
-  background-size: 2rem 2.5rem !important; /* Made the icon bigger */
+  background-size: 2rem 2.5rem !important;
   border-radius: 0 !important;
   z-index: 3 !important; /* below search overlay */
   width: 3rem !important;
   height: 3rem !important;
   padding: 0 !important;
   min-width: unset !important;
-  box-shadow: none !important; /* Remove any default themes box-shadow */
+  box-shadow: none !important;
+  border: none !important;
+  color: transparent !important;
+  font-size: 0 !important; /* Hide all text */
 }
 
-/* Hide default icon and text */
+/* Hide all child elements (SVG icons, text, etc.) */
 .md-top svg,
-.md-top span {
+.md-top span,
+.md-top::before,
+.md-top::after {
   display: none !important;
+  visibility: hidden !important;
 }
 
+/* No hover state to prevent mobile stickiness */
 .md-top:hover {
   background-color: transparent !important;
-  opacity: 0.8;
-  filter: drop-shadow(0 0 8px rgba(0, 240, 194, 0.6));
+  opacity: 1;
+  filter: none;
+}
+
+/* Press state: active click/tap with teal glow */
+.md-top:active {
+  filter: drop-shadow(0 0 12px rgba(0, 240, 194, 0.9)) !important;
+  opacity: 0.9 !important;
 }
 
 /* Explicitly keep header sticky */
