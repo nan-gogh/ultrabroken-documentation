@@ -1,31 +1,28 @@
 /*
  * search-enter-fix.js
  * Fixes Material theme bug where pressing Enter in search corrupts the dialog's
- * visibility state (clicking into it no longer expands it until you click away first).
- * 
- * Instead of blocking Enter entirely, we let it fire but immediately blur+refocus
- * the input to reset Material's internal state machine.
+ * visibility state. By intercepting the form's 'submit' event instead of 'keydown', 
+ * we allow users to still use Enter to select search results from the dropdown,
+ * while preventing the empty "Enter" press from breaking the search bar state.
  */
 (function() {
   'use strict';
 
   function fixSearchEnter() {
+    const searchForm = document.querySelector('.md-search__form');
     const searchInput = document.querySelector('.md-search__input');
-    if (!searchInput) return;
+    
+    if (!searchForm || !searchInput) return;
 
-    searchInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Blur and refocus to reset Material's state machine
-        // The microtask delay ensures the state corruption is avoided
-        const input = this;
-        input.blur();
-        requestAnimationFrame(() => {
-          input.focus();
-        });
-      }
+    searchForm.addEventListener('submit', function(e) {
+      // Prevent the browser form submission which causes the state corruption
+      e.preventDefault();
+      
+      // Blur and refocus to safely reset Material's internal focus state machine
+      searchInput.blur();
+      requestAnimationFrame(() => {
+        searchInput.focus();
+      });
     });
   }
 
