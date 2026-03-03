@@ -243,6 +243,15 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
             parts = list(rel.with_suffix('').parts)
             if is_wiki_subtree and (not parts or parts[0] != 'wiki'):
                 parts = ['wiki'] + parts
+            
+            # UID-based permalink remapping for glitchcraft pages
+            # Mirrors the uid_links.py hook behavior during MkDocs build
+            rel_posix = rel.as_posix()
+            uid = fm.get('uid', '')
+            if uid and rel_posix.startswith('glitchcraft/') and '_glitchcraft-grimoire' not in rel_posix:
+                # Replace filename with UID: wiki/glitchcraft/{uid}/
+                parts = ['wiki', 'glitchcraft', uid]
+            
             path = '/' + '/'.join(parts) + '/'
 
         # Structured metadata fields extracted from frontmatter
