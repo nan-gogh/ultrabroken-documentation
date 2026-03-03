@@ -438,14 +438,15 @@ button.search-link:focus,
 
 /* Back-to-top button styling (navigation.top) */
 .md-top {
-  background: var(--teal-glow) url('/ultrabroken-documentation/assets/images/back-to-top%20icon.svg') no-repeat center center !important;
-  background-size: 1rem 1rem !important;
-  border-radius: 50% !important;
+  background: url('/ultrabroken-documentation/assets/images/back-to-top%20icon.svg') no-repeat center center !important;
+  background-size: 2rem 2.5rem !important; /* Made the icon bigger */
+  border-radius: 0 !important;
   z-index: 3 !important; /* below search overlay */
-  width: 2.5rem !important;
-  height: 2.5rem !important;
+  width: 3rem !important;
+  height: 3rem !important;
   padding: 0 !important;
   min-width: unset !important;
+  box-shadow: none !important; /* Remove any default themes box-shadow */
 }
 
 /* Hide default icon and text */
@@ -455,44 +456,9 @@ button.search-link:focus,
 }
 
 .md-top:hover {
-  background-color: rgba(0, 240, 194, 0.8) !important;
-}
-
-/* Custom back-to-top button (ub-back-to-top.js) */
-.ub-back-to-top {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  z-index: 10;
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: var(--teal-glow);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
-  color: #1a1a1a;
-}
-
-.ub-back-to-top:hover {
-  background-color: rgba(0, 240, 194, 0.8);
-  box-shadow: 0 0 8px rgba(0, 240, 194, 0.4);
-}
-
-.ub-back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.ub-back-to-top svg {
-  width: 20px;
-  height: 20px;
-  display: block;
+  background-color: transparent !important;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 8px rgba(0, 240, 194, 0.6));
 }
 
 /* Explicitly keep header sticky */
