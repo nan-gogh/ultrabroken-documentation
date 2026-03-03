@@ -1,4 +1,4 @@
-"""
+﻿"""
 Build a simple BM25-compatible index from the `docs/` markdown tree.
 
 This script walks `docs/`, extracts plain text from markdown (enriched with
@@ -8,7 +8,7 @@ versions), optionally chunks long pages, and writes `site/wiki_index.json`
 
 Each index item includes:
   - id, title, path, chunk_index, text
-  - tag          – the short tag/abbreviation (e.g. "ETS")
+  - label        – the short label/abbreviation (e.g. "ETS")
   - description  – one-line summary from frontmatter
   - aliases      – list of alternative names / slugs
   - tags         – list of category tags
@@ -71,7 +71,7 @@ def extract_frontmatter(md_path: Path) -> dict:
     """Return a dict of all YAML frontmatter fields found in *md_path*.
 
     Supports the glitchcraft frontmatter schema:
-      title, tag, description, versions, credits, date, aliases, tags
+      title, label, description, versions, credits, date, aliases, tags
     """
     try:
         raw = md_path.read_text(encoding='utf-8-sig')
@@ -100,16 +100,16 @@ def _build_metadata_header(fm: dict) -> str:
     parts: list[str] = []
 
     title = fm.get('title', '')
-    tag = fm.get('tag', '')
+    label = fm.get('label', '')
     description = fm.get('description', '')
 
     # Title + tag
-    if title and tag:
-        parts.append(f"{title} ({tag})")
+    if title and label:
+        parts.append(f"{title} ({label})")
     elif title:
         parts.append(title)
-    elif tag:
-        parts.append(tag)
+    elif label:
+        parts.append(label)
 
     if description:
         parts.append(description)
@@ -247,7 +247,7 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
 
         # Structured metadata fields extracted from frontmatter
         meta = {
-            'tag':         fm.get('tag', ''),
+            'label':       fm.get('label', ''),
             'description': fm.get('description', ''),
             'aliases':     fm.get('aliases', []),
             'tags':        fm.get('tags', []),
@@ -325,6 +325,10 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
     entries = []
     all_credits: Counter = Counter()
     tags_set: set[str] = set()
+    
+    parsed_files = []
+    existing_uids = set()
+
     for p in sorted(glitchcraft_dir.glob('*.md')):
         if p.stem in _SKIP:
             continue
@@ -332,6 +336,59 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
         title = fm.get('title', '')
         if not title:
             continue  # skip pages without a title (index/meta pages)
+            
+        uid = fm.get('uid')
+        if uid:
+            existing_uids.add(uid)
+            
+        parsed_files.append((p, fm, title))
+
+    import time
+    import hashlib
+    import string
+    
+    for p, fm, title in parsed_files:
+        uid = fm.get('uid')
+        if not uid:
+            # Use nanoseconds for unique seeds
+            seed_str = str(time.time_ns())
+            hash_hex = hashlib.md5(seed_str.encode()).hexdigest()
+            charset = string.ascii_uppercase + string.digits
+            
+            # Convert pairs of hex chars (0-255) and mod into charset (0-35)
+            # This ensures good distribution across letters AND digits
+            uid = ''.join(charset[int(hash_hex[i:i+2], 16) % 36] for i in range(0, 6, 2))
+            
+            attempts = 0
+            while uid in existing_uids and attempts < 1000:
+                seed_str = f"{time.time_ns()}{attempts}"
+                hash_hex = hashlib.md5(seed_str.encode()).hexdigest()
+                uid = ''.join(charset[int(hash_hex[i:i+2], 16) % 36] for i in range(0, 6, 2))
+                attempts += 1
+                
+            existing_uids.add(uid)
+            
+            try:
+                content = p.read_text(encoding='utf-8-sig')
+                fm_match = re.search(r'^---\n(.*?)\n---\n', content, re.DOTALL)
+                if fm_match:
+                    frontmatter = fm_match.group(1)
+                    new_frontmatter = re.sub(
+                        r'(title:.*?\n)',
+                        f'\\1uid: "{uid}"\n',
+                        frontmatter,
+                        count=1
+                    )
+                    if new_frontmatter != frontmatter and 'uid:' not in frontmatter:
+                        new_content = content.replace(
+                            f'---\n{frontmatter}\n---',
+                            f'---\n{new_frontmatter}\n---'
+                        )
+                        p.write_text(new_content, encoding='utf-8-sig')
+                        print(f"Generated new UID {uid} for {p.name}")
+            except Exception as e:
+                print(f"Warning: failed to write UID {uid} to {p.name}: {e}")
+
         credits_list = [c.strip() for c in fm.get('credits', []) if c.strip()]
         for name in credits_list:
             all_credits[name] += 1
@@ -340,7 +397,8 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
                 tags_set.add(t)
         entries.append({
             'name':     title,
-            'tag':      fm.get('tag', ''),
+            'uid':      uid,
+            'label':    fm.get('label', ''),
             'date':     fm.get('date', ''),
             'tags':     fm.get('tags', []),
             'versions': fm.get('versions', []),
@@ -475,7 +533,8 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
                 continue
             grimoire_entries.append({
                 'name': title,
-                'tag': fm.get('tag', ''),
+                'uid': fm.get('uid', ''),
+                'label': fm.get('label', ''),
                 'aliases': fm.get('aliases', []),
                 'href': f'./{p.name}',
             })
@@ -496,7 +555,8 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
 
         glossary.append({
             'name': name,
-            'tag': entry.get('tag', ''),
+            'uid': entry.get('uid', ''),
+            'label': entry.get('label', ''),
             'aliases': aliases,
             'path': path,
         })
@@ -519,7 +579,7 @@ def build_graph(glossary_entries: list | None = None) -> None:
     """Build graph.json — a node/edge graph of how glitchcraft pages reference each other.
 
     For each glitchcraft page, reads its markdown body and checks which other
-    glossary entries (by name, tag, or alias) are mentioned. Produces
+    glossary entries (by name, label, or alias) are mentioned. Produces
     a graph suitable for a force-directed visualisation.
 
     Schema:
@@ -543,7 +603,7 @@ def build_graph(glossary_entries: list | None = None) -> None:
     patterns: list[tuple[re.Pattern, str]] = []
     for entry in glossary_entries:
         name = entry.get('name', '')
-        tag = entry.get('tag', '')
+        label = entry.get('label', '')
         aliases = entry.get('aliases', [])
         path = entry.get('path', '')
         if not name or not path:
@@ -551,8 +611,8 @@ def build_graph(glossary_entries: list | None = None) -> None:
         # Name — case-insensitive
         patterns.append((re.compile(r'(?<!\w)' + re.escape(name) + r'(?!\w)', re.IGNORECASE), path))
         # Tag — case-sensitive
-        if tag and len(tag) >= 2:
-            patterns.append((re.compile(r'(?<!\w)' + re.escape(tag) + r'(?!\w)'), path))
+        if label and len(label) >= 2:
+            patterns.append((re.compile(r'(?<!\w)' + re.escape(label) + r'(?!\w)'), path))
         # Aliases — case-insensitive
         for alias in (aliases or []):
             if alias and alias.lower() != name.lower():
@@ -573,11 +633,12 @@ def build_graph(glossary_entries: list | None = None) -> None:
     for entry in glossary_entries:
         path = entry.get('path', '')
         name = entry.get('name', '')
-        tag = entry.get('tag', '')
+        uid = entry.get('uid', '')
+        label = entry.get('label', '')
         if not path or not name:
             continue
 
-        nodes.append({'id': path, 'name': name, 'tag': tag})
+        nodes.append({'id': path, 'uid': uid, 'name': name, 'label': label})
 
         # Read the markdown body for this page
         stem = path_to_stem.get(path, '')

@@ -384,11 +384,11 @@ export default {
           titleBoost = overlap; // 0..1
         }
         // Tag exact-match boost: if any query token exactly matches the
-        // page's tag field, apply a strong boost so e.g. "SDC" reliably
+        // page's label field, apply a strong boost so e.g. "SDC" reliably
         // surfaces the Stick Desync Clip page above pages that merely mention "SDC".
         let abbrBoost = 0;
-        if (it.tag){
-          const abbrLower = String(it.tag).toLowerCase();
+        if (it.label){
+          const abbrLower = String(it.label).toLowerCase();
           for (const t of qTokens){
             if (String(t).toLowerCase() === abbrLower){ abbrBoost = 1.0; break; }
           }
