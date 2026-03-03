@@ -41,6 +41,11 @@
 [data-ub-font="large"] .md-content h3 { font-size: 1.25rem; }
 [data-ub-font="large"] .md-content h4 { font-size: 1.0625rem; }
 
+/* Scale grimoire filter elements */
+[data-ub-font="large"] #grimoire-app {
+  font-size: 125%;
+}
+
 /* Also scale the sidebar navigation and ToC text for readability */
 [data-ub-font="large"] .md-nav__link,
 [data-ub-font="large"] .md-nav__title,
