@@ -695,6 +695,7 @@ li.task-list-item a, li.task-list a {
   position: relative;
   z-index: 3; /* below header (4) */
   margin: 0.5rem 0;
+}
 
 /* Input wrapper and custom clear button */
 .ub-ai-input-wrap{ display:flex !important; align-items:flex-end !important; }
@@ -732,13 +733,6 @@ li.task-list-item a, li.task-list a {
 .ub-ai-input::-webkit-search-cancel-button,
 .ub-ai-input::-webkit-search-results-button,
 .ub-ai-input::-webkit-search-results-decoration{ -webkit-appearance:none; appearance:none; display:none; }
-  padding: 0.25rem 0;
-  box-sizing: border-box;
-  background: transparent; /* remove bounding box */
-  font-family: inherit;
-  position: relative; /* ensure it creates a stacking context above background rune */
-  z-index: 3; /* keep below header (z-index:4) but above rune (z-index:0) */
-}
 
 .ub-ai-input {
   width: 100%;
