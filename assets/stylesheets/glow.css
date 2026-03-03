@@ -910,7 +910,7 @@ li.task-list-item a, li.task-list a {
 .grim-label {
   font-family: 'New Rocker', 'Texturina', Georgia, serif;
   color: var(--teal-glow);
-  font-size: 0.85rem;
+  font-size: 0.85em;
   min-width: 3.8rem;
   flex-shrink: 0;
   opacity: 0.7;
@@ -925,7 +925,7 @@ li.task-list-item a, li.task-list a {
   border-radius: 4px;
   color: inherit;
   font-family: 'Texturina', Georgia, serif;
-  font-size: 0.9rem;
+  font-size: 0.9em;
   outline: none;
   transition: border-color 0.18s ease;
   box-sizing: border-box;
@@ -942,7 +942,7 @@ li.task-list-item a, li.task-list a {
   border-radius: 3px;
   color: var(--muted-text);
   font-family: 'Texturina', Georgia, serif;
-  font-size: 0.78rem;
+  font-size: 0.78em;
   cursor: pointer;
   transition: color 0.18s, border-color 0.18s, background 0.18s;
   white-space: nowrap;
@@ -958,8 +958,8 @@ li.task-list-item a, li.task-list a {
   border-color: var(--teal-glow);
   color: var(--teal-glow);
 }
-.grim-dir  { font-size: 0.95rem; line-height: 1; }
-.grim-reset { margin-left: auto; font-size: 0.75rem; opacity: 0.6; }
+.grim-dir  { font-size: 0.95em; line-height: 1; }
+.grim-reset { margin-left: auto; font-size: 0.75em; opacity: 0.6; }
 .grim-reset:hover { opacity: 1; }
 
 .grim-chips { display: flex; gap: 0.3rem; flex-wrap: wrap; }
@@ -974,7 +974,7 @@ li.task-list-item a, li.task-list a {
   border-radius: 3px;
   color: var(--muted-text);
   font-family: 'Texturina', Georgia, serif;
-  font-size: 0.78rem;
+  font-size: 0.78em;
   cursor: pointer;
   transition: color 0.18s, border-color 0.18s;
   white-space: nowrap;
@@ -1014,7 +1014,7 @@ li.task-list-item a, li.task-list a {
   border-radius: 3px;
   color: inherit;
   font-family: 'Texturina', Georgia, serif;
-  font-size: 0.78rem;
+  font-size: 0.78em;
   outline: none;
   flex-shrink: 0;
 }
@@ -1031,7 +1031,7 @@ li.task-list-item a, li.task-list a {
   align-items: center;
   gap: 0.35rem;
   padding: 0.18rem 0.45rem;
-  font-size: 0.78rem;
+  font-size: 0.78em;
   cursor: pointer;
   transition: background 0.1s;
   white-space: normal;
@@ -1051,7 +1051,7 @@ li.task-list-item a, li.task-list a {
 /* Status bar */
 .grim-status {
   margin: 0.6rem 0 0.3rem;
-  font-size: 0.82rem;
+  font-size: 0.82em;
   color: var(--muted-text);
   border-bottom: 1px solid var(--hr-sep);
   padding-bottom: 0.4rem;
@@ -1084,7 +1084,7 @@ li.task-list-item a, li.task-list a {
   min-width: 1.5rem;
   text-align: left;
   color: var(--muted-text);
-  font-size: 0.78rem;
+  font-size: 0.78em;
   flex-shrink: 0;
 }
 .grim-li a {
