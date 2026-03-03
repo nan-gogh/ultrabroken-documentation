@@ -1,4 +1,4 @@
-"""
+﻿"""
 MkDocs hook: glitch_autolink
 =============================
 Automatically replaces mentions of glitch names, abbreviations, or aliases
@@ -67,7 +67,7 @@ def _build_lookup(glossary: list[dict]) -> list[tuple[re.Pattern, str, str]]:
 
     for entry in glossary:
         name = entry.get('name', '')
-        tag = entry.get('tag', '')
+        label = entry.get('label', '')
         aliases = entry.get('aliases', [])
         path = entry.get('path', '')
         if not name or not path:
@@ -77,8 +77,8 @@ def _build_lookup(glossary: list[dict]) -> list[tuple[re.Pattern, str, str]]:
         raw.append((name, path, name, False))
 
         # Tag — case-sensitive (avoid false positives)
-        if tag:
-            raw.append((tag, path, tag, True))
+        if label:
+            raw.append((label, path, label, True))
 
         # Aliases — case-insensitive
         for alias in aliases:

@@ -1,7 +1,8 @@
 [
   {
     "name": "Ability Wheel Loop",
-    "tag": "AWL",
+    "uid": "V2E",
+    "label": "AWL",
     "aliases": [
       "ability-wheel-loop"
     ],
@@ -9,19 +10,22 @@
   },
   {
     "name": "Aeroculling",
-    "tag": "AC",
+    "uid": "8QL",
+    "label": "AC",
     "aliases": [],
     "path": "wiki/glitchcraft/aeroculling/"
   },
   {
     "name": "Animation Swap",
-    "tag": "ASWP",
+    "uid": "S3L",
+    "label": "ASWP",
     "aliases": [],
     "path": "wiki/glitchcraft/animation-swap/"
   },
   {
     "name": "Anti-Gravity GAS",
-    "tag": "AG GAS",
+    "uid": "9R0",
+    "label": "AG GAS",
     "aliases": [
       "anti-gravity-gas"
     ],
@@ -29,7 +33,8 @@
   },
   {
     "name": "Anti-Gravity Glitch",
-    "tag": "AGG",
+    "uid": "PEY",
+    "label": "AGG",
     "aliases": [
       "anti gravity",
       "anti gravity glitch",
@@ -40,7 +45,8 @@
   },
   {
     "name": "Anti-Gravity Objects",
-    "tag": "AGO",
+    "uid": "9WZ",
+    "label": "AGO",
     "aliases": [
       "anti-gravity-objects"
     ],
@@ -48,7 +54,8 @@
   },
   {
     "name": "AntiGrav Weapons",
-    "tag": "AGW",
+    "uid": "0IS",
+    "label": "AGW",
     "aliases": [
       "antigrav-weapons"
     ],
@@ -56,7 +63,8 @@
   },
   {
     "name": "Arrow Prompt Storage",
-    "tag": "APS",
+    "uid": "3ME",
+    "label": "APS",
     "aliases": [
       "arrow-prompt-storage"
     ],
@@ -64,7 +72,8 @@
   },
   {
     "name": "Arrow Smuggling",
-    "tag": "AS",
+    "uid": "VTO",
+    "label": "AS",
     "aliases": [
       "arrow-smuggling"
     ],
@@ -72,7 +81,8 @@
   },
   {
     "name": "Arrow Unlink",
-    "tag": "AUL",
+    "uid": "HW8",
+    "label": "AUL",
     "aliases": [
       "arrow-unlink"
     ],
@@ -80,7 +90,8 @@
   },
   {
     "name": "Arrow Unloading",
-    "tag": "AU",
+    "uid": "MW4",
+    "label": "AU",
     "aliases": [
       "arrow-unloading"
     ],
@@ -88,7 +99,8 @@
   },
   {
     "name": "Ascend Camera Glitch",
-    "tag": "ACG",
+    "uid": "5BC",
+    "label": "ACG",
     "aliases": [
       "ascend-camera-glitch"
     ],
@@ -96,7 +108,8 @@
   },
   {
     "name": "Ascend Rushing",
-    "tag": "AR",
+    "uid": "JWD",
+    "label": "AR",
     "aliases": [
       "ascend-rushing"
     ],
@@ -104,7 +117,8 @@
   },
   {
     "name": "Ascend Storage",
-    "tag": "ASTR",
+    "uid": "1TZ",
+    "label": "ASTR",
     "aliases": [
       "ascend storage",
       "ascend storage glitch",
@@ -115,7 +129,8 @@
   },
   {
     "name": "Attached Rangeless Active Zonai",
-    "tag": "ARAZ",
+    "uid": "ZTD",
+    "label": "ARAZ",
     "aliases": [
       "attached-rangeless-active-zonai"
     ],
@@ -123,7 +138,8 @@
   },
   {
     "name": "Autobuild Cancel Slide",
-    "tag": "ABCS",
+    "uid": "SEO",
+    "label": "ABCS",
     "aliases": [
       "autobuild cancel",
       "auto-build"
@@ -132,7 +148,8 @@
   },
   {
     "name": "Autobuild Duplication",
-    "tag": "ABD",
+    "uid": "BJ0",
+    "label": "ABD",
     "aliases": [
       "autobuild-duplication"
     ],
@@ -140,7 +157,8 @@
   },
   {
     "name": "Autobuild Storage",
-    "tag": "ABST",
+    "uid": "W0E",
+    "label": "ABST",
     "aliases": [
       "autobuild-storage"
     ],
@@ -148,7 +166,8 @@
   },
   {
     "name": "Awakened Master Sword",
-    "tag": "AMS",
+    "uid": "0UY",
+    "label": "AMS",
     "aliases": [
       "awakened-master-sword"
     ],
@@ -156,7 +175,8 @@
   },
   {
     "name": "Back to Back Bloodmoon",
-    "tag": "BTBB",
+    "uid": "DDB",
+    "label": "BTBB",
     "aliases": [
       "back-to-back bloodmoon",
       "btb bloodmoon"
@@ -165,7 +185,8 @@
   },
   {
     "name": "Back-in-Time Art",
-    "tag": "BIT",
+    "uid": "4O8",
+    "label": "BIT",
     "aliases": [
       "back-in-time-art"
     ],
@@ -173,7 +194,8 @@
   },
   {
     "name": "Balloon Overload",
-    "tag": "BO",
+    "uid": "S6U",
+    "label": "BO",
     "aliases": [
       "balloon-overload"
     ],
@@ -181,7 +203,8 @@
   },
   {
     "name": "Banc Storage",
-    "tag": "BS",
+    "uid": "FD4",
+    "label": "BS",
     "aliases": [
       "banc-storage"
     ],
@@ -189,7 +212,8 @@
   },
   {
     "name": "Bomb Skew",
-    "tag": "BSK",
+    "uid": "EJ4",
+    "label": "BSK",
     "aliases": [
       "bomb-skew"
     ],
@@ -197,7 +221,8 @@
   },
   {
     "name": "Bow Attachment Desync",
-    "tag": "BAD",
+    "uid": "J5Q",
+    "label": "BAD",
     "aliases": [
       "bow-attachment-desync"
     ],
@@ -205,7 +230,8 @@
   },
   {
     "name": "Bow Attachment Storage",
-    "tag": "BAS",
+    "uid": "V84",
+    "label": "BAS",
     "aliases": [
       "bow-attachment-storage"
     ],
@@ -213,7 +239,8 @@
   },
   {
     "name": "Bow Sprinting",
-    "tag": "BSP",
+    "uid": "SIH",
+    "label": "BSP",
     "aliases": [
       "bow sprint",
       "bow-sprinting"
@@ -222,7 +249,8 @@
   },
   {
     "name": "Breaking Awakened Master Sword",
-    "tag": "BAMS",
+    "uid": "NDG",
+    "label": "BAMS",
     "aliases": [
       "breaking-awakened-master-sword"
     ],
@@ -230,7 +258,8 @@
   },
   {
     "name": "BThrow Sprinting",
-    "tag": "BTSP",
+    "uid": "WRH",
+    "label": "BTSP",
     "aliases": [
       "bthrow sprint",
       "bthrow-sprinting"
@@ -239,7 +268,8 @@
   },
   {
     "name": "Bundled Item Duplication",
-    "tag": "BID",
+    "uid": "099",
+    "label": "BID",
     "aliases": [
       "bundled-item-duplication"
     ],
@@ -247,7 +277,8 @@
   },
   {
     "name": "Buoy Bouncing",
-    "tag": "BB",
+    "uid": "XY5",
+    "label": "BB",
     "aliases": [
       "buoy-bouncing"
     ],
@@ -255,7 +286,8 @@
   },
   {
     "name": "Camera CFW",
-    "tag": "CFW",
+    "uid": "4SX",
+    "label": "CFW",
     "aliases": [
       "camera-cfw"
     ],
@@ -263,7 +295,8 @@
   },
   {
     "name": "Camera Pose Glitch",
-    "tag": "CPG",
+    "uid": "IHC",
+    "label": "CPG",
     "aliases": [
       "camera-pose-glitch"
     ],
@@ -271,7 +304,8 @@
   },
   {
     "name": "Capsule Cel Shader Removal",
-    "tag": "CCSR",
+    "uid": "GRJ",
+    "label": "CCSR",
     "aliases": [
       "capsule-cel-shader-removal"
     ],
@@ -279,7 +313,8 @@
   },
   {
     "name": "Cave Flag Culling",
-    "tag": "CFC",
+    "uid": "YK3",
+    "label": "CFC",
     "aliases": [
       "cave-flag-culling"
     ],
@@ -287,7 +322,8 @@
   },
   {
     "name": "Chasm Delay Zuggle",
-    "tag": "CDZ",
+    "uid": "JJB",
+    "label": "CDZ",
     "aliases": [
       "chasm-delay-zuggle"
     ],
@@ -295,7 +331,8 @@
   },
   {
     "name": "Chasm Device Dupe",
-    "tag": "CDD",
+    "uid": "0FH",
+    "label": "CDD",
     "aliases": [
       "chasm-device-dupe"
     ],
@@ -303,7 +340,8 @@
   },
   {
     "name": "Clear Camera/Scope",
-    "tag": "CCS",
+    "uid": "7DQ",
+    "label": "CCS",
     "aliases": [
       "clear-camera/scope"
     ],
@@ -311,7 +349,8 @@
   },
   {
     "name": "Cold Fuse",
-    "tag": "CF",
+    "uid": "7KZ",
+    "label": "CF",
     "aliases": [
       "cold-fuse"
     ],
@@ -319,7 +358,8 @@
   },
   {
     "name": "Cold Fuse Stick Desync Clip",
-    "tag": "CSSDC",
+    "uid": "43H",
+    "label": "CSSDC",
     "aliases": [
       "cold-fuse-stick-desync-clip"
     ],
@@ -327,7 +367,8 @@
   },
   {
     "name": "Construct Fuse Entanglement",
-    "tag": "CNFE",
+    "uid": "TRL",
+    "label": "CNFE",
     "aliases": [
       "construct-fuse-entanglement"
     ],
@@ -335,7 +376,8 @@
   },
   {
     "name": "Corrupt Meal",
-    "tag": "CM",
+    "uid": "963",
+    "label": "CM",
     "aliases": [
       "corrupt-meal"
     ],
@@ -343,7 +385,8 @@
   },
   {
     "name": "Crouch Sprinting",
-    "tag": "CSP",
+    "uid": "5IP",
+    "label": "CSP",
     "aliases": [
       "crouch sprint",
       "crouch-sprint",
@@ -353,7 +396,8 @@
   },
   {
     "name": "Crouch Throw Tap Sprinting",
-    "tag": "CTTS",
+    "uid": "VKB",
+    "label": "CTTS",
     "aliases": [
       "crouch-throw-tap-sprinting"
     ],
@@ -361,7 +405,8 @@
   },
   {
     "name": "Cucco Warping",
-    "tag": "CW",
+    "uid": "0EL",
+    "label": "CW",
     "aliases": [
       "cucco-warping"
     ],
@@ -369,7 +414,8 @@
   },
   {
     "name": "Cull Cold Fuse",
-    "tag": "CCF",
+    "uid": "KXM",
+    "label": "CCF",
     "aliases": [
       "cull-cold-fuse"
     ],
@@ -377,7 +423,8 @@
   },
   {
     "name": "Cull Equipment Desync",
-    "tag": "CED",
+    "uid": "BQL",
+    "label": "CED",
     "aliases": [
       "cull-equipment-desync"
     ],
@@ -385,7 +432,8 @@
   },
   {
     "name": "Cull Fuse Entanglement",
-    "tag": "CFE",
+    "uid": "7VW",
+    "label": "CFE",
     "aliases": [
       "cull-fuse-entanglement"
     ],
@@ -393,7 +441,8 @@
   },
   {
     "name": "Cull Launching",
-    "tag": "CL",
+    "uid": "BKZ",
+    "label": "CL",
     "aliases": [
       "cull-launching"
     ],
@@ -401,7 +450,8 @@
   },
   {
     "name": "Cull Pickup Dynamic Zuggle",
-    "tag": "CPDZ",
+    "uid": "KID",
+    "label": "CPDZ",
     "aliases": [
       "cull-pickup-dynamic-zuggle"
     ],
@@ -409,7 +459,8 @@
   },
   {
     "name": "Cull Smuggle",
-    "tag": "CSMU",
+    "uid": "JAP",
+    "label": "CSMU",
     "aliases": [
       "cull-smuggle"
     ],
@@ -417,7 +468,8 @@
   },
   {
     "name": "Cull Storage",
-    "tag": "CSTR",
+    "uid": "7A4",
+    "label": "CSTR",
     "aliases": [
       "cull-storage"
     ],
@@ -425,7 +477,8 @@
   },
   {
     "name": "Cull Storage Zuggle",
-    "tag": "CSZ",
+    "uid": "8LV",
+    "label": "CSZ",
     "aliases": [
       "cull-storage-zuggle"
     ],
@@ -433,7 +486,8 @@
   },
   {
     "name": "Cull Zone Culling",
-    "tag": "CZC",
+    "uid": "RID",
+    "label": "CZC",
     "aliases": [
       "cull-zone-culling"
     ],
@@ -441,7 +495,8 @@
   },
   {
     "name": "Culling Area Fuse Storage",
-    "tag": "CAFS",
+    "uid": "ERN",
+    "label": "CAFS",
     "aliases": [
       "culling-area-fuse-storage"
     ],
@@ -449,7 +504,8 @@
   },
   {
     "name": "Culling Area Fuse Storage Fuse Entanglement",
-    "tag": "CFSFE",
+    "uid": "IFQ",
+    "label": "CFSFE",
     "aliases": [
       "culling-area-fuse-storage-fuse-entanglement"
     ],
@@ -457,7 +513,8 @@
   },
   {
     "name": "Cutscene Combo Amplifier",
-    "tag": "CCA",
+    "uid": "M5E",
+    "label": "CCA",
     "aliases": [
       "cutscene-combo-amplifier"
     ],
@@ -465,7 +522,8 @@
   },
   {
     "name": "Damage Amnesia",
-    "tag": "DA",
+    "uid": "HNZ",
+    "label": "DA",
     "aliases": [
       "damage-amnesia"
     ],
@@ -473,7 +531,8 @@
   },
   {
     "name": "Death Persistent Save Load Object Transfer",
-    "tag": "DPSLOT",
+    "uid": "15K",
+    "label": "DPSLOT",
     "aliases": [
       "death-persistent-save-load-object-transfer"
     ],
@@ -481,7 +540,8 @@
   },
   {
     "name": "Despawn Interrupt",
-    "tag": "DI",
+    "uid": "MG1",
+    "label": "DI",
     "aliases": [
       "despawn-interrupt",
       "eaten di",
@@ -494,7 +554,8 @@
   },
   {
     "name": "Detached Rangeless Active Zonai",
-    "tag": "DRAZ",
+    "uid": "YM9",
+    "label": "DRAZ",
     "aliases": [
       "detached-rangeless-active-zonai"
     ],
@@ -502,13 +563,15 @@
   },
   {
     "name": "Detanglement",
-    "tag": "DTG",
+    "uid": "GDL",
+    "label": "DTG",
     "aliases": [],
     "path": "wiki/glitchcraft/detanglement/"
   },
   {
     "name": "Dialog Permacull",
-    "tag": "DPC",
+    "uid": "VLT",
+    "label": "DPC",
     "aliases": [
       "dialog-permacull"
     ],
@@ -516,7 +579,8 @@
   },
   {
     "name": "Disabled Enemy",
-    "tag": "DE",
+    "uid": "WBZ",
+    "label": "DE",
     "aliases": [
       "disabled-enemy"
     ],
@@ -524,7 +588,8 @@
   },
   {
     "name": "Dispenser Storage",
-    "tag": "DSTR",
+    "uid": "F8J",
+    "label": "DSTR",
     "aliases": [
       "dispenser-storage"
     ],
@@ -532,7 +597,8 @@
   },
   {
     "name": "Display Duping",
-    "tag": "DD",
+    "uid": "RQ7",
+    "label": "DD",
     "aliases": [
       "display-duping"
     ],
@@ -540,7 +606,8 @@
   },
   {
     "name": "Display Master Sword",
-    "tag": "DMS",
+    "uid": "KJR",
+    "label": "DMS",
     "aliases": [
       "display-master-sword"
     ],
@@ -548,7 +615,8 @@
   },
   {
     "name": "Dive Cancel Glide Boost",
-    "tag": "DCGB",
+    "uid": "80I",
+    "label": "DCGB",
     "aliases": [
       "dive cancel",
       "dive cancel gliding",
@@ -560,7 +628,8 @@
   },
   {
     "name": "Double Bypass Zuggle",
-    "tag": "DBZ",
+    "uid": "QXN",
+    "label": "DBZ",
     "aliases": [
       "double-bypass-zuggle"
     ],
@@ -568,7 +637,8 @@
   },
   {
     "name": "Double Shield Desync Clip Fuse Entanglement",
-    "tag": "DSDCFE",
+    "uid": "NMY",
+    "label": "DSDCFE",
     "aliases": [
       "double-shield-desync-clip-fuse-entanglement"
     ],
@@ -576,7 +646,8 @@
   },
   {
     "name": "Double Tulin Boost",
-    "tag": "DTB",
+    "uid": "A17",
+    "label": "DTB",
     "aliases": [
       "double tulin",
       "double-tulin-boost"
@@ -585,7 +656,8 @@
   },
   {
     "name": "Double Unfuse Duplicashen",
-    "tag": "DUD",
+    "uid": "BSN",
+    "label": "DUD",
     "aliases": [
       "double unfuse",
       "double unfuse duplicashen",
@@ -595,7 +667,8 @@
   },
   {
     "name": "Dpadlock-less Invizuggle",
-    "tag": "DLIZ",
+    "uid": "MP9",
+    "label": "DLIZ",
     "aliases": [
       "dpadlock-less-invizuggle"
     ],
@@ -603,7 +676,8 @@
   },
   {
     "name": "Drop Delay Zuggle",
-    "tag": "DDZ",
+    "uid": "BX1",
+    "label": "DDZ",
     "aliases": [
       "drop-delay-zuggle"
     ],
@@ -611,7 +685,8 @@
   },
   {
     "name": "Drop Restriction",
-    "tag": "DR",
+    "uid": "1AH",
+    "label": "DR",
     "aliases": [
       "drop-restriction"
     ],
@@ -619,7 +694,8 @@
   },
   {
     "name": "Drop Smuggling",
-    "tag": "DS",
+    "uid": "CVH",
+    "label": "DS",
     "aliases": [
       "drop-smuggling"
     ],
@@ -627,7 +703,8 @@
   },
   {
     "name": "Drop Zuggle",
-    "tag": "DZ",
+    "uid": "9HN",
+    "label": "DZ",
     "aliases": [
       "drop-zuggle"
     ],
@@ -635,13 +712,15 @@
   },
   {
     "name": "Durability-",
-    "tag": "DURM",
+    "uid": "J9U",
+    "label": "DURM",
     "aliases": [],
     "path": "wiki/glitchcraft/durability/"
   },
   {
     "name": "Dynamic Purgatory Zuggle",
-    "tag": "DPZ",
+    "uid": "DLG",
+    "label": "DPZ",
     "aliases": [
       "dynamic-purgatory-zuggle"
     ],
@@ -649,7 +728,8 @@
   },
   {
     "name": "Dynamic Zuggle",
-    "tag": "DZG",
+    "uid": "CNV",
+    "label": "DZG",
     "aliases": [
       "dynamic-zuggle"
     ],
@@ -657,7 +737,8 @@
   },
   {
     "name": "Enemy Pickpocketing",
-    "tag": "EP",
+    "uid": "UVT",
+    "label": "EP",
     "aliases": [
       "enemy-pickpocketing"
     ],
@@ -665,7 +746,8 @@
   },
   {
     "name": "Entanglement Height Glitch",
-    "tag": "EHG",
+    "uid": "8MP",
+    "label": "EHG",
     "aliases": [
       "entanglement-height-glitch"
     ],
@@ -673,7 +755,8 @@
   },
   {
     "name": "Equipment Collision Zuggle",
-    "tag": "ECZ",
+    "uid": "8FK",
+    "label": "ECZ",
     "aliases": [
       "equipment collision",
       "equipment-collision-zuggle"
@@ -682,7 +765,8 @@
   },
   {
     "name": "Equipment Mitosis",
-    "tag": "EM",
+    "uid": "NZB",
+    "label": "EM",
     "aliases": [
       "equipment-mitosis"
     ],
@@ -690,7 +774,8 @@
   },
   {
     "name": "Equipment Shock Duping",
-    "tag": "ESD",
+    "uid": "DBF",
+    "label": "ESD",
     "aliases": [
       "equipment-shock-duping"
     ],
@@ -698,7 +783,8 @@
   },
   {
     "name": "Equipment Smuggle",
-    "tag": "ESMU",
+    "uid": "A9N",
+    "label": "ESMU",
     "aliases": [
       "equipment-smuggle"
     ],
@@ -706,7 +792,8 @@
   },
   {
     "name": "Equipped Throken",
-    "tag": "ETHK",
+    "uid": "6UC",
+    "label": "ETHK",
     "aliases": [
       "equipped-throken"
     ],
@@ -714,7 +801,8 @@
   },
   {
     "name": "Extended Throw Sprinting",
-    "tag": "ETSP",
+    "uid": "F20",
+    "label": "ETSP",
     "aliases": [
       "extended-throw-sprinting"
     ],
@@ -722,7 +810,8 @@
   },
   {
     "name": "Fall Damage Cancel",
-    "tag": "FDC",
+    "uid": "QVO",
+    "label": "FDC",
     "aliases": [
       "fall-damage-cancel"
     ],
@@ -730,13 +819,15 @@
   },
   {
     "name": "Floorping",
-    "tag": "FLP",
+    "uid": "Z63",
+    "label": "FLP",
     "aliases": [],
     "path": "wiki/glitchcraft/floorping/"
   },
   {
     "name": "Food Ability Buff Swap",
-    "tag": "FABS",
+    "uid": "U0U",
+    "label": "FABS",
     "aliases": [
       "food-ability-buff-swap"
     ],
@@ -744,7 +835,8 @@
   },
   {
     "name": "Force Equip Zuggling",
-    "tag": "FEZ",
+    "uid": "3RI",
+    "label": "FEZ",
     "aliases": [
       "force-equip-zuggling"
     ],
@@ -752,7 +844,8 @@
   },
   {
     "name": "Forced Blood Moon",
-    "tag": "FBM",
+    "uid": "73L",
+    "label": "FBM",
     "aliases": [
       "forced-blood-moon"
     ],
@@ -760,13 +853,15 @@
   },
   {
     "name": "Freecall",
-    "tag": "FC",
+    "uid": "JNU",
+    "label": "FC",
     "aliases": [],
     "path": "wiki/glitchcraft/freecall/"
   },
   {
     "name": "Fuse Entangle Drop Zuggle",
-    "tag": "FEDZ",
+    "uid": "A4A",
+    "label": "FEDZ",
     "aliases": [
       "fuse-entangle-drop-zuggle"
     ],
@@ -774,7 +869,8 @@
   },
   {
     "name": "Fuse Entangle Weapon Zuggle",
-    "tag": "FEWZ",
+    "uid": "L0R",
+    "label": "FEWZ",
     "aliases": [
       "fuse-entangle-weapon-zuggle"
     ],
@@ -782,7 +878,8 @@
   },
   {
     "name": "Fuse Entanglement",
-    "tag": "FE",
+    "uid": "K4F",
+    "label": "FE",
     "aliases": [
       "fuse-entanglement"
     ],
@@ -790,7 +887,8 @@
   },
   {
     "name": "Fuse Entanglement Clipping",
-    "tag": "FEC",
+    "uid": "Z2Z",
+    "label": "FEC",
     "aliases": [
       "fuse-entanglement-clipping"
     ],
@@ -798,7 +896,8 @@
   },
   {
     "name": "Fuse Entanglement Desync",
-    "tag": "FED",
+    "uid": "J43",
+    "label": "FED",
     "aliases": [
       "fuse-entanglement-desync"
     ],
@@ -806,7 +905,8 @@
   },
   {
     "name": "Fuse Entanglement Drop Smuggling",
-    "tag": "FEDS",
+    "uid": "N1T",
+    "label": "FEDS",
     "aliases": [
       "fuse-entanglement-drop-smuggling"
     ],
@@ -814,7 +914,8 @@
   },
   {
     "name": "Fuse Overload",
-    "tag": "FO",
+    "uid": "76A",
+    "label": "FO",
     "aliases": [
       "fuse-overload"
     ],
@@ -822,7 +923,8 @@
   },
   {
     "name": "Fuse Overload Fuse Entanglement",
-    "tag": "FOFE",
+    "uid": "G8Q",
+    "label": "FOFE",
     "aliases": [
       "fuse-overload-fuse-entanglement"
     ],
@@ -830,7 +932,8 @@
   },
   {
     "name": "Fuse Storage",
-    "tag": "FS",
+    "uid": "JUJ",
+    "label": "FS",
     "aliases": [
       "fuse-storage"
     ],
@@ -838,7 +941,8 @@
   },
   {
     "name": "Fuse Storage Fuse Entanglement",
-    "tag": "FSFE",
+    "uid": "HQF",
+    "label": "FSFE",
     "aliases": [
       "fuse-storage-fuse-entanglement"
     ],
@@ -846,7 +950,8 @@
   },
   {
     "name": "GAS Launching",
-    "tag": "GASL",
+    "uid": "N15",
+    "label": "GASL",
     "aliases": [
       "gas-launching"
     ],
@@ -854,7 +959,8 @@
   },
   {
     "name": "GAS Warping",
-    "tag": "GASW",
+    "uid": "S8G",
+    "label": "GASW",
     "aliases": [
       "gas-warping"
     ],
@@ -862,7 +968,8 @@
   },
   {
     "name": "Ghost Save Load Object Transfer",
-    "tag": "GSLOT",
+    "uid": "WLM",
+    "label": "GSLOT",
     "aliases": [
       "ghost-save-load-object-transfer"
     ],
@@ -870,7 +977,8 @@
   },
   {
     "name": "Ghost Stick Clipping",
-    "tag": "GSC",
+    "uid": "MZA",
+    "label": "GSC",
     "aliases": [
       "ghost-stick-clipping"
     ],
@@ -878,7 +986,8 @@
   },
   {
     "name": "Glue Removal",
-    "tag": "GR",
+    "uid": "WJS",
+    "label": "GR",
     "aliases": [
       "glue-removal"
     ],
@@ -886,7 +995,8 @@
   },
   {
     "name": "Guard-less Active Shield",
-    "tag": "GAS",
+    "uid": "ZJ2",
+    "label": "GAS",
     "aliases": [
       "guard-less-active-shield"
     ],
@@ -894,7 +1004,8 @@
   },
   {
     "name": "Hand Locked Equipment Smuggling",
-    "tag": "HLES",
+    "uid": "XK9",
+    "label": "HLES",
     "aliases": [
       "hand-locked-equipment-smuggling"
     ],
@@ -902,7 +1013,8 @@
   },
   {
     "name": "Handy Job",
-    "tag": "HJ",
+    "uid": "OE5",
+    "label": "HJ",
     "aliases": [
       "handy-job"
     ],
@@ -910,7 +1022,8 @@
   },
   {
     "name": "Hero Path Link Storage",
-    "tag": "HPLS",
+    "uid": "YIS",
+    "label": "HPLS",
     "aliases": [
       "hero-path-link-storage"
     ],
@@ -918,7 +1031,8 @@
   },
   {
     "name": "Hestu Scamming",
-    "tag": "HSCA",
+    "uid": "U1A",
+    "label": "HSCA",
     "aliases": [
       "hestu-scamming"
     ],
@@ -926,7 +1040,8 @@
   },
   {
     "name": "Hold Smuggling",
-    "tag": "HSM",
+    "uid": "DHQ",
+    "label": "HSM",
     "aliases": [
       "hold-smuggling"
     ],
@@ -934,7 +1049,8 @@
   },
   {
     "name": "Hold Storage",
-    "tag": "HS",
+    "uid": "FQ7",
+    "label": "HS",
     "aliases": [
       "hold-storage"
     ],
@@ -942,7 +1058,8 @@
   },
   {
     "name": "Hold Storage Duplication",
-    "tag": "HSD",
+    "uid": "WEI",
+    "label": "HSD",
     "aliases": [
       "hold-storage-duplication"
     ],
@@ -950,7 +1067,8 @@
   },
   {
     "name": "Horse Duping",
-    "tag": "HD",
+    "uid": "6H4",
+    "label": "HD",
     "aliases": [
       "horse-duping"
     ],
@@ -958,7 +1076,8 @@
   },
   {
     "name": "Hydro Clipping",
-    "tag": "HC",
+    "uid": "LYO",
+    "label": "HC",
     "aliases": [
       "hydro-clipping"
     ],
@@ -966,7 +1085,8 @@
   },
   {
     "name": "Infinite Balloon",
-    "tag": "IBAL",
+    "uid": "ZBB",
+    "label": "IBAL",
     "aliases": [
       "infinite-balloon"
     ],
@@ -974,7 +1094,8 @@
   },
   {
     "name": "Infinite Bubbul Frog Gems",
-    "tag": "IBFG",
+    "uid": "TN5",
+    "label": "IBFG",
     "aliases": [
       "infinite-bubbul-frog-gems"
     ],
@@ -982,7 +1103,8 @@
   },
   {
     "name": "Infinite Damage",
-    "tag": "IDMG",
+    "uid": "BVJ",
+    "label": "IDMG",
     "aliases": [
       "infinite dmg",
       "infinite hp damage",
@@ -992,7 +1114,8 @@
   },
   {
     "name": "Infinite Damage 2.0",
-    "tag": "ID2",
+    "uid": "M8L",
+    "label": "ID2",
     "aliases": [
       "infinite-damage-2.0"
     ],
@@ -1000,7 +1123,8 @@
   },
   {
     "name": "Infinite Height",
-    "tag": "IH",
+    "uid": "UN7",
+    "label": "IH",
     "aliases": [
       "infinite-height"
     ],
@@ -1008,7 +1132,8 @@
   },
   {
     "name": "Inventory Shift Duplication",
-    "tag": "ISD",
+    "uid": "12S",
+    "label": "ISD",
     "aliases": [
       "inventory-shift-duplication"
     ],
@@ -1016,13 +1141,15 @@
   },
   {
     "name": "Invizuggle",
-    "tag": "IZ",
+    "uid": "7DA",
+    "label": "IZ",
     "aliases": [],
     "path": "wiki/glitchcraft/invizuggle/"
   },
   {
     "name": "Item Save Load Transfer",
-    "tag": "ISLT",
+    "uid": "VDD",
+    "label": "ISLT",
     "aliases": [
       "item-save-load-transfer"
     ],
@@ -1030,7 +1157,8 @@
   },
   {
     "name": "Item Throw Hitbox Disable",
-    "tag": "ITHD",
+    "uid": "W10",
+    "label": "ITHD",
     "aliases": [
       "item-throw-hitbox-disable"
     ],
@@ -1038,7 +1166,8 @@
   },
   {
     "name": "Jumpslash Cancel Clipping",
-    "tag": "JCC",
+    "uid": "51R",
+    "label": "JCC",
     "aliases": [
       "jumpslash-cancel-clipping"
     ],
@@ -1046,7 +1175,8 @@
   },
   {
     "name": "Jumpslash Canceling",
-    "tag": "JSC",
+    "uid": "WMG",
+    "label": "JSC",
     "aliases": [
       "jumpslash cancel",
       "jump slash",
@@ -1059,7 +1189,8 @@
   },
   {
     "name": "Kilovictor's quicksmuggle",
-    "tag": "KVQS",
+    "uid": "362",
+    "label": "KVQS",
     "aliases": [
       "kilovictor's-quicksmuggle"
     ],
@@ -1067,7 +1198,8 @@
   },
   {
     "name": "Kinematic Weapons",
-    "tag": "KW",
+    "uid": "OO2",
+    "label": "KW",
     "aliases": [
       "kinematic equipment",
       "unmovable equipment"
@@ -1076,7 +1208,8 @@
   },
   {
     "name": "L Sprinting",
-    "tag": "LSP",
+    "uid": "CB1",
+    "label": "LSP",
     "aliases": [
       "l-sprinting"
     ],
@@ -1084,7 +1217,8 @@
   },
   {
     "name": "Lag Machines",
-    "tag": "LM",
+    "uid": "93G",
+    "label": "LM",
     "aliases": [
       "lag-machines"
     ],
@@ -1092,7 +1226,8 @@
   },
   {
     "name": "Laser-OOB",
-    "tag": "LOOB",
+    "uid": "RHC",
+    "label": "LOOB",
     "aliases": [
       "laser oob",
       "oob laser"
@@ -1101,7 +1236,8 @@
   },
   {
     "name": "Lift Fuse Interrupt",
-    "tag": "LFI",
+    "uid": "TC3",
+    "label": "LFI",
     "aliases": [
       "lift-fuse-interrupt"
     ],
@@ -1109,7 +1245,8 @@
   },
   {
     "name": "Lift Smuggle",
-    "tag": "LSMU",
+    "uid": "46A",
+    "label": "LSMU",
     "aliases": [
       "lift-smuggle"
     ],
@@ -1117,7 +1254,8 @@
   },
   {
     "name": "Lift Storage Warping",
-    "tag": "LSW",
+    "uid": "MUY",
+    "label": "LSW",
     "aliases": [
       "lift-storage-warping"
     ],
@@ -1125,7 +1263,8 @@
   },
   {
     "name": "Lift Warping",
-    "tag": "LW",
+    "uid": "2C6",
+    "label": "LW",
     "aliases": [
       "lift-warping"
     ],
@@ -1133,7 +1272,8 @@
   },
   {
     "name": "Like Like New Textbox Softlock",
-    "tag": "LLTS",
+    "uid": "8TU",
+    "label": "LLTS",
     "aliases": [
       "like-like-new-textbox-softlock"
     ],
@@ -1141,7 +1281,8 @@
   },
   {
     "name": "Like-Like Culling",
-    "tag": "LLC",
+    "uid": "M00",
+    "label": "LLC",
     "aliases": [
       "like-like-culling"
     ],
@@ -1149,7 +1290,8 @@
   },
   {
     "name": "Like-Like Drop Smuggling",
-    "tag": "LLDS",
+    "uid": "6GR",
+    "label": "LLDS",
     "aliases": [
       "like-like-drop-smuggling"
     ],
@@ -1157,7 +1299,8 @@
   },
   {
     "name": "Like-Like FSFE",
-    "tag": "LLFSFE",
+    "uid": "HFE",
+    "label": "LLFSFE",
     "aliases": [
       "like-like-fsfe"
     ],
@@ -1165,7 +1308,8 @@
   },
   {
     "name": "Like-Like Fuse Storage",
-    "tag": "LLFS",
+    "uid": "JV6",
+    "label": "LLFS",
     "aliases": [
       "like-like-fuse-storage"
     ],
@@ -1173,7 +1317,8 @@
   },
   {
     "name": "Like-Like Smuggle Desync",
-    "tag": "LLSD",
+    "uid": "F51",
+    "label": "LLSD",
     "aliases": [
       "like-like-smuggle-desync"
     ],
@@ -1181,7 +1326,8 @@
   },
   {
     "name": "Like-Like Smuggling",
-    "tag": "LLS",
+    "uid": "GLW",
+    "label": "LLS",
     "aliases": [
       "like-like-smuggling"
     ],
@@ -1189,7 +1335,8 @@
   },
   {
     "name": "Like-Like Stick Smuggling",
-    "tag": "LLSS",
+    "uid": "6KV",
+    "label": "LLSS",
     "aliases": [
       "likelike-stick-smuggling"
     ],
@@ -1197,7 +1344,8 @@
   },
   {
     "name": "Like-Like Warping",
-    "tag": "LLW",
+    "uid": "O04",
+    "label": "LLW",
     "aliases": [
       "like-like-warping"
     ],
@@ -1205,7 +1353,8 @@
   },
   {
     "name": "Like-Like Zuggling",
-    "tag": "LLZ",
+    "uid": "SQF",
+    "label": "LLZ",
     "aliases": [
       "like-like-zuggling"
     ],
@@ -1213,7 +1362,8 @@
   },
   {
     "name": "Long Jump",
-    "tag": "LJ",
+    "uid": "OII",
+    "label": "LJ",
     "aliases": [
       "long jump",
       "long-jump",
@@ -1223,7 +1373,8 @@
   },
   {
     "name": "Map Flickering",
-    "tag": "MF",
+    "uid": "I91",
+    "label": "MF",
     "aliases": [
       "map-flickering"
     ],
@@ -1231,7 +1382,8 @@
   },
   {
     "name": "Map Storage",
-    "tag": "MSTR",
+    "uid": "OT8",
+    "label": "MSTR",
     "aliases": [
       "map-storage"
     ],
@@ -1239,7 +1391,8 @@
   },
   {
     "name": "Map Zuggling",
-    "tag": "MZ",
+    "uid": "D55",
+    "label": "MZ",
     "aliases": [
       "map-zuggling"
     ],
@@ -1247,7 +1400,8 @@
   },
   {
     "name": "Mass Amnesia",
-    "tag": "MA",
+    "uid": "MLG",
+    "label": "MA",
     "aliases": [
       "mass-amnesia"
     ],
@@ -1255,7 +1409,8 @@
   },
   {
     "name": "Master Sword Liberation",
-    "tag": "MSL",
+    "uid": "IK1",
+    "label": "MSL",
     "aliases": [
       "master-sword-liberation"
     ],
@@ -1263,7 +1418,8 @@
   },
   {
     "name": "Master Sword Zuggling / Decayed Master Sword Zuggling",
-    "tag": "MSZ",
+    "uid": "5RG",
+    "label": "MSZ",
     "aliases": [
       "master-sword-zuggling"
     ],
@@ -1271,7 +1427,8 @@
   },
   {
     "name": "Memory Buffering",
-    "tag": "MB",
+    "uid": "UWY",
+    "label": "MB",
     "aliases": [
       "memory-buffering"
     ],
@@ -1279,7 +1436,8 @@
   },
   {
     "name": "Memory Interrupt",
-    "tag": "MI",
+    "uid": "BVN",
+    "label": "MI",
     "aliases": [
       "memory-interrupt"
     ],
@@ -1287,7 +1445,8 @@
   },
   {
     "name": "Menu Overload",
-    "tag": "MO",
+    "uid": "BK4",
+    "label": "MO",
     "aliases": [
       "menu-overload"
     ],
@@ -1295,7 +1454,8 @@
   },
   {
     "name": "Message Not Found",
-    "tag": "MNF",
+    "uid": "056",
+    "label": "MNF",
     "aliases": [
       "message not found",
       "message not found error",
@@ -1305,7 +1465,8 @@
   },
   {
     "name": "Midair Item Transmutation",
-    "tag": "MIT",
+    "uid": "7P8",
+    "label": "MIT",
     "aliases": [
       "midair transmute",
       "midair-item-transmutation"
@@ -1314,7 +1475,8 @@
   },
   {
     "name": "Midair Sort Duplication",
-    "tag": "MSD",
+    "uid": "8MN",
+    "label": "MSD",
     "aliases": [
       "midair sort duplication",
       "midair-sort-duplication"
@@ -1323,7 +1485,8 @@
   },
   {
     "name": "Midair Throw Duplication",
-    "tag": "MTD",
+    "uid": "5A5",
+    "label": "MTD",
     "aliases": [
       "midair duplication",
       "air dupe",
@@ -1333,7 +1496,8 @@
   },
   {
     "name": "Minecart Rail Collision Launching",
-    "tag": "MRCL",
+    "uid": "74J",
+    "label": "MRCL",
     "aliases": [
       "minecart collision",
       "minecart rail collision",
@@ -1345,7 +1509,8 @@
   },
   {
     "name": "Mineru Ability Desync",
-    "tag": "MAD",
+    "uid": "X9I",
+    "label": "MAD",
     "aliases": [
       "mineru-ability-desync"
     ],
@@ -1353,7 +1518,8 @@
   },
   {
     "name": "Mineru Aim Permanence",
-    "tag": "MAIP",
+    "uid": "A4S",
+    "label": "MAIP",
     "aliases": [
       "mineru-aim-permanence"
     ],
@@ -1361,7 +1527,8 @@
   },
   {
     "name": "Mineru Cull Storage",
-    "tag": "MCS",
+    "uid": "7ZD",
+    "label": "MCS",
     "aliases": [
       "mineru-cull-storage"
     ],
@@ -1369,7 +1536,8 @@
   },
   {
     "name": "Mineru Culling",
-    "tag": "MC",
+    "uid": "BY4",
+    "label": "MC",
     "aliases": [
       "mineru-culling"
     ],
@@ -1377,7 +1545,8 @@
   },
   {
     "name": "Mineru Fuse Entanglement",
-    "tag": "MFE",
+    "uid": "IG2",
+    "label": "MFE",
     "aliases": [
       "mineru-fuse-entanglement"
     ],
@@ -1385,7 +1554,8 @@
   },
   {
     "name": "Mineru Hold Smuggle",
-    "tag": "MHS",
+    "uid": "12A",
+    "label": "MHS",
     "aliases": [
       "mineru-hold-smuggle"
     ],
@@ -1393,7 +1563,8 @@
   },
   {
     "name": "Mineru Persistent Save Load Object Transfer",
-    "tag": "MPSLOT",
+    "uid": "KZ4",
+    "label": "MPSLOT",
     "aliases": [
       "mineru-persistent-save-load-object-transfer"
     ],
@@ -1401,7 +1572,8 @@
   },
   {
     "name": "Mineru Text Storage",
-    "tag": "MTS",
+    "uid": "O3G",
+    "label": "MTS",
     "aliases": [
       "mineru-text-storage"
     ],
@@ -1409,7 +1581,8 @@
   },
   {
     "name": "MNF Fusing",
-    "tag": "MNFF",
+    "uid": "CO6",
+    "label": "MNFF",
     "aliases": [
       "mnf-fusing"
     ],
@@ -1417,7 +1590,8 @@
   },
   {
     "name": "MNF Glow Overload",
-    "tag": "MGO",
+    "uid": "H2E",
+    "label": "MGO",
     "aliases": [
       "mnf-glow-overload"
     ],
@@ -1425,7 +1599,8 @@
   },
   {
     "name": "MNF Zuggle Fuse",
-    "tag": "MZF",
+    "uid": "JCJ",
+    "label": "MZF",
     "aliases": [
       "message not found zuggle",
       "mnf zuggle",
@@ -1435,7 +1610,8 @@
   },
   {
     "name": "Model Teleport Desync",
-    "tag": "MTPD",
+    "uid": "XN2",
+    "label": "MTPD",
     "aliases": [
       "model-teleport-desync"
     ],
@@ -1443,7 +1619,8 @@
   },
   {
     "name": "Modifier Deletion Weapon State Transfer",
-    "tag": "MDWST",
+    "uid": "ZBS",
+    "label": "MDWST",
     "aliases": [
       "modifier-deletion-weapon-state-transfer"
     ],
@@ -1451,7 +1628,8 @@
   },
   {
     "name": "Modifier ONLY Transfer",
-    "tag": "MOT",
+    "uid": "DUS",
+    "label": "MOT",
     "aliases": [
       "modifier-only-transfer"
     ],
@@ -1459,7 +1637,8 @@
   },
   {
     "name": "Moe Enlargement",
-    "tag": "ME",
+    "uid": "DNU",
+    "label": "ME",
     "aliases": [
       "object-(moe)-enlargement",
       "moe-enlargement",
@@ -1469,7 +1648,8 @@
   },
   {
     "name": "Moobe Warping",
-    "tag": "MW",
+    "uid": "V9V",
+    "label": "MW",
     "aliases": [
       "moobe-warping"
     ],
@@ -1477,7 +1657,8 @@
   },
   {
     "name": "Mount Lock",
-    "tag": "ML",
+    "uid": "540",
+    "label": "ML",
     "aliases": [
       "mount-lock"
     ],
@@ -1485,7 +1666,8 @@
   },
   {
     "name": "Mozdor Jumping/Slashing",
-    "tag": "MJS",
+    "uid": "EWY",
+    "label": "MJS",
     "aliases": [
       "mozdor jumping slashing",
       "mozdor",
@@ -1495,7 +1677,8 @@
   },
   {
     "name": "MSNF glowing",
-    "tag": "MNFG",
+    "uid": "D8R",
+    "label": "MNFG",
     "aliases": [
       "msnf-glowing"
     ],
@@ -1503,7 +1686,8 @@
   },
   {
     "name": "Mulberry's Out of Body Experience",
-    "tag": "MOOBE",
+    "uid": "00I",
+    "label": "MOOBE",
     "aliases": [
       "mulberry's-out-of-body-experience"
     ],
@@ -1511,7 +1695,8 @@
   },
   {
     "name": "New Item Desync",
-    "tag": "NID",
+    "uid": "MRB",
+    "label": "NID",
     "aliases": [
       "new-item-desync"
     ],
@@ -1519,7 +1704,8 @@
   },
   {
     "name": "No Bow Sprinting",
-    "tag": "NBSP",
+    "uid": "PAE",
+    "label": "NBSP",
     "aliases": [
       "no-bow-sprinting"
     ],
@@ -1527,7 +1713,8 @@
   },
   {
     "name": "Null Dropping",
-    "tag": "ND",
+    "uid": "IWQ",
+    "label": "ND",
     "aliases": [
       "null-dropping"
     ],
@@ -1535,7 +1722,8 @@
   },
   {
     "name": "Object Culling",
-    "tag": "OC",
+    "uid": "M7L",
+    "label": "OC",
     "aliases": [
       "object-culling"
     ],
@@ -1543,13 +1731,15 @@
   },
   {
     "name": "Ocklusion",
-    "tag": "OCKL",
+    "uid": "KFV",
+    "label": "OCKL",
     "aliases": [],
     "path": "wiki/glitchcraft/ocklusion/"
   },
   {
     "name": "Ocklusion Hovering",
-    "tag": "OCKH",
+    "uid": "E0G",
+    "label": "OCKH",
     "aliases": [
       "ocklusion-hovering"
     ],
@@ -1557,7 +1747,8 @@
   },
   {
     "name": "Octo-balloon Detanglement",
-    "tag": "OBD",
+    "uid": "B3B",
+    "label": "OBD",
     "aliases": [
       "octo-balloon-detanglement"
     ],
@@ -1565,13 +1756,15 @@
   },
   {
     "name": "Octodupe",
-    "tag": "OD",
+    "uid": "4R4",
+    "label": "OD",
     "aliases": [],
     "path": "wiki/glitchcraft/octodupe/"
   },
   {
     "name": "Overload at Home",
-    "tag": "OAH",
+    "uid": "7S4",
+    "label": "OAH",
     "aliases": [
       "overload-at-home"
     ],
@@ -1579,7 +1772,8 @@
   },
   {
     "name": "Overload Cold Fuse",
-    "tag": "OCF",
+    "uid": "O64",
+    "label": "OCF",
     "aliases": [
       "overload-cold-fuse"
     ],
@@ -1587,7 +1781,8 @@
   },
   {
     "name": "Overload Drop Smuggling",
-    "tag": "ODS",
+    "uid": "J9Y",
+    "label": "ODS",
     "aliases": [
       "overload-drop-smuggling"
     ],
@@ -1595,7 +1790,8 @@
   },
   {
     "name": "Overload Dynamic Zuggle",
-    "tag": "ODZGL",
+    "uid": "AZT",
+    "label": "ODZGL",
     "aliases": [
       "overload-dynamic-zuggle"
     ],
@@ -1603,7 +1799,8 @@
   },
   {
     "name": "Overload Fuse Entanglement",
-    "tag": "OFE",
+    "uid": "0XV",
+    "label": "OFE",
     "aliases": [
       "overload-fuse-entanglement"
     ],
@@ -1611,7 +1808,8 @@
   },
   {
     "name": "Overload Persistent Save Load Object Transfer",
-    "tag": "OPSLOT",
+    "uid": "LJH",
+    "label": "OPSLOT",
     "aliases": [
       "overload-persistent-save-load-object-transfer"
     ],
@@ -1619,7 +1817,8 @@
   },
   {
     "name": "Pelison Duping",
-    "tag": "PD",
+    "uid": "WWV",
+    "label": "PD",
     "aliases": [
       "pelison-duping"
     ],
@@ -1627,7 +1826,8 @@
   },
   {
     "name": "Persistent Save Load Object Transfer",
-    "tag": "PSLOT",
+    "uid": "BOF",
+    "label": "PSLOT",
     "aliases": [
       "save load dupe",
       "save/load dupe"
@@ -1636,7 +1836,8 @@
   },
   {
     "name": "Pickup Smuggling",
-    "tag": "PSMU",
+    "uid": "Q7V",
+    "label": "PSMU",
     "aliases": [
       "pickup-smuggling"
     ],
@@ -1644,7 +1845,8 @@
   },
   {
     "name": "Pocket Rocket",
-    "tag": "PR",
+    "uid": "1OP",
+    "label": "PR",
     "aliases": [
       "pocket-rocket"
     ],
@@ -1652,7 +1854,8 @@
   },
   {
     "name": "Portable Cull Save Load Dupe",
-    "tag": "PSLD",
+    "uid": "GFW",
+    "label": "PSLD",
     "aliases": [
       "portable-cull-save-load-dupe"
     ],
@@ -1660,7 +1863,8 @@
   },
   {
     "name": "Portable Culling",
-    "tag": "PC",
+    "uid": "LMB",
+    "label": "PC",
     "aliases": [
       "portable-culling",
       "portacull"
@@ -1669,7 +1873,8 @@
   },
   {
     "name": "Portacull Invismuggle",
-    "tag": "PCIS",
+    "uid": "OJU",
+    "label": "PCIS",
     "aliases": [
       "portacull-invismuggle"
     ],
@@ -1677,7 +1882,8 @@
   },
   {
     "name": "Prologue Escape",
-    "tag": "PE",
+    "uid": "F4G",
+    "label": "PE",
     "aliases": [
       "prologue-escape"
     ],
@@ -1685,7 +1891,8 @@
   },
   {
     "name": "Proxy Glitches",
-    "tag": "PG",
+    "uid": "WWW",
+    "label": "PG",
     "aliases": [
       "proxy-glitches"
     ],
@@ -1693,7 +1900,8 @@
   },
   {
     "name": "Purgatory Save Load Dupe",
-    "tag": "PGSLD",
+    "uid": "EYH",
+    "label": "PGSLD",
     "aliases": [
       "purgatory-save-load-dupe"
     ],
@@ -1701,13 +1909,15 @@
   },
   {
     "name": "Pyroculling",
-    "tag": "PYRC",
+    "uid": "9R8",
+    "label": "PYRC",
     "aliases": [],
     "path": "wiki/glitchcraft/pyroculling/"
   },
   {
     "name": "Quantum Linking",
-    "tag": "QL",
+    "uid": "PII",
+    "label": "QL",
     "aliases": [
       "quantum-linking"
     ],
@@ -1715,7 +1925,8 @@
   },
   {
     "name": "Quick Drop Smuggle",
-    "tag": "QDS",
+    "uid": "OTD",
+    "label": "QDS",
     "aliases": [
       "quick-drop-smuggle"
     ],
@@ -1723,7 +1934,8 @@
   },
   {
     "name": "Quick Smuggling",
-    "tag": "QS",
+    "uid": "2D4",
+    "label": "QS",
     "aliases": [
       "quick-smuggling"
     ],
@@ -1731,13 +1943,15 @@
   },
   {
     "name": "Reball",
-    "tag": "RBL",
+    "uid": "93U",
+    "label": "RBL",
     "aliases": [],
     "path": "wiki/glitchcraft/reball/"
   },
   {
     "name": "Recall Cancel",
-    "tag": "RCC",
+    "uid": "CC5",
+    "label": "RCC",
     "aliases": [
       "recall-cancel"
     ],
@@ -1745,7 +1959,8 @@
   },
   {
     "name": "Recall Clip",
-    "tag": "RC",
+    "uid": "VDU",
+    "label": "RC",
     "aliases": [
       "recall clip",
       "recall-clip glitch",
@@ -1756,7 +1971,8 @@
   },
   {
     "name": "Recall Drop Stacking",
-    "tag": "RDS",
+    "uid": "9C0",
+    "label": "RDS",
     "aliases": [
       "recall-drop-stacking"
     ],
@@ -1764,7 +1980,8 @@
   },
   {
     "name": "Recall Launch",
-    "tag": "RLNCH",
+    "uid": "J5A",
+    "label": "RLNCH",
     "aliases": [
       "recall launch",
       "recall launch glitch",
@@ -1774,7 +1991,8 @@
   },
   {
     "name": "Recall Locking",
-    "tag": "RL",
+    "uid": "EY8",
+    "label": "RL",
     "aliases": [
       "recall-locking"
     ],
@@ -1782,7 +2000,8 @@
   },
   {
     "name": "Recall Sluggle",
-    "tag": "RSL",
+    "uid": "WXE",
+    "label": "RSL",
     "aliases": [
       "recall-sluggle"
     ],
@@ -1790,7 +2009,8 @@
   },
   {
     "name": "Recall Telekinesis",
-    "tag": "RTK",
+    "uid": "1ZI",
+    "label": "RTK",
     "aliases": [
       "recall-telekinesis"
     ],
@@ -1798,7 +2018,8 @@
   },
   {
     "name": "Recipe Storage",
-    "tag": "RS",
+    "uid": "60D",
+    "label": "RS",
     "aliases": [
       "recipe-storage"
     ],
@@ -1806,7 +2027,8 @@
   },
   {
     "name": "Remote Arrow",
-    "tag": "RAT",
+    "uid": "ZJF",
+    "label": "RAT",
     "aliases": [
       "remote-arrow-trap"
     ],
@@ -1814,7 +2036,8 @@
   },
   {
     "name": "Replacement Actor Fuse Entanglement",
-    "tag": "RAFE",
+    "uid": "E2K",
+    "label": "RAFE",
     "aliases": [
       "replacement-actor-fuse-entanglement"
     ],
@@ -1822,7 +2045,8 @@
   },
   {
     "name": "Resync Fuse Entanglement",
-    "tag": "RFE",
+    "uid": "GPN",
+    "label": "RFE",
     "aliases": [
       "resync-fuse-entanglement"
     ],
@@ -1830,7 +2054,8 @@
   },
   {
     "name": "Reverse Ascend Storage",
-    "tag": "RAS",
+    "uid": "70D",
+    "label": "RAS",
     "aliases": [
       "reverse-ascend-storage"
     ],
@@ -1838,7 +2063,8 @@
   },
   {
     "name": "Sage Madness",
-    "tag": "SM",
+    "uid": "I6X",
+    "label": "SM",
     "aliases": [
       "sage-madness"
     ],
@@ -1846,7 +2072,8 @@
   },
   {
     "name": "Sage Recycling",
-    "tag": "SRCY",
+    "uid": "4BI",
+    "label": "SRCY",
     "aliases": [
       "sage-recycling"
     ],
@@ -1854,7 +2081,8 @@
   },
   {
     "name": "Save Load Dupe",
-    "tag": "SLD",
+    "uid": "P2F",
+    "label": "SLD",
     "aliases": [
       "save-load-dupe",
       "save/load dupe",
@@ -1864,7 +2092,8 @@
   },
   {
     "name": "Save Load Zuggling",
-    "tag": "SLZ",
+    "uid": "HV7",
+    "label": "SLZ",
     "aliases": [
       "save-load-zuggling"
     ],
@@ -1872,7 +2101,8 @@
   },
   {
     "name": "Scope Render Cancel",
-    "tag": "SRC",
+    "uid": "O9Q",
+    "label": "SRC",
     "aliases": [
       "scope render cancel",
       "scope-render-cancel"
@@ -1881,7 +2111,8 @@
   },
   {
     "name": "Shadow/Void Icons",
-    "tag": "SVI",
+    "uid": "34T",
+    "label": "SVI",
     "aliases": [
       "shadow/void-icons"
     ],
@@ -1889,7 +2120,8 @@
   },
   {
     "name": "Shock Cold Fuse",
-    "tag": "SCF",
+    "uid": "EKY",
+    "label": "SCF",
     "aliases": [
       "shock-cold-fuse"
     ],
@@ -1897,7 +2129,8 @@
   },
   {
     "name": "Shock Effect Overload",
-    "tag": "SEO",
+    "uid": "X5Y",
+    "label": "SEO",
     "aliases": [
       "shock-effect-overload"
     ],
@@ -1905,7 +2138,8 @@
   },
   {
     "name": "Shock Fuse Entanglement",
-    "tag": "SFE",
+    "uid": "ERF",
+    "label": "SFE",
     "aliases": [
       "shock-fuse-entanglement"
     ],
@@ -1913,7 +2147,8 @@
   },
   {
     "name": "Shock Smuggle",
-    "tag": "SSMU",
+    "uid": "61Q",
+    "label": "SSMU",
     "aliases": [
       "shock-smuggle"
     ],
@@ -1921,7 +2156,8 @@
   },
   {
     "name": "Shrunken Actors",
-    "tag": "SA",
+    "uid": "DMF",
+    "label": "SA",
     "aliases": [
       "shrunken-actors"
     ],
@@ -1929,7 +2165,8 @@
   },
   {
     "name": "Slate Storage",
-    "tag": "SLST",
+    "uid": "K7J",
+    "label": "SLST",
     "aliases": [
       "slate-storage"
     ],
@@ -1937,13 +2174,15 @@
   },
   {
     "name": "Slugging",
-    "tag": "SLG",
+    "uid": "0QL",
+    "label": "SLG",
     "aliases": [],
     "path": "wiki/glitchcraft/slugging/"
   },
   {
     "name": "Smuggle Retrieval",
-    "tag": "SRET",
+    "uid": "S3N",
+    "label": "SRET",
     "aliases": [
       "smuggle-retrieval"
     ],
@@ -1951,7 +2190,8 @@
   },
   {
     "name": "Smuggle Stacking Zuggle",
-    "tag": "SSZ",
+    "uid": "DN4",
+    "label": "SSZ",
     "aliases": [
       "zuggle stacking",
       "zuggle stack",
@@ -1961,7 +2201,8 @@
   },
   {
     "name": "Split Item Duplication",
-    "tag": "SID",
+    "uid": "E75",
+    "label": "SID",
     "aliases": [
       "split-item-duplication"
     ],
@@ -1969,7 +2210,8 @@
   },
   {
     "name": "Spring Fall Damage Cancel",
-    "tag": "SFDC",
+    "uid": "CFX",
+    "label": "SFDC",
     "aliases": [
       "spring-fall-damage-cancel"
     ],
@@ -1977,7 +2219,8 @@
   },
   {
     "name": "Spring Strangeness",
-    "tag": "STRS",
+    "uid": "J2D",
+    "label": "STRS",
     "aliases": [
       "spring-strangeness"
     ],
@@ -1985,7 +2228,8 @@
   },
   {
     "name": "Springboard Clipping",
-    "tag": "SBC",
+    "uid": "SU2",
+    "label": "SBC",
     "aliases": [
       "springboard-clipping"
     ],
@@ -1993,19 +2237,22 @@
   },
   {
     "name": "Springboarding",
-    "tag": "SBRD",
+    "uid": "OUX",
+    "label": "SBRD",
     "aliases": [],
     "path": "wiki/glitchcraft/springboarding/"
   },
   {
     "name": "Springdolling",
-    "tag": "SDOL",
+    "uid": "9OA",
+    "label": "SDOL",
     "aliases": [],
     "path": "wiki/glitchcraft/springdolling/"
   },
   {
     "name": "Stack Splitting",
-    "tag": "SSPL",
+    "uid": "WFM",
+    "label": "SSPL",
     "aliases": [
       "stack-splitting"
     ],
@@ -2013,7 +2260,8 @@
   },
   {
     "name": "Stamina Depletion Freeze",
-    "tag": "SDF",
+    "uid": "XH0",
+    "label": "SDF",
     "aliases": [
       "stamina depletion freeze",
       "stamina-depletion-freeze"
@@ -2022,7 +2270,8 @@
   },
   {
     "name": "Stick Desync Clip",
-    "tag": "SDC",
+    "uid": "L54",
+    "label": "SDC",
     "aliases": [
       "stick-desync-clip"
     ],
@@ -2030,7 +2279,8 @@
   },
   {
     "name": "Sticky Dynamic Purgatory",
-    "tag": "SDP",
+    "uid": "N2K",
+    "label": "SDP",
     "aliases": [
       "sticky-dynamic-purgatory"
     ],
@@ -2038,7 +2288,8 @@
   },
   {
     "name": "Super Bomb Jump",
-    "tag": "SBJ",
+    "uid": "W2H",
+    "label": "SBJ",
     "aliases": [
       "super-bomb-jump"
     ],
@@ -2046,7 +2297,8 @@
   },
   {
     "name": "Super Fuse Overload",
-    "tag": "SFO",
+    "uid": "TX4",
+    "label": "SFO",
     "aliases": [
       "super-fuse-overload"
     ],
@@ -2054,7 +2306,8 @@
   },
   {
     "name": "Surf storage",
-    "tag": "SSTR",
+    "uid": "ARP",
+    "label": "SSTR",
     "aliases": [
       "surf-storage"
     ],
@@ -2062,7 +2315,8 @@
   },
   {
     "name": "Swap Resync",
-    "tag": "SR",
+    "uid": "A0R",
+    "label": "SR",
     "aliases": [
       "swap-resync"
     ],
@@ -2070,7 +2324,8 @@
   },
   {
     "name": "Swap Resync Zuggle",
-    "tag": "SRZ",
+    "uid": "XTY",
+    "label": "SRZ",
     "aliases": [
       "swap-resync-zuggle"
     ],
@@ -2078,7 +2333,8 @@
   },
   {
     "name": "Temporary Devices",
-    "tag": "TD",
+    "uid": "DGS",
+    "label": "TD",
     "aliases": [
       "temporary-devices"
     ],
@@ -2086,7 +2342,8 @@
   },
   {
     "name": "Texture Tearing",
-    "tag": "TT",
+    "uid": "11M",
+    "label": "TT",
     "aliases": [
       "texture-tearing"
     ],
@@ -2094,13 +2351,15 @@
   },
   {
     "name": "Throken",
-    "tag": "THK",
+    "uid": "M1W",
+    "label": "THK",
     "aliases": [],
     "path": "wiki/glitchcraft/throken/"
   },
   {
     "name": "Throw Cancelling",
-    "tag": "TC",
+    "uid": "TK3",
+    "label": "TC",
     "aliases": [
       "throw-cancelling"
     ],
@@ -2108,7 +2367,8 @@
   },
   {
     "name": "Throw Tap Sprinting",
-    "tag": "TTS",
+    "uid": "QME",
+    "label": "TTS",
     "aliases": [
       "throw tap",
       "throw-tap",
@@ -2118,7 +2378,8 @@
   },
   {
     "name": "Throwless Storage",
-    "tag": "THS",
+    "uid": "OL9",
+    "label": "THS",
     "aliases": [
       "throwless-storage"
     ],
@@ -2126,7 +2387,8 @@
   },
   {
     "name": "Time Bomb cancel",
-    "tag": "TBC",
+    "uid": "7Y9",
+    "label": "TBC",
     "aliases": [
       "time-bomb-cancel"
     ],
@@ -2134,7 +2396,8 @@
   },
   {
     "name": "Toti Saucery",
-    "tag": "TOTS",
+    "uid": "YTR",
+    "label": "TOTS",
     "aliases": [
       "toti-saucery"
     ],
@@ -2142,7 +2405,8 @@
   },
   {
     "name": "Travel Medallion Storage",
-    "tag": "TMS",
+    "uid": "QSY",
+    "label": "TMS",
     "aliases": [
       "travel-medallion-storage"
     ],
@@ -2150,7 +2414,8 @@
   },
   {
     "name": "Tulin Pumping",
-    "tag": "TP",
+    "uid": "75S",
+    "label": "TP",
     "aliases": [
       "pump tulin",
       "tulin pump",
@@ -2162,7 +2427,8 @@
   },
   {
     "name": "Two Handed With Shield",
-    "tag": "THWS",
+    "uid": "GIO",
+    "label": "THWS",
     "aliases": [
       "two-handed-with-shield"
     ],
@@ -2170,7 +2436,8 @@
   },
   {
     "name": "Ultimate Pocket Rocket",
-    "tag": "UPR",
+    "uid": "05N",
+    "label": "UPR",
     "aliases": [
       "ultimate-pocket-rocket"
     ],
@@ -2178,7 +2445,8 @@
   },
   {
     "name": "Ultra Save Load Object Transfer",
-    "tag": "UltraSLOT",
+    "uid": "OL6",
+    "label": "UltraSLOT",
     "aliases": [
       "ultra-save-load-object-transfer",
       "ultraslot"
@@ -2187,7 +2455,8 @@
   },
   {
     "name": "Ultrabroken",
-    "tag": "UB",
+    "uid": "NU6",
+    "label": "UB",
     "aliases": [
       "ultra-broken",
       "ultrabreak"
@@ -2196,7 +2465,8 @@
   },
   {
     "name": "Ultrabroken Smuggling",
-    "tag": "UBS",
+    "uid": "RQB",
+    "label": "UBS",
     "aliases": [
       "ultrabroken-smuggling"
     ],
@@ -2204,7 +2474,8 @@
   },
   {
     "name": "Unload Duping",
-    "tag": "UD",
+    "uid": "3HJ",
+    "label": "UD",
     "aliases": [
       "unload-duping"
     ],
@@ -2212,7 +2483,8 @@
   },
   {
     "name": "Unload WST",
-    "tag": "UWST",
+    "uid": "YNP",
+    "label": "UWST",
     "aliases": [
       "unload-wst"
     ],
@@ -2220,7 +2492,8 @@
   },
   {
     "name": "Unsheathed Mastersword",
-    "tag": "UMS",
+    "uid": "36U",
+    "label": "UMS",
     "aliases": [
       "unsheathed-mastersword"
     ],
@@ -2228,7 +2501,8 @@
   },
   {
     "name": "Vendor Scamming",
-    "tag": "VS",
+    "uid": "94V",
+    "label": "VS",
     "aliases": [
       "vendor-scamming"
     ],
@@ -2236,7 +2510,8 @@
   },
   {
     "name": "Void Dipping",
-    "tag": "VD",
+    "uid": "JDP",
+    "label": "VD",
     "aliases": [
       "void-dipping"
     ],
@@ -2244,7 +2519,8 @@
   },
   {
     "name": "Void Hold Storage",
-    "tag": "VHS",
+    "uid": "AGZ",
+    "label": "VHS",
     "aliases": [
       "void-hold-storage"
     ],
@@ -2252,7 +2528,8 @@
   },
   {
     "name": "Void Holding",
-    "tag": "VH",
+    "uid": "0FD",
+    "label": "VH",
     "aliases": [
       "void-holding"
     ],
@@ -2260,7 +2537,8 @@
   },
   {
     "name": "Vortaculling",
-    "tag": "VC",
+    "uid": "X06",
+    "label": "VC",
     "aliases": [
       "vortacull",
       "vortaculling"
@@ -2269,7 +2547,8 @@
   },
   {
     "name": "Wacko Attacko",
-    "tag": "WATK",
+    "uid": "O31",
+    "label": "WATK",
     "aliases": [
       "wacko-attacko"
     ],
@@ -2277,7 +2556,8 @@
   },
   {
     "name": "Warp Bumping",
-    "tag": "WB",
+    "uid": "KNR",
+    "label": "WB",
     "aliases": [
       "warp-bumping"
     ],
@@ -2285,7 +2565,8 @@
   },
   {
     "name": "Weapon Dash GAS",
-    "tag": "WDGAS",
+    "uid": "S9A",
+    "label": "WDGAS",
     "aliases": [
       "weapon-dash-gas"
     ],
@@ -2293,7 +2574,8 @@
   },
   {
     "name": "Weapon Despawn Prevention",
-    "tag": "WDP",
+    "uid": "NM8",
+    "label": "WDP",
     "aliases": [
       "weapon-despawn-prevention"
     ],
@@ -2301,7 +2583,8 @@
   },
   {
     "name": "Weapon Extensions",
-    "tag": "WEXT",
+    "uid": "5DZ",
+    "label": "WEXT",
     "aliases": [
       "weapon-extensions"
     ],
@@ -2309,7 +2592,8 @@
   },
   {
     "name": "Weapon Fuse Entangelemt",
-    "tag": "WFE",
+    "uid": "JOY",
+    "label": "WFE",
     "aliases": [
       "weapon-fe",
       "weapon fe"
@@ -2318,7 +2602,8 @@
   },
   {
     "name": "Weapon Sheath Offset",
-    "tag": "WSO",
+    "uid": "MC8",
+    "label": "WSO",
     "aliases": [
       "weapon-sheath-offset"
     ],
@@ -2326,7 +2611,8 @@
   },
   {
     "name": "Weapon Stacking Duplication",
-    "tag": "WSD",
+    "uid": "WP6",
+    "label": "WSD",
     "aliases": [
       "weapon stacking",
       "stacking weapons",
@@ -2337,7 +2623,8 @@
   },
   {
     "name": "Weapon Stand Dynamic Zuggle",
-    "tag": "WSDZ",
+    "uid": "1PY",
+    "label": "WSDZ",
     "aliases": [
       "weapon-stand-dynamic-zuggle"
     ],
@@ -2345,7 +2632,8 @@
   },
   {
     "name": "Weapon State Transfer",
-    "tag": "WST",
+    "uid": "JMU",
+    "label": "WST",
     "aliases": [
       "weapon transfer",
       "weapon-state-transfer"
@@ -2354,7 +2642,8 @@
   },
   {
     "name": "Weather Amnesia",
-    "tag": "WA",
+    "uid": "UR8",
+    "label": "WA",
     "aliases": [
       "weather-amnesia"
     ],
@@ -2362,7 +2651,8 @@
   },
   {
     "name": "Wheel Warping",
-    "tag": "WW",
+    "uid": "QR3",
+    "label": "WW",
     "aliases": [
       "wheel-warping"
     ],
@@ -2370,7 +2660,8 @@
   },
   {
     "name": "Wheel Zoomy",
-    "tag": "WZ",
+    "uid": "XPW",
+    "label": "WZ",
     "aliases": [
       "wheel-zoomy"
     ],
@@ -2378,7 +2669,8 @@
   },
   {
     "name": "Wireless Energy",
-    "tag": "WE",
+    "uid": "PQ5",
+    "label": "WE",
     "aliases": [
       "wireless-energy"
     ],
@@ -2386,13 +2678,15 @@
   },
   {
     "name": "Wuggle",
-    "tag": "WGL",
+    "uid": "GJ2",
+    "label": "WGL",
     "aliases": [],
     "path": "wiki/glitchcraft/wuggle-weird-zuggle/"
   },
   {
     "name": "Yee Fuse Entanglement",
-    "tag": "YEEFE",
+    "uid": "PM1",
+    "label": "YEEFE",
     "aliases": [
       "yee-fuse-entanglement",
       "yeefe"
@@ -2401,13 +2695,15 @@
   },
   {
     "name": "Zapshield",
-    "tag": "ZAPSH",
+    "uid": "7F7",
+    "label": "ZAPSH",
     "aliases": [],
     "path": "wiki/glitchcraft/zapshield/"
   },
   {
     "name": "ZL Animation Reset",
-    "tag": "ZLAR",
+    "uid": "0T9",
+    "label": "ZLAR",
     "aliases": [
       "zl-animation-reset"
     ],
@@ -2415,13 +2711,15 @@
   },
   {
     "name": "Zoggle",
-    "tag": "ZOG",
+    "uid": "9UF",
+    "label": "ZOG",
     "aliases": [],
     "path": "wiki/glitchcraft/zoggle/"
   },
   {
     "name": "Zonai Inventory Shift Dupe",
-    "tag": "ZISD",
+    "uid": "Y29",
+    "label": "ZISD",
     "aliases": [
       "zonai-inventory-shift-dupe"
     ],
@@ -2429,7 +2727,8 @@
   },
   {
     "name": "Zonai Sort Duplication",
-    "tag": "ZSD",
+    "uid": "KVB",
+    "label": "ZSD",
     "aliases": [
       "zonai-sort-duplication"
     ],
@@ -2437,7 +2736,8 @@
   },
   {
     "name": "Zonai Storage",
-    "tag": "ZS",
+    "uid": "Y81",
+    "label": "ZS",
     "aliases": [
       "zonai-storage"
     ],
@@ -2445,7 +2745,8 @@
   },
   {
     "name": "Zuggle",
-    "tag": "ZGL",
+    "uid": "MCM",
+    "label": "ZGL",
     "aliases": [
       "zuggling",
       "zugl",
@@ -2455,7 +2756,8 @@
   },
   {
     "name": "Zuggle Load Object Transfering",
-    "tag": "ZLOT",
+    "uid": "GM7",
+    "label": "ZLOT",
     "aliases": [
       "zuggle-load-object-transfering"
     ],
@@ -2463,7 +2765,8 @@
   },
   {
     "name": "Zuggle Overload",
-    "tag": "ZO",
+    "uid": "8QH",
+    "label": "ZO",
     "aliases": [
       "zuggle-overload"
     ],
@@ -2471,7 +2774,8 @@
   },
   {
     "name": "Zuggle Overload Desync",
-    "tag": "ZOD",
+    "uid": "GTJ",
+    "label": "ZOD",
     "aliases": [
       "zuggle-overload-desync"
     ],
@@ -2479,7 +2783,8 @@
   },
   {
     "name": "Zuggle Overload Out Of Bounds",
-    "tag": "ZOOB",
+    "uid": "7DH",
+    "label": "ZOOB",
     "aliases": [
       "zuggle-overload-oob",
       "zuggle overload oob",

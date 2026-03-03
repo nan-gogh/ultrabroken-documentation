@@ -65,7 +65,7 @@
   var CLR_NODE_HOVER = '#ffffff';
 
   /* ── state ───────────────────────────────────────────────────── */
-  var nodes = [];           // [{id,name,tag,x,y,vx,vy,r,degree,edges:[],linkStrength}]
+  var nodes = [];           // [{id,name,label,x,y,vx,vy,r,degree,edges:[],linkStrength}]
   var edges = [];           // [{source:nodeRef, target:nodeRef, strength:n}]
   var nodeMap = {};         // id → node
 
@@ -150,7 +150,7 @@
       var node = {
         id:     rn.id,
         name:   rn.name || '',
-        tag:    rn.tag || '',
+        label:  rn.label || '',
         x:      Math.cos(angle) * radius,
         y:      Math.sin(angle) * radius,
         vx:     0,
@@ -406,8 +406,8 @@
       ctx.font = isH ? FONT_BOLD : FONT;
       ctx.fillStyle = isH ? CLR_LABEL_HI : dim ? 'rgba(192,192,192,0.2)' : CLR_LABEL;
 
-      // Show tag when zoomed out, full name when zoomed in or hovered
-      var label = (isH || zoom > 2.0) ? nd.name : (nd.tag || nd.name);
+      // Show label when zoomed out, full name when zoomed in or hovered
+      var label = (isH || zoom > 2.0) ? nd.name : (nd.label || nd.name);
       ctx.fillText(label, nd.x, nd.y + nd.r + 3);
     }
 

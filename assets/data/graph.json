@@ -2,1528 +2,1833 @@
   "nodes": [
     {
       "id": "wiki/glitchcraft/ability-wheel-loop/",
+      "uid": "V2E",
       "name": "Ability Wheel Loop",
-      "tag": "AWL"
+      "label": "AWL"
     },
     {
       "id": "wiki/glitchcraft/aeroculling/",
+      "uid": "8QL",
       "name": "Aeroculling",
-      "tag": "AC"
+      "label": "AC"
     },
     {
       "id": "wiki/glitchcraft/animation-swap/",
+      "uid": "S3L",
       "name": "Animation Swap",
-      "tag": "ASWP"
+      "label": "ASWP"
     },
     {
       "id": "wiki/glitchcraft/anti-gravity-gas/",
+      "uid": "9R0",
       "name": "Anti-Gravity GAS",
-      "tag": "AG GAS"
+      "label": "AG GAS"
     },
     {
       "id": "wiki/glitchcraft/anti-gravity-glitch/",
+      "uid": "PEY",
       "name": "Anti-Gravity Glitch",
-      "tag": "AGG"
+      "label": "AGG"
     },
     {
       "id": "wiki/glitchcraft/anti-gravity-objects/",
+      "uid": "9WZ",
       "name": "Anti-Gravity Objects",
-      "tag": "AGO"
+      "label": "AGO"
     },
     {
       "id": "wiki/glitchcraft/antigrav-weapons/",
+      "uid": "0IS",
       "name": "AntiGrav Weapons",
-      "tag": "AGW"
+      "label": "AGW"
     },
     {
       "id": "wiki/glitchcraft/arrow-prompt-storage/",
+      "uid": "3ME",
       "name": "Arrow Prompt Storage",
-      "tag": "APS"
+      "label": "APS"
     },
     {
       "id": "wiki/glitchcraft/arrow-smuggling/",
+      "uid": "VTO",
       "name": "Arrow Smuggling",
-      "tag": "AS"
+      "label": "AS"
     },
     {
       "id": "wiki/glitchcraft/arrow-unlink/",
+      "uid": "HW8",
       "name": "Arrow Unlink",
-      "tag": "AUL"
+      "label": "AUL"
     },
     {
       "id": "wiki/glitchcraft/arrow-unloading/",
+      "uid": "MW4",
       "name": "Arrow Unloading",
-      "tag": "AU"
+      "label": "AU"
     },
     {
       "id": "wiki/glitchcraft/ascend-camera-glitch/",
+      "uid": "5BC",
       "name": "Ascend Camera Glitch",
-      "tag": "ACG"
+      "label": "ACG"
     },
     {
       "id": "wiki/glitchcraft/ascend-rushing/",
+      "uid": "JWD",
       "name": "Ascend Rushing",
-      "tag": "AR"
+      "label": "AR"
     },
     {
       "id": "wiki/glitchcraft/ascend-storage/",
+      "uid": "1TZ",
       "name": "Ascend Storage",
-      "tag": "ASTR"
+      "label": "ASTR"
     },
     {
       "id": "wiki/glitchcraft/attached-rangeless-active-zonai/",
+      "uid": "ZTD",
       "name": "Attached Rangeless Active Zonai",
-      "tag": "ARAZ"
+      "label": "ARAZ"
     },
     {
       "id": "wiki/glitchcraft/autobuild-cancel-slide/",
+      "uid": "SEO",
       "name": "Autobuild Cancel Slide",
-      "tag": "ABCS"
+      "label": "ABCS"
     },
     {
       "id": "wiki/glitchcraft/autobuild-duplication/",
+      "uid": "BJ0",
       "name": "Autobuild Duplication",
-      "tag": "ABD"
+      "label": "ABD"
     },
     {
       "id": "wiki/glitchcraft/autobuild-storage/",
+      "uid": "W0E",
       "name": "Autobuild Storage",
-      "tag": "ABST"
+      "label": "ABST"
     },
     {
       "id": "wiki/glitchcraft/awakened-master-sword/",
+      "uid": "0UY",
       "name": "Awakened Master Sword",
-      "tag": "AMS"
+      "label": "AMS"
     },
     {
       "id": "wiki/glitchcraft/back-to-back-bloodmoon/",
+      "uid": "DDB",
       "name": "Back to Back Bloodmoon",
-      "tag": "BTBB"
+      "label": "BTBB"
     },
     {
       "id": "wiki/glitchcraft/back-in-time-art/",
+      "uid": "4O8",
       "name": "Back-in-Time Art",
-      "tag": "BIT"
+      "label": "BIT"
     },
     {
       "id": "wiki/glitchcraft/balloon-overload/",
+      "uid": "S6U",
       "name": "Balloon Overload",
-      "tag": "BO"
+      "label": "BO"
     },
     {
       "id": "wiki/glitchcraft/banc-storage/",
+      "uid": "FD4",
       "name": "Banc Storage",
-      "tag": "BS"
+      "label": "BS"
     },
     {
       "id": "wiki/glitchcraft/bomb-skew/",
+      "uid": "EJ4",
       "name": "Bomb Skew",
-      "tag": "BSK"
+      "label": "BSK"
     },
     {
       "id": "wiki/glitchcraft/bow-attachment-desync-bad-arrows/",
+      "uid": "J5Q",
       "name": "Bow Attachment Desync",
-      "tag": "BAD"
+      "label": "BAD"
     },
     {
       "id": "wiki/glitchcraft/bow-attachment-storage/",
+      "uid": "V84",
       "name": "Bow Attachment Storage",
-      "tag": "BAS"
+      "label": "BAS"
     },
     {
       "id": "wiki/glitchcraft/bow-sprinting/",
+      "uid": "SIH",
       "name": "Bow Sprinting",
-      "tag": "BSP"
+      "label": "BSP"
     },
     {
       "id": "wiki/glitchcraft/breaking-awakened-master-sword/",
+      "uid": "NDG",
       "name": "Breaking Awakened Master Sword",
-      "tag": "BAMS"
+      "label": "BAMS"
     },
     {
       "id": "wiki/glitchcraft/bthrow-sprinting/",
+      "uid": "WRH",
       "name": "BThrow Sprinting",
-      "tag": "BTSP"
+      "label": "BTSP"
     },
     {
       "id": "wiki/glitchcraft/bundled-item-duplication/",
+      "uid": "099",
       "name": "Bundled Item Duplication",
-      "tag": "BID"
+      "label": "BID"
     },
     {
       "id": "wiki/glitchcraft/buoy-bouncing/",
+      "uid": "XY5",
       "name": "Buoy Bouncing",
-      "tag": "BB"
+      "label": "BB"
     },
     {
       "id": "wiki/glitchcraft/camera-cfw/",
+      "uid": "4SX",
       "name": "Camera CFW",
-      "tag": "CFW"
+      "label": "CFW"
     },
     {
       "id": "wiki/glitchcraft/camera-pose-glitch/",
+      "uid": "IHC",
       "name": "Camera Pose Glitch",
-      "tag": "CPG"
+      "label": "CPG"
     },
     {
       "id": "wiki/glitchcraft/capsule-cel-shader-removal/",
+      "uid": "GRJ",
       "name": "Capsule Cel Shader Removal",
-      "tag": "CCSR"
+      "label": "CCSR"
     },
     {
       "id": "wiki/glitchcraft/cave-flag-culling/",
+      "uid": "YK3",
       "name": "Cave Flag Culling",
-      "tag": "CFC"
+      "label": "CFC"
     },
     {
       "id": "wiki/glitchcraft/chasm-delay-zuggle/",
+      "uid": "JJB",
       "name": "Chasm Delay Zuggle",
-      "tag": "CDZ"
+      "label": "CDZ"
     },
     {
       "id": "wiki/glitchcraft/chasm-device-dupe/",
+      "uid": "0FH",
       "name": "Chasm Device Dupe",
-      "tag": "CDD"
+      "label": "CDD"
     },
     {
       "id": "wiki/glitchcraft/clear-camera-scope/",
+      "uid": "7DQ",
       "name": "Clear Camera/Scope",
-      "tag": "CCS"
+      "label": "CCS"
     },
     {
       "id": "wiki/glitchcraft/cold-fuse/",
+      "uid": "7KZ",
       "name": "Cold Fuse",
-      "tag": "CF"
+      "label": "CF"
     },
     {
       "id": "wiki/glitchcraft/cold-fuse-stick-desync-clip-cold-fuse-sdc/",
+      "uid": "43H",
       "name": "Cold Fuse Stick Desync Clip",
-      "tag": "CSSDC"
+      "label": "CSSDC"
     },
     {
       "id": "wiki/glitchcraft/construct-fuse-entanglement/",
+      "uid": "TRL",
       "name": "Construct Fuse Entanglement",
-      "tag": "CNFE"
+      "label": "CNFE"
     },
     {
       "id": "wiki/glitchcraft/corrupt-meal/",
+      "uid": "963",
       "name": "Corrupt Meal",
-      "tag": "CM"
+      "label": "CM"
     },
     {
       "id": "wiki/glitchcraft/crouch-sprinting/",
+      "uid": "5IP",
       "name": "Crouch Sprinting",
-      "tag": "CSP"
+      "label": "CSP"
     },
     {
       "id": "wiki/glitchcraft/crouch-throw-tap-sprinting/",
+      "uid": "VKB",
       "name": "Crouch Throw Tap Sprinting",
-      "tag": "CTTS"
+      "label": "CTTS"
     },
     {
       "id": "wiki/glitchcraft/cucco-warping/",
+      "uid": "0EL",
       "name": "Cucco Warping",
-      "tag": "CW"
+      "label": "CW"
     },
     {
       "id": "wiki/glitchcraft/cull-cold-fuse/",
+      "uid": "KXM",
       "name": "Cull Cold Fuse",
-      "tag": "CCF"
+      "label": "CCF"
     },
     {
       "id": "wiki/glitchcraft/cull-equipment-desync/",
+      "uid": "BQL",
       "name": "Cull Equipment Desync",
-      "tag": "CED"
+      "label": "CED"
     },
     {
       "id": "wiki/glitchcraft/cull-fuse-entanglement-cull-fe/",
+      "uid": "7VW",
       "name": "Cull Fuse Entanglement",
-      "tag": "CFE"
+      "label": "CFE"
     },
     {
       "id": "wiki/glitchcraft/cull-launching/",
+      "uid": "BKZ",
       "name": "Cull Launching",
-      "tag": "CL"
+      "label": "CL"
     },
     {
       "id": "wiki/glitchcraft/cull-pickup-dynamic-zuggle/",
+      "uid": "KID",
       "name": "Cull Pickup Dynamic Zuggle",
-      "tag": "CPDZ"
+      "label": "CPDZ"
     },
     {
       "id": "wiki/glitchcraft/cull-smuggle/",
+      "uid": "JAP",
       "name": "Cull Smuggle",
-      "tag": "CSMU"
+      "label": "CSMU"
     },
     {
       "id": "wiki/glitchcraft/cull-storage/",
+      "uid": "7A4",
       "name": "Cull Storage",
-      "tag": "CSTR"
+      "label": "CSTR"
     },
     {
       "id": "wiki/glitchcraft/cull-storage-zuggle/",
+      "uid": "8LV",
       "name": "Cull Storage Zuggle",
-      "tag": "CSZ"
+      "label": "CSZ"
     },
     {
       "id": "wiki/glitchcraft/cull-zone-culling/",
+      "uid": "RID",
       "name": "Cull Zone Culling",
-      "tag": "CZC"
+      "label": "CZC"
     },
     {
       "id": "wiki/glitchcraft/culling-area-fuse-storage/",
+      "uid": "ERN",
       "name": "Culling Area Fuse Storage",
-      "tag": "CAFS"
+      "label": "CAFS"
     },
     {
       "id": "wiki/glitchcraft/culling-area-fuse-storage-fuse-entanglement/",
+      "uid": "IFQ",
       "name": "Culling Area Fuse Storage Fuse Entanglement",
-      "tag": "CFSFE"
+      "label": "CFSFE"
     },
     {
       "id": "wiki/glitchcraft/cutscene-combo-amplifier/",
+      "uid": "M5E",
       "name": "Cutscene Combo Amplifier",
-      "tag": "CCA"
+      "label": "CCA"
     },
     {
       "id": "wiki/glitchcraft/damage-amnesia/",
+      "uid": "HNZ",
       "name": "Damage Amnesia",
-      "tag": "DA"
+      "label": "DA"
     },
     {
       "id": "wiki/glitchcraft/death-persistent-save-load-object-transfer/",
+      "uid": "15K",
       "name": "Death Persistent Save Load Object Transfer",
-      "tag": "DPSLOT"
+      "label": "DPSLOT"
     },
     {
       "id": "wiki/glitchcraft/despawn-interrupt/",
+      "uid": "MG1",
       "name": "Despawn Interrupt",
-      "tag": "DI"
+      "label": "DI"
     },
     {
       "id": "wiki/glitchcraft/detached-rangeless-active-zonai/",
+      "uid": "YM9",
       "name": "Detached Rangeless Active Zonai",
-      "tag": "DRAZ"
+      "label": "DRAZ"
     },
     {
       "id": "wiki/glitchcraft/detanglement/",
+      "uid": "GDL",
       "name": "Detanglement",
-      "tag": "DTG"
+      "label": "DTG"
     },
     {
       "id": "wiki/glitchcraft/dialog-permacull/",
+      "uid": "VLT",
       "name": "Dialog Permacull",
-      "tag": "DPC"
+      "label": "DPC"
     },
     {
       "id": "wiki/glitchcraft/disabled-enemy/",
+      "uid": "WBZ",
       "name": "Disabled Enemy",
-      "tag": "DE"
+      "label": "DE"
     },
     {
       "id": "wiki/glitchcraft/dispenser-storage/",
+      "uid": "F8J",
       "name": "Dispenser Storage",
-      "tag": "DSTR"
+      "label": "DSTR"
     },
     {
       "id": "wiki/glitchcraft/display-duping/",
+      "uid": "RQ7",
       "name": "Display Duping",
-      "tag": "DD"
+      "label": "DD"
     },
     {
       "id": "wiki/glitchcraft/display-master-sword/",
+      "uid": "KJR",
       "name": "Display Master Sword",
-      "tag": "DMS"
+      "label": "DMS"
     },
     {
       "id": "wiki/glitchcraft/dive-cancel-glide-boost/",
+      "uid": "80I",
       "name": "Dive Cancel Glide Boost",
-      "tag": "DCGB"
+      "label": "DCGB"
     },
     {
       "id": "wiki/glitchcraft/double-bypass-zuggle/",
+      "uid": "QXN",
       "name": "Double Bypass Zuggle",
-      "tag": "DBZ"
+      "label": "DBZ"
     },
     {
       "id": "wiki/glitchcraft/double-shield-desync-clip-fuse-entanglement-double-sdc-fe/",
+      "uid": "NMY",
       "name": "Double Shield Desync Clip Fuse Entanglement",
-      "tag": "DSDCFE"
+      "label": "DSDCFE"
     },
     {
       "id": "wiki/glitchcraft/double-tulin-boost/",
+      "uid": "A17",
       "name": "Double Tulin Boost",
-      "tag": "DTB"
+      "label": "DTB"
     },
     {
       "id": "wiki/glitchcraft/double-unfuse-duplicashen/",
+      "uid": "BSN",
       "name": "Double Unfuse Duplicashen",
-      "tag": "DUD"
+      "label": "DUD"
     },
     {
       "id": "wiki/glitchcraft/dpadlock-less-invizuggle/",
+      "uid": "MP9",
       "name": "Dpadlock-less Invizuggle",
-      "tag": "DLIZ"
+      "label": "DLIZ"
     },
     {
       "id": "wiki/glitchcraft/drop-delay-zuggle/",
+      "uid": "BX1",
       "name": "Drop Delay Zuggle",
-      "tag": "DDZ"
+      "label": "DDZ"
     },
     {
       "id": "wiki/glitchcraft/drop-restriction/",
+      "uid": "1AH",
       "name": "Drop Restriction",
-      "tag": "DR"
+      "label": "DR"
     },
     {
       "id": "wiki/glitchcraft/drop-smuggling/",
+      "uid": "CVH",
       "name": "Drop Smuggling",
-      "tag": "DS"
+      "label": "DS"
     },
     {
       "id": "wiki/glitchcraft/drop-zuggle/",
+      "uid": "9HN",
       "name": "Drop Zuggle",
-      "tag": "DZ"
+      "label": "DZ"
     },
     {
       "id": "wiki/glitchcraft/durability/",
+      "uid": "J9U",
       "name": "Durability-",
-      "tag": "DURM"
+      "label": "DURM"
     },
     {
       "id": "wiki/glitchcraft/dynamic-purgatory-zuggle/",
+      "uid": "DLG",
       "name": "Dynamic Purgatory Zuggle",
-      "tag": "DPZ"
+      "label": "DPZ"
     },
     {
       "id": "wiki/glitchcraft/dynamic-zuggle/",
+      "uid": "CNV",
       "name": "Dynamic Zuggle",
-      "tag": "DZG"
+      "label": "DZG"
     },
     {
       "id": "wiki/glitchcraft/enemy-pickpocketing/",
+      "uid": "UVT",
       "name": "Enemy Pickpocketing",
-      "tag": "EP"
+      "label": "EP"
     },
     {
       "id": "wiki/glitchcraft/entanglement-height-glitch/",
+      "uid": "8MP",
       "name": "Entanglement Height Glitch",
-      "tag": "EHG"
+      "label": "EHG"
     },
     {
       "id": "wiki/glitchcraft/equipment-collision-zuggle/",
+      "uid": "8FK",
       "name": "Equipment Collision Zuggle",
-      "tag": "ECZ"
+      "label": "ECZ"
     },
     {
       "id": "wiki/glitchcraft/equipment-mitosis/",
+      "uid": "NZB",
       "name": "Equipment Mitosis",
-      "tag": "EM"
+      "label": "EM"
     },
     {
       "id": "wiki/glitchcraft/equipment-shock-duping/",
+      "uid": "DBF",
       "name": "Equipment Shock Duping",
-      "tag": "ESD"
+      "label": "ESD"
     },
     {
       "id": "wiki/glitchcraft/equipment-smuggle/",
+      "uid": "A9N",
       "name": "Equipment Smuggle",
-      "tag": "ESMU"
+      "label": "ESMU"
     },
     {
       "id": "wiki/glitchcraft/equipped-throken/",
+      "uid": "6UC",
       "name": "Equipped Throken",
-      "tag": "ETHK"
+      "label": "ETHK"
     },
     {
       "id": "wiki/glitchcraft/extended-throw-sprinting/",
+      "uid": "F20",
       "name": "Extended Throw Sprinting",
-      "tag": "ETSP"
+      "label": "ETSP"
     },
     {
       "id": "wiki/glitchcraft/fall-damage-cancel/",
+      "uid": "QVO",
       "name": "Fall Damage Cancel",
-      "tag": "FDC"
+      "label": "FDC"
     },
     {
       "id": "wiki/glitchcraft/floorping/",
+      "uid": "Z63",
       "name": "Floorping",
-      "tag": "FLP"
+      "label": "FLP"
     },
     {
       "id": "wiki/glitchcraft/food-ability-buff-swap/",
+      "uid": "U0U",
       "name": "Food Ability Buff Swap",
-      "tag": "FABS"
+      "label": "FABS"
     },
     {
       "id": "wiki/glitchcraft/force-equip-zuggling/",
+      "uid": "3RI",
       "name": "Force Equip Zuggling",
-      "tag": "FEZ"
+      "label": "FEZ"
     },
     {
       "id": "wiki/glitchcraft/forced-blood-moon/",
+      "uid": "73L",
       "name": "Forced Blood Moon",
-      "tag": "FBM"
+      "label": "FBM"
     },
     {
       "id": "wiki/glitchcraft/freecall/",
+      "uid": "JNU",
       "name": "Freecall",
-      "tag": "FC"
+      "label": "FC"
     },
     {
       "id": "wiki/glitchcraft/fuse-entangle-drop-zuggle/",
+      "uid": "A4A",
       "name": "Fuse Entangle Drop Zuggle",
-      "tag": "FEDZ"
+      "label": "FEDZ"
     },
     {
       "id": "wiki/glitchcraft/fuse-entangle-weapon-zuggle/",
+      "uid": "L0R",
       "name": "Fuse Entangle Weapon Zuggle",
-      "tag": "FEWZ"
+      "label": "FEWZ"
     },
     {
       "id": "wiki/glitchcraft/fuse-entanglement/",
+      "uid": "K4F",
       "name": "Fuse Entanglement",
-      "tag": "FE"
+      "label": "FE"
     },
     {
       "id": "wiki/glitchcraft/fuse-entanglement-clipping/",
+      "uid": "Z2Z",
       "name": "Fuse Entanglement Clipping",
-      "tag": "FEC"
+      "label": "FEC"
     },
     {
       "id": "wiki/glitchcraft/fuse-entanglement-desync/",
+      "uid": "J43",
       "name": "Fuse Entanglement Desync",
-      "tag": "FED"
+      "label": "FED"
     },
     {
       "id": "wiki/glitchcraft/fuse-entanglement-drop-smuggling/",
+      "uid": "N1T",
       "name": "Fuse Entanglement Drop Smuggling",
-      "tag": "FEDS"
+      "label": "FEDS"
     },
     {
       "id": "wiki/glitchcraft/fuse-overload/",
+      "uid": "76A",
       "name": "Fuse Overload",
-      "tag": "FO"
+      "label": "FO"
     },
     {
       "id": "wiki/glitchcraft/fuse-overload-fuse-entanglement/",
+      "uid": "G8Q",
       "name": "Fuse Overload Fuse Entanglement",
-      "tag": "FOFE"
+      "label": "FOFE"
     },
     {
       "id": "wiki/glitchcraft/fuse-storage/",
+      "uid": "JUJ",
       "name": "Fuse Storage",
-      "tag": "FS"
+      "label": "FS"
     },
     {
       "id": "wiki/glitchcraft/fuse-storage-fuse-entanglement/",
+      "uid": "HQF",
       "name": "Fuse Storage Fuse Entanglement",
-      "tag": "FSFE"
+      "label": "FSFE"
     },
     {
       "id": "wiki/glitchcraft/gas-launching/",
+      "uid": "N15",
       "name": "GAS Launching",
-      "tag": "GASL"
+      "label": "GASL"
     },
     {
       "id": "wiki/glitchcraft/gas-warping/",
+      "uid": "S8G",
       "name": "GAS Warping",
-      "tag": "GASW"
+      "label": "GASW"
     },
     {
       "id": "wiki/glitchcraft/ghost-save-load-object-transfer/",
+      "uid": "WLM",
       "name": "Ghost Save Load Object Transfer",
-      "tag": "GSLOT"
+      "label": "GSLOT"
     },
     {
       "id": "wiki/glitchcraft/ghost-stick-clipping/",
+      "uid": "MZA",
       "name": "Ghost Stick Clipping",
-      "tag": "GSC"
+      "label": "GSC"
     },
     {
       "id": "wiki/glitchcraft/glue-removal/",
+      "uid": "WJS",
       "name": "Glue Removal",
-      "tag": "GR"
+      "label": "GR"
     },
     {
       "id": "wiki/glitchcraft/guard-less-active-shield/",
+      "uid": "ZJ2",
       "name": "Guard-less Active Shield",
-      "tag": "GAS"
+      "label": "GAS"
     },
     {
       "id": "wiki/glitchcraft/hand-locked-equipment-smuggling/",
+      "uid": "XK9",
       "name": "Hand Locked Equipment Smuggling",
-      "tag": "HLES"
+      "label": "HLES"
     },
     {
       "id": "wiki/glitchcraft/handy-job/",
+      "uid": "OE5",
       "name": "Handy Job",
-      "tag": "HJ"
+      "label": "HJ"
     },
     {
       "id": "wiki/glitchcraft/hero-path-link-storage/",
+      "uid": "YIS",
       "name": "Hero Path Link Storage",
-      "tag": "HPLS"
+      "label": "HPLS"
     },
     {
       "id": "wiki/glitchcraft/hestu-scamming/",
+      "uid": "U1A",
       "name": "Hestu Scamming",
-      "tag": "HSCA"
+      "label": "HSCA"
     },
     {
       "id": "wiki/glitchcraft/hold-smuggling/",
+      "uid": "DHQ",
       "name": "Hold Smuggling",
-      "tag": "HSM"
+      "label": "HSM"
     },
     {
       "id": "wiki/glitchcraft/hold-storage/",
+      "uid": "FQ7",
       "name": "Hold Storage",
-      "tag": "HS"
+      "label": "HS"
     },
     {
       "id": "wiki/glitchcraft/hold-storage-duplication-also-known-as-minus-dupe/",
+      "uid": "WEI",
       "name": "Hold Storage Duplication",
-      "tag": "HSD"
+      "label": "HSD"
     },
     {
       "id": "wiki/glitchcraft/horse-duping/",
+      "uid": "6H4",
       "name": "Horse Duping",
-      "tag": "HD"
+      "label": "HD"
     },
     {
       "id": "wiki/glitchcraft/hydro-clipping/",
+      "uid": "LYO",
       "name": "Hydro Clipping",
-      "tag": "HC"
+      "label": "HC"
     },
     {
       "id": "wiki/glitchcraft/infinite-balloon/",
+      "uid": "ZBB",
       "name": "Infinite Balloon",
-      "tag": "IBAL"
+      "label": "IBAL"
     },
     {
       "id": "wiki/glitchcraft/infinite-bubbul-frog-gems/",
+      "uid": "TN5",
       "name": "Infinite Bubbul Frog Gems",
-      "tag": "IBFG"
+      "label": "IBFG"
     },
     {
       "id": "wiki/glitchcraft/infinite-damage/",
+      "uid": "BVJ",
       "name": "Infinite Damage",
-      "tag": "IDMG"
+      "label": "IDMG"
     },
     {
       "id": "wiki/glitchcraft/infinite-damage-2-0/",
+      "uid": "M8L",
       "name": "Infinite Damage 2.0",
-      "tag": "ID2"
+      "label": "ID2"
     },
     {
       "id": "wiki/glitchcraft/infinite-height/",
+      "uid": "UN7",
       "name": "Infinite Height",
-      "tag": "IH"
+      "label": "IH"
     },
     {
       "id": "wiki/glitchcraft/inventory-shift-duplication/",
+      "uid": "12S",
       "name": "Inventory Shift Duplication",
-      "tag": "ISD"
+      "label": "ISD"
     },
     {
       "id": "wiki/glitchcraft/invizuggle/",
+      "uid": "7DA",
       "name": "Invizuggle",
-      "tag": "IZ"
+      "label": "IZ"
     },
     {
       "id": "wiki/glitchcraft/item-save-load-transfer/",
+      "uid": "VDD",
       "name": "Item Save Load Transfer",
-      "tag": "ISLT"
+      "label": "ISLT"
     },
     {
       "id": "wiki/glitchcraft/item-throw-hitbox-disable/",
+      "uid": "W10",
       "name": "Item Throw Hitbox Disable",
-      "tag": "ITHD"
+      "label": "ITHD"
     },
     {
       "id": "wiki/glitchcraft/jumpslash-cancel-clipping/",
+      "uid": "51R",
       "name": "Jumpslash Cancel Clipping",
-      "tag": "JCC"
+      "label": "JCC"
     },
     {
       "id": "wiki/glitchcraft/jumpslash-canceling/",
+      "uid": "WMG",
       "name": "Jumpslash Canceling",
-      "tag": "JSC"
+      "label": "JSC"
     },
     {
       "id": "wiki/glitchcraft/kilovictor-s-quicksmuggle/",
+      "uid": "362",
       "name": "Kilovictor's quicksmuggle",
-      "tag": "KVQS"
+      "label": "KVQS"
     },
     {
       "id": "wiki/glitchcraft/kinematic-weapons/",
+      "uid": "OO2",
       "name": "Kinematic Weapons",
-      "tag": "KW"
+      "label": "KW"
     },
     {
       "id": "wiki/glitchcraft/l-sprinting/",
+      "uid": "CB1",
       "name": "L Sprinting",
-      "tag": "LSP"
+      "label": "LSP"
     },
     {
       "id": "wiki/glitchcraft/lag-machines/",
+      "uid": "93G",
       "name": "Lag Machines",
-      "tag": "LM"
+      "label": "LM"
     },
     {
       "id": "wiki/glitchcraft/laser-oob/",
+      "uid": "RHC",
       "name": "Laser-OOB",
-      "tag": "LOOB"
+      "label": "LOOB"
     },
     {
       "id": "wiki/glitchcraft/lift-fuse-interrupt/",
+      "uid": "TC3",
       "name": "Lift Fuse Interrupt",
-      "tag": "LFI"
+      "label": "LFI"
     },
     {
       "id": "wiki/glitchcraft/lift-smuggle/",
+      "uid": "46A",
       "name": "Lift Smuggle",
-      "tag": "LSMU"
+      "label": "LSMU"
     },
     {
       "id": "wiki/glitchcraft/lift-storage-warping/",
+      "uid": "MUY",
       "name": "Lift Storage Warping",
-      "tag": "LSW"
+      "label": "LSW"
     },
     {
       "id": "wiki/glitchcraft/lift-warping/",
+      "uid": "2C6",
       "name": "Lift Warping",
-      "tag": "LW"
+      "label": "LW"
     },
     {
       "id": "wiki/glitchcraft/like-like-new-textbox-softlock/",
+      "uid": "8TU",
       "name": "Like Like New Textbox Softlock",
-      "tag": "LLTS"
+      "label": "LLTS"
     },
     {
       "id": "wiki/glitchcraft/like-like-culling/",
+      "uid": "M00",
       "name": "Like-Like Culling",
-      "tag": "LLC"
+      "label": "LLC"
     },
     {
       "id": "wiki/glitchcraft/like-like-drop-smuggling/",
+      "uid": "6GR",
       "name": "Like-Like Drop Smuggling",
-      "tag": "LLDS"
+      "label": "LLDS"
     },
     {
       "id": "wiki/glitchcraft/like-like-fsfe/",
+      "uid": "HFE",
       "name": "Like-Like FSFE",
-      "tag": "LLFSFE"
+      "label": "LLFSFE"
     },
     {
       "id": "wiki/glitchcraft/like-like-fuse-storage/",
+      "uid": "JV6",
       "name": "Like-Like Fuse Storage",
-      "tag": "LLFS"
+      "label": "LLFS"
     },
     {
       "id": "wiki/glitchcraft/like-like-smuggle-desync-lsd/",
+      "uid": "F51",
       "name": "Like-Like Smuggle Desync",
-      "tag": "LLSD"
+      "label": "LLSD"
     },
     {
       "id": "wiki/glitchcraft/like-like-smuggling/",
+      "uid": "GLW",
       "name": "Like-Like Smuggling",
-      "tag": "LLS"
+      "label": "LLS"
     },
     {
       "id": "wiki/glitchcraft/like-like-stick-smuggling/",
+      "uid": "6KV",
       "name": "Like-Like Stick Smuggling",
-      "tag": "LLSS"
+      "label": "LLSS"
     },
     {
       "id": "wiki/glitchcraft/like-like-warping/",
+      "uid": "O04",
       "name": "Like-Like Warping",
-      "tag": "LLW"
+      "label": "LLW"
     },
     {
       "id": "wiki/glitchcraft/like-like-zuggling/",
+      "uid": "SQF",
       "name": "Like-Like Zuggling",
-      "tag": "LLZ"
+      "label": "LLZ"
     },
     {
       "id": "wiki/glitchcraft/long-jump/",
+      "uid": "OII",
       "name": "Long Jump",
-      "tag": "LJ"
+      "label": "LJ"
     },
     {
       "id": "wiki/glitchcraft/map-flickering/",
+      "uid": "I91",
       "name": "Map Flickering",
-      "tag": "MF"
+      "label": "MF"
     },
     {
       "id": "wiki/glitchcraft/map-storage/",
+      "uid": "OT8",
       "name": "Map Storage",
-      "tag": "MSTR"
+      "label": "MSTR"
     },
     {
       "id": "wiki/glitchcraft/map-zuggling/",
+      "uid": "D55",
       "name": "Map Zuggling",
-      "tag": "MZ"
+      "label": "MZ"
     },
     {
       "id": "wiki/glitchcraft/mass-amnesia/",
+      "uid": "MLG",
       "name": "Mass Amnesia",
-      "tag": "MA"
+      "label": "MA"
     },
     {
       "id": "wiki/glitchcraft/master-sword-liberation/",
+      "uid": "IK1",
       "name": "Master Sword Liberation",
-      "tag": "MSL"
+      "label": "MSL"
     },
     {
       "id": "wiki/glitchcraft/master-sword-zuggling-decayed-master-sword-zuggling/",
+      "uid": "5RG",
       "name": "Master Sword Zuggling / Decayed Master Sword Zuggling",
-      "tag": "MSZ"
+      "label": "MSZ"
     },
     {
       "id": "wiki/glitchcraft/memory-buffering/",
+      "uid": "UWY",
       "name": "Memory Buffering",
-      "tag": "MB"
+      "label": "MB"
     },
     {
       "id": "wiki/glitchcraft/memory-interrupt/",
+      "uid": "BVN",
       "name": "Memory Interrupt",
-      "tag": "MI"
+      "label": "MI"
     },
     {
       "id": "wiki/glitchcraft/menu-overload/",
+      "uid": "BK4",
       "name": "Menu Overload",
-      "tag": "MO"
+      "label": "MO"
     },
     {
       "id": "wiki/glitchcraft/message-not-found/",
+      "uid": "056",
       "name": "Message Not Found",
-      "tag": "MNF"
+      "label": "MNF"
     },
     {
       "id": "wiki/glitchcraft/midair-item-transmutation/",
+      "uid": "7P8",
       "name": "Midair Item Transmutation",
-      "tag": "MIT"
+      "label": "MIT"
     },
     {
       "id": "wiki/glitchcraft/midair-sort-duplication/",
+      "uid": "8MN",
       "name": "Midair Sort Duplication",
-      "tag": "MSD"
+      "label": "MSD"
     },
     {
       "id": "wiki/glitchcraft/midair-throw-duplication/",
+      "uid": "5A5",
       "name": "Midair Throw Duplication",
-      "tag": "MTD"
+      "label": "MTD"
     },
     {
       "id": "wiki/glitchcraft/minecart-rail-collision-launching/",
+      "uid": "74J",
       "name": "Minecart Rail Collision Launching",
-      "tag": "MRCL"
+      "label": "MRCL"
     },
     {
       "id": "wiki/glitchcraft/mineru-ability-desync/",
+      "uid": "X9I",
       "name": "Mineru Ability Desync",
-      "tag": "MAD"
+      "label": "MAD"
     },
     {
       "id": "wiki/glitchcraft/mineru-aim-permanence/",
+      "uid": "A4S",
       "name": "Mineru Aim Permanence",
-      "tag": "MAIP"
+      "label": "MAIP"
     },
     {
       "id": "wiki/glitchcraft/mineru-cull-storage/",
+      "uid": "7ZD",
       "name": "Mineru Cull Storage",
-      "tag": "MCS"
+      "label": "MCS"
     },
     {
       "id": "wiki/glitchcraft/mineru-culling/",
+      "uid": "BY4",
       "name": "Mineru Culling",
-      "tag": "MC"
+      "label": "MC"
     },
     {
       "id": "wiki/glitchcraft/mineru-fuse-entanglement/",
+      "uid": "IG2",
       "name": "Mineru Fuse Entanglement",
-      "tag": "MFE"
+      "label": "MFE"
     },
     {
       "id": "wiki/glitchcraft/mineru-hold-smuggle/",
+      "uid": "12A",
       "name": "Mineru Hold Smuggle",
-      "tag": "MHS"
+      "label": "MHS"
     },
     {
       "id": "wiki/glitchcraft/mineru-persistent-save-load-object-transfer/",
+      "uid": "KZ4",
       "name": "Mineru Persistent Save Load Object Transfer",
-      "tag": "MPSLOT"
+      "label": "MPSLOT"
     },
     {
       "id": "wiki/glitchcraft/mineru-text-storage/",
+      "uid": "O3G",
       "name": "Mineru Text Storage",
-      "tag": "MTS"
+      "label": "MTS"
     },
     {
       "id": "wiki/glitchcraft/mnf-fusing/",
+      "uid": "CO6",
       "name": "MNF Fusing",
-      "tag": "MNFF"
+      "label": "MNFF"
     },
     {
       "id": "wiki/glitchcraft/mnf-glow-overload/",
+      "uid": "H2E",
       "name": "MNF Glow Overload",
-      "tag": "MGO"
+      "label": "MGO"
     },
     {
       "id": "wiki/glitchcraft/mnf-zuggle-fuse/",
+      "uid": "JCJ",
       "name": "MNF Zuggle Fuse",
-      "tag": "MZF"
+      "label": "MZF"
     },
     {
       "id": "wiki/glitchcraft/model-teleport-desync/",
+      "uid": "XN2",
       "name": "Model Teleport Desync",
-      "tag": "MTPD"
+      "label": "MTPD"
     },
     {
       "id": "wiki/glitchcraft/modifier-deletion-weapon-state-transfer-modifier-deletion-wst/",
+      "uid": "ZBS",
       "name": "Modifier Deletion Weapon State Transfer",
-      "tag": "MDWST"
+      "label": "MDWST"
     },
     {
       "id": "wiki/glitchcraft/modifier-only-transfer/",
+      "uid": "DUS",
       "name": "Modifier ONLY Transfer",
-      "tag": "MOT"
+      "label": "MOT"
     },
     {
       "id": "wiki/glitchcraft/moe-enlargement/",
+      "uid": "DNU",
       "name": "Moe Enlargement",
-      "tag": "ME"
+      "label": "ME"
     },
     {
       "id": "wiki/glitchcraft/moobe-warping/",
+      "uid": "V9V",
       "name": "Moobe Warping",
-      "tag": "MW"
+      "label": "MW"
     },
     {
       "id": "wiki/glitchcraft/mount-lock/",
+      "uid": "540",
       "name": "Mount Lock",
-      "tag": "ML"
+      "label": "ML"
     },
     {
       "id": "wiki/glitchcraft/mozdor-jumping-slashing/",
+      "uid": "EWY",
       "name": "Mozdor Jumping/Slashing",
-      "tag": "MJS"
+      "label": "MJS"
     },
     {
       "id": "wiki/glitchcraft/msnf-glowing/",
+      "uid": "D8R",
       "name": "MSNF glowing",
-      "tag": "MNFG"
+      "label": "MNFG"
     },
     {
       "id": "wiki/glitchcraft/mulberry-s-out-of-body-experience/",
+      "uid": "00I",
       "name": "Mulberry's Out of Body Experience",
-      "tag": "MOOBE"
+      "label": "MOOBE"
     },
     {
       "id": "wiki/glitchcraft/new-item-desync-equipment-duping/",
+      "uid": "MRB",
       "name": "New Item Desync",
-      "tag": "NID"
+      "label": "NID"
     },
     {
       "id": "wiki/glitchcraft/no-bow-sprinting/",
+      "uid": "PAE",
       "name": "No Bow Sprinting",
-      "tag": "NBSP"
+      "label": "NBSP"
     },
     {
       "id": "wiki/glitchcraft/null-dropping/",
+      "uid": "IWQ",
       "name": "Null Dropping",
-      "tag": "ND"
+      "label": "ND"
     },
     {
       "id": "wiki/glitchcraft/object-culling/",
+      "uid": "M7L",
       "name": "Object Culling",
-      "tag": "OC"
+      "label": "OC"
     },
     {
       "id": "wiki/glitchcraft/ocklusion/",
+      "uid": "KFV",
       "name": "Ocklusion",
-      "tag": "OCKL"
+      "label": "OCKL"
     },
     {
       "id": "wiki/glitchcraft/ocklusion-hovering/",
+      "uid": "E0G",
       "name": "Ocklusion Hovering",
-      "tag": "OCKH"
+      "label": "OCKH"
     },
     {
       "id": "wiki/glitchcraft/octo-balloon-detanglement/",
+      "uid": "B3B",
       "name": "Octo-balloon Detanglement",
-      "tag": "OBD"
+      "label": "OBD"
     },
     {
       "id": "wiki/glitchcraft/octodupe/",
+      "uid": "4R4",
       "name": "Octodupe",
-      "tag": "OD"
+      "label": "OD"
     },
     {
       "id": "wiki/glitchcraft/overload-at-home-aka-pickup-overload/",
+      "uid": "7S4",
       "name": "Overload at Home",
-      "tag": "OAH"
+      "label": "OAH"
     },
     {
       "id": "wiki/glitchcraft/overload-cold-fuse/",
+      "uid": "O64",
       "name": "Overload Cold Fuse",
-      "tag": "OCF"
+      "label": "OCF"
     },
     {
       "id": "wiki/glitchcraft/overload-drop-smuggling/",
+      "uid": "J9Y",
       "name": "Overload Drop Smuggling",
-      "tag": "ODS"
+      "label": "ODS"
     },
     {
       "id": "wiki/glitchcraft/overload-dynamic-zuggle/",
+      "uid": "AZT",
       "name": "Overload Dynamic Zuggle",
-      "tag": "ODZGL"
+      "label": "ODZGL"
     },
     {
       "id": "wiki/glitchcraft/overload-fuse-entanglement/",
+      "uid": "0XV",
       "name": "Overload Fuse Entanglement",
-      "tag": "OFE"
+      "label": "OFE"
     },
     {
       "id": "wiki/glitchcraft/overload-persistent-save-load-object-transfer/",
+      "uid": "LJH",
       "name": "Overload Persistent Save Load Object Transfer",
-      "tag": "OPSLOT"
+      "label": "OPSLOT"
     },
     {
       "id": "wiki/glitchcraft/pelison-duping/",
+      "uid": "WWV",
       "name": "Pelison Duping",
-      "tag": "PD"
+      "label": "PD"
     },
     {
       "id": "wiki/glitchcraft/persistent-save-load-object-transfer/",
+      "uid": "BOF",
       "name": "Persistent Save Load Object Transfer",
-      "tag": "PSLOT"
+      "label": "PSLOT"
     },
     {
       "id": "wiki/glitchcraft/pickup-smuggling/",
+      "uid": "Q7V",
       "name": "Pickup Smuggling",
-      "tag": "PSMU"
+      "label": "PSMU"
     },
     {
       "id": "wiki/glitchcraft/pocket-rocket/",
+      "uid": "1OP",
       "name": "Pocket Rocket",
-      "tag": "PR"
+      "label": "PR"
     },
     {
       "id": "wiki/glitchcraft/portable-cull-save-load-dupe-portacull-sld/",
+      "uid": "GFW",
       "name": "Portable Cull Save Load Dupe",
-      "tag": "PSLD"
+      "label": "PSLD"
     },
     {
       "id": "wiki/glitchcraft/portable-culling/",
+      "uid": "LMB",
       "name": "Portable Culling",
-      "tag": "PC"
+      "label": "PC"
     },
     {
       "id": "wiki/glitchcraft/portacull-invismuggle/",
+      "uid": "OJU",
       "name": "Portacull Invismuggle",
-      "tag": "PCIS"
+      "label": "PCIS"
     },
     {
       "id": "wiki/glitchcraft/prologue-escape/",
+      "uid": "F4G",
       "name": "Prologue Escape",
-      "tag": "PE"
+      "label": "PE"
     },
     {
       "id": "wiki/glitchcraft/proxy-glitches/",
+      "uid": "WWW",
       "name": "Proxy Glitches",
-      "tag": "PG"
+      "label": "PG"
     },
     {
       "id": "wiki/glitchcraft/purgatory-save-load-dupe/",
+      "uid": "EYH",
       "name": "Purgatory Save Load Dupe",
-      "tag": "PGSLD"
+      "label": "PGSLD"
     },
     {
       "id": "wiki/glitchcraft/pyroculling/",
+      "uid": "9R8",
       "name": "Pyroculling",
-      "tag": "PYRC"
+      "label": "PYRC"
     },
     {
       "id": "wiki/glitchcraft/quantum-linking/",
+      "uid": "PII",
       "name": "Quantum Linking",
-      "tag": "QL"
+      "label": "QL"
     },
     {
       "id": "wiki/glitchcraft/quick-drop-smuggle/",
+      "uid": "OTD",
       "name": "Quick Drop Smuggle",
-      "tag": "QDS"
+      "label": "QDS"
     },
     {
       "id": "wiki/glitchcraft/quick-smuggling/",
+      "uid": "2D4",
       "name": "Quick Smuggling",
-      "tag": "QS"
+      "label": "QS"
     },
     {
       "id": "wiki/glitchcraft/reball/",
+      "uid": "93U",
       "name": "Reball",
-      "tag": "RBL"
+      "label": "RBL"
     },
     {
       "id": "wiki/glitchcraft/recall-cancel/",
+      "uid": "CC5",
       "name": "Recall Cancel",
-      "tag": "RCC"
+      "label": "RCC"
     },
     {
       "id": "wiki/glitchcraft/recall-clip/",
+      "uid": "VDU",
       "name": "Recall Clip",
-      "tag": "RC"
+      "label": "RC"
     },
     {
       "id": "wiki/glitchcraft/recall-drop-stacking/",
+      "uid": "9C0",
       "name": "Recall Drop Stacking",
-      "tag": "RDS"
+      "label": "RDS"
     },
     {
       "id": "wiki/glitchcraft/recall-launch/",
+      "uid": "J5A",
       "name": "Recall Launch",
-      "tag": "RLNCH"
+      "label": "RLNCH"
     },
     {
       "id": "wiki/glitchcraft/recall-locking/",
+      "uid": "EY8",
       "name": "Recall Locking",
-      "tag": "RL"
+      "label": "RL"
     },
     {
       "id": "wiki/glitchcraft/recall-sluggle/",
+      "uid": "WXE",
       "name": "Recall Sluggle",
-      "tag": "RSL"
+      "label": "RSL"
     },
     {
       "id": "wiki/glitchcraft/recall-telekinesis/",
+      "uid": "1ZI",
       "name": "Recall Telekinesis",
-      "tag": "RTK"
+      "label": "RTK"
     },
     {
       "id": "wiki/glitchcraft/recipe-storage/",
+      "uid": "60D",
       "name": "Recipe Storage",
-      "tag": "RS"
+      "label": "RS"
     },
     {
       "id": "wiki/glitchcraft/remote-arrow-trap/",
+      "uid": "ZJF",
       "name": "Remote Arrow",
-      "tag": "RAT"
+      "label": "RAT"
     },
     {
       "id": "wiki/glitchcraft/replacement-actor-fuse-entanglement/",
+      "uid": "E2K",
       "name": "Replacement Actor Fuse Entanglement",
-      "tag": "RAFE"
+      "label": "RAFE"
     },
     {
       "id": "wiki/glitchcraft/resync-fuse-entanglement-resync-fe/",
+      "uid": "GPN",
       "name": "Resync Fuse Entanglement",
-      "tag": "RFE"
+      "label": "RFE"
     },
     {
       "id": "wiki/glitchcraft/reverse-ascend-storage/",
+      "uid": "70D",
       "name": "Reverse Ascend Storage",
-      "tag": "RAS"
+      "label": "RAS"
     },
     {
       "id": "wiki/glitchcraft/sage-madness/",
+      "uid": "I6X",
       "name": "Sage Madness",
-      "tag": "SM"
+      "label": "SM"
     },
     {
       "id": "wiki/glitchcraft/sage-recycling/",
+      "uid": "4BI",
       "name": "Sage Recycling",
-      "tag": "SRCY"
+      "label": "SRCY"
     },
     {
       "id": "wiki/glitchcraft/save-load-dupe/",
+      "uid": "P2F",
       "name": "Save Load Dupe",
-      "tag": "SLD"
+      "label": "SLD"
     },
     {
       "id": "wiki/glitchcraft/save-load-zuggling/",
+      "uid": "HV7",
       "name": "Save Load Zuggling",
-      "tag": "SLZ"
+      "label": "SLZ"
     },
     {
       "id": "wiki/glitchcraft/scope-render-cancel/",
+      "uid": "O9Q",
       "name": "Scope Render Cancel",
-      "tag": "SRC"
+      "label": "SRC"
     },
     {
       "id": "wiki/glitchcraft/shadow-void-icons/",
+      "uid": "34T",
       "name": "Shadow/Void Icons",
-      "tag": "SVI"
+      "label": "SVI"
     },
     {
       "id": "wiki/glitchcraft/shock-cold-fuse/",
+      "uid": "EKY",
       "name": "Shock Cold Fuse",
-      "tag": "SCF"
+      "label": "SCF"
     },
     {
       "id": "wiki/glitchcraft/shock-effect-overload/",
+      "uid": "X5Y",
       "name": "Shock Effect Overload",
-      "tag": "SEO"
+      "label": "SEO"
     },
     {
       "id": "wiki/glitchcraft/shock-fuse-entanglement/",
+      "uid": "ERF",
       "name": "Shock Fuse Entanglement",
-      "tag": "SFE"
+      "label": "SFE"
     },
     {
       "id": "wiki/glitchcraft/shock-smuggle/",
+      "uid": "61Q",
       "name": "Shock Smuggle",
-      "tag": "SSMU"
+      "label": "SSMU"
     },
     {
       "id": "wiki/glitchcraft/shrunken-actors/",
+      "uid": "DMF",
       "name": "Shrunken Actors",
-      "tag": "SA"
+      "label": "SA"
     },
     {
       "id": "wiki/glitchcraft/slate-storage/",
+      "uid": "K7J",
       "name": "Slate Storage",
-      "tag": "SLST"
+      "label": "SLST"
     },
     {
       "id": "wiki/glitchcraft/slugging/",
+      "uid": "0QL",
       "name": "Slugging",
-      "tag": "SLG"
+      "label": "SLG"
     },
     {
       "id": "wiki/glitchcraft/smuggle-retrieval/",
+      "uid": "S3N",
       "name": "Smuggle Retrieval",
-      "tag": "SRET"
+      "label": "SRET"
     },
     {
       "id": "wiki/glitchcraft/smuggle-stacking-zuggle/",
+      "uid": "DN4",
       "name": "Smuggle Stacking Zuggle",
-      "tag": "SSZ"
+      "label": "SSZ"
     },
     {
       "id": "wiki/glitchcraft/split-item-duplication/",
+      "uid": "E75",
       "name": "Split Item Duplication",
-      "tag": "SID"
+      "label": "SID"
     },
     {
       "id": "wiki/glitchcraft/spring-fall-damage-cancel/",
+      "uid": "CFX",
       "name": "Spring Fall Damage Cancel",
-      "tag": "SFDC"
+      "label": "SFDC"
     },
     {
       "id": "wiki/glitchcraft/spring-strangeness/",
+      "uid": "J2D",
       "name": "Spring Strangeness",
-      "tag": "STRS"
+      "label": "STRS"
     },
     {
       "id": "wiki/glitchcraft/springboard-clipping/",
+      "uid": "SU2",
       "name": "Springboard Clipping",
-      "tag": "SBC"
+      "label": "SBC"
     },
     {
       "id": "wiki/glitchcraft/springboarding/",
+      "uid": "OUX",
       "name": "Springboarding",
-      "tag": "SBRD"
+      "label": "SBRD"
     },
     {
       "id": "wiki/glitchcraft/springdolling/",
+      "uid": "9OA",
       "name": "Springdolling",
-      "tag": "SDOL"
+      "label": "SDOL"
     },
     {
       "id": "wiki/glitchcraft/stack-splitting/",
+      "uid": "WFM",
       "name": "Stack Splitting",
-      "tag": "SSPL"
+      "label": "SSPL"
     },
     {
       "id": "wiki/glitchcraft/stamina-depletion-freeze/",
+      "uid": "XH0",
       "name": "Stamina Depletion Freeze",
-      "tag": "SDF"
+      "label": "SDF"
     },
     {
       "id": "wiki/glitchcraft/stick-desync-clip/",
+      "uid": "L54",
       "name": "Stick Desync Clip",
-      "tag": "SDC"
+      "label": "SDC"
     },
     {
       "id": "wiki/glitchcraft/sticky-dynamic-purgatory/",
+      "uid": "N2K",
       "name": "Sticky Dynamic Purgatory",
-      "tag": "SDP"
+      "label": "SDP"
     },
     {
       "id": "wiki/glitchcraft/super-bomb-jump/",
+      "uid": "W2H",
       "name": "Super Bomb Jump",
-      "tag": "SBJ"
+      "label": "SBJ"
     },
     {
       "id": "wiki/glitchcraft/super-fuse-overload/",
+      "uid": "TX4",
       "name": "Super Fuse Overload",
-      "tag": "SFO"
+      "label": "SFO"
     },
     {
       "id": "wiki/glitchcraft/surf-storage/",
+      "uid": "ARP",
       "name": "Surf storage",
-      "tag": "SSTR"
+      "label": "SSTR"
     },
     {
       "id": "wiki/glitchcraft/swap-resync/",
+      "uid": "A0R",
       "name": "Swap Resync",
-      "tag": "SR"
+      "label": "SR"
     },
     {
       "id": "wiki/glitchcraft/swap-resync-zuggle/",
+      "uid": "XTY",
       "name": "Swap Resync Zuggle",
-      "tag": "SRZ"
+      "label": "SRZ"
     },
     {
       "id": "wiki/glitchcraft/temporary-devices/",
+      "uid": "DGS",
       "name": "Temporary Devices",
-      "tag": "TD"
+      "label": "TD"
     },
     {
       "id": "wiki/glitchcraft/texture-tearing/",
+      "uid": "11M",
       "name": "Texture Tearing",
-      "tag": "TT"
+      "label": "TT"
     },
     {
       "id": "wiki/glitchcraft/throken/",
+      "uid": "M1W",
       "name": "Throken",
-      "tag": "THK"
+      "label": "THK"
     },
     {
       "id": "wiki/glitchcraft/throw-cancelling/",
+      "uid": "TK3",
       "name": "Throw Cancelling",
-      "tag": "TC"
+      "label": "TC"
     },
     {
       "id": "wiki/glitchcraft/throw-tap-sprinting/",
+      "uid": "QME",
       "name": "Throw Tap Sprinting",
-      "tag": "TTS"
+      "label": "TTS"
     },
     {
       "id": "wiki/glitchcraft/throwless-storage/",
+      "uid": "OL9",
       "name": "Throwless Storage",
-      "tag": "THS"
+      "label": "THS"
     },
     {
       "id": "wiki/glitchcraft/time-bomb-cancel/",
+      "uid": "7Y9",
       "name": "Time Bomb cancel",
-      "tag": "TBC"
+      "label": "TBC"
     },
     {
       "id": "wiki/glitchcraft/toti-saucery/",
+      "uid": "YTR",
       "name": "Toti Saucery",
-      "tag": "TOTS"
+      "label": "TOTS"
     },
     {
       "id": "wiki/glitchcraft/travel-medallion-storage/",
+      "uid": "QSY",
       "name": "Travel Medallion Storage",
-      "tag": "TMS"
+      "label": "TMS"
     },
     {
       "id": "wiki/glitchcraft/tulin-pumping/",
+      "uid": "75S",
       "name": "Tulin Pumping",
-      "tag": "TP"
+      "label": "TP"
     },
     {
       "id": "wiki/glitchcraft/two-handed-with-shield/",
+      "uid": "GIO",
       "name": "Two Handed With Shield",
-      "tag": "THWS"
+      "label": "THWS"
     },
     {
       "id": "wiki/glitchcraft/ultimate-pocket-rocket/",
+      "uid": "05N",
       "name": "Ultimate Pocket Rocket",
-      "tag": "UPR"
+      "label": "UPR"
     },
     {
       "id": "wiki/glitchcraft/ultra-save-load-object-transfer/",
+      "uid": "OL6",
       "name": "Ultra Save Load Object Transfer",
-      "tag": "UltraSLOT"
+      "label": "UltraSLOT"
     },
     {
       "id": "wiki/glitchcraft/ultrabroken/",
+      "uid": "NU6",
       "name": "Ultrabroken",
-      "tag": "UB"
+      "label": "UB"
     },
     {
       "id": "wiki/glitchcraft/ultrabroken-smuggling/",
+      "uid": "RQB",
       "name": "Ultrabroken Smuggling",
-      "tag": "UBS"
+      "label": "UBS"
     },
     {
       "id": "wiki/glitchcraft/unload-duping/",
+      "uid": "3HJ",
       "name": "Unload Duping",
-      "tag": "UD"
+      "label": "UD"
     },
     {
       "id": "wiki/glitchcraft/unload-wst/",
+      "uid": "YNP",
       "name": "Unload WST",
-      "tag": "UWST"
+      "label": "UWST"
     },
     {
       "id": "wiki/glitchcraft/unsheathed-mastersword/",
+      "uid": "36U",
       "name": "Unsheathed Mastersword",
-      "tag": "UMS"
+      "label": "UMS"
     },
     {
       "id": "wiki/glitchcraft/vendor-scamming/",
+      "uid": "94V",
       "name": "Vendor Scamming",
-      "tag": "VS"
+      "label": "VS"
     },
     {
       "id": "wiki/glitchcraft/void-dipping/",
+      "uid": "JDP",
       "name": "Void Dipping",
-      "tag": "VD"
+      "label": "VD"
     },
     {
       "id": "wiki/glitchcraft/void-hold-storage/",
+      "uid": "AGZ",
       "name": "Void Hold Storage",
-      "tag": "VHS"
+      "label": "VHS"
     },
     {
       "id": "wiki/glitchcraft/void-holding/",
+      "uid": "0FD",
       "name": "Void Holding",
-      "tag": "VH"
+      "label": "VH"
     },
     {
       "id": "wiki/glitchcraft/vortaculling/",
+      "uid": "X06",
       "name": "Vortaculling",
-      "tag": "VC"
+      "label": "VC"
     },
     {
       "id": "wiki/glitchcraft/wacko-attacko/",
+      "uid": "O31",
       "name": "Wacko Attacko",
-      "tag": "WATK"
+      "label": "WATK"
     },
     {
       "id": "wiki/glitchcraft/warp-bumping/",
+      "uid": "KNR",
       "name": "Warp Bumping",
-      "tag": "WB"
+      "label": "WB"
     },
     {
       "id": "wiki/glitchcraft/weapon-dash-gas/",
+      "uid": "S9A",
       "name": "Weapon Dash GAS",
-      "tag": "WDGAS"
+      "label": "WDGAS"
     },
     {
       "id": "wiki/glitchcraft/prevent-weapon-despawn/",
+      "uid": "NM8",
       "name": "Weapon Despawn Prevention",
-      "tag": "WDP"
+      "label": "WDP"
     },
     {
       "id": "wiki/glitchcraft/weapon-extensions/",
+      "uid": "5DZ",
       "name": "Weapon Extensions",
-      "tag": "WEXT"
+      "label": "WEXT"
     },
     {
       "id": "wiki/glitchcraft/weapon-fuse-entanglement/",
+      "uid": "JOY",
       "name": "Weapon Fuse Entangelemt",
-      "tag": "WFE"
+      "label": "WFE"
     },
     {
       "id": "wiki/glitchcraft/weapon-sheath-offset/",
+      "uid": "MC8",
       "name": "Weapon Sheath Offset",
-      "tag": "WSO"
+      "label": "WSO"
     },
     {
       "id": "wiki/glitchcraft/weapon-stacking-duplication/",
+      "uid": "WP6",
       "name": "Weapon Stacking Duplication",
-      "tag": "WSD"
+      "label": "WSD"
     },
     {
       "id": "wiki/glitchcraft/weapon-stand-dynamic-zuggle/",
+      "uid": "1PY",
       "name": "Weapon Stand Dynamic Zuggle",
-      "tag": "WSDZ"
+      "label": "WSDZ"
     },
     {
       "id": "wiki/glitchcraft/weapon-state-transfer/",
+      "uid": "JMU",
       "name": "Weapon State Transfer",
-      "tag": "WST"
+      "label": "WST"
     },
     {
       "id": "wiki/glitchcraft/weather-amnesia/",
+      "uid": "UR8",
       "name": "Weather Amnesia",
-      "tag": "WA"
+      "label": "WA"
     },
     {
       "id": "wiki/glitchcraft/wheel-warping/",
+      "uid": "QR3",
       "name": "Wheel Warping",
-      "tag": "WW"
+      "label": "WW"
     },
     {
       "id": "wiki/glitchcraft/wheel-zoomy-also-known-as-wheel-wacko-boingo/",
+      "uid": "XPW",
       "name": "Wheel Zoomy",
-      "tag": "WZ"
+      "label": "WZ"
     },
     {
       "id": "wiki/glitchcraft/wireless-energy/",
+      "uid": "PQ5",
       "name": "Wireless Energy",
-      "tag": "WE"
+      "label": "WE"
     },
     {
       "id": "wiki/glitchcraft/wuggle-weird-zuggle/",
+      "uid": "GJ2",
       "name": "Wuggle",
-      "tag": "WGL"
+      "label": "WGL"
     },
     {
       "id": "wiki/glitchcraft/yee-fuse-entanglement/",
+      "uid": "PM1",
       "name": "Yee Fuse Entanglement",
-      "tag": "YEEFE"
+      "label": "YEEFE"
     },
     {
       "id": "wiki/glitchcraft/zapshield/",
+      "uid": "7F7",
       "name": "Zapshield",
-      "tag": "ZAPSH"
+      "label": "ZAPSH"
     },
     {
       "id": "wiki/glitchcraft/zl-animation-reset/",
+      "uid": "0T9",
       "name": "ZL Animation Reset",
-      "tag": "ZLAR"
+      "label": "ZLAR"
     },
     {
       "id": "wiki/glitchcraft/zoggle/",
+      "uid": "9UF",
       "name": "Zoggle",
-      "tag": "ZOG"
+      "label": "ZOG"
     },
     {
       "id": "wiki/glitchcraft/zonai-inventory-shift-dupe/",
+      "uid": "Y29",
       "name": "Zonai Inventory Shift Dupe",
-      "tag": "ZISD"
+      "label": "ZISD"
     },
     {
       "id": "wiki/glitchcraft/zonai-sort-duplication/",
+      "uid": "KVB",
       "name": "Zonai Sort Duplication",
-      "tag": "ZSD"
+      "label": "ZSD"
     },
     {
       "id": "wiki/glitchcraft/zonai-storage/",
+      "uid": "Y81",
       "name": "Zonai Storage",
-      "tag": "ZS"
+      "label": "ZS"
     },
     {
       "id": "wiki/glitchcraft/zuggle/",
+      "uid": "MCM",
       "name": "Zuggle",
-      "tag": "ZGL"
+      "label": "ZGL"
     },
     {
       "id": "wiki/glitchcraft/zuggle-load-object-transfering/",
+      "uid": "GM7",
       "name": "Zuggle Load Object Transfering",
-      "tag": "ZLOT"
+      "label": "ZLOT"
     },
     {
       "id": "wiki/glitchcraft/zuggle-overload/",
+      "uid": "8QH",
       "name": "Zuggle Overload",
-      "tag": "ZO"
+      "label": "ZO"
     },
     {
       "id": "wiki/glitchcraft/zuggle-overload-desync/",
+      "uid": "GTJ",
       "name": "Zuggle Overload Desync",
-      "tag": "ZOD"
+      "label": "ZOD"
     },
     {
       "id": "wiki/glitchcraft/zuggle-overload-out-of-bounds/",
+      "uid": "7DH",
       "name": "Zuggle Overload Out Of Bounds",
-      "tag": "ZOOB"
+      "label": "ZOOB"
     }
   ],
   "edges": [

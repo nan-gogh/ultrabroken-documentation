@@ -111,7 +111,7 @@
     entries.forEach(function (e) {
       yS.add(yearOf(e.date));
       (e.versions || []).forEach(function (x) { vS.add(x); });
-      (e.tags    || []).forEach(function (x) { tS.add(x); });
+      (e.labels    || []).forEach(function (x) { tS.add(x); });
       (e.credits || []).forEach(function (x) { cS.add(x); });
     });
     var tail = function (a, b) {
@@ -138,7 +138,7 @@
     /* search */
     h += '<div class="grim-row">'
        + '<input id="grim-q" class="grim-search" type="text"'
-       + ' placeholder="Search name, tag, category, or credit\u2026"'
+       + ' placeholder="Search name, label, category, or credit\u2026"'
        + ' autocomplete="off" spellcheck="false">'
        + '</div>';
 
@@ -397,8 +397,8 @@
   function applyFilter() {
     return data.filter(function (e) {
       if (state.q) {
-        var hay = [e.name, e.tag]
-                    .concat(e.tags || [], e.credits || [])
+        var hay = [e.name, e.label]
+                    .concat(e.labels || [], e.credits || [])
                     .join(' ').toLowerCase();
         if (hay.indexOf(state.q) < 0) return false;
       }
@@ -408,9 +408,9 @@
           !state.versions.some(function (v) {
             return (e.versions || []).indexOf(v) >= 0;
           })) return false;
-      if (state.tags.length &&
-          !state.tags.some(function (t) {
-            return (e.tags || []).indexOf(t) >= 0;
+      if (state.labels.length &&
+          !state.labels.some(function (t) {
+            return (e.labels || []).indexOf(t) >= 0;
           })) return false;
       if (state.credits.length &&
           !state.credits.some(function (c) {
@@ -447,8 +447,8 @@
     for (var i = 0; i < list.length; i++) {
       var e = list[i];
       var dl = unk(e.date) ? 'Unknown' : e.date;
-      var ab = e.tag
-        ? ' <span class="grim-abbr">(' + esc(e.tag) + ')</span>' : '';
+      var ab = e.label
+        ? ' <span class="grim-abbr">(' + esc(e.label) + ')</span>' : '';
       h += '<div class="grim-li">'
          + '<span class="grim-num">' + (i + 1) + '.</span>'
          + '<a href="' + at(toHref(e.href)) + '">'
