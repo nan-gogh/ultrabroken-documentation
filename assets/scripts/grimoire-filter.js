@@ -447,12 +447,12 @@
       var dl = unk(e.date) ? 'Unknown' : e.date;
       var ab = e.label || e.uid
         ? ' <span class="grim-abbr">(' + esc(e.label || '') + (e.uid ? ' ' + esc(e.uid) : '') + ')</span>' : '';
-      /* Use title (name field) for cosmetic url param, not label */
+      /* Use title (name field) for cosmetic url fragment */
       var titleStr = (e.name || '').replace(/\s+/g, '-');
-      var queryStr = titleStr ? '?' + encodeURIComponent(titleStr) : '';
+      var hashStr = titleStr ? '#' + encodeURIComponent(titleStr) : '';
       h += '<div class="grim-li">'
          + '<span class="grim-num">' + (i + 1) + '.</span>'
-         + '<a href="' + at(toHref(e.href)) + queryStr + '" target="_blank" rel="noopener noreferrer">'
+         + '<a href="' + at(toHref(e.href)) + hashStr + '" target="_blank" rel="noopener noreferrer">'
          + esc(e.name) + ab + '</a>'
          + '<span class="grim-date">' + esc(dl) + '</span></div>';
     }
