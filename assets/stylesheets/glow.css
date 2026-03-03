@@ -19,7 +19,7 @@
 /* Large font mode — applies scaling to content areas only.
    Material's .md-typeset uses 0.8rem by default (16px scaled relative to root 20px).
    By setting it to 1rem, we effectively apply a 1.25x (125%) multiplier smoothly
-   across all typest components without compounding. */
+   across all typeset components without compounding. */
 [data-ub-font="large"] .md-typeset {
   font-size: 1rem;
 }
@@ -30,6 +30,13 @@
 [data-ub-font="large"] .md-content h2 { font-size: 1.5625rem; }
 [data-ub-font="large"] .md-content h3 { font-size: 1.25rem; }
 [data-ub-font="large"] .md-content h4 { font-size: 1.0625rem; }
+
+/* Scale AI widget and Grimoire UI components.
+   These use em-relative sizing, so scaling the container cascades to all children. */
+[data-ub-font="large"] .ub-ai-root,
+[data-ub-font="large"] #grimoire-app {
+  font-size: 1.25em;
+}
 
 /* Also scale the sidebar navigation and ToC text for readability */
 [data-ub-font="large"] .md-nav__link,
