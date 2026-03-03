@@ -384,6 +384,20 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
                             f'---\n{frontmatter}\n---',
                             f'---\n{new_frontmatter}\n---'
                         )
+                        
+                        # Also update the H1 title to include label and uid
+                        label = fm.get('label', '')
+                        if label:
+                            body_after_fm = new_content[fm_match.end():]
+                            h1_match = re.search(r'^#\s+(.+?)\s*\n', body_after_fm, re.MULTILINE)
+                            if h1_match:
+                                old_h1 = h1_match.group(0)
+                                title_text = h1_match.group(1)
+                                # Remove any existing backticks if present
+                                title_clean = re.sub(r'\s+`.*`', '', title_text)
+                                new_h1 = f"# {title_clean} `{label}` `{uid}`\n"
+                                new_content = new_content.replace(old_h1, new_h1, 1)
+                        
                         p.write_text(new_content, encoding='utf-8-sig')
                         print(f"Generated new UID {uid} for {p.name}")
             except Exception as e:
