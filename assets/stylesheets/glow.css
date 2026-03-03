@@ -31,9 +31,13 @@
 [data-ub-font="large"] .md-content h3 { font-size: 1.25rem; }
 [data-ub-font="large"] .md-content h4 { font-size: 1.0625rem; }
 
-/* Scale AI widget and Grimoire UI components.
-   These use em-relative sizing, so scaling the container cascades to all children. */
-[data-ub-font="large"] .ub-ai-root,
+/* Scale only the AI input placeholder text (animated _PLACEHOLDERS) and Grimoire controls.
+   Don't scale idle texts or other output areas. */
+[data-ub-font="large"] .ub-ai-input {
+  font-size: 1.25em;
+}
+
+/* Scale Grimoire UI components for consistency */
 [data-ub-font="large"] #grimoire-app {
   font-size: 1.25em;
 }
