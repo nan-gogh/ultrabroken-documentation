@@ -17,7 +17,12 @@
   // to hide them entirely. Worker evidence ("Resources") is always shown.
   const SHOW_MODEL_SOURCES = true;
   // Site root and wiki base used to build direct page links and search links.
-  const SITE_ROOT = 'https://nan-gogh.github.io/ultrabroken-documentation';
+  var _scriptEl = document.currentScript || document.querySelector('script[src*="ai-worker-client.js"]');
+  let _root = (_scriptEl && _scriptEl.src)
+    ? _scriptEl.src.replace(/\/assets\/scripts\/[^/]+$/, '')
+    : window.location.origin;
+  if (_root.endsWith('/')) _root = _root.slice(0, -1);
+  const SITE_ROOT = _root;
   const WIKI_SEARCH_BASE = SITE_ROOT + '/wiki/';
   // Hard cap on query length sent to the worker. Configurable via `window.AI_MAX_QUERY_CHARS`.
   const MAX_QUERY_CHARS = 50;
@@ -604,7 +609,7 @@
         if (w.clear){
           // set image for the clear button (published site path)
           const clearImg = document.createElement('img');
-          clearImg.src = '/ultrabroken-documentation/assets/images/cancel-icon.svg';
+          clearImg.src = SITE_ROOT + '/assets/images/cancel-icon.svg';
           clearImg.alt = 'Clear';
           
           // ensure clear button starts hidden; layout/spacing handled by CSS
@@ -615,7 +620,7 @@
 
         // Replace textual Ask label with an SVG inside the Ask button
         const askImg = document.createElement('img');
-        askImg.src = '/ultrabroken-documentation/assets/images/ask-icon.svg';
+        askImg.src = SITE_ROOT + '/assets/images/ask-icon.svg';
         askImg.alt = 'Ask';
         
         // Clear any existing textual content in the button and append the SVG
@@ -624,7 +629,7 @@
         // Share button image
         try {
           const shareImg = document.createElement('img');
-          shareImg.src = '/ultrabroken-documentation/assets/images/share-icon.svg';
+          shareImg.src = SITE_ROOT + '/assets/images/share-icon.svg';
           shareImg.alt = 'Share';
           w.share.textContent = '';
           w.share.appendChild(shareImg);
@@ -658,7 +663,7 @@
                   const rel = w._lastRelated || [];
                   if (rel.length) relatedFooter = '\n\n## Related\n' + rel.map(r => '- [' + r.text + '](' + WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(r.query) + ')').join('\n');
                 } catch(e){}
-                const disclaimer = '\n\n### Disclaimer\nThis response was synthesized by [The Librarian](https://nan-gogh.github.io/ultrabroken-documentation/wiki/about/#ai-search). Take it with a grain of salt — always verify against the source pages.';
+                const disclaimer = '\n\n### Disclaimer\nThis response was synthesized by [The Librarian](' + SITE_ROOT + '/wiki/about/#ai-search). Take it with a grain of salt — always verify against the source pages.';
                 const text = queryHeading + responseText.trim() + resourcesFooter + relatedFooter + disclaimer;
                 navigator.clipboard.writeText(text).then(() => {
                   try { showCopiedToast && showCopiedToast('Copied to clipboard'); } catch (e) {}

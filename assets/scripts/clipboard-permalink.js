@@ -28,6 +28,13 @@
           const check = document.createElement('span');
           check.className = 'ub-copy-check';
           check.setAttribute('aria-hidden', 'true');
+          
+          // Site-root detection for URL
+          var scriptEl = document.currentScript || document.querySelector('script[src*="clipboard-permalink.js"]');
+          var siteRoot = (scriptEl && scriptEl.src)
+            ? scriptEl.src.replace(/assets\/scripts\/[^/]+$/, '')
+            : location.href.replace(/\/[^/]*$/, '/');
+
           // Use the local share SVG instead of a plain checkmark character
             // Insert the SVG inline so it inherits `color` and scales with the
             // heading's font-size. Use DOM creation with the same path data
@@ -35,7 +42,7 @@
             // Use the published share icon asset so it can be cached and
             // maintained centrally instead of inlining SVG markup here.
             const img = document.createElement('img');
-            img.src = '/ultrabroken-documentation/assets/images/share-icon.svg';
+            img.src = siteRoot + 'assets/images/share-icon.svg';
             img.alt = '';
             img.setAttribute('role', 'img');
             img.setAttribute('aria-hidden', 'true');
