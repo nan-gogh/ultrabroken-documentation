@@ -302,7 +302,8 @@
             const list = el('ul', { class: 'ub-ai-evidence-list' }, []);
             w.evidence.appendChild(list);
             ev.forEach(item => {
-              const id = item.id || item.path || '';
+              // Prefer path (contains UID-based permalink) over id (raw filename)
+              const id = item.path || item.id || '';
               const titleText = item.title || '';
               let slug = String(id).replace(/\.md$/,'').replace(/^\/+|\/+$/g, '').replace(/\/index$/, '');
               const text = titleText || slug || id;
