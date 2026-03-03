@@ -272,7 +272,7 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
         def make_item(text_chunk: str, chunk_index: int) -> dict:
             enriched_text = (header + ' ' + text_chunk).strip() if header else text_chunk
             return {
-                'id': str(rel),
+                'id': path.strip('/') if uid and 'glitchcraft' in path else str(rel),
                 'title': title,
                 'path': path,
                 'chunk_index': chunk_index,
