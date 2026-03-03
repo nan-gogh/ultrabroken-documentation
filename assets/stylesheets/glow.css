@@ -17,11 +17,25 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* Large font mode — applies 125% scaling to content areas only.
-   Header, navigation, and search are excluded to maintain layout. */
+   Header, navigation, and search are excluded to maintain layout.
+   Explicitly scale all text elements to ensure body text also grows. */
 [data-ub-font="large"] .md-content {
   font-size: 125%;
 }
 
+/* Scale body text and general elements */
+[data-ub-font="large"] .md-content p,
+[data-ub-font="large"] .md-content li,
+[data-ub-font="large"] .md-content td,
+[data-ub-font="large"] .md-content th,
+[data-ub-font="large"] .md-content code,
+[data-ub-font="large"] .md-content pre,
+[data-ub-font="large"] .md-content blockquote,
+[data-ub-font="large"] .md-content table {
+  font-size: 1.25em;
+}
+
+/* Heading overrides with explicit 125% scaling */
 [data-ub-font="large"] .md-content h1 { font-size: 2.125rem; }
 [data-ub-font="large"] .md-content h2 { font-size: 1.5625rem; }
 [data-ub-font="large"] .md-content h3 { font-size: 1.25rem; }
