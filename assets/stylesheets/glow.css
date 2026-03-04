@@ -90,6 +90,15 @@
   overflow-x: clip;  /* clip overflow but allow absolute children (controls) to show */
 }
 
+/* Prevent tab scroll overshoot on mobile (stops elastic bounce at boundaries) */
+.md-typeset .tabbed-labels {
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;  /* snap to tab labels after scroll */
+}
+.md-typeset .tabbed-labels label {
+  scroll-snap-align: start;
+}
+
 /* Font toggle button styling */
 .ub-font-toggle {
   display: inline-flex;
