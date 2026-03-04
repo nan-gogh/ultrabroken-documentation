@@ -45,20 +45,23 @@ _SHORTHAND_RE = re.compile(
     re.IGNORECASE
 )
 
-def _generate_iframe(location_fragment: str, original_url: str = None) -> str:
+def _generate_iframe(location_fragment: str, original_url: str = None, label: str = None) -> str:
     """Generate the HTML for the embedded map."""
     # Ensure we use the correct base URL
     if not original_url:
         original_url = f"https://objmap-totk.zeldamods.org/#/map/{location_fragment}"
     
+    display_title = label if label else "Open in TotK Object Map"
+    
     return (
         f'<div class="ub-map-embed">'
+        f'<div style="margin-bottom: 0.5rem;">'
+        f'<strong><a href="{original_url}" target="_blank" rel="noopener">{display_title}</a></strong>'
+        f'</div>'
         f'<iframe src="https://objmap-totk.zeldamods.org/#/map/{location_fragment}" '
         f'width="100%" height="500" '
-        f'style="border:0; margin-top: 1rem; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" '
+        f'style="border:0; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" '
         f'loading="lazy" allowfullscreen></iframe>'
-        f'<small style="display: block; text-align: center; margin-top: 0.5rem; opacity: 0.8;">'
-        f'<a href="{original_url}" target="_blank" rel="noopener">Open in TotK Object Map</a></small>'
         f'</div>'
     )
 
@@ -113,6 +116,10 @@ def on_page_content(html: str, page, config, files) -> str:
     def replace_callback(match):
         full_tag = match.group(0)
         href = match.group(1)
+        label = match.group(2)
+        
+        # strip any inner html tags from the label
+        clean_label = re.sub(r'<[^>]+>', '', label).strip()
         
         loc_fragment = _parse_location(href)
         if loc_fragment:
@@ -121,7 +128,7 @@ def on_page_content(html: str, page, config, files) -> str:
             # If the user used correct full URL, use that for 'Open in...' 
             # otherwise construct it.
             original = href if href.startswith('http') else None
-            return _generate_iframe(loc_fragment, original)
+            return _generate_iframe(loc_fragment, original, clean_label)
         
         return full_tag
 
