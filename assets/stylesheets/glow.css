@@ -113,10 +113,11 @@
 /* Prevent tab scroll overshoot on mobile (stops elastic bounce at boundaries) */
 .md-typeset .tabbed-labels {
   overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;  /* snap to tab labels after scroll */
+  /* scroll-snap-type: x mandatory;  snap to tab labels after scroll - DISABLED */
+  /* scroll-snap-align: start;  DISABLED */
 }
 .md-typeset .tabbed-labels label {
-  scroll-snap-align: start;
+  /* scroll-snap-align: start;  DISABLED */
 }
 
 /* Font toggle button styling */
