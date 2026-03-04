@@ -41,13 +41,13 @@
   font-size: 112.5%;
 }
 
-/* Tab labels match text size in both modes */
+/* Tab labels match h3 headline size in both modes */
 .md-typeset .tabbed-labels label {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
 [data-ub-font="large"] .md-typeset .tabbed-labels label {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
 
