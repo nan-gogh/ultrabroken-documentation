@@ -62,7 +62,22 @@
 .md-typeset .tabbed-control .tabbed-button {
   margin-top: 0;
   align-self: center;
-  color: var(--teal-glow) !important;
+  /* Use custom scroll-icon.svg instead of default Material icon */
+  background-image: url('/ultrabroken-documentation/assets/images/scroll-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  color: transparent !important;
+  overflow: hidden;
+}
+/* Hide default Material icon text content */
+.md-typeset .tabbed-control .tabbed-button::before,
+.md-typeset .tabbed-control .tabbed-button::after {
+  display: none !important;
+}
+/* Rotate left arrow 180° to point left */
+.md-typeset .tabbed-control .tabbed-button:first-child {
+  transform: scaleX(-1);
 }
 [data-ub-font="large"] .md-typeset .tabbed-control {
   height: 2.97rem;  /* scaled for 1.25rem font */
