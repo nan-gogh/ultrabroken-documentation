@@ -10,9 +10,11 @@ Supports two formats:
 2. Coordinate Shorthand (x:..., z:...):
    [Fire Temple](x:1321, z:-2823)
    [Fire Temple](x:1321, z:-2823, Depths)
+   [Fire Temple](x:1321, z:-2823, Depths, 15)
 
 The "x:" syntax is converted to a standard Object Map URL and then embedded.
 Default layer is "Surface" if not specified.
+Default zoom is 10 if not specified in the link.
 """
 
 import re
@@ -33,12 +35,13 @@ _OBJMAP_URL_RE = re.compile(
 )
 
 # Regex to match the shorthand syntax "x:..., z:..."
-# Allows optional spaces, optional comma, optional layer
+# Allows optional spaces, optional comma, optional layer, optional zoom
 # Group 1: X coord
 # Group 2: Z coord
 # Group 3: Optional Layer (Depths, Sky, Surface)
+# Group 4: Optional Zoom level
 _SHORTHAND_RE = re.compile(
-    r'^x\s*:\s*([0-9.-]+)\s*,\s*z\s*:\s*([0-9.-]+)(?:\s*,\s*([A-Za-z]+))?$',
+    r'^x\s*:\s*([0-9.-]+)\s*,\s*z\s*:\s*([0-9.-]+)(?:\s*,\s*([A-Za-z]+))?(?:\s*,\s*(\d+))?$',
     re.IGNORECASE
 )
 
@@ -63,6 +66,9 @@ def _parse_location(href: str) -> str | None:
     """
     Parse an href string to see if it's a map link.
     Returns the location fragment (e.g. 'z10,1321,-2823,Depths') or None.
+    
+    Args:
+        href: The href to parse
     """
     # decode URL encoding (%20 -> space)
     decoded = unquote(href)
@@ -73,12 +79,13 @@ def _parse_location(href: str) -> str | None:
         return m_url.group(1)
 
     # 2. Check for Shorthand "x:..., z:..."
-    # The href might be "x:100, z:200"
+    # The href might be "x:100, z:200" or "x:100, z:200, Depths" or "x:100, z:200, Depths, 15"
     m_short = _SHORTHAND_RE.match(decoded)
     if m_short:
         x = m_short.group(1)
         z = m_short.group(2)
         layer = m_short.group(3)
+        zoom = m_short.group(4)
 
         # Default to Surface if not specified
         if not layer:
@@ -91,8 +98,10 @@ def _parse_location(href: str) -> str | None:
             elif "surface" in l: layer = "Surface"
             # else keep as is
 
-        # Default Zoom level 10
-        return f"z10,{x},{z},{layer}"
+        # Use specified zoom or default to 10
+        zoom_level = int(zoom) if zoom else 10
+
+        return f"z{zoom_level},{x},{z},{layer}"
 
     return None
 
@@ -104,11 +113,6 @@ def on_page_content(html: str, page, config, files) -> str:
     def replace_callback(match):
         full_tag = match.group(0)
         href = match.group(1)
-        # label = match.group(2) # Unused for now, we drop the label text in favor of the map?
-        # Actually, standard embed behavior (like YouTube) usually replaces the link entirely.
-        # But if the user put a specific label, maybe we should keep it above?
-        # For now, let's replace entirely like the youtube hook, 
-        # but the youtube hook preserves the label if it's descriptive.
         
         loc_fragment = _parse_location(href)
         if loc_fragment:
