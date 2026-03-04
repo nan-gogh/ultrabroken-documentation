@@ -50,8 +50,11 @@ def _load_glossary() -> list[dict]:
 
 
 # Tags whose content should never be auto-linked.
+# We use a backreference (?P<tag>...) ... (?P=tag) to ensure we match the
+# closing tag corresponding to the opening tag (e.g. <label>...</label>),
+# preventing nested tags (like <a> inside <label>) from breaking the match.
 _PROTECTED_RE = re.compile(
-    r'<(?:a|code|pre|h[1-6]|script|style|label)\b[^>]*>[\s\S]*?</(?:a|code|pre|h[1-6]|script|style|label)>',
+    r'<(?P<tag>a|code|pre|h[1-6]|script|style|label)\b[^>]*>[\s\S]*?</(?P=tag)>',
     re.IGNORECASE,
 )
 
