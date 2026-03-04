@@ -1291,3 +1291,33 @@ li.task-list-item a, li.task-list a {
 .graph-reset-btn:hover {
   background: rgba(0,240,194,0.25);
 }
+/* ── Map Embed Responsive ─────────────────────────────────────────────────── */
+.ub-map-embed {
+  margin: 1rem 0;
+}
+
+.ub-map-embed iframe {
+  max-height: 500px;
+}
+
+/* Tablet: slightly reduce height */
+@media (max-width: 76.25em) {
+  .ub-map-embed iframe {
+    height: 400px !important;
+  }
+}
+
+/* Mobile portrait: significantly reduce height */
+@media (max-width: 600px) {
+  .ub-map-embed iframe {
+    height: 300px !important;
+  }
+}
+
+/* Mobile landscape: constrain height to viewport */
+@media (max-width: 900px) and (orientation: landscape) {
+  .ub-map-embed iframe {
+    height: 55vh !important;
+    max-height: 350px;
+  }
+}
