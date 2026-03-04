@@ -76,9 +76,19 @@
 .md-typeset .tabbed-control .tabbed-button::after {
   display: none !important;
 }
-/* Flip left arrow 180° to point left (SVG points right by default) */
-.md-typeset .tabbed-control .tabbed-button:first-child {
+
+/* 
+   The SVG icon (scroll-icon.svg) points to the RIGHT by default.
+   We flip the left (PREV) button to point left (scaleX(-1)).
+   We keep the right (NEXT) button as-is (scaleX(1)).
+   We use the parent wrapper class (.tabbed-control--prev/--next) 
+   because :first-child targets the button inside its own container, affecting both.
+*/
+.md-typeset .tabbed-control--prev .tabbed-button {
   transform: scaleX(-1);
+}
+.md-typeset .tabbed-control--next .tabbed-button {
+  transform: scaleX(1);
 }
 [data-ub-font="large"] .md-typeset .tabbed-control {
   height: 2.97rem;  /* scaled for 1.25rem font */
