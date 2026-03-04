@@ -51,7 +51,7 @@ def _load_glossary() -> list[dict]:
 
 # Tags whose content should never be auto-linked.
 _PROTECTED_RE = re.compile(
-    r'<(?:a|code|pre|h[1-6]|script|style)\b[^>]*>[\s\S]*?</(?:a|code|pre|h[1-6]|script|style)>',
+    r'<(?:a|code|pre|h[1-6]|script|style|label)\b[^>]*>[\s\S]*?</(?:a|code|pre|h[1-6]|script|style|label)>',
     re.IGNORECASE,
 )
 
