@@ -42,10 +42,10 @@
 }
 
 /* Tab labels match text size in both modes */
-.tabbed-labels label {
+.md-typeset .tabbed-labels label {
   font-size: 0.8rem;
 }
-[data-ub-font="large"] .tabbed-labels label {
+[data-ub-font="large"] .md-typeset .tabbed-labels label {
   font-size: 1rem;
 }
 
