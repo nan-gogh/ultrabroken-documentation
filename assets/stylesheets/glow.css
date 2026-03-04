@@ -76,12 +76,8 @@
 .md-typeset .tabbed-control .tabbed-button::after {
   display: none !important;
 }
-/* Rotate left arrow 180° to point left (first-child is always "left" scroll btn) */
+/* Flip left arrow 180° to point left (SVG points right by default) */
 .md-typeset .tabbed-control .tabbed-button:first-child {
-  transform: scaleX(-1);
-}
-/* Flip right arrow to regular X transformation */
-.md-typeset .tabbed-control .tabbed-button:last-child {
   transform: scaleX(-1);
 }
 [data-ub-font="large"] .md-typeset .tabbed-control {
