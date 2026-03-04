@@ -68,6 +68,15 @@
   height: 2.97rem;  /* scaled for 1.25rem font */
 }
 
+/* Mobile tweak: Constrain tab labels to viewport width so faders don't disappear
+   Using standard MkDocs Material 'mobile' breakpoint (~720px / 44.984375em) */
+@media screen and (max-width: 44.984375em) {
+  .md-typeset .tabbed-labels {
+    max-width: 100%;
+    width: auto;
+  }
+}
+
 /* Font toggle button styling */
 .ub-font-toggle {
   display: inline-flex;
