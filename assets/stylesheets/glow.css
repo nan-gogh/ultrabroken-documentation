@@ -42,13 +42,29 @@
 }
 
 
-/* Tab scroll arrows – using separate left/right SVG files */
+/* Tab labels match h3 headline size in both modes */
+.md-typeset .tabbed-labels label {
+  font-size: 1rem;
+  font-weight: normal;
+  font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
+}
+[data-ub-font="large"] .md-typeset .tabbed-labels label {
+  font-size: 1.25rem;
+  font-weight: normal;
+  font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
+}
+
+/* Fix alignment of tab scroll arrows to match enlarged tab labels.
+   Default Material height is 1.9rem for 0.8rem font labels.
+   We scale proportionally for our larger font sizes. */
 .md-typeset .tabbed-control {
-  height: 2.375rem;
+  height: 2.375rem;  /* scaled for 1rem font */
 }
 .md-typeset .tabbed-control .tabbed-button {
   margin-top: 0;
   align-self: center;
+  /* Use scroll-icon.svg for both, rotate left one */
+  background-image: url('/ultrabroken-documentation/assets/images/scroll-icon.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -60,22 +76,18 @@
 .md-typeset .tabbed-control .tabbed-button::after {
   display: none !important;
 }
-/* Left arrow */
+/* Rotate left arrow 180° to point left (first-child is always "left" scroll btn) */
 .md-typeset .tabbed-control .tabbed-button:first-child {
-  background-image: url('/ultrabroken-documentation/assets/images/scroll-left-icon.svg');
-}
-/* Right arrow */
-.md-typeset .tabbed-control .tabbed-button:last-child {
-  background-image: url('/ultrabroken-documentation/assets/images/scroll-right-icon.svg');
+  transform: scaleX(-1);
 }
 [data-ub-font="large"] .md-typeset .tabbed-control {
-  height: 2.97rem;
+  height: 2.97rem;  /* scaled for 1.25rem font */
 }
 
 /* Fix tab overflow on mobile: ensure the entire tab component respects viewport bounds */
 .md-typeset .tabbed-set {
   max-width: 100%;
-  overflow-x: clip;
+  overflow-x: clip;  /* clip overflow but allow absolute children (controls) to show */
 }
 
 /* Font toggle button styling */
