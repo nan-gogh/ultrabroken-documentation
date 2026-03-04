@@ -526,10 +526,10 @@ button.search-link:focus,
   bottom: 1.5rem;
   right: 1.5rem;
   z-index: 3; /* below header (4), same as .md-top */
-  width: 3rem !important;
-  height: 3rem !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
   background: url('/ultrabroken-documentation/assets/images/back-to-top%20icon.svg') no-repeat center center !important;
-  background-size: 2rem 2.5rem !important;
+  background-size: 1rem 1.25rem !important;
   border: none !important;
   border-radius: 0 !important;
   padding: 0 !important;
