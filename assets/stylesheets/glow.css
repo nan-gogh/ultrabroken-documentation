@@ -1300,6 +1300,11 @@ li.task-list-item a, li.task-list a {
   max-height: 500px;
 }
 
+/* Mobile iframe hidden by default (desktop shows desktop iframe) */
+.ub-map-mobile {
+  display: none;
+}
+
 /* Tablet: slightly reduce height */
 @media (max-width: 76.25em) {
   .ub-map-embed iframe {
@@ -1307,15 +1312,27 @@ li.task-list-item a, li.task-list a {
   }
 }
 
-/* Mobile portrait: significantly reduce height */
+/* Mobile portrait: switch to mobile iframe (zoomed out -2), reduce height */
 @media (max-width: 600px) {
+  .ub-map-desktop {
+    display: none;
+  }
+  .ub-map-mobile {
+    display: block;
+  }
   .ub-map-embed iframe {
     height: 300px !important;
   }
 }
 
-/* Mobile landscape: constrain height to viewport */
+/* Mobile landscape: switch to mobile iframe (zoomed out -2), constrain to viewport */
 @media (max-width: 900px) and (orientation: landscape) {
+  .ub-map-desktop {
+    display: none;
+  }
+  .ub-map-mobile {
+    display: block;
+  }
   .ub-map-embed iframe {
     height: 55vh !important;
     max-height: 350px;
