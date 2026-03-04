@@ -53,19 +53,18 @@
   font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
 
-/* Fix alignment of scroll arrows on content tabs (if present) */
-.md-tabbed__control,
-.tabbed-labels button {
-  height: auto !important;
-  align-self: stretch !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-weight: normal !important;
+/* Fix alignment of tab scroll arrows to match enlarged tab labels.
+   Default Material height is 1.9rem for 0.8rem font labels.
+   We scale proportionally for our larger font sizes. */
+.md-typeset .tabbed-control {
+  height: 2.375rem;  /* scaled for 1rem font */
 }
-/* Ensure generic button controls match the container height/alignment */
-.tabbed-labels {
-  align-items: stretch;
+.md-typeset .tabbed-control .tabbed-button {
+  margin-top: 0;
+  align-self: center;
+}
+[data-ub-font="large"] .md-typeset .tabbed-control {
+  height: 2.97rem;  /* scaled for 1.25rem font */
 }
 
 /* Font toggle button styling */
