@@ -1918,9 +1918,10 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Methodology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#locations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1930,8 +1931,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#instructions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1944,10 +1945,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fe-method" class="md-nav__link">
+  <a href="#fe-method-squidwest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FE Method
+        FE Method (Squidwest)
       
     </span>
   </a>
@@ -1955,10 +1956,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#overload-method" class="md-nav__link">
+  <a href="#overload-method-mulberry-aergyl" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overload Method
+        Overload Method (mulberry, Aergyl)(?)
       
     </span>
   </a>
@@ -1966,10 +1967,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mineru-fe-limbo-method-lomei-ledge-version" class="md-nav__link">
+  <a href="#mineru-fe-limbo-method-lomei-ledge-version-kleric-squidwest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mineru FE Limbo Method (Lomei Ledge version)
+        Mineru FE Limbo Method (Lomei Ledge version) (Kleric, Squidwest)
       
     </span>
   </a>
@@ -1984,6 +1985,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2073,51 +2079,51 @@
 <li>Cull the target after it starts fading, but before it fully disappears</li>
 <li>Retrieve the target (some methods do this before the cull)</li>
 </ul>
-<h2 id="locations">Locations</h2>
+<h3 id="locations">Locations</h3>
 <p>Most Voidouts are in big pits with little ability to get close. Three of the most popular exceptions (and how to retrieve from them) are given below:</p>
 <ul>
 <li>Fire Temple: Warp there, turn around, and take the first right turn to find a lava river with a Hydrant making Lava Slabs. At the near-side downstream corner of the channel (not in the alcove), there is a Voidout under the lava. Retrieve targets by climbing down the corner wall, mounting Mineru to stand in the lava, or fishing it out with an object.</li>
 <li>Lomei Ledge: East of Oshozan-u Shrine, on the way to the North Lomei Labyrinth, there's a ledge (height ~160) with a vertical Voidout wall starting at X=-1117. Retrieve targets by picking them up before they slide down the cliff.</li>
 <li>Nachoyah Shrine (The Ability to Rewind): in the alcove the rafts disappear into, there's a small Voidout at the back. Retrieve targets by swimming into the alcove and mashing A.</li>
 </ul>
-<h2 id="instructions">Instructions</h2>
+<h3 id="instructions">Instructions</h3>
 <p>There are many viable methods. Three of the most popular are given in detail below, along with a summary of other more marginal methods.</p>
-<h3 id="fe-method">FE Method</h3>
+<h4 id="fe-method-squidwest">FE Method (<em>Squidwest</em>)</h4>
 <p>Requires a way to cull Link (and thus the parent) on v1.1.2 or earlier, due to the absence of drop-swap culling.</p>
 <ul>
 <li>Use <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="Fuse Entanglement" target="_blank" rel="noopener noreferrer">Fuse Entanglement</a> to give the target an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent shield</li>
 <li>Equip the parent shield</li>
 <li>Ultrahand the target into the Voidout</li>
 <li>Switch directly to Recall without closing UH</li>
-<li>Pause the game and watch a memory</li>
+<li><strong>Pause</strong> the game and watch a memory</li>
 <li>Drop the parent, equip another shield, and unequip it</li>
-<li>Unpause and retrieve the target</li>
+<li><strong>Unpause</strong> and retrieve the target</li>
 <li>Use Octo <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">Detanglement</a> on the parent shield to remove the connection without destroying the target</li>
 </ul>
-<h3 id="overload-method">Overload Method</h3>
-<p>Specifc wall geometry or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/8FK/" class="glitch-autolink" title="Equipment Collision Zuggle" target="_blank" rel="noopener noreferrer">equipment collision</a> is required to fail-drop the target without fail-dropping the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a>, but skips the retrieval step. Requires a different culling method entirely on v1.1.2 or earlier (most feasibly physical aerophasing).</p>
+<h4 id="overload-method-mulberry-aergyl">Overload Method (<em>mulberry, Aergyl</em>)(?)</h4>
+<p>Specifc wall geometry, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/8FK/" class="glitch-autolink" title="Equipment Collision Zuggle" target="_blank" rel="noopener noreferrer">equipment collision</a>, or a modified setup is required to fail-drop the target without fail-dropping the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a>, but skips the retrieval step. Requires a different culling method entirely on v1.1.2 or earlier (most feasibly aerophasing).</p>
 <ul>
 <li>Prepare a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">Portacull</a> equipment of a different type than the target</li>
 <li>Overload Drop or Overload Pickup the target</li>
 <li>Ultrahand it into the Voidout</li>
 <li>Switch directly to Recall without closing UH</li>
-<li>Pause the game, fail-drop the target if possible, then watch a memory</li>
+<li><strong>Pause</strong> the game, fail-drop the target if possible, then watch a memory</li>
 <li>Activate the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a></li>
 <li>If the target was not fail-dropped, swap to another equipment of that type</li>
-<li>Unpause</li>
+<li><strong>Unpause</strong></li>
 <li>If target was not fail-dropped, retrieve it</li>
 </ul>
-<h3 id="mineru-fe-limbo-method-lomei-ledge-version">Mineru FE Limbo Method (Lomei Ledge version)</h3>
-<p>Requires significant modification in other locations, due to the delicate nature of Mineru Limbo and the lack of a vertical Voidout.</p>
+<h4 id="mineru-fe-limbo-method-lomei-ledge-version-kleric-squidwest">Mineru FE Limbo Method (Lomei Ledge version) (<em>Kleric, Squidwest</em>)</h4>
+<p>Requires significant modification in other locations, due to the delicate nature of Mineru Limbo and the lack of a vertical Voidout elsewhere.</p>
 <ul>
 <li>Fuse Entangle the target to Mineru</li>
 <li>Face west and inch backwards against the wall until you reach X=-1117. Dropping the target here will put it directly in the void</li>
-<li>Momentarily scope in on Mineru to put her in "Limbo": The target should appear on your back, while Mineru remains absent. If she reappears, scope in where she reappears until she stops (turning back around if needed)</li>
+<li>Momentarily scope in on Mineru to put her in "Limbo": The target should appear on your back, while Mineru remains absent. If she reappears, scope in where she reappears until she stops (turning back around after if needed)</li>
 <li>Drop the target and activate Ultrahand immediately after to cull the target</li>
 <li>Cancel Ultrahand and pick up the target as soon as it unculls</li>
 <li>Fuse over the target on Mineru to detangle it</li>
 </ul>
-<h3 id="other-methods">Other Methods</h3>
+<h4 id="other-methods">Other Methods</h4>
 <ul>
 <li>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the target and have her orb return immediately after the target starts fading</li>
 <li>Pickup the target as soon as it starts fading and immediately cull Link</li>
