@@ -90,6 +90,16 @@
 .md-typeset .tabbed-control--next .tabbed-button {
   transform: scaleX(1);
 }
+
+/* Suppress Material's hover/focus/active states on tab scroll buttons */
+.md-typeset .tabbed-button:hover,
+.md-typeset .tabbed-button:focus,
+.md-typeset .tabbed-button:active {
+  background-color: transparent !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
 [data-ub-font="large"] .md-typeset .tabbed-control {
   height: 2.97rem;  /* scaled for 1.25rem font */
 }
