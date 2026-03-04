@@ -70,10 +70,10 @@
   background: none !important;  /* temporarily disable backdrop gradient */
 }
 
-/* Prevent tab labels from overlapping with scroll arrows by adding horizontal padding */
+/* Shrink the scrollable/clipping area so tab labels don't overlap with arrows */
 .md-typeset .tabbed-labels {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  max-width: calc(100% - 3rem);  /* reserve space for arrows on both sides */
+  margin-left: 1.5rem;
 }
 
 /* Font toggle button styling */
