@@ -44,9 +44,11 @@
 /* Tab labels match text size in both modes */
 .md-typeset .tabbed-labels label {
   font-size: 0.8rem;
+  font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
 [data-ub-font="large"] .md-typeset .tabbed-labels label {
   font-size: 1rem;
+  font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
 
 /* Font toggle button styling */
