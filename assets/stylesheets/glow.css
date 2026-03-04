@@ -58,7 +58,6 @@
    We scale proportionally for our larger font sizes. */
 .md-typeset .tabbed-control {
   height: 2.375rem;  /* scaled for 1rem font */
-  background: none !important;  /* temporarily disable backdrop gradient */
 }
 .md-typeset .tabbed-control .tabbed-button {
   margin-top: 0;
@@ -67,13 +66,6 @@
 }
 [data-ub-font="large"] .md-typeset .tabbed-control {
   height: 2.97rem;  /* scaled for 1.25rem font */
-  background: none !important;  /* temporarily disable backdrop gradient */
-}
-
-/* Shrink the scrollable/clipping area so tab labels don't overlap with arrows */
-.md-typeset .tabbed-labels {
-  max-width: calc(100% - 3rem);  /* reserve space for arrows on both sides */
-  margin-left: 1.5rem;
 }
 
 /* Font toggle button styling */
