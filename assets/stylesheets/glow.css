@@ -51,8 +51,8 @@
 /* Force inline code in tab titles to use standard text color, avoiding teal tint */
 .md-typeset .tabbed-labels label code {
   color: inherit !important;
-  background-color: transparent !important; /* Optional: cleaner look in tabs */
-  font-family: inherit; /* Optional: match the tab font or keep mono? Inherit blends better for titles */
+  /* background-color: transparent !important;  Removed: Keep the code backdrop */
+  /* font-family: inherit;  Removed: Keep the monospace font if desired */
 }
 [data-ub-font="large"] .md-typeset .tabbed-labels label {
   font-size: 1.25rem;
