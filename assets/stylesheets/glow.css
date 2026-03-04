@@ -53,6 +53,21 @@
   font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
 
+/* Fix alignment of scroll arrows on content tabs (if present) */
+.md-tabbed__control,
+.tabbed-labels button {
+  height: auto !important;
+  align-self: stretch !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: normal !important;
+}
+/* Ensure generic button controls match the container height/alignment */
+.tabbed-labels {
+  align-items: stretch;
+}
+
 /* Font toggle button styling */
 .ub-font-toggle {
   display: inline-flex;
