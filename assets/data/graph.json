@@ -2202,6 +2202,10 @@
     },
     {
       "source": "wiki/glitchcraft/7DA/",
+      "target": "wiki/glitchcraft/GM7/"
+    },
+    {
+      "source": "wiki/glitchcraft/7DA/",
       "target": "wiki/glitchcraft/JAP/"
     },
     {
@@ -2211,6 +2215,10 @@
     {
       "source": "wiki/glitchcraft/7DA/",
       "target": "wiki/glitchcraft/MCM/"
+    },
+    {
+      "source": "wiki/glitchcraft/7DA/",
+      "target": "wiki/glitchcraft/MP9/"
     },
     {
       "source": "wiki/glitchcraft/7DH/",
