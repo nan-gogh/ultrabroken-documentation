@@ -70,6 +70,12 @@
   background: none !important;  /* temporarily disable backdrop gradient */
 }
 
+/* Prevent tab labels from overlapping with scroll arrows by adding horizontal padding */
+.md-typeset .tabbed-labels {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 /* Font toggle button styling */
 .ub-font-toggle {
   display: inline-flex;
