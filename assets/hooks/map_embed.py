@@ -48,7 +48,7 @@ _SHORTHAND_RE = re.compile(
 def _generate_iframe(x: str, z: str, layer: str, zoom: int, original_url: str = None, label: str = None) -> str:
     """Generate the HTML for dual embedded maps (desktop and mobile with -2 zoom)."""
     desktop_fragment = f"z{zoom},{x},{z},{layer}"
-    mobile_zoom = max(1, zoom - 2)  # Ensure zoom doesn't go below 1
+    mobile_zoom = max(1, zoom - 1)  # Ensure zoom doesn't go below 1
     mobile_fragment = f"z{mobile_zoom},{x},{z},{layer}"
     
     base_url = "https://objmap-totk.zeldamods.org/#/map"
