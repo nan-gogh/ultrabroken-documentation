@@ -37,9 +37,16 @@
 /* Also scale the sidebar navigation and ToC text for readability */
 [data-ub-font="large"] .md-nav__link,
 [data-ub-font="large"] .md-nav__title,
-[data-ub-font="large"] .md-toc,
-[data-ub-font="large"] .tabbed-labels label {
+[data-ub-font="large"] .md-toc {
   font-size: 112.5%;
+}
+
+/* Tab labels match text size in both modes */
+.tabbed-labels label {
+  font-size: 0.8rem;
+}
+[data-ub-font="large"] .tabbed-labels label {
+  font-size: 1rem;
 }
 
 /* Font toggle button styling */
