@@ -7,14 +7,14 @@ Supports two formats:
 1. Full Object Map URLs:
    [Fire Temple](https://objmap-totk.zeldamods.org/#/map/z10,1321,-2823,Depths)
 
-2. Coordinate Shorthand (x:..., z:...):
-   [Fire Temple](x:1321, z:-2823)
-   [Fire Temple](x:1321, z:-2823, Depths)
-   [Fire Temple](x:1321, z:-2823, Depths, 15)
+2. Coordinate Shorthand (zoom, x:..., z:...):
+   [Fire Temple](10, x:1321, z:-2823)
+   [Fire Temple](10, x:1321, z:-2823, Depths)
+   [Fire Temple](8, x:1321.68, z:-2823.71, Depths)
 
-The "x:" syntax is converted to a standard Object Map URL and then embedded.
+The shorthand syntax is converted to a standard Object Map URL and then embedded.
+Zoom is required and comes first in the shorthand format.
 Default layer is "Surface" if not specified.
-Default zoom is 10 if not specified in the link.
 """
 
 import re
@@ -34,14 +34,14 @@ _OBJMAP_URL_RE = re.compile(
     re.IGNORECASE
 )
 
-# Regex to match the shorthand syntax "x:..., z:..."
-# Allows optional spaces, optional comma, optional layer, optional zoom
-# Group 1: X coord
-# Group 2: Z coord
-# Group 3: Optional Layer (Depths, Sky, Surface)
-# Group 4: Optional Zoom level
+# Regex to match the shorthand syntax "zoom, x:..., z:..., layer"
+# Format: {zoom}, x:{xcoord}, z:{zcoord}[, {layer}]
+# Group 1: Zoom level
+# Group 2: X coord
+# Group 3: Z coord
+# Group 4: Optional Layer (Depths, Sky, Surface)
 _SHORTHAND_RE = re.compile(
-    r'^x\s*:\s*([0-9.-]+)\s*,\s*z\s*:\s*([0-9.-]+)(?:\s*,\s*([A-Za-z]+))?(?:\s*,\s*(\d+))?$',
+    r'^(\d+)\s*,\s*x\s*:\s*([0-9.-]+)\s*,\s*z\s*:\s*([0-9.-]+)(?:\s*,\s*([A-Za-z]+))?$',
     re.IGNORECASE
 )
 
@@ -96,14 +96,14 @@ def _parse_location(href: str) -> tuple | None:
             return (x, z, layer, zoom)
         return None
 
-    # 2. Check for Shorthand "x:..., z:..."
-    # The href might be "x:100, z:200" or "x:100, z:200, Depths" or "x:100, z:200, Depths, 15"
+    # 2. Check for Shorthand "zoom, x:..., z:..., layer"
+    # The href might be "10, x:100, z:200" or "10, x:100, z:200, Depths"
     m_short = _SHORTHAND_RE.match(decoded)
     if m_short:
-        x = m_short.group(1)
-        z = m_short.group(2)
-        layer = m_short.group(3)
-        zoom = m_short.group(4)
+        zoom = int(m_short.group(1))
+        x = m_short.group(2)
+        z = m_short.group(3)
+        layer = m_short.group(4)
 
         # Default to Surface if not specified
         if not layer:
@@ -116,10 +116,7 @@ def _parse_location(href: str) -> tuple | None:
             elif "surface" in l: layer = "Surface"
             # else keep as is
 
-        # Use specified zoom or default to 10
-        zoom_level = int(zoom) if zoom else 10
-
-        return (x, z, layer, zoom_level)
+        return (x, z, layer, zoom)
 
     return None
 
