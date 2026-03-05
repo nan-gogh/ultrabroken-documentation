@@ -24,17 +24,17 @@
 
   var GANTT_PIE_CSS =
     /* ── Gantt: title ── */
-    '.titleText{font-size:36px!important;' +
+    '.titleText{font-size:48px!important;' +
       'font-family:"New Rocker",serif!important;' +
       'fill:#00f0c2!important}' +
     /* ── Gantt: axis tick labels ── */
-    '.grid .tick text{font-size:20px!important;' +
+    '.grid .tick text{font-size:26px!important;' +
       'font-family:"Texturina",Georgia,serif!important;' +
       'fill:#898b94!important}' +
     /* ── Gantt: section labels ── */
     '.sectionTitle,.sectionTitle0,.sectionTitle1,' +
     '.sectionTitle2,.sectionTitle3' +
-      '{font-size:22px!important;' +
+      '{font-size:30px!important;' +
       'font-family:"Texturina",Georgia,serif!important;' +
       'fill:#00f0c2!important}' +
     /* ── Gantt: task text inside bars ── */
@@ -44,13 +44,13 @@
     '.critText0,.critText1,.critText2,.critText3,' +
     '.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,' +
     '.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3' +
-      '{fill:#d5d7de!important;font-size:20px!important;' +
+      '{fill:#d5d7de!important;font-size:26px!important;' +
       'font-family:"Texturina",Georgia,serif!important}' +
     /* ── Gantt: task text outside bars ── */
     '.taskTextOutside0,.taskTextOutside1,' +
     '.taskTextOutside2,.taskTextOutside3,' +
     '.taskTextOutsideRight,.taskTextOutsideLeft' +
-      '{fill:#00f0c2!important;font-size:20px!important;' +
+      '{fill:#00f0c2!important;font-size:26px!important;' +
       'font-family:"Texturina",Georgia,serif!important}' +
     /* ── Gantt: task bars ── */
     '.task0,.task1,.task2,.task3' +
@@ -115,9 +115,9 @@ Object.defineProperty(window, 'mermaid', {
       val.initialize = function (config) {
         /* ── Gantt layout ── */
         if (!config.gantt) config.gantt = {};
-        config.gantt.barHeight = 40;
-        config.gantt.fontSize  = 20;
-        config.gantt.sectionFontSize = 22;
+        config.gantt.barHeight = 48;
+        config.gantt.fontSize  = 26;
+        config.gantt.sectionFontSize = 30;
 
         /* ── Theme variables (source-level colour control) ── */
         if (!config.themeVariables) config.themeVariables = {};
@@ -154,16 +154,16 @@ Object.defineProperty(window, 'mermaid', {
         /* ── themeCSS (ends up inside SVG <style> with ID prefix) ── */
         config.themeCSS = (config.themeCSS || '') +
           /* Gantt title */
-          '.titleText{font-size:36px!important;' +
+          '.titleText{font-size:48px!important;' +
             'font-family:"New Rocker",serif!important;' +
             'fill:#00f0c2!important}' +
           /* Gantt tick labels */
-          '.grid .tick text{font-size:20px!important;' +
+          '.grid .tick text{font-size:26px!important;' +
             'font-family:"Texturina",Georgia,serif!important;' +
             'fill:#898b94!important}' +
           /* Gantt section labels */
           '.sectionTitle,.sectionTitle0,.sectionTitle1,' +
-          '.sectionTitle2,.sectionTitle3{font-size:22px!important;' +
+          '.sectionTitle2,.sectionTitle3{font-size:30px!important;' +
             'font-family:"Texturina",Georgia,serif!important;' +
             'fill:#00f0c2!important}' +
           /* Gantt task text */
@@ -173,13 +173,13 @@ Object.defineProperty(window, 'mermaid', {
           '.critText0,.critText1,.critText2,.critText3,' +
           '.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,' +
           '.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3' +
-            '{fill:#d5d7de!important;font-size:20px!important;' +
+            '{fill:#d5d7de!important;font-size:26px!important;' +
             'font-family:"Texturina",Georgia,serif!important}' +
           /* Gantt outside text */
           '.taskTextOutside0,.taskTextOutside1,' +
           '.taskTextOutside2,.taskTextOutside3,' +
           '.taskTextOutsideRight,.taskTextOutsideLeft' +
-            '{fill:#00f0c2!important;font-size:20px!important;' +
+            '{fill:#00f0c2!important;font-size:26px!important;' +
             'font-family:"Texturina",Georgia,serif!important}' +
           /* Pie */
           '.pieTitleText{fill:#00f0c2!important;font-size:1.5rem!important;' +
