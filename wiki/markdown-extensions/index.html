@@ -2287,13 +2287,13 @@ aliases: ["markdown-extensions"]</p>
 <p>The display <code>title</code> is required. All other fields are optional but recommended.</p>
 <h4 id="syntax">Syntax</h4>
 <ul>
-<li><code>label</code>: A short abbreviation displayed alongside the title</li>
-<li><code>versions</code>: List of game versions where the technique works</li>
-<li><code>credits</code>: Names must match <a href="../../assets/data/credits.json">credits.json</a> exactly for leaderboard aggregation</li>
-<li><code>date*</code>: Discovery or documentation date in <code>YYYY-MM-DD</code> format</li>
-<li><code>description</code>: A brief summary used for search results and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/X5Y/" class="glitch-autolink" title="SEO" target="_blank" rel="noopener noreferrer">SEO</a></li>
-<li><code>tags</code>: Categorization tags. Auto-indexed into <a href="../../assets/data/tags.json">tags.json</a></li>
-<li><code>aliases</code>: Alternative names for search discovery. Case-insensitive.</li>
+<li><code>label</code>: A short abbreviation displayed alongside the title - used for autolinking and search discovery</li>
+<li><code>versions</code>: List of game versions where the technique works - used for filtering and search discovery</li>
+<li><code>credits</code>: Names must match <a href="../../assets/data/credits.json">credits.json</a> exactly  - used for autolinking and leaderboard aggregation</li>
+<li><code>date*</code>: Discovery or documentation date in <code>YYYY-MM-DD</code> format - used for filtering / sorting</li>
+<li><code>description</code>: A brief summary used for search results and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/X5Y/" class="glitch-autolink" title="SEO" target="_blank" rel="noopener noreferrer">SEO</a> - used for search discovery</li>
+<li><code>tags</code>: Categorization tags. Auto-indexed into <a href="../../assets/data/tags.json">tags.json</a> - used for filtering and search discovery</li>
+<li><code>aliases</code>: Alternative names for search discovery. Case-insensitive. - used for autolinking</li>
 <li><code>uid</code>: Auto-generated unique identifier. <strong>Do not add manually.</strong></li>
 </ul>
 <h4 id="example">Example</h4>
@@ -2360,7 +2360,7 @@ aliases: ["markdown-extensions"]</p>
 <span class="w">    </span><span class="nt">&quot;Mozz&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.youtube.com/@M0zzed&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><strong>Names must match exactly</strong> — mismatched capitalization or spelling prevents linking and splits leaderboard entries.</p>
+<p><strong>Names must match exactly</strong> — mismatched capitalization or spelling prevents autolinking and splits leaderboard entries.</p>
 <h2 id="markdown-basics">Markdown Basics</h2>
 <hr />
 <p>Standard Markdown syntax reference.</p>
