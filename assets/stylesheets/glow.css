@@ -110,6 +110,17 @@
   height: 2.97rem;  /* scaled for 1.25rem font */
 }
 
+/* Mermaid diagram theming: override Material's accent-derived defaults to match
+   the project's brighter teal. Material resolves --md-mermaid-* from palette
+   variables (--md-accent-fg-color etc.); we push them to --teal-glow instead.
+   Sequence-diagram variables cascade from the base ones automatically. */
+:root {
+  --md-mermaid-node-bg-color: rgba(0, 240, 194, 0.12);
+  --md-mermaid-node-fg-color: var(--teal-glow);
+  --md-mermaid-edge-color: var(--teal-glow);
+  --md-mermaid-label-fg-color: var(--teal-glow);
+}
+
 /* Fix tab overflow on mobile: ensure the entire tab component respects viewport bounds */
 .md-typeset .tabbed-set {
   max-width: 100%;
