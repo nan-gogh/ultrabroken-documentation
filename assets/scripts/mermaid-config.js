@@ -121,7 +121,9 @@ var PIE = {
     /* ── Gantt: overall background ── */
     'rect.background{fill:' + THEME.backdropFill + '!important}' +
     /* ── Pie ── */
-    '.pieTitleText{display:none!important}' +
+    '.pieTitleText{font-size:' + PIE.titleSize + '!important;' +
+      'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important;' +
+      'fill:' + THEME.primary + '!important}' +
     'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
       'font-size:' + PIE.labelSize + '!important;' +
       'font-family:' + THEME.textFont + '!important}' +
@@ -331,7 +333,8 @@ Object.defineProperty(window, 'mermaid', {
           /* Gantt: overall background */
           'rect.background{fill:' + THEME.backdropFill + '!important}' +
           /* Pie */
-          '.pieTitleText{display:none!important}' +
+          '.pieTitleText{fill:' + THEME.primary + '!important;font-size:' + PIE.titleSize + '!important;' +
+            'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important}' +
           'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
             'font-size:' + PIE.labelSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +
