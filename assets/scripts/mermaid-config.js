@@ -36,10 +36,10 @@ var THEME = {
 
 /* ── Gantt-specific settings ── */
 var GANTT = {
-  titleSize: '48px',
-  tickSize: '32px',
-  sectionSize: '30px',
-  taskSize: '26px',
+  titleSize: '24px',
+  tickSize: '14px',
+  sectionSize: '16px',
+  taskSize: '14px',
   barHeight: 48,
   topPadding: 80,
   sectionFill: '#173440',
