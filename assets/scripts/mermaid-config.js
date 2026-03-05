@@ -41,7 +41,7 @@ var GANTT = {
   sectionSize: '20px',
   taskSize: '17px',
   barHeight: 28,
-  topPadding: 50,
+  topPadding: 10,
   sectionFill: '#173440',
   sectionAltFill: '#173440',
   /* Opaque task-bar fills (high-contrast over sectionFill #173440) */
@@ -66,10 +66,8 @@ var PIE = {
   if (!desc || !desc.set) return;
 
   var GANTT_PIE_CSS =
-    /* ── Gantt: title ── */
-    '.titleText{font-size:' + GANTT.titleSize + '!important;' +
-      'font-family:' + THEME.titleFont + '!important;' +
-      'fill:' + THEME.primary + '!important}' +
+    /* ── Gantt: title (hidden) ── */
+    '.titleText{display:none!important}' +
     /* ── Gantt: axis tick labels ── */
     '.grid .tick text{font-size:' + GANTT.tickSize + '!important;' +
       'font-family:' + THEME.textFont + '!important;' +
@@ -303,10 +301,8 @@ Object.defineProperty(window, 'mermaid', {
 
         /* ── themeCSS (ends up inside SVG <style> with ID prefix) ── */
         config.themeCSS = (config.themeCSS || '') +
-          /* Gantt title */
-          '.titleText{font-size:' + GANTT.titleSize + '!important;' +
-            'font-family:' + THEME.titleFont + '!important;' +
-            'fill:' + THEME.primary + '!important}' +
+          /* Gantt title (hidden) */
+          '.titleText{display:none!important}' +
           /* Gantt tick labels */
           '.grid .tick text{font-size:' + GANTT.tickSize + '!important;' +
             'font-family:' + THEME.textFont + '!important;' +
