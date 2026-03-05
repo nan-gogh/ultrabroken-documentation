@@ -182,13 +182,15 @@ var PIE = {
           p[3] += extra;    /* increase height */
           svg.setAttribute('viewBox', p.join(' '));
           var naturalH = p[3];           /* viewBox height after adjustment */
-          /* Replace width="100%" with fixed dimensions so the SVG
-             doesn't shrink to the container on narrow screens */
+          /* Force fixed dimensions with !important to beat Material's
+             shadow-internal CSS (svg { max-width: 100% } etc.) */
           svg.removeAttribute('width');
           svg.removeAttribute('height');
-          svg.removeAttribute('style');  /* remove Mermaid's inline max-width */
-          svg.setAttribute('width', naturalW);
-          svg.setAttribute('height', naturalH);
+          svg.removeAttribute('style');
+          svg.style.setProperty('width', naturalW + 'px', 'important');
+          svg.style.setProperty('min-width', naturalW + 'px', 'important');
+          svg.style.setProperty('max-width', 'none', 'important');
+          svg.style.setProperty('height', naturalH + 'px', 'important');
           /* Make the shadow host a scrollable container */
           this.host.style.overflowX = 'auto';
           this.host.style.display   = 'block';
