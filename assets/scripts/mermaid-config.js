@@ -28,17 +28,17 @@
           var s = document.createElement('style');
           s.textContent =
             /* ── Gantt: title ── */
-            '.titleText { font-size: 26px !important; ' +
+            '.titleText { font-size: 36px !important; ' +
               'font-family: "New Rocker", serif !important; ' +
               'fill: #00f0c2 !important; }' +
             /* ── Gantt: axis tick labels ── */
-            '.grid .tick text { font-size: 14px !important; ' +
+            '.grid .tick text { font-size: 20px !important; ' +
               'font-family: "Texturina", Georgia, serif !important; ' +
               'fill: #898b94 !important; }' +
             /* ── Gantt: section labels ── */
             '.sectionTitle, .sectionTitle0, .sectionTitle1, ' +
             '.sectionTitle2, .sectionTitle3 ' +
-              '{ font-size: 16px !important; ' +
+              '{ font-size: 22px !important; ' +
               'font-family: "Texturina", Georgia, serif !important; ' +
               'fill: #00f0c2 !important; }' +
             /* ── Gantt: task text inside bars ── */
@@ -112,8 +112,8 @@ Object.defineProperty(window, 'mermaid', {
         /* ── Gantt layout ── */
         if (!config.gantt) config.gantt = {};
         config.gantt.barHeight = 40;
-        config.gantt.fontSize  = 14;
-        config.gantt.sectionFontSize = 16;
+        config.gantt.fontSize  = 20;
+        config.gantt.sectionFontSize = 22;
 
         /* ── Theme variables (source-level colour control) ── */
         if (!config.themeVariables) config.themeVariables = {};
