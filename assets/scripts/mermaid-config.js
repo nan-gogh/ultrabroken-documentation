@@ -184,6 +184,8 @@ var PIE = {
             r.removeAttribute('rx');
             r.removeAttribute('ry');
           });
+          /* Force chart to fill container (Mermaid sets a fixed max-width) */
+          svg.style.maxWidth = '100%';
           /* Set task/crit bar fills directly via attributes */
           var barFills = {
             '.task0,.task1,.task2,.task3': GANTT.taskFill,
