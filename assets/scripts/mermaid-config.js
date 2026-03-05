@@ -113,7 +113,11 @@ var PIE = {
     'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
       'font-size:' + PIE.labelSize + '!important;' +
       'font-family:' + THEME.textFont + '!important}' +
-    '.slice{stroke:' + THEME.dark + '!important;stroke-width:2px!important}' +
+    '.slice{stroke:none!important;stroke-width:0!important}' +
+    '.pieCircle{stroke:none!important;stroke-width:0!important}' +
+    '.pieOuterCircle{stroke:none!important;stroke-width:0!important}' +
+    'path[class*=pie]{stroke:none!important;stroke-width:0!important}' +
+    'g.legend>rect{stroke:none!important;stroke-width:0!important}' +
     'g.legend>text{fill:' + THEME.accent + '!important;' +
       'font-size:' + PIE.legendSize + '!important;' +
       'font-family:' + THEME.textFont + '!important}';
@@ -195,6 +199,10 @@ Object.defineProperty(window, 'mermaid', {
         tv.pieSectionTextColor = THEME.accent;
         tv.pieLegendTextColor  = THEME.accent;
         tv.pieTitleTextSize    = PIE.titleSize;
+        tv.pieStrokeColor      = 'transparent';
+        tv.pieStrokeWidth      = '0px';
+        tv.pieOuterStrokeColor = 'transparent';
+        tv.pieOuterStrokeWidth = '0px';
 
         /* ── themeCSS (ends up inside SVG <style> with ID prefix) ── */
         config.themeCSS = (config.themeCSS || '') +
@@ -232,7 +240,11 @@ Object.defineProperty(window, 'mermaid', {
           'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
             'font-size:' + PIE.labelSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +
-          '.slice{stroke:' + THEME.dark + '!important;stroke-width:2px!important}' +
+          '.slice{stroke:none!important;stroke-width:0!important}' +
+          '.pieCircle{stroke:none!important;stroke-width:0!important}' +
+          '.pieOuterCircle{stroke:none!important;stroke-width:0!important}' +
+          'path[class*=pie]{stroke:none!important;stroke-width:0!important}' +
+          'g.legend>rect{stroke:none!important;stroke-width:0!important}' +
           'g.legend>text{fill:' + THEME.accent + '!important;' +
             'font-size:' + PIE.legendSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}';
@@ -244,3 +256,5 @@ Object.defineProperty(window, 'mermaid', {
     this._mermaid = val;
   }
 });
+ 
+ 
