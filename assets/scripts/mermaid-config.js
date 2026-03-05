@@ -169,9 +169,7 @@ var PIE = {
       /* ── Gantt-only DOM modifications ── */
       if (isGantt) {
         /* Make Gantt horizontally scrollable on narrow screens instead of
-           squishing the ~5:1 aspect ratio into a tiny box.  We replace
-           Mermaid's width="100%" with fixed dimensions matching the
-           viewBox and let the shadow host scroll horizontally. */
+           squishing the ~5:1 aspect ratio into a tiny box. */
         var vb = svg.getAttribute('viewBox');
         if (vb) {
           var p = vb.split(/[\s,]+/).map(Number);
@@ -182,19 +180,32 @@ var PIE = {
           p[3] += extra;    /* increase height */
           svg.setAttribute('viewBox', p.join(' '));
           var naturalH = p[3];           /* viewBox height after adjustment */
-          /* Force fixed dimensions with !important to beat Material's
-             shadow-internal CSS (svg { max-width: 100% } etc.) */
-          svg.removeAttribute('width');
-          svg.removeAttribute('height');
-          svg.removeAttribute('style');
-          svg.style.setProperty('width', naturalW + 'px', 'important');
-          svg.style.setProperty('min-width', naturalW + 'px', 'important');
-          svg.style.setProperty('max-width', 'none', 'important');
-          svg.style.setProperty('height', naturalH + 'px', 'important');
+          /* Inject a shadow-root-level <style> that forces the Gantt SVG
+             to its natural size.  This survives any later JS that sets
+             inline styles or attributes, because stylesheet !important
+             rules beat inline styles. */
+          var sizeStyle = document.createElement('style');
+          sizeStyle.textContent =
+            'svg[aria-roledescription="gantt"]{' +
+              'width:' + naturalW + 'px!important;' +
+              'min-width:' + naturalW + 'px!important;' +
+              'max-width:none!important;' +
+              'height:' + naturalH + 'px!important;' +
+            '}';
+          this.appendChild(sizeStyle);
           /* Make the shadow host a scrollable container */
           this.host.style.overflowX = 'auto';
           this.host.style.display   = 'block';
           this.host.style.webkitOverflowScrolling = 'touch';
+          /* Watch for any later JS (e.g. Material) re-writing the SVG's
+             style/width attributes and immediately re-apply our sizing */
+          var w = naturalW, h = naturalH;
+          new MutationObserver(function(muts, obs) {
+            svg.removeAttribute('width');
+            svg.removeAttribute('height');
+            svg.removeAttribute('style');
+            obs.disconnect();  /* one-shot: prevent infinite loop */
+          }).observe(svg, { attributes: true, attributeFilter: ['style', 'width', 'height'] });
         }
         /* Style gantt background rect directly as SVG attributes */
         var bg = svg.querySelector('rect.background');
