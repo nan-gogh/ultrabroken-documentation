@@ -17,6 +17,26 @@
       block with ID-prefixed specificity + !important.
    ───────────────────────────────────────────────────────────────────── */
 
+/* === Theme Configuration (globalized constants) === */
+var THEME = {
+  /* Colors */
+  primary: '#00f0c2',
+  accent: '#898b94',
+  text: '#d5d7de',
+  critical: '#fff',
+  dark: '#1a1a2e',
+  /* Font sizes */
+  titleSize: '48px',
+  tickSize: '26px',
+  sectionSize: '30px',
+  taskSize: '26px',
+  /* Layout */
+  barHeight: 48,
+  /* Fonts */
+  titleFont: '"New Rocker", serif',
+  textFont: '"Texturina", Georgia, serif'
+};
+
 /* === 1. Shadow-root innerHTML injection === */
 (function () {
   var desc = Object.getOwnPropertyDescriptor(ShadowRoot.prototype, 'innerHTML');
@@ -24,19 +44,19 @@
 
   var GANTT_PIE_CSS =
     /* ── Gantt: title ── */
-    '.titleText{font-size:48px!important;' +
-      'font-family:"New Rocker",serif!important;' +
-      'fill:#00f0c2!important}' +
+    '.titleText{font-size:' + THEME.titleSize + '!important;' +
+      'font-family:' + THEME.titleFont + '!important;' +
+      'fill:' + THEME.primary + '!important}' +
     /* ── Gantt: axis tick labels ── */
-    '.grid .tick text{font-size:26px!important;' +
-      'font-family:"Texturina",Georgia,serif!important;' +
-      'fill:#898b94!important}' +
+    '.grid .tick text{font-size:' + THEME.tickSize + '!important;' +
+      'font-family:' + THEME.textFont + '!important;' +
+      'fill:' + THEME.accent + '!important}' +
     /* ── Gantt: section labels ── */
     '.sectionTitle,.sectionTitle0,.sectionTitle1,' +
     '.sectionTitle2,.sectionTitle3' +
-      '{font-size:30px!important;' +
-      'font-family:"Texturina",Georgia,serif!important;' +
-      'fill:#00f0c2!important}' +
+      '{font-size:' + THEME.sectionSize + '!important;' +
+      'font-family:' + THEME.textFont + '!important;' +
+      'fill:' + THEME.primary + '!important}' +
     /* ── Gantt: task text inside bars ── */
     '.taskText,.taskText0,.taskText1,.taskText2,.taskText3,' +
     '.activeText0,.activeText1,.activeText2,.activeText3,' +
@@ -44,47 +64,47 @@
     '.critText0,.critText1,.critText2,.critText3,' +
     '.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,' +
     '.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3' +
-      '{fill:#d5d7de!important;font-size:26px!important;' +
-      'font-family:"Texturina",Georgia,serif!important}' +
+      '{fill:' + THEME.text + '!important;font-size:' + THEME.taskSize + '!important;' +
+      'font-family:' + THEME.textFont + '!important}' +
     /* ── Gantt: task text outside bars ── */
     '.taskTextOutside0,.taskTextOutside1,' +
     '.taskTextOutside2,.taskTextOutside3,' +
     '.taskTextOutsideRight,.taskTextOutsideLeft' +
-      '{fill:#00f0c2!important;font-size:26px!important;' +
-      'font-family:"Texturina",Georgia,serif!important}' +
+      '{fill:' + THEME.primary + '!important;font-size:' + THEME.taskSize + '!important;' +
+      'font-family:' + THEME.textFont + '!important}' +
     /* ── Gantt: task bars ── */
     '.task0,.task1,.task2,.task3' +
       '{fill:rgba(0,240,194,0.12)!important;' +
-      'stroke:#00f0c2!important;stroke-width:1.5px!important}' +
+      'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
     '.active0,.active1,.active2,.active3' +
       '{fill:rgba(0,240,194,0.35)!important;' +
-      'stroke:#00f0c2!important;stroke-width:2px!important}' +
+      'stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
     '.done0,.done1,.done2,.done3' +
       '{fill:rgba(0,240,194,0.08)!important;' +
-      'stroke:#00f0c2!important;stroke-dasharray:4!important}' +
+      'stroke:' + THEME.primary + '!important;stroke-dasharray:4!important}' +
     /* ── Gantt: critical bars ── */
     '.crit0,.crit1,.crit2,.crit3' +
       '{fill:rgba(255,255,255,0.18)!important;' +
-      'stroke:#fff!important;stroke-width:2px!important}' +
+      'stroke:' + THEME.critical + '!important;stroke-width:2px!important}' +
     '.activeCrit0,.activeCrit1,.activeCrit2,.activeCrit3' +
       '{fill:rgba(255,255,255,0.30)!important;' +
-      'stroke:#fff!important;stroke-width:2px!important}' +
+      'stroke:' + THEME.critical + '!important;stroke-width:2px!important}' +
     '.doneCrit0,.doneCrit1,.doneCrit2,.doneCrit3' +
       '{fill:rgba(255,255,255,0.08)!important;' +
-      'stroke:#fff!important;stroke-dasharray:4!important}' +
+      'stroke:' + THEME.critical + '!important;stroke-dasharray:4!important}' +
     /* ── Gantt: grid & section backgrounds ── */
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
     '.section0,.section2{fill:rgba(0,240,194,0.05)!important}' +
     '.section1,.section3{fill:rgba(0,240,194,0.02)!important}' +
     /* ── Pie ── */
     '.pieTitleText{font-size:1.5rem!important;' +
-      'font-family:"New Rocker","Texturina",serif!important;' +
-      'fill:#00f0c2!important}' +
-    'text.pieSectionText,.pieLegendText{fill:#898b94!important;' +
-      'font-family:"Texturina",Georgia,serif!important}' +
-    '.slice{stroke:#1a1a2e!important;stroke-width:2px!important}' +
-    'g.legend>text{fill:#898b94!important;' +
-      'font-family:"Texturina",Georgia,serif!important}';
+      'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important;' +
+      'fill:' + THEME.primary + '!important}' +
+    'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
+      'font-family:' + THEME.textFont + '!important}' +
+    '.slice{stroke:' + THEME.dark + '!important;stroke-width:2px!important}' +
+    'g.legend>text{fill:' + THEME.accent + '!important;' +
+      'font-family:' + THEME.textFont + '!important}';
 
   Object.defineProperty(ShadowRoot.prototype, 'innerHTML', {
     configurable: true,
@@ -115,9 +135,9 @@ Object.defineProperty(window, 'mermaid', {
       val.initialize = function (config) {
         /* ── Gantt layout ── */
         if (!config.gantt) config.gantt = {};
-        config.gantt.barHeight = 48;
-        config.gantt.fontSize  = 26;
-        config.gantt.sectionFontSize = 30;
+        config.gantt.barHeight = THEME.barHeight;
+        config.gantt.fontSize  = parseInt(THEME.taskSize);
+        config.gantt.sectionFontSize = parseInt(THEME.sectionSize);
 
         /* ── Theme variables (source-level colour control) ── */
         if (!config.themeVariables) config.themeVariables = {};
@@ -125,47 +145,47 @@ Object.defineProperty(window, 'mermaid', {
 
         /* Gantt task bars */
         tv.taskBkgColor         = 'rgba(0,240,194,0.12)';
-        tv.taskBorderColor      = '#00f0c2';
-        tv.taskTextDarkColor    = '#d5d7de';
-        tv.taskTextColor        = '#d5d7de';
-        tv.taskTextOutsideColor = '#00f0c2';
+        tv.taskBorderColor      = THEME.primary;
+        tv.taskTextDarkColor    = THEME.text;
+        tv.taskTextColor        = THEME.text;
+        tv.taskTextOutsideColor = THEME.primary;
         /* Active tasks */
         tv.activeTaskBkgColor    = 'rgba(0,240,194,0.35)';
-        tv.activeTaskBorderColor = '#00f0c2';
+        tv.activeTaskBorderColor = THEME.primary;
         /* Done tasks */
         tv.doneTaskBkgColor    = 'rgba(0,240,194,0.08)';
-        tv.doneTaskBorderColor = '#00f0c2';
+        tv.doneTaskBorderColor = THEME.primary;
         /* Critical tasks (white to stand out) */
         tv.critBkgColor    = 'rgba(255,255,255,0.18)';
-        tv.critBorderColor = '#fff';
+        tv.critBorderColor = THEME.critical;
         /* Title, sections, grid */
-        tv.titleColor        = '#00f0c2';
+        tv.titleColor        = THEME.primary;
         tv.sectionBkgColor   = 'rgba(0,240,194,0.05)';
         tv.sectionBkgColor2  = 'rgba(0,240,194,0.03)';
         tv.altSectionBkgColor = 'rgba(0,240,194,0.02)';
         tv.gridColor     = 'rgba(137,139,148,0.3)';
-        tv.todayLineColor = '#00f0c2';
+        tv.todayLineColor = THEME.primary;
         /* Pie */
-        tv.pieTitleTextColor   = '#00f0c2';
-        tv.pieSectionTextColor = '#898b94';
-        tv.pieLegendTextColor  = '#898b94';
+        tv.pieTitleTextColor   = THEME.primary;
+        tv.pieSectionTextColor = THEME.accent;
+        tv.pieLegendTextColor  = THEME.accent;
         tv.pieTitleTextSize    = '26px';
 
         /* ── themeCSS (ends up inside SVG <style> with ID prefix) ── */
         config.themeCSS = (config.themeCSS || '') +
           /* Gantt title */
-          '.titleText{font-size:48px!important;' +
-            'font-family:"New Rocker",serif!important;' +
-            'fill:#00f0c2!important}' +
+          '.titleText{font-size:' + THEME.titleSize + '!important;' +
+            'font-family:' + THEME.titleFont + '!important;' +
+            'fill:' + THEME.primary + '!important}' +
           /* Gantt tick labels */
-          '.grid .tick text{font-size:26px!important;' +
-            'font-family:"Texturina",Georgia,serif!important;' +
-            'fill:#898b94!important}' +
+          '.grid .tick text{font-size:' + THEME.tickSize + '!important;' +
+            'font-family:' + THEME.textFont + '!important;' +
+            'fill:' + THEME.accent + '!important}' +
           /* Gantt section labels */
           '.sectionTitle,.sectionTitle0,.sectionTitle1,' +
-          '.sectionTitle2,.sectionTitle3{font-size:30px!important;' +
-            'font-family:"Texturina",Georgia,serif!important;' +
-            'fill:#00f0c2!important}' +
+          '.sectionTitle2,.sectionTitle3{font-size:' + THEME.sectionSize + '!important;' +
+            'font-family:' + THEME.textFont + '!important;' +
+            'fill:' + THEME.primary + '!important}' +
           /* Gantt task text */
           '.taskText,.taskText0,.taskText1,.taskText2,.taskText3,' +
           '.activeText0,.activeText1,.activeText2,.activeText3,' +
@@ -173,21 +193,21 @@ Object.defineProperty(window, 'mermaid', {
           '.critText0,.critText1,.critText2,.critText3,' +
           '.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,' +
           '.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3' +
-            '{fill:#d5d7de!important;font-size:26px!important;' +
-            'font-family:"Texturina",Georgia,serif!important}' +
+            '{fill:' + THEME.text + '!important;font-size:' + THEME.taskSize + '!important;' +
+            'font-family:' + THEME.textFont + '!important}' +
           /* Gantt outside text */
           '.taskTextOutside0,.taskTextOutside1,' +
           '.taskTextOutside2,.taskTextOutside3,' +
           '.taskTextOutsideRight,.taskTextOutsideLeft' +
-            '{fill:#00f0c2!important;font-size:26px!important;' +
-            'font-family:"Texturina",Georgia,serif!important}' +
+            '{fill:' + THEME.primary + '!important;font-size:' + THEME.taskSize + '!important;' +
+            'font-family:' + THEME.textFont + '!important}' +
           /* Pie */
-          '.pieTitleText{fill:#00f0c2!important;font-size:1.5rem!important;' +
-            'font-family:"New Rocker","Texturina",serif!important}' +
-          'text.pieSectionText,.pieLegendText{fill:#898b94!important;' +
-            'font-family:"Texturina",serif!important}' +
-          '.slice{stroke:#1a1a2e!important;stroke-width:2px!important}' +
-          'g.legend>text{fill:#898b94!important;font-family:"Texturina",serif!important}';
+          '.pieTitleText{fill:' + THEME.primary + '!important;font-size:1.5rem!important;' +
+            'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important}' +
+          'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
+            'font-family:' + THEME.textFont + '!important}' +
+          '.slice{stroke:' + THEME.dark + '!important;stroke-width:2px!important}' +
+          'g.legend>text{fill:' + THEME.accent + '!important;font-family:' + THEME.textFont + '!important}';
 
         return origInit.call(this, config);
       };
