@@ -26,6 +26,7 @@ var THEME = {
   text: '#d5d7de',
   critical: '#fff',
   dark: '#1a1a2e',
+  backdropFill: 'rgba(0, 240, 194, 0.12)',
   titleFont: '"New Rocker", serif',
   textFont: '"Texturina", Georgia, serif'
 };
@@ -110,7 +111,7 @@ var PIE = {
     '.section0,.section1,.section2,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important;' +
       'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
     /* ── Gantt: overall background ── */
-    'rect.background{fill:' + THEME.dark + '!important}' +
+    'rect.background{fill:' + THEME.backdropFill + '!important}' +
     /* ── Pie ── */
     '.pieTitleText{font-size:' + PIE.titleSize + '!important;' +
       'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important;' +
@@ -160,7 +161,7 @@ var PIE = {
           /* Style gantt background rect directly as SVG attributes */
           var bg = svg.querySelector('rect.background');
           if (bg) {
-            bg.setAttribute('fill', THEME.dark);
+            bg.setAttribute('fill', THEME.backdropFill);
             bg.setAttribute('stroke', THEME.primary);
             bg.setAttribute('stroke-width', '2');
             bg.setAttribute('rx', '3');
@@ -271,7 +272,7 @@ Object.defineProperty(window, 'mermaid', {
           '.section0,.section1,.section2,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important;' +
             'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
           /* Gantt: overall background */
-          'rect.background{fill:' + THEME.dark + '!important}' +
+          'rect.background{fill:' + THEME.backdropFill + '!important}' +
           /* Pie */
           '.pieTitleText{fill:' + THEME.primary + '!important;font-size:' + PIE.titleSize + '!important;' +
             'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important}' +
