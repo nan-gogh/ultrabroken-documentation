@@ -1364,14 +1364,24 @@ li.task-list-item a, li.task-list a {
 
 /* ═══════════════════════════════════════════════════════════════════════════════
    MOBILE TOC IN NAV DRAWER
-   On small screens, the TOC is injected as a collapsible section at the bottom
+   On small screens, the TOC is injected as a collapsible section at the top
    of the nav drawer. Uses Material's own checkbox expand/collapse pattern.
    ═══════════════════════════════════════════════════════════════════════════════ */
 
+/* Use the TOC icon (three-line list) instead of the default nav chevron */
+.ub-toc-nav-item > .md-nav__link > .md-nav__icon::after {
+  mask-image: var(--md-toc-icon) !important;
+}
+
 @media (max-width: 76.1875em) {
   .ub-toc-nav-item {
-    border-top: 1px solid var(--md-default-fg-color--lightest);
-    margin-top: 0.4rem;
-    padding-top: 0.2rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.2rem;
+  }
+
+  /* Hide Material's native TOC entry in the nav — ours replaces it */
+  .md-nav--primary .md-nav__link[for="__toc"] {
+    display: none !important;
   }
 }
