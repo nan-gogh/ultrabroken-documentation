@@ -104,8 +104,10 @@ var PIE = {
       'stroke:' + THEME.critical + '!important;stroke-dasharray:4!important}' +
     /* ── Gantt: grid & section backgrounds ── */
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
-    '.section0,.section2{fill:rgba(0,240,194,1)!important}' +
-    '.section1,.section3{fill:rgba(0,240,194,1)!important}' +
+    '.section0,.section1,.section2,.section3' +
+      '{fill:rgba(0,240,194,1)!important;' +
+      'stroke:' + THEME.dark + '!important;stroke-width:1.5px!important;' +
+      'rx:3px!important;ry:3px!important}' +
     /* ── Gantt: overall background (opaque with outline) ── */
     'rect.background{fill:#2a2f3f!important;stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
     /* ── Pie ── */
@@ -244,9 +246,11 @@ Object.defineProperty(window, 'mermaid', {
           '.taskTextOutside2,.taskTextOutside3,' +
           '.taskTextOutsideRight,.taskTextOutsideLeft' +
             '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
-            'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds (opaque) */
-          '.section0,.section2{fill:rgba(0,240,194,1)!important}' +
-          '.section1,.section3{fill:rgba(0,240,194,1)!important}' +
+            'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds (opaque, actor-style) */
+          '.section0,.section1,.section2,.section3' +
+            '{fill:rgba(0,240,194,1)!important;' +
+            'stroke:' + THEME.dark + '!important;stroke-width:1.5px!important;' +
+            'rx:3px!important;ry:3px!important}' +
           /* Gantt: overall background (opaque with teal outline) */
           'rect.background{fill:#2a2f3f!important;stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
           /* Pie */
