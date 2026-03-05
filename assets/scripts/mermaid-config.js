@@ -18,24 +18,33 @@
    ───────────────────────────────────────────────────────────────────── */
 
 /* === Theme Configuration (globalized constants) === */
+
+/* ── Shared colors used by both chart types ── */
 var THEME = {
-  /* Colors */
   primary: '#00f0c2',
   accent: '#898b94',
   text: '#d5d7de',
   critical: '#fff',
   dark: '#1a1a2e',
-  /* Font sizes */
+  titleFont: '"New Rocker", serif',
+  textFont: '"Texturina", Georgia, serif'
+};
+
+/* ── Gantt-specific settings ── */
+var GANTT = {
   titleSize: '48px',
   tickSize: '26px',
   sectionSize: '30px',
   taskSize: '26px',
-  /* Layout */
   barHeight: 48,
-  topPadding: 80,
-  /* Fonts */
-  titleFont: '"New Rocker", serif',
-  textFont: '"Texturina", Georgia, serif'
+  topPadding: 80
+};
+
+/* ── Pie-specific settings ── */
+var PIE = {
+  titleSize: '1.5rem',
+  labelSize: '1rem',
+  legendSize: '1rem'
 };
 
 /* === 1. Shadow-root innerHTML injection === */
@@ -45,17 +54,17 @@ var THEME = {
 
   var GANTT_PIE_CSS =
     /* ── Gantt: title ── */
-    '.titleText{font-size:' + THEME.titleSize + '!important;' +
+    '.titleText{font-size:' + GANTT.titleSize + '!important;' +
       'font-family:' + THEME.titleFont + '!important;' +
       'fill:' + THEME.primary + '!important}' +
     /* ── Gantt: axis tick labels ── */
-    '.grid .tick text{font-size:' + THEME.tickSize + '!important;' +
+    '.grid .tick text{font-size:' + GANTT.tickSize + '!important;' +
       'font-family:' + THEME.textFont + '!important;' +
       'fill:' + THEME.accent + '!important}' +
     /* ── Gantt: section labels ── */
     '.sectionTitle,.sectionTitle0,.sectionTitle1,' +
     '.sectionTitle2,.sectionTitle3' +
-      '{font-size:' + THEME.sectionSize + '!important;' +
+      '{font-size:' + GANTT.sectionSize + '!important;' +
       'font-family:' + THEME.textFont + '!important;' +
       'fill:' + THEME.primary + '!important}' +
     /* ── Gantt: task text inside bars ── */
@@ -65,13 +74,13 @@ var THEME = {
     '.critText0,.critText1,.critText2,.critText3,' +
     '.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,' +
     '.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3' +
-      '{fill:' + THEME.text + '!important;font-size:' + THEME.taskSize + '!important;' +
+      '{fill:' + THEME.text + '!important;font-size:' + GANTT.taskSize + '!important;' +
       'font-family:' + THEME.textFont + '!important}' +
     /* ── Gantt: task text outside bars ── */
     '.taskTextOutside0,.taskTextOutside1,' +
     '.taskTextOutside2,.taskTextOutside3,' +
     '.taskTextOutsideRight,.taskTextOutsideLeft' +
-      '{fill:' + THEME.primary + '!important;font-size:' + THEME.taskSize + '!important;' +
+      '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
       'font-family:' + THEME.textFont + '!important}' +
     /* ── Gantt: task bars ── */
     '.task0,.task1,.task2,.task3' +
@@ -98,13 +107,15 @@ var THEME = {
     '.section0,.section2{fill:rgba(0,240,194,0.05)!important}' +
     '.section1,.section3{fill:rgba(0,240,194,0.02)!important}' +
     /* ── Pie ── */
-    '.pieTitleText{font-size:1.5rem!important;' +
+    '.pieTitleText{font-size:' + PIE.titleSize + '!important;' +
       'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important;' +
       'fill:' + THEME.primary + '!important}' +
     'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
+      'font-size:' + PIE.labelSize + '!important;' +
       'font-family:' + THEME.textFont + '!important}' +
     '.slice{stroke:' + THEME.dark + '!important;stroke-width:2px!important}' +
     'g.legend>text{fill:' + THEME.accent + '!important;' +
+      'font-size:' + PIE.legendSize + '!important;' +
       'font-family:' + THEME.textFont + '!important}';
 
   Object.defineProperty(ShadowRoot.prototype, 'innerHTML', {
@@ -126,7 +137,7 @@ var THEME = {
           var vb = svg.getAttribute('viewBox');
           if (vb) {
             var p = vb.split(/[\s,]+/).map(Number);
-            var extra = parseInt(THEME.titleSize);
+            var extra = parseInt(GANTT.titleSize);
             p[1] -= extra;    /* shift origin up */
             p[3] += extra;    /* increase height */
             svg.setAttribute('viewBox', p.join(' '));
@@ -148,10 +159,10 @@ Object.defineProperty(window, 'mermaid', {
       val.initialize = function (config) {
         /* ── Gantt layout ── */
         if (!config.gantt) config.gantt = {};
-        config.gantt.barHeight = THEME.barHeight;
-        config.gantt.topPadding = THEME.topPadding;
-        config.gantt.fontSize  = parseInt(THEME.taskSize);
-        config.gantt.sectionFontSize = parseInt(THEME.sectionSize);
+        config.gantt.barHeight = GANTT.barHeight;
+        config.gantt.topPadding = GANTT.topPadding;
+        config.gantt.fontSize  = parseInt(GANTT.taskSize);
+        config.gantt.sectionFontSize = parseInt(GANTT.sectionSize);
 
         /* ── Theme variables (source-level colour control) ── */
         if (!config.themeVariables) config.themeVariables = {};
@@ -183,21 +194,21 @@ Object.defineProperty(window, 'mermaid', {
         tv.pieTitleTextColor   = THEME.primary;
         tv.pieSectionTextColor = THEME.accent;
         tv.pieLegendTextColor  = THEME.accent;
-        tv.pieTitleTextSize    = '26px';
+        tv.pieTitleTextSize    = PIE.titleSize;
 
         /* ── themeCSS (ends up inside SVG <style> with ID prefix) ── */
         config.themeCSS = (config.themeCSS || '') +
           /* Gantt title */
-          '.titleText{font-size:' + THEME.titleSize + '!important;' +
+          '.titleText{font-size:' + GANTT.titleSize + '!important;' +
             'font-family:' + THEME.titleFont + '!important;' +
             'fill:' + THEME.primary + '!important}' +
           /* Gantt tick labels */
-          '.grid .tick text{font-size:' + THEME.tickSize + '!important;' +
+          '.grid .tick text{font-size:' + GANTT.tickSize + '!important;' +
             'font-family:' + THEME.textFont + '!important;' +
             'fill:' + THEME.accent + '!important}' +
           /* Gantt section labels */
           '.sectionTitle,.sectionTitle0,.sectionTitle1,' +
-          '.sectionTitle2,.sectionTitle3{font-size:' + THEME.sectionSize + '!important;' +
+          '.sectionTitle2,.sectionTitle3{font-size:' + GANTT.sectionSize + '!important;' +
             'font-family:' + THEME.textFont + '!important;' +
             'fill:' + THEME.primary + '!important}' +
           /* Gantt task text */
@@ -207,21 +218,24 @@ Object.defineProperty(window, 'mermaid', {
           '.critText0,.critText1,.critText2,.critText3,' +
           '.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,' +
           '.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3' +
-            '{fill:' + THEME.text + '!important;font-size:' + THEME.taskSize + '!important;' +
+            '{fill:' + THEME.text + '!important;font-size:' + GANTT.taskSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +
           /* Gantt outside text */
           '.taskTextOutside0,.taskTextOutside1,' +
           '.taskTextOutside2,.taskTextOutside3,' +
           '.taskTextOutsideRight,.taskTextOutsideLeft' +
-            '{fill:' + THEME.primary + '!important;font-size:' + THEME.taskSize + '!important;' +
+            '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +
           /* Pie */
-          '.pieTitleText{fill:' + THEME.primary + '!important;font-size:1.5rem!important;' +
+          '.pieTitleText{fill:' + THEME.primary + '!important;font-size:' + PIE.titleSize + '!important;' +
             'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important}' +
           'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
+            'font-size:' + PIE.labelSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +
           '.slice{stroke:' + THEME.dark + '!important;stroke-width:2px!important}' +
-          'g.legend>text{fill:' + THEME.accent + '!important;font-family:' + THEME.textFont + '!important}';
+          'g.legend>text{fill:' + THEME.accent + '!important;' +
+            'font-size:' + PIE.legendSize + '!important;' +
+            'font-family:' + THEME.textFont + '!important}';
 
         return origInit.call(this, config);
       };
