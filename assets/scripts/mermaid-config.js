@@ -22,10 +22,10 @@ Object.defineProperty(window, 'mermaid', {
             g.legend > text { fill: var(--muted-text) !important; font-family: 'Texturina', serif !important; }
             
             /* Fix Gantt charts */
-            .titleText { fill: var(--teal-glow) !important; font-size: 1.5rem !important; font-family: 'New Rocker', serif !important; }
-            .grid .tick text { fill: var(--muted-text, #898b94) !important; font-family: 'Texturina', serif !important; }
-            .sectionTitle { fill: var(--teal-glow) !important; opacity: 0.8 !important; font-family: 'Texturina', serif !important; }
-            .sectionTitle0, .sectionTitle1, .sectionTitle2, .sectionTitle3 { fill: var(--teal-glow) !important; }
+            .titleText { fill: var(--teal-glow) !important; font-size: 1.8rem !important; font-family: 'New Rocker', serif !important; }
+            .grid .tick text { fill: var(--muted-text, #898b94) !important; font-family: 'Texturina', serif !important; font-size: 1.2em !important; }
+            .sectionTitle { fill: var(--teal-glow) !important; opacity: 0.8 !important; font-family: 'Texturina', serif !important; font-size: 1.3em !important; }
+            .sectionTitle0, .sectionTitle1, .sectionTitle2, .sectionTitle3 { fill: var(--teal-glow) !important; font-size: 1.3em !important; }
 
             /* Default task bars */
             .task0, .task1, .task2, .task3 { fill: rgba(0, 240, 194, 0.12) !important; stroke: var(--teal-glow) !important; stroke-width: 1.5px !important; }
