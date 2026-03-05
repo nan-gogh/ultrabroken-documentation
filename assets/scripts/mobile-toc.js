@@ -1,7 +1,8 @@
 /**
- * Mobile TOC in nav drawer — injects the page's TOC as a collapsible section
- * at the bottom of the nav drawer on small screens, using Material's own
- * checkbox expand/collapse pattern so it blends with the native nav UX.
+ * Mobile TOC in nav drawer — injects the page's table of contents as a
+ * collapsible section at the bottom of the nav drawer on small screens,
+ * using Material's own checkbox expand/collapse pattern so it blends
+ * with the native nav UX.
  */
 (function () {
   var BREAKPOINT = 76.1875; // em — Material hides right sidebar below this
