@@ -106,6 +106,8 @@ var PIE = {
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
     '.section0,.section2{fill:rgba(0,240,194,1)!important}' +
     '.section1,.section3{fill:rgba(0,240,194,1)!important}' +
+    /* ── Gantt: overall background (opaque with outline) ── */
+    'rect.background{fill:#2a2f3f!important;stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
     /* ── Pie ── */
     '.pieTitleText{font-size:' + PIE.titleSize + '!important;' +
       'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important;' +
@@ -198,6 +200,9 @@ Object.defineProperty(window, 'mermaid', {
         tv.sectionBkgColor   = 'rgba(0,240,194,1)';
         tv.sectionBkgColor2  = 'rgba(0,240,194,1)';
         tv.altSectionBkgColor = 'rgba(0,240,194,1)';
+        /* Gantt: background styling */
+        tv.backgroundShow  = true;
+        tv.primaryBorderColor = THEME.primary;
         tv.gridColor     = 'rgba(137,139,148,0.3)';
         tv.todayLineColor = THEME.primary;
         /* Pie */
@@ -241,7 +246,10 @@ Object.defineProperty(window, 'mermaid', {
             '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds (opaque) */
           '.section0,.section2{fill:rgba(0,240,194,1)!important}' +
-          '.section1,.section3{fill:rgba(0,240,194,1)!important}' +          /* Pie */
+          '.section1,.section3{fill:rgba(0,240,194,1)!important}' +
+          /* Gantt: overall background (opaque with teal outline) */
+          'rect.background{fill:#2a2f3f!important;stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
+          /* Pie */
           '.pieTitleText{fill:' + THEME.primary + '!important;font-size:' + PIE.titleSize + '!important;' +
             'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important}' +
           'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
