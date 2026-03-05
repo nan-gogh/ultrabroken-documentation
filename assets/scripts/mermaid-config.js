@@ -8,6 +8,10 @@ Object.defineProperty(window, 'mermaid', {
     if (val && val.initialize && !val._intercepted) {
       const origInit = val.initialize;
       val.initialize = function(config) {
+        // Increase Gantt bar height for better legibility
+        if (!config.gantt) config.gantt = {};
+        config.gantt.barHeight = 40;
+        
         if (config && typeof config.themeCSS === 'string') {
           // Append our specific pie & gantt fixes to Material's default themeCSS
           config.themeCSS += `
