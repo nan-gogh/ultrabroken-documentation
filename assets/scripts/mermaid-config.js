@@ -26,7 +26,7 @@ var THEME = {
   text: '#d5d7de',
   critical: '#fff',
   dark: '#1a1a2e',
-  backdropFill: 'rgba(0, 240, 194, 0.12)',
+  backdropFill: '#1a1a2e',
   titleFont: '"New Rocker", serif',
   textFont: '"Texturina", Georgia, serif'
 };
