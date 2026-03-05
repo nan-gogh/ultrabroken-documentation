@@ -33,11 +33,13 @@ var THEME = {
 /* ── Gantt-specific settings ── */
 var GANTT = {
   titleSize: '48px',
-  tickSize: '14px',
+  tickSize: '20px',
   sectionSize: '30px',
   taskSize: '26px',
   barHeight: 48,
-  topPadding: 80
+  topPadding: 80,
+  sectionFill: '#1e3040',
+  sectionAltFill: '#19283a'
 };
 
 /* ── Pie-specific settings ── */
@@ -104,11 +106,10 @@ var PIE = {
       'stroke:' + THEME.critical + '!important;stroke-dasharray:4!important}' +
     /* ── Gantt: grid & section backgrounds ── */
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
-    '.section0,.section1,.section2,.section3' +
-      '{fill:' + THEME.dark + '!important;' +
-      'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
-    /* ── Gantt: overall background (dark fill, teal outline) ── */
-    'rect.background{fill:' + THEME.dark + '!important;stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
+    '.section0,.section2{fill:' + GANTT.sectionFill + '!important}' +
+    '.section1,.section3{fill:' + GANTT.sectionAltFill + '!important}' +
+    /* ── Gantt: overall background ── */
+    'rect.background{fill:' + THEME.dark + '!important}' +
     /* ── Pie ── */
     '.pieTitleText{font-size:' + PIE.titleSize + '!important;' +
       'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important;' +
@@ -164,13 +165,18 @@ var PIE = {
             bg.setAttribute('rx', '3');
             bg.setAttribute('ry', '3');
           }
-          /* Apply fill/stroke/rx to section bands via attributes (overrides Mermaid inline styles) */
-          svg.querySelectorAll('.section0,.section1,.section2,.section3').forEach(function(r) {
-            r.setAttribute('fill', THEME.dark);
-            r.setAttribute('stroke', THEME.primary);
-            r.setAttribute('stroke-width', '1.5');
-            r.setAttribute('rx', '3');
-            r.setAttribute('ry', '3');
+          /* Set section band fills directly via attributes (overrides Mermaid inline styles) */
+          svg.querySelectorAll('.section0,.section2').forEach(function(r) {
+            r.setAttribute('fill', GANTT.sectionFill);
+            r.removeAttribute('stroke');
+            r.removeAttribute('rx');
+            r.removeAttribute('ry');
+          });
+          svg.querySelectorAll('.section1,.section3').forEach(function(r) {
+            r.setAttribute('fill', GANTT.sectionAltFill);
+            r.removeAttribute('stroke');
+            r.removeAttribute('rx');
+            r.removeAttribute('ry');
           });
         }
       }
@@ -215,9 +221,9 @@ Object.defineProperty(window, 'mermaid', {
         tv.critBorderColor = THEME.critical;
         /* Title, sections, grid */
         tv.titleColor        = THEME.primary;
-        tv.sectionBkgColor   = THEME.dark;
-        tv.sectionBkgColor2  = THEME.dark;
-        tv.altSectionBkgColor = THEME.dark;
+        tv.sectionBkgColor   = GANTT.sectionFill;
+        tv.sectionBkgColor2  = GANTT.sectionFill;
+        tv.altSectionBkgColor = GANTT.sectionAltFill;
         /* Gantt: background styling */
         tv.backgroundShow  = true;
         tv.primaryBorderColor = THEME.primary;
@@ -262,12 +268,11 @@ Object.defineProperty(window, 'mermaid', {
           '.taskTextOutside2,.taskTextOutside3,' +
           '.taskTextOutsideRight,.taskTextOutsideLeft' +
             '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
-            'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds (dark fill, teal stroke) */
-          '.section0,.section1,.section2,.section3' +
-            '{fill:' + THEME.dark + '!important;' +
-            'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
-          /* Gantt: overall background (dark fill, teal outline) */
-          'rect.background{fill:' + THEME.dark + '!important;stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
+            'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds */
+          '.section0,.section2{fill:' + GANTT.sectionFill + '!important}' +
+          '.section1,.section3{fill:' + GANTT.sectionAltFill + '!important}' +
+          /* Gantt: overall background */
+          'rect.background{fill:' + THEME.dark + '!important}' +
           /* Pie */
           '.pieTitleText{fill:' + THEME.primary + '!important;font-size:' + PIE.titleSize + '!important;' +
             'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important}' +
