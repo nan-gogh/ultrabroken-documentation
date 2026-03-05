@@ -3044,33 +3044,172 @@ Another Term
 </div>
 </div>
 <h3 id="mermaid-diagrams">Mermaid Diagrams</h3>
-<p>Creates interactive flowcharts, sequence diagrams, and other visual graphs using Mermaid syntax. Use Mermaid to illustrate processes, relationships, timelines, and complex workflows.</p>
-<h4 id="syntax_18">Syntax</h4>
+<p>Creates interactive flowcharts, sequence diagrams, class diagrams, state diagrams, entity-relationship diagrams, Gantt charts, pie charts, and other visual graphs using Mermaid syntax. Use Mermaid to illustrate processes, relationships, timelines, workflows, and data structures.</p>
+<h4 id="flowchart">Flowchart</h4>
+<p>Shows decision flows and process steps with nodes and connections.</p>
+<h5 id="syntax_18">Syntax</h5>
 <div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
 <span class="s">graph TD</span>
-<span class="s">    A[Start] --&gt; B{Decision}</span>
-<span class="s">    B --&gt;|Yes| C[Continue]</span>
-<span class="s">    B --&gt;|No| D[Stop]</span>
+<span class="s">    A[Start] --&gt; B{Decision?}</span>
+<span class="s">    B --&gt;|Yes| C[Action A]</span>
+<span class="s">    B --&gt;|No| D[Action B]</span>
 <span class="s">    C --&gt; E[End]</span>
+<span class="s">    D --&gt; E</span>
 <span class="sb">```</span>
 </code></pre></div>
-<p><strong>Diagram Types:</strong> <code>graph</code> (flowchart), <code>sequenceDiagram</code>, <code>classDiagram</code>, <code>stateDiagram-v2</code>, <code>erDiagram</code>, <code>gantt</code>, <code>pie</code> and more.</p>
-<p><strong>Common Operators:</strong> 
-- <code>A --&gt; B</code> creates a directed arrow from A to B
-- <code>A --&gt;|Label| B</code> adds a label to the connection
-- <code>A[Text]</code> creates a box node
-- <code>A{Text}</code> creates a diamond decision node
-- <code>A(Text)</code> creates a rounded box</p>
-<h4 id="example_20">Example</h4>
+<h5 id="example_20">Example</h5>
 <pre class="mermaid"><code>graph TD
-    A["Ultrabroken&lt;br/&gt;Discovered"] --&gt; B{Glitch Type?}
-    B --&gt;|Equipment| C["Zuggling"]
-    B --&gt;|Movement| D["OOB"]
-    B --&gt;|Physics| E["Entanglement"]
-    C --&gt; F["Document&lt;br/&gt;Discovery"]
-    D --&gt; F
-    E --&gt; F
-    F --&gt; G["Add to&lt;br/&gt;Encyclopedia"]</code></pre>
+    A[Start] --&gt; B{Decision?}
+    B --&gt;|Yes| C[Action A]
+    B --&gt;|No| D[Action B]
+    C --&gt; E[End]
+    D --&gt; E</code></pre>
+<h4 id="sequence-diagram">Sequence Diagram</h4>
+<p>Shows interactions between actors or systems over time, useful for documenting workflows and protocols.</p>
+<h5 id="syntax_19">Syntax</h5>
+<div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
+<span class="s">sequenceDiagram</span>
+<span class="s">    participant Player as Link</span>
+<span class="s">    participant Inventory</span>
+<span class="s">    participant Equipment</span>
+<span class="s">    Player-&gt;&gt;Inventory: Open inventory</span>
+<span class="s">    Inventory-&gt;&gt;Equipment: Load equipment state</span>
+<span class="s">    Equipment--&gt;&gt;Inventory: Zuggle state synced</span>
+<span class="s">    Inventory--&gt;&gt;Player: Display synced state</span>
+<span class="sb">```</span>
+</code></pre></div>
+<h5 id="example_21">Example</h5>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Player as Link
+    participant Inventory
+    participant Equipment
+    Player-&gt;&gt;Inventory: Open inventory
+    Inventory-&gt;&gt;Equipment: Load equipment state
+    Equipment--&gt;&gt;Inventory: Zuggle state synced
+    Inventory--&gt;&gt;Player: Display synced state</code></pre>
+<h4 id="class-diagram">Class Diagram</h4>
+<p>Illustrates object-oriented structures, classes, and their relationships.</p>
+<h5 id="syntax_20">Syntax</h5>
+<div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
+<span class="s">classDiagram</span>
+<span class="s">    class Glitch {</span>
+<span class="s">        +string name</span>
+<span class="s">        +string technique</span>
+<span class="s">        +string[] versions</span>
+<span class="s">        +execute()</span>
+<span class="s">    }</span>
+<span class="s">    class Equipment {</span>
+<span class="s">        +string id</span>
+<span class="s">        +int durability</span>
+<span class="s">        +getState()</span>
+<span class="s">    }</span>
+<span class="s">    Glitch --&gt; Equipment : affects</span>
+<span class="sb">```</span>
+</code></pre></div>
+<h5 id="example_22">Example</h5>
+<pre class="mermaid"><code>classDiagram
+    class Glitch {
+        +string name
+        +string technique
+        +string[] versions
+        +execute()
+    }
+    class Equipment {
+        +string id
+        +int durability
+        +getState()
+    }
+    Glitch --&gt; Equipment : affects</code></pre>
+<h4 id="state-diagram">State Diagram</h4>
+<p>Represents state transitions and conditional logic for system behavior.</p>
+<h5 id="syntax_21">Syntax</h5>
+<div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
+<span class="s">stateDiagram-v2</span>
+<span class="s">    [*] --&gt; Normal</span>
+<span class="s">    Normal --&gt; Desync: Trigger glitch</span>
+<span class="s">    Desync --&gt; Equipment_Cloned: Fuse cloned</span>
+<span class="s">    Equipment_Cloned --&gt; Normal: Inventory reload</span>
+<span class="s">    Equipment_Cloned --&gt; [*]</span>
+<span class="sb">```</span>
+</code></pre></div>
+<h5 id="example_23">Example</h5>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Normal
+    Normal --&gt; Desync: Trigger glitch
+    Desync --&gt; Equipment_Cloned: Fuse cloned
+    Equipment_Cloned --&gt; Normal: Inventory reload
+    Equipment_Cloned --&gt; [*]</code></pre>
+<h4 id="entity-relationship-diagram">Entity-Relationship Diagram</h4>
+<p>Models database schemas and entity relationships.</p>
+<h5 id="syntax_22">Syntax</h5>
+<div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
+<span class="s">erDiagram</span>
+<span class="s">    GLITCH ||--o{ TECHNIQUE : has</span>
+<span class="s">    GLITCH ||--o{ VERSION : supports</span>
+<span class="s">    TECHNIQUE {</span>
+<span class="s">        int id</span>
+<span class="s">        string name</span>
+<span class="s">        string description</span>
+<span class="s">    }</span>
+<span class="s">    VERSION {</span>
+<span class="s">        string number</span>
+<span class="s">        date release_date</span>
+<span class="s">    }</span>
+<span class="sb">```</span>
+</code></pre></div>
+<h5 id="example_24">Example</h5>
+<pre class="mermaid"><code>erDiagram
+    GLITCH ||--o{ TECHNIQUE : has
+    GLITCH ||--o{ VERSION : supports
+    TECHNIQUE {
+        int id
+        string name
+        string description
+    }
+    VERSION {
+        string number
+        date release_date
+    }</code></pre>
+<h4 id="gantt-chart">Gantt Chart</h4>
+<p>Timeline visualization for project schedules and dependencies.</p>
+<h5 id="syntax_23">Syntax</h5>
+<div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
+<span class="s">gantt</span>
+<span class="s">    title Discovery Timeline</span>
+<span class="s">    dateFormat YYYY-MM-DD</span>
+<span class="s">    section Phase</span>
+<span class="s">    Research           :a1, 2024-01-01, 30d</span>
+<span class="s">    Testing            :a2, after a1, 20d</span>
+<span class="s">    Documentation      :a3, after a2, 15d</span>
+<span class="s">    Publication        :crit, a4, after a3, 10d</span>
+<span class="sb">```</span>
+</code></pre></div>
+<h5 id="example_25">Example</h5>
+<pre class="mermaid"><code>gantt
+    title Discovery Timeline
+    dateFormat YYYY-MM-DD
+    section Phase
+    Research           :a1, 2024-01-01, 30d
+    Testing            :a2, after a1, 20d
+    Documentation      :a3, after a2, 15d
+    Publication        :crit, a4, after a3, 10d</code></pre>
+<h4 id="pie-chart">Pie Chart</h4>
+<p>Displays proportional data distribution.</p>
+<h5 id="syntax_24">Syntax</h5>
+<div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
+<span class="s">pie title Glitch Discovery by Category</span>
+<span class="s">    &quot;Equipment Duplication&quot; : 35</span>
+<span class="s">    &quot;Movement Abuse&quot; : 25</span>
+<span class="s">    &quot;Collision Exploitation&quot; : 20</span>
+<span class="s">    &quot;Physics Exploitation&quot; : 20</span>
+<span class="sb">```</span>
+</code></pre></div>
+<h5 id="example_26">Example</h5>
+<pre class="mermaid"><code>pie title Glitch Discovery by Category
+    "Equipment Duplication" : 35
+    "Movement Abuse" : 25
+    "Collision Exploitation" : 20
+    "Physics Exploitation" : 20</code></pre>
 <h2 id="extension-configuration">Extension Configuration</h2>
 <hr />
 <p>All extensions are defined in <code>mkdocs.yml</code>:</p>
