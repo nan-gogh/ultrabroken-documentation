@@ -41,13 +41,13 @@ var GANTT = {
   topPadding: 80,
   sectionFill: '#173440',
   sectionAltFill: '#173440',
-  /* Opaque task-bar fills (rgba composited over sectionFill #173440) */
-  taskFill: '#144B50',
-  activeFill: '#0F766E',
-  doneFill: '#15434A',
-  critFill: '#415962',
-  activeCritFill: '#5D7179',
-  doneCritFill: '#2A444F'
+  /* Opaque task-bar fills (high-contrast over sectionFill #173440) */
+  taskFill: '#106C67',
+  activeFill: '#0C9281',
+  doneFill: '#135657',
+  critFill: '#5D7179',
+  activeCritFill: '#7F8F96',
+  doneCritFill: '#3A525D'
 };
 
 /* ── Pie-specific settings ── */
@@ -183,6 +183,20 @@ var PIE = {
             r.removeAttribute('fill-opacity');
             r.removeAttribute('rx');
             r.removeAttribute('ry');
+          });
+          /* Set task/crit bar fills directly via attributes */
+          var barFills = {
+            '.task0,.task1,.task2,.task3': GANTT.taskFill,
+            '.active0,.active1,.active2,.active3': GANTT.activeFill,
+            '.done0,.done1,.done2,.done3': GANTT.doneFill,
+            '.crit0,.crit1,.crit2,.crit3': GANTT.critFill,
+            '.activeCrit0,.activeCrit1,.activeCrit2,.activeCrit3': GANTT.activeCritFill,
+            '.doneCrit0,.doneCrit1,.doneCrit2,.doneCrit3': GANTT.doneCritFill
+          };
+          Object.keys(barFills).forEach(function(sel) {
+            svg.querySelectorAll(sel).forEach(function(r) {
+              r.setAttribute('fill', barFills[sel]);
+            });
           });
         }
       }
