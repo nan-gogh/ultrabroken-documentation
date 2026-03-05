@@ -40,8 +40,8 @@ var GANTT = {
   tickSize: '16px',
   sectionSize: '20px',
   taskSize: '17px',
-  barHeight: 48,
-  topPadding: 80,
+  barHeight: 28,
+  topPadding: 50,
   sectionFill: '#173440',
   sectionAltFill: '#173440',
   /* Opaque task-bar fills (high-contrast over sectionFill #173440) */
