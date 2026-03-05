@@ -113,7 +113,13 @@ var PIE = {
     'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
       'font-size:' + PIE.labelSize + '!important;' +
       'font-family:' + THEME.textFont + '!important}' +
-    '.slice{stroke:none!important;stroke-width:0!important}' +
+    'text.slice{fill:' + THEME.critical + '!important;' +
+      'font-size:' + PIE.labelSize + '!important;' +
+      'font-family:' + THEME.textFont + '!important;' +
+      'font-weight:700!important;' +
+      'paint-order:stroke fill!important;' +
+      'stroke:' + THEME.dark + '!important;stroke-width:3px!important;' +
+      'stroke-linejoin:round!important}' +
     '.pieCircle{stroke:none!important;stroke-width:0!important}' +
     '.pieOuterCircle{stroke:none!important;stroke-width:0!important}' +
     'path[class*=pie]{stroke:none!important;stroke-width:0!important}' +
@@ -240,7 +246,13 @@ Object.defineProperty(window, 'mermaid', {
           'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
             'font-size:' + PIE.labelSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +
-          '.slice{stroke:none!important;stroke-width:0!important}' +
+          'text.slice{fill:' + THEME.critical + '!important;' +
+            'font-size:' + PIE.labelSize + '!important;' +
+            'font-family:' + THEME.textFont + '!important;' +
+            'font-weight:700!important;' +
+            'paint-order:stroke fill!important;' +
+            'stroke:' + THEME.dark + '!important;stroke-width:3px!important;' +
+            'stroke-linejoin:round!important}' +
           '.pieCircle{stroke:none!important;stroke-width:0!important}' +
           '.pieOuterCircle{stroke:none!important;stroke-width:0!important}' +
           'path[class*=pie]{stroke:none!important;stroke-width:0!important}' +
