@@ -168,8 +168,6 @@ var PIE = {
 
       /* ── Gantt-only DOM modifications ── */
       if (isGantt) {
-        /* Make Gantt horizontally scrollable on narrow screens instead of
-           squishing the ~5:1 aspect ratio into a tiny box. */
         var vb = svg.getAttribute('viewBox');
         if (vb) {
           var p = vb.split(/[\s,]+/).map(Number);
@@ -180,32 +178,34 @@ var PIE = {
           p[3] += extra;    /* increase height */
           svg.setAttribute('viewBox', p.join(' '));
           var naturalH = p[3];           /* viewBox height after adjustment */
-          /* Inject a shadow-root-level <style> that forces the Gantt SVG
-             to its natural size.  This survives any later JS that sets
-             inline styles or attributes, because stylesheet !important
-             rules beat inline styles. */
-          var sizeStyle = document.createElement('style');
-          sizeStyle.textContent =
-            'svg[aria-roledescription="gantt"]{' +
+          /* Wrap SVG in a scrollable container.  This is the bullet-proof
+             way to handle a wide SVG: the wrapper scrolls, the SVG keeps
+             its natural dimensions.  We defer to setTimeout(0) so that
+             Material's synchronous post-processing is complete. */
+          var shadowRoot = this;
+          var host = this.host;
+          setTimeout(function () {
+            /* Re-query in case Material replaced the SVG */
+            var s = shadowRoot.querySelector('svg[aria-roledescription="gantt"]');
+            if (!s) return;
+            /* Create a wrapper div inside the shadow root */
+            var wrapper = document.createElement('div');
+            wrapper.style.cssText =
+              'overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;';
+            /* Move SVG into wrapper */
+            s.parentNode.insertBefore(wrapper, s);
+            wrapper.appendChild(s);
+            /* Force SVG to its natural pixel size */
+            s.removeAttribute('width');
+            s.removeAttribute('height');
+            s.removeAttribute('style');
+            s.style.cssText =
               'width:' + naturalW + 'px!important;' +
               'min-width:' + naturalW + 'px!important;' +
               'max-width:none!important;' +
               'height:' + naturalH + 'px!important;' +
-            '}';
-          this.appendChild(sizeStyle);
-          /* Make the shadow host a scrollable container */
-          this.host.style.overflowX = 'auto';
-          this.host.style.display   = 'block';
-          this.host.style.webkitOverflowScrolling = 'touch';
-          /* Watch for any later JS (e.g. Material) re-writing the SVG's
-             style/width attributes and immediately re-apply our sizing */
-          var w = naturalW, h = naturalH;
-          new MutationObserver(function(muts, obs) {
-            svg.removeAttribute('width');
-            svg.removeAttribute('height');
-            svg.removeAttribute('style');
-            obs.disconnect();  /* one-shot: prevent infinite loop */
-          }).observe(svg, { attributes: true, attributeFilter: ['style', 'width', 'height'] });
+              'display:block;';
+          }, 0);
         }
         /* Style gantt background rect directly as SVG attributes */
         var bg = svg.querySelector('rect.background');
