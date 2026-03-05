@@ -134,7 +134,8 @@ var PIE = {
       'paint-order:stroke fill!important;' +
       'stroke:' + THEME.dark + '!important;stroke-width:3px!important;' +
       'stroke-linejoin:round!important}' +
-    '.pieCircle{stroke:none!important;stroke-width:0!important;opacity:1!important}' +{stroke:none!important;stroke-width:0!important}' +
+    '.pieCircle{stroke:none!important;stroke-width:0!important;opacity:1!important}' +
+    '.pieOuterCircle{stroke:none!important;stroke-width:0!important}' +
     'path[class*=pie]{stroke:none!important;stroke-width:0!important}' +
     'g.legend>rect{stroke:none!important;stroke-width:0!important}' +
     'g.legend>text{fill:' + THEME.accent + '!important;' +
