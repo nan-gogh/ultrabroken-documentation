@@ -1,59 +1,44 @@
 /**
- * Mobile TOC button — shows a floating "TOC" button on small screens
- * for pages that aren't in the nav tree (e.g. individual glitch pages).
- * Toggles the existing md-sidebar--secondary into view.
+ * Mobile TOC in nav drawer — injects the page's TOC as a collapsible section
+ * at the bottom of the nav drawer on small screens, using Material's own
+ * checkbox expand/collapse pattern so it blends with the native nav UX.
  */
 (function () {
   var BREAKPOINT = 76.1875; // em — Material hides right sidebar below this
 
-  function shouldActivate() {
-    // Only on screens where the right sidebar is hidden
-    if (window.matchMedia('(min-width: ' + (BREAKPOINT + 0.0625) + 'em)').matches) return false;
-    // Only if a TOC exists
-    var toc = document.querySelector('.md-sidebar--secondary .md-nav--secondary');
-    if (!toc || !toc.querySelector('.md-nav__list li')) return false;
-    return true;
-  }
-
   function init() {
-    if (!shouldActivate()) return;
+    if (window.matchMedia('(min-width: ' + (BREAKPOINT + 0.0625) + 'em)').matches) return;
 
-    var sidebar = document.querySelector('.md-sidebar--secondary');
-    if (!sidebar) return;
+    var tocNav = document.querySelector('.md-sidebar--secondary .md-nav--secondary');
+    if (!tocNav || !tocNav.querySelector('.md-nav__list li')) return;
 
-    // Create floating button
-    var btn = document.createElement('button');
-    btn.className = 'ub-toc-fab';
-    btn.setAttribute('aria-label', 'Table of contents');
-    btn.innerHTML = '<span class="md-nav__icon md-icon"></span>';
-    document.body.appendChild(btn);
+    var navList = document.querySelector('.md-sidebar--primary .md-nav--primary > .md-nav__list');
+    if (!navList) return;
 
-    // Create backdrop
-    var backdrop = document.createElement('div');
-    backdrop.className = 'ub-toc-backdrop';
-    document.body.appendChild(backdrop);
+    // Build a nav item using Material's own checkbox expand/collapse pattern
+    var item = document.createElement('li');
+    item.className = 'md-nav__item md-nav__item--nested ub-toc-nav-item';
 
-    var open = false;
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = 'ub-toc-nav-toggle';
+    checkbox.className = 'md-nav__toggle md-toggle';
 
-    function toggle() {
-      open = !open;
-      sidebar.classList.toggle('ub-toc-open', open);
-      backdrop.classList.toggle('ub-toc-open', open);
-      btn.classList.toggle('ub-toc-open', open);
-    }
+    var label = document.createElement('label');
+    label.className = 'md-nav__link';
+    label.setAttribute('for', 'ub-toc-nav-toggle');
+    label.innerHTML = 'On this page<span class="md-nav__icon md-icon"></span>';
 
-    btn.addEventListener('click', toggle);
-    backdrop.addEventListener('click', toggle);
+    var tocClone = tocNav.cloneNode(true);
+    // Avoid duplicate IDs in the cloned TOC
+    tocClone.querySelectorAll('[id]').forEach(function (el) { el.removeAttribute('id'); });
 
-    // Close on TOC link click
-    sidebar.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        if (open) toggle();
-      }
-    });
+    item.appendChild(checkbox);
+    item.appendChild(label);
+    item.appendChild(tocClone);
+    navList.appendChild(item);
   }
 
-  // Run after DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
