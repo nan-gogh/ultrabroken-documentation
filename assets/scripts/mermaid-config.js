@@ -169,25 +169,30 @@ var PIE = {
       /* ── Gantt-only DOM modifications ── */
       if (isGantt) {
         /* Make Gantt horizontally scrollable on narrow screens instead of
-           squishing the ~5:1 aspect ratio into a tiny box.  We give the
-           SVG a fixed min-width equal to its natural viewBox width and
-           let the shadow host scroll horizontally. */
+           squishing the ~5:1 aspect ratio into a tiny box.  We replace
+           Mermaid's width="100%" with fixed dimensions matching the
+           viewBox and let the shadow host scroll horizontally. */
         var vb = svg.getAttribute('viewBox');
         if (vb) {
           var p = vb.split(/[\s,]+/).map(Number);
           var naturalW = p[2];           /* viewBox width in SVG units */
-          svg.style.minWidth = naturalW + 'px';
-          svg.style.width    = naturalW + 'px';
-          svg.style.maxWidth = 'none';
-          /* Make the shadow host a scrollable container */
-          this.host.style.overflowX = 'auto';
-          this.host.style.display   = 'block';
-          this.host.style.webkitOverflowScrolling = 'touch';
           /* Extend viewBox upward so large title text isn't clipped */
           var extra = parseInt(GANTT.titleSize);
           p[1] -= extra;    /* shift origin up */
           p[3] += extra;    /* increase height */
           svg.setAttribute('viewBox', p.join(' '));
+          var naturalH = p[3];           /* viewBox height after adjustment */
+          /* Replace width="100%" with fixed dimensions so the SVG
+             doesn't shrink to the container on narrow screens */
+          svg.removeAttribute('width');
+          svg.removeAttribute('height');
+          svg.removeAttribute('style');  /* remove Mermaid's inline max-width */
+          svg.setAttribute('width', naturalW);
+          svg.setAttribute('height', naturalH);
+          /* Make the shadow host a scrollable container */
+          this.host.style.overflowX = 'auto';
+          this.host.style.display   = 'block';
+          this.host.style.webkitOverflowScrolling = 'touch';
         }
         /* Style gantt background rect directly as SVG attributes */
         var bg = svg.querySelector('rect.background');
