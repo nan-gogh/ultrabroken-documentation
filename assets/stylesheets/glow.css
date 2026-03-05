@@ -1361,3 +1361,83 @@ li.task-list-item a, li.task-list a {
     max-height: 350px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MOBILE TOC FLOATING BUTTON
+   Shows a floating TOC button on small screens so the table of contents
+   is always reachable, even on pages not listed in the nav tree.
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Floating action button */
+.ub-toc-fab {
+  display: none;
+  position: fixed;
+  bottom: 3.5rem;
+  right: 1.5rem;
+  z-index: 5;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(0, 240, 194, 0.4);
+  border-radius: 50%;
+  background: rgba(0, 30, 25, 0.92);
+  color: var(--teal-glow);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ub-toc-fab:active {
+  transform: scale(0.92);
+}
+
+.ub-toc-fab.ub-toc-open {
+  box-shadow: 0 0 12px rgba(0, 240, 194, 0.3);
+}
+
+/* Backdrop overlay */
+.ub-toc-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.ub-toc-backdrop.ub-toc-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Show button + enable backdrop only below Material's right-sidebar breakpoint */
+@media (max-width: 76.1875em) {
+  .ub-toc-fab {
+    display: flex;
+  }
+  .ub-toc-backdrop {
+    display: block;
+  }
+
+  /* Slide the right sidebar in from the right when toggled */
+  .md-sidebar--secondary.ub-toc-open {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    width: 16rem !important;
+    max-width: 80vw !important;
+    z-index: 6 !important;
+    background: var(--md-default-bg-color, #1e1e1e) !important;
+    overflow-y: auto !important;
+    padding: 3.6rem 0.8rem 1rem !important;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.4) !important;
+    transform: translateX(0) !important;
+    transition: transform 0.25s ease !important;
+  }
+}
