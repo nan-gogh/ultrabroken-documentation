@@ -3043,13 +3043,45 @@ Another Term
 </div>
 </div>
 </div>
+<h3 id="mermaid-diagrams">Mermaid Diagrams</h3>
+<p>Creates interactive flowcharts, sequence diagrams, and other visual graphs using Mermaid syntax. Use Mermaid to illustrate processes, relationships, timelines, and complex workflows.</p>
+<h4 id="syntax_18">Syntax</h4>
+<div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
+<span class="s">graph TD</span>
+<span class="s">    A[Start] --&gt; B{Decision}</span>
+<span class="s">    B --&gt;|Yes| C[Continue]</span>
+<span class="s">    B --&gt;|No| D[Stop]</span>
+<span class="s">    C --&gt; E[End]</span>
+<span class="sb">```</span>
+</code></pre></div>
+<p><strong>Diagram Types:</strong> <code>graph</code> (flowchart), <code>sequenceDiagram</code>, <code>classDiagram</code>, <code>stateDiagram-v2</code>, <code>erDiagram</code>, <code>gantt</code>, <code>pie</code> and more.</p>
+<p><strong>Common Operators:</strong> 
+- <code>A --&gt; B</code> creates a directed arrow from A to B
+- <code>A --&gt;|Label| B</code> adds a label to the connection
+- <code>A[Text]</code> creates a box node
+- <code>A{Text}</code> creates a diamond decision node
+- <code>A(Text)</code> creates a rounded box</p>
+<h4 id="example_20">Example</h4>
+<pre class="mermaid"><code>graph TD
+    A["Ultrabroken&lt;br/&gt;Discovered"] --&gt; B{Glitch Type?}
+    B --&gt;|Equipment| C["Zuggling"]
+    B --&gt;|Movement| D["OOB"]
+    B --&gt;|Physics| E["Entanglement"]
+    C --&gt; F["Document&lt;br/&gt;Discovery"]
+    D --&gt; F
+    E --&gt; F
+    F --&gt; G["Add to&lt;br/&gt;Encyclopedia"]</code></pre>
 <h2 id="extension-configuration">Extension Configuration</h2>
 <hr />
 <p>All extensions are defined in <code>mkdocs.yml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.details</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.superfences</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">custom_fences</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mermaid</span>
+<span class="w">          </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mermaid</span>
+<span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="kt">!!python/name:pymdownx.superfences.fence_code_format</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.highlight</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.inlinehilite</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.tasklist</span><span class="p">:</span>
@@ -3127,6 +3159,11 @@ Another Term
 <td><strong>Tabbed</strong></td>
 <td>Organized content groups</td>
 <td>=== "Tab Name"</td>
+</tr>
+<tr>
+<td><strong>Mermaid</strong></td>
+<td>Diagrams &amp; flowcharts</td>
+<td>```mermaid graph <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/DGS/" class="glitch-autolink" title="TD" target="_blank" rel="noopener noreferrer">TD</a> ```</td>
 </tr>
 </tbody>
 </table>
@@ -3243,6 +3280,8 @@ Another Term
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
       
         <script src="../../assets/vendor/marked.min.js"></script>
       
