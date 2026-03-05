@@ -147,7 +147,10 @@ var PIE = {
     get: desc.get,
     set: function (html) {
       desc.set.call(this, html);
-      /* Only inject into shadow roots that contain Mermaid SVGs */
+      /* Force ALL Mermaid SVGs to fill container (Mermaid sets a fixed max-width) */
+      var anySvg = this.querySelector('svg[id^="__mermaid"]');
+      if (anySvg) anySvg.style.maxWidth = '100%';
+      /* Only inject into shadow roots that contain Gantt / Pie SVGs */
       if (typeof html === 'string' &&
           (html.indexOf('titleText') !== -1 ||
            html.indexOf('pieTitleText') !== -1)) {
@@ -186,8 +189,6 @@ var PIE = {
             r.removeAttribute('rx');
             r.removeAttribute('ry');
           });
-          /* Force chart to fill container (Mermaid sets a fixed max-width) */
-          svg.style.maxWidth = '100%';
           /* Set task/crit bar fills directly via attributes */
           var barFills = {
             '.task0,.task1,.task2,.task3': GANTT.taskFill,
