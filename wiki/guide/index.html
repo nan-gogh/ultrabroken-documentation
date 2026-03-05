@@ -3186,45 +3186,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#mermaid-inline-theme-overrides" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mermaid Inline Theme Overrides
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Mermaid Inline Theme Overrides">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#syntax_25" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Syntax
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example_27" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -4529,45 +4490,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#mermaid-inline-theme-overrides" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mermaid Inline Theme Overrides
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Mermaid Inline Theme Overrides">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#syntax_25" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Syntax
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example_27" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -5154,11 +5076,11 @@ Another Term
         date release_date
     }</code></pre>
 <h3 id="mermaid-gantt-chart">Mermaid Gantt Chart</h3>
-<p>Timeline visualization for project schedules and dependencies.</p>
+<p>Timeline visualization for project schedules and dependencies. The chart title is automatically hidden.</p>
 <h4 id="syntax_23">Syntax</h4>
 <div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
 <span class="s">gantt</span>
-<span class="s">    title Ignore this field</span>
+<span class="s">    title Chart Title (hidden)</span>
 <span class="s">    dateFormat YYYY-MM-DD</span>
 <span class="s">    section Phase</span>
 <span class="s">    Research           :a1, 2024-01-01, 30d</span>
@@ -5169,7 +5091,7 @@ Another Term
 </code></pre></div>
 <h4 id="example_25">Example</h4>
 <pre class="mermaid"><code>gantt
-    title Ignore this field
+    title Chart Title (hidden)
     dateFormat YYYY-MM-DD
     section Phase
     Research           :a1, 2024-01-01, 30d
@@ -5177,10 +5099,10 @@ Another Term
     Documentation      :a3, after a2, 15d
     Publication        :crit, a4, after a3, 10d</code></pre>
 <h3 id="mermaid-pie-chart">Mermaid Pie Chart</h3>
-<p>Displays proportional data distribution.</p>
+<p>Displays proportional data distribution. The chart title is automatically hidden.</p>
 <h4 id="syntax_24">Syntax</h4>
 <div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
-<span class="s">pie title Glitch Discovery by Category</span>
+<span class="s">pie title Chart Title (hidden)</span>
 <span class="s">    &quot;Equipment Duplication&quot; : 35</span>
 <span class="s">    &quot;Movement Abuse&quot; : 25</span>
 <span class="s">    &quot;Collision Exploitation&quot; : 20</span>
@@ -5188,63 +5110,11 @@ Another Term
 <span class="sb">```</span>
 </code></pre></div>
 <h4 id="example_26">Example</h4>
-<pre class="mermaid"><code>pie title Glitch Discovery by Category
+<pre class="mermaid"><code>pie title Chart Title (hidden)
     "Equipment Duplication" : 35
     "Movement Abuse" : 25
     "Collision Exploitation" : 20
     "Physics Exploitation" : 20</code></pre>
-<h3 id="mermaid-inline-theme-overrides">Mermaid Inline Theme Overrides</h3>
-<p>The global theme is controlled via CSS custom properties (<code>--md-mermaid-*</code>) in <code>glow.css</code> and applies automatically to all diagrams. For one-off overrides — such as a specific diagram that needs different colors — use an <code>%%{init:}%%</code> directive at the top of the diagram block.</p>
-<p><strong>Common <code>themeVariables</code> keys:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Affects</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>primaryColor</code></td>
-<td>Node / shape fill</td>
-</tr>
-<tr>
-<td><code>primaryBorderColor</code></td>
-<td>Node borders</td>
-</tr>
-<tr>
-<td><code>primaryTextColor</code></td>
-<td>Text inside nodes</td>
-</tr>
-<tr>
-<td><code>lineColor</code></td>
-<td>Arrows and connectors</td>
-</tr>
-<tr>
-<td><code>textColor</code></td>
-<td>General diagram text</td>
-</tr>
-<tr>
-<td><code>titleColor</code></td>
-<td>Diagram title</td>
-</tr>
-<tr>
-<td><code>edgeLabelBackground</code></td>
-<td>Label backgrounds on edges</td>
-</tr>
-</tbody>
-</table>
-<h4 id="syntax_25">Syntax</h4>
-<div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
-<span class="s">%%{init: {&#39;theme&#39;: &#39;base&#39;, &#39;themeVariables&#39;: {&#39;primaryColor&#39;: &#39;#hex&#39;, &#39;primaryBorderColor&#39;: &#39;#hex&#39;, &#39;textColor&#39;: &#39;#hex&#39;}}}%%</span>
-<span class="s">graph TD</span>
-<span class="s">    A[Node] --&gt; B[Node]</span>
-<span class="sb">```</span>
-</code></pre></div>
-<h4 id="example_27">Example</h4>
-<pre class="mermaid"><code>%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4a148c', 'primaryBorderColor': '#ce93d8', 'primaryTextColor': '#fff', 'lineColor': '#ce93d8', 'textColor': '#fff', 'titleColor': '#ce93d8'}}}%%
-graph LR
-    A[Override] --&gt;|custom colors| B[Applied]</code></pre>
 <h2 id="extension-configuration">Extension Configuration</h2>
 <hr />
 <p>All extensions are defined in <code>mkdocs.yml</code>:</p>
