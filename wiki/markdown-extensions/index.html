@@ -2267,8 +2267,9 @@ aliases: ["markdown-extensions"]</p>
 <li><strong>Nest extensions</strong> appropriately (e.g., code blocks inside admonitions).</li>
 </ul>
 <h3 id="level-2-separation">Level-2 Separation</h3>
-<p>Place <code>` after</code>##` headings for visual consistency:</p>
+<p>Place <code>---</code> after <code>##</code> headings for visual consistency:</p>
 <div class="highlight"><pre><span></span><code><span class="gu">## Instructions</span>
+---
 </code></pre></div>
 <h3 id="relative-linking">Relative Linking</h3>
 <p>Prefer <strong>relative links</strong> for cross-references to other markdown pages or images inside the wiki. MkDocs verifies these during the build process to prevent broken links and it ensures links still work correctly across forks. </p>
@@ -2386,15 +2387,44 @@ aliases: ["markdown-extensions"]</p>
 <p><em>italic text</em></p>
 <p><code>inline code</code></p>
 <h3 id="lists">Lists</h3>
-<p>Leave a blank line between regular text and lists!</p>
+<p><strong>Leave a blank line between regular text and lists and separate unordered lists from ordered lists by headlines!</strong></p>
 <h4 id="syntax_4">Syntax</h4>
-<div class="highlight"><pre><span></span><code><span class="k">-</span><span class="w"> </span>Unordered item
+<div class="highlight"><pre><span></span><code><span class="gu">##### Unordered List</span>
+<span class="k">-</span><span class="w"> </span>Unordered item
 <span class="k">-</span><span class="w"> </span>Another item
 
+<span class="gu">##### Odered List</span>
 <span class="k">1.</span> Ordered item
 <span class="k">2.</span> Second item
 </code></pre></div>
 <h4 id="example_6">Example</h4>
+<h5 id="unordered-list">Unordered List</h5>
+<ul>
+<li>Unordered item</li>
+<li>Another item</li>
+</ul>
+<h5 id="odered-list">Odered List</h5>
+<ol>
+<li>Ordered item</li>
+<li>Second item</li>
+</ol>
+<h4 id="bad-syntax-a">Bad Syntax A</h4>
+<div class="highlight"><pre><span></span><code>Some text
+<span class="k">-</span><span class="w"> </span>Unordered item
+<span class="k">-</span><span class="w"> </span>Another item
+</code></pre></div>
+<h4 id="bad-example-a">Bad Example A</h4>
+<p>Some text
+- Unordered item
+- Another item</p>
+<h4 id="bad-syntax-b">Bad Syntax B</h4>
+<div class="highlight"><pre><span></span><code>- Unordered item
+- Another item
+
+1. Ordered item
+2. Second item
+</code></pre></div>
+<h4 id="bad-exmaple-b">Bad Exmaple B</h4>
 <ul>
 <li>Unordered item</li>
 <li>
@@ -2405,15 +2435,6 @@ aliases: ["markdown-extensions"]</p>
 </li>
 <li>Second item</li>
 </ul>
-<h4 id="bad-syntax">Bad Syntax</h4>
-<div class="highlight"><pre><span></span><code>Some text
-<span class="k">-</span><span class="w"> </span>Unordered item
-<span class="k">-</span><span class="w"> </span>Another item
-</code></pre></div>
-<h4 id="bad-example">Bad Example</h4>
-<p>Some text
-- Unordered item
-- Another item</p>
 <h3 id="blockquotes">Blockquotes</h3>
 <h4 id="syntax_5">Syntax</h4>
 <div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">This is a quote block.</span>
