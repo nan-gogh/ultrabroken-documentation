@@ -22,6 +22,7 @@
 
 /* === Theme Configuration (globalized constants) === */
 
+
 /* ── Shared colors used by both chart types ── */
 var THEME = {
   primary: '#00f0c2',
@@ -161,20 +162,6 @@ var PIE = {
       var s = document.createElementNS('http://www.w3.org/2000/svg', 'style');
       s.textContent = GANTT_PIE_CSS;
       svg.prepend(s);
-
-      /* ── Pie: crop out the hidden title space ── */
-      if (isPie) {
-        var vb = svg.getAttribute('viewBox');
-        if (vb) {
-          var p = vb.split(/[\s,]+/).map(Number);
-          /* The title sits above the pie circle.  Shift the viewBox
-             origin down and shrink height to remove the gap. */
-          var crop = 40;
-          p[1] += crop;
-          p[3] -= crop;
-          svg.setAttribute('viewBox', p.join(' '));
-        }
-      }
 
       /* ── Gantt-only DOM modifications ── */
       if (isGantt) {
