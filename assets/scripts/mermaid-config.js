@@ -32,6 +32,7 @@ var THEME = {
   taskSize: '26px',
   /* Layout */
   barHeight: 48,
+  topPadding: 80,
   /* Fonts */
   titleFont: '"New Rocker", serif',
   textFont: '"Texturina", Georgia, serif'
@@ -136,6 +137,7 @@ Object.defineProperty(window, 'mermaid', {
         /* ── Gantt layout ── */
         if (!config.gantt) config.gantt = {};
         config.gantt.barHeight = THEME.barHeight;
+        config.gantt.topPadding = THEME.topPadding;
         config.gantt.fontSize  = parseInt(THEME.taskSize);
         config.gantt.sectionFontSize = parseInt(THEME.sectionSize);
 
