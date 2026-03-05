@@ -5194,7 +5194,7 @@ Another Term
     "Collision Exploitation" : 20
     "Physics Exploitation" : 20</code></pre>
 <h3 id="mermaid-inline-theme-overrides">Mermaid Inline Theme Overrides</h3>
-<p>The global theme applies automatically to all diagrams. For one-off overrides — such as a specific diagram that needs different colors — use an <code>%%{init:}%%</code> directive at the top of the diagram block.</p>
+<p>The global theme is controlled via CSS custom properties (<code>--md-mermaid-*</code>) in <code>glow.css</code> and applies automatically to all diagrams. For one-off overrides — such as a specific diagram that needs different colors — use an <code>%%{init:}%%</code> directive at the top of the diagram block.</p>
 <p><strong>Common <code>themeVariables</code> keys:</strong></p>
 <table>
 <thead>
@@ -5455,10 +5455,6 @@ graph LR
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-      
-        <script src="../../assets/scripts/mermaid-init.js"></script>
       
         <script src="../../assets/vendor/marked.min.js"></script>
       
