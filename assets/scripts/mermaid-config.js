@@ -33,13 +33,13 @@ var THEME = {
 /* ── Gantt-specific settings ── */
 var GANTT = {
   titleSize: '48px',
-  tickSize: '20px',
+  tickSize: '28px',
   sectionSize: '30px',
   taskSize: '26px',
   barHeight: 48,
   topPadding: 80,
-  sectionFill: '#1e3040',
-  sectionAltFill: '#19283a'
+  sectionFill: '#232f42',
+  sectionAltFill: '#1a1a2e'
 };
 
 /* ── Pie-specific settings ── */
@@ -168,12 +168,16 @@ var PIE = {
           /* Set section band fills directly via attributes (overrides Mermaid inline styles) */
           svg.querySelectorAll('.section0,.section2').forEach(function(r) {
             r.setAttribute('fill', GANTT.sectionFill);
+            r.removeAttribute('fill-opacity');
+            r.removeAttribute('opacity');
             r.removeAttribute('stroke');
             r.removeAttribute('rx');
             r.removeAttribute('ry');
           });
           svg.querySelectorAll('.section1,.section3').forEach(function(r) {
             r.setAttribute('fill', GANTT.sectionAltFill);
+            r.removeAttribute('fill-opacity');
+            r.removeAttribute('opacity');
             r.removeAttribute('stroke');
             r.removeAttribute('rx');
             r.removeAttribute('ry');
