@@ -256,5 +256,3 @@ Object.defineProperty(window, 'mermaid', {
     this._mermaid = val;
   }
 });
- 
- 
