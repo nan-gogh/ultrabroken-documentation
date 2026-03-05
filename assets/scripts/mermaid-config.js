@@ -22,10 +22,11 @@ Object.defineProperty(window, 'mermaid', {
             g.legend > text { fill: var(--muted-text) !important; font-family: 'Texturina', serif !important; }
             
             /* Fix Gantt charts */
-            .titleText { fill: var(--teal-glow) !important; font-size: 1.8rem !important; font-family: 'New Rocker', serif !important; }
-            .grid .tick text { fill: var(--muted-text, #898b94) !important; font-family: 'Texturina', serif !important; font-size: 1.2em !important; }
-            .sectionTitle { fill: var(--teal-glow) !important; opacity: 0.8 !important; font-family: 'Texturina', serif !important; font-size: 1.3em !important; }
-            .sectionTitle0, .sectionTitle1, .sectionTitle2, .sectionTitle3 { fill: var(--teal-glow) !important; font-size: 1.3em !important; }
+            .titleText, .gantt-title { fill: var(--teal-glow) !important; font-size: 26px !important; font-family: 'New Rocker', serif !important; }
+            .titleText tspan { font-size: 26px !important; }
+            .grid .tick text, .grid .tick text tspan { fill: var(--muted-text, #898b94) !important; font-family: 'Texturina', serif !important; font-size: 14px !important; }
+            .sectionTitle, .sectionTitle0, .sectionTitle1, .sectionTitle2, .sectionTitle3 { fill: var(--teal-glow) !important; opacity: 0.8 !important; font-family: 'Texturina', serif !important; font-size: 16px !important; }
+            .sectionTitle tspan, .sectionTitle0 tspan, .sectionTitle1 tspan, .sectionTitle2 tspan, .sectionTitle3 tspan { font-size: 16px !important; }
 
             /* Default task bars */
             .task0, .task1, .task2, .task3 { fill: rgba(0, 240, 194, 0.12) !important; stroke: var(--teal-glow) !important; stroke-width: 1.5px !important; }
