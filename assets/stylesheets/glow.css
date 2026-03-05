@@ -116,6 +116,13 @@
   overflow-x: clip;  /* clip overflow but allow absolute children (controls) to show */
 }
 
+/* Fix code block overflow on mobile: ensure code blocks respect viewport bounds */
+.md-typeset .highlight,
+.md-typeset pre {
+  max-width: 100%;
+  overflow-x: auto; /* keep auto so code can still scroll horizontally */
+}
+
 /* Prevent tab scroll overshoot on mobile (stops elastic bounce at boundaries) */
 .md-typeset .tabbed-labels {
   overscroll-behavior-x: contain;
