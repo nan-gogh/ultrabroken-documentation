@@ -256,6 +256,7 @@ Object.defineProperty(window, 'mermaid', {
       val.initialize = function (config) {
         /* ── Gantt layout ── */
         if (!config.gantt) config.gantt = {};
+        config.gantt.useWidth = 1200;    /* render at fixed width, scroll on narrow screens */
         config.gantt.barHeight = GANTT.barHeight;
         config.gantt.topPadding = GANTT.topPadding;
         config.gantt.fontSize  = parseInt(GANTT.taskSize);
