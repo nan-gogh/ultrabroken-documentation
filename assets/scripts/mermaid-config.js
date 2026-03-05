@@ -40,7 +40,14 @@ var GANTT = {
   barHeight: 48,
   topPadding: 80,
   sectionFill: '#173440',
-  sectionAltFill: '#173440'
+  sectionAltFill: '#173440',
+  /* Opaque task-bar fills (rgba composited over sectionFill #173440) */
+  taskFill: '#144B50',
+  activeFill: '#0F766E',
+  doneFill: '#15434A',
+  critFill: '#415962',
+  activeCritFill: '#5D7179',
+  doneCritFill: '#2A444F'
 };
 
 /* ── Pie-specific settings ── */
@@ -87,23 +94,23 @@ var PIE = {
       'font-family:' + THEME.textFont + '!important}' +
     /* ── Gantt: task bars ── */
     '.task0,.task1,.task2,.task3' +
-      '{fill:rgba(0,240,194,0.12)!important;' +
+      '{fill:' + GANTT.taskFill + '!important;' +
       'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
     '.active0,.active1,.active2,.active3' +
-      '{fill:rgba(0,240,194,0.35)!important;' +
+      '{fill:' + GANTT.activeFill + '!important;' +
       'stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
     '.done0,.done1,.done2,.done3' +
-      '{fill:rgba(0,240,194,0.08)!important;' +
+      '{fill:' + GANTT.doneFill + '!important;' +
       'stroke:' + THEME.primary + '!important;stroke-dasharray:4!important}' +
     /* ── Gantt: critical bars ── */
     '.crit0,.crit1,.crit2,.crit3' +
-      '{fill:rgba(255,255,255,0.18)!important;' +
+      '{fill:' + GANTT.critFill + '!important;' +
       'stroke:' + THEME.critical + '!important;stroke-width:2px!important}' +
     '.activeCrit0,.activeCrit1,.activeCrit2,.activeCrit3' +
-      '{fill:rgba(255,255,255,0.30)!important;' +
+      '{fill:' + GANTT.activeCritFill + '!important;' +
       'stroke:' + THEME.critical + '!important;stroke-width:2px!important}' +
     '.doneCrit0,.doneCrit1,.doneCrit2,.doneCrit3' +
-      '{fill:rgba(255,255,255,0.08)!important;' +
+      '{fill:' + GANTT.doneCritFill + '!important;' +
       'stroke:' + THEME.critical + '!important;stroke-dasharray:4!important}' +
     /* ── Gantt: grid & section backgrounds ── */
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
@@ -204,19 +211,19 @@ Object.defineProperty(window, 'mermaid', {
         var tv = config.themeVariables;
 
         /* Gantt task bars */
-        tv.taskBkgColor         = 'rgba(0,240,194,0.12)';
+        tv.taskBkgColor         = GANTT.taskFill;
         tv.taskBorderColor      = THEME.primary;
         tv.taskTextDarkColor    = THEME.text;
         tv.taskTextColor        = THEME.text;
         tv.taskTextOutsideColor = THEME.primary;
         /* Active tasks */
-        tv.activeTaskBkgColor    = 'rgba(0,240,194,0.35)';
+        tv.activeTaskBkgColor    = GANTT.activeFill;
         tv.activeTaskBorderColor = THEME.primary;
         /* Done tasks */
-        tv.doneTaskBkgColor    = 'rgba(0,240,194,0.08)';
+        tv.doneTaskBkgColor    = GANTT.doneFill;
         tv.doneTaskBorderColor = THEME.primary;
         /* Critical tasks (white to stand out) */
-        tv.critBkgColor    = 'rgba(255,255,255,0.18)';
+        tv.critBkgColor    = GANTT.critFill;
         tv.critBorderColor = THEME.critical;
         /* Title, sections, grid */
         tv.titleColor        = THEME.primary;
