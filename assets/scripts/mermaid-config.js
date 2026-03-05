@@ -107,8 +107,8 @@ var PIE = {
     /* ── Gantt: grid & section backgrounds ── */
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
     '.section{opacity:1!important}' +
-    '.section0,.section2{fill:' + GANTT.sectionFill + '!important;opacity:1!important}' +
-    '.section1,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important}' +
+    '.section0,.section1,.section2,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important;' +
+      'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
     /* ── Gantt: overall background ── */
     'rect.background{fill:' + THEME.dark + '!important}' +
     /* ── Pie ── */
@@ -167,19 +167,12 @@ var PIE = {
             bg.setAttribute('ry', '3');
           }
           /* Set section band fills directly via attributes (overrides Mermaid inline styles) */
-          svg.querySelectorAll('.section0,.section2').forEach(function(r) {
-            r.setAttribute('fill', GANTT.sectionFill);
-            r.setAttribute('opacity', '1');
-            r.removeAttribute('fill-opacity');
-            r.removeAttribute('stroke');
-            r.removeAttribute('rx');
-            r.removeAttribute('ry');
-          });
-          svg.querySelectorAll('.section1,.section3').forEach(function(r) {
+          svg.querySelectorAll('.section0,.section1,.section2,.section3').forEach(function(r) {
             r.setAttribute('fill', GANTT.sectionAltFill);
             r.setAttribute('opacity', '1');
+            r.setAttribute('stroke', THEME.primary);
+            r.setAttribute('stroke-width', '1.5');
             r.removeAttribute('fill-opacity');
-            r.removeAttribute('stroke');
             r.removeAttribute('rx');
             r.removeAttribute('ry');
           });
@@ -226,8 +219,8 @@ Object.defineProperty(window, 'mermaid', {
         tv.critBorderColor = THEME.critical;
         /* Title, sections, grid */
         tv.titleColor        = THEME.primary;
-        tv.sectionBkgColor   = GANTT.sectionFill;
-        tv.sectionBkgColor2  = GANTT.sectionFill;
+        tv.sectionBkgColor   = GANTT.sectionAltFill;
+        tv.sectionBkgColor2  = GANTT.sectionAltFill;
         tv.altSectionBkgColor = GANTT.sectionAltFill;
         /* Gantt: background styling */
         tv.backgroundShow  = true;
@@ -275,8 +268,8 @@ Object.defineProperty(window, 'mermaid', {
             '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds */
           '.section{opacity:1!important}' +
-          '.section0,.section2{fill:' + GANTT.sectionFill + '!important;opacity:1!important}' +
-          '.section1,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important}' +
+          '.section0,.section1,.section2,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important;' +
+            'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
           /* Gantt: overall background */
           'rect.background{fill:' + THEME.dark + '!important}' +
           /* Pie */
