@@ -104,8 +104,8 @@ var PIE = {
       'stroke:' + THEME.critical + '!important;stroke-dasharray:4!important}' +
     /* ── Gantt: grid & section backgrounds ── */
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
-    '.section0,.section2{fill:rgba(0,240,194,0.05)!important}' +
-    '.section1,.section3{fill:rgba(0,240,194,0.02)!important}' +
+    '.section0,.section2{fill:rgba(0,240,194,1)!important}' +
+    '.section1,.section3{fill:rgba(0,240,194,1)!important}' +
     /* ── Pie ── */
     '.pieTitleText{font-size:' + PIE.titleSize + '!important;' +
       'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important;' +
@@ -195,9 +195,9 @@ Object.defineProperty(window, 'mermaid', {
         tv.critBorderColor = THEME.critical;
         /* Title, sections, grid */
         tv.titleColor        = THEME.primary;
-        tv.sectionBkgColor   = 'rgba(0,240,194,0.05)';
-        tv.sectionBkgColor2  = 'rgba(0,240,194,0.03)';
-        tv.altSectionBkgColor = 'rgba(0,240,194,0.02)';
+        tv.sectionBkgColor   = 'rgba(0,240,194,1)';
+        tv.sectionBkgColor2  = 'rgba(0,240,194,1)';
+        tv.altSectionBkgColor = 'rgba(0,240,194,1)';
         tv.gridColor     = 'rgba(137,139,148,0.3)';
         tv.todayLineColor = THEME.primary;
         /* Pie */
@@ -239,8 +239,9 @@ Object.defineProperty(window, 'mermaid', {
           '.taskTextOutside2,.taskTextOutside3,' +
           '.taskTextOutsideRight,.taskTextOutsideLeft' +
             '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
-            'font-family:' + THEME.textFont + '!important}' +
-          /* Pie */
+            'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds (opaque) */
+          '.section0,.section2{fill:rgba(0,240,194,1)!important}' +
+          '.section1,.section3{fill:rgba(0,240,194,1)!important}' +          /* Pie */
           '.pieTitleText{fill:' + THEME.primary + '!important;font-size:' + PIE.titleSize + '!important;' +
             'font-family:' + THEME.titleFont + ',' + THEME.textFont + '!important}' +
           'text.pieSectionText,.pieLegendText{fill:' + THEME.accent + '!important;' +
