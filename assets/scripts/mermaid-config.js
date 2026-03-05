@@ -105,9 +105,8 @@ var PIE = {
     /* ── Gantt: grid & section backgrounds ── */
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
     '.section0,.section1,.section2,.section3' +
-      '{fill:rgba(0,240,194,1)!important;' +
-      'stroke:' + THEME.dark + '!important;stroke-width:1.5px!important;' +
-      'rx:3px!important;ry:3px!important}' +
+      '{fill:' + THEME.dark + '!important;' +
+      'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
     /* ── Gantt: overall background (dark fill, teal outline) ── */
     'rect.background{fill:' + THEME.dark + '!important;stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
     /* ── Pie ── */
@@ -165,9 +164,10 @@ var PIE = {
             bg.setAttribute('rx', '3');
             bg.setAttribute('ry', '3');
           }
-          /* Apply rounded corners to section bands via attributes */
+          /* Apply fill/stroke/rx to section bands via attributes (overrides Mermaid inline styles) */
           svg.querySelectorAll('.section0,.section1,.section2,.section3').forEach(function(r) {
-            r.setAttribute('stroke', THEME.dark);
+            r.setAttribute('fill', THEME.dark);
+            r.setAttribute('stroke', THEME.primary);
             r.setAttribute('stroke-width', '1.5');
             r.setAttribute('rx', '3');
             r.setAttribute('ry', '3');
@@ -215,9 +215,9 @@ Object.defineProperty(window, 'mermaid', {
         tv.critBorderColor = THEME.critical;
         /* Title, sections, grid */
         tv.titleColor        = THEME.primary;
-        tv.sectionBkgColor   = 'rgba(0,240,194,1)';
-        tv.sectionBkgColor2  = 'rgba(0,240,194,1)';
-        tv.altSectionBkgColor = 'rgba(0,240,194,1)';
+        tv.sectionBkgColor   = THEME.dark;
+        tv.sectionBkgColor2  = THEME.dark;
+        tv.altSectionBkgColor = THEME.dark;
         /* Gantt: background styling */
         tv.backgroundShow  = true;
         tv.primaryBorderColor = THEME.primary;
@@ -262,11 +262,10 @@ Object.defineProperty(window, 'mermaid', {
           '.taskTextOutside2,.taskTextOutside3,' +
           '.taskTextOutsideRight,.taskTextOutsideLeft' +
             '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
-            'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds (opaque, actor-style) */
+            'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds (dark fill, teal stroke) */
           '.section0,.section1,.section2,.section3' +
-            '{fill:rgba(0,240,194,1)!important;' +
-            'stroke:' + THEME.dark + '!important;stroke-width:1.5px!important;' +
-            'rx:3px!important;ry:3px!important}' +
+            '{fill:' + THEME.dark + '!important;' +
+            'stroke:' + THEME.primary + '!important;stroke-width:1.5px!important}' +
           /* Gantt: overall background (dark fill, teal outline) */
           'rect.background{fill:' + THEME.dark + '!important;stroke:' + THEME.primary + '!important;stroke-width:2px!important}' +
           /* Pie */
