@@ -38,8 +38,8 @@ var THEME = {
 var GANTT = {
   titleSize: '24px',
   tickSize: '14px',
-  sectionSize: '16px',
-  taskSize: '14px',
+  sectionSize: '20px',
+  taskSize: '17px',
   barHeight: 48,
   topPadding: 80,
   sectionFill: '#173440',
