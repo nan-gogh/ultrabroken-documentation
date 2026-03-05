@@ -39,8 +39,8 @@ var GANTT = {
   taskSize: '26px',
   barHeight: 48,
   topPadding: 80,
-  sectionFill: 'rgba(0, 240, 194, 0.12)',
-  sectionAltFill: 'rgba(0, 240, 194, 0.12)'
+  sectionFill: '#173440',
+  sectionAltFill: '#173440'
 };
 
 /* ── Pie-specific settings ── */
