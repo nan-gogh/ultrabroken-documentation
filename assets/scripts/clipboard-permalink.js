@@ -42,7 +42,7 @@
             // Use the published share icon asset so it can be cached and
             // maintained centrally instead of inlining SVG markup here.
             const img = document.createElement('img');
-            img.src = siteRoot + 'assets/images/share-icon.svg';
+            img.src = siteRoot + 'assets/images/icons/share-icon.svg';
             img.alt = '';
             img.setAttribute('role', 'img');
             img.setAttribute('aria-hidden', 'true');
