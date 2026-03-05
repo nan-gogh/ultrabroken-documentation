@@ -116,11 +116,16 @@
   overflow-x: clip;  /* clip overflow but allow absolute children (controls) to show */
 }
 
-/* Fix code block overflow on mobile: ensure code blocks respect viewport bounds */
+/* Fix code block overflow on mobile: neutralise the negative horizontal margins
+   Material applies to create full-bleed code blocks. Without this, blocks spill
+   past the left content edge on mobile portrait. overflow-x: auto preserves
+   horizontal scrolling for long lines. */
 .md-typeset .highlight,
 .md-typeset pre {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   max-width: 100%;
-  overflow-x: auto; /* keep auto so code can still scroll horizontally */
+  overflow-x: auto;
 }
 
 /* Prevent tab scroll overshoot on mobile (stops elastic bounce at boundaries) */
