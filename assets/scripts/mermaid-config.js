@@ -41,7 +41,7 @@ var GANTT = {
   sectionSize: '20px',
   taskSize: '17px',
   barHeight: 28,
-  topPadding: 10,
+  topPadding: 0,
   sectionFill: '#173440',
   sectionAltFill: '#173440',
   /* Opaque task-bar fills (high-contrast over sectionFill #173440) */
