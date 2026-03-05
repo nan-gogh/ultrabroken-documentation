@@ -6,9 +6,12 @@
    We use three complementary strategies:
 
    1. ShadowRoot.innerHTML interception – when Material sets the SVG
-      content via innerHTML, we prepend a <style> at the shadow-root
-      level (outside the SVG).  Unlike Element.prototype.attachShadow,
-      property setters can't be cached in closures by bundled code.
+      content via innerHTML, we inject a <style> inside the SVG element
+      so that px units become SVG user units and scale with the viewBox
+      on smaller screens.  We detect chart type via aria-roledescription
+      (gantt) and class names (pieTitleText).  DOM setAttribute calls
+      provide belt-and-suspenders overrides for inline SVG attributes
+      that CSS alone cannot beat without !important.
    2. themeVariables – sets colours at the source so the CSS template
       directly outputs teal values.
    3. config.gantt – controls bar height and font sizes that Mermaid
@@ -147,63 +150,66 @@ var PIE = {
     get: desc.get,
     set: function (html) {
       desc.set.call(this, html);
-      /* Force ALL Mermaid SVGs to fill container (Mermaid sets a fixed max-width) */
-      var anySvg = this.querySelector('svg[id^="__mermaid"]');
-      if (anySvg) anySvg.style.maxWidth = '100%';
-      /* Only inject into shadow roots that contain Gantt / Pie SVGs */
-      if (typeof html === 'string' &&
-          (html.indexOf('titleText') !== -1 ||
-           html.indexOf('pieTitleText') !== -1)) {
+
+      /* Detect chart type from the rendered HTML */
+      if (typeof html !== 'string') return;
+      var isGantt = html.indexOf('roledescription="gantt"') !== -1;
+      var isPie   = html.indexOf('pieTitleText') !== -1;
+      if (!isGantt && !isPie) return;
+
+      var svg = this.querySelector('svg');
+      if (!svg) return;
+
+      /* Inject style INSIDE the SVG so px units are SVG user units
+         and scale with the viewBox on narrow screens */
+      var s = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+      s.textContent = GANTT_PIE_CSS;
+      svg.prepend(s);
+
+      /* ── Gantt-only DOM modifications ── */
+      if (isGantt) {
         /* Extend SVG viewBox upward so large title text isn't clipped */
-        var svg = this.querySelector('svg');
-        if (svg) {
-          /* Inject style INSIDE the SVG so px units are SVG user units
-             and scale with the viewBox on narrow screens */
-          var s = document.createElementNS('http://www.w3.org/2000/svg', 'style');
-          s.textContent = GANTT_PIE_CSS;
-          svg.prepend(s);
-          var vb = svg.getAttribute('viewBox');
-          if (vb) {
-            var p = vb.split(/[\s,]+/).map(Number);
-            var extra = parseInt(GANTT.titleSize);
-            p[1] -= extra;    /* shift origin up */
-            p[3] += extra;    /* increase height */
-            svg.setAttribute('viewBox', p.join(' '));
-          }
-          /* Style gantt background rect directly as SVG attributes */
-          var bg = svg.querySelector('rect.background');
-          if (bg) {
-            bg.setAttribute('fill', THEME.backdropFill);
-            bg.setAttribute('stroke', THEME.primary);
-            bg.setAttribute('stroke-width', '2');
-            bg.setAttribute('rx', '3');
-            bg.setAttribute('ry', '3');
-          }
-          /* Set section band fills directly via attributes (overrides Mermaid inline styles) */
-          svg.querySelectorAll('.section0,.section1,.section2,.section3').forEach(function(r) {
-            r.setAttribute('fill', GANTT.sectionAltFill);
-            r.setAttribute('opacity', '1');
-            r.setAttribute('stroke', 'rgba(0,240,194,0.25)');
-            r.setAttribute('stroke-width', '1.5');
-            r.removeAttribute('fill-opacity');
-            r.removeAttribute('rx');
-            r.removeAttribute('ry');
-          });
-          /* Set task/crit bar fills directly via attributes */
-          var barFills = {
-            '.task0,.task1,.task2,.task3': GANTT.taskFill,
-            '.active0,.active1,.active2,.active3': GANTT.activeFill,
-            '.done0,.done1,.done2,.done3': GANTT.doneFill,
-            '.crit0,.crit1,.crit2,.crit3': GANTT.critFill,
-            '.activeCrit0,.activeCrit1,.activeCrit2,.activeCrit3': GANTT.activeCritFill,
-            '.doneCrit0,.doneCrit1,.doneCrit2,.doneCrit3': GANTT.doneCritFill
-          };
-          Object.keys(barFills).forEach(function(sel) {
-            svg.querySelectorAll(sel).forEach(function(r) {
-              r.setAttribute('fill', barFills[sel]);
-            });
-          });
+        var vb = svg.getAttribute('viewBox');
+        if (vb) {
+          var p = vb.split(/[\s,]+/).map(Number);
+          var extra = parseInt(GANTT.titleSize);
+          p[1] -= extra;    /* shift origin up */
+          p[3] += extra;    /* increase height */
+          svg.setAttribute('viewBox', p.join(' '));
         }
+        /* Style gantt background rect directly as SVG attributes */
+        var bg = svg.querySelector('rect.background');
+        if (bg) {
+          bg.setAttribute('fill', THEME.backdropFill);
+          bg.setAttribute('stroke', THEME.primary);
+          bg.setAttribute('stroke-width', '2');
+          bg.setAttribute('rx', '3');
+          bg.setAttribute('ry', '3');
+        }
+        /* Set section band fills directly via attributes (overrides Mermaid inline styles) */
+        svg.querySelectorAll('.section0,.section1,.section2,.section3').forEach(function(r) {
+          r.setAttribute('fill', GANTT.sectionAltFill);
+          r.setAttribute('opacity', '1');
+          r.setAttribute('stroke', 'rgba(0,240,194,0.25)');
+          r.setAttribute('stroke-width', '1.5');
+          r.removeAttribute('fill-opacity');
+          r.removeAttribute('rx');
+          r.removeAttribute('ry');
+        });
+        /* Set task/crit bar fills directly via attributes */
+        var barFills = {
+          '.task0,.task1,.task2,.task3': GANTT.taskFill,
+          '.active0,.active1,.active2,.active3': GANTT.activeFill,
+          '.done0,.done1,.done2,.done3': GANTT.doneFill,
+          '.crit0,.crit1,.crit2,.crit3': GANTT.critFill,
+          '.activeCrit0,.activeCrit1,.activeCrit2,.activeCrit3': GANTT.activeCritFill,
+          '.doneCrit0,.doneCrit1,.doneCrit2,.doneCrit3': GANTT.doneCritFill
+        };
+        Object.keys(barFills).forEach(function(sel) {
+          svg.querySelectorAll(sel).forEach(function(r) {
+            r.setAttribute('fill', barFills[sel]);
+          });
+        });
       }
     }
   });
