@@ -108,7 +108,8 @@ var PIE = {
     /* ── Gantt: grid & section backgrounds ── */
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
     '.section{opacity:1!important}' +
-    '.section0,.section1,.section2,.section3{fill:' + GANTT.sectionFill + '!important;opacity:1!important}' +
+    '.section0,.section1,.section2,.section3{fill:' + GANTT.sectionFill + '!important;opacity:1!important;' +
+      'stroke:rgba(0,240,194,0.25)!important;stroke-width:1.5px!important}' +
     /* ── Gantt: overall background ── */
     'rect.background{fill:' + THEME.backdropFill + '!important}' +
     /* ── Pie ── */
@@ -170,9 +171,9 @@ var PIE = {
           svg.querySelectorAll('.section0,.section1,.section2,.section3').forEach(function(r) {
             r.setAttribute('fill', GANTT.sectionAltFill);
             r.setAttribute('opacity', '1');
+            r.setAttribute('stroke', 'rgba(0,240,194,0.25)');
+            r.setAttribute('stroke-width', '1.5');
             r.removeAttribute('fill-opacity');
-            r.removeAttribute('stroke');
-            r.removeAttribute('stroke-width');
             r.removeAttribute('rx');
             r.removeAttribute('ry');
           });
@@ -268,7 +269,8 @@ Object.defineProperty(window, 'mermaid', {
             '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds */
           '.section{opacity:1!important}' +
-          '.section0,.section1,.section2,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important}' +
+          '.section0,.section1,.section2,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important;' +
+            'stroke:rgba(0,240,194,0.25)!important;stroke-width:1.5px!important}' +
           /* Gantt: overall background */
           'rect.background{fill:' + THEME.backdropFill + '!important}' +
           /* Pie */
