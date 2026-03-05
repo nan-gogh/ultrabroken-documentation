@@ -22,7 +22,32 @@
     var tocNav = document.querySelector('.md-sidebar--secondary .md-nav--secondary');
     if (!tocNav || !tocNav.querySelector('.md-nav__list li')) return;
 
-    var navList = document.querySelector('.md-sidebar--primary .md-nav--primary > .md-nav__list');
+    // Find the deepest active nav list in the primary sidebar.
+    // On nested pages (e.g. Ultrabroken > Introduction), Material auto-opens
+    // the section and the mobile drawer slides into that sub-list.  We must
+    // inject there — not at root — so the TOC is visible immediately.
+    var activeItem = null;
+    var candidates = document.querySelectorAll(
+      '.md-sidebar--primary .md-nav__item--active'
+    );
+    // Take the deepest (last) active item that owns a child nav list
+    for (var i = candidates.length - 1; i >= 0; i--) {
+      var ul = candidates[i].querySelector(':scope > nav > .md-nav__list');
+      if (ul) { activeItem = candidates[i]; break; }
+    }
+
+    var navList;
+    var level;
+    if (activeItem) {
+      navList = activeItem.querySelector(':scope > nav > .md-nav__list');
+      // Determine nesting depth from the parent <nav data-md-level>
+      var parentNav = activeItem.querySelector(':scope > nav');
+      level = parentNav ? parseInt(parentNav.getAttribute('data-md-level') || '1', 10) + 1 : 2;
+    } else {
+      // Fallback: root nav list (top-level pages like glitchcraft)
+      navList = document.querySelector('.md-sidebar--primary .md-nav--primary > .md-nav__list');
+      level = 1;
+    }
     if (!navList) return;
 
     // --- Build the full Material nested-nav structure ---
@@ -63,7 +88,7 @@
     // Inner <nav> that slides in on mobile
     var innerNav = document.createElement('nav');
     innerNav.className = 'md-nav';
-    innerNav.setAttribute('data-md-level', '1');
+    innerNav.setAttribute('data-md-level', String(level));
     innerNav.setAttribute('aria-labelledby', TOGGLE_ID + '_label');
     innerNav.setAttribute('aria-expanded', 'false');
 
