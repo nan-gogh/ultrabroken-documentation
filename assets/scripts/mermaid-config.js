@@ -33,13 +33,13 @@ var THEME = {
 /* ── Gantt-specific settings ── */
 var GANTT = {
   titleSize: '48px',
-  tickSize: '28px',
+  tickSize: '32px',
   sectionSize: '30px',
   taskSize: '26px',
   barHeight: 48,
   topPadding: 80,
-  sectionFill: '#232f42',
-  sectionAltFill: '#1a1a2e'
+  sectionFill: '#1e3f68',
+  sectionAltFill: '#19253f'
 };
 
 /* ── Pie-specific settings ── */
