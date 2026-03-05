@@ -120,6 +120,18 @@ var THEME = {
         var s = document.createElement('style');
         s.textContent = GANTT_PIE_CSS;
         this.prepend(s);
+        /* Extend SVG viewBox upward so large title text isn't clipped */
+        var svg = this.querySelector('svg');
+        if (svg) {
+          var vb = svg.getAttribute('viewBox');
+          if (vb) {
+            var p = vb.split(/[\s,]+/).map(Number);
+            var extra = parseInt(THEME.titleSize);
+            p[1] -= extra;    /* shift origin up */
+            p[3] += extra;    /* increase height */
+            svg.setAttribute('viewBox', p.join(' '));
+          }
+        }
       }
     }
   });
