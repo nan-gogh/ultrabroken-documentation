@@ -53,9 +53,6 @@ var PIE = {
   if (!desc || !desc.set) return;
 
   var GANTT_PIE_CSS =
-    /* ── Shared: opaque chart background ── */
-    'svg{background-color:' + THEME.dark + '!important}' +
-    'rect.background{fill:' + THEME.dark + '!important}' +
     /* ── Gantt: title ── */
     '.titleText{font-size:' + GANTT.titleSize + '!important;' +
       'font-family:' + THEME.titleFont + '!important;' +
@@ -212,14 +209,9 @@ Object.defineProperty(window, 'mermaid', {
         tv.pieStrokeWidth      = '0px';
         tv.pieOuterStrokeColor = 'transparent';
         tv.pieOuterStrokeWidth = '0px';
-        /* Background */
-        tv.background     = THEME.dark;
-        tv.mainBkg        = THEME.dark;
 
         /* ── themeCSS (ends up inside SVG <style> with ID prefix) ── */
         config.themeCSS = (config.themeCSS || '') +
-          /* Shared: opaque chart background */
-          'rect.background{fill:' + THEME.dark + '!important}' +
           /* Gantt title */
           '.titleText{font-size:' + GANTT.titleSize + '!important;' +
             'font-family:' + THEME.titleFont + '!important;' +
