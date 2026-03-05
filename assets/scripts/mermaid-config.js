@@ -151,12 +151,14 @@ var PIE = {
       if (typeof html === 'string' &&
           (html.indexOf('titleText') !== -1 ||
            html.indexOf('pieTitleText') !== -1)) {
-        var s = document.createElement('style');
-        s.textContent = GANTT_PIE_CSS;
-        this.prepend(s);
         /* Extend SVG viewBox upward so large title text isn't clipped */
         var svg = this.querySelector('svg');
         if (svg) {
+          /* Inject style INSIDE the SVG so px units are SVG user units
+             and scale with the viewBox on narrow screens */
+          var s = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+          s.textContent = GANTT_PIE_CSS;
+          svg.prepend(s);
           var vb = svg.getAttribute('viewBox');
           if (vb) {
             var p = vb.split(/[\s,]+/).map(Number);
