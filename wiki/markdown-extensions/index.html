@@ -2413,14 +2413,14 @@
 <p>This page provides a comprehensive guide for editors contributing to the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/NU6/" class="glitch-autolink" title="Ultrabroken" target="_blank" rel="noopener noreferrer">Ultrabroken</a> Archives written in Markdown and published with MkDocs + Material. It covers contribution workflows, conventions, custom site features, and all active Markdown extensions.</p>
 <h2 id="how-github-collaborators-should-contribute">How GitHub collaborators should contribute</h2>
 <ul>
-<li>Use the GitHub web editor or your normal GitHub workflow to edit Markdown files in the <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/docs">docs/</a> folder.</li>
+<li>Use the GitHub web editor or your normal GitHub workflow to edit Markdown files in the <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/docs"><code>docs/</code></a> folder.</li>
 <li>Make small, focused commits and include a clear title/description for the change.</li>
 <li>When ready, commit changes.</li>
-<li>Keep changes scoped to documentation content: avoid editing <a href="https://github.com/nan-gogh/ultrabroken-documentation/blob/main/mkdocs.yml">mkdocs.yml</a> or <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/.github/workflows">continuous integration (CI) workflows</a> unless requested by maintainers.</li>
+<li>Keep changes scoped to documentation content: avoid editing <a href="https://github.com/nan-gogh/ultrabroken-documentation/blob/main/mkdocs.yml"><code>mkdocs.yml</code></a> or continuous integration (CI) workflows in <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/.github/workflows"><code>github/workflows</code></a> unless requested by maintainers.</li>
 </ul>
 <h3 id="quick-tips-for-the-github-editor">Quick tips for the GitHub editor</h3>
 <ol>
-<li>Navigate to the file you want to change (for example <a href="https://github.com/nan-gogh/ultrabroken-documentation/blob/main/docs/wiki/ultrabroken/effects/wacko-boingo.md">docs/effects/wacko-boingo.md</a>).</li>
+<li>Navigate to the file you want to change (for example <a href="https://github.com/nan-gogh/ultrabroken-documentation/blob/main/docs/wiki/ultrabroken/effects/wacko-boingo.md"><code>docs/effects/wacko-boingo.md</code></a>).</li>
 <li>Click the pencil ✏️ icon to edit the file in your browser or use the menu in the GitHub app.</li>
 <li>Make your edits, add a concise commit message, and commit directly to "main".</li>
 <li>Open a pull request if you used a different branch than "main".</li>
@@ -2432,8 +2432,8 @@
 <li>Keep the steps of your instructions as granular as possible. Try to extract pausing / unpausing into dedicated steps with bold styling for clarity.</li>
 <li>Avoid abbreviations in titles or filenames for easy parsing.</li>
 <li>Prefer relative links for cross-references inside the wiki (for example <code>../wiki/effects/index.md</code>).</li>
-<li>For images, put files in <code>docs/assets/images/</code> and reference them with relative paths.</li>
-<li>Put your WIPs into the dedicated <a href="./wip/"><code>docs/wiki/wip/</code></a> folder.</li>
+<li>For images, put files in <a href=""><code>docs/assets/images/</code></a> and reference them with relative paths.</li>
+<li>Put your WIPs into the dedicated <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/docs/wiki/_wip"><code>docs/wiki/wip/</code></a> folder.</li>
 <li>UIDs for files are generated automatically. Don't manually add UID fields to the frontmatter.</li>
 <li>After you have committed changes to the wiki, is takes around two minutes until those are reflected on the page. Wait until the page build finishes before making the next commit.</li>
 </ul>
