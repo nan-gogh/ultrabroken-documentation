@@ -33,14 +33,14 @@ Object.defineProperty(window, 'mermaid', {
             .activeCrit0, .activeCrit1, .activeCrit2, .activeCrit3 { fill: rgba(255, 255, 255, 0.30) !important; stroke: #fff !important; stroke-width: 2px !important; }
             .doneCrit0, .doneCrit1, .doneCrit2, .doneCrit3 { fill: rgba(255, 255, 255, 0.08) !important; stroke: #fff !important; stroke-dasharray: 4 !important; }
 
-            /* All task text — light readable color */
+            /* All task text — light readable color and bigger size */
             .taskText0, .taskText1, .taskText2, .taskText3,
             .activeText0, .activeText1, .activeText2, .activeText3,
             .doneText0, .doneText1, .doneText2, .doneText3,
             .critText0, .critText1, .critText2, .critText3,
             .activeCritText0, .activeCritText1, .activeCritText2, .activeCritText3,
             .doneCritText0, .doneCritText1, .doneCritText2, .doneCritText3
-            { fill: var(--md-default-fg-color, hsla(225deg, 15%, 90%, 0.82)) !important; font-family: 'Texturina', serif !important; }
+            { fill: var(--md-default-fg-color, hsla(225deg, 15%, 90%, 0.82)) !important; font-family: 'Texturina', serif !important; font-size: 1.3em !important; }
             .taskTextOutside0, .taskTextOutside1, .taskTextOutside2, .taskTextOutside3,
             .taskTextOutsideRight, .taskTextOutsideLeft
             { fill: var(--teal-glow) !important; font-family: 'Texturina', serif !important; }
