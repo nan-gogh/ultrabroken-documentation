@@ -22,7 +22,6 @@
 
 /* === Theme Configuration (globalized constants) === */
 
-
 /* ── Shared colors used by both chart types ── */
 var THEME = {
   primary: '#00f0c2',
