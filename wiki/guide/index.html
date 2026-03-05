@@ -5076,11 +5076,11 @@ Another Term
         date release_date
     }</code></pre>
 <h3 id="mermaid-gantt-chart">Mermaid Gantt Chart</h3>
-<p>Timeline visualization for project schedules and dependencies. The chart title is automatically hidden.</p>
+<p>Timeline visualization for project schedules and dependencies.</p>
 <h4 id="syntax_23">Syntax</h4>
 <div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
 <span class="s">gantt</span>
-<span class="s">    title Chart Title (hidden)</span>
+<span class="s">    title Ignore this field</span>
 <span class="s">    dateFormat YYYY-MM-DD</span>
 <span class="s">    section Phase</span>
 <span class="s">    Research           :a1, 2024-01-01, 30d</span>
@@ -5091,7 +5091,7 @@ Another Term
 </code></pre></div>
 <h4 id="example_25">Example</h4>
 <pre class="mermaid"><code>gantt
-    title Chart Title (hidden)
+    title Ignore this field
     dateFormat YYYY-MM-DD
     section Phase
     Research           :a1, 2024-01-01, 30d
@@ -5099,10 +5099,10 @@ Another Term
     Documentation      :a3, after a2, 15d
     Publication        :crit, a4, after a3, 10d</code></pre>
 <h3 id="mermaid-pie-chart">Mermaid Pie Chart</h3>
-<p>Displays proportional data distribution. The chart title is automatically hidden.</p>
+<p>Displays proportional data distribution.</p>
 <h4 id="syntax_24">Syntax</h4>
 <div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
-<span class="s">pie title Chart Title (hidden)</span>
+<span class="s">pie title Ignore this field</span>
 <span class="s">    &quot;Equipment Duplication&quot; : 35</span>
 <span class="s">    &quot;Movement Abuse&quot; : 25</span>
 <span class="s">    &quot;Collision Exploitation&quot; : 20</span>
@@ -5110,7 +5110,7 @@ Another Term
 <span class="sb">```</span>
 </code></pre></div>
 <h4 id="example_26">Example</h4>
-<pre class="mermaid"><code>pie title Chart Title (hidden)
+<pre class="mermaid"><code>pie title Ignore this field
     "Equipment Duplication" : 35
     "Movement Abuse" : 25
     "Collision Exploitation" : 20
