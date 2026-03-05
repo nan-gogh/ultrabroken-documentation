@@ -1373,6 +1373,11 @@ li.task-list-item a, li.task-list a {
   mask-image: var(--md-toc-icon) !important;
 }
 
+/* Indent levels for flattened TOC sub-items */
+.ub-toc-indent-1 > .md-nav__link { padding-left: 1.8rem; }
+.ub-toc-indent-2 > .md-nav__link { padding-left: 2.8rem; }
+.ub-toc-indent-3 > .md-nav__link { padding-left: 3.8rem; }
+
 @media (max-width: 76.1875em) {
   .ub-toc-nav-item {
     border-bottom: 1px solid var(--md-default-fg-color--lightest);

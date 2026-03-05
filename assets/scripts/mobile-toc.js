@@ -74,16 +74,41 @@
     backLabel.innerHTML =
       '<span class="md-nav__icon md-icon"></span> Table of contents';
 
-    // Clone the TOC list (not the whole nav, just the <ul>)
-    var tocList = tocNav.querySelector('.md-nav__list');
-    if (!tocList) return;
-    var listClone = tocList.cloneNode(true);
-    listClone.setAttribute('data-md-scrollfix', '');
-    // Strip duplicate IDs
-    listClone.querySelectorAll('[id]').forEach(function (el) { el.removeAttribute('id'); });
+    // Flatten all TOC links into a single list — Material's nested <nav>/<ul>
+    // structure hides sub-items in the mobile slide-in, so we extract every
+    // anchor and build a flat list with CSS-class depth hints instead.
+    var tocLinks = tocNav.querySelectorAll('a.md-nav__link');
+    if (!tocLinks.length) return;
+
+    var flatList = document.createElement('ul');
+    flatList.className = 'md-nav__list';
+    flatList.setAttribute('data-md-scrollfix', '');
+
+    tocLinks.forEach(function (a) {
+      // Determine nesting depth by counting ancestor <nav> elements
+      var depth = 0;
+      var parent = a.parentElement;
+      while (parent && parent !== tocNav) {
+        if (parent.tagName === 'NAV') depth++;
+        parent = parent.parentElement;
+      }
+
+      var li = document.createElement('li');
+      li.className = 'md-nav__item';
+      if (depth > 1) li.classList.add('ub-toc-indent-' + Math.min(depth - 1, 3));
+
+      var link = document.createElement('a');
+      // Use only the hash fragment so cosmetic-url params don't leak in
+      link.href = a.getAttribute('href');
+      link.className = 'md-nav__link';
+      link.innerHTML = a.innerHTML;
+
+      li.appendChild(link);
+      flatList.appendChild(li);
+    });
 
     innerNav.appendChild(backLabel);
-    innerNav.appendChild(listClone);
+    innerNav.appendChild(flatList);
 
     item.appendChild(checkbox);
     item.appendChild(label);
