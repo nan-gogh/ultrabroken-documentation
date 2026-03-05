@@ -106,8 +106,9 @@ var PIE = {
       'stroke:' + THEME.critical + '!important;stroke-dasharray:4!important}' +
     /* ── Gantt: grid & section backgrounds ── */
     '.grid .tick{stroke:rgba(137,139,148,0.3)!important}' +
-    '.section0,.section2{fill:' + GANTT.sectionFill + '!important}' +
-    '.section1,.section3{fill:' + GANTT.sectionAltFill + '!important}' +
+    '.section{opacity:1!important}' +
+    '.section0,.section2{fill:' + GANTT.sectionFill + '!important;opacity:1!important}' +
+    '.section1,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important}' +
     /* ── Gantt: overall background ── */
     'rect.background{fill:' + THEME.dark + '!important}' +
     /* ── Pie ── */
@@ -168,16 +169,16 @@ var PIE = {
           /* Set section band fills directly via attributes (overrides Mermaid inline styles) */
           svg.querySelectorAll('.section0,.section2').forEach(function(r) {
             r.setAttribute('fill', GANTT.sectionFill);
+            r.setAttribute('opacity', '1');
             r.removeAttribute('fill-opacity');
-            r.removeAttribute('opacity');
             r.removeAttribute('stroke');
             r.removeAttribute('rx');
             r.removeAttribute('ry');
           });
           svg.querySelectorAll('.section1,.section3').forEach(function(r) {
             r.setAttribute('fill', GANTT.sectionAltFill);
+            r.setAttribute('opacity', '1');
             r.removeAttribute('fill-opacity');
-            r.removeAttribute('opacity');
             r.removeAttribute('stroke');
             r.removeAttribute('rx');
             r.removeAttribute('ry');
@@ -273,8 +274,9 @@ Object.defineProperty(window, 'mermaid', {
           '.taskTextOutsideRight,.taskTextOutsideLeft' +
             '{fill:' + THEME.primary + '!important;font-size:' + GANTT.taskSize + '!important;' +
             'font-family:' + THEME.textFont + '!important}' +          /* Gantt: section backgrounds */
-          '.section0,.section2{fill:' + GANTT.sectionFill + '!important}' +
-          '.section1,.section3{fill:' + GANTT.sectionAltFill + '!important}' +
+          '.section{opacity:1!important}' +
+          '.section0,.section2{fill:' + GANTT.sectionFill + '!important;opacity:1!important}' +
+          '.section1,.section3{fill:' + GANTT.sectionAltFill + '!important;opacity:1!important}' +
           /* Gantt: overall background */
           'rect.background{fill:' + THEME.dark + '!important}' +
           /* Pie */
