@@ -13,7 +13,7 @@
  * Other scripts listen for the 'motion-toggle' CustomEvent on window:
  *   e.detail.mode  — 'animate' | 'frozen' | 'hidden'
  *
- * Must load BEFORE particles-constellations.js in extra_javascript.
+ * Must load BEFORE background-rune.js in extra_javascript.
  */
 (function () {
   'use strict';
@@ -31,7 +31,7 @@
   /* ── Expose global for scripts that load later ─────────────── */
   window.__ubBgMode = mode;
 
-  // Legacy compat — particles-constellations.js checks this on init
+  // Legacy compat — background-rune.js checks this on init
   window.__ubReducedMotion = mode !== 'animate';
 
   /* ── Stamp html element immediately (before rune element is created) ─ */

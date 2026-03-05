@@ -528,7 +528,7 @@ button.search-link:focus,
   z-index: 3; /* below header (4), same as .md-top */
   width: 1.5rem !important;
   height: 1.5rem !important;
-  background: url('/ultrabroken-documentation/assets/images/icons/back-to-top%20icon.svg') no-repeat center center !important;
+  background: url('/ultrabroken-documentation/assets/images/icons/back-to-top.svg') no-repeat center center !important;
   background-size: 1rem 1.25rem !important;
   border: none !important;
   border-radius: 0 !important;
