@@ -37,7 +37,7 @@ var THEME = {
 /* ── Gantt-specific settings ── */
 var GANTT = {
   titleSize: '24px',
-  tickSize: '14px',
+  tickSize: '16px',
   sectionSize: '20px',
   taskSize: '17px',
   barHeight: 48,
