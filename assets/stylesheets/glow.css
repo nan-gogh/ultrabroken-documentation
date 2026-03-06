@@ -48,11 +48,17 @@
   font-weight: normal;
   font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
-/* Force inline code in tab titles to use standard text color, avoiding teal tint */
-.md-typeset .tabbed-labels label code {
+/* Inline code badges — match the social-card teal badge palette:
+   text #00f0c2 (--teal-glow) on dark-teal #1a2e2b background.
+   Scoped to exclude fenced code blocks (pre code) which use syntax highlighting. */
+.md-typeset code {
+  color: var(--teal-glow) !important;
+  background-color: #1a2e2b !important;
+}
+/* Restore syntax-highlighted code blocks to their default colors */
+.md-typeset pre > code {
   color: inherit !important;
-  /* background-color: transparent !important;  Removed: Keep the code backdrop */
-  /* font-family: inherit;  Removed: Keep the monospace font if desired */
+  background-color: inherit !important;
 }
 [data-ub-font="large"] .md-typeset .tabbed-labels label {
   font-size: 1.25rem;
