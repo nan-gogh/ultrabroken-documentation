@@ -5,14 +5,14 @@ Generates custom Open Graph social-card images for every page using
 Pillow, replacing the built-in Material social plugin.
 
 Layout (1200 x 630, on background image):
-  Upper 50%  ->  title (large) + label (medium) + logo (upper-right)
-  Lower 50%  ->  versions + description (readable size)
+  Upper 50%  ->  site name (eyebrow) + title + label  |  logo (upper-right)
+  Lower 50%  ->  versions + description  (Texturina, white)
 
 Falls back to site_description when a page has no versions/description.
 Falls back to page.title when frontmatter has no title.
 
-Font:  New Rocker  — matches the Material social-plugin config
-Color: #00f0c2    — matches the Material social-plugin config
+Upper fonts:  New Rocker / #00f0c2   (matches Material social-plugin config)
+Lower fonts:  Texturina  / #ffffff   (standard Material slate body color)
 """
 
 import hashlib
@@ -30,68 +30,91 @@ log = logging.getLogger("mkdocs.hooks.social_cards")
 
 # ── Card dimensions (standard Open Graph) ─────────────────────
 W, H = 1200, 630
-COLOR = "#00f0c2"
+COLOR       = "#00f0c2"   # teal accent — New Rocker (upper half)
+COLOR_BODY  = "#ffffff"   # white — Texturina (lower half), Material slate body
 
 # ── Font sizes ────────────────────────────────────────────────
-TITLE_SIZE = 82
-LABEL_SIZE = 58
-VERSION_SIZE = 38
-DESC_SIZE = 42
+SITE_NAME_SIZE = 34       # eyebrow above the page title
+TITLE_SIZE     = 76
+LABEL_SIZE     = 52
+VERSION_SIZE   = 36
+DESC_SIZE      = 40
 
 # ── Layout constants ──────────────────────────────────────────
-MARGIN = 60
-LOGO_H = 140          # rendered logo height in pixels
-LOGO_GAP = 24         # gap between title text and logo
+MARGIN   = 60
+LOGO_H   = 140            # rendered logo height in pixels
+LOGO_GAP = 24             # horizontal gap between text area and logo
 USABLE_W = W - 2 * MARGIN
 
 # ── Paths (relative to project root) ─────────────────────────
-_BG_PATH = Path("docs/assets/images/graphics/ultrabroken_social_card_background.jpg")
-_LOGO_SVG = Path("docs/assets/images/graphics/ultrabroken_rune.svg")
-_LOGO_CACHE = Path(".cache/hooks/social_cards/logo.png")
-_FONT_DIR = Path(".cache/hooks/social_cards/fonts")
+_BG_PATH     = Path("docs/assets/images/graphics/ultrabroken_social_card_background.jpg")
+_LOGO_SVG    = Path("docs/assets/images/graphics/ultrabroken_rune.svg")
+_LOGO_CACHE  = Path(".cache/hooks/social_cards/logo.png")
+_FONT_DIR    = Path(".cache/hooks/social_cards/fonts")
 _MANIFEST_PATH = Path(".cache/hooks/social_cards/manifest.json")
 
-# Direct GitHub URL — always returns .ttf, no User-Agent dance
-_FONT_URL = (
-    "https://raw.githubusercontent.com/google/fonts/main"
-    "/ofl/newrocker/NewRocker-Regular.ttf"
-)
+# Google Fonts GitHub raw TTFs
+_FONT_URLS = {
+    "NewRocker-Regular.ttf": (
+        "https://raw.githubusercontent.com/google/fonts/main"
+        "/ofl/newrocker/NewRocker-Regular.ttf"
+    ),
+    "Texturina-Regular.ttf": (
+        "https://raw.githubusercontent.com/google/fonts/main"
+        "/ofl/texturina/Texturina%5Bopsz%2Cwght%5D.ttf"
+    ),
+}
 
 # ── Module state (populated in on_config) ─────────────────────
-_root = None
-_bg = None
-_logo = None          # PIL Image (RGBA) or None
-_font_file = None
-_fonts = {}
-_manifest = {}
+_root             = None
+_bg               = None
+_logo             = None   # PIL Image (RGBA) or None
+_font_file        = None   # New Rocker TTF path
+_texturina_file   = None   # Texturina TTF path
+_fonts            = {}     # {(file, size): ImageFont}
+_manifest         = {}
 _site_description = ""
+_site_name        = ""
 
 
 # ── Font helpers ──────────────────────────────────────────────
 
-def _download_font():
-    """Download New Rocker TTF and cache in .cache/."""
-    global _font_file
-    cached = _root / _FONT_DIR / "NewRocker-Regular.ttf"
-    if cached.exists():
-        _font_file = cached
-        return
-    cached.parent.mkdir(parents=True, exist_ok=True)
-
+def _download_fonts():
+    """Download New Rocker + Texturina TTFs and cache in .cache/."""
+    global _font_file, _texturina_file
     import requests
 
-    resp = requests.get(_FONT_URL, timeout=30)
-    resp.raise_for_status()
-    cached.write_bytes(resp.content)
-    _font_file = cached
-    log.info("Cached New Rocker font -> %s", cached)
+    font_dir = _root / _FONT_DIR
+    font_dir.mkdir(parents=True, exist_ok=True)
+
+    for filename, url in _FONT_URLS.items():
+        dest = font_dir / filename
+        if not dest.exists():
+            resp = requests.get(url, timeout=30)
+            resp.raise_for_status()
+            dest.write_bytes(resp.content)
+            log.info("Cached font %s -> %s", filename, dest)
+
+    _font_file      = font_dir / "NewRocker-Regular.ttf"
+    _texturina_file = font_dir / "Texturina-Regular.ttf"
 
 
-def _font(size):
-    """Return a cached ImageFont at the requested pixel size."""
-    if size not in _fonts:
-        _fonts[size] = ImageFont.truetype(str(_font_file), size)
-    return _fonts[size]
+def _font(ttf_path, size):
+    """Return a cached ImageFont for *ttf_path* at *size* px."""
+    key = (ttf_path, size)
+    if key not in _fonts:
+        _fonts[key] = ImageFont.truetype(str(ttf_path), size)
+    return _fonts[key]
+
+
+def _nf(size):
+    """New Rocker at *size* px."""
+    return _font(_font_file, size)
+
+
+def _tf(size):
+    """Texturina at *size* px."""
+    return _font(_texturina_file, size)
 
 
 # ── Logo helpers ──────────────────────────────────────────────
@@ -154,9 +177,15 @@ def _wrap(draw, text, font, max_w):
 
 
 def _card_hash(title, label, versions, desc):
-    """Hash the four rendered fields (after fallback resolution)."""
+    """Hash the rendered fields (including global site_name)."""
     blob = json.dumps(
-        {"title": title, "label": label, "versions": versions, "description": desc},
+        {
+            "site_name": _site_name,
+            "title": title,
+            "label": label,
+            "versions": versions,
+            "description": desc,
+        },
         sort_keys=True,
     )
     return hashlib.md5(blob.encode()).hexdigest()[:12]
@@ -175,41 +204,46 @@ def _render(title, label, versions, desc):
         logo_w = _logo.width + LOGO_GAP
     title_max_w = USABLE_W - logo_w
 
-    # ── Upper half: title + label ─────────────────────────────
-    y = 40
+    # ── Upper half: site name eyebrow + title + label ─────────
+    y = 36
+
+    if _site_name:
+        f = _nf(SITE_NAME_SIZE)
+        draw.text((MARGIN, y), _site_name, font=f, fill=COLOR)
+        y = draw.textbbox((MARGIN, y), _site_name, font=f)[3] + 10
 
     if title:
-        f = _font(TITLE_SIZE)
+        f = _nf(TITLE_SIZE)
         for ln in _wrap(draw, title, f, title_max_w)[:3]:
             draw.text((MARGIN, y), ln, font=f, fill=COLOR)
             y = draw.textbbox((MARGIN, y), ln, font=f)[3] + 8
 
     if label:
-        y += 8
-        f = _font(LABEL_SIZE)
+        y += 6
+        f = _nf(LABEL_SIZE)
         draw.text((MARGIN, y), label, font=f, fill=COLOR)
 
     # ── Logo in upper-right ───────────────────────────────────
     if _logo:
         lx = W - MARGIN - _logo.width
-        ly = 40
+        ly = 36
         img.paste(_logo, (lx, ly), _logo)
 
-    # ── Lower half: versions + description ────────────────────
+    # ── Lower half: versions + description (Texturina, white) ─
     y = H // 2 + 20
 
     if versions:
-        f = _font(VERSION_SIZE)
+        f = _tf(VERSION_SIZE)
         txt = "  ".join(str(v) for v in versions)
         for ln in _wrap(draw, txt, f, USABLE_W)[:2]:
-            draw.text((MARGIN, y), ln, font=f, fill=COLOR)
+            draw.text((MARGIN, y), ln, font=f, fill=COLOR_BODY)
             y = draw.textbbox((MARGIN, y), ln, font=f)[3] + 6
         y += 12
 
     if desc:
-        f = _font(DESC_SIZE)
+        f = _tf(DESC_SIZE)
         for ln in _wrap(draw, desc, f, USABLE_W)[:4]:
-            draw.text((MARGIN, y), ln, font=f, fill=COLOR)
+            draw.text((MARGIN, y), ln, font=f, fill=COLOR_BODY)
             y = draw.textbbox((MARGIN, y), ln, font=f)[3] + 6
 
     buf = BytesIO()
@@ -220,12 +254,13 @@ def _render(title, label, versions, desc):
 # ── MkDocs hook entry points ─────────────────────────────────
 
 def on_config(config, **kwargs):
-    """Load background image, download font, render logo, read manifest."""
-    global _root, _bg, _manifest, _site_description
+    """Load background image, download fonts, render logo, read manifest."""
+    global _root, _bg, _manifest, _site_description, _site_name
     _root = Path(config["config_file_path"]).parent
     _site_description = config.get("site_description", "")
+    _site_name        = config.get("site_name", "")
 
-    _download_font()
+    _download_fonts()
     _load_logo()
 
     bg = _root / _BG_PATH
