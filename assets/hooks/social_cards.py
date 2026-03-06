@@ -31,11 +31,11 @@ log = logging.getLogger("mkdocs.hooks.social_cards")
 # ── Card dimensions (standard Open Graph) ─────────────────────
 W, H = 1200, 630
 COLOR       = "#00f0c2"   # teal accent — New Rocker (upper half)
-COLOR_BODY  = "#ffffff"   # white — Texturina (lower half), Material slate body
+COLOR_BODY  = "#bec1c6"   # default text color — Texturina (lower half)
 
 # ── Font sizes ────────────────────────────────────────────────
-SITE_NAME_SIZE = 34       # eyebrow above the page title
-TITLE_SIZE     = 76
+SITE_NAME_SIZE = 28       # eyebrow above the page title
+TITLE_SIZE     = 86
 LABEL_SIZE     = 52
 VERSION_SIZE   = 36
 DESC_SIZE      = 40
