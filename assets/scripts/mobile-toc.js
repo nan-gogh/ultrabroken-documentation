@@ -15,6 +15,28 @@
 
   var TOGGLE_PREFIX = '__ub_toc';
 
+  /* ── Shared smooth-scroll handler for TOC links ────────────── */
+  function handleTocClick(e) {
+    e.preventDefault();
+    var hash = this.getAttribute('href');
+    var target = hash && document.getElementById(decodeURIComponent(hash.slice(1)));
+
+    // On mobile, close the drawer first
+    var drawer = document.getElementById('__drawer');
+    var isMobile = drawer && drawer.checked;
+    if (isMobile) drawer.checked = false;
+
+    if (target) {
+      var delay = isMobile ? 150 : 0;
+      setTimeout(function () {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, delay);
+    }
+
+    // Update the URL hash without adding a history entry
+    if (hash) history.replaceState(null, '', hash);
+  }
+
   /* ── Build the flattened TOC list from the secondary sidebar ── */
   function buildTocList(tocNav) {
     var tocLinks = tocNav.querySelectorAll('a.md-nav__link');
@@ -40,6 +62,9 @@
       link.href = a.getAttribute('href');
       link.className = 'md-nav__link';
       link.innerHTML = a.innerHTML;
+
+      // Smooth-scroll to the heading instead of navigating
+      link.addEventListener('click', handleTocClick);
 
       li.appendChild(link);
       flatList.appendChild(li);
@@ -170,6 +195,17 @@
     });
   }
 
+  /* ── Bind smooth-scroll to the desktop (secondary) TOC links ── */
+  function bindDesktopTocLinks() {
+    var secondary = document.querySelector('.md-sidebar--secondary .md-nav--secondary');
+    if (!secondary) return;
+    secondary.querySelectorAll('a.md-nav__link').forEach(function (a) {
+      if (a.__ubTocBound) return;
+      a.addEventListener('click', handleTocClick);
+      a.__ubTocBound = true;
+    });
+  }
+
   // Listen for drawer checkbox changes
   function attachDrawerListener() {
     var drawer = document.getElementById('__drawer');
@@ -186,6 +222,7 @@
       injectNavToc();
       captureInitialStates();
       attachDrawerListener();
+      bindDesktopTocLinks();
     });
   } else {
     if (document.readyState === 'loading') {
@@ -193,11 +230,13 @@
         injectNavToc();
         captureInitialStates();
         attachDrawerListener();
+        bindDesktopTocLinks();
       });
     } else {
       injectNavToc();
       captureInitialStates();
       attachDrawerListener();
+      bindDesktopTocLinks();
     }
   }
 })();
