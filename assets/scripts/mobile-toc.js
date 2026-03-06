@@ -124,10 +124,11 @@
     });
   }
 
-  /* ── Reset nav on drawer close ───────────────────────────────
+  /* ── Reset nav on drawer open ────────────────────────────────
      Capture the initial checked state of every nav toggle after
-     injection, then restore it whenever the drawer is closed so
-     the user always comes back to the current page's position. ── */
+     injection, then restore it whenever the drawer is OPENED so
+     the user always starts at the current page's position.
+     (Resetting on close causes a visible header-color flash.) ── */
   var initialStates = {};
 
   function captureInitialStates() {
@@ -154,7 +155,7 @@
     var drawer = document.getElementById('__drawer');
     if (!drawer || drawer.__ubTocListener) return;
     drawer.addEventListener('change', function () {
-      if (!drawer.checked) restoreNavPosition();
+      if (drawer.checked) restoreNavPosition();
     });
     drawer.__ubTocListener = true;
   }
