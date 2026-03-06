@@ -493,11 +493,14 @@ def aggregate_tags(discovered_tags: set[str]) -> None:
     """Merge newly-discovered tag names into tags.json.
 
     The file is a JSON object mapping tag names to metadata (empty string
-    for now, mirroring credits.json). New tags are added with an empty
-    value as a placeholder. Existing entries are never overwritten.
+    for now). New tags are added with an empty value as a placeholder.
+    Existing entries are kept unless they are orphaned (no longer referenced
+    in any frontmatter), in which case they are removed.
+    
+    Orphan detection: tags in JSON that are no longer referenced anywhere
+    are removed to keep the file clean and prevent stale tag entries.
 
-    Also detects orphans (entries in JSON no longer referenced in frontmatter)
-    and prints a warning. Keys are sorted alphabetically for cleaner diffs.
+    Keys are sorted alphabetically for cleaner diffs.
     """
     existing: dict[str, str] = {}
     if _TAGS_JSON.exists():
@@ -508,8 +511,12 @@ def aggregate_tags(discovered_tags: set[str]) -> None:
 
     # Detect orphans: tags in JSON that no longer appear in any frontmatter
     orphans = sorted(tag for tag in existing if tag not in discovered_tags)
+    removed_count = 0
     if orphans:
-        print(f'WARNING: tags.json contains {len(orphans)} orphan(s) not in frontmatter: {", ".join(orphans)}')
+        for orphan in orphans:
+            del existing[orphan]
+        removed_count = len(orphans)
+        print(f'  REMOVED: {len(orphans)} orphan tag(s) no longer in use: {", ".join(orphans)}')
 
     new_tags = sorted(tag for tag in discovered_tags if tag and tag not in existing)
     for tag in new_tags:
@@ -518,13 +525,17 @@ def aggregate_tags(discovered_tags: set[str]) -> None:
     # Sort keys alphabetically for cleaner diffs
     sorted_existing = dict(sorted(existing.items(), key=lambda x: x[0].lower()))
 
-    if list(existing.keys()) != list(sorted_existing.keys()) or new_tags:
+    if list(existing.keys()) != list(sorted_existing.keys()) or new_tags or removed_count:
         _TAGS_JSON.write_text(
             json.dumps(sorted_existing, ensure_ascii=False, indent=2),
             encoding='utf-8'
         )
-        if new_tags:
+        if new_tags and removed_count:
+            print(f'UPDATED tags.json (+{len(new_tags)} new, {removed_count} removed)')
+        elif new_tags:
             print(f'UPDATED tags.json (+{len(new_tags)} new tags: {", ".join(new_tags)})')
+        elif removed_count:
+            print(f'UPDATED tags.json ({removed_count} orphan tags removed)')
         else:
             print('NORMALIZED tags.json (re-sorted keys)')
 
@@ -544,6 +555,11 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
 
     If *grimoire_entries* is provided (from build_grimoire_data) it is reused
     to avoid scanning the filesystem a second time.
+    
+    Handles cache invalidation for deleted and renamed files:
+      - Detects when files are deleted (UID in old glossary but not in new entries)
+      - Detects when files are renamed (UID found but filename changed) and updates the filename field
+      - Removes stale entries from the glossary
     """
     if grimoire_entries is None:
         glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
@@ -562,8 +578,31 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
                 'label': fm.get('label', ''),
                 'aliases': fm.get('aliases', []),
                 'href': f'./{uid}/',
+                'filename': p.name,
             })
 
+    # Build mapping of UID -> grimoire entry for fast lookup
+    new_entries_by_uid = {entry.get('uid'): entry for entry in grimoire_entries if entry.get('uid')}
+
+    # Load old glossary to detect deleted/renamed files
+    old_glossary_by_uid = {}
+    deleted_uids = []
+    renamed_uids = []
+    
+    if _GLOSSARY_JSON.exists():
+        try:
+            old_glossary = json.loads(_GLOSSARY_JSON.read_text(encoding='utf-8'))
+            old_glossary_by_uid = {entry.get('uid'): entry for entry in old_glossary if entry.get('uid')}
+        except (json.JSONDecodeError, IOError) as e:
+            print(f'WARNING: Could not load old glossary.json for cache validation: {e}')
+            old_glossary_by_uid = {}
+
+    # Detect deleted files (UIDs in old glossary but not in new entries)
+    for old_uid in old_glossary_by_uid:
+        if old_uid not in new_entries_by_uid:
+            deleted_uids.append(old_uid)
+
+    # Build new glossary with validation
     glossary = []
     for entry in grimoire_entries:
         name = entry.get('name', '')
@@ -583,7 +622,15 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
         aliases = entry.get('aliases', [])
         if isinstance(aliases, str):
             aliases = [aliases]
-            
+
+        # Check if this UID was renamed (existed in old glossary with different filename)
+        old_entry = old_glossary_by_uid.get(uid)
+        old_filename = old_entry.get('filename') if old_entry else None
+        
+        if old_entry and old_filename and old_filename != filename:
+            renamed_uids.append((uid, old_filename, filename))
+            print(f'  RENAMED: {uid}: {old_filename} → {filename}')
+        
         glossary.append({
             'name': name,
             'uid': uid,
@@ -592,12 +639,19 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
             'path': path,
             'filename': filename
         })
+
+    # Report cache invalidation results
+    if deleted_uids:
+        print(f'  DELETED: {len(deleted_uids)} file(s) removed from glossary: {", ".join(deleted_uids)}')
+    if renamed_uids:
+        print(f'  RENAMED: {len(renamed_uids)} file(s) detected')
+
     _GLOSSARY_JSON.parent.mkdir(parents=True, exist_ok=True)
     _GLOSSARY_JSON.write_text(
         json.dumps(glossary, ensure_ascii=False, indent=2),
         encoding='utf-8'
     )
-    print(f'WROTE glossary.json ({len(glossary)} entries) -> {_GLOSSARY_JSON}')
+    print(f'WROTE glossary.json ({len(glossary)} entries, {len(deleted_uids)} deleted) -> {_GLOSSARY_JSON}')
 
 
 _GRAPH_JSON = ROOT / 'docs' / 'assets' / 'data' / 'graph.json'
