@@ -186,15 +186,14 @@
   }
 
   /* ── Smooth-scroll for ALL TOC links (desktop + mobile) ──────
-     Uses event delegation so it works across SPA navigations
-     without re-binding.  Catches clicks on:
-       • Desktop secondary sidebar  (.md-sidebar--secondary a)
-       • Mobile injected TOC items  (.ub-toc-nav-item a)
+     Registered on `window` in the capture phase — the EARLIEST
+     possible interception point in the DOM event flow:
+       window (capture) → document → html → … → target → … → bubble
 
-     Uses capture phase + stopPropagation so Material's instant
-     loading never sees the click (it would otherwise treat it
-     as a full navigation and reload the page).              ── */
-  document.addEventListener('click', function (e) {
+     This fires before any Material handler, even capture-phase
+     ones on `document`.  We stop propagation so no other handler
+     (including the browser default) processes the click.        ── */
+  window.addEventListener('click', function (e) {
     var link = e.target.closest(
       '.md-sidebar--secondary .md-nav__link, .ub-toc-nav-item .md-nav__link'
     );
@@ -203,7 +202,15 @@
     var hash = link.getAttribute('href');
     if (!hash || hash.charAt(0) !== '#') return;
 
-    // Stop the event from reaching Material's instant-loading handler
+    // ── DEBUG: flash a bar so we can confirm the handler fires ──
+    var dbg = document.createElement('div');
+    dbg.style.cssText = 'position:fixed;top:0;left:0;right:0;height:4px;background:#0f0;z-index:99999;pointer-events:none;';
+    document.body.appendChild(dbg);
+    setTimeout(function () { dbg.remove(); }, 600);
+    console.log('[mobile-toc] intercepted TOC click:', hash);
+    // ── END DEBUG ───────────────────────────────────────────────
+
+    // Kill the event completely
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
@@ -225,7 +232,7 @@
 
     // Update hash without creating a history entry
     history.replaceState(null, '', hash);
-  }, true);  // <-- capture phase: fires before Material's bubbling handlers
+  }, true);  // <-- capture phase on window
 
   /* ── Bootstrap ─────────────────────────────────────────────── */
   if (typeof document$ !== 'undefined') {
