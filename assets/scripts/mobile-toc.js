@@ -224,10 +224,19 @@
     if (target) {
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
-        // Account for the sticky header so the heading isn't occluded
-        // Add 8px extra padding for breathing room
+        // Measure the dynamic gap between header and content to maintain
+        // visual harmony. This accounts for zoom, font-size changes, and margins.
         var header = document.querySelector('.md-header');
-        var offset = (header ? header.offsetHeight : 0) + 8;
+        var mainContent = document.querySelector('.md-main');
+        
+        var offset = 0;
+        if (header && mainContent) {
+          // Measure the gap between header's bottom and main content's top
+          var headerBottom = header.getBoundingClientRect().bottom;
+          var contentTop = mainContent.getBoundingClientRect().top;
+          offset = Math.max(0, contentTop - headerBottom);
+        }
+        
         var top = target.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top: top, behavior: 'smooth' });
       }, delay);
