@@ -238,9 +238,20 @@
           gap = Math.max(0, contentTop - headerBottom);
         }
         
-        // Scroll so the target appears at the same distance above the header
-        // as the gap between header and content below (visual harmony)
-        var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - gap;
+        var targetTop = target.getBoundingClientRect().top;
+        var targetAbsoluteY = targetTop + window.scrollY;
+        var scrollTarget = targetAbsoluteY - headerHeight - gap;
+        
+        // DEBUG: Log all values
+        console.log('[toc-scroll] DEBUG:');
+        console.log('  headerHeight:', headerHeight);
+        console.log('  gap:', gap);
+        console.log('  targetTop (viewport):', targetTop);
+        console.log('  targetAbsoluteY:', targetAbsoluteY);
+        console.log('  scrollTarget (will scroll to):', scrollTarget);
+        console.log('  target.offsetTop:', target.offsetTop);
+        console.log('  window.scrollY (current):', window.scrollY);
+        
         window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
       }, delay);
     }
