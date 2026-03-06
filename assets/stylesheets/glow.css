@@ -395,9 +395,9 @@ label.md-header__button[for^="__palette_"]:hover {
     transform: translateZ(0); /* force own stacking context */
   }
 
-  /* Kill sliding transitions on nav panels so drawer-close
-     reset is instant (no header-color flash). */
-  .md-nav__toggle ~ .md-nav {
+  /* Suppress sliding transitions only during nav-position reset
+     (class toggled by mobile-toc.js) */
+  .ub-nav-resetting .md-nav {
     transition: none !important;
   }
 }

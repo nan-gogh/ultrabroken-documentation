@@ -151,10 +151,22 @@
   function restoreNavPosition() {
     var primary = document.querySelector('.md-sidebar--primary .md-nav--primary');
     if (!primary) return;
+
+    // Suppress transitions during reset so panels snap instantly
+    primary.classList.add('ub-nav-resetting');
+
     primary.querySelectorAll('input.md-toggle').forEach(function (cb) {
       if (cb.id && cb.id in initialStates) {
         cb.checked = initialStates[cb.id];
       }
+    });
+
+    // Double rAF: ensure the browser has painted the reset state
+    // before re-enabling transitions
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        primary.classList.remove('ub-nav-resetting');
+      });
     });
   }
 
