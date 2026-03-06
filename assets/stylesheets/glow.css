@@ -9,10 +9,10 @@
   --ub-marquee-pause-ms: 1300;
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* 
    FONT SIZE TOGGLE
    Provides an accessibility option to increase content font size.
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   */
 
 /* Large font mode â€” applies scaling to content areas only.
    Material's .md-typeset uses 0.8rem by default (16px scaled relative to root 20px).
@@ -173,8 +173,6 @@
   height: 24px;
   display: block;
 }
-
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 /* Override default text selection (blue) to use project teal */
 ::selection {
@@ -662,7 +660,7 @@ button.search-link:focus,
 }
 
 
-/* â”€â”€ Background rune (watermark) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Background rune (watermark) */
 /* SVG image centred via JavaScript positioning. The image is placed at a
    fixed pixel distance from the physical screen top (screen.height / 2 minus
    half the image height). Since screen dimensions are immutable, the rune
@@ -1294,7 +1292,7 @@ li.task-list-item a, li.task-list a {
 }*/
 
 
-/* â”€â”€â”€ Graph View â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Graph View */
 #graph-view-root {
   position: relative;
   width: 100%;
@@ -1330,7 +1328,7 @@ li.task-list-item a, li.task-list a {
 .graph-reset-btn:hover {
   background: rgba(0,240,194,0.25);
 }
-/* â”€â”€ Map Embed Responsive â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Map Embed Responsive */
 .ub-map-embed {
   margin: 1rem 0;
 }

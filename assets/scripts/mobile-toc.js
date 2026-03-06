@@ -162,7 +162,7 @@
     var drawer = document.getElementById('__drawer');
     if (!drawer || drawer.__ubTocListener) return;
     drawer.addEventListener('change', function () {
-      if (!drawer.checked) restoreNavPosition();
+      if (drawer.checked) restoreNavPosition();
     });
     drawer.__ubTocListener = true;
   }
