@@ -1,15 +1,15 @@
 /**
- * mobile-toc.js — Table of contents toggle
- * ──────────────────────────────────────────
+ * mobile-toc.js — Table of contents toggle (mobile only)
+ * ────────────────────────────────────────────────────────
  * Injects:
- * 1. A TOC icon button into the sidebar header (mobile) or page header
- *    (desktop), alongside the storage/font-size/motion toggles.
+ * 1. A TOC icon button into the sidebar header alongside the
+ *    storage/font-size/motion toggles.
  * 2. A collapsible "Table of contents" section inside the nav drawer
  *    using Material's checkbox expand/collapse pattern, with a flattened
  *    list of all heading links.
  *
- * Clicking the header button opens the nav drawer (if closed) and
- * programmatically checks the TOC toggle so the TOC is immediately visible.
+ * Clicking the header button toggles the TOC section open/closed.
+ * Desktop already has the right sidebar TOC, so nothing is injected there.
  *
  * Hooks into Material's document$ observable for SPA navigation support.
  */
@@ -29,8 +29,9 @@
     return window.innerWidth < 1220;
   }
 
-  /* ── Inject the header/sidebar icon button ─────────────────── */
+  /* ── Inject the sidebar icon button (mobile only) ──────────── */
   function injectButton() {
+    if (!isMobileView()) return;
     if (document.querySelector('.ub-toc-toggle')) return;
 
     // Only show button if the page has a TOC
@@ -45,58 +46,20 @@
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-
-      // On mobile: open the nav drawer, then check the TOC toggle
-      var drawer = document.getElementById('__drawer');
-      if (drawer && isMobileView() && !drawer.checked) {
-        drawer.checked = true;
-      }
-
-      // Small delay to let the drawer animate open before checking TOC
-      setTimeout(function () {
-        var tocToggle = document.getElementById(TOGGLE_ID);
-        if (tocToggle && !tocToggle.checked) {
-          tocToggle.checked = true;
-        }
-      }, isMobileView() ? 100 : 0);
+      var tocToggle = document.getElementById(TOGGLE_ID);
+      if (tocToggle) tocToggle.checked = !tocToggle.checked;
     });
 
-    if (isMobileView()) {
-      var navTitle = document.querySelector('.md-nav--primary > .md-nav__title');
-      if (!navTitle) return;
-      var sidebarContainer = document.querySelector('.ub-sidebar-toggles');
-      if (!sidebarContainer) {
-        sidebarContainer = document.createElement('div');
-        sidebarContainer.className = 'ub-sidebar-toggles';
-        navTitle.appendChild(sidebarContainer);
-      }
-      sidebarContainer.appendChild(btn);
-    } else {
-      var searchBtn = document.querySelector('label[for="__search"]');
-      if (!searchBtn) return;
-      var container = document.querySelector('.ub-header-toggles');
-      if (!container) {
-        container = document.createElement('div');
-        container.className = 'ub-header-toggles';
-        searchBtn.parentNode.insertBefore(container, searchBtn.nextSibling);
-      }
-      container.appendChild(btn);
+    var navTitle = document.querySelector('.md-nav--primary > .md-nav__title');
+    if (!navTitle) return;
+    var sidebarContainer = document.querySelector('.ub-sidebar-toggles');
+    if (!sidebarContainer) {
+      sidebarContainer = document.createElement('div');
+      sidebarContainer.className = 'ub-sidebar-toggles';
+      navTitle.appendChild(sidebarContainer);
     }
+    sidebarContainer.appendChild(btn);
   }
-
-  /* ── Handle resize to move button between header/sidebar ───── */
-  var wasMobile = isMobileView();
-  window.addEventListener('resize', function () {
-    var mobile = isMobileView();
-    if (mobile !== wasMobile) {
-      wasMobile = mobile;
-      var toggle = document.querySelector('.ub-toc-toggle');
-      if (toggle) {
-        toggle.parentNode.removeChild(toggle);
-        injectButton();
-      }
-    }
-  });
 
   /* ── Inject the nav-drawer TOC section ─────────────────────── */
   function injectNavToc() {
