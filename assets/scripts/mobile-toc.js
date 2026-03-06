@@ -93,12 +93,20 @@
     navList.insertBefore(item, navList.firstChild);
   }
 
+  /* ── Only run on mobile ──────────────────────────────────── */
+  function isMobileView() {
+    return window.innerWidth < 1220;
+  }
+
   /* ── Inject TOC into every nav list in the primary sidebar ─── */
   function injectNavToc() {
     // Remove any previous injections (instant-nav rebuilds the page)
     document.querySelectorAll('.ub-toc-nav-item').forEach(function (el) {
       el.remove();
     });
+
+    // Desktop has its own TOC sidebar — skip injection
+    if (!isMobileView()) return;
 
     var tocNav = document.querySelector('.md-sidebar--secondary .md-nav--secondary');
     if (!tocNav || !tocNav.querySelector('.md-nav__list li')) return;
@@ -127,9 +135,7 @@
   /* ── Reset nav on drawer close ────────────────────────────────
      Capture the initial checked state of every nav toggle after
      injection, then restore it whenever the drawer closes so
-     the user always comes back to the current page's position.
-     Transitions are suppressed during restore so the state change
-     is instant and invisible — no header-color flash. ─────────── */
+     the user always comes back to the current page's position. ── */
   var initialStates = {};
 
   function captureInitialStates() {
@@ -144,24 +150,10 @@
   function restoreNavPosition() {
     var primary = document.querySelector('.md-sidebar--primary .md-nav--primary');
     if (!primary) return;
-
-    // Suppress all transitions inside the nav so toggle resets are instant
-    primary.style.transition = 'none';
-    primary.querySelectorAll('*').forEach(function (el) {
-      el.style.transition = 'none';
-    });
-
     primary.querySelectorAll('input.md-toggle').forEach(function (cb) {
       if (cb.id && cb.id in initialStates) {
         cb.checked = initialStates[cb.id];
       }
-    });
-
-    // Force reflow to flush the changes, then re-enable transitions
-    void primary.offsetHeight;
-    primary.style.transition = '';
-    primary.querySelectorAll('*').forEach(function (el) {
-      el.style.transition = '';
     });
   }
 
