@@ -189,7 +189,11 @@
      Uses event delegation so it works across SPA navigations
      without re-binding.  Catches clicks on:
        • Desktop secondary sidebar  (.md-sidebar--secondary a)
-       • Mobile injected TOC items  (.ub-toc-nav-item a)        ── */
+       • Mobile injected TOC items  (.ub-toc-nav-item a)
+
+     Uses capture phase + stopPropagation so Material's instant
+     loading never sees the click (it would otherwise treat it
+     as a full navigation and reload the page).              ── */
   document.addEventListener('click', function (e) {
     var link = e.target.closest(
       '.md-sidebar--secondary .md-nav__link, .ub-toc-nav-item .md-nav__link'
@@ -199,7 +203,10 @@
     var hash = link.getAttribute('href');
     if (!hash || hash.charAt(0) !== '#') return;
 
+    // Stop the event from reaching Material's instant-loading handler
     e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
 
     var targetId = decodeURIComponent(hash.slice(1));
     var target = document.getElementById(targetId);
@@ -218,7 +225,7 @@
 
     // Update hash without creating a history entry
     history.replaceState(null, '', hash);
-  });
+  }, true);  // <-- capture phase: fires before Material's bubbling handlers
 
   /* ── Bootstrap ─────────────────────────────────────────────── */
   if (typeof document$ !== 'undefined') {
