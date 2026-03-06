@@ -1,4 +1,4 @@
-﻿"""
+"""
 Build a simple BM25-compatible index from the `docs/` markdown tree.
 
 This script walks `docs/`, extracts plain text from markdown (enriched with
@@ -23,7 +23,7 @@ body text is chunked. The header format is:
   [Title (ABBR) — description. Aliases: a1, a2. Tags: t1, t2.]
 
 Usage:
-  python build_bm25_index.py --output site/wiki_index.json --gzip
+  python docs/worker/build_bm25_index.py --output site/wiki_index.json --gzip
 
 This is intended to be lightweight and run in CI or locally. It does NOT
 produce embeddings — the Worker uses BM25 lexical retrieval over this index.
@@ -45,7 +45,7 @@ def find_repo_root(start: Path = None) -> Path:
     for parent in [p] + list(p.parents):
         if (parent / 'mkdocs.yml').exists():
             return parent
-    return Path(__file__).resolve().parents[1]
+    return Path(__file__).resolve().parents[2]
 
 
 ROOT = find_repo_root()
