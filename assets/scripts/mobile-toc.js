@@ -239,7 +239,7 @@
         }
         
         // Scroll so the target appears below the header with the same gap
-        var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - gap;
+        var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight + gap;
         window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
       }, delay);
     }
