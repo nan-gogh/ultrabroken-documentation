@@ -228,9 +228,9 @@
         var header = document.querySelector('.md-header');
         var headerHeight = header ? header.offsetHeight : 0;
         
-        // Proportional padding: ~15% of header height for visual harmony
+        // Proportional padding: ~25% of header height for visual harmony
         // Scales automatically with zoom, font-size toggles, and everything else
-        var padding = Math.max(8, Math.round(headerHeight * 0.15));
+        var padding = Math.max(8, Math.round(headerHeight * 0.25));
         
         var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - padding;
         window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
