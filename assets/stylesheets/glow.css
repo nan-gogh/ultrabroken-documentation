@@ -380,18 +380,22 @@ label.md-header__button[for^="__palette_"]:hover {
 }
 
 /* Sidebar toggle containers (mobile/compact view) —
-   Positioned inside .md-sidebar--primary, above the sliding nav panels
-   so toggles stay visible at every navigation depth.
+   Positioned inside .md-sidebar--primary, above the sliding nav panels.
+   Needs its own stacking context (via translateZ) to beat the nested nav
+   panels which get transform:translateX(0) when checked.
    Vertically aligned with the back-arrow icon (top: .4rem + .2rem margin). */
-.ub-sidebar-toggles {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 1rem;
-  position: absolute;
-  top: 0.6rem;     /* match back-arrow: top .4rem + margin .2rem */
-  right: 0.8rem;   /* match .md-nav__title horizontal padding */
-  z-index: 4;      /* above nav panels (z-index: 1) */
+@media (max-width: 76.1875em) {
+  .ub-sidebar-toggles {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1rem;
+    position: absolute;
+    top: 0.6rem;     /* match back-arrow: top .4rem + margin .2rem */
+    right: 0.8rem;   /* match .md-nav__title horizontal padding */
+    z-index: 10;     /* above nav panels & their sticky titles */
+    transform: translateZ(0); /* force own stacking context */
+  }
 }
 /* Search bar and input styling - bright teal, no glow */
 .md-search__input {
