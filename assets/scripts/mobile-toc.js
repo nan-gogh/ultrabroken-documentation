@@ -124,11 +124,12 @@
     });
   }
 
-  /* ── Reset nav on drawer open ────────────────────────────────
+  /* ── Reset nav on drawer close ────────────────────────────────
      Capture the initial checked state of every nav toggle after
-     injection, then restore it whenever the drawer is OPENED so
-     the user always starts at the current page's position.
-     (Resetting on close causes a visible header-color flash.) ── */
+     injection, then restore it whenever the drawer closes so
+     the user always comes back to the current page's position.
+     Transitions are suppressed during restore so the state change
+     is instant and invisible — no header-color flash. ─────────── */
   var initialStates = {};
 
   function captureInitialStates() {
@@ -143,10 +144,24 @@
   function restoreNavPosition() {
     var primary = document.querySelector('.md-sidebar--primary .md-nav--primary');
     if (!primary) return;
+
+    // Suppress all transitions inside the nav so toggle resets are instant
+    primary.style.transition = 'none';
+    primary.querySelectorAll('*').forEach(function (el) {
+      el.style.transition = 'none';
+    });
+
     primary.querySelectorAll('input.md-toggle').forEach(function (cb) {
       if (cb.id && cb.id in initialStates) {
         cb.checked = initialStates[cb.id];
       }
+    });
+
+    // Force reflow to flush the changes, then re-enable transitions
+    void primary.offsetHeight;
+    primary.style.transition = '';
+    primary.querySelectorAll('*').forEach(function (el) {
+      el.style.transition = '';
     });
   }
 
@@ -155,7 +170,7 @@
     var drawer = document.getElementById('__drawer');
     if (!drawer || drawer.__ubTocListener) return;
     drawer.addEventListener('change', function () {
-      if (drawer.checked) restoreNavPosition();
+      if (!drawer.checked) restoreNavPosition();
     });
     drawer.__ubTocListener = true;
   }
