@@ -124,16 +124,59 @@
     });
   }
 
+  /* ── Reset nav on drawer close ───────────────────────────────
+     Capture the initial checked state of every nav toggle after
+     injection, then restore it whenever the drawer is closed so
+     the user always comes back to the current page's position. ── */
+  var initialStates = {};
+
+  function captureInitialStates() {
+    initialStates = {};
+    var primary = document.querySelector('.md-sidebar--primary .md-nav--primary');
+    if (!primary) return;
+    primary.querySelectorAll('input.md-toggle').forEach(function (cb) {
+      if (cb.id) initialStates[cb.id] = cb.checked;
+    });
+  }
+
+  function restoreNavPosition() {
+    var primary = document.querySelector('.md-sidebar--primary .md-nav--primary');
+    if (!primary) return;
+    primary.querySelectorAll('input.md-toggle').forEach(function (cb) {
+      if (cb.id && cb.id in initialStates) {
+        cb.checked = initialStates[cb.id];
+      }
+    });
+  }
+
+  // Listen for drawer checkbox changes
+  function attachDrawerListener() {
+    var drawer = document.getElementById('__drawer');
+    if (!drawer || drawer.__ubTocListener) return;
+    drawer.addEventListener('change', function () {
+      if (!drawer.checked) restoreNavPosition();
+    });
+    drawer.__ubTocListener = true;
+  }
+
   /* ── Bootstrap ─────────────────────────────────────────────── */
   if (typeof document$ !== 'undefined') {
     document$.subscribe(function () {
       injectNavToc();
+      captureInitialStates();
+      attachDrawerListener();
     });
   } else {
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', injectNavToc);
+      document.addEventListener('DOMContentLoaded', function () {
+        injectNavToc();
+        captureInitialStates();
+        attachDrawerListener();
+      });
     } else {
       injectNavToc();
+      captureInitialStates();
+      attachDrawerListener();
     }
   }
 })();
