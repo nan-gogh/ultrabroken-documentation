@@ -194,6 +194,13 @@
      ones on `document`.  We stop propagation so no other handler
      (including the browser default) processes the click.        ── */
   window.addEventListener('click', function (e) {
+    // ── DEBUG: always flash RED on any click to confirm script loaded ──
+    var dbgAny = document.createElement('div');
+    dbgAny.style.cssText = 'position:fixed;top:0;left:0;right:0;height:4px;background:red;z-index:99999;pointer-events:none;';
+    document.body.appendChild(dbgAny);
+    setTimeout(function () { dbgAny.remove(); }, 400);
+    // ── END DEBUG (RED = any click) ─────────────────────────────
+
     var link = e.target.closest(
       '.md-sidebar--secondary .md-nav__link, .ub-toc-nav-item .md-nav__link'
     );
@@ -202,7 +209,7 @@
     var hash = link.getAttribute('href');
     if (!hash || hash.charAt(0) !== '#') return;
 
-    // ── DEBUG: flash a bar so we can confirm the handler fires ──
+    // ── DEBUG: flash GREEN = selector matched a TOC link ────────
     var dbg = document.createElement('div');
     dbg.style.cssText = 'position:fixed;top:0;left:0;right:0;height:4px;background:#0f0;z-index:99999;pointer-events:none;';
     document.body.appendChild(dbg);
