@@ -224,13 +224,13 @@
     if (target) {
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
-        // Get the sticky header height
+        // Get the sticky header height (adapts to zoom, font-size changes, viewport)
         var header = document.querySelector('.md-header');
         var headerHeight = header ? header.offsetHeight : 0;
         
-        // Add fixed padding for breathing room below header
-        // (gap measurement doesn't work reliably when page is scrolled)
-        var padding = 12;
+        // Proportional padding: ~15% of header height for visual harmony
+        // Scales automatically with zoom, font-size toggles, and everything else
+        var padding = Math.max(8, Math.round(headerHeight * 0.15));
         
         var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - padding;
         window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
