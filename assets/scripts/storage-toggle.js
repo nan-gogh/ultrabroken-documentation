@@ -84,14 +84,14 @@
     if (document.querySelector('.ub-storage-toggle')) return true;
 
     if (isMobileView()) {
-      var navTitle = document.querySelector('.md-nav--primary > .md-nav__title');
-      if (!navTitle) return false;
+      var sidebar = document.querySelector('.md-sidebar--primary');
+      if (!sidebar) return false;
 
       var sidebarContainer = document.querySelector('.ub-sidebar-toggles');
       if (!sidebarContainer) {
         sidebarContainer = document.createElement('div');
         sidebarContainer.className = 'ub-sidebar-toggles';
-        navTitle.appendChild(sidebarContainer);
+        sidebar.appendChild(sidebarContainer);
       }
       sidebarContainer.appendChild(createButton());
     } else {

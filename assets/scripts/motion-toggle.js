@@ -130,15 +130,15 @@
     if (document.querySelector('.ub-motion-toggle')) return true;
 
     if (isMobileView()) {
-      // Mobile: inject into sidebar header field
-      var navTitle = document.querySelector('.md-nav--primary > .md-nav__title');
-      if (!navTitle) return false;
+      // Mobile: inject into sidebar drawer
+      var sidebar = document.querySelector('.md-sidebar--primary');
+      if (!sidebar) return false;
 
       var sidebarContainer = document.querySelector('.ub-sidebar-toggles');
       if (!sidebarContainer) {
         sidebarContainer = document.createElement('div');
         sidebarContainer.className = 'ub-sidebar-toggles';
-        navTitle.appendChild(sidebarContainer);
+        sidebar.appendChild(sidebarContainer);
       }
       sidebarContainer.insertBefore(createButton(), sidebarContainer.firstChild);
     } else {
