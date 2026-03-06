@@ -20,6 +20,7 @@ import html as html_mod
 import json
 import logging
 import os
+import shutil
 from io import BytesIO
 from pathlib import Path
 from urllib.parse import quote
@@ -53,6 +54,7 @@ USABLE_W     = W - 2 * MARGIN
 # ── Paths (relative to project root) ─────────────────────────
 _BG_PATH       = Path("docs/assets/images/graphics/ultrabroken_social_card_background.jpg")
 _FONT_DIR      = Path(".cache/hooks/social_cards/fonts")
+_CARD_CACHE    = Path(".cache/hooks/social_cards/images")
 _MANIFEST_PATH = Path(".cache/hooks/social_cards/manifest.json")
 
 # Google Fonts GitHub raw TTFs
@@ -558,17 +560,22 @@ def on_post_page(output, page, config, **kwargs):
     card_name = os.path.splitext(src)[0] + ".png"
     card_rel = f"assets/images/social/{card_name}"
     card_path = Path(config["site_dir"]) / card_rel
+    cache_path = _root / _CARD_CACHE / card_name
 
-    # Skip regeneration when content hasn't changed
+    # Skip regeneration when content hasn't changed (check .cache/ copy)
     h = _card_hash(title, label, uid, versions, desc)
-    if not (_manifest.get(src) == h and card_path.exists()):
+    if not (_manifest.get(src) == h and cache_path.exists()):
         try:
-            card_path.parent.mkdir(parents=True, exist_ok=True)
-            card_path.write_bytes(_render(title, label, uid, versions, desc, is_fallback_desc=is_fallback_desc))
+            cache_path.parent.mkdir(parents=True, exist_ok=True)
+            cache_path.write_bytes(_render(title, label, uid, versions, desc, is_fallback_desc=is_fallback_desc))
             _manifest[src] = h
         except Exception as exc:
             log.warning("Social card failed for %s: %s", src, exc)
             return output
+
+    # Copy cached card into the site output directory
+    card_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(cache_path, card_path)
 
     # Build absolute URL for the card
     site_url = config.get("site_url", "").rstrip("/")
