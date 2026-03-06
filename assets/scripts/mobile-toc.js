@@ -224,7 +224,11 @@
     if (target) {
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Account for the sticky header so the heading isn't occluded
+        var header = document.querySelector('.md-header');
+        var offset = header ? header.offsetHeight : 0;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }, delay);
     }
 
