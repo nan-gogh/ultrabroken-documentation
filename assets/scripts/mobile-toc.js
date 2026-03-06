@@ -225,8 +225,9 @@
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
         // Account for the sticky header so the heading isn't occluded
+        // Add 8px extra padding for breathing room
         var header = document.querySelector('.md-header');
-        var offset = header ? header.offsetHeight : 0;
+        var offset = (header ? header.offsetHeight : 0) + 8;
         var top = target.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top: top, behavior: 'smooth' });
       }, delay);
