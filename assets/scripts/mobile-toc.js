@@ -31,20 +31,21 @@
       '.md-sidebar--primary .md-nav__item--active'
     );
     // Take the deepest (last) active item that owns a child nav list
+    // Exclude md-nav--secondary (the TOC nav itself) to avoid injecting TOC into TOC
     for (var i = candidates.length - 1; i >= 0; i--) {
-      var ul = candidates[i].querySelector(':scope > nav > .md-nav__list');
-      if (ul) { activeItem = candidates[i]; break; }
+      var childNav = candidates[i].querySelector(':scope > nav:not(.md-nav--secondary) > .md-nav__list');
+      if (childNav) { activeItem = candidates[i]; break; }
     }
 
     var navList;
     var level;
     if (activeItem) {
-      navList = activeItem.querySelector(':scope > nav > .md-nav__list');
+      navList = activeItem.querySelector(':scope > nav:not(.md-nav--secondary) > .md-nav__list');
       // Determine nesting depth from the parent <nav data-md-level>
-      var parentNav = activeItem.querySelector(':scope > nav');
+      var parentNav = activeItem.querySelector(':scope > nav:not(.md-nav--secondary)');
       level = parentNav ? parseInt(parentNav.getAttribute('data-md-level') || '1', 10) + 1 : 2;
     } else {
-      // Fallback: root nav list (top-level pages like glitchcraft)
+      // Fallback: root nav list (top-level pages like Home, Glitchcraft)
       navList = document.querySelector('.md-sidebar--primary .md-nav--primary > .md-nav__list');
       level = 1;
     }
