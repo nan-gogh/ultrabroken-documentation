@@ -224,21 +224,23 @@
     if (target) {
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
-        // Measure the dynamic gap between header and content to maintain
-        // visual harmony. This accounts for zoom, font-size changes, and margins.
+        // Measure the header height when it's in its natural position (sticky at top)
         var header = document.querySelector('.md-header');
-        var mainContent = document.querySelector('.md-main');
+        var headerHeight = header ? header.offsetHeight : 0;
         
-        var offset = 0;
+        // Measure the gap between header bottom and main content top
+        // to maintain visual harmony with zoom and font-size changes
+        var mainContent = document.querySelector('.md-main');
+        var gap = 0;
         if (header && mainContent) {
-          // Measure the gap between header's bottom and main content's top
           var headerBottom = header.getBoundingClientRect().bottom;
           var contentTop = mainContent.getBoundingClientRect().top;
-          offset = Math.max(0, contentTop - headerBottom);
+          gap = Math.max(0, contentTop - headerBottom);
         }
         
-        var top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top: top, behavior: 'smooth' });
+        // Scroll so the target appears below the header with the same gap
+        var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - gap;
+        window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
       }, delay);
     }
 
