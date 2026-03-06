@@ -37,7 +37,7 @@
     'The Shiekah are not telling you the whole story...',
     'The Koroks are hiding more than just seeds, it seems.',
     'Somewhere, a Lynel sighs at the audacity of the question.',
-    'The Upheaval shook more than just the land â€” it destabilised the entire collision engine.',
+    'The Upheaval shook more than just the land - it destabilised the entire collision engine.',
     'Rauru built his kingdom on solid ground. The physics engine, less so.',
     'Hestu rattles his maracas in quiet disapproval of your out-of-bounds vector.',
     'The Sages have convened. They are also confused.',
@@ -82,7 +82,7 @@
   // Displayed instead of a random idle text until the typewriter finishes its
   // next full cycle, at which point normal idle text rotation resumes.
   const IDLE_SILENCE_TEXT = 'Back to nonsense!';
-  // Placeholder pool â€” randomly sampled each time the widget initialises.
+  // Placeholder pool - randomly sampled each time the widget initialises.
   const _PLACEHOLDERS = [
     "What is Wacko Boingo?",
     "How to trigger a Zuggle?",
@@ -132,7 +132,7 @@
     const _placeholder_text = _PLACEHOLDERS[Math.floor(Math.random() * _PLACEHOLDERS.length)];
       // Always use the contenteditable branch so the input naturally grows
       let input;
-      // visible contenteditable â€” starts empty; animation fills it
+      // visible contenteditable - starts empty; animation fills it
       input = el('div', { contenteditable: 'true', role: 'textbox', 'aria-multiline': 'true', 'data-ub-placeholder': _placeholder_text, class: 'ub-ai-input', spellcheck: 'false', autocorrect: 'off', autocomplete: 'on', autocapitalize: 'on' }, '');
       // textarea base styles for autosize and wrapping
       try{
@@ -153,7 +153,7 @@
     const clearBtn = el('button', { type: 'button', class: 'ub-ai-clear', 'aria-label': 'Clear search' }, '');
     const askBtn = el('button', { type: 'button', class: 'ub-ai-ask', 'aria-label': 'Ask' }, '');
     const shareBtn = el('button', { type: 'button', class: 'ub-ai-share', 'aria-label': 'Share query' }, '');
-    // NOTE: user-facing toggle removed â€” rendering of model-returned sources
+    // NOTE: user-facing toggle removed - rendering of model-returned sources
     // is controlled by the internal `SHOW_MODEL_SOURCES` flag declared above.
     // Output area (answer + evidence). `out` holds the model answer; `evidenceWrap` holds clickable evidence links returned by the Worker.
     // Starts blank; the typewriter callback populates it after the first cycle.
@@ -354,7 +354,7 @@
         // If nothing was rendered and there was no answer, show silence
         if (!w.out.textContent && (!r.evidence || !r.evidence.length)) w.out.textContent = 'silence';
         // Silence response: unlock the input so the user can edit/correct their query.
-        // No auto-clear â€” the user decides what to do next.
+        // No auto-clear - the user decides what to do next.
         if (r.silence) {
           w._silenceMode = true;
           try{ if (typeof unlockInput === 'function') unlockInput(); }catch(e){}
@@ -366,7 +366,7 @@
       w.getValue = ()=>{
         try{
           if (w.input && (w.input.contentEditable === 'true' || w.input._inputLocked)) {
-            if (w.input._phAnimating) return ''; // animation in progress â€” treat as empty
+            if (w.input._phAnimating) return ''; // animation in progress - treat as empty
             const txt = String(w.input.textContent || '');
             const ph = String(w.input.getAttribute('data-ub-placeholder') || '');
             return txt === ph ? '' : txt;
@@ -479,7 +479,7 @@
         try{ if (typeof w.setValue === 'function') w.setValue(''); else if (w.input) w.input.value = ''; }catch(e){}
         // Only show idle text immediately if input is not focused; otherwise let the typewriter callback restore it.
         // After a silence response, show the dedicated post-silence text; otherwise show the blur bridge text
-        // (same as the blur-empty path) â€” the typewriter will replace it with a random idle text after its first cycle.
+        // (same as the blur-empty path) - the typewriter will replace it with a random idle text after its first cycle.
         const _idleInitText = _postSilence ? IDLE_SILENCE_TEXT : IDLE_BLUR_TEXT;
         _postSilence = false;
         try{ if (w.out) { w.out.innerHTML = ''; if (document.activeElement !== w.input) w.out.textContent = _idleInitText; } }catch(e){}
@@ -663,7 +663,7 @@
                   const rel = w._lastRelated || [];
                   if (rel.length) relatedFooter = '\n\n## Related\n' + rel.map(r => '- [' + r.text + '](' + WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(r.query) + ')').join('\n');
                 } catch(e){}
-                const disclaimer = '\n\n### Disclaimer\nThis response was synthesized by [The Librarian](' + SITE_ROOT + '/wiki/about/#ai-search). Take it with a grain of salt â€” always verify against the source pages.';
+                const disclaimer = '\n\n### Disclaimer\nThis response was synthesized by [The Librarian](' + SITE_ROOT + '/wiki/about/#ai-search). Take it with a grain of salt - always verify against the source pages.';
                 const text = queryHeading + responseText.trim() + resourcesFooter + relatedFooter + disclaimer;
                 navigator.clipboard.writeText(text).then(() => {
                   try { showCopiedToast && showCopiedToast('Copied to clipboard'); } catch (e) {}
@@ -822,7 +822,7 @@
         window.addEventListener('resize', resizeIcons);
         // initial state
         updateVisibility();
-        // kick off placeholder animation â€” start pre-filled so the page
+        // kick off placeholder animation - start pre-filled so the page
         // loads with content immediately; delete phase runs first cycle.
         try{ startPhAnim(true); }catch(e){}
 

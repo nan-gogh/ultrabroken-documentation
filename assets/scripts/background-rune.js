@@ -2,19 +2,19 @@
  * Background rune
  * â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
  * Displays the Ultrabroken rune as a centred, pulsing SVG watermark behind
- * all page content.  Pure HTML/CSS â€” no <canvas>, no animation loop, no DPR
+ * all page content.  Pure HTML/CSS - no <canvas>, no animation loop, no DPR
  * tracking, no resize handler.
  *
  * HOW IT AVOIDS VERTICAL JUMPING
  * â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
  * â€¢ The image is positioned at a fixed pixel distance from the physical screen
  *   top (screen.height / 2 minus half the image height).
- * â€¢ Physical screen dimensions (screen.width/height) are immutable â€” they never
+ * â€¢ Physical screen dimensions (screen.width/height) are immutable - they never
  *   change when address bars appear/disappear or viewports shift.
  * â€¢ Thus the rune stays vertically locked regardless of viewport changes.
  * â€¢ On orientation change (portrait â†” landscape), screen.w/h swap, so we
  *   re-measure and reposition via orientationchange listener.
- * â€¢ The opacity pulse is a CSS @keyframes animation â€” the compositor runs
+ * â€¢ The opacity pulse is a CSS @keyframes animation - the compositor runs
  *   it off the main thread.
  *
  * Three background modes (driven by motion-toggle.js via data-ub-bg):

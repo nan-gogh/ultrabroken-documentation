@@ -32,6 +32,7 @@ log = logging.getLogger("mkdocs.hooks.social_cards")
 W, H = 1200, 630
 COLOR       = "#00f0c2"   # teal accent — New Rocker (upper half)
 COLOR_BODY  = "#bec1c6"   # default text color — Texturina (lower half)
+COLOR_GAME_TITLE = "#00cbb7"  # accent color for game title in description
 
 # ── Font sizes ────────────────────────────────────────────────
 SITE_NAME_SIZE = 42       # eyebrow above the page title
@@ -39,6 +40,10 @@ TITLE_SIZE     = 55
 LABEL_SIZE     = 40
 VERSION_SIZE   = 26
 DESC_SIZE      = 37
+
+# ── Description highlights ────────────────────────────────────
+GAME_TITLE = "The Legend of Zelda Tears of the Kingdom"
+GAME_TITLE_WORDS = set(GAME_TITLE.lower().split())
 
 # ── Layout constants ──────────────────────────────────────────
 MARGIN       = 60
@@ -186,6 +191,110 @@ def _draw_justified_line(draw, text, font, x, y, max_w, fill):
     return
 
 
+def _draw_justified_line_with_colored_title(draw, text, font, x, y, max_w, fill, title_fill, justify=True):
+    """Draw line with game title highlighted in a different color.
+    
+    Words matching the game title are drawn in title_fill color.
+    When justify=True, distributes spacing to fill max_w; otherwise left-aligns.
+    """
+    import re
+    
+    words = text.split()
+    if not words:
+        return
+    
+    # Pre-compute which word indices correspond to the title
+    # by matching normalized words against title words
+    word_colors = [fill] * len(words)
+    
+    # Normalize at the text level, then split, so word positions match correctly
+    text_lower = text.lower()
+    text_normalized = re.sub(r'[^\w\s]', '', text_lower)
+    normalized_words = text_normalized.split()
+    
+    title_lower = GAME_TITLE.lower()
+    title_normalized = re.sub(r'[^\w\s]', '', title_lower)
+    title_words = title_normalized.split()
+    
+    # DEBUG: Log what we're looking for
+    if "legend" in text_normalized or "investigation" in text_normalized:
+        pass  # Debug logging now removed - matching is confirmed to work
+    
+    # Find ANY occurrence of the title word sequence in the normalized words list
+    # Match any contiguous substring of the title, not just prefixes
+    title_word_count = len(title_words)
+    
+    # First, build the word-to-normalized-idx map
+    word_to_norm_map = {}
+    norm_idx = 0
+    for o_idx, orig_word in enumerate(words):
+        orig_normalized = re.sub(r'[^\w\s]', '', orig_word.lower()).split()
+        for _ in orig_normalized:
+            if o_idx not in word_to_norm_map:
+                word_to_norm_map[o_idx] = []
+            word_to_norm_map[o_idx].append(norm_idx)
+            norm_idx += 1
+    
+    # Try to match any substring of the title (not just prefixes)
+    # Match sequences of 2+ words to avoid single-word false positives
+    for title_start in range(len(title_words)):
+        for title_end in range(title_start + 2, title_word_count + 1):
+            title_substring = title_words[title_start:title_end]
+            # Search for this substring in the normalized words
+            for start_idx in range(len(normalized_words) - len(title_substring) + 1):
+                if normalized_words[start_idx:start_idx + len(title_substring)] == title_substring:
+                    # Found a match! Color words that map to this range
+                    for o_idx in range(len(words)):
+                        if o_idx in word_to_norm_map:
+                            norm_indices = word_to_norm_map[o_idx]
+                            # Check if any of this word's normalized indices fall in the match range
+                            if any(start_idx <= n_idx < start_idx + len(title_substring) for n_idx in norm_indices):
+                                word_colors[o_idx] = title_fill
+    
+    if len(words) == 1:
+        draw.text((x, y), text, font=font, fill=word_colors[0])
+        return
+    
+    if not justify:
+        # Left-align with colors
+        cur_x = x
+        for w, color in zip(words, word_colors):
+            draw.text((cur_x, y), w, font=font, fill=color)
+            w_w = draw.textbbox((0, 0), w, font=font)[2] - draw.textbbox((0, 0), w, font=font)[0]
+            cur_x += w_w + (draw.textbbox((0, 0), " ", font=font)[2] - draw.textbbox((0, 0), " ", font=font)[0])
+        return
+    
+    # Measure word widths
+    word_widths = [draw.textbbox((0, 0), w, font=font)[2] - draw.textbbox((0, 0), w, font=font)[0] for w in words]
+    words_total = sum(word_widths)
+    space_slots = len(words) - 1
+    
+    # Base space width
+    space_w = draw.textbbox((0, 0), " ", font=font)[2] - draw.textbbox((0, 0), " ", font=font)[0]
+    
+    total_space_needed = max_w - words_total
+    if total_space_needed <= 0:
+        # Fallback to left-aligned with colors
+        cur_x = x
+        for w, color in zip(words, word_colors):
+            draw.text((cur_x, y), w, font=font, fill=color)
+            cur_x += draw.textbbox((0, 0), w, font=font)[2] - draw.textbbox((0, 0), w, font=font)[0]
+            cur_x += space_w
+        return
+    
+    # Distribute extra space
+    extra_per_slot = max(0, (total_space_needed - space_w * space_slots) / space_slots)
+    
+    cur_x = x
+    for i, (w, color) in enumerate(zip(words, word_colors)):
+        draw.text((cur_x, y), w, font=font, fill=color)
+        w_w = word_widths[i]
+        cur_x += w_w
+        if i < len(words) - 1:
+            cur_x += space_w + extra_per_slot
+    return
+
+
 def _card_hash(title, label, uid, versions, desc):
     """Hash the rendered fields (including global site_name)."""
     blob = json.dumps(
@@ -204,8 +313,13 @@ def _card_hash(title, label, uid, versions, desc):
 
 # ── Card renderer ─────────────────────────────────────────────
 
-def _render(title, label, uid, versions, desc):
-    """Return PNG bytes for a 1200x630 social card."""
+def _render(title, label, uid, versions, desc, is_fallback_desc=False):
+    """Return PNG bytes for a 1200x630 social card.
+    
+    Args:
+        is_fallback_desc: If True, desc is the site-wide fallback and should have
+                         the game title extracted to a colored line.
+    """
     img = _bg.copy()
     draw = ImageDraw.Draw(img)
 
@@ -270,17 +384,51 @@ def _render(title, label, uid, versions, desc):
     if desc:
         f = _tf(DESC_SIZE)
         desc_spacing = 7
-        lines = _wrap(draw, desc, f, USABLE_W)[:4]
-        # draw all but the last line justified; final line left-aligned
-        for i, ln in enumerate(lines):
-            tb = draw.textbbox((0, 0), ln, font=f)
-            line_h = tb[3] - tb[1]
-            if i < len(lines) - 1:
-                _draw_justified_line(draw, ln, f, MARGIN, y, USABLE_W, fill=COLOR_BODY)
+        
+        # If using fallback description, extract and separate the game title
+        if is_fallback_desc:
+            # Split off the game title to a separate line
+            # "Community-driven encyclopedia documenting glitches, techniques and investigations for the videogame The Legend of Zelda Tears of the Kingdom"
+            # becomes:
+            # "Community-driven encyclopedia documenting glitches, techniques and investigations for the videogame"
+            # "The Legend of Zelda Tears of the Kingdom"
+            prefix = "Community-driven encyclopedia documenting glitches, techniques and investigations for the videogame"
+            if desc.startswith(prefix):
+                # Draw prefix as regular text
+                prefix_lines = _wrap(draw, prefix, f, USABLE_W)[:4]
+                for ln in prefix_lines:
+                    tb = draw.textbbox((0, 0), ln, font=f)
+                    line_h = tb[3] - tb[1]
+                    draw.text((MARGIN, y), ln, font=f, fill=COLOR_BODY)
+                    y += line_h + desc_spacing
+                
+                # Extract and draw game title on its own line with coloring
+                title_line = desc[len(prefix):].strip()
+                if title_line:
+                    tb = draw.textbbox((0, 0), title_line, font=f)
+                    line_h = tb[3] - tb[1]
+                    _draw_justified_line_with_colored_title(draw, title_line, f, MARGIN, y, USABLE_W, fill=COLOR_BODY, title_fill=COLOR_GAME_TITLE, justify=False)
+                    y += line_h + desc_spacing
+                desc_end_y = y
             else:
+                # Fallback case if description is different than expected
+                lines = _wrap(draw, desc, f, USABLE_W)[:4]
+                for ln in lines:
+                    tb = draw.textbbox((0, 0), ln, font=f)
+                    line_h = tb[3] - tb[1]
+                    draw.text((MARGIN, y), ln, font=f, fill=COLOR_BODY)
+                    y += line_h + desc_spacing
+                desc_end_y = y
+        else:
+            # For custom descriptions, use regular left-aligned text without coloring
+            lines = _wrap(draw, desc, f, USABLE_W)[:4]
+            for ln in lines:
+                tb = draw.textbbox((0, 0), ln, font=f)
+                line_h = tb[3] - tb[1]
                 draw.text((MARGIN, y), ln, font=f, fill=COLOR_BODY)
-            y += line_h + desc_spacing
-        desc_end_y = y
+                y += line_h + desc_spacing
+            desc_end_y = y
+        
         # small gap after the description block
         y += 6
 
@@ -400,8 +548,10 @@ def on_post_page(output, page, config, **kwargs):
     desc = str(meta.get("description", ""))
 
     # Fallback: use site description when page has no versions AND no description
+    is_fallback_desc = False
     if not versions and not desc:
         desc = _site_description
+        is_fallback_desc = True
 
     # Derive card path from source file (normalise to forward slashes for URLs)
     src = page.file.src_path.replace("\\", "/")
@@ -414,7 +564,7 @@ def on_post_page(output, page, config, **kwargs):
     if not (_manifest.get(src) == h and card_path.exists()):
         try:
             card_path.parent.mkdir(parents=True, exist_ok=True)
-            card_path.write_bytes(_render(title, label, uid, versions, desc))
+            card_path.write_bytes(_render(title, label, uid, versions, desc, is_fallback_desc=is_fallback_desc))
             _manifest[src] = h
         except Exception as exc:
             log.warning("Social card failed for %s: %s", src, exc)
