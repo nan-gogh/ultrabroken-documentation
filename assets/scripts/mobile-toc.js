@@ -224,34 +224,15 @@
     if (target) {
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
-        // Measure the header height when it's in its natural position (sticky at top)
+        // Get the sticky header height
         var header = document.querySelector('.md-header');
         var headerHeight = header ? header.offsetHeight : 0;
         
-        // Measure the gap between header bottom and main content top
-        // to maintain visual harmony with zoom and font-size changes
-        var mainContent = document.querySelector('.md-main');
-        var gap = 0;
-        if (header && mainContent) {
-          var headerBottom = header.getBoundingClientRect().bottom;
-          var contentTop = mainContent.getBoundingClientRect().top;
-          gap = Math.max(0, contentTop - headerBottom);
-        }
+        // Add fixed padding for breathing room below header
+        // (gap measurement doesn't work reliably when page is scrolled)
+        var padding = 12;
         
-        var targetTop = target.getBoundingClientRect().top;
-        var targetAbsoluteY = targetTop + window.scrollY;
-        var scrollTarget = targetAbsoluteY - headerHeight - gap;
-        
-        // DEBUG: Log all values
-        console.log('[toc-scroll] DEBUG:');
-        console.log('  headerHeight:', headerHeight);
-        console.log('  gap:', gap);
-        console.log('  targetTop (viewport):', targetTop);
-        console.log('  targetAbsoluteY:', targetAbsoluteY);
-        console.log('  scrollTarget (will scroll to):', scrollTarget);
-        console.log('  target.offsetTop:', target.offsetTop);
-        console.log('  window.scrollY (current):', window.scrollY);
-        
+        var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - padding;
         window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
       }, delay);
     }
