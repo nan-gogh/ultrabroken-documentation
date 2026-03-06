@@ -12,7 +12,7 @@ Falls back to site_description when a page has no versions/description.
 Falls back to page.title when frontmatter has no title.
 
 Upper fonts:  New Rocker / #00f0c2   (matches Material social-plugin config)
-Lower fonts:  Texturina  / #bec1c6   (description); JetBrains Mono / #00f0c2 (version badges)
+Lower fonts:  Texturina  / #bec1c6   (description); JetBrains Mono / #b5b8c2 (version badges)
 """
 
 import hashlib
@@ -34,6 +34,8 @@ W, H = 1200, 630
 COLOR       = "#00f0c2"   # teal accent — New Rocker (upper half)
 COLOR_BODY  = "#bec1c6"   # default text color — Texturina (lower half)
 COLOR_GAME_TITLE = "#00cbb7"  # accent color for game title in description
+COLOR_BADGE_TEXT = "#b5b8c2"  # Material slate default code fg (hsla(225,18%,86%,0.82) over code bg)
+COLOR_BADGE_BG   = "#272a34"  # Material slate default code bg (hsla(225,15%,18%,1))
 
 # ── Font sizes ────────────────────────────────────────────────
 SITE_NAME_SIZE = 42       # eyebrow above the page title
@@ -371,14 +373,14 @@ def _render(title, label, uid, versions, desc, is_fallback_desc=False):
             by = badges_y
             draw.rounded_rectangle(
                 [bx, by, bx + bw, by + lbl_badge_h],
-                radius=6,
-                fill="#1a2e2b",
+                radius=3,
+                fill=COLOR_BADGE_BG,
             )
             bb = draw.textbbox((0, 0), txt, font=f_lbl)
             tw = bb[2] - bb[0]
             txt_x = bx + (bw - tw) // 2
             txt_y = by + lbl_txt_y_offset
-            draw.text((txt_x, txt_y), txt, font=f_lbl, fill=COLOR)
+            draw.text((txt_x, txt_y), txt, font=f_lbl, fill=COLOR_BADGE_TEXT)
             bx += bw + badge_gap
     # ── Lower half: description + version badges ──────────────
     y = H // 2 + 13
@@ -496,14 +498,14 @@ def _render(title, label, uid, versions, desc, is_fallback_desc=False):
                     txt = str(next(v_iter))
                     draw.rounded_rectangle(
                         [bx, ry, bx + bw, ry + badge_h],
-                        radius=6,
-                        fill="#1a2e2b",
+                        radius=3,
+                        fill=COLOR_BADGE_BG,
                     )
                     tb = draw.textbbox((0, 0), txt, font=f)
                     tw = tb[2] - tb[0]
                     txt_x = bx + (bw - tw) // 2
                     txt_y = ry + ver_txt_y_offset
-                    draw.text((txt_x, txt_y), txt, font=f, fill=COLOR)
+                    draw.text((txt_x, txt_y), txt, font=f, fill=COLOR_BADGE_TEXT)
                     bx += bw + gap_for_row
                 ry += badge_h + gap
 

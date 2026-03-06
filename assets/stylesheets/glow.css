@@ -48,12 +48,9 @@
   font-weight: normal;
   font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
-/* Inline code badges — match the social-card teal badge palette:
-   text #00f0c2 (--teal-glow) on dark-teal #1a2e2b background.
-   :not(pre) scopes this to inline code only, leaving fenced code blocks untouched. */
-.md-typeset :not(pre) > code {
-  color: var(--teal-glow) !important;
-  background-color: #1a2e2b !important;
+/* Force inline code in tab titles to use standard text color, avoiding teal tint */
+.md-typeset .tabbed-labels label code {
+  color: inherit !important;
 }
 [data-ub-font="large"] .md-typeset .tabbed-labels label {
   font-size: 1.25rem;
