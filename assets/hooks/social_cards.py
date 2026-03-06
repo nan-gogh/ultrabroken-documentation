@@ -300,7 +300,7 @@ def _draw_justified_line_with_colored_title(draw, text, font, x, y, max_w, fill,
 
 
 def _card_hash(title, label, uid, versions, desc):
-    """Hash the rendered fields (including global site_name)."""
+    """Hash the rendered fields (including global site_name and colors)."""
     blob = json.dumps(
         {
             "site_name": _site_name,
@@ -309,6 +309,8 @@ def _card_hash(title, label, uid, versions, desc):
             "uid": uid,
             "versions": versions,
             "description": desc,
+            "badge_text_color": COLOR_BADGE_TEXT,
+            "badge_bg_color": COLOR_BADGE_BG,
         },
         sort_keys=True,
     )
