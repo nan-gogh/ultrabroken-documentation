@@ -5,14 +5,14 @@ Generates custom Open Graph social-card images for every page using
 Pillow, replacing the built-in Material social plugin.
 
 Layout (1200 x 630, on background image):
-  Upper 50%  ->  site name (eyebrow) + title + label  |  logo (upper-right)
-  Lower 50%  ->  versions + description  (Texturina, white)
+  Upper 50%  ->  site name (eyebrow) + title  |  logo + label (upper-right)
+  Lower 50%  ->  version badges (JetBrains Mono, code-style) + description (Texturina)
 
 Falls back to site_description when a page has no versions/description.
 Falls back to page.title when frontmatter has no title.
 
 Upper fonts:  New Rocker / #00f0c2   (matches Material social-plugin config)
-Lower fonts:  Texturina  / #ffffff   (standard Material slate body color)
+Lower fonts:  Texturina  / #bec1c6   (description); JetBrains Mono / #00f0c2 (version badges)
 """
 
 import hashlib
@@ -34,23 +34,20 @@ COLOR       = "#00f0c2"   # teal accent — New Rocker (upper half)
 COLOR_BODY  = "#bec1c6"   # default text color — Texturina (lower half)
 
 # ── Font sizes ────────────────────────────────────────────────
-SITE_NAME_SIZE = 28       # eyebrow above the page title
-TITLE_SIZE     = 86
-LABEL_SIZE     = 52
-VERSION_SIZE   = 36
-DESC_SIZE      = 40
+SITE_NAME_SIZE = 42       # eyebrow above the page title
+TITLE_SIZE     = 55
+LABEL_SIZE     = 40
+VERSION_SIZE   = 26
+DESC_SIZE      = 37
 
 # ── Layout constants ──────────────────────────────────────────
-MARGIN   = 60
-LOGO_H   = 140            # rendered logo height in pixels
-LOGO_GAP = 24             # horizontal gap between text area and logo
-USABLE_W = W - 2 * MARGIN
+MARGIN       = 60
+RUNE_RESERVE = 294        # width reserved for baked-in rune in background (upper-right)
+USABLE_W     = W - 2 * MARGIN
 
 # ── Paths (relative to project root) ─────────────────────────
-_BG_PATH     = Path("docs/assets/images/graphics/ultrabroken_social_card_background.jpg")
-_LOGO_SVG    = Path("docs/assets/images/graphics/ultrabroken_rune.svg")
-_LOGO_CACHE  = Path(".cache/hooks/social_cards/logo.png")
-_FONT_DIR    = Path(".cache/hooks/social_cards/fonts")
+_BG_PATH       = Path("docs/assets/images/graphics/ultrabroken_social_card_background.jpg")
+_FONT_DIR      = Path(".cache/hooks/social_cards/fonts")
 _MANIFEST_PATH = Path(".cache/hooks/social_cards/manifest.json")
 
 # Google Fonts GitHub raw TTFs
@@ -63,14 +60,18 @@ _FONT_URLS = {
         "https://raw.githubusercontent.com/google/fonts/main"
         "/ofl/texturina/Texturina%5Bopsz%2Cwght%5D.ttf"
     ),
+    "JetBrainsMono-Regular.ttf": (
+        "https://raw.githubusercontent.com/google/fonts/main"
+        "/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf"
+    ),
 }
 
 # ── Module state (populated in on_config) ─────────────────────
 _root             = None
 _bg               = None
-_logo             = None   # PIL Image (RGBA) or None
 _font_file        = None   # New Rocker TTF path
 _texturina_file   = None   # Texturina TTF path
+_monofile         = None   # JetBrains Mono TTF path
 _fonts            = {}     # {(file, size): ImageFont}
 _manifest         = {}
 _site_description = ""
@@ -80,8 +81,8 @@ _site_name        = ""
 # ── Font helpers ──────────────────────────────────────────────
 
 def _download_fonts():
-    """Download New Rocker + Texturina TTFs and cache in .cache/."""
-    global _font_file, _texturina_file
+    """Download New Rocker, Texturina, and JetBrains Mono TTFs and cache in .cache/."""
+    global _font_file, _texturina_file, _monofile
     import requests
 
     font_dir = _root / _FONT_DIR
@@ -97,6 +98,7 @@ def _download_fonts():
 
     _font_file      = font_dir / "NewRocker-Regular.ttf"
     _texturina_file = font_dir / "Texturina-Regular.ttf"
+    _monofile       = font_dir / "JetBrainsMono-Regular.ttf"
 
 
 def _font(ttf_path, size):
@@ -117,41 +119,9 @@ def _tf(size):
     return _font(_texturina_file, size)
 
 
-# ── Logo helpers ──────────────────────────────────────────────
-
-def _load_logo():
-    """Render the SVG logo to a PIL RGBA image, caching the PNG.
-
-    Uses cairosvg when available (CI / Linux).  On machines without
-    the Cairo C library the hook silently skips the logo — the card
-    is still generated, just without the watermark.  Once rendered
-    the PNG is cached so subsequent local builds pick it up too.
-    """
-    global _logo
-    cache_abs = _root / _LOGO_CACHE
-
-    # 1. Try cached PNG first (fast path, works everywhere)
-    if cache_abs.exists():
-        _logo = Image.open(cache_abs).convert("RGBA")
-        return
-
-    # 2. Try cairosvg (available in CI / Linux)
-    svg_abs = _root / _LOGO_SVG
-    if not svg_abs.exists():
-        return
-    try:
-        import cairosvg
-
-        png_bytes = cairosvg.svg2png(
-            url=str(svg_abs),
-            output_height=LOGO_H,
-        )
-        cache_abs.parent.mkdir(parents=True, exist_ok=True)
-        cache_abs.write_bytes(png_bytes)
-        _logo = Image.open(BytesIO(png_bytes)).convert("RGBA")
-        log.info("Rendered SVG logo -> %s", cache_abs)
-    except Exception as exc:
-        log.info("Logo skipped (cairosvg unavailable): %s", exc)
+def _mf(size):
+    """JetBrains Mono at *size* px."""
+    return _font(_monofile, size)
 
 
 # ── Text layout helpers ──────────────────────────────────────
@@ -176,13 +146,54 @@ def _wrap(draw, text, font, max_w):
     return lines
 
 
-def _card_hash(title, label, versions, desc):
+def _draw_justified_line(draw, text, font, x, y, max_w, fill):
+    """Draw a fully-justified line of text into the available *max_w*.
+
+    The last line of a paragraph or single-word lines should not be justified;
+    callers should only use this for lines that should expand to fill *max_w*.
+    """
+    words = text.split()
+    if not words:
+        return
+    if len(words) == 1:
+        draw.text((x, y), text, font=font, fill=fill)
+        return
+
+    # measure each word width
+    word_widths = [draw.textbbox((0, 0), w, font=font)[2] - draw.textbbox((0, 0), w, font=font)[0] for w in words]
+    words_total = sum(word_widths)
+    space_slots = len(words) - 1
+
+    # base space width according to the font
+    space_w = draw.textbbox((0, 0), " ", font=font)[2] - draw.textbbox((0, 0), " ", font=font)[0]
+
+    total_space_needed = max_w - words_total
+    if total_space_needed <= 0:
+        # nothing to distribute, fallback to left-aligned
+        draw.text((x, y), text, font=font, fill=fill)
+        return
+
+    # distribute extra space across slots (may be fractional)
+    extra_per_slot = max(0, (total_space_needed - space_w * space_slots) / space_slots)
+
+    cur_x = x
+    for i, w in enumerate(words):
+        draw.text((cur_x, y), w, font=font, fill=fill)
+        w_w = word_widths[i]
+        cur_x += w_w
+        if i < len(words) - 1:
+            cur_x += space_w + extra_per_slot
+    return
+
+
+def _card_hash(title, label, uid, versions, desc):
     """Hash the rendered fields (including global site_name)."""
     blob = json.dumps(
         {
             "site_name": _site_name,
             "title": title,
             "label": label,
+            "uid": uid,
             "versions": versions,
             "description": desc,
         },
@@ -193,18 +204,12 @@ def _card_hash(title, label, versions, desc):
 
 # ── Card renderer ─────────────────────────────────────────────
 
-def _render(title, label, versions, desc):
+def _render(title, label, uid, versions, desc):
     """Return PNG bytes for a 1200x630 social card."""
     img = _bg.copy()
     draw = ImageDraw.Draw(img)
 
-    # Reserve space for the logo (upper-right)
-    logo_w = 0
-    if _logo:
-        logo_w = _logo.width + LOGO_GAP
-    title_max_w = USABLE_W - logo_w
-
-    # ── Upper half: site name eyebrow + title + label ─────────
+    # ── Upper half: site name eyebrow + title ────────────────
     y = 36
 
     if _site_name:
@@ -214,37 +219,143 @@ def _render(title, label, versions, desc):
 
     if title:
         f = _nf(TITLE_SIZE)
+        title_max_w = USABLE_W - RUNE_RESERVE
         for ln in _wrap(draw, title, f, title_max_w)[:3]:
             draw.text((MARGIN, y), ln, font=f, fill=COLOR)
-            y = draw.textbbox((MARGIN, y), ln, font=f)[3] + 8
+            y = draw.textbbox((MARGIN, y), ln, font=f)[3] - 3
 
-    if label:
-        y += 6
-        f = _nf(LABEL_SIZE)
-        draw.text((MARGIN, y), label, font=f, fill=COLOR)
+    # ── Label + UID badges under title, bottom-aligned to V-center ──
+    badge_pad_x, badge_gap = 12, 8
+    f_lbl = _mf(LABEL_SIZE)
+    # Measure badge height once using cap-height reference "A" (no descenders)
+    # so ALL label/uid badges are identical height regardless of their text.
+    lbl_ref_bb = draw.textbbox((0, 0), "A", font=f_lbl)
+    lbl_cap_h = lbl_ref_bb[3] - lbl_ref_bb[1]
+    lbl_pad_v = max(5, lbl_cap_h // 4)
+    lbl_badge_h = lbl_cap_h + lbl_pad_v * 2
+    # txt_y offset: place cap-top at (by + lbl_pad_v)
+    # draw.text at (x, txt_y) renders with top at txt_y + lbl_ref_bb[1]
+    # so txt_y = by + lbl_pad_v - lbl_ref_bb[1]
+    lbl_txt_y_offset = lbl_pad_v - lbl_ref_bb[1]
 
-    # ── Logo in upper-right ───────────────────────────────────
-    if _logo:
-        lx = W - MARGIN - _logo.width
-        ly = 36
-        img.paste(_logo, (lx, ly), _logo)
+    badge_items = []   # list of (text, badge_w)
+    for txt in (label, uid):
+        if not txt:
+            continue
+        bb = draw.textbbox((0, 0), txt, font=f_lbl)
+        tw = bb[2] - bb[0]
+        bw = tw + badge_pad_x * 2
+        badge_items.append((txt, bw))
 
-    # ── Lower half: versions + description (Texturina, white) ─
-    y = H // 2 + 20
-
-    if versions:
-        f = _tf(VERSION_SIZE)
-        txt = "  ".join(str(v) for v in versions)
-        for ln in _wrap(draw, txt, f, USABLE_W)[:2]:
-            draw.text((MARGIN, y), ln, font=f, fill=COLOR_BODY)
-            y = draw.textbbox((MARGIN, y), ln, font=f)[3] + 6
-        y += 12
+    if badge_items:
+        # bottom edge of badges sits at the card's vertical centre - 30px margin
+        badges_y = H // 2 - 30 - lbl_badge_h
+        bx = MARGIN
+        for txt, bw in badge_items:
+            by = badges_y
+            draw.rounded_rectangle(
+                [bx, by, bx + bw, by + lbl_badge_h],
+                radius=6,
+                fill="#1a2e2b",
+            )
+            bb = draw.textbbox((0, 0), txt, font=f_lbl)
+            tw = bb[2] - bb[0]
+            txt_x = bx + (bw - tw) // 2
+            txt_y = by + lbl_txt_y_offset
+            draw.text((txt_x, txt_y), txt, font=f_lbl, fill=COLOR)
+            bx += bw + badge_gap
+    # ── Lower half: description + version badges ──────────────
+    y = H // 2 + 13
 
     if desc:
         f = _tf(DESC_SIZE)
-        for ln in _wrap(draw, desc, f, USABLE_W)[:4]:
-            draw.text((MARGIN, y), ln, font=f, fill=COLOR_BODY)
-            y = draw.textbbox((MARGIN, y), ln, font=f)[3] + 6
+        desc_spacing = 7
+        lines = _wrap(draw, desc, f, USABLE_W)[:4]
+        # draw all but the last line justified; final line left-aligned
+        for i, ln in enumerate(lines):
+            tb = draw.textbbox((0, 0), ln, font=f)
+            line_h = tb[3] - tb[1]
+            if i < len(lines) - 1:
+                _draw_justified_line(draw, ln, f, MARGIN, y, USABLE_W, fill=COLOR_BODY)
+            else:
+                draw.text((MARGIN, y), ln, font=f, fill=COLOR_BODY)
+            y += line_h + desc_spacing
+        desc_end_y = y
+        # small gap after the description block
+        y += 6
+
+    if versions:
+        f = _mf(VERSION_SIZE)
+        pad_x, gap = 12, 8
+        # Measure badge height from cap-height reference "A" (no descenders)
+        # so all version badges are identical height regardless of text content.
+        ver_ref_bb = draw.textbbox((0, 0), "A", font=f)
+        ver_cap_h = ver_ref_bb[3] - ver_ref_bb[1]
+        ver_pad_v = max(4, ver_cap_h // 4)
+        badge_h = ver_cap_h + ver_pad_v * 2
+        # txt_y offset: cap-top at (ry + ver_pad_v)
+        ver_txt_y_offset = ver_pad_v - ver_ref_bb[1]
+
+        # Precompute badge widths
+        badge_ws = []
+        for v in versions:
+            tb = draw.textbbox((0, 0), str(v), font=f)
+            tw = tb[2] - tb[0]
+            badge_ws.append(tw + pad_x * 2)
+
+        # Pack badges into rows within USABLE_W
+        rows = []
+        cur_row = []
+        cur_w = 0
+        for w in badge_ws:
+            if cur_w + w + (len(cur_row) * gap) > USABLE_W:
+                rows.append(cur_row)
+                cur_row = [w]
+                cur_w = w
+            else:
+                cur_row.append(w)
+                cur_w += w
+        if cur_row:
+            rows.append(cur_row)
+
+        # Compute starting y so rows are bottom-aligned above the bottom margin
+        rows_count = len(rows)
+        if rows_count > 0:
+            first_row_y = H - MARGIN - badge_h - (rows_count - 1) * (badge_h + gap)
+            # ensure there's a minimum gap between description and version badges
+            min_gap_after_desc = 18
+            if 'desc_end_y' in locals():
+                first_row_y = max(first_row_y, desc_end_y + min_gap_after_desc)
+            ry = first_row_y
+            # Draw each row
+            v_iter = iter(versions)
+            for row_idx, row in enumerate(rows):
+                bx = MARGIN
+                row_sum = sum(row)
+                slots = max(0, len(row) - 1)
+                is_last_row = row_idx == len(rows) - 1
+                # justify all rows except the last (mirrors description behaviour)
+                if slots > 0 and not is_last_row:
+                    gap_for_row = (USABLE_W - row_sum) / slots
+                    if gap_for_row < 0:
+                        gap_for_row = gap
+                else:
+                    gap_for_row = gap
+
+                for bw in row:
+                    txt = str(next(v_iter))
+                    draw.rounded_rectangle(
+                        [bx, ry, bx + bw, ry + badge_h],
+                        radius=6,
+                        fill="#1a2e2b",
+                    )
+                    tb = draw.textbbox((0, 0), txt, font=f)
+                    tw = tb[2] - tb[0]
+                    txt_x = bx + (bw - tw) // 2
+                    txt_y = ry + ver_txt_y_offset
+                    draw.text((txt_x, txt_y), txt, font=f, fill=COLOR)
+                    bx += bw + gap_for_row
+                ry += badge_h + gap
 
     buf = BytesIO()
     img.save(buf, format="PNG", optimize=True)
@@ -261,7 +372,6 @@ def on_config(config, **kwargs):
     _site_name        = config.get("site_name", "")
 
     _download_fonts()
-    _load_logo()
 
     bg = _root / _BG_PATH
     _bg = Image.open(bg).convert("RGB")
@@ -285,6 +395,7 @@ def on_post_page(output, page, config, **kwargs):
     # ── Resolve fields with fallbacks ─────────────────────────
     title = str(meta.get("title", "")) or getattr(page, "title", "") or ""
     label = str(meta.get("label", ""))
+    uid = str(meta.get("uid", ""))
     versions = meta.get("versions", [])
     desc = str(meta.get("description", ""))
 
@@ -299,11 +410,11 @@ def on_post_page(output, page, config, **kwargs):
     card_path = Path(config["site_dir"]) / card_rel
 
     # Skip regeneration when content hasn't changed
-    h = _card_hash(title, label, versions, desc)
+    h = _card_hash(title, label, uid, versions, desc)
     if not (_manifest.get(src) == h and card_path.exists()):
         try:
             card_path.parent.mkdir(parents=True, exist_ok=True)
-            card_path.write_bytes(_render(title, label, versions, desc))
+            card_path.write_bytes(_render(title, label, uid, versions, desc))
             _manifest[src] = h
         except Exception as exc:
             log.warning("Social card failed for %s: %s", src, exc)
