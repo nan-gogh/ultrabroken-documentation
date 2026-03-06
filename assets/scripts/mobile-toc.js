@@ -230,7 +230,7 @@
         
         // Proportional padding: ~25% of header height for visual harmony
         // Scales automatically with zoom, font-size toggles, and everything else
-        var padding = Math.max(8, Math.round(headerHeight * 0.25));
+        var padding = Math.max(8, Math.round(headerHeight * 0.3));
         
         var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - padding;
         window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
