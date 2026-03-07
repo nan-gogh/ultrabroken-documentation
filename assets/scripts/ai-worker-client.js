@@ -30,6 +30,7 @@
   // clearing. One is picked at random each time. Cleared when a query starts.
   const _IDLE_TEXTS = [
     'So this happens if the Triforce of wisdom gets out of control...',
+    'The oracle of secrets should now!',
     'A chosen hero wants to know how to break Hylias creation... What a plot twist!',
     'The flame of curiosity flares so brightly in you... Don\'t burn your Ultrafingers!',
     'The Purah Pad is indexing forbidden knowledge...',
