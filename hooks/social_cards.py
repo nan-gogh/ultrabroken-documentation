@@ -618,7 +618,9 @@ def on_post_page(output, page, config, **kwargs):
 
     # ── OG description: Description + bracket-styled badges ──────────
     # Format: Description
+    #
     #         [1.0.0] [1.1.0] [1.1.1]...
+    #
     #         [uid]
     desc_parts = []
     
@@ -635,7 +637,7 @@ def on_post_page(output, page, config, **kwargs):
     if uid:
         desc_parts.append(f"[{html_mod.escape(uid, quote=True)}]")
     
-    safe_desc = "&#10;".join(desc_parts)
+    safe_desc = "&#10;&#10;".join(desc_parts)
 
     # Discord embed color (teal accent, hex without #)
     color_discord = COLOR.lstrip("#")
