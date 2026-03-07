@@ -29,6 +29,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 log = logging.getLogger("mkdocs.hooks.social_cards")
 
+# ── Code version: increment when rendering logic changes ───────
+# This forces cache invalidation so cards regenerate even if content unchanged.
+_CODE_VERSION = 2  # v2: UID centered on rune at 1048.5px
+
 # ── Card dimensions (standard Open Graph) ─────────────────────
 W, H = 1200, 630
 COLOR       = "#00f0c2"   # teal accent — New Rocker (upper half)
@@ -300,9 +304,13 @@ def _draw_justified_line_with_colored_title(draw, text, font, x, y, max_w, fill,
 
 
 def _card_hash(title, label, uid, versions, desc):
-    """Hash the rendered fields (including global site_name and colors)."""
+    """Hash the rendered fields (including global site_name and colors).
+    
+    Includes _CODE_VERSION to force regeneration when rendering logic changes.
+    """
     blob = json.dumps(
         {
+            "code_version": _CODE_VERSION,
             "site_name": _site_name,
             "title": title,
             "label": label,
