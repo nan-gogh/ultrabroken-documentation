@@ -39,7 +39,7 @@
 
       var li = document.createElement('li');
       li.className = 'md-nav__item';
-      if (depth > 1) li.classList.add('ub-toc-indent-' + Math.min(depth - 1, 3));
+      if (depth > 0) li.classList.add('ub-toc-indent-' + Math.min(depth, 4));
 
       var link = document.createElement('a');
       link.href = a.getAttribute('href');
