@@ -592,12 +592,18 @@ def on_post_page(output, page, config, **kwargs):
         og_title = f"{title} [{label}]"
     safe_title = html_mod.escape(og_title, quote=True)
 
-    # ── OG description: "Description | v1, v2, …" ────────────
-    og_desc = desc
+    # ── OG description: "Description\nVersions: v1, v2, …" ─────
+    safe_desc = None
     if versions:
         ver_str = ", ".join(str(v) for v in versions)
-        og_desc = f"{desc} | {ver_str}" if desc else ver_str
-    safe_desc = html_mod.escape(og_desc, quote=True)
+        if desc:
+            safe_desc_part = html_mod.escape(desc, quote=True)
+            safe_ver_str = html_mod.escape(ver_str, quote=True)
+            safe_desc = f"{safe_desc_part}&#10;{safe_ver_str}"
+        else:
+            safe_desc = html_mod.escape(ver_str, quote=True)
+    else:
+        safe_desc = html_mod.escape(desc, quote=True) if desc else ""
 
     og = (
         f'<meta property="og:title" content="{safe_title}">\n'
