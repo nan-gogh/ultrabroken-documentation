@@ -639,17 +639,28 @@ def on_post_page(output, page, config, **kwargs):
     
     safe_desc = "&#10;&#10;".join(desc_parts)
 
-    # Discord embed color (teal accent, hex without #)
-    color_discord = COLOR.lstrip("#")
+    # Page URL for og:url
+    page_url = f"{site_url}/{quote(page.file.src_path.replace(chr(92), '/').replace('.md', '/'), safe='/')}"
+    safe_page_url = html_mod.escape(page_url, quote=True)
+
+    # Site name for og:site_name
+    safe_site_name = html_mod.escape(_site_name, quote=True)
+
+    # Alt text for og:image:alt
+    alt_text = f"Social card for {title}" if title else "Social card"
+    safe_alt = html_mod.escape(alt_text, quote=True)
 
     og = (
         f'<meta property="og:title" content="{safe_title}">\n'
         f'    <meta property="og:description" content="{safe_desc}">\n'
-        f'    <meta property="og:color" content="{color_discord}">\n'
+        f'    <meta property="og:url" content="{safe_page_url}">\n'
+        f'    <meta property="og:site_name" content="{safe_site_name}">\n'
         f'    <meta property="og:image" content="{safe_url}">\n'
         f'    <meta property="og:image:type" content="image/png">\n'
         f'    <meta property="og:image:width" content="{W}">\n'
         f'    <meta property="og:image:height" content="{H}">\n'
+        f'    <meta property="og:image:alt" content="{safe_alt}">\n'
+        f'    <meta name="theme-color" content="{COLOR}">\n'
         f'    <meta name="twitter:card" content="summary_large_image">\n'
         f'    <meta name="twitter:image" content="{safe_url}">'
     )
