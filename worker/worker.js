@@ -2,6 +2,7 @@
  * Minimal Cloudflare Worker scaffold for RAG over a precomputed wiki_index.json.
  */
 
+
 // Synonym sets extracted to JSON for easier editing and reuse
 import RAW_SYNONYM_SETS from '../assets/data/synonyms.json' assert { type: 'json' };
 
