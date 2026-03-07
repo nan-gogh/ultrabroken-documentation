@@ -612,35 +612,24 @@ def on_post_page(output, page, config, **kwargs):
         og_title = f"{title} [{label}]"
     safe_title = html_mod.escape(og_title, quote=True)
 
-    # ── OG description: Markdown-styled with badges ─────────────────
-    # Format: **Title** `label`
-    #         
-    #         Description
-    #         `1.0.0` `1.1.0` `1.1.1`...
-    #         `uid`
+    # ── OG description: Description + bracket-styled badges ──────────
+    # Format: Description
+    #         [1.0.0] [1.1.0] [1.1.1]...
+    #         [uid]
     desc_parts = []
     
-    # Line 1: **Title** `label`
-    title_line = f"**{html_mod.escape(title, quote=True)}**"
-    if label:
-        title_line += f" `{html_mod.escape(label, quote=True)}`"
-    desc_parts.append(title_line)
-    
-    # Line 2: blank
-    desc_parts.append("")
-    
-    # Line 3: Description
+    # Line 1: Description
     if desc:
         desc_parts.append(html_mod.escape(desc, quote=True))
     
-    # Line 4: Version badges
+    # Line 2: Version badges with brackets
     if versions:
-        version_badges = " ".join(f"`{html_mod.escape(str(v), quote=True)}`" for v in versions)
+        version_badges = " ".join(f"[{html_mod.escape(str(v), quote=True)}]" for v in versions)
         desc_parts.append(version_badges)
     
-    # Line 5: UID badge
+    # Line 3: UID badge with brackets
     if uid:
-        desc_parts.append(f"`{html_mod.escape(uid, quote=True)}`")
+        desc_parts.append(f"[{html_mod.escape(uid, quote=True)}]")
     
     safe_desc = "&#10;".join(desc_parts)
 
