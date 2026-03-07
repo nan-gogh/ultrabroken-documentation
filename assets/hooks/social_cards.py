@@ -358,32 +358,52 @@ def _render(title, label, uid, versions, desc, is_fallback_desc=False):
     # so txt_y = by + lbl_pad_v - lbl_ref_bb[1]
     lbl_txt_y_offset = lbl_pad_v - lbl_ref_bb[1]
 
-    badge_items = []   # list of (text, badge_w)
-    for txt in (label, uid):
-        if not txt:
-            continue
-        bb = draw.textbbox((0, 0), txt, font=f_lbl)
+    # Measure badge widths
+    label_bw = 0
+    uid_bw = 0
+    if label:
+        bb = draw.textbbox((0, 0), label, font=f_lbl)
         tw = bb[2] - bb[0]
-        bw = tw + badge_pad_x * 2
-        badge_items.append((txt, bw))
+        label_bw = tw + badge_pad_x * 2
+    if uid:
+        bb = draw.textbbox((0, 0), uid, font=f_lbl)
+        tw = bb[2] - bb[0]
+        uid_bw = tw + badge_pad_x * 2
 
-    if badge_items:
+    if label or uid:
         # bottom edge of badges sits at the card's vertical centre - 30px margin
         badges_y = H // 2 - 30 - lbl_badge_h
-        bx = MARGIN
-        for txt, bw in badge_items:
+        
+        # Draw label on the left
+        if label:
+            bx = MARGIN
             by = badges_y
             draw.rounded_rectangle(
-                [bx, by, bx + bw, by + lbl_badge_h],
+                [bx, by, bx + label_bw, by + lbl_badge_h],
                 radius=3,
                 fill=COLOR_BADGE_BG,
             )
-            bb = draw.textbbox((0, 0), txt, font=f_lbl)
+            bb = draw.textbbox((0, 0), label, font=f_lbl)
             tw = bb[2] - bb[0]
-            txt_x = bx + (bw - tw) // 2
+            txt_x = bx + (label_bw - tw) // 2
             txt_y = by + lbl_txt_y_offset
-            draw.text((txt_x, txt_y), txt, font=f_lbl, fill=COLOR_BADGE_TEXT)
-            bx += bw + badge_gap
+            draw.text((txt_x, txt_y), label, font=f_lbl, fill=COLOR_BADGE_TEXT)
+        
+        # Draw UID centered on the rune's horizontal center (1048.5px)
+        if uid:
+            rune_center_x = 1048.5
+            bx = int(rune_center_x - uid_bw / 2)
+            by = badges_y
+            draw.rounded_rectangle(
+                [bx, by, bx + uid_bw, by + lbl_badge_h],
+                radius=3,
+                fill=COLOR_BADGE_BG,
+            )
+            bb = draw.textbbox((0, 0), uid, font=f_lbl)
+            tw = bb[2] - bb[0]
+            txt_x = bx + (uid_bw - tw) // 2
+            txt_y = by + lbl_txt_y_offset
+            draw.text((txt_x, txt_y), uid, font=f_lbl, fill=COLOR_BADGE_TEXT)
     # ── Lower half: description + version badges ──────────────
     y = H // 2 + 13
 
@@ -592,22 +612,45 @@ def on_post_page(output, page, config, **kwargs):
         og_title = f"{title} [{label}]"
     safe_title = html_mod.escape(og_title, quote=True)
 
-    # ── OG description: "Description\nVersions: v1, v2, …" ─────
-    safe_desc = None
+    # ── OG description: Markdown-styled with badges ─────────────────
+    # Format: **Title** `label`
+    #         
+    #         Description
+    #         `1.0.0` `1.1.0` `1.1.1`...
+    #         `uid`
+    desc_parts = []
+    
+    # Line 1: **Title** `label`
+    title_line = f"**{html_mod.escape(title, quote=True)}**"
+    if label:
+        title_line += f" `{html_mod.escape(label, quote=True)}`"
+    desc_parts.append(title_line)
+    
+    # Line 2: blank
+    desc_parts.append("")
+    
+    # Line 3: Description
+    if desc:
+        desc_parts.append(html_mod.escape(desc, quote=True))
+    
+    # Line 4: Version badges
     if versions:
-        ver_str = ", ".join(str(v) for v in versions)
-        if desc:
-            safe_desc_part = html_mod.escape(desc, quote=True)
-            safe_ver_str = html_mod.escape(ver_str, quote=True)
-            safe_desc = f"{safe_desc_part}&#10;{safe_ver_str}"
-        else:
-            safe_desc = html_mod.escape(ver_str, quote=True)
-    else:
-        safe_desc = html_mod.escape(desc, quote=True) if desc else ""
+        version_badges = " ".join(f"`{html_mod.escape(str(v), quote=True)}`" for v in versions)
+        desc_parts.append(version_badges)
+    
+    # Line 5: UID badge
+    if uid:
+        desc_parts.append(f"`{html_mod.escape(uid, quote=True)}`")
+    
+    safe_desc = "&#10;".join(desc_parts)
+
+    # Discord embed color (teal accent, hex without #)
+    color_discord = COLOR.lstrip("#")
 
     og = (
         f'<meta property="og:title" content="{safe_title}">\n'
         f'    <meta property="og:description" content="{safe_desc}">\n'
+        f'    <meta property="og:color" content="{color_discord}">\n'
         f'    <meta property="og:image" content="{safe_url}">\n'
         f'    <meta property="og:image:type" content="image/png">\n'
         f'    <meta property="og:image:width" content="{W}">\n'
