@@ -586,8 +586,23 @@ def on_post_page(output, page, config, **kwargs):
     card_url = f"{site_url}/{quote(card_rel, safe='/')}"
     safe_url = html_mod.escape(card_url, quote=True)
 
+    # ── OG title: "Title [LABEL]" ────────────────────────────
+    og_title = title
+    if label:
+        og_title = f"{title} [{label}]"
+    safe_title = html_mod.escape(og_title, quote=True)
+
+    # ── OG description: "Description | v1, v2, …" ────────────
+    og_desc = desc
+    if versions:
+        ver_str = ", ".join(str(v) for v in versions)
+        og_desc = f"{desc} | {ver_str}" if desc else ver_str
+    safe_desc = html_mod.escape(og_desc, quote=True)
+
     og = (
-        f'<meta property="og:image" content="{safe_url}">\n'
+        f'<meta property="og:title" content="{safe_title}">\n'
+        f'    <meta property="og:description" content="{safe_desc}">\n'
+        f'    <meta property="og:image" content="{safe_url}">\n'
         f'    <meta property="og:image:type" content="image/png">\n'
         f'    <meta property="og:image:width" content="{W}">\n'
         f'    <meta property="og:image:height" content="{H}">\n'
