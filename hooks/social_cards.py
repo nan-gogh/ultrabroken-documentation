@@ -583,9 +583,12 @@ def on_post_page(output, page, config, **kwargs):
         desc = _site_description
         is_fallback_desc = True
 
-    # Derive card path from source file (normalise to forward slashes for URLs)
+    # Derive card name: UID-based when available, path-based fallback for UID-less pages
     src = page.file.src_path.replace("\\", "/")
-    card_name = os.path.splitext(src)[0] + ".png"
+    if uid:
+        card_name = f"{uid}.png"
+    else:
+        card_name = os.path.splitext(src)[0] + ".png"
     card_rel = f"assets/images/social/{card_name}"
     card_path = Path(config["site_dir"]) / card_rel
     cache_path = _root / _CARD_CACHE / card_name
@@ -606,6 +609,7 @@ def on_post_page(output, page, config, **kwargs):
     shutil.copy2(cache_path, card_path)
 
     # Build absolute URL for the card (served from R2 via Cloudflare Worker)
+    # UID-based cards: social/0035.png — path-based fallback: social/wiki/index.png
     _MEDIA_BASE = "https://ultrabroken-media.gl1tchcr4vt.workers.dev"
     card_url = f"{_MEDIA_BASE}/social/{quote(card_name, safe='/')}"
     safe_url = html_mod.escape(card_url, quote=True)
