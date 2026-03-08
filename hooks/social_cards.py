@@ -605,10 +605,13 @@ def on_post_page(output, page, config, **kwargs):
     card_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(cache_path, card_path)
 
-    # Build absolute URL for the card
-    site_url = config.get("site_url", "").rstrip("/")
-    card_url = f"{site_url}/{quote(card_rel, safe='/')}"
+    # Build absolute URL for the card (served from media repo via Cloudflare Pages)
+    _MEDIA_BASE = "https://ultrabroken-media.gl1tchcr4vt.workers.dev"
+    card_url = f"{_MEDIA_BASE}/social/{quote(card_name, safe='/')}"
     safe_url = html_mod.escape(card_url, quote=True)
+
+    # Site URL still needed for og:url (page permalink)
+    site_url = config.get("site_url", "").rstrip("/")
 
     # ── OG title: "Title [LABEL]" ────────────────────────────
     og_title = title
@@ -660,10 +663,9 @@ def on_post_page(output, page, config, **kwargs):
         # f'    <meta property="og:image:width" content="{W}">\n'
         # f'    <meta property="og:image:height" content="{H}">\n'
         # f'    <meta property="og:image:alt" content="{safe_alt}">\n'
-        f'    <meta name="theme-color" content="{COLOR}">\n'
+        f'    <meta name="theme-color" content="{COLOR}">'
         # f'    <meta name="twitter:card" content="summary_large_image">\n'
         # f'    <meta name="twitter:image" content="{safe_url}">'
-        f'    <meta name="twitter:card" content="summary">'
     )
     return output.replace("</head>", f"    {og}\n  </head>", 1)
 
