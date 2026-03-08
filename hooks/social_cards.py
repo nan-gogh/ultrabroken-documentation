@@ -662,14 +662,12 @@ def on_post_page(output, page, config, **kwargs):
         f'    <meta property="og:description" content="{safe_desc}">\n'
         f'    <meta property="og:url" content="{safe_page_url}">\n'
         f'    <meta property="og:site_name" content="{safe_site_name}">\n'
-        # f'    <meta property="og:image" content="{safe_url}">\n'
-        # f'    <meta property="og:image:type" content="image/png">\n'
-        # f'    <meta property="og:image:width" content="{W}">\n'
-        # f'    <meta property="og:image:height" content="{H}">\n'
-        # f'    <meta property="og:image:alt" content="{safe_alt}">\n'
+        f'    <meta property="og:image" content="{safe_url}">\n'
+        f'    <meta property="og:image:type" content="image/png">\n'
+        f'    <meta property="og:image:width" content="{W}">\n'
+        f'    <meta property="og:image:height" content="{H}">\n'
+        f'    <meta property="og:image:alt" content="{safe_alt}">\n'
         f'    <meta name="theme-color" content="{COLOR}">'
-        # f'    <meta name="twitter:card" content="summary_large_image">\n'
-        # f'    <meta name="twitter:image" content="{safe_url}">'
     )
     return output.replace("</head>", f"    {og}\n  </head>", 1)
 
