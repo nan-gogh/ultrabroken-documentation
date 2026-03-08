@@ -2195,6 +2195,34 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#youtube-embeds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YouTube Embeds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="YouTube Embeds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax / Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#social-links-and-leaderboard" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2211,6 +2239,34 @@
     <span class="md-ellipsis">
       
         Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glitch-autolinks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glitch Autolinks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Glitch Autolinks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rules
       
     </span>
   </a>
@@ -3397,6 +3453,34 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#youtube-embeds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YouTube Embeds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="YouTube Embeds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax / Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#social-links-and-leaderboard" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3413,6 +3497,34 @@
     <span class="md-ellipsis">
       
         Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glitch-autolinks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glitch Autolinks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Glitch Autolinks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rules
       
     </span>
   </a>
@@ -4354,6 +4466,7 @@
 </ol>
 <p><strong>Not ready to publish?</strong> Place your file in <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/docs/wiki/_wip"><code>docs/wiki/_wip/</code></a> or add <code>draft: true</code> to frontmatter — the page builds and gets a shareable URL but stays hidden from search, the grimoire, and web crawlers. See <a href="#drafts--previews">Drafts &amp; Previews</a> below.</p>
 <ul>
+<li>New filenames use lowercase kebab-case. Glitchcraft entries also need a 4-digit zero-padded sequential prefix — check the last number in <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/docs/wiki/glitchcraft"><code>docs/wiki/glitchcraft/</code></a> and increment by one (e.g. <code>0044-your-new-glitch.md</code>).</li>
 <li>Image files go in <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/docs/assets/images"><code>docs/assets/images/</code></a>.</li>
 <li>To reorganize navigation, update <a href="https://github.com/nan-gogh/ultrabroken-documentation/blob/main/mkdocs.yml"><code>mkdocs.yml</code></a> or ask a maintainer.</li>
 <li>Avoid editing CI workflows in <code>.github/workflows/</code> unless asked.</li>
@@ -4411,7 +4524,6 @@
 <li>Write in the present tense and keep instructions concise.</li>
 <li>Keep steps as granular as possible. Extract pausing / unpausing into dedicated steps with <strong>bold</strong> styling.</li>
 <li>Avoid abbreviations in titles or filenames for easy parsing.</li>
-<li>Put image files in <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/docs/assets/images"><code>docs/assets/images/</code></a>.</li>
 <li><strong>Use Admonitions</strong> for important callouts (notes, warnings, tips).</li>
 <li><strong>Prefer collapsible Details</strong> only when content is optional or supplementary.</li>
 <li><strong>Leverage code block titles</strong> to label examples.</li>
@@ -4427,22 +4539,22 @@
 <li>To link a file in the <strong>same folder</strong>: <code>[Link Text](other-file.md)</code></li>
 <li>To link a file in a <strong>subdirectory</strong>: <code>[Link Text](subfolder/other-file.md)</code></li>
 <li>To link a file in a <strong>parent folder</strong>: <code>[Link Text](../other-file.md)</code></li>
-<li>To link a file in a <strong>different branch</strong>: <code>[Link Text](../../other-folder/other-file.md)</code></li>
+<li>To link a file in <strong>another section of the wiki</strong>: <code>[Link Text](../../other-folder/other-file.md)</code></li>
 </ul>
 <h2 id="frontmatter-reference">Frontmatter Reference</h2>
 <hr />
-<p>Every wiki page begins with YAML frontmatter between `` delimiters. Here are all available fields:</p>
+<p>Every wiki page begins with YAML frontmatter between <code>---</code> delimiter lines. Here are all available fields:</p>
 <h3 id="frontmatter-fields">Frontmatter Fields</h3>
 <p>The display <code>title</code> is required. All other fields are optional but recommended.</p>
 <h4 id="syntax">Syntax</h4>
 <ul>
 <li><code>label</code>: A short abbreviation displayed alongside the title - used for autolinking and search discovery</li>
-<li><code>versions</code>: List of game versions where the technique works - used for filtering and search discovery</li>
+<li><code>versions</code>: List of game versions where the technique works — used for filtering and search discovery. Use slash notation (e.g. <code>"1.3.0/1.4.0"</code>) for two versions that share identical behaviour.</li>
 <li><code>credits</code>: Names must match <a href="../../assets/data/credits.json">credits.json</a> exactly  - used for autolinking and leaderboard aggregation</li>
-<li><code>date*</code>: Discovery or documentation date in <code>YYYY-MM-DD</code> format - used for filtering / sorting</li>
+<li><code>date</code>: Discovery or documentation date in <code>YYYY-MM-DD</code> format — used for filtering and sorting</li>
 <li><code>description</code>: A brief summary used for search results and SEO - used for search discovery. <strong>Keep under 185 characters</strong> for optimal Discord preview display.</li>
 <li><code>tags</code>: Categorization tags. Auto-indexed into <a href="../../assets/data/tags.json">tags.json</a> - used for filtering and search discovery</li>
-<li><code>aliases</code>: Alternative names for search discovery. Case-insensitive. - used for autolinking</li>
+<li><code>aliases</code>: Alternative names for search discovery. Case-insensitive — used for autolinking (see <a href="#glitch-autolinks">Glitch Autolinks</a>)</li>
 <li><code>draft</code>: Set to <code>true</code> to mark a page as a draft — hides it from search, grimoire, and web crawlers while keeping it accessible via direct URL (see <a href="#drafts--previews">Drafts &amp; Previews</a>)</li>
 <li><code>uid</code>: Auto-generated unique identifier. <strong>Do not add manually.</strong></li>
 </ul>
@@ -4503,14 +4615,33 @@
 </table>
 <h4 id="example_2">Example</h4>
 <p><div class="ub-map-embed"><div style="margin-bottom: 0.5rem;"><strong><a href="https://objmap-totk.zeldamods.org/#/map/z8,1321.68,-2823.71,Depths" target="_blank" rel="noopener">Fire Temple VD location</a></strong></div><iframe class="ub-map-desktop" src="https://objmap-totk.zeldamods.org/#/map/z8,1321.68,-2823.71,Depths" width="100%" height="500" style="border:0; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" loading="lazy" allowfullscreen></iframe><iframe class="ub-map-mobile" src="https://objmap-totk.zeldamods.org/#/map/z7,1321.68,-2823.71,Depths" width="100%" height="500" style="border:0; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" loading="lazy" allowfullscreen></iframe></div></p>
+<h3 id="youtube-embeds">YouTube Embeds</h3>
+<p>Links to YouTube are automatically converted to responsive embedded iframes during the build. No special syntax is required — just use a standard Markdown link pointing to a YouTube URL.</p>
+<h4 id="syntax-example_1">Syntax / Example</h4>
+<div class="highlight"><pre><span></span><code>[<span class="nt">YouTube</span>](<span class="na">https://youtu.be/VIDEO_ID</span>)
+
+[<span class="nt">Crouch Sprinting showcase</span>](<span class="na">https://youtu.be/VIDEO_ID?t=30</span>)
+</code></pre></div>
+<p><strong>Generic labels</strong> (<code>YouTube</code>, <code>Video</code>, <code>Watch</code>, etc.) render as a bare iframe with no caption. <strong>Descriptive labels</strong> appear as a bold caption above the iframe. Timestamps (<code>?t=30</code>) are preserved in the embed. Duplicate video IDs on the same page: all but the first occurrence are dropped.</p>
 <h3 id="social-links-and-leaderboard">Social Links and Leaderboard</h3>
 <p>Credit names in frontmatter are automatically aggregated into the leaderboard. Names will link to social profiles when mapped in <a href="https://github.com/nan-gogh/ultrabroken-documentation/blob/main/docs/assets/data/credits.json">credits.json</a>.</p>
+<p>Contributor names are also <strong>automatically hyperlinked in body text</strong> anywhere they appear — so writing "discovered by Mozz" renders as a live link without any manual markup. Names inside code spans or existing links are left untouched.</p>
 <h4 id="example_3">Example</h4>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;Mozz&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.youtube.com/@M0zzed&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Names must match exactly</strong> — mismatched capitalization or spelling prevents autolinking and splits leaderboard entries.</p>
+<h3 id="glitch-autolinks">Glitch Autolinks</h3>
+<p>The first mention of any glitch's name, label, or alias in paragraph text is automatically hyperlinked to that glitch's page. This is powered by a glossary built from all published frontmatter.</p>
+<h4 id="rules">Rules</h4>
+<ul>
+<li>Only the <strong>first</strong> occurrence of each glitch name per page is linked.</li>
+<li>A page is never auto-linked to itself — self-mentions stay as plain text.</li>
+<li>Text inside code spans, code blocks, headings, and existing links is never touched.</li>
+<li>Names and aliases match <strong>case-insensitively</strong>. Labels (abbreviations) are <strong>case-sensitive</strong> to avoid false positives on common words.</li>
+</ul>
+<p>To mention a glitch without triggering a link, wrap it in a code span (<code>`ETS`</code>) or an explicit link. To suppress a link entirely, check that the <code>label</code> or <code>aliases</code> values are not accidentally matching unrelated text.</p>
 <h2 id="markdown-reference">Markdown Reference</h2>
 <hr />
 <h3 id="headings">Headings</h3>
