@@ -605,7 +605,7 @@ def on_post_page(output, page, config, **kwargs):
     card_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(cache_path, card_path)
 
-    # Build absolute URL for the card (served from media repo via Cloudflare Pages)
+    # Build absolute URL for the card (served from R2 via Cloudflare Worker)
     _MEDIA_BASE = "https://ultrabroken-media.gl1tchcr4vt.workers.dev"
     card_url = f"{_MEDIA_BASE}/social/{quote(card_name, safe='/')}"
     safe_url = html_mod.escape(card_url, quote=True)

@@ -2155,6 +2155,34 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#media-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Media Links
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Media Links">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax / Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#map-embeds" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2206,7 +2234,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#syntax-example_1" class="md-nav__link">
+  <a href="#syntax-example_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Syntax / Example
@@ -3413,6 +3441,34 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#media-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Media Links
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Media Links">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax / Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#map-embeds" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3464,7 +3520,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#syntax-example_1" class="md-nav__link">
+  <a href="#syntax-example_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Syntax / Example
@@ -4578,6 +4634,30 @@
 </code></pre></div>
 <h4 id="example_1">Example</h4>
 <p><a href="search:Slugging">Slugging</a></p>
+<h3 id="media-links">Media Links</h3>
+<p>Images and videos are hosted on Cloudflare R2, served by a <a href="https://github.com/nan-gogh/ultrabroken-media">Worker</a>. Use the <code>media:</code> prefix to reference assets — the build hook rewrites it to the full URL automatically.</p>
+<h4 id="syntax-example_1">Syntax / Example</h4>
+<div class="highlight"><pre><span></span><code>![<span class="nt">Nachoyah Shrine VD</span>](<span class="na">media:screens/nachoyah-vd.avif</span>)
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Prefix path</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>media:screens/</code></td>
+<td>Screenshots (AVIF)</td>
+</tr>
+<tr>
+<td><code>media:video/</code></td>
+<td>Video clips (AV1+Opus WebM)</td>
+</tr>
+</tbody>
+</table>
+<p>Compress files locally before uploading — use <a href="https://squoosh.app/">Squoosh</a> for images (AVIF) and HandBrake or ffmpeg for video (AV1+Opus WebM). Upload via the media management UI (requires GitHub login).</p>
 <h3 id="map-embeds">Map Embeds</h3>
 <p>Embed interactive <a href="https://objmap-totk.zeldamods.org/">TotK Object Map</a> previews using coordinate shorthand.</p>
 <h4 id="syntax_1">Syntax</h4>
@@ -4617,7 +4697,7 @@
 <p><div class="ub-map-embed"><div style="margin-bottom: 0.5rem;"><strong><a href="https://objmap-totk.zeldamods.org/#/map/z8,1321.68,-2823.71,Depths" target="_blank" rel="noopener">Fire Temple VD location</a></strong></div><iframe class="ub-map-desktop" src="https://objmap-totk.zeldamods.org/#/map/z8,1321.68,-2823.71,Depths" width="100%" height="500" style="border:0; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" loading="lazy" allowfullscreen></iframe><iframe class="ub-map-mobile" src="https://objmap-totk.zeldamods.org/#/map/z7,1321.68,-2823.71,Depths" width="100%" height="500" style="border:0; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" loading="lazy" allowfullscreen></iframe></div></p>
 <h3 id="youtube-embeds">YouTube Embeds</h3>
 <p>Links to YouTube are automatically converted to responsive embedded iframes during the build. No special syntax is required — just use a standard Markdown link pointing to a YouTube URL.</p>
-<h4 id="syntax-example_1">Syntax / Example</h4>
+<h4 id="syntax-example_2">Syntax / Example</h4>
 <div class="highlight"><pre><span></span><code>[<span class="nt">YouTube</span>](<span class="na">https://youtu.be/VIDEO_ID</span>)
 
 [<span class="nt">Crouch Sprinting showcase</span>](<span class="na">https://youtu.be/VIDEO_ID?t=30</span>)
