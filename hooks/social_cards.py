@@ -20,6 +20,7 @@ import html as html_mod
 import json
 import logging
 import os
+import re
 import shutil
 from io import BytesIO
 from pathlib import Path
@@ -568,8 +569,21 @@ def on_config(config, **kwargs):
     return config
 
 
+def _is_draft(page) -> bool:
+    """Return True for draft / WIP pages (mirrors draft_pages.py logic)."""
+    meta = page.meta or {}
+    if meta.get("draft") is True:
+        return True
+    src = page.file.src_path.replace("\\", "/")
+    return "/_wip/" in src or src.startswith("_wip/")
+
+
 def on_post_page(output, page, config, **kwargs):
     """Generate the social card image and inject OG meta tags."""
+    # Skip draft / WIP pages — no card generation or OG tags
+    if _is_draft(page):
+        return output
+
     meta = page.meta or {}
 
     # ── Resolve fields with fallbacks ─────────────────────────
