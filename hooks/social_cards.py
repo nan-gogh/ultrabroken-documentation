@@ -83,6 +83,8 @@ _texturina_file   = None   # Texturina TTF path
 _monofile         = None   # JetBrains Mono TTF path
 _fonts            = {}     # {(file, size): ImageFont}
 _manifest         = {}
+_processed_pages  = set()   # src_paths processed this run
+_generated_cards  = set()   # card_name values built this run (for orphan cleanup)
 _site_description = ""
 _site_name        = ""
 
@@ -604,6 +606,10 @@ def on_post_page(output, page, config, **kwargs):
             log.warning("Social card failed for %s: %s", src, exc)
             return output
 
+    # Track this card/page for orphan cleanup in on_post_build
+    _generated_cards.add(card_name)
+    _processed_pages.add(src)
+
     # Copy cached card into the site output directory
     card_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(cache_path, card_path)
@@ -675,8 +681,35 @@ def on_post_page(output, page, config, **kwargs):
 
 
 def on_post_build(config, **kwargs):
-    """Persist the manifest so incremental local rebuilds can skip
-    cards whose frontmatter hasn't changed."""
+    """Persist the manifest and clean up orphaned cached cards.
+
+    Removes manifest entries and cached images for pages that no longer
+    exist (deleted/renamed), so the R2 cleanup step in CI can detect
+    they are gone.
+    """
+    global _manifest
+
+    # Delete cached card images that weren't generated this run
+    # (covers deleted pages, renamed files, UID additions/removals)
+    cache_dir = _root / _CARD_CACHE
+    if cache_dir.is_dir():
+        removed = 0
+        for cached in cache_dir.rglob("*.png"):
+            card_name = cached.relative_to(cache_dir).as_posix()
+            if card_name not in _generated_cards:
+                cached.unlink(missing_ok=True)
+                removed += 1
+                try:
+                    cached.parent.rmdir()
+                except OSError:
+                    pass
+        if removed:
+            log.info("Removed %d orphaned cached card(s)", removed)
+
+    # Prune manifest to only pages processed this run
+    _manifest = {src: h for src, h in _manifest.items()
+                 if src in _processed_pages}
+
     try:
         manifest_abs = _root / _MANIFEST_PATH
         manifest_abs.parent.mkdir(parents=True, exist_ok=True)
