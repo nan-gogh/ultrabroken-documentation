@@ -2183,6 +2183,56 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#drafts-previews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drafts &amp; Previews
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Drafts &amp; Previews">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-drafts-are-hidden-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What drafts are hidden from
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-_wip-early-exploration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using _wip/ (early exploration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-draft-true-near-final-drafts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using draft: true (near-final drafts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3346,6 +3396,56 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#drafts-previews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drafts &amp; Previews
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Drafts &amp; Previews">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-drafts-are-hidden-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What drafts are hidden from
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-_wip-early-exploration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using _wip/ (early exploration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-draft-true-near-final-drafts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using draft: true (near-final drafts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4270,6 +4370,7 @@
 <ul>
 <li>Top-level docs live in the <a href="https://github.com/nan-gogh/ultrabroken-documentation/tree/main/docs/wiki"><code>docs/wiki/</code></a> folder. Edit Markdown files directly.</li>
 <li>Put your WIPs into the dedicated <code>docs/wiki/_wip/</code> folder. Download <code>_wip/blank.md</code> if you need a starting point.</li>
+<li>Near-final drafts can live in their real folder with <code>draft: true</code> in frontmatter (see <a href="#drafts--previews">Drafts &amp; Previews</a>).</li>
 <li>To reorganize navigation, ask a maintainer or update <a href="https://github.com/nan-gogh/ultrabroken-documentation/blob/main/mkdocs.yml"><code>mkdocs.yml</code></a>.</li>
 <li>Keep changes scoped to documentation content: avoid editing continuous integration (CI) workflows in <code>.github/workflows</code> unless requested.</li>
 </ul>
@@ -4317,6 +4418,7 @@
 <li><code>description</code>: A brief summary used for search results and SEO - used for search discovery. <strong>Keep under 185 characters</strong> for optimal Discord preview display.</li>
 <li><code>tags</code>: Categorization tags. Auto-indexed into <a href="../../assets/data/tags.json">tags.json</a> - used for filtering and search discovery</li>
 <li><code>aliases</code>: Alternative names for search discovery. Case-insensitive. - used for autolinking</li>
+<li><code>draft</code>: Set to <code>true</code> to mark a page as a draft — hides it from search, grimoire, and web crawlers while keeping it accessible via direct URL (see <a href="#drafts--previews">Drafts &amp; Previews</a>)</li>
 <li><code>uid</code>: Auto-generated unique identifier. <strong>Do not add manually.</strong></li>
 </ul>
 <h4 id="example">Example</h4>
@@ -4384,6 +4486,54 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><strong>Names must match exactly</strong> — mismatched capitalization or spelling prevents autolinking and splits leaderboard entries.</p>
+<h3 id="drafts-previews">Drafts &amp; Previews</h3>
+<p>Pages can be marked as drafts so they build and deploy to the live site (allowing editors to preview rendered output and share the URL for feedback) while staying completely hidden from all discovery systems.</p>
+<p><strong>A page is treated as a draft when either condition is true:</strong></p>
+<ul>
+<li>It lives anywhere under the <code>docs/wiki/_wip/</code> folder (path-based — no frontmatter needed).</li>
+<li>Its frontmatter contains <code>draft: true</code> (flag-based — works in any folder).</li>
+</ul>
+<h4 id="what-drafts-are-hidden-from">What drafts are hidden from</h4>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Hidden?</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Site search</td>
+<td>Yes</td>
+<td><code>search.exclude</code> metadata injected automatically</td>
+</tr>
+<tr>
+<td>Grimoire</td>
+<td>Yes</td>
+<td>BM25 index builder skips draft pages</td>
+</tr>
+<tr>
+<td>Web crawlers</td>
+<td>Yes</td>
+<td><code>&lt;meta name="robots" content="noindex"&gt;</code> injected</td>
+</tr>
+<tr>
+<td>Direct URL access</td>
+<td><strong>No</strong></td>
+<td>Pages are accessible — share the link for review</td>
+</tr>
+</tbody>
+</table>
+<h4 id="using-_wip-early-exploration">Using <code>_wip/</code> (early exploration)</h4>
+<p>Place your file in <code>docs/wiki/_wip/</code>. It will be built and accessible at its URL but invisible to search and the grimoire. No frontmatter flag needed — the path is enough.</p>
+<p>The <code>_wip/blank.md</code> template already includes <code>draft: true</code> by default.</p>
+<h4 id="using-draft-true-near-final-drafts">Using <code>draft: true</code> (near-final drafts)</h4>
+<p>When a page is close to final and already lives in its real location (e.g., <code>docs/wiki/glitchcraft/my-new-glitch.md</code>), add <code>draft: true</code> to its frontmatter:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">New</span><span class="nv"> </span><span class="s">Glitch&quot;</span>
+<span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>When ready to publish, simply remove the <code>draft: true</code> line and commit. The page immediately becomes discoverable.</p>
 <h2 id="markdown-reference">Markdown Reference</h2>
 <hr />
 <h3 id="headings">Headings</h3>

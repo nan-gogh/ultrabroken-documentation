@@ -227,6 +227,10 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
 
         fm = extract_frontmatter(p)
 
+        # skip draft pages (frontmatter flag)
+        if fm.get('draft') is True:
+            continue
+
         # prefer an extracted title (YAML frontmatter, H1/H2, Setext), fall back to filename stem
         title = fm.get('title') or extract_title(p) or rel.stem
         full_text = extract_text(p)
