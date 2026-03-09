@@ -2352,61 +2352,49 @@
 
 <div class="diagram-pan">
   <div class="diagram-zoom">
-    <input type="range" min="40" max="400" value="100" oninput="diagramSlide(this)">
+    <input type="range" min="40" max="400" value="100">
     <span class="diagram-level">100%</span>
-    <button onclick="diagramReset(this)">Reset</button>
+    <button>Reset</button>
   </div>
   <div class="diagram-inner">
-    <div class="mermaid">
-graph TD
-    OWNER["👤 Owner<br/>nan-gogh"]
-    MEMBERS["👥 Org Members<br/>invited by username"]
-    ORG["📋 Membership Roster<br/>access-control list only"]
-    OAUTH["🔐 OAuth App<br/>credentials shared<br/>with Cloudflare"]
+<pre class="mermaid"><code>graph TD
+    OWNER["👤 Owner&lt;br/&gt;nan-gogh"]
+    MEMBERS["👥 Org Members&lt;br/&gt;invited by username"]
+    ORG["📋 Membership Roster&lt;br/&gt;access-control list only"]
+    OAUTH["🔐 OAuth App&lt;br/&gt;credentials shared&lt;br/&gt;with Cloudflare"]
 
-    MEDIA_REPO["📦 ultrabroken-media<br/>Worker source + workflows"]
-    WIKI_REPO["📚 ultrabroken-documentation<br/>MkDocs wiki source"]
-    DEPLOY["⚙️ deploy.yml<br/>auto-deploy Worker"]
-    OPTIMIZE["🖼️ optimize.yml<br/>AVIF via sharp"]
-    TRANSCODE["🎬 transcode.yml<br/>AV1 via ffmpeg"]
+    MEDIA_REPO["📦 ultrabroken-media&lt;br/&gt;Worker source + workflows"]
+    WIKI_REPO["📚 ultrabroken-documentation&lt;br/&gt;MkDocs wiki source"]
+    DEPLOY["⚙️ deploy.yml&lt;br/&gt;auto-deploy Worker"]
+    OPTIMIZE["🖼️ optimize.yml&lt;br/&gt;AVIF via sharp"]
+    TRANSCODE["🎬 transcode.yml&lt;br/&gt;AV1 via ffmpeg"]
 
-    ACCESS["🚪 Cloudflare Access<br/>Zero Trust gateway<br/>requires org membership"]
-    WORKER["💼 Worker<br/>serves files + /manage UI<br/>upload · delete · purge"]
-    R2["🗄️ R2 Object Storage<br/>screens/ · video/ · social/"]
-    PAGES["📖 GitHub Pages<br/>hosts the wiki"]
-    VISITOR["👁️ Wiki Visitors<br/>public — no auth"]
+    ACCESS["🚪 Cloudflare Access&lt;br/&gt;Zero Trust gateway&lt;br/&gt;requires org membership"]
+    WORKER["💼 Worker&lt;br/&gt;serves files + /manage UI&lt;br/&gt;upload · delete · purge"]
+    R2["🗄️ R2 Object Storage&lt;br/&gt;screens/ · video/ · social/"]
+    PAGES["📖 GitHub Pages&lt;br/&gt;hosts the wiki"]
+    VISITOR["👁️ Wiki Visitors&lt;br/&gt;public — no auth"]
 
-    OWNER -->|owns| ORG
-    MEMBERS -->|member of| ORG
-    ORG -->|membership check| ACCESS
-    OAUTH -->|credentials| ACCESS
-    OWNER -->|GitHub login| ACCESS
-    MEMBERS -->|GitHub login| ACCESS
-    ACCESS -->|authenticated| WORKER
-    WORKER -->|read / write| R2
+    OWNER --&gt;|owns| ORG
+    MEMBERS --&gt;|member of| ORG
+    ORG --&gt;|membership check| ACCESS
+    OAUTH --&gt;|credentials| ACCESS
+    OWNER --&gt;|GitHub login| ACCESS
+    MEMBERS --&gt;|GitHub login| ACCESS
+    ACCESS --&gt;|authenticated| WORKER
+    WORKER --&gt;|read / write| R2
 
-    MEDIA_REPO -->|push triggers| DEPLOY
-    DEPLOY -->|wrangler deploy| ACCESS
-    DEPLOY -->|dispatch via PAT| OPTIMIZE
-    DEPLOY -->|dispatch via PAT| TRANSCODE
-    OPTIMIZE -->|convert + reupload| R2
-    TRANSCODE -->|transcode + reupload| R2
+    MEDIA_REPO --&gt;|push triggers| DEPLOY
+    DEPLOY --&gt;|wrangler deploy| ACCESS
+    DEPLOY --&gt;|dispatch via PAT| OPTIMIZE
+    DEPLOY --&gt;|dispatch via PAT| TRANSCODE
+    OPTIMIZE --&gt;|convert + reupload| R2
+    TRANSCODE --&gt;|transcode + reupload| R2
 
-    WIKI_REPO -->|push triggers| PAGES
-    PAGES -->|media links| R2
-    VISITOR -->|reads| PAGES
-    VISITOR -->|loads media| R2
-
-    classDef people fill:#1a3a39,stroke:#00f0c2,stroke-width:2px
-    classDef repos fill:#1a3a39,stroke:#00f0c2,stroke-width:1.5px
-    classDef actions fill:#1a3a39,stroke:#00f0c2,stroke-width:1.5px
-    classDef services fill:#1a3a39,stroke:#00f0c2,stroke-width:1.5px
-
-    class OWNER,MEMBERS people
-    class MEDIA_REPO,WIKI_REPO repos
-    class DEPLOY,OPTIMIZE,TRANSCODE actions
-    class ACCESS,WORKER,R2,PAGES services
-    </div>
+    WIKI_REPO --&gt;|push triggers| PAGES
+    PAGES --&gt;|media links| R2
+    VISITOR --&gt;|reads| PAGES
+    VISITOR --&gt;|loads media| R2</code></pre>
   </div>
 </div>
 
