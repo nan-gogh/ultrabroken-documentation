@@ -2327,9 +2327,9 @@
       pan.scrollTop = nm.t + cy * zoom - py;
     }
 
-    // Slider: zoom to center
+    // Slider: zoom toward viewport center (not a positional reset)
     slider.addEventListener('input', function() {
-      applyZoom(parseInt(slider.value) / 100, true);
+      zoomAt(parseInt(slider.value) / 100, pan.clientWidth / 2, pan.clientHeight / 2);
     });
     // Reset: zoom to 1, center
     resetBtn.addEventListener('click', function() { applyZoom(1, true); });
@@ -2395,6 +2395,12 @@
     }, { passive: false });
     pan.addEventListener('touchend', function(e) {
       if (e.touches.length < 2) { lastTouchDist = null; lastTouchMid = null; }
+      if (e.touches.length === 1) {
+        // One finger remains after pinch — reinit drag state so it doesn't snap
+        dragging = true;
+        dragX = e.touches[0].clientX; dragY = e.touches[0].clientY;
+        scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
+      }
       if (e.touches.length === 0) { dragging = false; pan.classList.remove('is-dragging'); }
     });
 
