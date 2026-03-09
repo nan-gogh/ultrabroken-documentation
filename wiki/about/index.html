@@ -2208,26 +2208,26 @@
     end
 
     subgraph org ["GitHub Organisation — ultrabroken-archivists"]
-        ORG["Membership Roster\nused only as an access-control list"]
-        OAUTH["OAuth App\nclient ID + secret shared with Cloudflare"]
+        ORG["Membership Roster&lt;br/&gt;used only as an access-control list"]
+        OAUTH["OAuth App&lt;br/&gt;client ID + secret shared with Cloudflare"]
     end
 
     subgraph repos ["GitHub Repositories — nan-gogh"]
-        WIKI_REPO["ultrabroken-documentation\nMkDocs wiki source\nMarkdown · CSS · JS · config"]
-        MEDIA_REPO["ultrabroken-media\nCloudflare Worker source\nworker.js · wrangler.toml · workflows"]
+        WIKI_REPO["ultrabroken-documentation&lt;br/&gt;MkDocs wiki source&lt;br/&gt;Markdown · CSS · JS · config"]
+        MEDIA_REPO["ultrabroken-media&lt;br/&gt;Cloudflare Worker source&lt;br/&gt;worker.js · wrangler.toml · workflows"]
 
         subgraph actions ["GitHub Actions"]
-            DEPLOY["deploy.yml\nauto-deploy Worker on push"]
-            OPTIMIZE["optimize.yml\nAVIF image optimization\nsharp · quality 65"]
-            TRANSCODE["transcode.yml\nAV1+Opus video transcode\nffmpeg · libsvtav1 CRF 35"]
+            DEPLOY["deploy.yml&lt;br/&gt;auto-deploy Worker on push"]
+            OPTIMIZE["optimize.yml&lt;br/&gt;AVIF image optimization&lt;br/&gt;sharp · quality 65"]
+            TRANSCODE["transcode.yml&lt;br/&gt;AV1+Opus video transcode&lt;br/&gt;ffmpeg · libsvtav1 CRF 35"]
         end
     end
 
     subgraph cloudflare ["Cloudflare"]
-        ACCESS["Cloudflare Access — Zero Trust\nPolicy: require ultrabroken-archivists membership"]
-        WORKER["Cloudflare Worker\nserves files · /manage UI\nupload · delete · purge"]
-        R2["Cloudflare R2 — Object Storage\nscreens/ · video/ · social/\nmetadata tracks optimization status"]
-        PAGES["GitHub Pages\nhosts the wiki site"]
+        ACCESS["Cloudflare Access — Zero Trust&lt;br/&gt;Policy: require ultrabroken-archivists membership"]
+        WORKER["Cloudflare Worker&lt;br/&gt;serves files · /manage UI&lt;br/&gt;upload · delete · purge"]
+        R2["Cloudflare R2 — Object Storage&lt;br/&gt;screens/ · video/ · social/&lt;br/&gt;metadata tracks optimization status"]
+        PAGES["GitHub Pages&lt;br/&gt;hosts the wiki site"]
     end
 
     VISITOR["Wiki Visitors — public, no auth"]
