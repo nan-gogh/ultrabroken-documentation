@@ -2277,6 +2277,24 @@ function diagramZoom(btn, dir) {
   inner.style.transform = 'scale(' + current + ')';
   label.textContent = Math.round(current * 100) + '%';
 }
+
+document.querySelectorAll('.diagram-pan').forEach(function(pan) {
+  var startX, startY, scrollL, scrollT;
+  pan.addEventListener('mousedown', function(e) {
+    if (e.target.closest('.diagram-zoom')) return;
+    pan.classList.add('is-dragging');
+    startX = e.clientX; startY = e.clientY;
+    scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
+  });
+  window.addEventListener('mousemove', function(e) {
+    if (!pan.classList.contains('is-dragging')) return;
+    pan.scrollLeft = scrollL - (e.clientX - startX);
+    pan.scrollTop = scrollT - (e.clientY - startY);
+  });
+  window.addEventListener('mouseup', function() {
+    pan.classList.remove('is-dragging');
+  });
+});
 </script>
 
 
