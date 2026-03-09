@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#glitch-name" class="md-skip">
+        <a href="#super-fuse-overload" class="md-skip">
           Skip to content
         </a>
       
@@ -1938,10 +1938,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#forewarnings" class="md-nav__link">
+  <a href="#forewarnings-and-tips" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Forewarnings
+        Forewarnings and Tips
       
     </span>
   </a>
@@ -2048,7 +2048,7 @@
 
 
 
-<h1 id="glitch-name">Glitch Name</h1>
+<h1 id="super-fuse-overload">Super Fuse Overload</h1>
 <p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
 <hr />
@@ -2059,21 +2059,36 @@ Method 1: provides the method in the main tab body and the use-cases in the subt
 Method 2: duplicates the method into the subtabs to maximize instruction clarity
 Method 3: like method 1 but uses dropdowns instead of subtabs
 Method 4: like method 2 but with dropdowns</p>
-<h2 id="forewarnings">Forewarnings</h2>
+<p>Todo:
+- Find a good, stable minigame or two to recommend
+- Double check duplication order of operations and correct if needed
+- Decide on preferred method layout and redo rejected method layouts to match
+- Do mulberry &amp; Mandelbrot's methods to more accurately write them up
+- Actually obtain Zelda's Torch at some point to provide better directions and warn of the pitfalls
+- probably seek help on crediting and resources at some point
+- Make graphs better and maybe get some illustrative images &amp; screenshots going
+- write everything after the methods :/</p>
+<h2 id="forewarnings-and-tips">Forewarnings and Tips</h2>
 <hr />
+<div class="admonition danger">
+<p class="admonition-title">Panic!</p>
+<p>While SFO is active, Panic Blood Moons will constantly occur if they are able (ie on the main map and not in a minigame or cutscene). Additionally, some dependencies will <strong>crash the game</strong> if they fail to form!</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Buckle up!</p>
 <p>Due to the massive number of connections required, every method is relatively complex. Before you begin, be sure to read the steps carefully, and be sure you understand the glitches that go into your chosen method.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Panic!</p>
-<p>While SFO is active, Panic Blood Moons will constantly occur if they are able (ie on the main map and not in a minigame or cutscene). Additionally, some dependencies will <strong>crash the game</strong> if they fail to form!</p>
+<div class="admonition info">
+<p class="admonition-title">Local or persistent?</p>
+<p>There are two main types of SFO method: Local methods, which <em>do not</em> persist through warps and loads, and Persistent methods, which... <em>do</em> persist through warps and loads.
+Local methods are usually faster and easier, but cannot be used for some cases (eg Zelda's Torch).
+Persistent methods can be used for all cases, but are usually more time consuming and complex, and their persistence can make them difficult to work with in some cases (eg Mineru's Arm).</p>
 </div>
 <h2 id="instructions">Instructions</h2>
 <hr />
 <div class="admonition note">
-<p class="admonition-title">Useful?</p>
-<p>There are three main use cases for SFO: Obtaining Mineru's Arm, obtaining Zelda's Torch, and duplicating anything you can throw. For the sake of providing clear instructions, a variant/extension of each method is given for each use case.</p>
+<p class="admonition-title">Choose your fighter!</p>
+<p>There are three main use cases for SFO: Obtaining Mineru's Arm, obtaining Zelda's Torch, and duplicating anything you can throw. For the sake of providing clear instructions, a variant of each method is given for each valid use case.</p>
 </div>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1</label><label for="__tabbed_1_2">Method 2</label><label for="__tabbed_1_3">Method 3</label><label for="__tabbed_1_4">Method 4</label></div>
 <div class="tabbed-content">
@@ -2095,16 +2110,45 @@ Method 4: like method 2 but with dropdowns</p>
 </div>
 </div>
 </div>
-<div class="admonition info">
-<p class="admonition-title">Persistent?</p>
-<p>This setup <em>does</em> persist through warps and loads, allowing it in theory to be used for any use case. However, it is more difficult to undo than local methods, which can be inconvenient.</p>
-</div>
 </div>
 <div class="tabbed-block">
-<p>This is a persistent method that makes use of DI equipment to balance speed, simplicity, and ease of use. It can be used for anything, but is best-suited for Zelda's Torch and duplication.</p>
+<p>This is a persistent method for versions <code>1.2.0</code> and up that makes use of DI equipment to maximize adjustability, ease of use, and framerate. It can be used for anything, but is best-suited for Zelda's Torch and duplication.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">For Zelda's Torch</label><label for="__tabbed_3_2">For duplication</label><label for="__tabbed_3_3">For Mineru's Arm</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<p>Prepare:
+- 13 Zuggle Overload
+- 2 DI Ghost Weapons, one for duping, the other dubbed "C"
+- 3 DI Ghost Shields, one for duping, the other two dubbed "A" and "B"
+- A fused equipment item
+- The <em>second</em> prologue autosave
+- An autosave within a shrine (ideally Rasitakiwak)</p>
+<p>Part 1: Performing SFO
+1. Enter Rasitakiwak Shrine, defeat all the constructs, and dispose of their weapons (for example by leaving/reentering)
+2. A1 [Overload FE] Weapon D
+3. [Recall Lock] D
+4. B1 Overload FE Weapon E
+5. Recall Lock E
+6. Smuggle C and equip D
+8. C/D DI Shield F
+9. C Overload FE Shield G
+10. Recall lock G
+11. Smuggle F and equip D
+12. [Overload Pickup] G
+13. F/G [Overload Batch DI] 30 Weapons H1-H30
+14. Fail-drop G and leave it equipped
+15. [Throw Purgatory] all H
+16. [Zuggle Drop] C to "equip" all H
+17. Overload Pickup E
+18. Overload Batch DI <strong>up to</strong> 20 Shields (or Weapons/Bows) I1-I20. Starting with I17, check after each to see if Menu Link is overloaded. If so, proceed to step 19.
+19. Drop your fused item. If the fuse gets deleted, <em>you are done</em>. If it doesn't, pick it up and create exactly <em>one</em> more "I", and then you will be done.</p>
+<p>Part 2: Obtaining Zelda's Torch</p>
+<ol>
+<li>Load your prologue save. Zelda will drop her torch, so pick it up</li>
+<li>Get another prologue autosave with the torch in your inventory, then either load back to Rasitakiwak to clear your SFO, or simply close the game</li>
+<li>Follow your preferred method to obtain MNF, but zuggle Zelda's Torch instead</li>
+<li>Save the game or get an autosave</li>
+</ol>
 <details class="example">
 <summary>Diagram</summary>
 <pre class="mermaid"><code>graph TD
@@ -2112,30 +2156,124 @@ Method 4: like method 2 but with dropdowns</p>
     E[DI Shield] --&gt;|FE| G[RL Weapon]
     F --&gt;|Fuse| H[DI Shield]
     C[DI Weapon] --&gt;|FE| H
+    C --&gt;|FE| D[Normal Shield]
     H --&gt;|FE| I["30 DI Weapons&lt;br/&gt;(purgatorized)"]
-    D[Normal Shield] --&gt;|CF| I
+    D --&gt;|CF| I
     I --&gt;|FE| J["20 DI Shields&lt;br/&gt;(or weapons/bows)"]
     G --&gt;|CF| J</code></pre>
 </details>
-<p>(method goes here)</p>
 </div>
 <div class="tabbed-block">
-<p>(diagram here)</p>
-<p>(then the method)</p>
+<p>Prepare:
+- 13 Zuggle Overload
+- 2 DI Ghost Weapons, one for duping, the other dubbed "C"
+- 3 DI Ghost Shields, one for duping, the other two dubbed "A" and "B"
+- A fused equipment item
+- 1 or more of the duplication target</p>
+<p>Part 1: Performing SFO
+1. If duplicating Zonai Devices, enter a minigame with no timer. If duplicating other materials, enter a minigame or a shrine
+2. A1 [Overload FE] Weapon D
+3. [Recall Lock] D
+4. B1 Overload FE Weapon E
+5. Recall Lock E
+6. Smuggle C and equip D
+8. C/D DI Shield F
+9. C Overload FE Shield G
+10. Recall lock G
+11. Smuggle F and equip D
+12. [Overload Pickup] G
+13. F/G [Overload Batch DI] 30 Weapons H1-H30
+14. Fail-drop G and leave it equipped
+15. [Throw Purgatory] all H
+16. [Zuggle Drop] C to "equip" all H
+17. Overload Pickup E
+18. Overload Batch DI <strong>up to</strong> 20 Shields (or Weapons/Bows) I1-I20. Starting with I17, check after each to see if Menu Link is overloaded. If so, proceed to step 19.
+19. Drop your fused item. If the fuse gets deleted, <em>you are done</em>. If it doesn't, pick it up and create exactly <em>one</em> more "I", and then you will be done.</p>
+<p>Part 2: Duplicating with SFO</p>
+<ol>
+<li>Ready a throw of the duplication target. It should fall to the ground</li>
+<li>Collect it</li>
+<li>Ready throw again. This will "put away" the target you "still had held" and drop another to the ground</li>
+<li>Each cycle will increase the quantity of your target by 1, and putting away the final throw will also add 1</li>
+<li>Collect the cold-fused materials to end SFO before ending the minigame/exiting the shrine</li>
+</ol>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    B[DI Shield] --&gt;|FE| F[RL Weapon]
+    E[DI Shield] --&gt;|FE| G[RL Weapon]
+    F --&gt;|Fuse| H[DI Shield]
+    C[DI Weapon] --&gt;|FE| H
+    C --&gt;|FE| D[Normal Shield]
+    H --&gt;|FE| I["30 DI Weapons&lt;br/&gt;(purgatorized)"]
+    D --&gt;|CF| I
+    I --&gt;|FE| J["20 DI Shields&lt;br/&gt;(or weapons/bows)"]
+    G --&gt;|CF| J</code></pre>
+</details>
 </div>
 <div class="tabbed-block">
-<p>(diagram)</p>
-<p>(method)</p>
+<p>Prepare:
+- 13 Zuggle Overload
+- 2 DI Ghost Weapons, one for duping, the other dubbed "C"
+- 3 DI Ghost Shields, one for duping, the other two dubbed "A" and "B"
+- Several fused equipment items
+- A portacull Shield (or the materials to make one with [Overload Cold Fuse]</p>
+<p>An save in Rasitakiwak Shrine is recommended, though other shrines (or none at all) will work if you know what you're doing</p>
+<p>Part 1: Performing SFO
+1. Defeat Army and enter the tunnel before Ganondorf.
+2. A1 [Overload FE] Weapon D
+3. [Recall Lock] D
+4. B1 Overload FE Weapon E
+5. Recall Lock E
+6. Smuggle C and equip D
+8. C/D DI Shield F
+9. C Overload FE Shield G
+10. Recall lock G
+11. Smuggle F and equip D
+12. [Overload Pickup] G
+13. F/G [Overload Batch DI] 30 Weapons H1-H30
+14. Fail-drop G and leave it equipped
+15. [Throw Purgatory] all H
+16. [Zuggle Drop] C to "equip" all H
+17. Overload Pickup E
+18. Overload Batch DI <strong>up to</strong> 20 Shields (or Weapons/Bows) I1-I20. Starting with I17, check after each to see if Menu Link is overloaded. If so, proceed to step 19.
+19. Drop your fused item. If the fuse gets deleted, <em>you are done</em>. If it doesn't, pick it up and create exactly <em>one</em> more "I", and then you will be done.
+20. Zuggle at least one "I", ideally as many as possible, and enter Ganon's Room.</p>
+<p>Part 2: Obtaining Mineru's Arm</p>
+<ol>
+<li>Progress the fight to Phase 2 (2nd form), and drop a fused equipment. The fuse should delete. If not, drop more one at a time until it does</li>
+<li>Progress to Phase 3 (sages blown away), and find Mineru</li>
+<li>Pick up her arm, which is invisible, collisionless, and repeatedly drops from either visible arm. It cannot be collected with an empty hand. Take several to be safe</li>
+<li>Drop your zuggled "I"s and destroy them to reduce SFO, then UNDOCK THE CONSOLE</li>
+<li>Fuse something to Mineru's Arm. <em>If the console is docked, this will crash the game!</em></li>
+<li>Use the Portacull to Swap Resync Zuggle Mineru's Arm. It will always fail-drop while on the ground, so you don't need a wall or any specific equipment</li>
+<li>Load your save in Rasitakiwak</li>
+<li>Stand on the grated portion of the wing platform and prepare recall</li>
+<li>Drop an equipped weapon and immediately recall the item fused to Mineru's Arm (which still has no collision)</li>
+<li>Equip a weapon and pick up Mineru's Arm (it still cannot be collected with an empty hand)</li>
+<li>Destroy the fuse on Mineru's Arm, this will prevent it from crashing the game when used as a faildrop wall while docked</li>
+<li>Save the game/Get an autosave</li>
+</ol>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    B[DI Shield] --&gt;|FE| F[RL Weapon]
+    E[DI Shield] --&gt;|FE| G[RL Weapon]
+    F --&gt;|Fuse| H[DI Shield]
+    C[DI Weapon] --&gt;|FE| H
+    C --&gt;|FE| D[Normal Shield]
+    H --&gt;|FE| I["30 DI Weapons&lt;br/&gt;(purgatorized)"]
+    D --&gt;|CF| I
+    I --&gt;|FE| J["20 DI Shields&lt;br/&gt;(or weapons/bows)"]
+    G --&gt;|CF| J
+    J --&gt;|Take in 1+| K[Ganon's Room]</code></pre>
+</details>
 </div>
 </div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Persistent?</p>
-<p>This setup <em>does</em> persist through warps and loads, allowing it in theory to be used for any use case. However, it is more difficult to undo than local methods, which can be inconvenient.</p>
 </div>
 </div>
 <div class="tabbed-block">
-<p>This is a local method that makes use of DI equipment to maximize portability and speed. It is ideal for Mineru's Arm and duplication, but cannot be used for Zelda's Torch.</p>
+<p>This is a local method that makes use of specially-prepared DI equipment to maximize portability and speed. It is ideal for Mineru's Arm and duplication, but cannot be used for Zelda's Torch.</p>
 <p>(main part of mulberry's method)</p>
 <details class="abstract">
 <summary>For Mineru's Arm</summary>
@@ -2147,16 +2285,55 @@ Method 4: like method 2 but with dropdowns</p>
 <p>To duplicate Zonai Devices, perform this setup in the [find it] Minigame. For other throwables, simply perform in a shrine.</p>
 <p>(extension that tells you how to dupe with sfo)</p>
 </details>
-<div class="admonition info">
-<p class="admonition-title">Local?</p>
-<p>This setup <em>does not</em> persist through warps and loads, limiting its uses. However, this also makes it easy to <em>undo</em>, and therefore more convenient for some tasks.</p>
-</div>
 </div>
 <div class="tabbed-block">
-<p>This is a local method with minimal additional glitches required. As a local method, it cannot be used for Zelda's Torch.</p>
-<p>(method based on Tahata's guide, placed last due to being somewhat outmoded by DI methods, but included due to being simplistic)</p>
+<p>This is a local method with minimal additional glitches required. It is perfectly acceptable for obtaining Mineru's Arm and duplicating throwables on all versions, but cannot be used to obtain Zelda's Torch.</p>
 <details class="abstract">
 <summary>For mineru's Arm</summary>
+<p>Prepare:
+- 13 zuggle overload
+- A bow
+- A weapon
+- 2+ unfused shields
+- Several fused equipment items
+- 31+ materials
+- If on 1.2.0+, a Portacull Shield (or the materials to make one via Overload Cold Fuse)
+- A bucket-shaped autobuild with enough Hover Stones to float (and optionally 1-2 Big Batteries)</p>
+<p>Part 1: Performing SFO</p>
+<ol>
+<li>Defeat Army and enter the tunnel before Ganondorf</li>
+<li>Drop the portacull aside. Be sure not to go too far from any of your working objects</li>
+<li>Overload Drop a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare</li>
+<li>Overload Drop a weapon (A) and fuse it to a shield (B)</li>
+<li>Overload Cold Fuse 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)</li>
+<li>Fail-drop A and drop B</li>
+<li>Overload pick up C1 and cf 30 materials (D1-D30) to it</li>
+<li>Fail-drop C1 and set it aside</li>
+<li>Repeat 7 for C2-C19 with the same D1-D30</li>
+<li>For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, proceed to step 11</li>
+<li>cf an unrelated material to C(n). If it works, pick it back up and cf the next D, then repeat. If it fails, proceed to step 12</li>
+<li>Fail-drop C(n) and drop it. You may have to unequip your bow for it to return</li>
+<li>Drop A, not too close to where the barrier will spawn</li>
+<li>Collect B, all of C, and all of D into the bucket build</li>
+<li>Carry the bucket into Ganondorf's room, holding it high and far aside to keep it out of the way</li>
+</ol>
+<p>Part 2: Obtaining Mineru's Arm</p>
+<ol>
+<li>Progress the fight to Phase 2 (2nd form), and drop a fused equipment. The fuse should delete. If not, drop more one at a time until it does</li>
+<li>Progress to Phase 3 (sages blown away), and find Mineru</li>
+<li>Pick up her arm, which is invisible, collisionless, and repeatedly drops from either visible arm. It cannot be collected with an empty hand. Take several to be safe</li>
+<li>Collect the materials in the bucket to undo SFO and UNDOCK THE CONSOLE</li>
+<li>Fuse something to Mineru's Arm. <em>If the console is docked, this will crash the game</em></li>
+<li>Zuggle Mineru's Arm. It will always fail-drop while on the ground, so either version can be done without a wall</li>
+<li>If on <code>1.1.2</code> or earlier, Map Zuggle Mineru's Arm</li>
+<li>If on <code>1.2.0</code> or later, use the portacull to SRZ Mineru's Arm</li>
+<li>Load a save. If you undid SFO, there will be no crash risk</li>
+<li>Go somewhere you can see a long way down and prepare recall</li>
+<li>Drop an equipped weapon and immediately recall the item fused to Mineru's Arm (which still has no collision)</li>
+<li>Equip a weapon and pick up Mineru's Arm (it still cannot be collected with an empty hand)</li>
+<li>Destroy the fuse on Mineru's Arm, this will prevent it from crashing the game when used as a faildrop wall while docked</li>
+<li>Save the game/Get an autosave</li>
+</ol>
 <details class="example">
 <summary>Diagram</summary>
 <pre class="mermaid"><code>graph TD
@@ -2167,10 +2344,39 @@ Method 4: like method 2 but with dropdowns</p>
     C --&gt;|Take in| E
     D --&gt;|Take in| E</code></pre>
 </details>
-<p>(method, then how to get Mineru's Arm with it)</p>
 </details>
 <details class="abstract">
 <summary>For Duplication</summary>
+<p>Prepare:
+- 13 zuggle overload
+- A bow
+- A weapon
+- 2+ unfused shields
+- A handful of fused equipment items
+- 31+ materials
+- 1+ of the duplication target</p>
+<p>Part 1: Performing SFO</p>
+<ol>
+<li>If duplicating Zonai Devices, enter a minigame with no timer. If duplicating materials, enter a minigame or a shrine</li>
+<li>Overload Drop a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare</li>
+<li>Overload Drop a weapon (A) and fuse it to a shield (B)</li>
+<li>Overload Cold Fuse 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)</li>
+<li>Fail-drop A and drop B</li>
+<li>Overload pick up C1 and cf 30 materials (D1-D30) to it</li>
+<li>Fail-drop C1 and set it aside</li>
+<li>Repeat 7 for C2-C19 with the same D1-D30</li>
+<li>For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, proceed to step 11</li>
+<li>cf an unrelated material to C(n). If it works, pick it back up and cf the next D, then repeat. If it fails, proceed to step 12</li>
+<li>Fail-drop C(n) and drop it. You may have to unequip your bow for it to return</li>
+</ol>
+<p>Part 2: Duplicating with SFO</p>
+<ol>
+<li>Ready a throw of the duplication target. It should fall to the ground</li>
+<li>Collect it</li>
+<li>Ready throw again. This will "put away" the target you "still had held" and drop another to the ground</li>
+<li>Each cycle will increase the quantity of your target by 1, and putting away the final throw will also add 1</li>
+<li>Collect the cold-fused materials to end SFO before ending the minigame/exiting the shrine</li>
+</ol>
 <details class="example">
 <summary>Diagram</summary>
 <pre class="mermaid"><code>graph TD
@@ -2182,10 +2388,35 @@ Method 4: like method 2 but with dropdowns</p>
 </details>
 <p>(method, then explanation of how to dupe with SFO)</p>
 </details>
-<div class="admonition info">
-<p class="admonition-title">Local?</p>
-<p>This setup <em>does not</em> persist through warps and loads, limiting its uses. However, this also makes it easy to <em>undo</em>, and therefore more convenient for some tasks.</p>
-</div>
+<details class="question">
+<summary>Or can it?</summary>
+<p>While it isn't ideal, and is far surpassed by Methods 1 and 2, this method <em>can</em> be made persistent on <code>1.2.0</code> and up by permaculling the entire setup. The following adjustments will need to be made to obtain Zelda's Torch:</p>
+<ul>
+<li>Instead of materials, make D1-D30 additional shields</li>
+<li>Prepare a Portacull Weapon</li>
+<li>Optionally, prepare a VD or DI shield (E) to save yourself about 51 SRZs</li>
+<li>Prepare the <em>second</em> autosave in the prologue, and an autosave in Rasitakiwak Shrine</li>
+<li>Perform your setup in Rasitakiwak</li>
+</ul>
+<p>Then, after reaching SFO:</p>
+<ol>
+<li>Equip your portacull weapon</li>
+<li>Smuggle E and equip one of B, C, or D</li>
+<li><strong>Pause</strong></li>
+<li>Drop-swap the portacull, and drop your shield</li>
+<li><strong>Pause Buffer</strong> (must be maximum speed)</li>
+<li>Equip and unequip any shield</li>
+<li><strong>Unpause</strong></li>
+</ol>
+<p>This will permacull the shield you dropped. Repeat for <em>all</em> of B, C, and D, ultimately permaculling the entire setup.</p>
+<p>Finally, to obtain Zelda's Torch:</p>
+<ol>
+<li>Load your prologue save. Zelda will drop her torch, so pick it up</li>
+<li>Get another autosave and close the game to clear SFO</li>
+<li>Follow your preffered method to obtain MNF, but zuggle Zelda's Torch back to your progressed save instead</li>
+<li>Save the game or get an autosave</li>
+</ol>
+</details>
 </div>
 </div>
 </div>
