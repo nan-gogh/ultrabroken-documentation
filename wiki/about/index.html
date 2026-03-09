@@ -2265,38 +2265,64 @@
 </div>
 
 <script>
-function diagramSlide(slider) {
-  var container = slider.closest('.diagram-pan');
-  var inner = container.querySelector('.diagram-inner');
-  var label = container.querySelector('.diagram-level');
-  var zoom = parseInt(slider.value) / 100;
-  inner.style.transform = 'scale(' + zoom + ')';
-  label.textContent = slider.value + '%';
-}
-function diagramReset(btn) {
-  var container = btn.closest('.diagram-pan');
-  var slider = container.querySelector('input[type=range]');
-  slider.value = 100;
-  diagramSlide(slider);
-}
+(function() {
+  function applyZoom(pan, newZoom, pivotX, pivotY) {
+    var inner = pan.querySelector('.diagram-inner');
+    var slider = pan.querySelector('input[type=range]');
+    var label = pan.querySelector('.diagram-level');
+    var oldZoom = parseFloat(inner.dataset.zoom || 1);
+    newZoom = Math.max(0.4, Math.min(4, newZoom));
+    if (newZoom === oldZoom) return;
+    var ratio = newZoom / oldZoom;
+    var barH = (pan.querySelector('.diagram-zoom') || {}).offsetHeight || 0;
+    inner.dataset.zoom = newZoom;
+    inner.style.zoom = newZoom;
+    slider.value = Math.round(newZoom * 100);
+    label.textContent = Math.round(newZoom * 100) + '%';
+    pan.scrollLeft = (pan.scrollLeft + pivotX) * ratio - pivotX;
+    pan.scrollTop  = (pan.scrollTop + pivotY - barH) * ratio + barH - pivotY;
+  }
 
-document.querySelectorAll('.diagram-pan').forEach(function(pan) {
-  var startX, startY, scrollL, scrollT;
-  pan.addEventListener('mousedown', function(e) {
-    if (e.target.closest('.diagram-zoom')) return;
-    pan.classList.add('is-dragging');
-    startX = e.clientX; startY = e.clientY;
-    scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
+  window.diagramSlide = function(slider) {
+    var pan = slider.closest('.diagram-pan');
+    applyZoom(pan, parseInt(slider.value) / 100, pan.clientWidth / 2, pan.clientHeight / 2);
+  };
+
+  window.diagramReset = function(btn) {
+    var pan = btn.closest('.diagram-pan');
+    applyZoom(pan, 1, pan.clientWidth / 2, pan.clientHeight / 2);
+  };
+
+  document.querySelectorAll('.diagram-pan').forEach(function(pan) {
+    var inner = pan.querySelector('.diagram-inner');
+    inner.dataset.zoom = 1;
+    var startX, startY, scrollL, scrollT;
+    pan.addEventListener('mousedown', function(e) {
+      if (e.target.closest('.diagram-zoom')) return;
+      pan.classList.add('is-dragging');
+      startX = e.clientX; startY = e.clientY;
+      scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!pan.classList.contains('is-dragging')) return;
+      pan.scrollLeft = scrollL - (e.clientX - startX);
+      pan.scrollTop  = scrollT - (e.clientY - startY);
+    });
+    window.addEventListener('mouseup', function() {
+      pan.classList.remove('is-dragging');
+    });
+    pan.addEventListener('wheel', function(e) {
+      if (e.target.closest('.diagram-zoom')) return;
+      e.preventDefault();
+      var rect = pan.getBoundingClientRect();
+      var px = e.clientX - rect.left;
+      var py = e.clientY - rect.top;
+      var cur = parseFloat(inner.dataset.zoom || 1);
+      var delta = e.deltaY > 0 ? -0.1 : 0.1;
+      applyZoom(pan, cur + delta, px, py);
+    }, { passive: false });
   });
-  window.addEventListener('mousemove', function(e) {
-    if (!pan.classList.contains('is-dragging')) return;
-    pan.scrollLeft = scrollL - (e.clientX - startX);
-    pan.scrollTop = scrollT - (e.clientY - startY);
-  });
-  window.addEventListener('mouseup', function() {
-    pan.classList.remove('is-dragging');
-  });
-});
+})();
 </script>
 
 
