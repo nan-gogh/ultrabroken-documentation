@@ -2201,155 +2201,6 @@
 <h2 id="infrastructure">Infrastructure</h2>
 <hr />
 <p>The archives run on open-source tooling across GitHub and Cloudflare. Media uploads require authentication via the <a href="https://github.com/ultrabroken-archivists"><code>ultrabroken-archivists</code></a> GitHub organisation — membership is managed by invite only. No personal data is collected; Cloudflare Access verifies org membership through GitHub OAuth and does not store credentials beyond session tokens.</p>
-<script>
-(function(){
-  // Minimal, reusable diagram viewer for any content inside .diagram-inner
-  function DiagramPanZoom(pan) {
-    const inner = pan.querySelector('.diagram-inner');
-    const slider = pan.querySelector('input[type=range]');
-    const label = pan.querySelector('.diagram-level');
-    const resetBtn = pan.querySelector('button');
-    let zoom = 1, minZoom = 0.4, maxZoom = 4;
-    let baseW = 0, baseH = 0;
-    let dragging = false, dragX = 0, dragY = 0, scrollL = 0, scrollT = 0;
-    let lastTouchDist = null, lastTouchMid = null;
-
-    // Wait for content to render and measure base size
-    function measureBase() {
-      const mermaid = inner.querySelector('.mermaid');
-      if (!mermaid || pan.clientWidth === 0) return requestAnimationFrame(measureBase);
-      // Wait for SVG to appear (textContent empty)
-      if (mermaid.textContent.trim().length > 0) return requestAnimationFrame(measureBase);
-      const rect = mermaid.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) return requestAnimationFrame(measureBase);
-      // Remove any transform for base measurement
-      inner.style.transform = '';
-      baseW = inner.offsetWidth;
-      baseH = Math.ceil(rect.height + parseFloat(getComputedStyle(inner).paddingTop) + parseFloat(getComputedStyle(inner).paddingBottom));
-      inner.style.width = baseW + 'px';
-      inner.style.height = baseH + 'px';
-      setZoom(1, true);
-    }
-
-    // Set zoom, optionally centering
-    function setZoom(newZoom, center) {
-      zoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
-      inner.style.transform = `scale(${zoom})`;
-      inner.style.width = baseW * zoom + 'px';
-      inner.style.height = baseH * zoom + 'px';
-      slider.value = Math.round(zoom * 100);
-      label.textContent = Math.round(zoom * 100) + '%';
-      if (center) {
-        pan.scrollLeft = (inner.offsetWidth - pan.clientWidth) / 2;
-        pan.scrollTop = (inner.offsetHeight - pan.clientHeight) / 2;
-      }
-    }
-
-    // Zoom to a pivot point (px, py in pan coords)
-    function zoomTo(newZoom, px, py) {
-      const oldZoom = zoom;
-      newZoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
-      if (newZoom === oldZoom) return;
-      // Calculate scroll so (px,py) stays fixed
-      const relX = px + pan.scrollLeft;
-      const relY = py + pan.scrollTop;
-      setZoom(newZoom);
-      const ratio = newZoom / oldZoom;
-      pan.scrollLeft = relX * ratio - px;
-      pan.scrollTop = relY * ratio - py;
-    }
-
-    // Slider: always zoom to center
-    slider.addEventListener('input', () => {
-      setZoom(parseInt(slider.value) / 100, true);
-    });
-    // Reset: zoom to 1, center
-    resetBtn.addEventListener('click', () => setZoom(1, true));
-    // Wheel: zoom to cursor
-    pan.addEventListener('wheel', e => {
-      if (e.target.closest('.diagram-zoom')) return;
-      e.preventDefault();
-      const rect = pan.getBoundingClientRect();
-      const px = e.clientX - rect.left;
-      const py = e.clientY - rect.top;
-      const delta = e.deltaY > 0 ? -0.1 : 0.1;
-      zoomTo(zoom + delta, px, py);
-    }, { passive: false });
-    // Drag: pan by mouse
-    pan.addEventListener('mousedown', e => {
-      if (e.target.closest('.diagram-zoom')) return;
-      dragging = true;
-      pan.classList.add('is-dragging');
-      dragX = e.clientX; dragY = e.clientY;
-      scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
-    });
-    window.addEventListener('mousemove', e => {
-      if (!dragging) return;
-      pan.scrollLeft = scrollL - (e.clientX - dragX);
-      pan.scrollTop = scrollT - (e.clientY - dragY);
-    });
-    window.addEventListener('mouseup', () => {
-      dragging = false;
-      pan.classList.remove('is-dragging');
-    });
-    // Touch: pinch to zoom, drag to pan
-    pan.addEventListener('touchstart', e => {
-      if (e.touches.length === 2) {
-        lastTouchDist = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-        lastTouchMid = {
-          x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - pan.getBoundingClientRect().left,
-          y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - pan.getBoundingClientRect().top
-        };
-      } else if (e.touches.length === 1) {
-        dragging = true;
-        dragX = e.touches[0].clientX; dragY = e.touches[0].clientY;
-        scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
-      }
-    }, { passive: false });
-    pan.addEventListener('touchmove', e => {
-      if (e.touches.length === 2 && lastTouchDist && lastTouchMid) {
-        e.preventDefault();
-        const dist = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-        const mid = {
-          x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - pan.getBoundingClientRect().left,
-          y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - pan.getBoundingClientRect().top
-        };
-        const scale = dist / lastTouchDist;
-        zoomTo(zoom * scale, mid.x, mid.y);
-        lastTouchDist = dist;
-        lastTouchMid = mid;
-      } else if (e.touches.length === 1 && dragging) {
-        e.preventDefault();
-        pan.scrollLeft = scrollL - (e.touches[0].clientX - dragX);
-        pan.scrollTop = scrollT - (e.touches[0].clientY - dragY);
-      }
-    }, { passive: false });
-    pan.addEventListener('touchend', e => {
-      if (e.touches.length < 2) {
-        lastTouchDist = null;
-        lastTouchMid = null;
-      }
-      if (e.touches.length === 0) {
-        dragging = false;
-        pan.classList.remove('is-dragging');
-      }
-    });
-    // On resize, re-center
-    window.addEventListener('resize', () => setZoom(zoom, true));
-    // Start
-    measureBase();
-  }
-  // Init all diagrams
-  document.querySelectorAll('.diagram-pan').forEach(DiagramPanZoom);
-})();
-</script>
-
 <div class="diagram-pan">
   <div class="diagram-zoom">
     <input type="range" min="40" max="400" value="100">
@@ -2397,6 +2248,129 @@
     VISITOR --&gt;|loads media| R2</code></pre>
   </div>
 </div>
+
+<script>
+(function(){
+  function DiagramPanZoom(pan) {
+    const inner = pan.querySelector('.diagram-inner');
+    const slider = pan.querySelector('input[type=range]');
+    const label = pan.querySelector('.diagram-level');
+    const resetBtn = pan.querySelector('button');
+    let zoom = 1, minZoom = 0.4, maxZoom = 4;
+    let baseW = 0, baseH = 0;
+    let dragging = false, dragX = 0, dragY = 0, scrollL = 0, scrollT = 0;
+    let lastTouchDist = null, lastTouchMid = null;
+
+    function measureBase() {
+      const mermaid = inner.querySelector('.mermaid');
+      if (!mermaid || pan.clientWidth === 0) return requestAnimationFrame(measureBase);
+      if (mermaid.textContent.trim().length > 0) return requestAnimationFrame(measureBase);
+      const rect = mermaid.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return requestAnimationFrame(measureBase);
+      inner.style.transform = '';
+      baseW = inner.offsetWidth;
+      baseH = Math.ceil(rect.height + parseFloat(getComputedStyle(inner).paddingTop) + parseFloat(getComputedStyle(inner).paddingBottom));
+      inner.style.width = baseW + 'px';
+      inner.style.height = baseH + 'px';
+      setZoom(1, true);
+    }
+
+    function setZoom(newZoom, center) {
+      zoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
+      inner.style.transform = `scale(${zoom})`;
+      inner.style.width = baseW * zoom + 'px';
+      inner.style.height = baseH * zoom + 'px';
+      slider.value = Math.round(zoom * 100);
+      label.textContent = Math.round(zoom * 100) + '%';
+      if (center) {
+        pan.scrollLeft = (inner.offsetWidth - pan.clientWidth) / 2;
+        pan.scrollTop = (inner.offsetHeight - pan.clientHeight) / 2;
+      }
+    }
+
+    function zoomTo(newZoom, px, py) {
+      const oldZoom = zoom;
+      newZoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
+      if (newZoom === oldZoom) return;
+      const relX = px + pan.scrollLeft;
+      const relY = py + pan.scrollTop;
+      setZoom(newZoom);
+      const ratio = newZoom / oldZoom;
+      pan.scrollLeft = relX * ratio - px;
+      pan.scrollTop = relY * ratio - py;
+    }
+
+    slider.addEventListener('input', () => {
+      setZoom(parseInt(slider.value) / 100, true);
+    });
+    resetBtn.addEventListener('click', () => setZoom(1, true));
+
+    pan.addEventListener('wheel', e => {
+      if (e.target.closest('.diagram-zoom')) return;
+      e.preventDefault();
+      const rect = pan.getBoundingClientRect();
+      const px = e.clientX - rect.left;
+      const py = e.clientY - rect.top;
+      const delta = e.deltaY > 0 ? -0.1 : 0.1;
+      zoomTo(zoom + delta, px, py);
+    }, { passive: false });
+
+    pan.addEventListener('mousedown', e => {
+      if (e.target.closest('.diagram-zoom')) return;
+      dragging = true;
+      pan.classList.add('is-dragging');
+      dragX = e.clientX; dragY = e.clientY;
+      scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
+    });
+
+    window.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      pan.scrollLeft = scrollL - (e.clientX - dragX);
+      pan.scrollTop = scrollT - (e.clientY - dragY);
+    });
+
+    window.addEventListener('mouseup', () => {
+      dragging = false;
+      pan.classList.remove('is-dragging');
+    });
+
+    pan.addEventListener('touchstart', e => {
+      if (e.touches.length === 2) {
+        lastTouchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+        lastTouchMid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - pan.getBoundingClientRect().left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - pan.getBoundingClientRect().top};
+      } else if (e.touches.length === 1) {
+        dragging = true;
+        dragX = e.touches[0].clientX; dragY = e.touches[0].clientY;
+        scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
+      }
+    }, { passive: false });
+
+    pan.addEventListener('touchmove', e => {
+      if (e.touches.length === 2 && lastTouchDist && lastTouchMid) {
+        e.preventDefault();
+        const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+        const mid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - pan.getBoundingClientRect().left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - pan.getBoundingClientRect().top};
+        zoomTo(zoom * dist / lastTouchDist, mid.x, mid.y);
+        lastTouchDist = dist;
+        lastTouchMid = mid;
+      } else if (e.touches.length === 1 && dragging) {
+        e.preventDefault();
+        pan.scrollLeft = scrollL - (e.touches[0].clientX - dragX);
+        pan.scrollTop = scrollT - (e.touches[0].clientY - dragY);
+      }
+    }, { passive: false });
+
+    pan.addEventListener('touchend', e => {
+      if (e.touches.length < 2) {lastTouchDist = null; lastTouchMid = null;}
+      if (e.touches.length === 0) {dragging = false; pan.classList.remove('is-dragging');}
+    });
+
+    window.addEventListener('resize', () => setZoom(zoom, true));
+    measureBase();
+  }
+  document.querySelectorAll('.diagram-pan').forEach(DiagramPanZoom);
+})();
+</script>
 
 
 
