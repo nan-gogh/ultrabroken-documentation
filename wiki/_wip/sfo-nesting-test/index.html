@@ -2108,10 +2108,10 @@ Method 4: like method 2 but with dropdowns</p>
 <details class="example">
 <summary>Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[Equipment] --&gt; B [DI Shield]
-    A --&gt; C [DI Weapon] 
-    A --&gt; D [Normal Shield]
-    A --&gt; E [DI Shield]
+    A[Equipment] --&gt;|Prepare| B [DI Shield]
+    A --&gt;|Prepare| C [DI Weapon] 
+    A --&gt;|Prepare| D [Normal Shield]
+    A --&gt;|Prepare| E [DI Shield]
     B --&gt;|FE| F [RL Weapon]
     E --&gt;|FE| G [RL Weapon]
     F --&gt;|Fuse| H [DI Shield]
