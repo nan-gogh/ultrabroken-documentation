@@ -2348,6 +2348,67 @@
   // Init all diagrams
   document.querySelectorAll('.diagram-pan').forEach(DiagramPanZoom);
 })();
+</script>
+
+<div class="diagram-pan">
+  <div class="diagram-zoom">
+    <input type="range" min="40" max="400" value="100" oninput="diagramSlide(this)">
+    <span class="diagram-level">100%</span>
+    <button onclick="diagramReset(this)">Reset</button>
+  </div>
+  <div class="diagram-inner">
+    <div class="mermaid">
+graph TD
+    OWNER["👤 Owner<br/>nan-gogh"]
+    MEMBERS["👥 Org Members<br/>invited by username"]
+    ORG["📋 Membership Roster<br/>access-control list only"]
+    OAUTH["🔐 OAuth App<br/>credentials shared<br/>with Cloudflare"]
+
+    MEDIA_REPO["📦 ultrabroken-media<br/>Worker source + workflows"]
+    WIKI_REPO["📚 ultrabroken-documentation<br/>MkDocs wiki source"]
+    DEPLOY["⚙️ deploy.yml<br/>auto-deploy Worker"]
+    OPTIMIZE["🖼️ optimize.yml<br/>AVIF via sharp"]
+    TRANSCODE["🎬 transcode.yml<br/>AV1 via ffmpeg"]
+
+    ACCESS["🚪 Cloudflare Access<br/>Zero Trust gateway<br/>requires org membership"]
+    WORKER["💼 Worker<br/>serves files + /manage UI<br/>upload · delete · purge"]
+    R2["🗄️ R2 Object Storage<br/>screens/ · video/ · social/"]
+    PAGES["📖 GitHub Pages<br/>hosts the wiki"]
+    VISITOR["👁️ Wiki Visitors<br/>public — no auth"]
+
+    OWNER -->|owns| ORG
+    MEMBERS -->|member of| ORG
+    ORG -->|membership check| ACCESS
+    OAUTH -->|credentials| ACCESS
+    OWNER -->|GitHub login| ACCESS
+    MEMBERS -->|GitHub login| ACCESS
+    ACCESS -->|authenticated| WORKER
+    WORKER -->|read / write| R2
+
+    MEDIA_REPO -->|push triggers| DEPLOY
+    DEPLOY -->|wrangler deploy| ACCESS
+    DEPLOY -->|dispatch via PAT| OPTIMIZE
+    DEPLOY -->|dispatch via PAT| TRANSCODE
+    OPTIMIZE -->|convert + reupload| R2
+    TRANSCODE -->|transcode + reupload| R2
+
+    WIKI_REPO -->|push triggers| PAGES
+    PAGES -->|media links| R2
+    VISITOR -->|reads| PAGES
+    VISITOR -->|loads media| R2
+
+    classDef people fill:#1a3a39,stroke:#00f0c2,stroke-width:2px
+    classDef repos fill:#1a3a39,stroke:#00f0c2,stroke-width:1.5px
+    classDef actions fill:#1a3a39,stroke:#00f0c2,stroke-width:1.5px
+    classDef services fill:#1a3a39,stroke:#00f0c2,stroke-width:1.5px
+
+    class OWNER,MEMBERS people
+    class MEDIA_REPO,WIKI_REPO repos
+    class DEPLOY,OPTIMIZE,TRANSCODE actions
+    class ACCESS,WORKER,R2,PAGES services
+    </div>
+  </div>
+</div>
 
 
 
