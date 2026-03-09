@@ -2201,164 +2201,153 @@
 <h2 id="infrastructure">Infrastructure</h2>
 <hr />
 <p>The archives run on open-source tooling across GitHub and Cloudflare. Media uploads require authentication via the <a href="https://github.com/ultrabroken-archivists"><code>ultrabroken-archivists</code></a> GitHub organisation — membership is managed by invite only. No personal data is collected; Cloudflare Access verifies org membership through GitHub OAuth and does not store credentials beyond session tokens.</p>
-<div class="diagram-pan">
-  <div class="diagram-zoom">
-    <input type="range" min="40" max="400" value="100" oninput="diagramSlide(this)">
-    <span class="diagram-level">100%</span>
-    <button onclick="diagramReset(this)">Reset</button>
-  </div>
-  <div class="diagram-inner">
-
-<pre class="mermaid"><code>graph LR
-    subgraph people ["Collaborators"]
-        direction TB
-        OWNER["Owner&lt;br/&gt;nan-gogh"]
-        MEMBERS["Org Members&lt;br/&gt;invited by username"]
-    end
-
-    subgraph org ["GitHub Org: ultrabroken-archivists"]
-        direction TB
-        ORG["Membership Roster&lt;br/&gt;access-control list only"]
-        OAUTH["OAuth App&lt;br/&gt;credentials shared&lt;br/&gt;with Cloudflare"]
-    end
-
-    subgraph repos ["GitHub Repos (nan-gogh)"]
-        direction TB
-        WIKI_REPO["ultrabroken-documentation&lt;br/&gt;MkDocs wiki source"]
-        MEDIA_REPO["ultrabroken-media&lt;br/&gt;Worker source + workflows"]
-        subgraph actions ["GitHub Actions"]
-            direction TB
-            DEPLOY["deploy.yml&lt;br/&gt;auto-deploy Worker"]
-            OPTIMIZE["optimize.yml&lt;br/&gt;AVIF via sharp"]
-            TRANSCODE["transcode.yml&lt;br/&gt;AV1 via ffmpeg"]
-        end
-    end
-
-    subgraph cloudflare ["Cloudflare"]
-        direction TB
-        ACCESS["Cloudflare Access&lt;br/&gt;Zero Trust gateway&lt;br/&gt;requires org membership"]
-        WORKER["Worker&lt;br/&gt;serves files + /manage UI&lt;br/&gt;upload · delete · purge"]
-        R2["R2 Object Storage&lt;br/&gt;screens/ · video/ · social/"]
-        PAGES["GitHub Pages&lt;br/&gt;hosts the wiki"]
-    end
-
-    VISITOR["Wiki Visitors&lt;br/&gt;public — no auth"]
-
-    OWNER --&gt;|owns| ORG
-    MEMBERS --&gt;|member of| ORG
-    ORG --&gt;|membership check| ACCESS
-    OAUTH --&gt;|credentials| ACCESS
-    OWNER &amp; MEMBERS --&gt;|GitHub login| ACCESS
-    ACCESS --&gt;|authenticated| WORKER
-    WORKER --&gt;|read / write| R2
-    WORKER --&gt;|dispatch via PAT| OPTIMIZE &amp; TRANSCODE
-    OPTIMIZE --&gt;|convert + reupload| R2
-    TRANSCODE --&gt;|transcode + reupload| R2
-    DEPLOY --&gt;|wrangler deploy| WORKER
-    MEDIA_REPO --&gt;|push triggers| DEPLOY
-    WIKI_REPO --&gt;|push triggers| PAGES
-    PAGES --&gt;|media links| R2
-    VISITOR --&gt;|reads| PAGES
-    VISITOR --&gt;|loads media| R2</code></pre>
-
-  </div>
-</div>
-
 <script>
-(function() {
-  function applyZoom(pan, newZoom, pivotX, pivotY) {
-    var inner = pan.querySelector('.diagram-inner');
-    var slider = pan.querySelector('input[type=range]');
-    var label = pan.querySelector('.diagram-level');
-    var oldZoom = parseFloat(inner.dataset.zoom || 1);
-    newZoom = Math.max(0.4, Math.min(4, newZoom));
-    newZoom = Math.round(newZoom * 100) / 100;
-    inner.dataset.zoom = newZoom;
-    inner.style.transform = 'scale(' + newZoom + ')';
-    slider.value = Math.round(newZoom * 100);
-    label.textContent = Math.round(newZoom * 100) + '%';
-    var baseW = parseFloat(inner.dataset.baseW);
-    var baseH = parseFloat(inner.dataset.baseH);
-    if (isNaN(baseW) || isNaN(baseH)) return;
-    var ratio = newZoom / oldZoom;
-    var oldML = parseFloat(inner.style.marginLeft) || 0;
-    var oldMT = parseFloat(inner.style.marginTop) || 0;
-    var scaledW = baseW * newZoom;
-    var scaledH = baseH * newZoom;
-    inner.style.width  = scaledW + 'px';
-    inner.style.height = scaledH + 'px';
-    var newML = Math.max(0, (pan.clientWidth  - scaledW) / 2);
-    var newMT = Math.max(0, (pan.clientHeight - scaledH) / 2);
-    inner.style.marginLeft = newML + 'px';
-    inner.style.marginTop  = newMT + 'px';
-    pan.scrollLeft = (pan.scrollLeft + pivotX - oldML) * ratio - pivotX + newML;
-    pan.scrollTop  = (pan.scrollTop + pivotY - oldMT) * ratio - pivotY + newMT;
-  }
+(function(){
+  // Minimal, reusable diagram viewer for any content inside .diagram-inner
+  function DiagramPanZoom(pan) {
+    const inner = pan.querySelector('.diagram-inner');
+    const slider = pan.querySelector('input[type=range]');
+    const label = pan.querySelector('.diagram-level');
+    const resetBtn = pan.querySelector('button');
+    let zoom = 1, minZoom = 0.4, maxZoom = 4;
+    let baseW = 0, baseH = 0;
+    let dragging = false, dragX = 0, dragY = 0, scrollL = 0, scrollT = 0;
+    let lastTouchDist = null, lastTouchMid = null;
 
-  window.diagramSlide = function(slider) {
-    var pan = slider.closest('.diagram-pan');
-    applyZoom(pan, parseInt(slider.value) / 100, pan.clientWidth / 2, pan.clientHeight / 2);
-  };
-
-  window.diagramReset = function(btn) {
-    var pan = btn.closest('.diagram-pan');
-    applyZoom(pan, 1, pan.clientWidth / 2, pan.clientHeight / 2);
-  };
-
-  document.querySelectorAll('.diagram-pan').forEach(function(pan) {
-    var inner = pan.querySelector('.diagram-inner');
-    inner.dataset.zoom = 1;
-
-    // Poll via rAF until: Mermaid has rendered (textContent empty),
-    // the element has layout dimensions, and the pan has been sized by CSS.
-    function initDiagram() {
-      var el = inner.querySelector('.mermaid');
-      if (!el || el.textContent.trim().length > 0 || pan.clientWidth <= 0) {
-        requestAnimationFrame(initDiagram);
-        return;
-      }
-      var mRect = el.getBoundingClientRect();
-      if (mRect.width <= 0 || mRect.height <= 0) {
-        requestAnimationFrame(initDiagram);
-        return;
-      }
-      var zoom = parseFloat(inner.dataset.zoom) || 1;
-      var cs = getComputedStyle(inner);
-      var padV = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
-      inner.dataset.baseW = inner.offsetWidth;
-      inner.dataset.baseH = Math.ceil(mRect.height / zoom + padV);
-      applyZoom(pan, zoom, pan.clientWidth / 2, pan.clientHeight / 2);
+    // Wait for content to render and measure base size
+    function measureBase() {
+      const mermaid = inner.querySelector('.mermaid');
+      if (!mermaid || pan.clientWidth === 0) return requestAnimationFrame(measureBase);
+      // Wait for SVG to appear (textContent empty)
+      if (mermaid.textContent.trim().length > 0) return requestAnimationFrame(measureBase);
+      const rect = mermaid.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return requestAnimationFrame(measureBase);
+      // Remove any transform for base measurement
+      inner.style.transform = '';
+      baseW = inner.offsetWidth;
+      baseH = Math.ceil(rect.height + parseFloat(getComputedStyle(inner).paddingTop) + parseFloat(getComputedStyle(inner).paddingBottom));
+      inner.style.width = baseW + 'px';
+      inner.style.height = baseH + 'px';
+      setZoom(1, true);
     }
-    requestAnimationFrame(initDiagram);
 
-    var startX, startY, scrollL, scrollT;
-    pan.addEventListener('mousedown', function(e) {
-      if (e.target.closest('.diagram-zoom')) return;
-      pan.classList.add('is-dragging');
-      startX = e.clientX; startY = e.clientY;
-      scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
+    // Set zoom, optionally centering
+    function setZoom(newZoom, center) {
+      zoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
+      inner.style.transform = `scale(${zoom})`;
+      inner.style.width = baseW * zoom + 'px';
+      inner.style.height = baseH * zoom + 'px';
+      slider.value = Math.round(zoom * 100);
+      label.textContent = Math.round(zoom * 100) + '%';
+      if (center) {
+        pan.scrollLeft = (inner.offsetWidth - pan.clientWidth) / 2;
+        pan.scrollTop = (inner.offsetHeight - pan.clientHeight) / 2;
+      }
+    }
+
+    // Zoom to a pivot point (px, py in pan coords)
+    function zoomTo(newZoom, px, py) {
+      const oldZoom = zoom;
+      newZoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
+      if (newZoom === oldZoom) return;
+      // Calculate scroll so (px,py) stays fixed
+      const relX = px + pan.scrollLeft;
+      const relY = py + pan.scrollTop;
+      setZoom(newZoom);
+      const ratio = newZoom / oldZoom;
+      pan.scrollLeft = relX * ratio - px;
+      pan.scrollTop = relY * ratio - py;
+    }
+
+    // Slider: always zoom to center
+    slider.addEventListener('input', () => {
+      setZoom(parseInt(slider.value) / 100, true);
     });
-    window.addEventListener('mousemove', function(e) {
-      if (!pan.classList.contains('is-dragging')) return;
-      pan.scrollLeft = scrollL - (e.clientX - startX);
-      pan.scrollTop  = scrollT - (e.clientY - startY);
-    });
-    window.addEventListener('mouseup', function() {
-      pan.classList.remove('is-dragging');
-    });
-    pan.addEventListener('wheel', function(e) {
+    // Reset: zoom to 1, center
+    resetBtn.addEventListener('click', () => setZoom(1, true));
+    // Wheel: zoom to cursor
+    pan.addEventListener('wheel', e => {
       if (e.target.closest('.diagram-zoom')) return;
       e.preventDefault();
-      var rect = pan.getBoundingClientRect();
-      var px = e.clientX - rect.left;
-      var py = e.clientY - rect.top;
-      var cur = parseFloat(inner.dataset.zoom || 1);
-      var delta = e.deltaY > 0 ? -0.1 : 0.1;
-      applyZoom(pan, cur + delta, px, py);
+      const rect = pan.getBoundingClientRect();
+      const px = e.clientX - rect.left;
+      const py = e.clientY - rect.top;
+      const delta = e.deltaY > 0 ? -0.1 : 0.1;
+      zoomTo(zoom + delta, px, py);
     }, { passive: false });
-  });
+    // Drag: pan by mouse
+    pan.addEventListener('mousedown', e => {
+      if (e.target.closest('.diagram-zoom')) return;
+      dragging = true;
+      pan.classList.add('is-dragging');
+      dragX = e.clientX; dragY = e.clientY;
+      scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
+    });
+    window.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      pan.scrollLeft = scrollL - (e.clientX - dragX);
+      pan.scrollTop = scrollT - (e.clientY - dragY);
+    });
+    window.addEventListener('mouseup', () => {
+      dragging = false;
+      pan.classList.remove('is-dragging');
+    });
+    // Touch: pinch to zoom, drag to pan
+    pan.addEventListener('touchstart', e => {
+      if (e.touches.length === 2) {
+        lastTouchDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        lastTouchMid = {
+          x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - pan.getBoundingClientRect().left,
+          y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - pan.getBoundingClientRect().top
+        };
+      } else if (e.touches.length === 1) {
+        dragging = true;
+        dragX = e.touches[0].clientX; dragY = e.touches[0].clientY;
+        scrollL = pan.scrollLeft; scrollT = pan.scrollTop;
+      }
+    }, { passive: false });
+    pan.addEventListener('touchmove', e => {
+      if (e.touches.length === 2 && lastTouchDist && lastTouchMid) {
+        e.preventDefault();
+        const dist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        const mid = {
+          x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - pan.getBoundingClientRect().left,
+          y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - pan.getBoundingClientRect().top
+        };
+        const scale = dist / lastTouchDist;
+        zoomTo(zoom * scale, mid.x, mid.y);
+        lastTouchDist = dist;
+        lastTouchMid = mid;
+      } else if (e.touches.length === 1 && dragging) {
+        e.preventDefault();
+        pan.scrollLeft = scrollL - (e.touches[0].clientX - dragX);
+        pan.scrollTop = scrollT - (e.touches[0].clientY - dragY);
+      }
+    }, { passive: false });
+    pan.addEventListener('touchend', e => {
+      if (e.touches.length < 2) {
+        lastTouchDist = null;
+        lastTouchMid = null;
+      }
+      if (e.touches.length === 0) {
+        dragging = false;
+        pan.classList.remove('is-dragging');
+      }
+    });
+    // On resize, re-center
+    window.addEventListener('resize', () => setZoom(zoom, true));
+    // Start
+    measureBase();
+  }
+  // Init all diagrams
+  document.querySelectorAll('.diagram-pan').forEach(DiagramPanZoom);
 })();
-</script>
 
 
 
