@@ -124,9 +124,9 @@
   position: relative;
   overflow: auto;
   max-height: 70vh;
-  border: 1px solid var(--hr-sep);
+  border: 1px solid rgba(0, 240, 194, 0.18);
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 121, 107, 0.08);
   margin: 1.5em 0;
   cursor: grab;
 }
@@ -149,8 +149,8 @@
   gap: 8px;
   align-items: center;
   padding: 6px 10px;
-  background: rgba(26, 26, 46, 0.85);
-  border-bottom: 1px solid var(--hr-sep);
+  background: rgba(0, 50, 43, 0.92);
+  border-bottom: 1px solid rgba(0, 240, 194, 0.18);
   border-radius: 8px 8px 0 0;
   width: 100%;
   box-sizing: border-box;
