@@ -2305,21 +2305,27 @@
   document.querySelectorAll('.diagram-pan').forEach(function(pan) {
     var inner = pan.querySelector('.diagram-inner');
     inner.dataset.zoom = 1;
-    // Measure natural content size once Mermaid has rendered
+    // Measure natural content size once Mermaid has rendered.
+    // scrollWidth/scrollHeight can't see through Mermaid's closed shadow root,
+    // so we use getBoundingClientRect() on the .mermaid element instead.
     function initSizes() {
-      var w = inner.scrollWidth;
-      var h = inner.scrollHeight;
-      if (w > 0 && h > 0) {
-        inner.dataset.baseW = w;
-        inner.dataset.baseH = h;
-        inner.style.width  = w + 'px';
-        inner.style.height = h + 'px';
-        // Center diagram within the fixed square viewbox at 100% zoom
-        inner.style.marginLeft = Math.max(0, (pan.clientWidth  - w) / 2) + 'px';
-        inner.style.marginTop  = Math.max(0, (pan.clientHeight - h) / 2) + 'px';
-      } else {
-        requestAnimationFrame(initSizes);
+      var mermaidEl = inner.querySelector('.mermaid');
+      if (!mermaidEl) { requestAnimationFrame(initSizes); return; }
+      var mRect = mermaidEl.getBoundingClientRect();
+      if (mRect.width <= 0 || mRect.height <= 0) {
+        requestAnimationFrame(initSizes); return;
       }
+      var cs = getComputedStyle(inner);
+      var padV = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      var w = inner.offsetWidth;
+      var h = Math.ceil(mRect.height + padV);
+      inner.dataset.baseW = w;
+      inner.dataset.baseH = h;
+      inner.style.width  = w + 'px';
+      inner.style.height = h + 'px';
+      // Center diagram within the fixed square viewbox at 100% zoom
+      inner.style.marginLeft = Math.max(0, (pan.clientWidth  - w) / 2) + 'px';
+      inner.style.marginTop  = Math.max(0, (pan.clientHeight - h) / 2) + 'px';
     }
     requestAnimationFrame(initSizes);
 
