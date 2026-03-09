@@ -2289,15 +2289,22 @@
     }
 
     function zoomTo(newZoom, px, py) {
-      const oldZoom = zoom;
       newZoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
-      if (newZoom === oldZoom) return;
-      const relX = px + pan.scrollLeft;
-      const relY = py + pan.scrollTop;
-      setZoom(newZoom);
-      const ratio = newZoom / oldZoom;
-      pan.scrollLeft = relX * ratio - px;
-      pan.scrollTop = relY * ratio - py;
+      if (newZoom === zoom) return;
+      var ratio = newZoom / zoom;
+      // Point under cursor in content coordinates
+      var contentX = pan.scrollLeft + px;
+      var contentY = pan.scrollTop + py;
+      // Update zoom (no centering)
+      zoom = newZoom;
+      inner.style.transform = 'scale(' + zoom + ')';
+      inner.style.width = baseW * zoom + 'px';
+      inner.style.height = baseH * zoom + 'px';
+      slider.value = Math.round(zoom * 100);
+      label.textContent = Math.round(zoom * 100) + '%';
+      // Adjust scroll so the same content point stays under the cursor
+      pan.scrollLeft = contentX * ratio - px;
+      pan.scrollTop = contentY * ratio - py;
     }
 
     slider.addEventListener('input', () => {
@@ -2348,8 +2355,13 @@
     pan.addEventListener('touchmove', e => {
       if (e.touches.length === 2 && lastTouchDist && lastTouchMid) {
         e.preventDefault();
-        const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-        const mid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - pan.getBoundingClientRect().left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - pan.getBoundingClientRect().top};
+        var r = pan.getBoundingClientRect();
+        var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+        var mid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top};
+        // Pan by pinch center movement
+        pan.scrollLeft -= (mid.x - lastTouchMid.x);
+        pan.scrollTop -= (mid.y - lastTouchMid.y);
+        // Zoom towards current pinch center
         zoomTo(zoom * dist / lastTouchDist, mid.x, mid.y);
         lastTouchDist = dist;
         lastTouchMid = mid;
