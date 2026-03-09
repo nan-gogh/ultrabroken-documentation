@@ -2277,19 +2277,22 @@
     var ratio = newZoom / oldZoom;
     var baseW = parseFloat(inner.dataset.baseW);
     var baseH = parseFloat(inner.dataset.baseH);
+    var oldML = parseFloat(inner.style.marginLeft) || 0;
+    var oldMT = parseFloat(inner.style.marginTop) || 0;
     inner.dataset.zoom = newZoom;
     inner.style.transform = 'scale(' + newZoom + ')';
     var scaledW = baseW * newZoom;
     var scaledH = baseH * newZoom;
     inner.style.width  = scaledW + 'px';
     inner.style.height = scaledH + 'px';
-    // Center diagram in the viewbox when it is smaller than the pan
-    inner.style.marginLeft = Math.max(0, (pan.clientWidth  - scaledW) / 2) + 'px';
-    inner.style.marginTop  = Math.max(0, (pan.clientHeight - scaledH) / 2) + 'px';
+    var newML = Math.max(0, (pan.clientWidth  - scaledW) / 2);
+    var newMT = Math.max(0, (pan.clientHeight - scaledH) / 2);
+    inner.style.marginLeft = newML + 'px';
+    inner.style.marginTop  = newMT + 'px';
     slider.value = Math.round(newZoom * 100);
     label.textContent = Math.round(newZoom * 100) + '%';
-    pan.scrollLeft = (pan.scrollLeft + pivotX) * ratio - pivotX;
-    pan.scrollTop  = (pan.scrollTop + pivotY) * ratio - pivotY;
+    pan.scrollLeft = (pan.scrollLeft + pivotX - oldML) * ratio - pivotX + newML;
+    pan.scrollTop  = (pan.scrollTop + pivotY - oldMT) * ratio - pivotY + newMT;
   }
 
   window.diagramSlide = function(slider) {
@@ -2305,15 +2308,18 @@
   document.querySelectorAll('.diagram-pan').forEach(function(pan) {
     var inner = pan.querySelector('.diagram-inner');
     inner.dataset.zoom = 1;
-    // Measure natural content size once Mermaid has rendered.
-    // scrollWidth/scrollHeight can't see through Mermaid's closed shadow root,
-    // so we use getBoundingClientRect() on the .mermaid element instead.
+    // Wait for Mermaid to render the SVG (closed shadow root) before measuring.
+    // On hard refresh our script can run before Mermaid, so the .mermaid div
+    // still contains raw source text; textContent becomes empty once Mermaid
+    // replaces it with a shadow-DOM SVG.
     function initSizes() {
       var mermaidEl = inner.querySelector('.mermaid');
-      if (!mermaidEl) { requestAnimationFrame(initSizes); return; }
+      if (!mermaidEl || mermaidEl.textContent.trim().length > 0) {
+        setTimeout(initSizes, 60); return;
+      }
       var mRect = mermaidEl.getBoundingClientRect();
       if (mRect.width <= 0 || mRect.height <= 0) {
-        requestAnimationFrame(initSizes); return;
+        setTimeout(initSizes, 60); return;
       }
       var cs = getComputedStyle(inner);
       var padV = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
@@ -2323,11 +2329,10 @@
       inner.dataset.baseH = h;
       inner.style.width  = w + 'px';
       inner.style.height = h + 'px';
-      // Center diagram within the fixed square viewbox at 100% zoom
       inner.style.marginLeft = Math.max(0, (pan.clientWidth  - w) / 2) + 'px';
       inner.style.marginTop  = Math.max(0, (pan.clientHeight - h) / 2) + 'px';
     }
-    requestAnimationFrame(initSizes);
+    setTimeout(initSizes, 60);
 
     var startX, startY, scrollL, scrollT;
     pan.addEventListener('mousedown', function(e) {
