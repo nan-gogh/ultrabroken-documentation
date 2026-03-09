@@ -2108,13 +2108,13 @@ Method 4: like method 2 but with dropdowns</p>
 <details class="example">
 <summary>Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    B --&gt;|FE| F[RL Weapon]
-    E --&gt;|FE| G[RL Weapon]
+    B[DI Shield] --&gt;|FE| F[RL Weapon]
+    E[DI Shield] --&gt;|FE| G[RL Weapon]
     F --&gt;|Fuse| H[DI Shield]
-    C --&gt;|FE| H
-    H --&gt;|FE| I[30 DI Weapons]
-    D --&gt;|CF| I
-    I --&gt;|FE| J[20 DI Shields]
+    C[DI Weapon] --&gt;|FE| H
+    H --&gt;|FE| I["30 DI Weapons&lt;br/&gt;(purgatorized)"]
+    D[Normal Shield] --&gt;|CF| I
+    I --&gt;|FE| J["20 DI Shields&lt;br/&gt;(or weapons/bows)"]
     G --&gt;|CF| J</code></pre>
 </details>
 <p>(method goes here)</p>
