@@ -2272,15 +2272,22 @@
     var label = pan.querySelector('.diagram-level');
     var oldZoom = parseFloat(inner.dataset.zoom || 1);
     newZoom = Math.max(0.4, Math.min(4, newZoom));
+    newZoom = Math.round(newZoom * 100) / 100;
     if (newZoom === oldZoom) return;
     var ratio = newZoom / oldZoom;
-    var barH = (pan.querySelector('.diagram-zoom') || {}).offsetHeight || 0;
     inner.dataset.zoom = newZoom;
-    inner.style.zoom = newZoom;
+    inner.style.transform = 'scale(' + newZoom + ')';
+    // Expand a spacer so the scroll area matches the scaled content
+    var baseW = parseFloat(inner.dataset.baseW);
+    var baseH = parseFloat(inner.dataset.baseH);
+    var spacer = pan.querySelector('.diagram-spacer');
+    spacer.style.width  = (baseW * newZoom) + 'px';
+    spacer.style.height = (baseH * newZoom) + 'px';
     slider.value = Math.round(newZoom * 100);
     label.textContent = Math.round(newZoom * 100) + '%';
+    // Adjust scroll to keep the pivot point stationary
     pan.scrollLeft = (pan.scrollLeft + pivotX) * ratio - pivotX;
-    pan.scrollTop  = (pan.scrollTop + pivotY - barH) * ratio + barH - pivotY;
+    pan.scrollTop  = (pan.scrollTop + pivotY) * ratio - pivotY;
   }
 
   window.diagramSlide = function(slider) {
@@ -2296,6 +2303,27 @@
   document.querySelectorAll('.diagram-pan').forEach(function(pan) {
     var inner = pan.querySelector('.diagram-inner');
     inner.dataset.zoom = 1;
+    // Create an invisible spacer that defines the scrollable area
+    var spacer = document.createElement('div');
+    spacer.className = 'diagram-spacer';
+    spacer.style.cssText = 'position:absolute;top:0;left:0;pointer-events:none;visibility:hidden;';
+    pan.style.position = 'relative';
+    pan.insertBefore(spacer, pan.querySelector('.diagram-zoom'));
+    // Measure the natural content size once rendered
+    function initSizes() {
+      var w = inner.offsetWidth;
+      var h = inner.offsetHeight;
+      if (w > 0 && h > 0) {
+        inner.dataset.baseW = w;
+        inner.dataset.baseH = h;
+        spacer.style.width  = w + 'px';
+        spacer.style.height = h + 'px';
+      } else {
+        requestAnimationFrame(initSizes);
+      }
+    }
+    requestAnimationFrame(initSizes);
+
     var startX, startY, scrollL, scrollT;
     pan.addEventListener('mousedown', function(e) {
       if (e.target.closest('.diagram-zoom')) return;
