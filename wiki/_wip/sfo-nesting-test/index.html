@@ -2054,12 +2054,16 @@
 <hr />
 <p>By creating 600-700 Cold Fuse connections, the game will be overloaded and unable to form any new dependencies. This causes every actor to be Zuggle Overloaded, and every equipment to be Fuse Overloaded.</p>
 <p><em>Discovered by mulberry, Aergyl; Optimizations by Jordan, MandelbrotChaylay, mulberry, Squidwest</em></p>
-<p>...just gonna run with the idea that these can nest and get to work. even if not, the work can be reused. Could probably use dropdowns instead if needed?</p>
+<p>The nesting works in theory. A/B testing with other ideas to see what works best.
+Method 1: provides the method in the main tab body and the use-cases in the subtabs
+Method 2: duplicates the method into the subtabs to maximize instruction clarity
+Method 3: like method 1 but uses dropdowns instead of subtabs
+Method 4: like method 2 but with dropdowns</p>
 <h2 id="forewarnings">Forewarnings</h2>
 <hr />
 <div class="admonition info">
-<p class="admonition-title">Buckle up</p>
-<p>Due to the massive number of connections required, every method is relatively complex. Be sure to read the steps carefully, and be sure you understand the glitches that go into your chosen method, <strong>before</strong> you begin!</p>
+<p class="admonition-title">Buckle up!</p>
+<p>Due to the massive number of connections required, every method is relatively complex. Before you begin, be sure to read the steps carefully, and be sure you understand the glitches that go into your chosen method.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Panic!</p>
@@ -2069,13 +2073,13 @@
 <hr />
 <div class="admonition note">
 <p class="admonition-title">Useful?</p>
-<p>There are three main use cases for SFO: Obtaining Mineru's Arm, obtaining Zelda's Torch, and duplicating anything you can throw. For the sake of providing clear instructions, each method below has its use cases <em>nested</em> in its tab.</p>
+<p>There are three main use cases for SFO: Obtaining Mineru's Arm, obtaining Zelda's Torch, and duplicating anything you can throw. For the sake of providing clear instructions, a variant/extension of each method is given for each use case.</p>
 </div>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1</label><label for="__tabbed_1_2">Method 2</label><label for="__tabbed_1_3">Method 3</label><label for="__tabbed_1_4">Method 4</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>This is a persistent method that makes use of DI equipment to maximize setup speed. It can be used for anything, but is best-suited for Zelda's Torch and duplication.</p>
-<p>(Mandelbrot's method)</p>
+<p>(Main part of Mandelbrot's Method)</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">For Zelda's Torch</label><label for="__tabbed_2_2">For duplication</label><label for="__tabbed_2_3">For Mineru's Arm</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2098,33 +2102,34 @@
 </div>
 <div class="tabbed-block">
 <p>This is a persistent method that makes use of DI equipment to balance speed, simplicity, and ease of use. It can be used for anything, but is best-suited for Zelda's Torch and duplication.</p>
-<p>(Squidwest's method)</p>
-<details class="example">
-<summary>Diagram</summary>
-<pre class="mermaid"><code>graph TD
-    A[DI Shield] --&gt;|FE| B[RL Weapon]
-    C[DI Shield] --&gt;|FE| D[RL Weapon]
-    B --&gt;|Fuse| E[DI Shield]
-    F[DI Weapon] --&gt;|FE| E
-    E --&gt;|FE| G[30 Purg'd DI Weapons]
-    H[Normal Shield] --&gt;|CF| G
-    G --&gt;|FE| I [20 DI Shields]
-    D --&gt;|CF| I
-    A --&gt;|useless line| C
-    A --&gt;|useless line| F
-    A --&gt;|useless line| H</code></pre>
-</details>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">For Zelda's Torch</label><label for="__tabbed_3_2">For duplication</label><label for="__tabbed_3_3">For Mineru's Arm</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>To obtain Zelda's Torch, perform this setup in a shrine.</p>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[Equipment] --&gt; B [DI Shield]
+    A --&gt; C [DI Weapon] 
+    A --&gt; D [Normal Shield]
+    A --&gt; E [DI Shield]
+    B --&gt;|FE| F [RL Weapon]
+    E --&gt;|FE| G [RL Weapon]
+    F --&gt;|Fuse| H [DI Shield]
+    C --&gt;|FE| H
+    H --&gt;|FE| I[30 DI Weapons]
+    D --&gt;|CF| I
+    I --&gt;|FE| J[20 DI Shields]
+    G --&gt;|CF| J</code></pre>
+</details>
+<p>(method goes here)</p>
 </div>
 <div class="tabbed-block">
-<p>(this repeats what I give in Mandelbrot's method)</p>
+<p>(diagram here)</p>
+<p>(then the method)</p>
 </div>
 <div class="tabbed-block">
-<p>To obtain Mineru's Arm, perform this setup in the tunnel before Ganondorf</p>
-<p>(extension that tells you to zuggle 1+ child shields into the fight for later destruction (to undo SFO enough to fuse/zuggle Arm)</p>
+<p>(diagram)</p>
+<p>(method)</p>
 </div>
 </div>
 </div>
@@ -2135,18 +2140,17 @@
 </div>
 <div class="tabbed-block">
 <p>This is a local method that makes use of DI equipment to maximize portability and speed. It is ideal for Mineru's Arm and duplication, but cannot be used for Zelda's Torch.</p>
-<p>(mulberry's method)</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">For Mineru's Arm</label><label for="__tabbed_4_2">For Duplication</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<p>(main part of mulberry's method)</p>
+<details class="abstract">
+<summary>For Mineru's Arm</summary>
 <p>To obtain Mineru's Arm, perform this setup in the tunnel before Ganondorf</p>
 <p>(extension that tells you how to preserve SFO into the fight, obtain MinArm, and zuggle it out)</p>
-</div>
-<div class="tabbed-block">
+</details>
+<details class="abstract">
+<summary>For Duplication</summary>
 <p>To duplicate Zonai Devices, perform this setup in the [find it] Minigame. For other throwables, simply perform in a shrine.</p>
-</div>
-</div>
-</div>
+<p>(extension that tells you how to dupe with sfo)</p>
+</details>
 <div class="admonition info">
 <p class="admonition-title">Local?</p>
 <p>This setup <em>does not</em> persist through warps and loads, limiting its uses. However, this also makes it easy to <em>undo</em>, and therefore more convenient for some tasks.</p>
@@ -2155,6 +2159,8 @@
 <div class="tabbed-block">
 <p>This is a local method with minimal additional glitches required. As a local method, it cannot be used for Zelda's Torch.</p>
 <p>(method based on Tahata's guide, placed last due to being somewhat outmoded by DI methods, but included due to being simplistic)</p>
+<details class="abstract">
+<summary>For mineru's Arm</summary>
 <details class="example">
 <summary>Diagram</summary>
 <pre class="mermaid"><code>graph TD
@@ -2165,18 +2171,21 @@
     C --&gt;|Take in| E
     D --&gt;|Take in| E</code></pre>
 </details>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">For Mineru's Arm</label><label for="__tabbed_5_2">For Duplication</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>To obtain Mineru's Arm, perform this setup in the tunnel before Ganondorf</p>
-<p>(extension that tells you how to properly preserve sfo into the fight, obtain MinArm, and zuggle it out)</p>
-</div>
-<div class="tabbed-block">
-<p>To duplicate Zonai Devices, perform this setup in the [find a stable minigame] Minigame. For other throwables, simply perform in a shrine.</p>
-<p>(explanation of how to dupe with SFO)</p>
-</div>
-</div>
-</div>
+<p>(method, then how to get Mineru's Arm with it)</p>
+</details>
+<details class="abstract">
+<summary>For Duplication</summary>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A{Enter Minigame} --&gt;|Equip| B[Shield B]
+    A --&gt;|Overload Drop| C[Weapon A]
+    B --&gt;|Fuse| C
+    C --&gt;|cf| D[Shields C1-C21]
+    D --&gt;|cf| E[Materials D1-D30]</code></pre>
+</details>
+<p>(method, then explanation of how to dupe with SFO)</p>
+</details>
 <div class="admonition info">
 <p class="admonition-title">Local?</p>
 <p>This setup <em>does not</em> persist through warps and loads, limiting its uses. However, this also makes it easy to <em>undo</em>, and therefore more convenient for some tasks.</p>
