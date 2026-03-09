@@ -138,6 +138,7 @@
   transform-origin: 0 0;
   overflow: hidden;
   padding: 1.5em;
+  box-sizing: border-box;
 }
 .diagram-pan .diagram-zoom {
   position: sticky;
