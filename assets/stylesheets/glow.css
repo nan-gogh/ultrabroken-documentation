@@ -135,8 +135,10 @@
   user-select: none;
 }
 .diagram-pan .diagram-inner {
+  transform-origin: 0 0;
   min-width: max-content;
   padding: 1.5em;
+  width: max-content;
 }
 .diagram-pan .diagram-zoom {
   position: sticky;
