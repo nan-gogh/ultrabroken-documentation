@@ -2275,17 +2275,14 @@
     newZoom = Math.round(newZoom * 100) / 100;
     if (newZoom === oldZoom) return;
     var ratio = newZoom / oldZoom;
-    inner.dataset.zoom = newZoom;
-    inner.style.transform = 'scale(' + newZoom + ')';
-    // Expand a spacer so the scroll area matches the scaled content
     var baseW = parseFloat(inner.dataset.baseW);
     var baseH = parseFloat(inner.dataset.baseH);
-    var spacer = pan.querySelector('.diagram-spacer');
-    spacer.style.width  = (baseW * newZoom) + 'px';
-    spacer.style.height = (baseH * newZoom) + 'px';
+    inner.dataset.zoom = newZoom;
+    inner.style.transform = 'scale(' + newZoom + ')';
+    inner.style.width  = (baseW * newZoom) + 'px';
+    inner.style.height = (baseH * newZoom) + 'px';
     slider.value = Math.round(newZoom * 100);
     label.textContent = Math.round(newZoom * 100) + '%';
-    // Adjust scroll to keep the pivot point stationary
     pan.scrollLeft = (pan.scrollLeft + pivotX) * ratio - pivotX;
     pan.scrollTop  = (pan.scrollTop + pivotY) * ratio - pivotY;
   }
@@ -2303,21 +2300,15 @@
   document.querySelectorAll('.diagram-pan').forEach(function(pan) {
     var inner = pan.querySelector('.diagram-inner');
     inner.dataset.zoom = 1;
-    // Create an invisible spacer that defines the scrollable area
-    var spacer = document.createElement('div');
-    spacer.className = 'diagram-spacer';
-    spacer.style.cssText = 'position:absolute;top:0;left:0;pointer-events:none;visibility:hidden;';
-    pan.style.position = 'relative';
-    pan.insertBefore(spacer, pan.querySelector('.diagram-zoom'));
-    // Measure the natural content size once rendered
+    // Measure natural content size once Mermaid has rendered
     function initSizes() {
-      var w = inner.offsetWidth;
-      var h = inner.offsetHeight;
+      var w = inner.scrollWidth;
+      var h = inner.scrollHeight;
       if (w > 0 && h > 0) {
         inner.dataset.baseW = w;
         inner.dataset.baseH = h;
-        spacer.style.width  = w + 'px';
-        spacer.style.height = h + 'px';
+        inner.style.width  = w + 'px';
+        inner.style.height = h + 'px';
       } else {
         requestAnimationFrame(initSizes);
       }
