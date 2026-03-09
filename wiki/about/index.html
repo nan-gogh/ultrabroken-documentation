@@ -2276,15 +2276,17 @@
     }
 
     // Apply layout: inner stays at natural size, transform does visual scaling,
-    // margins create scrollable space matching the visual size (no auto-centering)
+    // constant half-viewport padding lets content be positioned anywhere via scroll
     function applyLayout() {
       inner.style.transform = 'scale(' + zoom + ')';
       inner.style.width = baseW + 'px';
       inner.style.height = baseH + 'px';
-      inner.style.marginLeft = '0';
-      inner.style.marginTop = '0';
-      inner.style.marginRight = Math.max(0, baseW * zoom - baseW) + 'px';
-      inner.style.marginBottom = Math.max(0, baseH * zoom - baseH) + 'px';
+      var padX = pan.clientWidth / 2;
+      var padY = pan.clientHeight / 2;
+      inner.style.marginLeft = padX + 'px';
+      inner.style.marginTop = padY + 'px';
+      inner.style.marginRight = Math.max(0, baseW * (zoom - 1)) + padX + 'px';
+      inner.style.marginBottom = Math.max(0, baseH * (zoom - 1)) + padY + 'px';
       slider.value = Math.round(zoom * 100);
       label.textContent = Math.round(zoom * 100) + '%';
     }
@@ -2294,9 +2296,9 @@
       zoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
       applyLayout();
       if (center) {
-        var sw = baseW * zoom, sh = baseH * zoom;
-        pan.scrollLeft = Math.max(0, (sw - pan.clientWidth) / 2);
-        pan.scrollTop = Math.max(0, (sh - pan.clientHeight) / 2);
+        // Content left edge is at scroll offset padX; center it in viewport
+        pan.scrollLeft = pan.clientWidth / 2 + baseW * zoom / 2 - pan.clientWidth / 2;
+        pan.scrollTop = pan.clientHeight / 2 + baseH * zoom / 2 - pan.clientHeight / 2;
       }
     }
 
@@ -2304,14 +2306,16 @@
     function zoomAt(newZoom, px, py) {
       newZoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
       if (newZoom === zoom) return;
+      var padX = pan.clientWidth / 2;
+      var padY = pan.clientHeight / 2;
       // Convert viewport point to unscaled content coordinates
-      var cx = (pan.scrollLeft + px) / zoom;
-      var cy = (pan.scrollTop + py) / zoom;
+      var cx = (pan.scrollLeft + px - padX) / zoom;
+      var cy = (pan.scrollTop + py - padY) / zoom;
       zoom = newZoom;
       applyLayout();
       // Reposition scroll so the same content point is under (px, py)
-      pan.scrollLeft = cx * zoom - px;
-      pan.scrollTop = cy * zoom - py;
+      pan.scrollLeft = padX + cx * zoom - px;
+      pan.scrollTop = padY + cy * zoom - py;
     }
 
     // Slider: zoom toward viewport center (not a positional reset)
