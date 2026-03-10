@@ -300,6 +300,9 @@ html, body {
   flex: 1 1 auto !important; /* allow title to take available space */
   min-width: 0 !important; /* allow child to shrink for ellipsis */
 }
+.md-header__topic {
+  font-weight: 400 !important;
+}
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
   text-shadow: none !important;
