@@ -2273,11 +2273,16 @@
       var mermaid = inner.querySelector('.mermaid');
       if (!mermaid || pan.clientWidth === 0) return requestAnimationFrame(measureBase);
       if (mermaid.textContent.trim().length > 0) return requestAnimationFrame(measureBase);
-      var rect = mermaid.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) return requestAnimationFrame(measureBase);
-      // Temporarily restore flow for measurement
+      // Restore flow for accurate measurement at correct width
       inner.style.position = '';
       inner.style.transform = '';
+      inner.style.width = '';
+      inner.style.height = '';
+      var rect = mermaid.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) {
+        inner.style.position = 'absolute';
+        return requestAnimationFrame(measureBase);
+      }
       baseW = inner.offsetWidth;
       var cs = getComputedStyle(inner);
       baseH = Math.ceil(rect.height + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom));
