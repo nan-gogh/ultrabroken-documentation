@@ -2369,13 +2369,18 @@
         var r = pan.getBoundingClientRect();
         var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
         var mid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top};
-        // Pan by pinch center movement
-        pan.scrollLeft -= (mid.x - lastTouchMid.x);
-        pan.scrollTop -= (mid.y - lastTouchMid.y);
-        // Zoom towards pinch center
-        if (dist !== lastTouchDist) {
-          zoomAt(zoom * dist / lastTouchDist, mid.x, mid.y);
-        }
+        // Combined pan+zoom in one scroll update to avoid intermediate clamping drift
+        var newZoom = (dist !== lastTouchDist) ? Math.max(minZoom, Math.min(maxZoom, zoom * dist / lastTouchDist)) : zoom;
+        var padX = pan.clientWidth / 2;
+        var padY = pan.clientHeight / 2;
+        // Content point under OLD pinch center
+        var cx = (pan.scrollLeft + lastTouchMid.x - padX) / zoom;
+        var cy = (pan.scrollTop + lastTouchMid.y - padY) / zoom;
+        zoom = newZoom;
+        applyLayout();
+        // Place that content point under NEW pinch center
+        pan.scrollLeft = padX + cx * zoom - mid.x;
+        pan.scrollTop = padY + cy * zoom - mid.y;
         lastTouchDist = dist;
         lastTouchMid = mid;
       } else if (e.touches.length === 1 && dragging) {
