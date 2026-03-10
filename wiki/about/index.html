@@ -2253,15 +2253,17 @@
 (function(){
   function DiagramPanZoom(pan) {
     var inner = pan.querySelector('.diagram-inner');
+    var zoomBar = pan.querySelector('.diagram-zoom');
     var slider = pan.querySelector('input[type=range]');
     var label = pan.querySelector('.diagram-level');
     var resetBtn = pan.querySelector('button');
     var zoom = 1, minZoom = 0.4, maxZoom = 4;
     var baseW = 0, baseH = 0;
+    var curPadX = 0, curPadY = 0;
     var dragging = false, dragX = 0, dragY = 0, scrollL = 0, scrollT = 0;
     var lastTouchDist = null, lastTouchMid = null;
 
-    // Sizer div defines the scrollable area (no margins needed)
+    // Sizer div defines the scrollable area
     var sizer = document.createElement('div');
     pan.appendChild(sizer);
     inner.style.position = 'absolute';
@@ -2273,7 +2275,6 @@
       var mermaid = inner.querySelector('.mermaid');
       if (!mermaid || pan.clientWidth === 0) return requestAnimationFrame(measureBase);
       if (mermaid.textContent.trim().length > 0) return requestAnimationFrame(measureBase);
-      // Restore flow for accurate measurement at correct width
       inner.style.position = '';
       inner.style.transform = '';
       inner.style.width = '';
@@ -2290,50 +2291,50 @@
       applyZoom(1, true);
     }
 
-    // Apply layout: sizer defines scroll area, translate positions inner
+    // Apply layout: sizer defines scroll area, translate positions inner.
+    // Stores curPadX/curPadY so all functions use consistent values.
     function applyLayout() {
-      var padX = pan.clientWidth / 2;
-      var padY = pan.clientHeight / 2;
-      inner.style.transform = 'translate(' + padX + 'px,' + padY + 'px) scale(' + zoom + ')';
+      curPadX = pan.clientWidth / 2;
+      curPadY = pan.clientHeight / 2;
+      inner.style.transform = 'translate(' + curPadX + 'px,' + curPadY + 'px) scale(' + zoom + ')';
       inner.style.width = baseW + 'px';
       inner.style.height = baseH + 'px';
-      sizer.style.width = (2 * padX + baseW * zoom) + 'px';
-      sizer.style.height = (2 * padY + baseH * zoom) + 'px';
+      // Subtract toolbar flow height so scroll range is symmetric
+      var barH = zoomBar ? zoomBar.offsetHeight : 0;
+      sizer.style.width = (2 * curPadX + baseW * zoom) + 'px';
+      sizer.style.height = Math.max(0, 2 * curPadY + baseH * zoom - barH) + 'px';
       slider.value = Math.round(zoom * 100);
       label.textContent = Math.round(zoom * 100) + '%';
     }
 
-    // Zoom and center scroll (used for init and reset only)
+    // Zoom and center (init and reset only)
     function applyZoom(newZoom, center) {
       zoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
       applyLayout();
       if (center) {
-        var padX = pan.clientWidth / 2;
-        var padY = pan.clientHeight / 2;
-        pan.scrollLeft = padX + baseW * zoom / 2 - pan.clientWidth / 2;
-        pan.scrollTop = padY + baseH * zoom / 2 - pan.clientHeight / 2;
+        pan.scrollLeft = curPadX + baseW * zoom / 2 - pan.clientWidth / 2;
+        pan.scrollTop = curPadY + baseH * zoom / 2 - pan.clientHeight / 2;
       }
     }
 
-    // Zoom keeping the point at (px, py) in viewport coords fixed
+    // Zoom keeping viewport point (px, py) fixed on the same content point
     function zoomAt(newZoom, px, py) {
       newZoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
       if (newZoom === zoom) return;
-      var padX = pan.clientWidth / 2;
-      var padY = pan.clientHeight / 2;
-      var cx = (pan.scrollLeft + px - padX) / zoom;
-      var cy = (pan.scrollTop + py - padY) / zoom;
+      // Decode: content coords under cursor using CURRENT stored pad
+      var cx = (pan.scrollLeft + px - curPadX) / zoom;
+      var cy = (pan.scrollTop + py - curPadY) / zoom;
       zoom = newZoom;
-      applyLayout();
-      pan.scrollLeft = padX + cx * zoom - px;
-      pan.scrollTop = padY + cy * zoom - py;
+      applyLayout(); // updates curPadX/curPadY to match new transform
+      // Encode: position scroll so (cx,cy) lands under (px,py) using NEW stored pad
+      pan.scrollLeft = curPadX + cx * zoom - px;
+      pan.scrollTop = curPadY + cy * zoom - py;
     }
 
     // Slider: zoom toward viewport center
     slider.addEventListener('input', function() {
       zoomAt(parseInt(slider.value) / 100, pan.clientWidth / 2, pan.clientHeight / 2);
     });
-    // Reset: zoom to 1, center
     resetBtn.addEventListener('click', function() { applyZoom(1, true); });
 
     // Wheel: zoom to cursor
@@ -2362,7 +2363,7 @@
       pan.classList.remove('is-dragging');
     });
 
-    // Touch: pinch to zoom + pan, single-finger drag to pan
+    // Touch: pinch to zoom + pan, single-finger drag
     pan.addEventListener('touchstart', function(e) {
       if (e.touches.length === 2) {
         var r = pan.getBoundingClientRect();
@@ -2380,16 +2381,14 @@
         var r = pan.getBoundingClientRect();
         var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
         var mid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top};
-        // Combined pan+zoom in one scroll update
         var newZoom = (dist !== lastTouchDist) ? Math.max(minZoom, Math.min(maxZoom, zoom * dist / lastTouchDist)) : zoom;
-        var padX = pan.clientWidth / 2;
-        var padY = pan.clientHeight / 2;
-        var cx = (pan.scrollLeft + lastTouchMid.x - padX) / zoom;
-        var cy = (pan.scrollTop + lastTouchMid.y - padY) / zoom;
+        // Atomic pan+zoom: decode OLD pinch center, encode under NEW pinch center
+        var cx = (pan.scrollLeft + lastTouchMid.x - curPadX) / zoom;
+        var cy = (pan.scrollTop + lastTouchMid.y - curPadY) / zoom;
         zoom = newZoom;
         applyLayout();
-        pan.scrollLeft = padX + cx * zoom - mid.x;
-        pan.scrollTop = padY + cy * zoom - mid.y;
+        pan.scrollLeft = curPadX + cx * zoom - mid.x;
+        pan.scrollTop = curPadY + cy * zoom - mid.y;
         lastTouchDist = dist;
         lastTouchMid = mid;
       } else if (e.touches.length === 1 && dragging) {
