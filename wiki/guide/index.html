@@ -4698,7 +4698,7 @@ Another Term
 <div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Interactive Viewer</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Any Mermaid diagram can be made interactive (pan, zoom, drag) by adding the <code>viewer</code> keyword to the code fence info string.</p>
+<p>Any Mermaid diagram can be made interactive (pan, zoom, drag) by adding the <code>viewer</code> keyword to the code fence info string. The build hook wraps it in the pan-zoom container automatically.</p>
 <h4 id="syntax_18">Syntax</h4>
 <p>````markdown
 <div class="diagram-pan">
@@ -4721,21 +4721,12 @@ Another Term
 
     - **Scroll wheel zoom**: Zoom in/out toward the cursor position
     - **Pinch zoom** (mobile): Zoom to the pinch center point
-    - **Slider zoom**: Adjust zoom level toward the viewport center (22px touch target)
+    - **Slider zoom**: Adjust zoom level toward the viewport center
     - **Mouse drag**: Click and drag to pan the diagram
     - **Touch drag** (mobile): Single-finger drag to pan
     - **Reset button**: Return to the initial zoom level (1×) and centered position
 
-    #### Example
-
-    ```mermaid viewer
-    graph TD
-        A["Glitch&lt;br/&gt;discovery"] --&gt; B{New?}
-        B --&gt;|Yes| C[Archive]
-        B --&gt;|No| D[T-Pose]
-        C --&gt; E[End]
-        D --&gt; E
-    ```
+    See the [Infrastructure diagram](/wiki/about/#infrastructure) on the About page for a live example.
 
 === "Flowchart"
 
