@@ -2092,14 +2092,14 @@
 <p><em>Basic stub</em></p>
 <h2 id="introduction">Introduction</h2>
 <hr />
-<p>Despawn Interrupt refers to interrupting the despawning of an actor. When a piece of equipment despawns, the game sets its state as "dead". By interrupting the process, we get to keep the usable weapon in this "dead" state, which is what is known as a DI'd piece of equipment. This state is really powerful, as it makes the equipment not be affected by D-Pad Lock, as well as giving it infinite durability. On top of that, DI can be propagated to other equipment anywhere easily.</p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Despawn Interrupt</a> refers to interrupting the despawning of an actor. When a piece of equipment despawns, the game sets its state as "dead". By interrupting the process, we get to keep the usable weapon in this "dead" state, which is what is known as a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>'d piece of equipment. This state is really powerful, as it makes the equipment not be affected by D-Pad Lock, as well as giving it infinite durability. On top of that, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> can be propagated to other equipment anywhere easily.</p>
 <h2 id="quick-navigation">Quick Navigation</h2>
 <hr />
 <ul>
-<li><strong><a href="search:Despawn Interrupt">Despawn Interrupt Query</a></strong> - The main DI glitch with multiple setups</li>
-<li><strong><a href="search:Fuse Entanglement">Fuse Entanglement Query</a></strong> - Often combined with DI for duplication</li>
-<li><strong><a href="search:Detanglement">Detanglement Query</a></strong> - Remove items from DI parent bases</li>
-<li><strong><a href="../culling/">Culling Overview</a></strong> - Game culling mechanics that enable DI</li>
+<li><strong><a href="search:Despawn Interrupt">Despawn Interrupt Query</a></strong> - The main <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> glitch with multiple setups</li>
+<li><strong><a href="search:Fuse Entanglement">Fuse Entanglement Query</a></strong> - Often combined with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> for duplication</li>
+<li><strong><a href="search:Detanglement">Detanglement Query</a></strong> - Remove items from <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent bases</li>
+<li><strong><a href="../culling/">Culling Overview</a></strong> - Game culling mechanics that enable <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
 </ul>
 <h2 id="despawn-reasons">Despawn reasons</h2>
 <hr />
@@ -2112,12 +2112,12 @@ For example, death reasons include:</p>
 Each reason corresponds to a number in an internal enumeration.</li>
 </ul>
 <p>The two kinds of despawn we are able to interrupt are <code>FallIntoAbyss</code> and <code>Eaten</code>.
-This splits DI into two sub-glitches: <code>FallIntoAbyss</code> DI, aka Void Dipping, and <code>Eaten</code> DI.
+This splits <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> into two sub-glitches: <code>FallIntoAbyss</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>, aka <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/JDP/" class="glitch-autolink" title="Void Dipping" target="_blank" rel="noopener noreferrer">Void Dipping</a>, and <code>Eaten</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>.
 The behavioural changes stem from the way the game handles killing an already dead actor: the death will only go through if the newer death reason number is smaller than the older death reason number.
 For example, <code>PickedUp</code> has a reason number of 7.
-<code>FallIntoAbyss</code>'s number is 13, so picking up a void dipped item will properly delete it (7 &lt; 13, death goes through). However, <code>Eaten</code>'s reason number is 6, and 6 &lt; 7, so picking up a eaten DI'd piece of equipment will not delete it, putting a copy in the inventory but staying alive.
+<code>FallIntoAbyss</code>'s number is 13, so picking up a void dipped item will properly delete it (7 &lt; 13, death goes through). However, <code>Eaten</code>'s reason number is 6, and 6 &lt; 7, so picking up a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">eaten DI</a>'d piece of equipment will not delete it, putting a copy in the inventory but staying alive.
 This is just an example, other differences emerge depending on which despawn reason was interrupted.</p>
-<p>Note that to make writing setups quicker, FallIntoAbyss DI will be referred to as Void Dipping (VD) and Eaten DI simply as DI.</p>
+<p>Note that to make writing setups quicker, FallIntoAbyss <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> will be referred to as <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/JDP/" class="glitch-autolink" title="Void Dipping" target="_blank" rel="noopener noreferrer">Void Dipping</a> (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/JDP/" class="glitch-autolink" title="VD" target="_blank" rel="noopener noreferrer">VD</a>) and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Eaten DI</a> simply as <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>.</p>
 <h2 id="what-to-expect-in-each-writeup">What to expect in each writeup</h2>
 <hr />
 <ul>

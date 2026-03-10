@@ -291,7 +291,7 @@ html, body {
 .md-header__title {
   color: var(--teal-glow) !important;
   text-shadow: none !important;
-  font-weight: 600;
+  font-weight: 400;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   display: flex !important;
   align-items: center !important;
@@ -301,7 +301,7 @@ html, body {
 .md-header__button.md-logo {
   color: var(--teal-glow) !important;
   text-shadow: none !important;
-  font-weight: 600;
+  font-weight: 400;
   font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
   overflow: visible !important;
 }

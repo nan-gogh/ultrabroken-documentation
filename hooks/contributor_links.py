@@ -18,8 +18,8 @@ import re
 from pathlib import Path
 
 _CONTRIBUTORS_JSON = (
-    Path(__file__).parent.parent  # docs/assets/
-    / 'data' / 'credits.json'
+    Path(__file__).parent.parent  # docs/
+    / 'assets' / 'data' / 'credits.json'
 )
 
 # Loaded once per build on first page processed

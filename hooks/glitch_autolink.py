@@ -29,8 +29,8 @@ import re
 from pathlib import Path
 
 _GLOSSARY_JSON = (
-    Path(__file__).parent.parent  # docs/assets/
-    / 'data' / 'glossary.json'
+    Path(__file__).parent.parent  # docs/
+    / 'assets' / 'data' / 'glossary.json'
 )
 
 # Loaded once per build on first page processed.
