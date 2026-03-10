@@ -18,22 +18,22 @@ companion script (diagram-pan-zoom.js) auto-initialises any
 
 import re
 
-# Matches ```mermaid viewer (or ```mermaid diagram-viewer) followed by content
-# then the closing backticks.  Captures leading indentation (group 1) so
-# fences inside tab blocks (4-space indent) are matched correctly — the
-# closing delimiter must carry the same indent as the opening line.
-_VIEWER_RE = re.compile(
+# Single combined pattern — processed in one re.sub pass.
+#   Branch 1 (groups 1-2): 4+ backtick/tilde outer fence  →  emit verbatim
+#                          (shields syntax-example blocks from Branch 2)
+#   Branch 2 (groups 3-5): mermaid viewer fence            →  wrap in pan-zoom container
+#
+# Branch 1 is listed first so its {4,} quantifier takes priority over Branch 2's
+# {3,}, preventing false matches inside ````markdown syntax examples.
+# Both branches capture leading indentation so the closing delimiter must carry
+# the same indent as the opening line — essential for pymdownx.tabbed tab blocks
+# whose contents are indented 4 spaces.
+_RE = re.compile(
+    r'^([ \t]*)(`{4,}|~{4,})[^\n]*\n[\s\S]*?\n\1\2[ \t]*$'
+    r'|'
     r'^([ \t]*)(`{3,})mermaid[ \t]+(?:viewer|diagram-viewer)[ \t]*\n'
     r'([\s\S]*?)'
-    r'\n\1\2[ \t]*$',
-    re.MULTILINE,
-)
-
-# Matches 4+ backtick (or tilde) outer fences, with optional leading indentation.
-# These act as shields — the viewer pattern is never applied inside them.
-# The closing delimiter must match the same indentation + same delimiter.
-_FENCE_RE = re.compile(
-    r'^([ \t]*)(`{4,}|~{4,})[^\n]*\n[\s\S]*?\n\1\2[ \t]*$',
+    r'\n\3\4[ \t]*$',
     re.MULTILINE,
 )
 
@@ -52,10 +52,10 @@ _WRAPPER_AFTER = (
 )
 
 
-def _wrap_viewer(m: re.Match) -> str:
-    indent = m.group(1)
-    backticks = m.group(2)
-    content = m.group(3)
+def _replace(m: re.Match) -> str:
+    if m.group(3) is None:
+        return m.group(0)  # outer fence — pass through verbatim
+    indent, backticks, content = m.group(3), m.group(4), m.group(5)
     result = _WRAPPER_BEFORE + backticks + 'mermaid\n' + content + '\n' + backticks + _WRAPPER_AFTER
     if indent:
         # Re-indent every non-empty line so the whole wrapper stays inside
@@ -65,14 +65,4 @@ def _wrap_viewer(m: re.Match) -> str:
 
 
 def on_page_markdown(markdown: str, page, config, files, **kwargs) -> str:
-    # Split on 4+ backtick fences (shields). Apply viewer replacement only
-    # to the segments between them, never inside them.
-    parts: list[str] = []
-    last = 0
-    for m in _FENCE_RE.finditer(markdown):
-        plain = markdown[last:m.start()]
-        parts.append(_VIEWER_RE.sub(_wrap_viewer, plain))
-        parts.append(m.group(0))  # emit outer fence verbatim
-        last = m.end()
-    parts.append(_VIEWER_RE.sub(_wrap_viewer, markdown[last:]))
-    return ''.join(parts)
+    return _RE.sub(_replace, markdown)
