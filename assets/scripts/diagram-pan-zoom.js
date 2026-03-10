@@ -52,7 +52,15 @@
       var cs = getComputedStyle(inner);
       baseH = Math.ceil(rect.height + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom));
       inner.style.position = 'absolute';
-      applyZoom(1, true);
+      applyZoom(fitZoom(), true);
+    }
+
+    function fitZoom() {
+      var barH = zoomBar ? zoomBar.offsetHeight : 0;
+      var availW = pan.clientWidth;
+      var availH = pan.clientHeight - barH;
+      if (baseW <= 0 || baseH <= 0) return 1;
+      return Math.max(minZoom, Math.min(maxZoom, Math.min(availW / baseW, availH / baseH)));
     }
 
     function applyLayout() {
@@ -110,7 +118,7 @@
     slider.addEventListener('change', function () {
       setTimeout(function () { sliderActive = false; }, 50);
     });
-    resetBtn.addEventListener('click', function () { applyZoom(1, true); });
+    resetBtn.addEventListener('click', function () { applyZoom(fitZoom(), true); });
 
     pan.addEventListener('wheel', function (e) {
       if (e.target.closest('.diagram-zoom')) return;
@@ -183,7 +191,7 @@
       if (e.touches.length === 0) { dragging = false; pan.classList.remove('is-dragging'); }
     });
 
-    window.addEventListener('resize', function () { applyZoom(zoom, true); });
+    window.addEventListener('resize', function () { applyZoom(fitZoom(), true); });
     measureBase();
   }
 
