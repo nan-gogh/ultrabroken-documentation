@@ -41,18 +41,16 @@
       if (mermaid.textContent.trim().length > 0) return requestAnimationFrame(measureBase);
       inner.style.position = '';
       inner.style.transform = '';
-      inner.style.width = '';
+      inner.style.width = 'max-content';
       inner.style.height = '';
-      var svgEl = mermaid.querySelector('svg');
-      if (!svgEl) { inner.style.position = 'absolute'; return requestAnimationFrame(measureBase); }
-      var svgRect = svgEl.getBoundingClientRect();
-      if (svgRect.width === 0 || svgRect.height === 0) {
+      var rect = mermaid.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) {
         inner.style.position = 'absolute';
         return requestAnimationFrame(measureBase);
       }
+      baseW = inner.offsetWidth;
       var cs = getComputedStyle(inner);
-      baseW = Math.ceil(svgRect.width + parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight));
-      baseH = Math.ceil(svgRect.height + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom));
+      baseH = Math.ceil(rect.height + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom));
       inner.style.position = 'absolute';
       applyZoom(1, true);
     }
