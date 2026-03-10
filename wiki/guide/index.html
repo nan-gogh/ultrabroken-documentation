@@ -3003,10 +3003,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#syntax_18" class="md-nav__link">
+  <a href="#how-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Syntax
+        How to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
       
     </span>
   </a>
@@ -4124,10 +4135,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#syntax_18" class="md-nav__link">
+  <a href="#how-to-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Syntax
+        How to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
       
     </span>
   </a>
@@ -4698,8 +4720,16 @@ Another Term
 <div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Interactive Viewer</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Any Mermaid diagram can be made interactive (pan, zoom, drag) by adding the <code>viewer</code> keyword to the code fence info string. The build hook wraps it in the pan-zoom container automatically.</p>
-<h4 id="syntax_18">Syntax</h4>
+<h4 id="how-to-use">How to Use</h4>
+<p>Add the word <code>viewer</code> after <code>mermaid</code> on the opening fence line. That's all — the build system automatically wraps your diagram in an interactive pan-zoom viewer.</p>
+<h4 id="example_19">Example</h4>
+<p>Change this:</p>
+<div class="highlight"><pre><span></span><code><span class="sb">```mermaid</span>
+<span class="s">graph TD</span>
+<span class="s">    A --&gt; B</span>
+<span class="sb">```</span>
+</code></pre></div>
+<p>To this:</p>
 <p>````markdown
 <div class="diagram-pan">
 </p>
@@ -4717,16 +4747,18 @@ Another Term
     ```
     ````
 
-    #### Features
+    #### What You Get
 
-    - **Scroll wheel zoom**: Zoom in/out toward the cursor position
-    - **Pinch zoom** (mobile): Zoom to the pinch center point
-    - **Slider zoom**: Adjust zoom level toward the viewport center
-    - **Mouse drag**: Click and drag to pan the diagram
+    Your diagram becomes interactive with:
+
+    - **Scroll wheel zoom**: Zoom in/out toward the cursor
+    - **Pinch zoom** (mobile): Zoom to the pinch center
+    - **Slider**: Manually adjust zoom level (easy 22px touch target)
+    - **Mouse drag**: Click and drag to pan
     - **Touch drag** (mobile): Single-finger drag to pan
-    - **Reset button**: Return to the initial zoom level (1×) and centered position
+    - **Reset button**: Return to default zoom (1×) and centered view
 
-    See the [Infrastructure diagram](/wiki/about/#infrastructure) on the About page for a live example.
+    See the [Infrastructure diagram on the About page](/wiki/about/#infrastructure) for a live example.
 
 === "Flowchart"
 
