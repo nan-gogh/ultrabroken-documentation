@@ -2264,6 +2264,7 @@
     var lastTouchDist = null, lastTouchMid = null;
     // Virtual (unclamped) scroll position — prevents drift from browser clamping
     var vSX = 0, vSY = 0;
+    var settingScroll = false; // guard against scroll event overwriting unclamped values
 
     // Sizer div defines the scrollable area
     var sizer = document.createElement('div');
@@ -2316,8 +2317,10 @@
       if (center) {
         vSX = curPadX + baseW * zoom / 2 - pan.clientWidth / 2;
         vSY = curPadY + baseH * zoom / 2 - pan.clientHeight / 2;
+        settingScroll = true;
         pan.scrollLeft = vSX;
         pan.scrollTop = vSY;
+        settingScroll = false;
       }
     }
 
@@ -2332,15 +2335,18 @@
       applyLayout();
       vSX = curPadX + cx * zoom - px;
       vSY = curPadY + cy * zoom - py;
+      settingScroll = true;
       pan.scrollLeft = vSX;
       pan.scrollTop = vSY;
+      settingScroll = false;
     }
 
-    // Sync virtual scroll when user drags/scrolls manually
+    // Sync virtual scroll only from user-initiated scrolling (drag), not programmatic
     pan.addEventListener('scroll', function() {
-      // Only sync if not mid-programmatic-scroll (drag sets scrollLeft directly)
-      vSX = pan.scrollLeft;
-      vSY = pan.scrollTop;
+      if (!settingScroll) {
+        vSX = pan.scrollLeft;
+        vSY = pan.scrollTop;
+      }
     });
 
     // Slider: zoom toward viewport center
@@ -2354,7 +2360,7 @@
       if (e.target.closest('.diagram-zoom')) return;
       e.preventDefault();
       var r = pan.getBoundingClientRect();
-      zoomAt(zoom + (e.deltaY > 0 ? -0.1 : 0.1), e.clientX - r.left, e.clientY - r.top);
+      zoomAt(zoom + (e.deltaY > 0 ? -0.2 : 0.2), e.clientX - r.left, e.clientY - r.top);
     }, { passive: false });
 
     // Drag: pan by mouse
@@ -2402,8 +2408,10 @@
         applyLayout();
         vSX = curPadX + cx * zoom - mid.x;
         vSY = curPadY + cy * zoom - mid.y;
+        settingScroll = true;
         pan.scrollLeft = vSX;
         pan.scrollTop = vSY;
+        settingScroll = false;
         lastTouchDist = dist;
         lastTouchMid = mid;
       } else if (e.touches.length === 1 && dragging) {
