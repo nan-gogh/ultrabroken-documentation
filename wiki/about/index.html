@@ -2262,7 +2262,8 @@
     var curPadX = 0, curPadY = 0;
     var dragging = false, dragX = 0, dragY = 0, scrollL = 0, scrollT = 0;
     var lastTouchDist = null, lastTouchMid = null;
-    var pinchSX = null, pinchSY = null; // virtual (unclamped) scroll during pinch
+    // Virtual (unclamped) scroll position — prevents drift from browser clamping
+    var vSX = 0, vSY = 0;
 
     // Sizer div defines the scrollable area
     var sizer = document.createElement('div');
@@ -2313,8 +2314,10 @@
       zoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
       applyLayout();
       if (center) {
-        pan.scrollLeft = curPadX + baseW * zoom / 2 - pan.clientWidth / 2;
-        pan.scrollTop = curPadY + baseH * zoom / 2 - pan.clientHeight / 2;
+        vSX = curPadX + baseW * zoom / 2 - pan.clientWidth / 2;
+        vSY = curPadY + baseH * zoom / 2 - pan.clientHeight / 2;
+        pan.scrollLeft = vSX;
+        pan.scrollTop = vSY;
       }
     }
 
@@ -2322,15 +2325,23 @@
     function zoomAt(newZoom, px, py) {
       newZoom = Math.max(minZoom, Math.min(maxZoom, newZoom));
       if (newZoom === zoom) return;
-      // Decode: content coords under cursor using CURRENT stored pad
-      var cx = (pan.scrollLeft + px - curPadX) / zoom;
-      var cy = (pan.scrollTop + py - curPadY) / zoom;
+      // Decode from virtual scroll (unclamped) to get true content coords
+      var cx = (vSX + px - curPadX) / zoom;
+      var cy = (vSY + py - curPadY) / zoom;
       zoom = newZoom;
-      applyLayout(); // updates curPadX/curPadY to match new transform
-      // Encode: position scroll so (cx,cy) lands under (px,py) using NEW stored pad
-      pan.scrollLeft = curPadX + cx * zoom - px;
-      pan.scrollTop = curPadY + cy * zoom - py;
+      applyLayout();
+      vSX = curPadX + cx * zoom - px;
+      vSY = curPadY + cy * zoom - py;
+      pan.scrollLeft = vSX;
+      pan.scrollTop = vSY;
     }
+
+    // Sync virtual scroll when user drags/scrolls manually
+    pan.addEventListener('scroll', function() {
+      // Only sync if not mid-programmatic-scroll (drag sets scrollLeft directly)
+      vSX = pan.scrollLeft;
+      vSY = pan.scrollTop;
+    });
 
     // Slider: zoom toward viewport center
     slider.addEventListener('input', function() {
@@ -2370,8 +2381,6 @@
         var r = pan.getBoundingClientRect();
         lastTouchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
         lastTouchMid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top};
-        pinchSX = pan.scrollLeft;
-        pinchSY = pan.scrollTop;
       } else if (e.touches.length === 1) {
         if (e.target.closest('.diagram-zoom')) return;
         dragging = true;
@@ -2387,15 +2396,14 @@
         var mid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top};
         var newZoom = (dist !== lastTouchDist) ? Math.max(minZoom, Math.min(maxZoom, zoom * dist / lastTouchDist)) : zoom;
         // Decode from virtual scroll (unclamped) to avoid drift from browser clamping
-        var cx = (pinchSX + lastTouchMid.x - curPadX) / zoom;
-        var cy = (pinchSY + lastTouchMid.y - curPadY) / zoom;
+        var cx = (vSX + lastTouchMid.x - curPadX) / zoom;
+        var cy = (vSY + lastTouchMid.y - curPadY) / zoom;
         zoom = newZoom;
         applyLayout();
-        // Compute unclamped target, store it, and set scroll (browser clamps but we don't read back)
-        pinchSX = curPadX + cx * zoom - mid.x;
-        pinchSY = curPadY + cy * zoom - mid.y;
-        pan.scrollLeft = pinchSX;
-        pan.scrollTop = pinchSY;
+        vSX = curPadX + cx * zoom - mid.x;
+        vSY = curPadY + cy * zoom - mid.y;
+        pan.scrollLeft = vSX;
+        pan.scrollTop = vSY;
         lastTouchDist = dist;
         lastTouchMid = mid;
       } else if (e.touches.length === 1 && dragging) {
@@ -2405,7 +2413,7 @@
       }
     }, { passive: false });
     pan.addEventListener('touchend', function(e) {
-      if (e.touches.length < 2) { lastTouchDist = null; lastTouchMid = null; pinchSX = null; pinchSY = null; }
+      if (e.touches.length < 2) { lastTouchDist = null; lastTouchMid = null; }
       if (e.touches.length === 1) {
         dragging = true;
         dragX = e.touches[0].clientX; dragY = e.touches[0].clientY;
