@@ -26,11 +26,11 @@ _VIEWER_RE = re.compile(
     re.MULTILINE,
 )
 
-# Matches any fenced code block (``` or ~~~) with 3+ delimiters.
-# Used to skip nested fences so the viewer pattern isn't applied
-# inside code examples (e.g. ````markdown blocks in documentation).
+# Matches 4+ backtick (or tilde) outer fences, with optional leading indentation.
+# These act as shields — the viewer pattern is never applied inside them.
+# The closing delimiter must match the same indentation + same delimiter.
 _FENCE_RE = re.compile(
-    r'(`{3,}|~{3,}).*?\n[\s\S]*?\n\1',
+    r'^([ \t]*)(`{4,}|~{4,})[^\n]*\n[\s\S]*?\n\1\2[ \t]*$',
     re.MULTILINE,
 )
 
@@ -56,14 +56,11 @@ def _wrap_viewer(m: re.Match) -> str:
 
 
 def on_page_markdown(markdown: str, page, config, files, **kwargs) -> str:
-    # Process only non-code segments so syntax examples are never touched.
+    # Split on 4+ backtick fences (shields). Apply viewer replacement only
+    # to the segments between them, never inside them.
     parts: list[str] = []
     last = 0
     for m in _FENCE_RE.finditer(markdown):
-        # Only treat as a protecting fence if its delimiter is LONGER than 3
-        # (i.e. ````+ or ~~~~+). Plain ``` fences are candidates, not shields.
-        if len(m.group(1)) <= 3:
-            continue
         plain = markdown[last:m.start()]
         parts.append(_VIEWER_RE.sub(_wrap_viewer, plain))
         parts.append(m.group(0))  # emit outer fence verbatim
