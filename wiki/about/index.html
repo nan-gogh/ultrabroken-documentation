@@ -2262,6 +2262,7 @@
     var curPadX = 0, curPadY = 0;
     var dragging = false, dragX = 0, dragY = 0, scrollL = 0, scrollT = 0;
     var lastTouchDist = null, lastTouchMid = null;
+    var pinchSX = null, pinchSY = null; // virtual (unclamped) scroll during pinch
 
     // Sizer div defines the scrollable area
     var sizer = document.createElement('div');
@@ -2369,6 +2370,8 @@
         var r = pan.getBoundingClientRect();
         lastTouchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
         lastTouchMid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top};
+        pinchSX = pan.scrollLeft;
+        pinchSY = pan.scrollTop;
       } else if (e.touches.length === 1) {
         dragging = true;
         dragX = e.touches[0].clientX; dragY = e.touches[0].clientY;
@@ -2382,13 +2385,16 @@
         var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
         var mid = {x: (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top};
         var newZoom = (dist !== lastTouchDist) ? Math.max(minZoom, Math.min(maxZoom, zoom * dist / lastTouchDist)) : zoom;
-        // Atomic pan+zoom: decode OLD pinch center, encode under NEW pinch center
-        var cx = (pan.scrollLeft + lastTouchMid.x - curPadX) / zoom;
-        var cy = (pan.scrollTop + lastTouchMid.y - curPadY) / zoom;
+        // Decode from virtual scroll (unclamped) to avoid drift from browser clamping
+        var cx = (pinchSX + lastTouchMid.x - curPadX) / zoom;
+        var cy = (pinchSY + lastTouchMid.y - curPadY) / zoom;
         zoom = newZoom;
         applyLayout();
-        pan.scrollLeft = curPadX + cx * zoom - mid.x;
-        pan.scrollTop = curPadY + cy * zoom - mid.y;
+        // Compute unclamped target, store it, and set scroll (browser clamps but we don't read back)
+        pinchSX = curPadX + cx * zoom - mid.x;
+        pinchSY = curPadY + cy * zoom - mid.y;
+        pan.scrollLeft = pinchSX;
+        pan.scrollTop = pinchSY;
         lastTouchDist = dist;
         lastTouchMid = mid;
       } else if (e.touches.length === 1 && dragging) {
@@ -2398,7 +2404,7 @@
       }
     }, { passive: false });
     pan.addEventListener('touchend', function(e) {
-      if (e.touches.length < 2) { lastTouchDist = null; lastTouchMid = null; }
+      if (e.touches.length < 2) { lastTouchDist = null; lastTouchMid = null; pinchSX = null; pinchSY = null; }
       if (e.touches.length === 1) {
         dragging = true;
         dragX = e.touches[0].clientX; dragY = e.touches[0].clientY;

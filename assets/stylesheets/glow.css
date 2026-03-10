@@ -123,6 +123,7 @@
 .diagram-pan {
   position: relative;
   overflow: scroll;
+  scrollbar-width: none;
   aspect-ratio: 1 / 1;
   border: 1px solid rgba(0, 240, 194, 0.18);
   border-radius: 8px;
@@ -133,6 +134,9 @@
 .diagram-pan.is-dragging {
   cursor: grabbing;
   user-select: none;
+}
+.diagram-pan::-webkit-scrollbar {
+  display: none;
 }
 .diagram-pan .diagram-inner {
   transform-origin: 0 0;
