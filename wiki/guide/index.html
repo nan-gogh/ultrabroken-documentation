@@ -3178,6 +3178,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3185,6 +3196,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Configuration
+      
+    </span>
+  </a>
   
 </li>
       
@@ -4464,6 +4497,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4471,6 +4515,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extension Configuration
+      
+    </span>
+  </a>
   
 </li>
       
@@ -5209,77 +5275,127 @@ Another Term
 </code></pre></div>
 <h4 id="example_26">Example</h4>
 <p><div class="diagram-pan">
-</p>
-</div>
-</div>
-</div>
-<div class="diagram-zoom">
+  <div class="diagram-zoom">
     <input type="range" min="40" max="400" value="100">
     <span class="diagram-level">100%</span>
     <button>Reset</button>
   </div>
-<div class="diagram-inner">
+  <div class="diagram-inner">
 <pre class="mermaid"><code>    graph TD
         A["Glitch discovery"] --&gt; B{New?}
         B --&gt;|Yes| C[Archive]
         B --&gt;|No| D[T-Pose]
         C --&gt; E[End]
-        D --&gt; E
-    ```
-
-    #### Features
-
-    - **Scroll wheel**: Zoom in/out toward the cursor
-    - **Pinch zoom** (mobile): Zoom to the pinch center
-    - **Slider**: Manually adjust zoom level
-    - **Drag**: Pan in any direction
-    - **Reset**: Return to default zoom and center
-
-## Quick Reference
----
-
-| Extension | Purpose | Key Syntax |
-||||
-| **Admonition** | Callout blocks | !!! type "Title" |
-| **Details** | Collapsible sections | ??? note "Title" |
-| **Superfences** | Advanced code blocks |  `python title="..." `  |
-| **Highlight** | Syntax coloring | (Automatic with Superfences) |
-| **InlineHilite** | Inline code highlighting | `#!python code` |
-| **Tasklist** | Interactive checkboxes | - [x] Task |
-| **TOC** | Auto table of contents | (Automatic from headings) |
-| **Attr List** | Custom attributes | {#id .class} |
-| **Md in HTML** | Markdown in HTML blocks | &lt;div markdown="1"&gt; |
-| **Def List** | Glossaries | Term\n:   Definition |
-| **Tabbed** | Organized content groups | === "Tab Name" |
-| **Mermaid** | Diagrams &amp; flowcharts | \`\`\`mermaid graph TD \`\`\` |
-
-## Extension Configuration
----
-
-All extensions are defined in `mkdocs.yml`:
-</code></pre>
+        D --&gt; E</code></pre>
   </div>
-<p></div>yaml
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.tasklist:
-      clickable_checkbox: true
-  - toc:
-      permalink: false
-  - attr_list
-  - md_in_html
-  - def_list
-  - pymdownx.tabbed:
-      alternate_style: true
-```</p>
+</div></p>
+<h4 id="features">Features</h4>
+<ul>
+<li><strong>Scroll wheel</strong>: Zoom in/out toward the cursor</li>
+<li><strong>Pinch zoom</strong> (mobile): Zoom to the pinch center</li>
+<li><strong>Slider</strong>: Manually adjust zoom level</li>
+<li><strong>Drag</strong>: Pan in any direction</li>
+<li><strong>Reset</strong>: Return to default zoom and center</li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="quick-reference">Quick Reference</h2>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Purpose</th>
+<th>Key Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Admonition</strong></td>
+<td>Callout blocks</td>
+<td>!!! type "Title"</td>
+</tr>
+<tr>
+<td><strong>Details</strong></td>
+<td>Collapsible sections</td>
+<td>??? note "Title"</td>
+</tr>
+<tr>
+<td><strong>Superfences</strong></td>
+<td>Advanced code blocks</td>
+<td><code>python title="..."</code></td>
+</tr>
+<tr>
+<td><strong>Highlight</strong></td>
+<td>Syntax coloring</td>
+<td>(Automatic with Superfences)</td>
+</tr>
+<tr>
+<td><strong>InlineHilite</strong></td>
+<td>Inline code highlighting</td>
+<td><code class="highlight"><span class="n">code</span></code></td>
+</tr>
+<tr>
+<td><strong>Tasklist</strong></td>
+<td>Interactive checkboxes</td>
+<td>- [x] Task</td>
+</tr>
+<tr>
+<td><strong>TOC</strong></td>
+<td>Auto table of contents</td>
+<td>(Automatic from headings)</td>
+</tr>
+<tr>
+<td><strong>Attr List</strong></td>
+<td>Custom attributes</td>
+<td>{#id .class}</td>
+</tr>
+<tr>
+<td><strong>Md in HTML</strong></td>
+<td>Markdown in HTML blocks</td>
+<td><div markdown="1"></td>
+</tr>
+<tr>
+<td><strong>Def List</strong></td>
+<td>Glossaries</td>
+<td>Term\n:   Definition</td>
+</tr>
+<tr>
+<td><strong>Tabbed</strong></td>
+<td>Organized content groups</td>
+<td>=== "Tab Name"</td>
+</tr>
+<tr>
+<td><strong>Mermaid</strong></td>
+<td>Diagrams &amp; flowcharts</td>
+<td>```mermaid graph <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/DGS/" class="glitch-autolink" title="TD" target="_blank" rel="noopener noreferrer">TD</a> ```</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extension-configuration">Extension Configuration</h2>
+<hr />
+<p>All extensions are defined in <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.details</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.superfences</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">custom_fences</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mermaid</span>
+<span class="w">          </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mermaid</span>
+<span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="kt">!!python/name:pymdownx.superfences.fence_code_format</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.highlight</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.inlinehilite</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.tasklist</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">clickable_checkbox</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toc</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">permalink</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attr_list</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">md_in_html</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">def_list</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.tabbed</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">alternate_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 <h2 id="see-also">See Also</h2>
 <hr />
 <ul>

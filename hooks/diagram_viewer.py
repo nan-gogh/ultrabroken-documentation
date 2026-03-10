@@ -19,10 +19,13 @@ companion script (diagram-pan-zoom.js) auto-initialises any
 import re
 
 # Matches ```mermaid viewer (or ```mermaid diagram-viewer) followed by content
-# then the closing backticks.
+# then the closing backticks.  Captures leading indentation (group 1) so
+# fences inside tab blocks (4-space indent) are matched correctly — the
+# closing delimiter must carry the same indent as the opening line.
 _VIEWER_RE = re.compile(
-    r'(`{3,})mermaid\s+(?:viewer|diagram-viewer)\s*\n'
-    r'([\s\S]*?)\n\1',
+    r'^([ \t]*)(`{3,})mermaid[ \t]+(?:viewer|diagram-viewer)[ \t]*\n'
+    r'([\s\S]*?)'
+    r'\n\1\2[ \t]*$',
     re.MULTILINE,
 )
 
@@ -50,9 +53,15 @@ _WRAPPER_AFTER = (
 
 
 def _wrap_viewer(m: re.Match) -> str:
-    backticks = m.group(1)
-    content = m.group(2)
-    return _WRAPPER_BEFORE + backticks + 'mermaid\n' + content + '\n' + backticks + _WRAPPER_AFTER
+    indent = m.group(1)
+    backticks = m.group(2)
+    content = m.group(3)
+    result = _WRAPPER_BEFORE + backticks + 'mermaid\n' + content + '\n' + backticks + _WRAPPER_AFTER
+    if indent:
+        # Re-indent every non-empty line so the whole wrapper stays inside
+        # indented contexts (e.g. pymdownx.tabbed tab blocks).
+        result = '\n'.join(indent + line if line else line for line in result.split('\n'))
+    return result
 
 
 def on_page_markdown(markdown: str, page, config, files, **kwargs) -> str:
