@@ -130,6 +130,7 @@
   background: rgba(0, 121, 107, 0.08);
   margin: 1.5em 0;
   cursor: grab;
+  isolation: isolate;
 }
 .diagram-pan.is-dragging {
   cursor: grabbing;
@@ -148,7 +149,7 @@
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 2;
   display: flex;
   gap: 8px;
   align-items: center;
