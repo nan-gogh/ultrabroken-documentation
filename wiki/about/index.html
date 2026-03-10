@@ -2285,8 +2285,8 @@
       var padY = pan.clientHeight / 2;
       inner.style.marginLeft = padX + 'px';
       inner.style.marginTop = padY + 'px';
-      inner.style.marginRight = Math.max(0, baseW * (zoom - 1)) + padX + 'px';
-      inner.style.marginBottom = Math.max(0, baseH * (zoom - 1)) + padY + 'px';
+      inner.style.marginRight = (baseW * (zoom - 1) + padX) + 'px';
+      inner.style.marginBottom = (baseH * (zoom - 1) + padY) + 'px';
       slider.value = Math.round(zoom * 100);
       label.textContent = Math.round(zoom * 100) + '%';
     }
