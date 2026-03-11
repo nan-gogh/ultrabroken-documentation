@@ -62,39 +62,43 @@
     return window.innerWidth < 1220;
   }
 
-  /* ── Inject TOC into a single nav panel's header area ──────── */
+  /* ── Inject TOC into a single nav panel ─────────────────────
+     Two DOM pieces are created:
+       1. A hidden <li> at the top of the panel's .md-nav__list
+          (checkbox + inner nav) — gives Material's CSS the exact
+          DOM hierarchy it expects for the slide-in panel.
+       2. A visible label in the header area (between .md-nav__title
+          and .md-nav__list) — always visible, never scrolls away.
+     The header label's `for` targets the checkbox inside the <li>,
+     so tapping it opens the native slide-in panel.              ── */
   function injectIntoNav(parentNav, level, id, tocNav) {
     var flatList = buildTocList(tocNav);
     if (!flatList) return;
 
-    // Find the panel's title and list — insert between them
     var title = parentNav.querySelector(':scope > .md-nav__title');
     var list  = parentNav.querySelector(':scope > .md-nav__list');
     if (!title || !list) return;
 
-    // Wrapper: flex child between title and scrollable list
-    var wrapper = document.createElement('div');
-    wrapper.className = 'ub-toc-header';
+    // ─── 1. Hidden <li> in the list (drives the slide-in) ───
 
-    // Hidden checkbox — Material's .md-nav__toggle ~ .md-nav drives the slide
+    var item = document.createElement('li');
+    item.className = 'md-nav__item md-nav__item--nested ub-toc-nav-item';
+
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.id = id;
-    checkbox.className = 'md-nav__toggle md-toggle';
+    checkbox.className = 'md-nav__toggle md-toggle md-toggle--indeterminate';
 
-    // Visible label: looks like a nav list entry
-    var labelId = id + '_label';
-    var label = document.createElement('label');
-    label.className = 'ub-toc-header__label';
-    label.setAttribute('for', id);
-    label.id = labelId;
-    label.tabIndex = 0;
-    label.innerHTML =
+    // In-list label (hidden by CSS — the header label replaces it)
+    var inListLabel = document.createElement('label');
+    inListLabel.className = 'md-nav__link';
+    inListLabel.setAttribute('for', id);
+    inListLabel.innerHTML =
       '<span class="md-ellipsis">Table of contents</span>' +
       '<span class="md-nav__icon md-icon"></span>';
 
-    // Inner nav — Material's CSS makes this a full slide-in panel
-    // (position:absolute, height:100%, translateX(100%) → translateX(0))
+    var labelId = id + '_label';
+
     var innerNav = document.createElement('nav');
     innerNav.className = 'md-nav';
     innerNav.setAttribute('data-md-level', String(level));
@@ -110,17 +114,31 @@
     innerNav.appendChild(backLabel);
     innerNav.appendChild(flatList);
 
-    wrapper.appendChild(checkbox);
-    wrapper.appendChild(label);
-    wrapper.appendChild(innerNav);
+    item.appendChild(checkbox);
+    item.appendChild(inListLabel);
+    item.appendChild(innerNav);
 
-    // toc.follow: when panel opens, highlight + scroll to the active heading
+    list.insertBefore(item, list.firstChild);
+
+    // ─── 2. Visible header label (between title and list) ───
+
+    var headerLabel = document.createElement('label');
+    headerLabel.className = 'ub-toc-header';
+    headerLabel.setAttribute('for', id);
+    headerLabel.id = labelId;
+    headerLabel.tabIndex = 0;
+    headerLabel.innerHTML =
+      '<span class="md-ellipsis">Table of contents</span>' +
+      '<span class="md-nav__icon md-icon"></span>';
+
+    parentNav.insertBefore(headerLabel, list);
+
+    // ─── toc.follow: sync active link when panel opens ───
+
     checkbox.addEventListener('change', function () {
       if (!checkbox.checked) return;
       syncActiveLink(innerNav, tocNav);
     });
-
-    parentNav.insertBefore(wrapper, list);
   }
 
   /* ── toc.follow for mobile ─────────────────────────────────
@@ -159,6 +177,9 @@
   /* ── Inject TOC into every nav panel in the primary sidebar ── */
   function injectHeaderToc() {
     // Remove any previous injections (SPA nav rebuilds the page)
+    document.querySelectorAll('.ub-toc-nav-item').forEach(function (el) {
+      el.remove();
+    });
     document.querySelectorAll('.ub-toc-header').forEach(function (el) {
       el.remove();
     });
@@ -244,7 +265,7 @@
      (including the browser default) processes the click.        ── */
   window.addEventListener('click', function (e) {
     var link = e.target.closest(
-      '.md-sidebar--secondary .md-nav__link, .ub-toc-header .md-nav__link'
+      '.md-sidebar--secondary .md-nav__link, .ub-toc-nav-item .md-nav__link'
     );
     if (!link) return;
 
