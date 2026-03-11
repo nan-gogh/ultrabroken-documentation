@@ -193,9 +193,9 @@
       // Build heading ↔ TOC-item pairs for this clone
       var pairs = [];
       scrollList.querySelectorAll('a.md-nav__link').forEach(function (a) {
-        var href = a.getAttribute('href');
-        if (!href || href.charAt(0) !== '#') return;
-        var id = decodeURIComponent(href.slice(1));
+        var hash = a.hash;  // .hash always returns "#fragment" even for full URLs
+        if (!hash) return;
+        var id = decodeURIComponent(hash.slice(1));
         var heading = document.getElementById(id);
         if (!heading) return;
         var li = a.closest('li') || a;
