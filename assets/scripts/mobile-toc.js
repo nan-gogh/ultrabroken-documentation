@@ -157,6 +157,25 @@
       subtree: true,
       attributeFilter: ['class']
     });
+
+    // Auto-scroll: when a TOC panel opens, scroll the active link into view
+    clones.forEach(function (clone) {
+      var wrapper = clone.closest('.ub-toc-header');
+      if (!wrapper) return;
+      var checkbox = wrapper.querySelector('input.md-nav__toggle');
+      if (!checkbox) return;
+      checkbox.addEventListener('change', function () {
+        if (!checkbox.checked) return;
+        var active = clone.querySelector('.md-nav__link--active');
+        if (!active) return;
+        // Wait for the slide-in transition (~250ms) then scroll
+        setTimeout(function () {
+          if (active.offsetParent) {
+            active.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          }
+        }, 300);
+      });
+    });
   }
 
   function stopTocFollow() {
@@ -189,9 +208,11 @@
     injectIntoNav(primary, 1, TOGGLE_PREFIX + '_' + counter++, tocNav);
 
     // Every nested nav panel (sections the user can navigate into)
+    // Exclude our own injected navs (.ub-toc-header nav) to avoid recursion
     primary.querySelectorAll(
       'nav.md-nav:not(.md-nav--primary):not(.md-nav--secondary)'
     ).forEach(function (nav) {
+      if (nav.closest('.ub-toc-header')) return;
       var level = parseInt(nav.getAttribute('data-md-level') || '1', 10) + 1;
       injectIntoNav(nav, level, TOGGLE_PREFIX + '_' + counter++, tocNav);
     });
