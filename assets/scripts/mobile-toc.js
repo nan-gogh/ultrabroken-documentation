@@ -62,43 +62,39 @@
     return window.innerWidth < 1220;
   }
 
-  /* ── Inject TOC into a single nav panel ─────────────────────
-     Two DOM pieces are created:
-       1. A hidden <li> at the top of the panel's .md-nav__list
-          (checkbox + inner nav) — gives Material's CSS the exact
-          DOM hierarchy it expects for the slide-in panel.
-       2. A visible label in the header area (between .md-nav__title
-          and .md-nav__list) — always visible, never scrolls away.
-     The header label's `for` targets the checkbox inside the <li>,
-     so tapping it opens the native slide-in panel.              ── */
+  /* ── Inject TOC into a single nav panel's header area ──────── */
   function injectIntoNav(parentNav, level, id, tocNav) {
     var flatList = buildTocList(tocNav);
     if (!flatList) return;
 
+    // Find the panel's title and list — insert between them
     var title = parentNav.querySelector(':scope > .md-nav__title');
     var list  = parentNav.querySelector(':scope > .md-nav__list');
     if (!title || !list) return;
 
-    // ─── 1. Hidden <li> in the list (drives the slide-in) ───
+    // Wrapper: flex child between title and scrollable list
+    var wrapper = document.createElement('div');
+    wrapper.className = 'ub-toc-header';
 
-    var item = document.createElement('li');
-    item.className = 'md-nav__item md-nav__item--nested ub-toc-nav-item';
-
+    // Hidden checkbox — Material's .md-nav__toggle ~ .md-nav drives the slide
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.id = id;
-    checkbox.className = 'md-nav__toggle md-toggle md-toggle--indeterminate';
+    checkbox.className = 'md-nav__toggle md-toggle';
 
-    // In-list label (hidden by CSS — the header label replaces it)
-    var inListLabel = document.createElement('label');
-    inListLabel.className = 'md-nav__link';
-    inListLabel.setAttribute('for', id);
-    inListLabel.innerHTML =
+    // Visible label: looks like a nav list entry
+    var labelId = id + '_label';
+    var label = document.createElement('label');
+    label.className = 'ub-toc-header__label';
+    label.setAttribute('for', id);
+    label.id = labelId;
+    label.tabIndex = 0;
+    label.innerHTML =
       '<span class="md-ellipsis">Table of contents</span>' +
       '<span class="md-nav__icon md-icon"></span>';
 
-    var labelId = id + '_label';
-
+    // Inner nav — Material's CSS makes this a full slide-in panel
+    // (position:absolute, height:100%, translateX(100%) → translateX(0))
     var innerNav = document.createElement('nav');
     innerNav.className = 'md-nav';
     innerNav.setAttribute('data-md-level', String(level));
@@ -114,72 +110,66 @@
     innerNav.appendChild(backLabel);
     innerNav.appendChild(flatList);
 
-    item.appendChild(checkbox);
-    item.appendChild(inListLabel);
-    item.appendChild(innerNav);
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(label);
+    wrapper.appendChild(innerNav);
 
-    list.insertBefore(item, list.firstChild);
-
-    // ─── 2. Visible header label (between title and list) ───
-
-    var headerLabel = document.createElement('label');
-    headerLabel.className = 'ub-toc-header';
-    headerLabel.setAttribute('for', id);
-    headerLabel.id = labelId;
-    headerLabel.tabIndex = 0;
-    headerLabel.innerHTML =
-      '<span class="md-ellipsis">Table of contents</span>' +
-      '<span class="md-nav__icon md-icon"></span>';
-
-    parentNav.insertBefore(headerLabel, list);
-
-    // ─── toc.follow: sync active link when panel opens ───
-
-    checkbox.addEventListener('change', function () {
-      if (!checkbox.checked) return;
-      syncActiveLink(innerNav, tocNav);
-    });
+    parentNav.insertBefore(wrapper, list);
   }
 
   /* ── toc.follow for mobile ─────────────────────────────────
-     Mirror the desktop TOC's active link into our cloned list
-     and scroll it into view inside the slide-in panel.        ── */
-  function syncActiveLink(innerNav, tocNav) {
-    // Clear previous active marks
-    innerNav.querySelectorAll('.md-nav__link--active').forEach(function (el) {
-      el.classList.remove('md-nav__link--active');
+     A MutationObserver watches the desktop TOC for class changes.
+     Whenever Material marks a link active, we mirror it into
+     every mobile TOC clone in real-time — so the highlight is
+     already there when the user opens the panel.              ── */
+  var tocObserver = null;
+
+  function startTocFollow(tocNav) {
+    stopTocFollow();
+
+    var clones = document.querySelectorAll('.ub-toc-header nav.md-nav');
+    if (!clones.length) return;
+
+    function syncAll() {
+      var activeDesktop = tocNav.querySelector('.md-nav__link--active');
+      var activeHref = activeDesktop
+        ? activeDesktop.getAttribute('href')
+        : null;
+
+      clones.forEach(function (clone) {
+        clone.querySelectorAll('.md-nav__link--active').forEach(function (el) {
+          el.classList.remove('md-nav__link--active');
+        });
+        if (!activeHref) return;
+        var match = clone.querySelector(
+          'a.md-nav__link[href="' + CSS.escape(activeHref) + '"]'
+        );
+        if (match) match.classList.add('md-nav__link--active');
+      });
+    }
+
+    // Initial sync
+    syncAll();
+
+    tocObserver = new MutationObserver(syncAll);
+    tocObserver.observe(tocNav, {
+      attributes: true,
+      subtree: true,
+      attributeFilter: ['class']
     });
+  }
 
-    // Find which link the desktop TOC considers active
-    var activeDesktop = tocNav.querySelector('.md-nav__link--active');
-    if (!activeDesktop) return;
-
-    var activeHref = activeDesktop.getAttribute('href');
-    if (!activeHref) return;
-
-    // Find the matching link in our cloned list
-    var match = innerNav.querySelector(
-      'a.md-nav__link[href="' + CSS.escape(activeHref) + '"]'
-    );
-    if (!match) return;
-
-    match.classList.add('md-nav__link--active');
-
-    // Wait for the slide-in transition (250ms) then scroll into view
-    setTimeout(function () {
-      var list = innerNav.querySelector('.md-nav__list');
-      if (list && match.offsetParent) {
-        match.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      }
-    }, 300);
+  function stopTocFollow() {
+    if (tocObserver) {
+      tocObserver.disconnect();
+      tocObserver = null;
+    }
   }
 
   /* ── Inject TOC into every nav panel in the primary sidebar ── */
   function injectHeaderToc() {
     // Remove any previous injections (SPA nav rebuilds the page)
-    document.querySelectorAll('.ub-toc-nav-item').forEach(function (el) {
-      el.remove();
-    });
+    stopTocFollow();
     document.querySelectorAll('.ub-toc-header').forEach(function (el) {
       el.remove();
     });
@@ -205,6 +195,9 @@
       var level = parseInt(nav.getAttribute('data-md-level') || '1', 10) + 1;
       injectIntoNav(nav, level, TOGGLE_PREFIX + '_' + counter++, tocNav);
     });
+
+    // Start mirroring the desktop TOC's active link into mobile clones
+    startTocFollow(tocNav);
   }
 
   /* ── Reset nav on drawer open ────────────────────────────────
@@ -265,7 +258,7 @@
      (including the browser default) processes the click.        ── */
   window.addEventListener('click', function (e) {
     var link = e.target.closest(
-      '.md-sidebar--secondary .md-nav__link, .ub-toc-nav-item .md-nav__link'
+      '.md-sidebar--secondary .md-nav__link, .ub-toc-header .md-nav__link'
     );
     if (!link) return;
 

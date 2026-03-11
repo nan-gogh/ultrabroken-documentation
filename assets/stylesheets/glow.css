@@ -1045,9 +1045,9 @@ li.task-list-item a, li.task-list a {
    ═══════════════════════════════════════════════════════════════════════════════ */
 
 /* ── TOC header widget ────────────────────────────────────────────────────────
-   Split approach: a hidden <li> in the nav list drives Material's native
-   slide-in panel, while a visible header label (between title and list)
-   acts as the always-visible button.
+   Injected between each nav panel's title and scrollable list so it lives
+   OUTSIDE the scroll container — always visible, no sticky tricks needed.
+   Tapping the label opens Material's native slide-in panel (full TOC + back).
    ─────────────────────────────────────────────────────────────────────────── */
 
 /* Indent levels for flattened TOC sub-items — matches Material's native values */
@@ -1057,28 +1057,16 @@ li.task-list-item a, li.task-list a {
 .ub-toc-indent-4 > .md-nav__link { padding-left: 3.2rem; }
 
 @media (max-width: 76.1875em) {
-  /* Hidden <li>: zero visual height, but overflow:visible so the
-     absolute-positioned slide-in panel inside it still renders. */
-  .ub-toc-nav-item {
-    height: 0 !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
-    overflow: visible;
-  }
-  /* Hide the in-list label (the header label replaces it) */
-  .ub-toc-nav-item > .md-nav__link {
-    display: none;
+  /* Wrapper: non-scrolling flex child between title and list */
+  .ub-toc-header {
+    flex-shrink: 0;
   }
 
-  /* Header label: sits between nav title and scrollable list,
-     mimics a .md-nav--primary .md-nav__link entry. */
-  .ub-toc-header {
+  /* Label: mimics a .md-nav--primary .md-nav__link entry */
+  .ub-toc-header__label {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    flex-shrink: 0;
     padding: 0.6rem 0.8rem;
     font-size: 0.8rem;
     font-weight: 400;
@@ -1088,12 +1076,12 @@ li.task-list-item a, li.task-list a {
     border-top: 0.05rem solid var(--md-default-fg-color--lightest);
     transition: color 125ms;
   }
-  .ub-toc-header:hover {
+  .ub-toc-header__label:hover {
     color: var(--md-accent-fg-color);
   }
 
   /* TOC icon (instead of the default nav chevron) */
-  .ub-toc-header .md-nav__icon {
+  .ub-toc-header__label .md-nav__icon {
     flex-shrink: 0;
     margin-left: auto;
     margin-right: -0.2rem;
@@ -1101,7 +1089,7 @@ li.task-list-item a, li.task-list a {
     height: 1.2rem;
     width: 1.2rem;
   }
-  .ub-toc-header .md-nav__icon::after {
+  .ub-toc-header__label .md-nav__icon::after {
     background-color: currentcolor;
     content: "";
     display: block;
