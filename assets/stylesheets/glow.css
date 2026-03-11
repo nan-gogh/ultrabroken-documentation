@@ -379,6 +379,339 @@ html, body {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
+/* Neutralise Material's unguarded :hover on touch devices so states
+   don't get stuck.  Material core sets color/background on these
+   selectors without any hover media query. */
+@media (hover: none) {
+  /* ── Typography / content links ── */
+  .md-typeset a:hover {
+    color: inherit !important;
+  }
+  .md-typeset a:hover code {
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+
+  /* ── Tables ── */
+  .md-typeset table:not([class]) tbody tr:hover {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+  .md-typeset table th[role=columnheader]:hover:after {
+    background-color: inherit !important;
+  }
+
+  /* ── Authors ── */
+  .md-typeset a.md-author:hover {
+    transform: none !important;
+  }
+  .md-typeset a.md-author:hover img {
+    filter: grayscale(100%) opacity(75%) !important;
+  }
+
+  /* ── Banner ── */
+  .md-banner__button:hover {
+    opacity: 1 !important;
+  }
+
+  /* ── Clipboard / code nav ── */
+  :hover > .md-clipboard {
+    color: inherit !important;
+  }
+  .md-clipboard:hover {
+    color: inherit !important;
+  }
+  .md-clipboard--inline:hover code {
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+  :hover > .md-code__nav {
+    background-color: inherit !important;
+  }
+  :hover > * > .md-code__button {
+    color: inherit !important;
+  }
+  .md-code__button:hover {
+    color: inherit !important;
+  }
+
+  /* ── Feedback ── */
+  .md-feedback__list:hover .md-icon:not(:disabled) {
+    color: inherit !important;
+  }
+  .md-feedback__icon:not(:disabled).md-icon:hover {
+    color: inherit !important;
+  }
+
+  /* ── Footer ── */
+  .md-footer__link:hover {
+    opacity: 1 !important;
+  }
+  html .md-footer-meta.md-typeset a:hover {
+    color: inherit !important;
+  }
+
+  /* ── Buttons / inputs ── */
+  .md-typeset .md-button:hover {
+    background-color: inherit !important;
+    border-color: inherit !important;
+    color: inherit !important;
+  }
+  .md-typeset .md-input:hover {
+    border-bottom-color: inherit !important;
+    box-shadow: inherit !important;
+  }
+
+  /* ── Header ── */
+  .md-header__button:hover {
+    opacity: 1 !important;
+  }
+
+  /* ── Metadata ── */
+  .md-meta__link:hover {
+    color: inherit !important;
+  }
+
+  /* ── Navigation (already existed) ── */
+  .md-nav__link[href]:hover,
+  .md-nav__link[for]:hover {
+    color: inherit !important;
+    text-shadow: none !important;
+  }
+  .md-nav--primary .md-nav__item--active > .md-nav__link:hover {
+    color: inherit !important;
+  }
+  .md-nav__icon:hover {
+    background-color: transparent !important;
+  }
+  .md-nav__link[href]:hover code,
+  .md-nav__link[for]:hover code {
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+
+  /* ── Pagination ── */
+  .md-pagination__link:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+  .md-pagination__link:hover svg {
+    color: inherit !important;
+  }
+
+  /* ── Breadcrumb path ── */
+  .md-path__link:hover {
+    color: inherit !important;
+  }
+
+  /* ── Blog post meta ── */
+  .md-post .md-post__meta a:hover {
+    color: inherit !important;
+  }
+
+  /* ── Search ── */
+  .md-search__form:hover {
+    background-color: transparent !important;
+  }
+  .md-search__icon:hover {
+    opacity: 1 !important;
+  }
+  [data-md-toggle=search]:checked ~ .md-header .md-search__input:valid ~ .md-search__options > .md-icon:hover {
+    opacity: 1 !important;
+  }
+  .md-search-result__link:hover {
+    background-color: transparent !important;
+  }
+  .md-search-result__more > summary:hover > div {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+
+  /* ── Select / dropdown ── */
+  .md-select:hover .md-select__inner {
+    max-height: 0 !important;
+    opacity: 0 !important;
+  }
+  .md-select__link:hover {
+    color: inherit !important;
+  }
+
+  /* ── Source ── */
+  .md-source:hover {
+    opacity: 1 !important;
+  }
+
+  /* ── Status ── */
+  .md-status:hover:after {
+    background-color: transparent !important;
+  }
+
+  /* ── Tabs ── */
+  .md-tabs__link:hover {
+    color: inherit !important;
+    opacity: inherit !important;
+  }
+
+  /* ── Tags ── */
+  .md-typeset .md-tag[href]:hover {
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+  .md-typeset .md-tag-icon[href]:hover:before {
+    background-color: inherit !important;
+  }
+
+  /* ── Annotations ── */
+  :hover > .md-annotation__index:after {
+    background-color: inherit !important;
+  }
+
+  /* ── Back-to-top ── */
+  .md-top:hover {
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+
+  /* ── Version selector ── */
+  .md-version:hover .md-version__list {
+    max-height: 0 !important;
+    opacity: 0 !important;
+  }
+  .md-version__link:hover {
+    color: inherit !important;
+  }
+
+  /* ── Footnotes ── */
+  .md-typeset .footnote > ol > li:hover .footnote-backref {
+    opacity: 0 !important;
+    transform: translateX(.5rem) !important;
+  }
+  .md-typeset .footnote-backref:hover {
+    color: inherit !important;
+  }
+
+  /* ── Header links ── */
+  .md-typeset :hover > .headerlink {
+    opacity: 0 !important;
+  }
+  .md-typeset .headerlink:hover {
+    color: inherit !important;
+  }
+
+  /* ── Tabbed content ── */
+  .md-typeset .tabbed-labels > label:hover {
+    color: inherit !important;
+  }
+  .md-typeset .tabbed-button:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+
+  /* ── Grid cards ── */
+  .md-typeset .grid.cards > ol > li:hover,
+  .md-typeset .grid.cards > ul > li:hover,
+  .md-typeset .grid > .card:hover {
+    border-color: inherit !important;
+    box-shadow: inherit !important;
+  }
+
+  /* ── Scrollbar hovers (not interactive on touch, but safety) ── */
+  .md-typeset pre > code:hover {
+    scrollbar-color: inherit !important;
+  }
+}
+
+/* ── :active press-state fallbacks for Material core elements ──
+   On touch devices where hover is neutralised above, these provide
+   visible press feedback. */
+.md-typeset a:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-typeset .md-button:active {
+  background-color: var(--md-accent-fg-color) !important;
+  border-color: var(--md-accent-fg-color) !important;
+  color: var(--md-accent-bg-color) !important;
+}
+.md-header__button:active {
+  opacity: .7 !important;
+}
+.md-banner__button:active {
+  opacity: .7 !important;
+}
+.md-clipboard:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-code__button:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-footer__link:active {
+  opacity: .7 !important;
+}
+html .md-footer-meta.md-typeset a:active {
+  color: var(--md-footer-fg-color) !important;
+}
+.md-source:active {
+  opacity: .7 !important;
+}
+.md-tabs__link:active {
+  color: inherit !important;
+  opacity: 1 !important;
+}
+.md-search__icon:active {
+  opacity: .7 !important;
+}
+.md-search-result__link:active {
+  background-color: var(--md-accent-fg-color--transparent) !important;
+}
+.md-search-result__more > summary:active > div {
+  background-color: var(--md-accent-fg-color--transparent) !important;
+  color: var(--md-accent-fg-color) !important;
+}
+.md-select__link:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-meta__link:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-pagination__link:active {
+  background-color: var(--md-accent-fg-color--transparent) !important;
+  color: var(--md-accent-fg-color) !important;
+}
+.md-path__link:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-typeset .md-tag[href]:active {
+  background-color: var(--md-accent-fg-color) !important;
+  color: var(--md-accent-bg-color) !important;
+}
+.md-top:active {
+  background-color: var(--md-accent-fg-color) !important;
+  color: var(--md-accent-bg-color) !important;
+}
+.md-version__link:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-typeset .footnote-backref:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-typeset .headerlink:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-typeset .tabbed-labels > label:active {
+  color: var(--md-default-fg-color) !important;
+}
+.md-typeset .tabbed-button:active {
+  background-color: var(--md-accent-fg-color--transparent) !important;
+  color: var(--md-accent-fg-color) !important;
+}
+.md-feedback__icon:not(:disabled).md-icon:active {
+  color: var(--md-accent-fg-color) !important;
+}
+.md-typeset .grid.cards > ol > li:active,
+.md-typeset .grid.cards > ul > li:active,
+.md-typeset .grid > .card:active {
+  box-shadow: var(--md-shadow-z2) !important;
+}
 /* Override ellipsis clipping on sidebar links */
 .md-nav__link .md-ellipsis {
   overflow: visible !important;
@@ -1139,7 +1472,6 @@ li.task-list-item a, li.task-list a {
     border-top: 0.05rem solid var(--md-default-fg-color--lightest);
     transition: color 125ms;
   }
-  .ub-toc-header__label:hover,
   .ub-toc-header__label:active {
     color: var(--md-accent-fg-color);
   }
