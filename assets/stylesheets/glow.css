@@ -881,6 +881,13 @@ html, body, .md-content, .md-nav, .md-sidebar {
   fill: currentColor;
 }
 
+/* Remove focus outline on code-block copy button (mobile tap leaves stuck blue ring) */
+.md-clipboard:focus,
+.md-clipboard:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* Show pointing cursor when hovering tasklist items so they feel clickable */
 li.task-list-item, li.task-list {
   cursor: pointer;
