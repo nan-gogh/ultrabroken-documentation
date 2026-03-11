@@ -315,11 +315,11 @@ html, body {
     text-overflow: ellipsis !important;
     padding: 0 0.5rem !important;
     margin: 0 !important;
-    /* Compute available width from the viewport right edge so we only clip
-       what's necessary. JS sets `--header-available-width` at runtime using
-       the viewport (window.innerWidth) and the title left position. Fallback
-       continues to use a conservative controls-width reserve. */
-       max-width: var(--header-available-width, calc(100% - var(--header-controls-width, 84px))) !important;
+    /* JS (header-reserve.js) sets --header-available-width at runtime.
+       Fallback: 100% lets the flex parent naturally constrain the title,
+       producing near-identical width to the JS-measured value and avoiding
+       a visible shrink on first paint. */
+       max-width: var(--header-available-width, 100%) !important;
 }
 
 /* Scrolling indicator for clipped header titles (scrollLeft-based marquee) */
