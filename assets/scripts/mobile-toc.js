@@ -31,7 +31,6 @@
 
     var flatList = document.createElement('ul');
     flatList.className = 'md-nav__list';
-    flatList.setAttribute('data-md-scrollfix', '');
 
     tocLinks.forEach(function (a) {
       var depth = 0;
