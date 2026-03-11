@@ -883,7 +883,9 @@ html, body, .md-content, .md-nav, .md-sidebar {
 
 /* Remove focus outline on code-block copy button (mobile tap leaves stuck blue ring) */
 .md-clipboard:focus,
-.md-clipboard:focus-visible {
+.md-clipboard:focus-visible,
+.md-code__button:focus,
+.md-code__button:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
