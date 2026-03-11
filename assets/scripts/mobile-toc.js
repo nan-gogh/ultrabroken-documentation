@@ -191,20 +191,28 @@
       scrollList.addEventListener('wheel', onManualScroll, { passive: true });
 
       // Auto-scroll helper for this clone
-      clone.__ubAutoScroll = function () {
+      // smooth=true for initial panel open, instant for continuous following
+      clone.__ubAutoScroll = function (smooth) {
         if (!checkbox.checked) return;       // panel not open
         if (Date.now() < manualUntil) return; // user is manually scrolling
         var active = clone.querySelector('.md-nav__link--active');
-        if (active && active.offsetParent) {
-          active.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        if (!active || !active.offsetParent) return;
+
+        // Center the active link in the scrollable container
+        var top = active.offsetTop - scrollList.offsetTop
+                  - (scrollList.clientHeight - active.offsetHeight) / 2;
+        if (smooth) {
+          scrollList.scrollTo({ top: top, behavior: 'smooth' });
+        } else {
+          scrollList.scrollTop = top;
         }
       };
 
-      // When panel first opens, scroll immediately (after slide-in transition)
+      // When panel first opens, scroll smoothly (after slide-in transition)
       function onPanelOpen() {
         if (!checkbox.checked) return;
         manualUntil = 0; // reset manual pause on fresh open
-        setTimeout(function () { clone.__ubAutoScroll(); }, 300);
+        setTimeout(function () { clone.__ubAutoScroll(true); }, 300);
       }
       checkbox.addEventListener('change', onPanelOpen);
 
