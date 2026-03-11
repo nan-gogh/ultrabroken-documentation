@@ -170,16 +170,20 @@
     });
 
     // ── 2. Interpolated centering scroll ───────────────────
-    //    As the page scrolls through a heading's section, the
-    //    TOC smoothly glides from that heading centered to the
-    //    next heading centered.  Progress within each section
-    //    is mapped proportionally, giving continuous analog
-    //    motion that always keeps the active entry centered.
+    //    Smoothly glides the TOC list so the active heading's
+    //    entry is vertically centered.  Between headings the
+    //    scroll position interpolates proportionally, giving
+    //    continuous analog motion tied to the page scroll.
     //
-    //    After a manual-scroll cooldown the TOC glides back
-    //    smoothly; otherwise tracking is instant.
+    //    Position of each TOC item within the list's scroll
+    //    content is measured via getBoundingClientRect (immune
+    //    to offsetParent ambiguity in Material's absolute-
+    //    positioned slide-in panels).
+    //
+    //    Manual-scroll cooldown pauses tracking; when cooldown
+    //    expires the next sync uses smooth behavior once.
 
-    var scrollPanels = []; // { checkbox, scrollList, pairs, manualUntil }
+    var scrollPanels = []; // { checkbox, list, manualUntil }
 
     clones.forEach(function (clone) {
       var wrapper = clone.closest('.ub-toc-header');
@@ -187,112 +191,114 @@
       var checkbox = wrapper.querySelector('input.md-nav__toggle');
       if (!checkbox) return;
 
-      var scrollList = clone.querySelector('.md-nav__list');
-      if (!scrollList) return;
+      var list = clone.querySelector('.md-nav__list');
+      if (!list) return;
 
-      // Build heading ↔ TOC-item pairs for this clone
-      var pairs = [];
-      scrollList.querySelectorAll('a.md-nav__link').forEach(function (a) {
-        var hash = a.hash;  // .hash always returns "#fragment" even for full URLs
-        if (!hash) return;
-        var id = decodeURIComponent(hash.slice(1));
-        var heading = document.getElementById(id);
-        if (!heading) return;
-        var li = a.closest('li') || a;
-        pairs.push({ heading: heading, item: li });
-      });
-
-      var panel = {
-        checkbox: checkbox, scrollList: scrollList,
-        pairs: pairs, manualUntil: 0
-      };
+      var panel = { checkbox: checkbox, list: list, manualUntil: 0 };
       scrollPanels.push(panel);
 
-      // Detect manual scroll: touch or wheel on the TOC list
-      function onManualScroll() {
+      // Manual-scroll detection
+      function onManual() {
         panel.manualUntil = Date.now() + MANUAL_SCROLL_COOLDOWN;
       }
-      scrollList.addEventListener('touchmove', onManualScroll, { passive: true });
-      scrollList.addEventListener('wheel', onManualScroll, { passive: true });
+      list.addEventListener('touchmove', onManual, { passive: true });
+      list.addEventListener('wheel', onManual, { passive: true });
 
-      // When panel opens, jump to position
-      function onPanelOpen() {
+      // When panel opens, jump to correct position after slide animation
+      function onOpen() {
         if (!checkbox.checked) return;
         panel.manualUntil = 0;
-        setTimeout(function () { syncScroll(panel, 'instant'); }, 300);
+        setTimeout(function () { syncScroll(panel, 'auto'); }, 300);
       }
-      checkbox.addEventListener('change', onPanelOpen);
+      checkbox.addEventListener('change', onOpen);
 
       tocFollowCleanups.push(function () {
-        scrollList.removeEventListener('touchmove', onManualScroll);
-        scrollList.removeEventListener('wheel', onManualScroll);
-        checkbox.removeEventListener('change', onPanelOpen);
+        list.removeEventListener('touchmove', onManual);
+        list.removeEventListener('wheel', onManual);
+        checkbox.removeEventListener('change', onOpen);
       });
     });
 
-    // Sticky header height for offset calculations
-    function getHeaderHeight() {
+    // Sticky header height
+    function headerH() {
       var h = document.querySelector('.md-header');
       return h ? h.offsetHeight : 0;
     }
 
-    // scrollTop value that vertically centers a TOC item in the list
-    function centeredTop(item, list) {
-      return item.offsetTop + item.offsetHeight / 2 - list.clientHeight / 2;
+    // Absolute Y of a heading on the page (independent of current scroll)
+    function pageY(el) {
+      return el.getBoundingClientRect().top + window.scrollY;
+    }
+
+    // scrollTop that vertically centres item in list's viewport.
+    // Uses getBoundingClientRect — always correct regardless of
+    // offsetParent (Material's navs are position:absolute).
+    function centeredScrollTop(item, list) {
+      var listRect = list.getBoundingClientRect();
+      var itemRect = item.getBoundingClientRect();
+      // Item's position relative to start of list's scroll content
+      var posInContent = itemRect.top - listRect.top + list.scrollTop;
+      return posInContent + item.offsetHeight / 2 - list.clientHeight / 2;
     }
 
     function syncScroll(panel, behavior) {
       if (!panel.checkbox.checked) return;
-      if (!panel.pairs.length) return;
 
       var now = Date.now();
       if (now < panel.manualUntil) return;
 
-      // Pick behavior: smooth glide-back after cooldown, else instant
+      // Behaviour: smooth glide-back after cooldown, else auto (instant)
       if (!behavior) {
         if (panel.manualUntil > 0) {
           behavior = 'smooth';
           panel.manualUntil = 0;
         } else {
-          behavior = 'instant';
+          behavior = 'auto';
         }
       }
 
-      var list = panel.scrollList;
+      var list = panel.list;
       var maxScroll = list.scrollHeight - list.clientHeight;
       if (maxScroll <= 0) return;
 
-      var pairs = panel.pairs;
-      var scrollY = window.scrollY + getHeaderHeight();
+      // Gather all TOC links and their matching page headings
+      var links = list.querySelectorAll('a.md-nav__link');
+      var items = [];  // { li, headingY }
+      links.forEach(function (a) {
+        var hash = a.hash;
+        if (!hash) return;
+        var id = decodeURIComponent(hash.slice(1));
+        var heading = document.getElementById(id);
+        if (!heading) return;
+        items.push({ li: a.closest('li') || a, headingY: pageY(heading) });
+      });
+      if (!items.length) return;
 
-      // Find which heading section we're in (last heading above scroll)
+      var scrollPos = window.scrollY + headerH();
+
+      // Find active heading: last one whose Y ≤ current scroll position
       var activeIdx = 0;
-      for (var i = pairs.length - 1; i >= 0; i--) {
-        if (pairs[i].heading.getBoundingClientRect().top +
-            window.scrollY <= scrollY) {
+      for (var i = items.length - 1; i >= 0; i--) {
+        if (items[i].headingY <= scrollPos) {
           activeIdx = i;
           break;
         }
       }
 
-      // Sub-progress within current section (0 → 1)
-      var currentY = pairs[activeIdx].heading.getBoundingClientRect().top +
-                     window.scrollY;
-      var nextY = activeIdx < pairs.length - 1
-        ? pairs[activeIdx + 1].heading.getBoundingClientRect().top +
-          window.scrollY
+      // Sub-progress through current section (0 → 1)
+      var curY = items[activeIdx].headingY;
+      var nxtY = activeIdx < items.length - 1
+        ? items[activeIdx + 1].headingY
         : document.documentElement.scrollHeight;
-      var sectionLen = nextY - currentY;
-      var sub = sectionLen > 0
-        ? Math.max(0, Math.min(1, (scrollY - currentY) / sectionLen))
-        : 0;
+      var span = nxtY - curY;
+      var t = span > 0 ? Math.max(0, Math.min(1, (scrollPos - curY) / span)) : 0;
 
-      // Interpolate between "current centered" and "next centered"
-      var curCenter = centeredTop(pairs[activeIdx].item, list);
-      var nxtCenter = activeIdx < pairs.length - 1
-        ? centeredTop(pairs[activeIdx + 1].item, list)
+      // Interpolate between centred positions of current and next items
+      var curCenter = centeredScrollTop(items[activeIdx].li, list);
+      var nxtCenter = activeIdx < items.length - 1
+        ? centeredScrollTop(items[activeIdx + 1].li, list)
         : maxScroll;
-      var target = curCenter + (nxtCenter - curCenter) * sub;
+      var target = curCenter + (nxtCenter - curCenter) * t;
 
       // Clamp to valid range
       target = Math.max(0, Math.min(maxScroll, target));
@@ -300,7 +306,7 @@
       list.scrollTo({ top: target, behavior: behavior });
     }
 
-    // Scroll handler: rAF-throttled
+    // rAF-throttled page-scroll handler
     var rafId = 0;
     function onPageScroll() {
       if (rafId) return;
