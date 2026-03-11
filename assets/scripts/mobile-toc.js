@@ -169,9 +169,11 @@
       attributeFilter: ['class']
     });
 
-    // ── 2. Proportional scroll (continuous) ─────────────────
-    //    Maps page scroll ratio → TOC list scroll ratio.
-    //    Runs on every scroll frame via rAF for silky tracking.
+    // ── 2. Active-entry scroll tracking ────────────────────
+    //    Keeps the highlighted TOC entry in view inside the
+    //    scrollable list.  During normal page scrolling the
+    //    adjustment is instant; after a manual scroll cooldown
+    //    expires it glides back smoothly.
 
     var scrollPanels = []; // { checkbox, scrollList, manualUntil }
 
@@ -194,11 +196,11 @@
       scrollList.addEventListener('touchmove', onManualScroll, { passive: true });
       scrollList.addEventListener('wheel', onManualScroll, { passive: true });
 
-      // When panel opens, snap to current proportional position
+      // When panel opens, scroll to active entry
       function onPanelOpen() {
         if (!checkbox.checked) return;
         panel.manualUntil = 0;
-        setTimeout(function () { syncScroll(panel); }, 300);
+        setTimeout(function () { syncScroll(panel, 'instant'); }, 300);
       }
       checkbox.addEventListener('change', onPanelOpen);
 
@@ -209,29 +211,62 @@
       });
     });
 
-    // Calculate page scroll ratio (0 → 1)
-    function getPageRatio() {
-      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      return scrollable > 0 ? window.scrollY / scrollable : 0;
-    }
-
-    // Apply ratio to a single panel
-    function syncScroll(panel) {
+    // Scroll the active entry into view within the TOC list.
+    // Uses "nearest" logic: only scrolls if the entry is outside
+    // the visible portion, and by the minimum amount needed.
+    function syncScroll(panel, behavior) {
       if (!panel.checkbox.checked) return;
-      if (Date.now() < panel.manualUntil) return;
+
+      // During manual cooldown, skip entirely
+      var now = Date.now();
+      if (now < panel.manualUntil) return;
+
+      // If cooldown just expired, glide back smoothly once
+      if (!behavior) {
+        if (panel.manualUntil > 0) {
+          behavior = 'smooth';
+          panel.manualUntil = 0;
+        } else {
+          behavior = 'instant';
+        }
+      }
+
       var list = panel.scrollList;
-      var maxScroll = list.scrollHeight - list.clientHeight;
-      if (maxScroll <= 0) return;
-      list.scrollTop = getPageRatio() * maxScroll;
+      var activeLink = list.querySelector('.md-nav__link--active');
+      if (!activeLink) return;
+
+      var item = activeLink.closest('li') || activeLink;
+      var itemRect = item.getBoundingClientRect();
+      var listRect = list.getBoundingClientRect();
+
+      // Position of the item within the list's scroll coordinate space
+      var itemTop = itemRect.top - listRect.top + list.scrollTop;
+      var itemBottom = itemTop + item.offsetHeight;
+
+      var viewTop = list.scrollTop;
+      var viewBottom = viewTop + list.clientHeight;
+
+      // Already in view — nothing to do
+      if (itemTop >= viewTop && itemBottom <= viewBottom) return;
+
+      // Scroll minimum distance to bring it into view
+      var target;
+      if (itemTop < viewTop) {
+        target = itemTop;                          // above → align to top
+      } else {
+        target = itemBottom - list.clientHeight;   // below → align to bottom
+      }
+
+      list.scrollTo({ top: target, behavior: behavior });
     }
 
-    // Scroll handler: rAF-throttled for 60fps tracking
+    // Scroll handler: rAF-throttled
     var rafId = 0;
     function onPageScroll() {
       if (rafId) return;
       rafId = requestAnimationFrame(function () {
         rafId = 0;
-        scrollPanels.forEach(syncScroll);
+        scrollPanels.forEach(function (p) { syncScroll(p); });
       });
     }
     window.addEventListener('scroll', onPageScroll, { passive: true });
