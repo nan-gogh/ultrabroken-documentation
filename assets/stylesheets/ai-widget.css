@@ -1,0 +1,193 @@
+/* ================================================================
+   AI Search Widget ("The Librarian")
+   Extracted from glow.css — all .ub-ai-* selectors consolidated here.
+   Depends on CSS custom properties defined in glow.css (:root).
+   ================================================================ */
+
+:root {
+  --ai-bg: rgba(0,0,0,0.02);
+}
+
+/* Font-size toggle: scale AI input and placeholder in large-font mode */
+[data-ub-font="large"] .ub-ai-input,
+[data-ub-font="large"] .ub-ai-fake-placeholder {
+  font-size: 1.5625rem;
+}
+
+/* ── Root container ──────────────────────────────────────────────── */
+
+.ub-ai-root {
+  position: relative;
+  z-index: 3; /* below header (4) */
+  margin: 0.5rem 0;
+}
+
+/* ── Input wrapper ───────────────────────────────────────────────── */
+
+.ub-ai-input-wrap {
+  display: flex !important;
+  align-items: flex-end !important;
+  position: relative !important;
+  margin-left: -0.35rem;
+}
+
+/* ── Input (consolidated from 6 rule blocks) ─────────────────────── */
+
+.ub-ai-input {
+  width: 100%;
+  padding: 0.4rem 0.1rem 0.4rem 0.4rem;
+  margin-bottom: 0;
+  min-height: 1.6rem;
+  border: none;
+  background: transparent;
+  color: inherit !important;
+  caret-color: currentColor !important;
+  font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  box-sizing: border-box;
+  resize: none;
+  overflow: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: normal;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Hide native browser clear/reveal controls */
+.ub-ai-input::-ms-clear,
+.ub-ai-input::-ms-reveal { display: none; width: 0; height: 0; }
+.ub-ai-input::-webkit-search-decoration,
+.ub-ai-input::-webkit-search-cancel-button,
+.ub-ai-input::-webkit-search-results-button,
+.ub-ai-input::-webkit-search-results-decoration { -webkit-appearance: none; appearance: none; display: none; }
+
+/* Focus: suppress outline/shadow, keep caret visible */
+.ub-ai-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* ── Fake placeholder overlay ────────────────────────────────────── */
+
+.ub-ai-fake-placeholder {
+  position: absolute;
+  inset: 0;
+  padding: 0.4rem 0.12rem 0.4rem 0.4rem;
+  pointer-events: none;
+  font-family: 'New Rocker', 'Texturina', Georgia, 'Times New Roman', serif !important;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: normal;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: block;
+  z-index: 4;
+}
+
+/* ── Control buttons (clear, ask, share) ─────────────────────────── */
+
+.ub-ai-clear {
+  background: transparent;
+  padding: 0.10rem;
+  box-sizing: border-box;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  width: 1.44rem;
+  height: 1.44rem;
+  border: none;
+  cursor: pointer;
+}
+
+.ub-ai-ask {
+  background: transparent;
+  padding: 0.10rem;
+  box-sizing: border-box;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  width: 1.44rem;
+  height: 1.44rem;
+  border: none;
+  cursor: pointer;
+}
+
+.ub-ai-share {
+  background: transparent;
+  padding: 0.10rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  width: 1.44rem;
+  height: 1.44rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease, filter 0.15s ease;
+}
+.ub-ai-share:disabled {
+  cursor: default;
+  filter: brightness(0.45);
+}
+
+/* Icon images inside AI controls */
+.ub-ai-clear img, .ub-ai-ask img, .ub-ai-share img {
+  display: block;
+  width: 0.9rem;
+  height: 0.9rem;
+  object-fit: contain;
+  margin: 0;
+}
+
+/* Align controls to text baseline */
+.ub-ai-clear, .ub-ai-ask, .ub-ai-share {
+  align-self: flex-end;
+  transform: translateY(-0.45rem);
+}
+
+/* ── Output / answer box ─────────────────────────────────────────── */
+
+.ub-ai-out {
+  white-space: pre-wrap;
+  background: transparent;
+  padding: 0.6rem 0 0 0;
+  margin-top: 0.5rem;
+  color: inherit;
+  border: none;
+  box-sizing: border-box;
+  max-width: none;
+  font-family: 'Texturina', Georgia, serif;
+  border-top: 1px solid var(--hr-sep);
+  padding-top: 0.6rem;
+}
+
+/* Force Texturina on answer contents */
+.ub-ai-out, .ub-ai-out * {
+  font-family: 'Texturina', Georgia, serif !important;
+  color: inherit !important;
+}
+
+.ub-ai-out p { margin: 0 0 0.6rem 0; }
+.ub-ai-out code, .ub-ai-out pre { white-space: pre-wrap; word-break: break-word; }
+
+.ub-ai-out strong, .ub-ai-out b { font-weight: 700 !important; }
+.ub-ai-out em, .ub-ai-out i { font-style: italic !important; }
+
+.ub-ai-out ul, .ub-ai-out ol {
+  margin: 0.4rem 0 0.6rem 1.2rem;
+  padding: 0;
+}
+.ub-ai-out li { margin: 0 0 0.3rem 0; }
+
+/* ── Evidence / related headings ─────────────────────────────────── */
+
+.ub-ai-evidence h2 { cursor: default !important; }
+.ub-ai-evidence h2 .headerlink { display: none !important; }

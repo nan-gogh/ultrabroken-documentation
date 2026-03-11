@@ -560,7 +560,6 @@
                     sel.removeAllRanges(); sel.addRange(range);
                   }
                 }catch(e){}
-                try { autosize(); } catch(e){}
                 try { updateVisibility(); } catch(e){}
               } else {
                 const el = w.input;
@@ -570,7 +569,6 @@
                 el.value = v.slice(0, start) + '\n' + v.slice(end);
                 const pos = start + 1;
                 el.selectionStart = el.selectionEnd = pos;
-                try { autosize(); } catch(e){}
                 try { updateVisibility(); } catch(e){}
               }
             }catch(e){}
@@ -583,8 +581,7 @@
       // placeholder rotation removed for test
       // Wire clear button and replace Ask text with an SVG ask-icon that only appears when input has text
       // Helper: immediately collapse a textarea to a conservative single-line
-      // visual height (line-height + vertical padding). Used by focus and
-      // clear flows to avoid visible lag before `autosize` runs.
+      // visual height (line-height + vertical padding). Used by focus and clear flows.
       const collapseToSingleLine = (inputEl) => {
         try{
           if (!inputEl) return;
@@ -678,10 +675,6 @@
           } catch (e) {}
         }
 
-        // Autosize to content using a hidden off-DOM clone to avoid writing
-        // `height = 'auto'` on the real textarea (which can trigger mobile
-        // viewport/caret jumps when the on-screen keyboard is visible).
-        const autosize = ()=>{};
         ['input','change','paste','cut','compositionend'].forEach(evt => w.input.addEventListener(evt, ()=>{
           // Enforce character cap on contenteditable
           try{
@@ -702,10 +695,7 @@
             }
           }catch(e){}
           try{ updateVisibility(); }catch(e){}
-          try{ requestAnimationFrame(()=>{ try{ autosize(); }catch(e){} }); }catch(e){}
         }));
-        // initial sizing
-        try{ autosize(); }catch(e){}
         // initial sizing and keep in sync with resizes
         resizeIcons();
         window.addEventListener('resize', resizeIcons);
