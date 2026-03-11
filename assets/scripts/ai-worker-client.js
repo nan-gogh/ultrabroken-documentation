@@ -681,120 +681,7 @@
         // Autosize to content using a hidden off-DOM clone to avoid writing
         // `height = 'auto'` on the real textarea (which can trigger mobile
         // viewport/caret jumps when the on-screen keyboard is visible).
-        const autosize = ()=>{
-          return;
-          try{
-            const ensureClone = ()=>{
-              try{
-                if (w._autosizeClone && w._autosizeClone.parentNode) return w._autosizeClone;
-                const c = w.input.cloneNode(false);
-                c.removeAttribute('id');
-                c.style.position = 'absolute';
-                c.style.visibility = 'hidden';
-                c.style.pointerEvents = 'none';
-                c.style.zIndex = '-9999';
-                c.style.left = '-9999px';
-                c.style.top = '0';
-                c.style.height = 'auto';
-                c.style.whiteSpace = 'pre-wrap';
-                c.style.overflow = 'visible';
-                c.style.overflowY = 'visible';
-                document.body.appendChild(c);
-                w._autosizeClone = c;
-                return c;
-              }catch(e){ return null; }
-            };
-
-            requestAnimationFrame(()=>{
-              try{
-                const input = w.input;
-                if (!input) return;
-                const clone = ensureClone();
-                const storedPlaceholder = input.getAttribute('data-ub-placeholder') || '';
-                // When the textarea is focused and empty we want it to collapse
-                // to a single-row visual height rather than sizing to the
-                // overlay placeholder text. Prefer the actual input value;
-                // otherwise use an empty string if focused, or the stored
-                // placeholder text when blurred.
-                const isFocused = (document.activeElement === input);
-                const curValForMeasure = (typeof w.getValue === 'function') ? String(w.getValue() || '') : String((input && input.value) || '');
-                const measurementValue = (curValForMeasure && curValForMeasure.length)
-                  ? curValForMeasure
-                  : (isFocused ? '' : (storedPlaceholder || ''));
-                if (!clone) {
-                  // Fallback to the simple method if clone creation failed
-                  try{ input.style.height = 'auto'; const h = input.scrollHeight; if (h) input.style.height = h + 'px'; }catch(e){}
-                  return;
-                }
-                // Copy a set of computed style properties that affect wrapping
-                try{
-                  const cs = window.getComputedStyle(input);
-                  const props = ['boxSizing','paddingLeft','paddingRight','paddingTop','paddingBottom','borderLeftWidth','borderRightWidth','borderTopWidth','borderBottomWidth','fontFamily','fontSize','fontWeight','lineHeight','letterSpacing','textTransform','whiteSpace','wordBreak','overflowWrap','wordWrap','tabSize'];
-                  props.forEach(p=>{ try{ clone.style[p] = cs[p]; }catch(e){} });
-                  // Use the rendered width to match wrapping precisely
-                  try{ const rect = input.getBoundingClientRect(); clone.style.width = Math.max(10, Math.round(rect.width)) + 'px'; }catch(e){}
-                }catch(e){}
-                try{ if (clone.contentEditable === 'true') clone.textContent = measurementValue; else clone.value = measurementValue; }catch(e){ try{ clone.value = measurementValue; }catch(e){} }
-                try{ clone.style.overflowWrap = 'anywhere'; clone.style.wordBreak = 'break-word'; }catch(e){}
-                clone.style.height = 'auto';
-                const measured = clone.scrollHeight || 0;
-                let targetH = Math.max(12, Math.round(measured));
-                // If a visualViewport is present (mobile keyboard visible), cap
-                // the target height so the textarea doesn't grow into the
-                // keyboard area. If capped, allow internal scrolling.
-                try{
-                  if (window.visualViewport) {
-                    const rect = input.getBoundingClientRect();
-                    const vv = window.visualViewport;
-                    const margin = 8; // small breathing room above keyboard
-                    let available = Math.round(vv.height - rect.top - margin);
-                    // If focused and constrained, bring the field into view so
-                    // it can expand naturally instead of showing an internal
-                    // scrollbar. After scrolling, set the full target height.
-                    if (isFocused && available > 0 && targetH > available) {
-                      try{ input.scrollIntoView({ block: 'center', inline: 'nearest' }); }catch(e){}
-                      requestAnimationFrame(()=>{
-                        try{
-                          const rect2 = input.getBoundingClientRect();
-                          const vv2 = window.visualViewport || vv;
-                          available = Math.round((vv2.height || vv.height) - rect2.top - margin);
-                          input.style.overflowY = 'hidden';
-                          try{ input.style.height = targetH + 'px'; }catch(e){}
-                        }catch(e){}
-                      });
-                    } else {
-                      if (available > 0 && targetH > available) {
-                        targetH = Math.max(12, available);
-                        input.style.overflowY = 'auto';
-                      } else {
-                        input.style.overflowY = 'hidden';
-                      }
-                    }
-                  } else {
-                    input.style.overflowY = 'hidden';
-                  }
-                }catch(e){ input.style.overflowY = 'hidden'; }
-
-                // Only write when height changed meaningfully to avoid churn
-                try{
-                  const cur = parseInt((input.style.height||'0').replace('px',''),10) || 0;
-                  if (Math.abs(cur - targetH) > 1) {
-                    input.style.height = targetH + 'px';
-                    // Scroll the page by the same delta so each new row
-                    // effectively pushes content upward by the same amount.
-                    try{
-                      const delta = targetH - cur;
-                      if (delta > 0) {
-                        const top = Math.round(delta);
-                        window.scrollBy({ top: top, left: 0, behavior: 'auto' });
-                      }
-                    }catch(e){}
-                  }
-                }catch(e){}
-              }catch(e){}
-            });
-          }catch(e){}
-        };
+        const autosize = ()=>{};
         ['input','change','paste','cut','compositionend'].forEach(evt => w.input.addEventListener(evt, ()=>{
           // Enforce character cap on contenteditable
           try{
@@ -830,8 +717,6 @@
 
         
       }catch(e){ /* ignore */ }
-      // Keep rune centered while on the AI page
-      try{ document.body.classList.add('ultrabroken-center-rune'); }catch(e){}
       // Keep rune centered while on the AI page
       try{ document.body.classList.add('ultrabroken-center-rune'); }catch(e){}
       placeholder.dataset.aiInitialized = '1';
