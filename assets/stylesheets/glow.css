@@ -364,6 +364,14 @@ html, body {
   text-overflow: clip !important;
 }
 
+/* Mobile TOC: prevent scroll chaining to the page behind the drawer
+   and enable smooth native touch scrolling inside the cloned TOC list. */
+.ub-toc-header .md-nav__list {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
 /* Header icons (burger menu, toggle) - bright teal, no glow */
 .md-header__button .md-icon {
   color: var(--teal-glow) !important;

@@ -224,6 +224,37 @@
     });
   }
 
+  /* Immediately set the active link across desktop and mobile clones.
+     This prevents a timing/window where the desktop TOC hasn't updated
+     yet after a programmatic smooth scroll and the mobile clones show
+     the previous section. */
+  function setActiveHref(href) {
+    // normalize empty/null
+    if (!href) {
+      document.querySelectorAll('.md-nav__link--active').forEach(function (el) {
+        el.classList.remove('md-nav__link--active');
+      });
+      return;
+    }
+
+    // Remove existing active classes
+    document.querySelectorAll('.md-nav__link--active').forEach(function (el) {
+      el.classList.remove('md-nav__link--active');
+    });
+
+    // Add active on every nav link that matches this href (desktop + clones)
+    try {
+      document.querySelectorAll('.md-nav__link[href="' + CSS.escape(href) + '"]').forEach(function (el) {
+        el.classList.add('md-nav__link--active');
+      });
+    } catch (e) {
+      // Fallback if CSS.escape not available or selector malformed
+      document.querySelectorAll('.md-nav__link').forEach(function (el) {
+        if (el.getAttribute('href') === href) el.classList.add('md-nav__link--active');
+      });
+    }
+  }
+
   // Scroll every currently-open TOC panel to its active link
   function scrollAllOpenPanels() {
     document.querySelectorAll('.ub-toc-header nav.md-nav').forEach(function (clone) {
@@ -351,6 +382,10 @@
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
+
+    // Immediately set the active class everywhere so mobile clones reflect
+    // the tapped section even before any scrollspy updates finish.
+    setActiveHref(hash);
 
     var targetId = decodeURIComponent(hash.slice(1));
     var target = document.getElementById(targetId);
