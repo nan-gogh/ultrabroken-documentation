@@ -118,17 +118,25 @@
   }
 
   /* ── toc.follow for mobile ─────────────────────────────────
-     A MutationObserver watches the desktop TOC for class changes.
-     Whenever Material marks a link active, we mirror it into
-     every mobile TOC clone in real-time — so the highlight is
-     already there when the user opens the panel.              ── */
+     Continuously mirrors the desktop TOC's active link into
+     every mobile clone AND auto-scrolls the TOC list while the
+     slide-in panel is open.
+
+     Manual-scroll respect: when the user touches/wheels the TOC
+     list, auto-scroll pauses for a cooldown period, then resumes
+     once the page scrolls again.                              ── */
   var tocObserver = null;
+  var tocFollowCleanups = [];
+
+  var MANUAL_SCROLL_COOLDOWN = 3000; // ms to pause after manual scroll
 
   function startTocFollow(tocNav) {
     stopTocFollow();
 
     var clones = document.querySelectorAll('.ub-toc-header nav.md-nav');
     if (!clones.length) return;
+
+    // ── Sync active class from desktop → all mobile clones ──
 
     function syncAll() {
       var activeDesktop = tocNav.querySelector('.md-nav__link--active');
@@ -148,33 +156,71 @@
       });
     }
 
-    // Initial sync
     syncAll();
 
-    tocObserver = new MutationObserver(syncAll);
+    tocObserver = new MutationObserver(function () {
+      syncAll();
+      // When the active heading changes, auto-scroll every open panel
+      scrollAllOpenPanels();
+    });
     tocObserver.observe(tocNav, {
       attributes: true,
       subtree: true,
       attributeFilter: ['class']
     });
 
-    // Auto-scroll: when a TOC panel opens, scroll the active link into view
+    // ── Per-clone: auto-scroll + manual-scroll detection ────
+
     clones.forEach(function (clone) {
       var wrapper = clone.closest('.ub-toc-header');
       if (!wrapper) return;
       var checkbox = wrapper.querySelector('input.md-nav__toggle');
       if (!checkbox) return;
-      checkbox.addEventListener('change', function () {
-        if (!checkbox.checked) return;
+
+      // The scrollable container is the .md-nav__list inside the clone
+      var scrollList = clone.querySelector('.md-nav__list');
+      if (!scrollList) return;
+
+      var manualUntil = 0; // timestamp until which auto-scroll is paused
+
+      // Detect manual scroll: touch or wheel on the TOC list
+      function onManualScroll() {
+        manualUntil = Date.now() + MANUAL_SCROLL_COOLDOWN;
+      }
+      scrollList.addEventListener('touchmove', onManualScroll, { passive: true });
+      scrollList.addEventListener('wheel', onManualScroll, { passive: true });
+
+      // Auto-scroll helper for this clone
+      clone.__ubAutoScroll = function () {
+        if (!checkbox.checked) return;       // panel not open
+        if (Date.now() < manualUntil) return; // user is manually scrolling
         var active = clone.querySelector('.md-nav__link--active');
-        if (!active) return;
-        // Wait for the slide-in transition (~250ms) then scroll
-        setTimeout(function () {
-          if (active.offsetParent) {
-            active.scrollIntoView({ block: 'center', behavior: 'smooth' });
-          }
-        }, 300);
+        if (active && active.offsetParent) {
+          active.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        }
+      };
+
+      // When panel first opens, scroll immediately (after slide-in transition)
+      function onPanelOpen() {
+        if (!checkbox.checked) return;
+        manualUntil = 0; // reset manual pause on fresh open
+        setTimeout(function () { clone.__ubAutoScroll(); }, 300);
+      }
+      checkbox.addEventListener('change', onPanelOpen);
+
+      tocFollowCleanups.push(function () {
+        scrollList.removeEventListener('touchmove', onManualScroll);
+        scrollList.removeEventListener('wheel', onManualScroll);
+        checkbox.removeEventListener('change', onPanelOpen);
+        delete clone.__ubAutoScroll;
       });
+    });
+  }
+
+  // Scroll every currently-open TOC panel to its active link
+  function scrollAllOpenPanels() {
+    document.querySelectorAll('.ub-toc-header nav.md-nav').forEach(function (clone) {
+      if (clone.__ubAutoScroll) clone.__ubAutoScroll();
     });
   }
 
@@ -183,6 +229,8 @@
       tocObserver.disconnect();
       tocObserver = null;
     }
+    tocFollowCleanups.forEach(function (fn) { fn(); });
+    tocFollowCleanups = [];
   }
 
   /* ── Inject TOC into every nav panel in the primary sidebar ── */
