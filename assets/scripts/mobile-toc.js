@@ -136,6 +136,8 @@
     var clones = document.querySelectorAll('.ub-toc-header nav.md-nav');
     if (!clones.length) return;
 
+    var lastActiveHref = null; // deduplicate — only scroll on actual change
+
     // ── Sync active class from desktop → all mobile clones ──
 
     function syncAll() {
@@ -154,15 +156,17 @@
         );
         if (match) match.classList.add('md-nav__link--active');
       });
+
+      // Only scroll when the active heading actually changed
+      if (activeHref !== lastActiveHref) {
+        lastActiveHref = activeHref;
+        scrollAllOpenPanels();
+      }
     }
 
     syncAll();
 
-    tocObserver = new MutationObserver(function () {
-      syncAll();
-      // When the active heading changes, auto-scroll every open panel
-      scrollAllOpenPanels();
-    });
+    tocObserver = new MutationObserver(syncAll);
     tocObserver.observe(tocNav, {
       attributes: true,
       subtree: true,
@@ -190,9 +194,8 @@
       scrollList.addEventListener('touchmove', onManualScroll, { passive: true });
       scrollList.addEventListener('wheel', onManualScroll, { passive: true });
 
-      // Auto-scroll helper for this clone
-      // smooth=true for initial panel open, instant for continuous following
-      clone.__ubAutoScroll = function (smooth) {
+      // Auto-scroll helper — always smooth
+      clone.__ubAutoScroll = function () {
         if (!checkbox.checked) return;       // panel not open
         if (Date.now() < manualUntil) return; // user is manually scrolling
         var active = clone.querySelector('.md-nav__link--active');
@@ -201,18 +204,14 @@
         // Center the active link in the scrollable container
         var top = active.offsetTop - scrollList.offsetTop
                   - (scrollList.clientHeight - active.offsetHeight) / 2;
-        if (smooth) {
-          scrollList.scrollTo({ top: top, behavior: 'smooth' });
-        } else {
-          scrollList.scrollTop = top;
-        }
+        scrollList.scrollTo({ top: top, behavior: 'smooth' });
       };
 
-      // When panel first opens, scroll smoothly (after slide-in transition)
+      // When panel first opens, scroll after slide-in transition
       function onPanelOpen() {
         if (!checkbox.checked) return;
         manualUntil = 0; // reset manual pause on fresh open
-        setTimeout(function () { clone.__ubAutoScroll(true); }, 300);
+        setTimeout(function () { clone.__ubAutoScroll(); }, 300);
       }
       checkbox.addEventListener('change', onPanelOpen);
 
