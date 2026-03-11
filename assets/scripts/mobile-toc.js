@@ -169,18 +169,17 @@
       attributeFilter: ['class']
     });
 
-    // ── 2. Proportional scroll with active-entry clamping ──
-    //    Primary driver: page scroll ratio → TOC scroll ratio
-    //    (continuous, analog motion between headings).
-    //    Constraint: the active/highlighted entry must stay
-    //    visible — ideally centered.  If the proportional
-    //    position would push it out of view, the target is
-    //    clamped to keep it centered.
+    // ── 2. Interpolated centering scroll ───────────────────
+    //    As the page scrolls through a heading's section, the
+    //    TOC smoothly glides from that heading centered to the
+    //    next heading centered.  Progress within each section
+    //    is mapped proportionally, giving continuous analog
+    //    motion that always keeps the active entry centered.
     //
-    //    After a manual-scroll cooldown expires the TOC glides
-    //    back smoothly; otherwise tracking is instant.
+    //    After a manual-scroll cooldown the TOC glides back
+    //    smoothly; otherwise tracking is instant.
 
-    var scrollPanels = []; // { checkbox, scrollList, manualUntil }
+    var scrollPanels = []; // { checkbox, scrollList, pairs, manualUntil }
 
     clones.forEach(function (clone) {
       var wrapper = clone.closest('.ub-toc-header');
@@ -191,7 +190,22 @@
       var scrollList = clone.querySelector('.md-nav__list');
       if (!scrollList) return;
 
-      var panel = { checkbox: checkbox, scrollList: scrollList, manualUntil: 0 };
+      // Build heading ↔ TOC-item pairs for this clone
+      var pairs = [];
+      scrollList.querySelectorAll('a.md-nav__link').forEach(function (a) {
+        var href = a.getAttribute('href');
+        if (!href || href.charAt(0) !== '#') return;
+        var id = decodeURIComponent(href.slice(1));
+        var heading = document.getElementById(id);
+        if (!heading) return;
+        var li = a.closest('li') || a;
+        pairs.push({ heading: heading, item: li });
+      });
+
+      var panel = {
+        checkbox: checkbox, scrollList: scrollList,
+        pairs: pairs, manualUntil: 0
+      };
       scrollPanels.push(panel);
 
       // Detect manual scroll: touch or wheel on the TOC list
@@ -216,14 +230,20 @@
       });
     });
 
-    // Page scroll ratio (0 → 1)
-    function getPageRatio() {
-      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      return scrollable > 0 ? window.scrollY / scrollable : 0;
+    // Sticky header height for offset calculations
+    function getHeaderHeight() {
+      var h = document.querySelector('.md-header');
+      return h ? h.offsetHeight : 0;
+    }
+
+    // scrollTop value that vertically centers a TOC item in the list
+    function centeredTop(item, list) {
+      return item.offsetTop + item.offsetHeight / 2 - list.clientHeight / 2;
     }
 
     function syncScroll(panel, behavior) {
       if (!panel.checkbox.checked) return;
+      if (!panel.pairs.length) return;
 
       var now = Date.now();
       if (now < panel.manualUntil) return;
@@ -242,35 +262,42 @@
       var maxScroll = list.scrollHeight - list.clientHeight;
       if (maxScroll <= 0) return;
 
-      // Proportional target: continuous analog motion
-      var proportional = getPageRatio() * maxScroll;
+      var pairs = panel.pairs;
+      var scrollY = window.scrollY + getHeaderHeight();
 
-      // Clamp: keep the active entry visible (centered when possible)
-      var activeLink = list.querySelector('.md-nav__link--active');
-      if (activeLink) {
-        var item = activeLink.closest('li') || activeLink;
-        // Item's offset from the top of the list's scroll content
-        var itemTop = item.offsetTop;
-        var itemH = item.offsetHeight;
-        var listH = list.clientHeight;
-
-        // Ideal: center the item vertically in the list viewport
-        var center = itemTop + itemH / 2 - listH / 2;
-
-        // Allowable scrollTop range that keeps the item fully visible
-        var minOk = itemTop + itemH - listH; // item just at bottom edge
-        var maxOk = itemTop;                  // item just at top edge
-        if (minOk < 0) minOk = 0;
-        if (maxOk > maxScroll) maxOk = maxScroll;
-
-        // If proportional target keeps the item in view, use it as-is
-        // for smooth continuous motion.  Otherwise clamp toward center.
-        if (proportional < minOk || proportional > maxOk) {
-          proportional = Math.max(0, Math.min(maxScroll, center));
+      // Find which heading section we're in (last heading above scroll)
+      var activeIdx = 0;
+      for (var i = pairs.length - 1; i >= 0; i--) {
+        if (pairs[i].heading.getBoundingClientRect().top +
+            window.scrollY <= scrollY) {
+          activeIdx = i;
+          break;
         }
       }
 
-      list.scrollTo({ top: proportional, behavior: behavior });
+      // Sub-progress within current section (0 → 1)
+      var currentY = pairs[activeIdx].heading.getBoundingClientRect().top +
+                     window.scrollY;
+      var nextY = activeIdx < pairs.length - 1
+        ? pairs[activeIdx + 1].heading.getBoundingClientRect().top +
+          window.scrollY
+        : document.documentElement.scrollHeight;
+      var sectionLen = nextY - currentY;
+      var sub = sectionLen > 0
+        ? Math.max(0, Math.min(1, (scrollY - currentY) / sectionLen))
+        : 0;
+
+      // Interpolate between "current centered" and "next centered"
+      var curCenter = centeredTop(pairs[activeIdx].item, list);
+      var nxtCenter = activeIdx < pairs.length - 1
+        ? centeredTop(pairs[activeIdx + 1].item, list)
+        : maxScroll;
+      var target = curCenter + (nxtCenter - curCenter) * sub;
+
+      // Clamp to valid range
+      target = Math.max(0, Math.min(maxScroll, target));
+
+      list.scrollTo({ top: target, behavior: behavior });
     }
 
     // Scroll handler: rAF-throttled
