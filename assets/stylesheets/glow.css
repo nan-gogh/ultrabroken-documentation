@@ -1057,6 +1057,10 @@ li.task-list-item a, li.task-list a {
 
 @media (max-width: 76.1875em) {
   .ub-toc-nav-item {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--md-default-bg-color);
     border-bottom: 1px solid var(--md-default-fg-color--lightest);
     margin-bottom: 0.4rem;
     padding-bottom: 0.2rem;
