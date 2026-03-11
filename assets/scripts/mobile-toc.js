@@ -1,16 +1,16 @@
 /**
  * mobile-toc.js — Table of contents in nav drawer header + smooth-scroll
  * ──────────────────────────────────────────────────────────────────────
- * Injects a collapsible "Table of contents" row into the PRIMARY sidebar
- * header area — between the drawer title and the scrollable nav list.
- * Because it lives outside the scroll container it is always visible
- * without any sticky CSS tricks, and expanding it pushes the nav list
- * down within the flex column without causing overflow.
+ * Injects a "Table of contents" button into the header area of EVERY
+ * nav panel in the primary sidebar — between the panel's title and its
+ * scrollable list.  Because it sits outside the scroll container it is
+ * always visible without sticky positioning.
  *
- * Only injected once (at the root level). Nested nav panels slide over
- * the entire drawer, including this row, which is expected behaviour.
+ * Tapping the button opens Material's native slide-in panel — the full
+ * TOC with a back button, same UX as navigating into a section.
  *
- * Desktop already has the right sidebar TOC — nothing is injected there.
+ * Only injected on mobile (<1220px) and only when the page has headings.
+ * Desktop already has the right sidebar TOC.
  *
  * All TOC link clicks (desktop + mobile) are intercepted via event
  * delegation: they smooth-scroll to the heading instead of triggering
@@ -22,7 +22,7 @@
 (function () {
   'use strict';
 
-  var TOC_TOGGLE_ID = '__ub_toc_header';
+  var TOGGLE_PREFIX = '__ub_toc';
 
   /* ── Build the flattened TOC list from the secondary sidebar ── */
   function buildTocList(tocNav) {
@@ -62,14 +62,67 @@
     return window.innerWidth < 1220;
   }
 
-  /* ── Inject TOC into the sidebar header area ─────────────────
-     Inserts .ub-toc-header between the drawer title and the nav
-     list so it lives outside the scroll container and is always
-     visible without any sticky positioning tricks.              ── */
+  /* ── Inject TOC into a single nav panel's header area ──────── */
+  function injectIntoNav(parentNav, level, id, tocNav) {
+    var flatList = buildTocList(tocNav);
+    if (!flatList) return;
+
+    // Find the panel's title and list — insert between them
+    var title = parentNav.querySelector(':scope > .md-nav__title');
+    var list  = parentNav.querySelector(':scope > .md-nav__list');
+    if (!title || !list) return;
+
+    // Wrapper: flex child between title and scrollable list
+    var wrapper = document.createElement('div');
+    wrapper.className = 'ub-toc-header';
+
+    // Hidden checkbox — Material's .md-nav__toggle ~ .md-nav drives the slide
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = id;
+    checkbox.className = 'md-nav__toggle md-toggle';
+
+    // Visible label: looks like a nav list entry
+    var labelId = id + '_label';
+    var label = document.createElement('label');
+    label.className = 'ub-toc-header__label';
+    label.setAttribute('for', id);
+    label.id = labelId;
+    label.tabIndex = 0;
+    label.innerHTML =
+      '<span class="md-ellipsis">Table of contents</span>' +
+      '<span class="md-nav__icon md-icon"></span>';
+
+    // Inner nav — Material's CSS makes this a full slide-in panel
+    // (position:absolute, height:100%, translateX(100%) → translateX(0))
+    var innerNav = document.createElement('nav');
+    innerNav.className = 'md-nav';
+    innerNav.setAttribute('data-md-level', String(level));
+    innerNav.setAttribute('aria-labelledby', labelId);
+    innerNav.setAttribute('aria-expanded', 'false');
+
+    var backLabel = document.createElement('label');
+    backLabel.className = 'md-nav__title';
+    backLabel.setAttribute('for', id);
+    backLabel.innerHTML =
+      '<span class="md-nav__icon md-icon"></span> Table of contents';
+
+    innerNav.appendChild(backLabel);
+    innerNav.appendChild(flatList);
+
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(label);
+    wrapper.appendChild(innerNav);
+
+    parentNav.insertBefore(wrapper, list);
+  }
+
+  /* ── Inject TOC into every nav panel in the primary sidebar ── */
   function injectHeaderToc() {
-    // Remove any previous injection (SPA nav rebuilds the page)
-    var prev = document.querySelector('.ub-toc-header');
-    if (prev) prev.remove();
+    // Remove any previous injections (SPA nav rebuilds the page)
+    document.querySelectorAll('.ub-toc-header').forEach(function (el) {
+      el.remove();
+    });
 
     // Desktop has its own TOC sidebar — skip
     if (!isMobileView()) return;
@@ -80,48 +133,18 @@
     var primary = document.querySelector('.md-sidebar--primary .md-nav--primary');
     if (!primary) return;
 
-    // Must have both a drawer title and a nav list to insert between
-    var drawerTitle = primary.querySelector(':scope > .md-nav__title[for="__drawer"]');
-    var rootList    = primary.querySelector(':scope > .md-nav__list');
-    if (!drawerTitle || !rootList) return;
+    var counter = 0;
 
-    var flatList = buildTocList(tocNav);
-    if (!flatList) return;
+    // Root nav panel
+    injectIntoNav(primary, 1, TOGGLE_PREFIX + '_' + counter++, tocNav);
 
-    // Wrapper: flex child between title and list
-    var wrapper = document.createElement('div');
-    wrapper.className = 'ub-toc-header';
-
-    // Hidden checkbox drives open/close
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = TOC_TOGGLE_ID;
-    checkbox.className = 'ub-toc-header__toggle';
-
-    // Label: looks and feels like a nav list entry
-    var label = document.createElement('label');
-    label.className = 'ub-toc-header__label';
-    label.setAttribute('for', TOC_TOGGLE_ID);
-    label.setAttribute('tabindex', '0');
-    label.innerHTML =
-      '<span class="md-ellipsis">Table of contents</span>' +
-      '<span class="md-nav__icon md-icon"></span>';
-
-    // Collapsible body: grid 0fr→1fr animation via CSS
-    var body = document.createElement('div');
-    body.className = 'ub-toc-header__body';
-    // Inner wrapper required for grid-row 0fr to collapse correctly
-    var inner = document.createElement('div');
-    inner.className = 'ub-toc-header__inner';
-    inner.appendChild(flatList);
-    body.appendChild(inner);
-
-    wrapper.appendChild(checkbox);
-    wrapper.appendChild(label);
-    wrapper.appendChild(body);
-
-    // Insert between title and scrollable nav list
-    primary.insertBefore(wrapper, rootList);
+    // Every nested nav panel (sections the user can navigate into)
+    primary.querySelectorAll(
+      'nav.md-nav:not(.md-nav--primary):not(.md-nav--secondary)'
+    ).forEach(function (nav) {
+      var level = parseInt(nav.getAttribute('data-md-level') || '1', 10) + 1;
+      injectIntoNav(nav, level, TOGGLE_PREFIX + '_' + counter++, tocNav);
+    });
   }
 
   /* ── Reset nav on drawer open ────────────────────────────────
@@ -167,11 +190,6 @@
     var drawer = document.getElementById('__drawer');
     if (!drawer || drawer.__ubTocListener) return;
     drawer.addEventListener('change', function () {
-      // Collapse the TOC header when the drawer closes
-      if (!drawer.checked) {
-        var toggle = document.getElementById(TOC_TOGGLE_ID);
-        if (toggle) toggle.checked = false;
-      }
       if (drawer.checked) restoreNavPosition();
     });
     drawer.__ubTocListener = true;
