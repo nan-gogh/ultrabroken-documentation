@@ -54,15 +54,8 @@
   transition: color 0.18s, border-color 0.18s, background 0.18s;
   white-space: nowrap;
 }
-@media (hover: hover) {
-  .grim-btn:hover,
-  .grim-chip:hover {
-    border-color: rgba(0, 240, 194, 0.5);
-    color: var(--teal-glow);
-  }
-}
-.grim-btn:active,
-.grim-chip:active {
+.grim-btn:hover,
+.grim-chip:hover {
   border-color: rgba(0, 240, 194, 0.5);
   color: var(--teal-glow);
 }
@@ -74,10 +67,7 @@
 }
 .grim-dir  { font-size: 0.95em; line-height: 1; }
 .grim-reset { margin-left: auto; font-size: 0.75em; opacity: 0.6; }
-@media (hover: hover) {
-  .grim-reset:hover { opacity: 1; }
-}
-.grim-reset:active { opacity: 1; }
+.grim-reset:hover { opacity: 1; }
 
 .grim-chips { display: flex; gap: 0.3rem; flex-wrap: wrap; }
 
@@ -96,13 +86,7 @@
   transition: color 0.18s, border-color 0.18s;
   white-space: nowrap;
 }
-@media (hover: hover) {
-  .grim-dd-toggle:hover {
-    border-color: rgba(0, 240, 194, 0.5);
-    color: var(--teal-glow);
-  }
-}
-.grim-dd-toggle:active {
+.grim-dd-toggle:hover {
   border-color: rgba(0, 240, 194, 0.5);
   color: var(--teal-glow);
 }
@@ -160,10 +144,7 @@
   white-space: normal;
   word-break: break-word;
 }
-@media (hover: hover) {
-  .grim-dd-opt:hover { background: rgba(0, 240, 194, 0.07); }
-}
-.grim-dd-opt:active { background: rgba(0, 240, 194, 0.07); }
+.grim-dd-opt:hover { background: rgba(0, 240, 194, 0.07); }
 .grim-dd-opt input[type="checkbox"] { accent-color: var(--teal-glow); margin: 0; }
 
 /* Scrollbar for dropdown list */
@@ -220,13 +201,7 @@
   transition: color 0.18s, text-shadow 0.18s;
   min-width: 0;
 }
-@media (hover: hover) {
-  .grim-li a:hover {
-    color: var(--teal-glow);
-    text-shadow: 0 0 8px rgba(0, 240, 194, 0.3);
-  }
-}
-.grim-li a:active {
+.grim-li a:hover {
   color: var(--teal-glow);
   text-shadow: 0 0 8px rgba(0, 240, 194, 0.3);
 }
