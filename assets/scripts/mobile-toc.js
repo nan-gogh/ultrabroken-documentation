@@ -31,6 +31,7 @@
 
     var flatList = document.createElement('ul');
     flatList.className = 'md-nav__list';
+    flatList.setAttribute('data-md-scrollfix', '');
 
     tocLinks.forEach(function (a) {
       var depth = 0;
@@ -117,18 +118,13 @@
   }
 
   /* ── toc.follow for mobile ─────────────────────────────────
-     Two independent concerns:
+     Continuously mirrors the desktop TOC's active link into
+     every mobile clone AND auto-scrolls the TOC list while the
+     slide-in panel is open.
 
-     1. HIGHLIGHT: MutationObserver mirrors the desktop TOC's
-        active-link class into every mobile clone.
-
-     2. SCROLL: A proportional mapping from page scroll position
-        to TOC list scroll position — continuous, not snapping to
-        discrete headings.  If the page is 40% scrolled, the TOC
-        list is 40% scrolled.
-
-     Manual-scroll respect: touchmove/wheel on the TOC list
-     pauses auto-scroll for a cooldown, then resumes.          ── */
+     Manual-scroll respect: when the user touches/wheels the TOC
+     list, auto-scroll pauses for a cooldown period, then resumes
+     once the page scrolls again.                              ── */
   var tocObserver = null;
   var tocFollowCleanups = [];
 
@@ -140,9 +136,11 @@
     var clones = document.querySelectorAll('.ub-toc-header nav.md-nav');
     if (!clones.length) return;
 
-    // ── 1. Highlight sync (active class) ────────────────────
+    var lastActiveHref = null; // deduplicate — only scroll on actual change
 
-    function syncHighlight() {
+    // ── Sync active class from desktop → all mobile clones ──
+
+    function syncAll() {
       var activeDesktop = tocNav.querySelector('.md-nav__link--active');
       var activeHref = activeDesktop
         ? activeDesktop.getAttribute('href')
@@ -158,32 +156,24 @@
         );
         if (match) match.classList.add('md-nav__link--active');
       });
+
+      // Only scroll when the active heading actually changed
+      if (activeHref !== lastActiveHref) {
+        lastActiveHref = activeHref;
+        scrollAllOpenPanels();
+      }
     }
 
-    syncHighlight();
+    syncAll();
 
-    tocObserver = new MutationObserver(syncHighlight);
+    tocObserver = new MutationObserver(syncAll);
     tocObserver.observe(tocNav, {
       attributes: true,
       subtree: true,
       attributeFilter: ['class']
     });
 
-    // ── 2. Interpolated centering scroll ───────────────────
-    //    Smoothly glides the TOC list so the active heading's
-    //    entry is vertically centered.  Between headings the
-    //    scroll position interpolates proportionally, giving
-    //    continuous analog motion tied to the page scroll.
-    //
-    //    Position of each TOC item within the list's scroll
-    //    content is measured via getBoundingClientRect (immune
-    //    to offsetParent ambiguity in Material's absolute-
-    //    positioned slide-in panels).
-    //
-    //    Manual-scroll cooldown pauses tracking; when cooldown
-    //    expires the next sync uses smooth behavior once.
-
-    var scrollPanels = []; // { checkbox, list, manualUntil }
+    // ── Per-clone: auto-scroll + manual-scroll detection ────
 
     clones.forEach(function (clone) {
       var wrapper = clone.closest('.ub-toc-header');
@@ -191,135 +181,53 @@
       var checkbox = wrapper.querySelector('input.md-nav__toggle');
       if (!checkbox) return;
 
-      var list = clone.querySelector('.md-nav__list');
-      if (!list) return;
+      // The scrollable container is the .md-nav__list inside the clone
+      var scrollList = clone.querySelector('.md-nav__list');
+      if (!scrollList) return;
 
-      var panel = { checkbox: checkbox, list: list, manualUntil: 0 };
-      scrollPanels.push(panel);
+      var manualUntil = 0; // timestamp until which auto-scroll is paused
 
-      // Manual-scroll detection
-      function onManual() {
-        panel.manualUntil = Date.now() + MANUAL_SCROLL_COOLDOWN;
+      // Detect manual scroll: touch or wheel on the TOC list
+      function onManualScroll() {
+        manualUntil = Date.now() + MANUAL_SCROLL_COOLDOWN;
       }
-      list.addEventListener('touchmove', onManual, { passive: true });
-      list.addEventListener('wheel', onManual, { passive: true });
+      scrollList.addEventListener('touchmove', onManualScroll, { passive: true });
+      scrollList.addEventListener('wheel', onManualScroll, { passive: true });
 
-      // When panel opens, jump to correct position after slide animation
-      function onOpen() {
+      // Auto-scroll helper — always smooth
+      clone.__ubAutoScroll = function () {
+        if (!checkbox.checked) return;       // panel not open
+        if (Date.now() < manualUntil) return; // user is manually scrolling
+        var active = clone.querySelector('.md-nav__link--active');
+        if (!active || !active.offsetParent) return;
+
+        // Center the active link in the scrollable container
+        var top = active.offsetTop - scrollList.offsetTop
+                  - (scrollList.clientHeight - active.offsetHeight) / 2;
+        scrollList.scrollTo({ top: top, behavior: 'smooth' });
+      };
+
+      // When panel first opens, scroll after slide-in transition
+      function onPanelOpen() {
         if (!checkbox.checked) return;
-        panel.manualUntil = 0;
-        setTimeout(function () { syncScroll(panel, 'auto'); }, 300);
+        manualUntil = 0; // reset manual pause on fresh open
+        setTimeout(function () { clone.__ubAutoScroll(); }, 300);
       }
-      checkbox.addEventListener('change', onOpen);
+      checkbox.addEventListener('change', onPanelOpen);
 
       tocFollowCleanups.push(function () {
-        list.removeEventListener('touchmove', onManual);
-        list.removeEventListener('wheel', onManual);
-        checkbox.removeEventListener('change', onOpen);
+        scrollList.removeEventListener('touchmove', onManualScroll);
+        scrollList.removeEventListener('wheel', onManualScroll);
+        checkbox.removeEventListener('change', onPanelOpen);
+        delete clone.__ubAutoScroll;
       });
     });
+  }
 
-    // Sticky header height
-    function headerH() {
-      var h = document.querySelector('.md-header');
-      return h ? h.offsetHeight : 0;
-    }
-
-    // Absolute Y of a heading on the page (independent of current scroll)
-    function pageY(el) {
-      return el.getBoundingClientRect().top + window.scrollY;
-    }
-
-    // scrollTop that vertically centres item in list's viewport.
-    // Uses getBoundingClientRect — always correct regardless of
-    // offsetParent (Material's navs are position:absolute).
-    function centeredScrollTop(item, list) {
-      var listRect = list.getBoundingClientRect();
-      var itemRect = item.getBoundingClientRect();
-      // Item's position relative to start of list's scroll content
-      var posInContent = itemRect.top - listRect.top + list.scrollTop;
-      return posInContent + item.offsetHeight / 2 - list.clientHeight / 2;
-    }
-
-    function syncScroll(panel, behavior) {
-      if (!panel.checkbox.checked) return;
-
-      var now = Date.now();
-      if (now < panel.manualUntil) return;
-
-      // Behaviour: smooth glide-back after cooldown, else auto (instant)
-      if (!behavior) {
-        if (panel.manualUntil > 0) {
-          behavior = 'smooth';
-          panel.manualUntil = 0;
-        } else {
-          behavior = 'auto';
-        }
-      }
-
-      var list = panel.list;
-      var maxScroll = list.scrollHeight - list.clientHeight;
-      if (maxScroll <= 0) return;
-
-      // Gather all TOC links and their matching page headings
-      var links = list.querySelectorAll('a.md-nav__link');
-      var items = [];  // { li, headingY }
-      links.forEach(function (a) {
-        var hash = a.hash;
-        if (!hash) return;
-        var id = decodeURIComponent(hash.slice(1));
-        var heading = document.getElementById(id);
-        if (!heading) return;
-        items.push({ li: a.closest('li') || a, headingY: pageY(heading) });
-      });
-      if (!items.length) return;
-
-      var scrollPos = window.scrollY + headerH();
-
-      // Find active heading: last one whose Y ≤ current scroll position
-      var activeIdx = 0;
-      for (var i = items.length - 1; i >= 0; i--) {
-        if (items[i].headingY <= scrollPos) {
-          activeIdx = i;
-          break;
-        }
-      }
-
-      // Sub-progress through current section (0 → 1)
-      var curY = items[activeIdx].headingY;
-      var nxtY = activeIdx < items.length - 1
-        ? items[activeIdx + 1].headingY
-        : document.documentElement.scrollHeight;
-      var span = nxtY - curY;
-      var t = span > 0 ? Math.max(0, Math.min(1, (scrollPos - curY) / span)) : 0;
-
-      // Interpolate between centred positions of current and next items
-      var curCenter = centeredScrollTop(items[activeIdx].li, list);
-      var nxtCenter = activeIdx < items.length - 1
-        ? centeredScrollTop(items[activeIdx + 1].li, list)
-        : maxScroll;
-      var target = curCenter + (nxtCenter - curCenter) * t;
-
-      // Clamp to valid range
-      target = Math.max(0, Math.min(maxScroll, target));
-
-      list.scrollTo({ top: target, behavior: behavior });
-    }
-
-    // rAF-throttled page-scroll handler
-    var rafId = 0;
-    function onPageScroll() {
-      if (rafId) return;
-      rafId = requestAnimationFrame(function () {
-        rafId = 0;
-        scrollPanels.forEach(function (p) { syncScroll(p); });
-      });
-    }
-    window.addEventListener('scroll', onPageScroll, { passive: true });
-
-    tocFollowCleanups.push(function () {
-      window.removeEventListener('scroll', onPageScroll);
-      if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+  // Scroll every currently-open TOC panel to its active link
+  function scrollAllOpenPanels() {
+    document.querySelectorAll('.ub-toc-header nav.md-nav').forEach(function (clone) {
+      if (clone.__ubAutoScroll) clone.__ubAutoScroll();
     });
   }
 

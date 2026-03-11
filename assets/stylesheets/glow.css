@@ -1102,15 +1102,6 @@ li.task-list-item a, li.task-list a {
     width: 100%;
   }
 
-  /* Override Material's scroll-snap on our TOC list so proportional
-     scrolling works smoothly instead of snapping to list items */
-  .ub-toc-header .md-nav__list {
-    scroll-snap-type: none !important;
-  }
-  .ub-toc-header .md-nav__item {
-    scroll-snap-align: unset !important;
-  }
-
   /* Hide Material's native TOC entry in the nav — ours replaces it */
   .md-nav--primary .md-nav__link[for="__toc"] {
     display: none !important;
