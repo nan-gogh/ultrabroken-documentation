@@ -114,7 +114,46 @@
     wrapper.appendChild(label);
     wrapper.appendChild(innerNav);
 
+    // toc.follow: when panel opens, highlight + scroll to the active heading
+    checkbox.addEventListener('change', function () {
+      if (!checkbox.checked) return;
+      syncActiveLink(innerNav, tocNav);
+    });
+
     parentNav.insertBefore(wrapper, list);
+  }
+
+  /* ── toc.follow for mobile ─────────────────────────────────
+     Mirror the desktop TOC's active link into our cloned list
+     and scroll it into view inside the slide-in panel.        ── */
+  function syncActiveLink(innerNav, tocNav) {
+    // Clear previous active marks
+    innerNav.querySelectorAll('.md-nav__link--active').forEach(function (el) {
+      el.classList.remove('md-nav__link--active');
+    });
+
+    // Find which link the desktop TOC considers active
+    var activeDesktop = tocNav.querySelector('.md-nav__link--active');
+    if (!activeDesktop) return;
+
+    var activeHref = activeDesktop.getAttribute('href');
+    if (!activeHref) return;
+
+    // Find the matching link in our cloned list
+    var match = innerNav.querySelector(
+      'a.md-nav__link[href="' + CSS.escape(activeHref) + '"]'
+    );
+    if (!match) return;
+
+    match.classList.add('md-nav__link--active');
+
+    // Wait for the slide-in transition (250ms) then scroll into view
+    setTimeout(function () {
+      var list = innerNav.querySelector('.md-nav__list');
+      if (list && match.offsetParent) {
+        match.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      }
+    }, 300);
   }
 
   /* ── Inject TOC into every nav panel in the primary sidebar ── */
