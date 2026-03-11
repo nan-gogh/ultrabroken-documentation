@@ -68,6 +68,15 @@
   <!-- Preload critical Latin font files (same-origin, no DNS hops) -->
   <link rel="preload" href="../../../assets/fonts/texturina-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../../assets/fonts/new-rocker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Critical above-fold CSS: button + title styles available before glow.css loads.
+       Prevents unstyled button flash and title width jump on hard refresh. -->
+  <style>
+    .ub-header-toggles{display:flex;align-items:center;gap:0;position:absolute;left:50%;transform:translateX(-50%)}
+    .ub-motion-toggle,.ub-storage-toggle,.ub-font-toggle{display:inline-flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:4px;color:#00f0c2;vertical-align:middle;line-height:1}
+    .ub-motion-toggle svg,.ub-storage-toggle svg,.ub-font-toggle svg{width:24px;height:24px;display:block}
+    .md-header__title .md-ellipsis{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:var(--header-available-width,100%)}
+    @media(max-width:76.25em){.ub-header-toggles{display:none!important}}
+  </style>
 
       <meta property="og:title" content="Temporary Devices [TD]">
     <meta property="og:description" content="Fusing during the unsheathe animation of a bow causes the fuse to appear for a few frames&#10;&#10;[1.0.0] [1.1.0] [1.1.1] [1.1.2] [1.2.0] [1.2.1] [1.3.0/1.4.0] [1.4.1] [1.4.2] [1.4.3] [Switch 2]&#10;&#10;[DGS]">
@@ -102,6 +111,7 @@
     </div>
     
     
+  
       
 
   
@@ -420,6 +430,27 @@
   
 </header>
     
+  
+  <script>
+  (function(){
+    var s=document.querySelector('label[for="__search"]');
+    if(!s||window.innerWidth<1220)return;
+    var c=document.createElement('div');
+    c.className='ub-header-toggles';
+    c.innerHTML=
+      '<button class="ub-motion-toggle" aria-label="Toggle background mode">'
+      +'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><rect fill="currentColor" x="6" y="4" width="4" height="16" rx="1"/><rect fill="currentColor" x="14" y="4" width="4" height="16" rx="1"/></svg>'
+      +'</button>'
+      +'<button class="ub-storage-toggle" aria-label="Toggle local storage">'
+      +'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><ellipse cx="12" cy="6" rx="8" ry="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 10v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 14v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" fill="none" stroke="currentColor" stroke-width="2"/></svg>'
+      +'</button>'
+      +'<button class="ub-font-toggle" aria-label="Toggle font size">'
+      +'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><text x="10" y="18" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="currentColor" text-anchor="middle">A</text><text x="19" y="10" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="currentColor" text-anchor="middle">+</text></svg>'
+      +'</button>';
+    s.parentNode.insertBefore(c,s.nextSibling);
+  })();
+  </script>
+
     <div class="md-container" data-md-component="container">
       
       
