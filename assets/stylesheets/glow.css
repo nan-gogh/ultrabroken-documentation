@@ -364,12 +364,14 @@ html, body {
   text-overflow: clip !important;
 }
 
-/* Mobile TOC: prevent scroll chaining to the page behind the drawer
-   and enable smooth native touch scrolling inside the cloned TOC list. */
-.ub-toc-header .md-nav__list {
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
+/* Mobile sidebar: prevent scroll chaining from ANY sidebar nav list
+   to the page body when the user reaches the top/bottom boundary.
+   Material gives .md-nav__title ~ .md-nav__list overflow-y:auto on
+   mobile but no overscroll containment. */
+@media screen and (max-width: 76.1875em) {
+  .md-nav--primary .md-nav__title ~ .md-nav__list {
+    overscroll-behavior: contain;
+  }
 }
 
 /* Header icons (burger menu, toggle) - bright teal, no glow */

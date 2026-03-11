@@ -118,17 +118,28 @@
   }
 
   /* ── toc.follow for mobile ─────────────────────────────────
-     Continuously mirrors the desktop TOC's active link into
-     every mobile clone AND auto-scrolls the TOC list while the
-     slide-in panel is open.
+     Independent scrollspy that determines the active heading
+     using the SAME offset the smooth-scroll handler uses
+     (headerHeight + padding).  This avoids relying on Material's
+     built-in scrollspy which uses a slightly different threshold
+     and causes the wrong heading to appear active after a
+     programmatic scroll.
 
      Manual-scroll respect: when the user touches/wheels the TOC
      list, auto-scroll pauses for a cooldown period, then resumes
      once the page scrolls again.                              ── */
-  var tocObserver = null;
   var tocFollowCleanups = [];
 
   var MANUAL_SCROLL_COOLDOWN = 3000; // ms to pause after manual scroll
+
+  /* Compute the scroll offset we use for smooth-scroll — must stay
+     in sync with the click handler further below. */
+  function getScrollThreshold() {
+    var header = document.querySelector('.md-header');
+    var headerHeight = header ? header.offsetHeight : 0;
+    var padding = Math.max(8, Math.round(headerHeight * 0.5));
+    return headerHeight + padding;
+  }
 
   function startTocFollow(tocNav) {
     stopTocFollow();
@@ -136,41 +147,91 @@
     var clones = document.querySelectorAll('.ub-toc-header nav.md-nav');
     if (!clones.length) return;
 
-    var lastActiveHref = null; // deduplicate — only scroll on actual change
+    // Build ordered list of { href, el } from the desktop TOC
+    var headings = [];
+    tocNav.querySelectorAll('a.md-nav__link').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href) return;
+      var hash = a.hash || href;
+      var id = decodeURIComponent(hash.replace(/^#/, ''));
+      var el = document.getElementById(id);
+      if (el) headings.push({ href: href, el: el });
+    });
 
-    // ── Sync active class from desktop → all mobile clones ──
+    var lastActiveHref = null; // deduplicate — only auto-scroll on change
 
-    function syncAll() {
-      var activeDesktop = tocNav.querySelector('.md-nav__link--active');
-      var activeHref = activeDesktop
-        ? activeDesktop.getAttribute('href')
-        : null;
+    // ── Compute active heading from scroll position ──
 
+    function computeActiveHref() {
+      var threshold = window.scrollY + getScrollThreshold();
+      var active = null;
+      for (var i = 0; i < headings.length; i++) {
+        // Absolute top of heading
+        var el = headings[i].el;
+        var top = 0;
+        var node = el;
+        while (node) {
+          top += node.offsetTop;
+          node = node.offsetParent;
+        }
+        if (top <= threshold) {
+          active = headings[i].href;
+        } else {
+          break;
+        }
+      }
+      // At bottom of page, activate the last heading
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        if (headings.length) active = headings[headings.length - 1].href;
+      }
+      return active;
+    }
+
+    // ── Sync active class to all mobile clones ──
+
+    function syncClones(activeHref) {
       clones.forEach(function (clone) {
         clone.querySelectorAll('.md-nav__link--active').forEach(function (el) {
           el.classList.remove('md-nav__link--active');
         });
         if (!activeHref) return;
-        var match = clone.querySelector(
-          'a.md-nav__link[href="' + CSS.escape(activeHref) + '"]'
-        );
-        if (match) match.classList.add('md-nav__link--active');
+        try {
+          var match = clone.querySelector(
+            'a.md-nav__link[href="' + CSS.escape(activeHref) + '"]'
+          );
+          if (match) match.classList.add('md-nav__link--active');
+        } catch (e) {
+          clone.querySelectorAll('a.md-nav__link').forEach(function (el) {
+            if (el.getAttribute('href') === activeHref)
+              el.classList.add('md-nav__link--active');
+          });
+        }
       });
 
-      // Only scroll when the active heading actually changed
       if (activeHref !== lastActiveHref) {
         lastActiveHref = activeHref;
         scrollAllOpenPanels();
       }
     }
 
-    syncAll();
+    // ── Throttled scroll listener ──
 
-    tocObserver = new MutationObserver(syncAll);
-    tocObserver.observe(tocNav, {
-      attributes: true,
-      subtree: true,
-      attributeFilter: ['class']
+    var scrollRAF = 0;
+    function onScroll() {
+      if (scrollRAF) return;
+      scrollRAF = requestAnimationFrame(function () {
+        scrollRAF = 0;
+        syncClones(computeActiveHref());
+      });
+    }
+
+    // Initial sync + listen
+    syncClones(computeActiveHref());
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    tocFollowCleanups.push(function () {
+      window.removeEventListener('scroll', onScroll);
+      if (scrollRAF) { cancelAnimationFrame(scrollRAF); scrollRAF = 0; }
     });
 
     // ── Per-clone: auto-scroll + manual-scroll detection ────
@@ -181,36 +242,33 @@
       var checkbox = wrapper.querySelector('input.md-nav__toggle');
       if (!checkbox) return;
 
-      // The scrollable container is the .md-nav__list inside the clone
       var scrollList = clone.querySelector('.md-nav__list');
       if (!scrollList) return;
 
-      var manualUntil = 0; // timestamp until which auto-scroll is paused
+      var manualUntil = 0;
 
-      // Detect manual scroll: touch or wheel on the TOC list
       function onManualScroll() {
         manualUntil = Date.now() + MANUAL_SCROLL_COOLDOWN;
       }
       scrollList.addEventListener('touchmove', onManualScroll, { passive: true });
       scrollList.addEventListener('wheel', onManualScroll, { passive: true });
 
-      // Auto-scroll helper — always smooth
       clone.__ubAutoScroll = function () {
-        if (!checkbox.checked) return;       // panel not open
-        if (Date.now() < manualUntil) return; // user is manually scrolling
+        if (!checkbox.checked) return;
+        if (Date.now() < manualUntil) return;
         var active = clone.querySelector('.md-nav__link--active');
         if (!active || !active.offsetParent) return;
 
-        // Center the active link in the scrollable container
         var top = active.offsetTop - scrollList.offsetTop
                   - (scrollList.clientHeight - active.offsetHeight) / 2;
         scrollList.scrollTo({ top: top, behavior: 'smooth' });
       };
 
-      // When panel first opens, scroll after slide-in transition
       function onPanelOpen() {
         if (!checkbox.checked) return;
-        manualUntil = 0; // reset manual pause on fresh open
+        manualUntil = 0;
+        // Re-sync on open so the panel always shows the current heading
+        syncClones(computeActiveHref());
         setTimeout(function () { clone.__ubAutoScroll(); }, 300);
       }
       checkbox.addEventListener('change', onPanelOpen);
@@ -224,37 +282,6 @@
     });
   }
 
-  /* Immediately set the active link across desktop and mobile clones.
-     This prevents a timing/window where the desktop TOC hasn't updated
-     yet after a programmatic smooth scroll and the mobile clones show
-     the previous section. */
-  function setActiveHref(href) {
-    // normalize empty/null
-    if (!href) {
-      document.querySelectorAll('.md-nav__link--active').forEach(function (el) {
-        el.classList.remove('md-nav__link--active');
-      });
-      return;
-    }
-
-    // Remove existing active classes
-    document.querySelectorAll('.md-nav__link--active').forEach(function (el) {
-      el.classList.remove('md-nav__link--active');
-    });
-
-    // Add active on every nav link that matches this href (desktop + clones)
-    try {
-      document.querySelectorAll('.md-nav__link[href="' + CSS.escape(href) + '"]').forEach(function (el) {
-        el.classList.add('md-nav__link--active');
-      });
-    } catch (e) {
-      // Fallback if CSS.escape not available or selector malformed
-      document.querySelectorAll('.md-nav__link').forEach(function (el) {
-        if (el.getAttribute('href') === href) el.classList.add('md-nav__link--active');
-      });
-    }
-  }
-
   // Scroll every currently-open TOC panel to its active link
   function scrollAllOpenPanels() {
     document.querySelectorAll('.ub-toc-header nav.md-nav').forEach(function (clone) {
@@ -263,10 +290,6 @@
   }
 
   function stopTocFollow() {
-    if (tocObserver) {
-      tocObserver.disconnect();
-      tocObserver = null;
-    }
     tocFollowCleanups.forEach(function (fn) { fn(); });
     tocFollowCleanups = [];
   }
@@ -382,10 +405,6 @@
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
-
-    // Immediately set the active class everywhere so mobile clones reflect
-    // the tapped section even before any scrollspy updates finish.
-    setActiveHref(hash);
 
     var targetId = decodeURIComponent(hash.slice(1));
     var target = document.getElementById(targetId);
