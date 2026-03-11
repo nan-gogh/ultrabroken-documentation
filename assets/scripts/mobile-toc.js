@@ -1,12 +1,16 @@
 /**
- * mobile-toc.js — Table of contents in nav drawer + smooth-scroll
- * ──────────────────────────────────────────────────────────────
- * Injects a collapsible "Table of contents" entry at the top of EVERY
- * nav list in the primary sidebar, so it's reachable at any navigation
- * depth.  Uses Material's checkbox expand/collapse pattern with a
- * flattened list of all heading links.
+ * mobile-toc.js — Table of contents in nav drawer header + smooth-scroll
+ * ──────────────────────────────────────────────────────────────────────
+ * Injects a collapsible "Table of contents" row into the PRIMARY sidebar
+ * header area — between the drawer title and the scrollable nav list.
+ * Because it lives outside the scroll container it is always visible
+ * without any sticky CSS tricks, and expanding it pushes the nav list
+ * down within the flex column without causing overflow.
  *
- * Desktop already has the right sidebar TOC, so nothing is injected there.
+ * Only injected once (at the root level). Nested nav panels slide over
+ * the entire drawer, including this row, which is expected behaviour.
+ *
+ * Desktop already has the right sidebar TOC — nothing is injected there.
  *
  * All TOC link clicks (desktop + mobile) are intercepted via event
  * delegation: they smooth-scroll to the heading instead of triggering
@@ -18,7 +22,7 @@
 (function () {
   'use strict';
 
-  var TOGGLE_PREFIX = '__ub_toc';
+  var TOC_TOGGLE_ID = '__ub_toc_header';
 
   /* ── Build the flattened TOC list from the secondary sidebar ── */
   function buildTocList(tocNav) {
@@ -53,64 +57,21 @@
     return flatList;
   }
 
-  /* ── Inject a TOC entry into a single nav list ─────────────── */
-  function injectIntoList(navList, level, id, tocNav) {
-    var flatList = buildTocList(tocNav);
-    if (!flatList) return;
-
-    var item = document.createElement('li');
-    item.className = 'md-nav__item md-nav__item--nested ub-toc-nav-item';
-
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = id;
-    checkbox.className = 'md-nav__toggle md-toggle md-toggle--indeterminate';
-
-    var labelId = id + '_label';
-    var label = document.createElement('label');
-    label.className = 'md-nav__link';
-    label.setAttribute('for', id);
-    label.id = labelId;
-    label.tabIndex = 0;
-    label.innerHTML =
-      '<span class="md-ellipsis">Table of contents</span>' +
-      '<span class="md-nav__icon md-icon"></span>';
-
-    var innerNav = document.createElement('nav');
-    innerNav.className = 'md-nav';
-    innerNav.setAttribute('data-md-level', String(level));
-    innerNav.setAttribute('aria-labelledby', labelId);
-    innerNav.setAttribute('aria-expanded', 'false');
-
-    var backLabel = document.createElement('label');
-    backLabel.className = 'md-nav__title';
-    backLabel.setAttribute('for', id);
-    backLabel.innerHTML =
-      '<span class="md-nav__icon md-icon"></span> Table of contents';
-
-    innerNav.appendChild(backLabel);
-    innerNav.appendChild(flatList);
-
-    item.appendChild(checkbox);
-    item.appendChild(label);
-    item.appendChild(innerNav);
-
-    navList.insertBefore(item, navList.firstChild);
-  }
-
   /* ── Only run on mobile ──────────────────────────────────── */
   function isMobileView() {
     return window.innerWidth < 1220;
   }
 
-  /* ── Inject TOC into every nav list in the primary sidebar ─── */
-  function injectNavToc() {
-    // Remove any previous injections (instant-nav rebuilds the page)
-    document.querySelectorAll('.ub-toc-nav-item').forEach(function (el) {
-      el.remove();
-    });
+  /* ── Inject TOC into the sidebar header area ─────────────────
+     Inserts .ub-toc-header between the drawer title and the nav
+     list so it lives outside the scroll container and is always
+     visible without any sticky positioning tricks.              ── */
+  function injectHeaderToc() {
+    // Remove any previous injection (SPA nav rebuilds the page)
+    var prev = document.querySelector('.ub-toc-header');
+    if (prev) prev.remove();
 
-    // Desktop has its own TOC sidebar — skip injection
+    // Desktop has its own TOC sidebar — skip
     if (!isMobileView()) return;
 
     var tocNav = document.querySelector('.md-sidebar--secondary .md-nav--secondary');
@@ -119,22 +80,48 @@
     var primary = document.querySelector('.md-sidebar--primary .md-nav--primary');
     if (!primary) return;
 
-    // Collect every nav list: root + all nested sections
-    var counter = 0;
+    // Must have both a drawer title and a nav list to insert between
+    var drawerTitle = primary.querySelector(':scope > .md-nav__title[for="__drawer"]');
+    var rootList    = primary.querySelector(':scope > .md-nav__list');
+    if (!drawerTitle || !rootList) return;
 
-    // Root nav list (level 0)
-    var rootList = primary.querySelector(':scope > .md-nav__list');
-    if (rootList) {
-      injectIntoList(rootList, 1, TOGGLE_PREFIX + '_' + counter++, tocNav);
-    }
+    var flatList = buildTocList(tocNav);
+    if (!flatList) return;
 
-    // Every nested nav (level 1+)
-    primary.querySelectorAll('nav.md-nav:not(.md-nav--primary):not(.md-nav--secondary)').forEach(function (nav) {
-      var list = nav.querySelector(':scope > .md-nav__list');
-      if (!list) return;
-      var level = parseInt(nav.getAttribute('data-md-level') || '1', 10) + 1;
-      injectIntoList(list, level, TOGGLE_PREFIX + '_' + counter++, tocNav);
-    });
+    // Wrapper: flex child between title and list
+    var wrapper = document.createElement('div');
+    wrapper.className = 'ub-toc-header';
+
+    // Hidden checkbox drives open/close
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = TOC_TOGGLE_ID;
+    checkbox.className = 'ub-toc-header__toggle';
+
+    // Label: looks and feels like a nav list entry
+    var label = document.createElement('label');
+    label.className = 'ub-toc-header__label';
+    label.setAttribute('for', TOC_TOGGLE_ID);
+    label.setAttribute('tabindex', '0');
+    label.innerHTML =
+      '<span class="md-ellipsis">Table of contents</span>' +
+      '<span class="md-nav__icon md-icon"></span>';
+
+    // Collapsible body: grid 0fr→1fr animation via CSS
+    var body = document.createElement('div');
+    body.className = 'ub-toc-header__body';
+    // Inner wrapper required for grid-row 0fr to collapse correctly
+    var inner = document.createElement('div');
+    inner.className = 'ub-toc-header__inner';
+    inner.appendChild(flatList);
+    body.appendChild(inner);
+
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(label);
+    wrapper.appendChild(body);
+
+    // Insert between title and scrollable nav list
+    primary.insertBefore(wrapper, rootList);
   }
 
   /* ── Reset nav on drawer open ────────────────────────────────
@@ -180,6 +167,11 @@
     var drawer = document.getElementById('__drawer');
     if (!drawer || drawer.__ubTocListener) return;
     drawer.addEventListener('change', function () {
+      // Collapse the TOC header when the drawer closes
+      if (!drawer.checked) {
+        var toggle = document.getElementById(TOC_TOGGLE_ID);
+        if (toggle) toggle.checked = false;
+      }
       if (drawer.checked) restoreNavPosition();
     });
     drawer.__ubTocListener = true;
@@ -195,7 +187,7 @@
      (including the browser default) processes the click.        ── */
   window.addEventListener('click', function (e) {
     var link = e.target.closest(
-      '.md-sidebar--secondary .md-nav__link, .ub-toc-nav-item .md-nav__link'
+      '.md-sidebar--secondary .md-nav__link, .ub-toc-header .md-nav__link'
     );
     if (!link) return;
 
@@ -244,19 +236,19 @@
   /* ── Bootstrap ─────────────────────────────────────────────── */
   if (typeof document$ !== 'undefined') {
     document$.subscribe(function () {
-      injectNavToc();
+      injectHeaderToc();
       captureInitialStates();
       attachDrawerListener();
     });
   } else {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function () {
-        injectNavToc();
+        injectHeaderToc();
         captureInitialStates();
         attachDrawerListener();
       });
     } else {
-      injectNavToc();
+      injectHeaderToc();
       captureInitialStates();
       attachDrawerListener();
     }

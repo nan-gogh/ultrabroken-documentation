@@ -1044,10 +1044,10 @@ li.task-list-item a, li.task-list a {
    Collapsible "Table of contents" section injected into the nav drawer.
    ═══════════════════════════════════════════════════════════════════════════════ */
 
-/* Use the TOC icon instead of the default nav chevron */
-.ub-toc-nav-item > .md-nav__link > .md-nav__icon::after {
-  mask-image: var(--md-toc-icon) !important;
-}
+/* ── TOC header widget ────────────────────────────────────────────────────────
+   Injected between the drawer title and the nav list so it lives OUTSIDE
+   the scroll container — always visible, no sticky tricks needed.
+   ─────────────────────────────────────────────────────────────────────────── */
 
 /* Indent levels for flattened TOC sub-items — matches Material's native values */
 .ub-toc-indent-1 > .md-nav__link { padding-left: 1.4rem; }
@@ -1056,10 +1056,89 @@ li.task-list-item a, li.task-list a {
 .ub-toc-indent-4 > .md-nav__link { padding-left: 3.2rem; }
 
 @media (max-width: 76.1875em) {
-  .ub-toc-nav-item {
-    border-bottom: 1px solid var(--md-default-fg-color--lightest);
-    margin-bottom: 0.4rem;
-    padding-bottom: 0.2rem;
+  /* Hidden toggle checkbox */
+  .ub-toc-header__toggle {
+    display: none;
+  }
+
+  /* The header row sits as a flex child of .md-nav--primary,
+     between the title and the scrollable list. */
+  .ub-toc-header {
+    flex-shrink: 0;
+    background-color: var(--md-default-bg-color);
+    border-top: 0.05rem solid var(--md-default-fg-color--lightest);
+  }
+
+  /* Label: mimics .md-nav--primary .md-nav__link (.md-nav__item border + padding) */
+  .ub-toc-header__label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--md-default-fg-color);
+    cursor: pointer;
+    border-bottom: 0.05rem solid var(--md-default-fg-color--lightest);
+    transition: color 125ms;
+  }
+  .ub-toc-header__label:hover {
+    color: var(--md-accent-fg-color);
+  }
+
+  /* TOC icon on the chevron span */
+  .ub-toc-header__label .md-nav__icon {
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: -0.2rem;
+    font-size: 1.2rem;
+    height: 1.2rem;
+    width: 1.2rem;
+    transition: transform 0.25s;
+  }
+  .ub-toc-header__label .md-nav__icon::after {
+    background-color: currentcolor;
+    content: "";
+    display: block;
+    height: 100%;
+    mask-image: var(--md-toc-icon);
+    -webkit-mask-image: var(--md-toc-icon);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    width: 100%;
+  }
+  /* Rotate icon when expanded */
+  .ub-toc-header__toggle:checked ~ .ub-toc-header__label .md-nav__icon {
+    transform: rotate(90deg);
+  }
+
+  /* Collapsible body: grid trick for smooth height animation */
+  .ub-toc-header__body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s cubic-bezier(.86,0,.07,1);
+  }
+  .ub-toc-header__toggle:checked ~ .ub-toc-header__body {
+    grid-template-rows: 1fr;
+  }
+
+  /* Inner wrapper: overflow hidden is required for 0fr collapse */
+  .ub-toc-header__inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* TOC list: independent scroll, capped height */
+  .ub-toc-header__inner > .md-nav__list {
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 0.2rem 0 0.4rem;
+    border-bottom: 0.05rem solid var(--md-default-fg-color--lightest);
+    /* Scrollbar styling matches Material */
+    scrollbar-width: thin;
+    scrollbar-color: var(--md-default-fg-color--lighter) transparent;
   }
 
   /* Hide Material's native TOC entry in the nav — ours replaces it */
