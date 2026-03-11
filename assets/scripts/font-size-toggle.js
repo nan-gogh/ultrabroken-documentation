@@ -97,8 +97,19 @@
 
   /* ── Inject into header (desktop) or sidebar (mobile) ────────── */
   function inject() {
-    // Don't double-inject
-    if (document.querySelector('.ub-font-toggle')) return true;
+    var existing = document.querySelector('.ub-font-toggle');
+    if (existing) {
+      if (!existing._ubBound) {
+        existing.addEventListener('click', function(e) {
+          e.preventDefault(); e.stopPropagation();
+          cycle();
+        });
+        existing._ubBound = true;
+        existing.innerHTML = iconForMode(mode);
+        existing.setAttribute('title', TITLES[mode]);
+      }
+      return true;
+    }
 
     if (isMobileView()) {
       // Mobile: inject into sidebar drawer

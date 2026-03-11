@@ -81,7 +81,18 @@
 
   /* ── Inject into header (desktop) or sidebar (mobile) ──────── */
   function inject() {
-    if (document.querySelector('.ub-storage-toggle')) return true;
+    var existing = document.querySelector('.ub-storage-toggle');
+    if (existing) {
+      if (!existing._ubBound) {
+        existing.addEventListener('click', function(e) {
+          e.preventDefault(); e.stopPropagation();
+          if (window.__ubStorage) window.__ubStorage.toggle();
+        });
+        existing._ubBound = true;
+        updateButton();
+      }
+      return true;
+    }
 
     if (isMobileView()) {
       var sidebar = document.querySelector('.md-sidebar--primary');
