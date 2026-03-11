@@ -169,11 +169,16 @@
       attributeFilter: ['class']
     });
 
-    // ── 2. Active-entry scroll tracking ────────────────────
-    //    Keeps the highlighted TOC entry in view inside the
-    //    scrollable list.  During normal page scrolling the
-    //    adjustment is instant; after a manual scroll cooldown
-    //    expires it glides back smoothly.
+    // ── 2. Proportional scroll with active-entry clamping ──
+    //    Primary driver: page scroll ratio → TOC scroll ratio
+    //    (continuous, analog motion between headings).
+    //    Constraint: the active/highlighted entry must stay
+    //    visible — ideally centered.  If the proportional
+    //    position would push it out of view, the target is
+    //    clamped to keep it centered.
+    //
+    //    After a manual-scroll cooldown expires the TOC glides
+    //    back smoothly; otherwise tracking is instant.
 
     var scrollPanels = []; // { checkbox, scrollList, manualUntil }
 
@@ -196,7 +201,7 @@
       scrollList.addEventListener('touchmove', onManualScroll, { passive: true });
       scrollList.addEventListener('wheel', onManualScroll, { passive: true });
 
-      // When panel opens, scroll to active entry
+      // When panel opens, jump to position
       function onPanelOpen() {
         if (!checkbox.checked) return;
         panel.manualUntil = 0;
@@ -211,17 +216,19 @@
       });
     });
 
-    // Scroll the active entry into view within the TOC list.
-    // Uses "nearest" logic: only scrolls if the entry is outside
-    // the visible portion, and by the minimum amount needed.
+    // Page scroll ratio (0 → 1)
+    function getPageRatio() {
+      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      return scrollable > 0 ? window.scrollY / scrollable : 0;
+    }
+
     function syncScroll(panel, behavior) {
       if (!panel.checkbox.checked) return;
 
-      // During manual cooldown, skip entirely
       var now = Date.now();
       if (now < panel.manualUntil) return;
 
-      // If cooldown just expired, glide back smoothly once
+      // Pick behavior: smooth glide-back after cooldown, else instant
       if (!behavior) {
         if (panel.manualUntil > 0) {
           behavior = 'smooth';
@@ -232,32 +239,38 @@
       }
 
       var list = panel.scrollList;
+      var maxScroll = list.scrollHeight - list.clientHeight;
+      if (maxScroll <= 0) return;
+
+      // Proportional target: continuous analog motion
+      var proportional = getPageRatio() * maxScroll;
+
+      // Clamp: keep the active entry visible (centered when possible)
       var activeLink = list.querySelector('.md-nav__link--active');
-      if (!activeLink) return;
+      if (activeLink) {
+        var item = activeLink.closest('li') || activeLink;
+        // Item's offset from the top of the list's scroll content
+        var itemTop = item.offsetTop;
+        var itemH = item.offsetHeight;
+        var listH = list.clientHeight;
 
-      var item = activeLink.closest('li') || activeLink;
-      var itemRect = item.getBoundingClientRect();
-      var listRect = list.getBoundingClientRect();
+        // Ideal: center the item vertically in the list viewport
+        var center = itemTop + itemH / 2 - listH / 2;
 
-      // Position of the item within the list's scroll coordinate space
-      var itemTop = itemRect.top - listRect.top + list.scrollTop;
-      var itemBottom = itemTop + item.offsetHeight;
+        // Allowable scrollTop range that keeps the item fully visible
+        var minOk = itemTop + itemH - listH; // item just at bottom edge
+        var maxOk = itemTop;                  // item just at top edge
+        if (minOk < 0) minOk = 0;
+        if (maxOk > maxScroll) maxOk = maxScroll;
 
-      var viewTop = list.scrollTop;
-      var viewBottom = viewTop + list.clientHeight;
-
-      // Already in view — nothing to do
-      if (itemTop >= viewTop && itemBottom <= viewBottom) return;
-
-      // Scroll minimum distance to bring it into view
-      var target;
-      if (itemTop < viewTop) {
-        target = itemTop;                          // above → align to top
-      } else {
-        target = itemBottom - list.clientHeight;   // below → align to bottom
+        // If proportional target keeps the item in view, use it as-is
+        // for smooth continuous motion.  Otherwise clamp toward center.
+        if (proportional < minOk || proportional > maxOk) {
+          proportional = Math.max(0, Math.min(maxScroll, center));
+        }
       }
 
-      list.scrollTo({ top: target, behavior: behavior });
+      list.scrollTo({ top: proportional, behavior: behavior });
     }
 
     // Scroll handler: rAF-throttled
