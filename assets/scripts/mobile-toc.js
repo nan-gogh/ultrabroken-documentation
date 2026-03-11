@@ -118,13 +118,18 @@
   }
 
   /* ── toc.follow for mobile ─────────────────────────────────
-     Continuously mirrors the desktop TOC's active link into
-     every mobile clone AND auto-scrolls the TOC list while the
-     slide-in panel is open.
+     Two independent concerns:
 
-     Manual-scroll respect: when the user touches/wheels the TOC
-     list, auto-scroll pauses for a cooldown period, then resumes
-     once the page scrolls again.                              ── */
+     1. HIGHLIGHT: MutationObserver mirrors the desktop TOC's
+        active-link class into every mobile clone.
+
+     2. SCROLL: A proportional mapping from page scroll position
+        to TOC list scroll position — continuous, not snapping to
+        discrete headings.  If the page is 40% scrolled, the TOC
+        list is 40% scrolled.
+
+     Manual-scroll respect: touchmove/wheel on the TOC list
+     pauses auto-scroll for a cooldown, then resumes.          ── */
   var tocObserver = null;
   var tocFollowCleanups = [];
 
@@ -136,11 +141,9 @@
     var clones = document.querySelectorAll('.ub-toc-header nav.md-nav');
     if (!clones.length) return;
 
-    var lastActiveHref = null; // deduplicate — only scroll on actual change
+    // ── 1. Highlight sync (active class) ────────────────────
 
-    // ── Sync active class from desktop → all mobile clones ──
-
-    function syncAll() {
+    function syncHighlight() {
       var activeDesktop = tocNav.querySelector('.md-nav__link--active');
       var activeHref = activeDesktop
         ? activeDesktop.getAttribute('href')
@@ -156,24 +159,22 @@
         );
         if (match) match.classList.add('md-nav__link--active');
       });
-
-      // Only scroll when the active heading actually changed
-      if (activeHref !== lastActiveHref) {
-        lastActiveHref = activeHref;
-        scrollAllOpenPanels();
-      }
     }
 
-    syncAll();
+    syncHighlight();
 
-    tocObserver = new MutationObserver(syncAll);
+    tocObserver = new MutationObserver(syncHighlight);
     tocObserver.observe(tocNav, {
       attributes: true,
       subtree: true,
       attributeFilter: ['class']
     });
 
-    // ── Per-clone: auto-scroll + manual-scroll detection ────
+    // ── 2. Proportional scroll (continuous) ─────────────────
+    //    Maps page scroll ratio → TOC list scroll ratio.
+    //    Runs on every scroll frame via rAF for silky tracking.
+
+    var scrollPanels = []; // { checkbox, scrollList, manualUntil }
 
     clones.forEach(function (clone) {
       var wrapper = clone.closest('.ub-toc-header');
@@ -181,37 +182,24 @@
       var checkbox = wrapper.querySelector('input.md-nav__toggle');
       if (!checkbox) return;
 
-      // The scrollable container is the .md-nav__list inside the clone
       var scrollList = clone.querySelector('.md-nav__list');
       if (!scrollList) return;
 
-      var manualUntil = 0; // timestamp until which auto-scroll is paused
+      var panel = { checkbox: checkbox, scrollList: scrollList, manualUntil: 0 };
+      scrollPanels.push(panel);
 
       // Detect manual scroll: touch or wheel on the TOC list
       function onManualScroll() {
-        manualUntil = Date.now() + MANUAL_SCROLL_COOLDOWN;
+        panel.manualUntil = Date.now() + MANUAL_SCROLL_COOLDOWN;
       }
       scrollList.addEventListener('touchmove', onManualScroll, { passive: true });
       scrollList.addEventListener('wheel', onManualScroll, { passive: true });
 
-      // Auto-scroll helper — always smooth
-      clone.__ubAutoScroll = function () {
-        if (!checkbox.checked) return;       // panel not open
-        if (Date.now() < manualUntil) return; // user is manually scrolling
-        var active = clone.querySelector('.md-nav__link--active');
-        if (!active || !active.offsetParent) return;
-
-        // Center the active link in the scrollable container
-        var top = active.offsetTop - scrollList.offsetTop
-                  - (scrollList.clientHeight - active.offsetHeight) / 2;
-        scrollList.scrollTo({ top: top, behavior: 'smooth' });
-      };
-
-      // When panel first opens, scroll after slide-in transition
+      // When panel opens, snap to current proportional position
       function onPanelOpen() {
         if (!checkbox.checked) return;
-        manualUntil = 0; // reset manual pause on fresh open
-        setTimeout(function () { clone.__ubAutoScroll(); }, 300);
+        panel.manualUntil = 0;
+        setTimeout(function () { syncScroll(panel); }, 300);
       }
       checkbox.addEventListener('change', onPanelOpen);
 
@@ -219,15 +207,39 @@
         scrollList.removeEventListener('touchmove', onManualScroll);
         scrollList.removeEventListener('wheel', onManualScroll);
         checkbox.removeEventListener('change', onPanelOpen);
-        delete clone.__ubAutoScroll;
       });
     });
-  }
 
-  // Scroll every currently-open TOC panel to its active link
-  function scrollAllOpenPanels() {
-    document.querySelectorAll('.ub-toc-header nav.md-nav').forEach(function (clone) {
-      if (clone.__ubAutoScroll) clone.__ubAutoScroll();
+    // Calculate page scroll ratio (0 → 1)
+    function getPageRatio() {
+      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      return scrollable > 0 ? window.scrollY / scrollable : 0;
+    }
+
+    // Apply ratio to a single panel
+    function syncScroll(panel) {
+      if (!panel.checkbox.checked) return;
+      if (Date.now() < panel.manualUntil) return;
+      var list = panel.scrollList;
+      var maxScroll = list.scrollHeight - list.clientHeight;
+      if (maxScroll <= 0) return;
+      list.scrollTop = getPageRatio() * maxScroll;
+    }
+
+    // Scroll handler: rAF-throttled for 60fps tracking
+    var rafId = 0;
+    function onPageScroll() {
+      if (rafId) return;
+      rafId = requestAnimationFrame(function () {
+        rafId = 0;
+        scrollPanels.forEach(syncScroll);
+      });
+    }
+    window.addEventListener('scroll', onPageScroll, { passive: true });
+
+    tocFollowCleanups.push(function () {
+      window.removeEventListener('scroll', onPageScroll);
+      if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
     });
   }
 
