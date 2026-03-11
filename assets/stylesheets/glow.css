@@ -1066,6 +1066,40 @@ li.task-list-item a, li.task-list a {
     padding-bottom: 0.2rem;
   }
 
+  /* Override Material's slide-in panel for the TOC — use accordion instead.
+     Slide-in uses position:absolute + translateX(100%) which breaks inside
+     a sticky parent (causes horizontal scrollbar + extra vertical scrollbar). */
+  .ub-toc-nav-item > .md-nav__toggle ~ .md-nav {
+    position: relative !important;
+    height: auto !important;
+    display: grid !important;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transform: none !important;
+    transition: grid-template-rows .25s cubic-bezier(.86,0,.07,1),
+                opacity .25s,
+                visibility 0ms .25s;
+    visibility: collapse;
+  }
+  .ub-toc-nav-item > .md-nav__toggle:checked ~ .md-nav {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: none !important;
+    transition: grid-template-rows .25s cubic-bezier(.86,0,.07,1),
+                opacity .15s .1s,
+                visibility 0ms;
+    visibility: visible;
+  }
+  .ub-toc-nav-item > .md-nav__toggle ~ .md-nav > .md-nav__list {
+    overflow: hidden;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+  /* Hide the back-button title — accordion collapses by re-tapping the label */
+  .ub-toc-nav-item > .md-nav > .md-nav__title {
+    display: none !important;
+  }
+
   /* Hide Material's native TOC entry in the nav — ours replaces it */
   .md-nav--primary .md-nav__link[for="__toc"] {
     display: none !important;
