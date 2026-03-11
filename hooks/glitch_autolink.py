@@ -35,6 +35,7 @@ _GLOSSARY_JSON = (
 
 # Loaded once per build on first page processed.
 _glossary: list[dict] | None = None
+_lookup: list[tuple[re.Pattern, str, str]] | None = None
 
 
 def _load_glossary() -> list[dict]:
@@ -120,7 +121,10 @@ def on_page_content(html: str, page, config, files) -> str:
     if not glossary:
         return html
 
-    lookup = _build_lookup(glossary)
+    global _lookup
+    if _lookup is None:
+        _lookup = _build_lookup(glossary)
+    lookup = _lookup
     if not lookup:
         return html
 
