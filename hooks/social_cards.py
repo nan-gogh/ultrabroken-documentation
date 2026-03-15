@@ -691,7 +691,17 @@ def on_post_page(output, page, config, **kwargs):
         # f'    <meta name="twitter:card" content="summary_large_image">\n'
         # f'    <meta name="twitter:image" content="{safe_url}">'
     )
-    return output.replace("</head>", f"    {og}\n  </head>", 1)
+    output = output.replace("</head>", f"    {og}\n  </head>", 1)
+
+    # Expose card URL on <body> so the copy-card script can read it
+    output = re.sub(
+        r"<body([^>]*)>",
+        lambda m: f'<body{m.group(1)} data-ub-social-card="{safe_url}">',
+        output,
+        count=1,
+    )
+
+    return output
 
 
 def on_post_build(config, **kwargs):
