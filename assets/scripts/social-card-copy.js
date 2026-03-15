@@ -41,7 +41,13 @@
         try { showCopiedToast('Copy failed'); } catch (_) {}
       });
     });
-    row.appendChild(btn);
+    // Insert before UID badge so card icon sits left of UID
+    var uid = row.querySelector('.ub-page-uid');
+    if (uid) {
+      row.insertBefore(btn, uid);
+    } else {
+      row.appendChild(btn);
+    }
   }
 
   // Run on initial load and on instant-navigation page switches

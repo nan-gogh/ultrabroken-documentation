@@ -865,21 +865,14 @@ html, body, .md-content, .md-nav, .md-sidebar {
   position: static;
 }
 [data-ub-editor="off"] .ub-page-actions .md-content__button,
-[data-ub-editor="off"] .ub-page-actions .ub-card-copy {
+[data-ub-editor="off"] .ub-page-actions .ub-card-copy,
+[data-ub-editor="off"] .ub-page-actions .ub-page-uid {
   display: none;
 }
 
-/* UID badge inside the page-actions row */
+/* UID badge: uses native <code> styling, just needs user-select override */
 .ub-page-uid {
-  font-family: var(--md-code-font-family, monospace);
-  font-size: .7rem;
-  line-height: 1;
-  padding: .15rem .4rem;
-  border-radius: .2rem;
-  background: hsla(var(--md-hue), 15%, 18%, .6);
-  color: var(--teal-glow);
   user-select: all;
-  white-space: nowrap;
 }
 
 /* Social-card copy button in the page-actions row */
