@@ -891,9 +891,35 @@ html, body, .md-content, .md-nav, .md-sidebar {
   fill: currentColor;
 }
 
+/* ── Editor toggle button ── */
+.ub-editor-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--teal-glow) !important;
+  vertical-align: middle;
+  line-height: 1;
+  transition: none;
+}
+.ub-editor-toggle:hover,
+.ub-editor-toggle:focus,
+.ub-editor-toggle:active {
+  color: var(--teal-glow) !important;
+}
+.ub-editor-toggle svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
 /* ── Page-actions row: compact left-aligned bar above the h1 ── */
 .ub-page-actions {
   display: flex;
+  align-items: center;
   gap: .25rem;
   margin-bottom: .25rem;
 }
@@ -904,6 +930,19 @@ html, body, .md-content, .md-nav, .md-sidebar {
 }
 [data-ub-editor="off"] .ub-page-actions {
   display: none;
+}
+
+/* UID badge inside the page-actions row */
+.ub-page-uid {
+  font-family: var(--md-code-font-family, monospace);
+  font-size: .7rem;
+  line-height: 1;
+  padding: .15rem .4rem;
+  border-radius: .2rem;
+  background: hsla(var(--md-hue), 15%, 18%, .6);
+  color: var(--teal-glow);
+  user-select: all;
+  white-space: nowrap;
 }
 
 /* Social-card copy button in the page-actions row */
