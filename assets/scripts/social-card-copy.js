@@ -21,13 +21,15 @@
     btn.title = 'Copy social card URL';
     btn.setAttribute('aria-label', 'Copy social card URL');
 
-    // Inline SVG — small image/photo icon (16×16)
-    btn.innerHTML =
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">' +
-        '<rect x="1.5" y="3" width="13" height="10" rx="1.5"/>' +
-        '<circle cx="5.5" cy="6.5" r="1.25"/>' +
-        '<path d="M1.5 11l3-3 2.5 2.5L10 8l4.5 4.5"/>' +
-      '</svg>';
+    var scriptEl = document.currentScript || document.querySelector('script[src*="social-card-copy.js"]');
+    var siteRoot = (scriptEl && scriptEl.src)
+      ? scriptEl.src.replace(/assets\/scripts\/[^/]+$/, '')
+      : location.href.replace(/\/[^/]*$/, '/');
+    var img = document.createElement('img');
+    img.src = siteRoot + 'assets/images/icons/social-card-icon.svg';
+    img.alt = '';
+    img.setAttribute('aria-hidden', 'true');
+    btn.appendChild(img);
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();

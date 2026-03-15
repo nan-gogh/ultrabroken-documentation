@@ -917,7 +917,8 @@ html, body, .md-content, .md-nav, .md-sidebar {
 .ub-card-copy--ok {
   opacity: 1 !important;
 }
-.ub-card-copy svg {
+.ub-card-copy svg,
+.ub-card-copy img {
   display: block;
   width: .6em;
   height: .6em;
