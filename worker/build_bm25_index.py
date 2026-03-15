@@ -55,6 +55,11 @@ DOCS = ROOT / 'docs'
 def _parse_yaml_value(val: str):
     """Parse a simple YAML scalar or JSON-array value into a Python object."""
     val = val.strip()
+    # YAML booleans
+    if val.lower() == 'true':
+        return True
+    if val.lower() == 'false':
+        return False
     if val.startswith('['):
         try:
             return json.loads(val)
