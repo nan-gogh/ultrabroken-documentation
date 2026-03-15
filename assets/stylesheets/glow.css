@@ -870,8 +870,13 @@ html, body, .md-content, .md-nav, .md-sidebar {
   display: none;
 }
 
-/* UID badge: uses native <code> styling, just needs user-select override */
+/* UID badge: ensure Material's inline code styling applies in flex context */
 .ub-page-uid {
+  background-color: var(--md-code-bg-color);
+  border-radius: .1rem;
+  font-size: .85em;
+  padding: 0 .2941176471em;
+  font-family: var(--md-code-font-family);
   user-select: all;
 }
 
