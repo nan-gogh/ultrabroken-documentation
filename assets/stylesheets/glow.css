@@ -237,8 +237,11 @@
   /* scroll-snap-align: start;  DISABLED */
 }
 
-/* Font toggle button styling */
-.ub-font-toggle {
+/* ── Shared header / sidebar toggle buttons ── */
+.ub-motion-toggle,
+.ub-storage-toggle,
+.ub-font-toggle,
+.ub-editor-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -251,14 +254,18 @@
   line-height: 1;
   transition: none;
 }
-.ub-font-toggle:hover,
-.ub-font-toggle:focus,
-.ub-font-toggle:active {
+.ub-motion-toggle:hover, .ub-motion-toggle:focus, .ub-motion-toggle:active,
+.ub-storage-toggle:hover, .ub-storage-toggle:focus, .ub-storage-toggle:active,
+.ub-font-toggle:hover, .ub-font-toggle:focus, .ub-font-toggle:active,
+.ub-editor-toggle:hover, .ub-editor-toggle:focus, .ub-editor-toggle:active {
   color: var(--teal-glow) !important;
 }
-.ub-font-toggle svg {
-  width: 24px;
-  height: 24px;
+.ub-motion-toggle svg,
+.ub-storage-toggle svg,
+.ub-font-toggle svg,
+.ub-editor-toggle svg {
+  width: 20px;
+  height: 20px;
   display: block;
 }
 
@@ -418,55 +425,7 @@ label.md-header__button[for^="__palette_"]:hover {
   filter: brightness(0.9);
 }
 
-/* Motion toggle button */
-.ub-motion-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  color: var(--teal-glow) !important;
-  vertical-align: middle;
-  line-height: 1;
-  transition: none;
-}
-.ub-motion-toggle:hover,
-.ub-motion-toggle:focus,
-.ub-motion-toggle:active {
-  color: var(--teal-glow) !important;
-}
-.ub-motion-toggle svg {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
-
-/* Storage toggle button */
-.ub-storage-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  color: var(--teal-glow) !important;
-  vertical-align: middle;
-  line-height: 1;
-  transition: none;
-}
-.ub-storage-toggle:hover,
-.ub-storage-toggle:focus,
-.ub-storage-toggle:active {
-  color: var(--teal-glow) !important;
-}
-.ub-storage-toggle svg {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
+/* (motion-toggle & storage-toggle styles consolidated above) */
 
 /* Header toggle container */
 .ub-header-toggles {
@@ -891,30 +850,7 @@ html, body, .md-content, .md-nav, .md-sidebar {
   fill: currentColor;
 }
 
-/* ── Editor toggle button ── */
-.ub-editor-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  color: var(--teal-glow) !important;
-  vertical-align: middle;
-  line-height: 1;
-  transition: none;
-}
-.ub-editor-toggle:hover,
-.ub-editor-toggle:focus,
-.ub-editor-toggle:active {
-  color: var(--teal-glow) !important;
-}
-.ub-editor-toggle svg {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
+/* (editor-toggle styles consolidated above) */
 
 /* ── Page-actions row: compact left-aligned bar above the h1 ── */
 .ub-page-actions {
@@ -928,7 +864,8 @@ html, body, .md-content, .md-nav, .md-sidebar {
   margin: 0;
   position: static;
 }
-[data-ub-editor="off"] .ub-page-actions {
+[data-ub-editor="off"] .ub-page-actions .md-content__button,
+[data-ub-editor="off"] .ub-page-actions .ub-card-copy {
   display: none;
 }
 
