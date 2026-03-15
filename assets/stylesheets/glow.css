@@ -856,7 +856,7 @@ html, body, .md-content, .md-nav, .md-sidebar {
 .ub-page-actions {
   display: flex;
   align-items: center;
-  gap: .25rem;
+  gap: .5rem;
   margin-bottom: .25rem;
 }
 .ub-page-actions .md-content__button {
