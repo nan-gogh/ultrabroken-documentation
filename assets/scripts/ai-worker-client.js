@@ -1,754 +1,429 @@
 /*
-  Lightweight client to call the Cloudflare Worker for RAG.
-  Usage: include this script and add a page with <div id="ai-search-root"></div>
-  Configure worker URL via `window.AI_WORKER_URL` or set in localStorage('ai_worker_url').
+  AI Widget client — renders the search widget and wires all interactions.
+  Requires: window.UbAI populated by ai-worker-config.js, ai-worker-fetch.js,
+  ai-worker-typewriter.js (loaded earlier via extra_javascript).
 */
+(function () {
+  var U = window.UbAI;
+  var el = U.el;
 
+  /* ── DOM construction ──────────────────────────────────────────── */
 
-(function(){
-  
-  function el(tag, attrs={}, children=[]){
-    const e = document.createElement(tag);
-    Object.entries(attrs).forEach(([k,v])=> e.setAttribute(k,v));
-    (Array.isArray(children)?children:[children]).forEach(c=>{ if (typeof c === 'string') e.appendChild(document.createTextNode(c)); else if (c) e.appendChild(c); });
-    return e;
-  }
-  
-  // Internal flag: controls whether model-returned source titles are rendered
-  // under a "Related" heading as search links. Set to `true` to enable, `false`
-  // to hide them entirely. Worker evidence ("Resources") is always shown.
-  const SHOW_MODEL_SOURCES = true;
-  // Site root and wiki base used to build direct page links and search links.
-  var _scriptEl = document.currentScript || document.querySelector('script[src*="ai-worker-client.js"]');
-  let _root = (_scriptEl && _scriptEl.src)
-    ? _scriptEl.src.replace(/\/assets\/scripts\/[^/]+$/, '')
-    : window.location.origin;
-  if (_root.endsWith('/')) _root = _root.slice(0, -1);
-  const SITE_ROOT = _root;
-  const WIKI_SEARCH_BASE = SITE_ROOT + '/wiki/';
-  // Hard cap on query length sent to the worker. Configurable via `window.AI_MAX_QUERY_CHARS`.
-  const MAX_QUERY_CHARS = 50;
-  // Idle texts shown in the output area before any query is made and after
-  // clearing. One is picked at random each time. Cleared when a query starts.
-  const _IDLE_TEXTS = [
-    'So this happens if the Triforce of wisdom gets out of control...',
-    'The oracle of secrets should now!',
-    'A chosen hero wants to know how to break Hylias creation... What a plot twist!',
-    'The flame of curiosity flares so brightly in you... Don\'t burn your Ultrafingers!',
-    'The Purah Pad is indexing forbidden knowledge...',
-    'Even the Great Deku Tree does not know everything.',
-    'The Shiekah are not telling you the whole story...',
-    'The Koroks are hiding more than just seeds, it seems.',
-    'Somewhere, a Lynel sighs at the audacity of the question.',
-    'The Upheaval shook more than just the land - it destabilised the entire collision engine.',
-    'Rauru built his kingdom on solid ground. The physics engine, less so.',
-    'Hestu rattles his maracas in quiet disapproval of your out-of-bounds vector.',
-    'The Sages have convened. They are also confused.',
-    'A Bubbulfrog watches from the ceiling, bewildered by your clip angle.',
-    'Mineru\'s construct chassis was not stress-tested for these inputs.',
-    'The Yiga Clan has stolen the patch notes. Again.',
-    'Zelda\'s tears have been weaponised. Impressively.',
-    'Ganondorf did not anticipate speedrunners when drafting his evil plan.',
-    'Somewhere in the depths, a Construct is still processing your last query.',
-    'The ancient Zonai engineers left no documentation. We wrote our own.',
-    'A Hinox stirs. It mistakes your Ultrafingers for a threat.',
-    'Link has clipped through the floor. Again. He seems used to it.',
-    'The Bargainer Statues accept Poes and, apparently, out-of-bounds coordinates.',
-    'Josha\'s research notes mention a \'gravity anomaly\'. The community calls it Friday.',
-    'Every Stable horse-keeper has witnessed inexplicable things. They stay quiet.',
-    'A Talus pauses mid-animation to contemplate your query.',
-    'The King of Hyrule left behind six temples and one extremely buggy physics layer.',
-    'Robbie\'s Skyview Tower logs contain entries he refuses to discuss.',
-    'Underground, the gloom spreads. On the surface, the clipping begins.',
-    'Your Ultrafingers are showing. The Great Sky Island trembles.',
-    'Sidon offers you a pep talk. It does not resolve the collision mesh.',
-    'Tulin rides the wind. You ride the undefined behaviour.',
-    'A Silver Moblin has inexplicably been launched into the stratosphere. Business as usual.',
-    'The Temple of Time has seen you before. It is not impressed.',
-    'Bolson has declined to build a structure capable of withstanding your techniques.',
-    'Even the White-Maned Lynel acknowledges: this one hits different.',
-    'The Zonai survey team logged this exact anomaly. Filed under \'do not ship\'.',
-    'Hudson & Sons Ltd. accepts no liability for constructions used in glitch discovery.',
-    'Lurelin Village was rebuilt. The physics budget was not.',
-    'The Calamity never dreamed of anything this broken.',
-    'A Horriblin clings to the wall and watches your every frame-perfect input.',
-  ];
-  const idleText = () => _IDLE_TEXTS[Math.floor(Math.random() * _IDLE_TEXTS.length)];
-  // Text shown while the worker is processing a query.
-  const LOADING_TEXT = 'Let me look into that real quick...';
-  // Text shown in the output area when idle mode is active but the input is focused.
-  // Set to '' to leave it blank, or fill in a prompt hint.
-  const IDLE_FOCUSED_TEXT = 'Gtreetings, curious soul. Ask me anything about the secrets of Hyrule. Will I share word or waffle? Tip or trick? Legend or lie? Who knows?';  // Text shown immediately on blur (before the typewriter finishes and picks a new idle text).
-  // This bridges the gap between blur and the typewriter callback.
-  const IDLE_BLUR_TEXT = 'I shall continue yapping nonsense then...';
-  // Text shown in the output area immediately after a silence response clears.
-  // Displayed instead of a random idle text until the typewriter finishes its
-  // next full cycle, at which point normal idle text rotation resumes.
-  const IDLE_SILENCE_TEXT = 'Back to nonsense!';
-  // Placeholder pool - randomly sampled each time the widget initialises.
-  const _PLACEHOLDERS = [
-    "What is Wacko Boingo?",
-    "How to trigger a Zuggle?",
-    "Where is the Grimoire of Glitchcraft?",
-    "Fastest way to Tulin pump?",
-    "Explain Recall-Clip simply",
-    "How to perform Jump-Slash?",
-    "How to do Long Jump?",
-    "What causes OOB glitches?",
-    "How to trigger Save-Load dupe?",
-    "What is Weapon Stacking?",
-    "How to Autobuild Cancel?",
-    "How to perform Dive Cancel?",
-    "How to do Bow Sprinting?",
-    "What is Midair Transmutation?",
-    "Reproduce Message-Not-Found?",
-    "How to trigger Zuggle Overload?",
-    "How to do double Tulin boost?",
-    "What is Ascend Storage?",
-    "How to perform Recall Launch?",
-    "How to Weapon State Transfer?",
-    "How to cause Infinite Damage?",
-    "What is Anti-Gravity Glitch?",
-    "How to Scope Render Cancel?",
-    "Fix Midair Duplication?",
-    "How to Duplicate Equipment?",
-    "What breaks minecart rails?",
-    "How to trigger Animation Swap?",
-    "What is Jumpslash Cancel?",
-    "How to cause Collision Launch?",
-    "How to avoid Fall Damage?",
-    "What is Throw-Tap Sprinting?",
-    "How to stack weapons safely?",
-    "Use Recall-Clip reliably?",
-    "Reproduce Storage Ascend?",
-    "What is Bthrow Sprint Trick?",
-    "How to trigger Mozdor Jump?",
-    "How to perform Air Dupes?",
-    "How to transmute Midair Items?",
-    "Where to report glitches?"
-  ];
-  
-  function render(container){
-    const root = el('div', { class: 'ub-ai-root' });
-    const row = el('div', { style: 'display:flex; gap:0.4rem; align-items:flex-end;' });
-    const inputWrap = el('div', { class: 'ub-ai-input-wrap', style: 'position:relative; flex:1; display:flex;' });
-    const _placeholder_text = _PLACEHOLDERS[Math.floor(Math.random() * _PLACEHOLDERS.length)];
-      // Always use the contenteditable branch so the input naturally grows
-      let input;
-      // visible contenteditable - starts empty; animation fills it
-      input = el('div', { contenteditable: 'true', role: 'textbox', 'aria-multiline': 'true', 'data-ub-placeholder': _placeholder_text, class: 'ub-ai-input', spellcheck: 'false', autocorrect: 'off', autocomplete: 'on', autocapitalize: 'on' }, '');
-      // textarea base styles for autosize and wrapping
-      try{
-        input.style.resize = 'none';
-          input.style.overflow = 'hidden';
-        input.style.overflowY = 'hidden';
-        input.style.flex = '1 1 auto';
-        input.style.width = '100%';
-        input.style.boxSizing = 'border-box';
-          try{ input.setAttribute('wrap', 'soft'); }catch(e){}
-        input.style.whiteSpace = 'pre-wrap';
-        // Ensure long words wrap on desktop and mobile. `anywhere` +
-        // permissive `wordBreak` prevents single long tokens from overflowing.
-        try{ input.style.overflowWrap = 'anywhere'; }catch(e){}
-        try{ input.style.wordBreak = 'break-word'; }catch(e){}
-        try{ input.style.display = 'block'; }catch(e){}
-      }catch(e){}
-    const clearBtn = el('button', { type: 'button', class: 'ub-ai-clear', 'aria-label': 'Clear search' }, '');
-    const askBtn = el('button', { type: 'button', class: 'ub-ai-ask', 'aria-label': 'Ask' }, '');
-    const shareBtn = el('button', { type: 'button', class: 'ub-ai-share', 'aria-label': 'Share query' }, '');
-    // NOTE: user-facing toggle removed - rendering of model-returned sources
-    // is controlled by the internal `SHOW_MODEL_SOURCES` flag declared above.
-    // Output area (answer + evidence). `out` holds the model answer; `evidenceWrap` holds clickable evidence links returned by the Worker.
-    // Starts blank; the typewriter callback populates it after the first cycle.
-    const out = el('div', { class: 'ub-ai-out' }, '');
-    const evidenceWrap = el('div', { class: 'ub-ai-evidence md-typeset' }, '');
+  function render(container) {
+    var root = el('div', { class: 'ub-ai-root' });
+    var row = el('div', { style: 'display:flex; gap:0.4rem; align-items:flex-end;' });
+    var inputWrap = el('div', { class: 'ub-ai-input-wrap', style: 'position:relative; flex:1; display:flex;' });
+    var phText = U.PLACEHOLDERS[Math.floor(Math.random() * U.PLACEHOLDERS.length)];
+
+    var input = el('div', {
+      contenteditable: 'true', role: 'textbox', 'aria-multiline': 'true',
+      'data-ub-placeholder': phText, class: 'ub-ai-input',
+      spellcheck: 'false', autocorrect: 'off', autocomplete: 'on', autocapitalize: 'on'
+    }, '');
+    input.style.resize = 'none';
+    input.style.overflow = 'hidden';
+    input.style.flex = '1 1 auto';
+    input.style.width = '100%';
+    input.style.boxSizing = 'border-box';
+    input.style.whiteSpace = 'pre-wrap';
+    input.style.overflowWrap = 'anywhere';
+    input.style.wordBreak = 'break-word';
+    input.style.display = 'block';
+
+    var clearBtn = el('button', { type: 'button', class: 'ub-ai-clear', 'aria-label': 'Clear search' }, '');
+    var askBtn   = el('button', { type: 'button', class: 'ub-ai-ask',   'aria-label': 'Ask' }, '');
+    var shareBtn = el('button', { type: 'button', class: 'ub-ai-share', 'aria-label': 'Share query' }, '');
+    var out          = el('div', { class: 'ub-ai-out' }, '');
+    var evidenceWrap = el('div', { class: 'ub-ai-evidence md-typeset' }, '');
+
     inputWrap.appendChild(input);
     row.appendChild(inputWrap);
     row.appendChild(askBtn);
     row.appendChild(shareBtn);
     row.appendChild(clearBtn);
-    
     root.appendChild(row);
     root.appendChild(out);
-    // append evidence container to the widget so it's accessible via the returned handle
     root.appendChild(evidenceWrap);
     container.appendChild(root);
-    return { input, inputWrap, btn: askBtn, share: shareBtn, out, clear: clearBtn, evidence: evidenceWrap };
+
+    return { input: input, btn: askBtn, share: shareBtn,
+             out: out, clear: clearBtn, evidence: evidenceWrap };
   }
 
-  async function askWorker(q){
-    // Default to the registered workers.dev subdomain so fetches go to the Worker,
-    // not the GitHub Pages origin which rejects POSTs to /worker.
-    const DEFAULT_WORKER_URL = 'https://ultrabroken-rag.gl1tchcr4vt.workers.dev';
-    const url = window.AI_WORKER_URL || localStorage.getItem('ai_worker_url') || DEFAULT_WORKER_URL;
-    try{
-      const res = await fetch(url, { method:'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ query: q }) });
-      if (!res.ok) {
-        // Attempt to read error details from response body for better debugging
-        let text = null;
-        try{ text = await res.text(); }catch(e){}
-        try{ console.error('Worker responded with', res.status, text); }catch(e){}
-        // Try parse JSON error body if possible
-        try{ const j = JSON.parse(text || '{}'); return { error: j.error || JSON.stringify(j) || ('worker error '+res.status) }; }catch(e){ return { error: text || ('worker error '+res.status) }; }
+  /* ── Markdown rendering helpers ──────────────────────────────── */
+
+  function normalizeMarkdown(s) {
+    if (!s) return '';
+    return String(s).replace(/\r\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  function normalizeHtmlWhitespace(html) {
+    return html
+      .replace(/<p>\s*<\/p>\s*/gi, '')
+      .replace(/(<br\s*\/?>\s*){3,}/gi, '<br><br>')
+      .replace(/>\s+</g, '><')
+      .trim();
+  }
+
+  function safeRender(outEl, md) {
+    var clean = normalizeMarkdown(md);
+    try {
+      if (window.marked && window.DOMPurify) {
+        outEl.innerHTML = normalizeHtmlWhitespace(DOMPurify.sanitize(marked.parse(clean)));
+      } else {
+        outEl.textContent = clean;
       }
-      return await res.json();
-    }catch(e){ console.error('askWorker fetch failed', e); return { error: String(e) }; }
+    } catch (e) {
+      outEl.textContent = clean;
+    }
   }
 
-  // Idempotent initializer for the AI widget. Safe to call multiple times
-  // (e.g. after MkDocs Material instant navigation swaps).
-  function initAIWidget(){
-    try{
-      const placeholder = document.querySelector('#ai-search-root');
-      // Toggle centered rune class based on presence of the AI page placeholder
-      if (!placeholder) { document.body.classList.remove('ultrabroken-center-rune'); return; }
-      // Avoid double-init on the same placeholder
-      if (placeholder.dataset.aiInitialized === '1') return;
-      // If an instance already exists inside, mark initialized and skip
-      if (placeholder.querySelector('.ub-ai-root')) { placeholder.dataset.aiInitialized = '1'; return; }
-      const w = render(placeholder);
-      w._idleMode = true;    // true while showing idle/cleared state; false while showing a query result
-      w._silenceMode = false; // true after a silence response while the user hasn't yet focused the input
-      w._lastResponseText = null; // raw markdown response text stored for share-to-clipboard
-      w._lastResources = [];      // rendered Resource entries [{text, href}] (direct wiki links)
-      w._lastRelated = [];        // rendered Related entries [{text, query}] (search links)
-      // No user-facing toggle: `SHOW_MODEL_SOURCES` controls whether model-
-      // returned `Source:` lines are rendered. This is intentionally internal.
-      // The Worker now returns structured `response_text`, optional `response_sources` (text block)
-      // and a `sources` array ([{title, path|null}]). The client renders those directly
-      // and no longer attempts to parse `response_text` for Sources.
+  /* ── Widget initialisation ─────────────────────────────────────── */
 
-      const handleAsk = async ()=>{
-        let q = (typeof w.getValue === 'function' ? w.getValue() : (w.input.value||'')).trim(); if (!q) return;
-        if (q.length > MAX_QUERY_CHARS) q = q.slice(0, MAX_QUERY_CHARS).trim();
-        try{ if (typeof lockInput === 'function') lockInput(); }catch(e){}
+  function initAIWidget() {
+    try {
+      var placeholder = document.querySelector('#ai-search-root');
+      if (!placeholder) { document.body.classList.remove('ultrabroken-center-rune'); return; }
+      if (placeholder.dataset.aiInitialized === '1') return;
+      if (placeholder.querySelector('.ub-ai-root')) { placeholder.dataset.aiInitialized = '1'; return; }
+
+      var w = render(placeholder);
+      w._idleMode = true;
+      w._silenceMode = false;
+      w._lastResponseText = null;
+      w._lastResources = [];
+      w._lastRelated = [];
+
+      /* ── Typewriter ─────────────────────────────────────────── */
+
+      var tw = U.Typewriter(w.input, w.out, {
+        placeholders: U.PLACEHOLDERS,
+        idleText: U.idleText,
+        getIdleMode: function () { return w._idleMode; }
+      });
+
+      /* ── Value accessors ────────────────────────────────────── */
+
+      w.getValue = function () {
+        if (w.input._phAnimating) return '';
+        var txt = String(w.input.textContent || '');
+        var ph  = String(w.input.getAttribute('data-ub-placeholder') || '');
+        return txt === ph ? '' : txt;
+      };
+
+      w.setValue = function (v) {
+        tw.stop();
+        w.input.textContent = v || '';
+        if (!v) tw.start(false);
+      };
+
+      /* ── Visibility ─────────────────────────────────────────── */
+
+      var updateVisibility = function () {
+        var has = w.getValue().trim();
+        if (has) {
+          if (w.clear) { w.clear.style.display = 'flex'; w.clear.disabled = false; }
+          if (w.btn)   { w.btn.style.display   = 'flex'; w.btn.disabled   = false; }
+          if (w.share) { w.share.style.display  = 'flex'; w.share.disabled = !w._lastResponseText; }
+        } else {
+          if (w.clear) { w.clear.style.display = 'none'; w.clear.disabled = true; }
+          if (w.btn)   { w.btn.style.display   = 'none'; w.btn.disabled   = true; }
+          if (w.share) { w.share.style.display  = 'none'; w.share.disabled = true; }
+        }
+      };
+
+      /* ── Lock / unlock input ────────────────────────────────── */
+
+      var lockInput = function () {
+        w.input.setAttribute('contenteditable', 'false');
+        if (w.btn)   { w.btn.style.display   = 'flex'; w.btn.disabled   = false; }
+        if (w.clear) { w.clear.style.display  = 'flex'; w.clear.disabled = false; }
+      };
+
+      var unlockInput = function () {
+        w.input.setAttribute('contenteditable', 'true');
+      };
+
+      /* ── Clear ──────────────────────────────────────────────── */
+
+      var postSilence = false;
+
+      var doClear = function () {
+        w._idleMode = true;
+        w._lastResponseText = null;
+        w._lastResources = [];
+        w._lastRelated = [];
+        unlockInput();
+        w.setValue('');
+        var initText = postSilence ? U.IDLE_SILENCE_TEXT : U.IDLE_BLUR_TEXT;
+        postSilence = false;
+        if (w.out) {
+          w.out.innerHTML = '';
+          if (document.activeElement !== w.input) w.out.textContent = initText;
+        }
+        if (w.evidence) w.evidence.innerHTML = '';
+        updateVisibility();
+      };
+
+      /* ── Ask handler ────────────────────────────────────────── */
+
+      var handleAsk = async function () {
+        var q = w.getValue().trim();
+        if (!q) return;
+        if (q.length > U.MAX_QUERY_CHARS) q = q.slice(0, U.MAX_QUERY_CHARS).trim();
+
+        lockInput();
         w._idleMode = false;
         w._lastResponseText = null;
         w._lastResources = [];
         w._lastRelated = [];
-        try{ if (typeof updateVisibility === 'function') updateVisibility(); }catch(e){}
-        w.out.textContent = LOADING_TEXT;
+        updateVisibility();
+        w.out.textContent = U.LOADING_TEXT;
         if (w.evidence) w.evidence.innerHTML = '';
-        const r = await askWorker(q);
-        if (r.error) {
-          w.out.textContent = 'Error: ' + r.error;
-          return;
-        }
-        // Render model answer (if present). Optionally split a trailing
-        // sources section (starting at the first 'Source' line). The
-        // main answer is always shown; the trailing sources section is
-        // parsed and rendered as links only when `SHOW_RESPONSE_SOURCES`
-        // is true. When splitting is disabled the full `r.answer` is
-        // treated as the main answer.
-        // Consume structured worker response fields.
-        // `r.response_text` is the main answer (already stripped of any Sources block).
-        // `r.response_sources` is the textual Sources block (present only when APPEND_RESPONSE_SOURCES enabled).
-        // `r.sources` is the structured array of source entries.
-        let responseText = r.response_text || r.answer || '';
-        if (responseText) w._lastResponseText = responseText; // store raw markdown before HTML rendering
-        let responseSources = (typeof r.response_sources !== 'undefined') ? r.response_sources : null;
-        // `r.answer` fallback exists for older worker responses during transition; prefer structured fields.
+
+        var r = await U.askWorker(q);
+        if (r.error) { w.out.textContent = 'Error: ' + r.error; return; }
+
+        // Model answer
+        var responseText    = r.response_text || r.answer || '';
+        var responseSources = (r.response_sources != null) ? r.response_sources : null;
         if (responseText) {
-          // Render Markdown safely when marked + DOMPurify are present.
-          const normalizeMarkdown = (s) => {
-            if (!s) return '';
-            try{
-              let t = String(s || '');
-              t = t.replace(/\r\n/g,'\n');
-              // Collapse 3+ consecutive newlines into 2 (single paragraph gap)
-              t = t.replace(/\n{3,}/g, '\n\n');
-              return t.trim();
-            }catch(e){ return String(s || '').trim(); }
-          };
-
-          const normalizeHtmlWhitespace = (html) => {
-            // Remove empty paragraphs produced by Markdown -> HTML
-            html = html.replace(/<p>\s*<\/p>\s*/gi, '');
-            // Collapse long runs of <br> into at most two
-            html = html.replace(/(<br\s*\/?>\s*){3,}/gi, '<br><br>');
-            // Trim excessive whitespace between block tags
-            html = html.replace(/>\s+</g, '><');
-            return html.trim();
-          };
-
-          const safeRender = (md) => {
-            const clean = normalizeMarkdown(md);
-            try{
-              if (window.marked && window.DOMPurify) {
-                try{
-                  const raw = marked.parse(clean);
-                  const sanitized = DOMPurify.sanitize(raw);
-                  const normalized = normalizeHtmlWhitespace(sanitized);
-                  w.out.innerHTML = normalized;
-                }catch(e){ w.out.textContent = clean.replace(/\s+$/,''); }
-              } else {
-                w.out.textContent = clean.replace(/\s+$/,'');
-              }
-            }catch(e){ w.out.textContent = clean.replace(/\s+$/,''); }
-          };
-          // Display main answer; optionally append the raw sources block
-          // when configured to show the response's sources section.
-          // Append raw response_sources only when Worker provided them.
-          if (responseSources != null) {
-            safeRender(responseText + '\n\n' + responseSources);
-          } else {
-            safeRender(responseText);
-          }
+          w._lastResponseText = responseText;
+          safeRender(w.out, responseSources != null
+            ? responseText + '\n\n' + responseSources
+            : responseText);
         } else if (r.debug) {
           w.out.textContent = JSON.stringify(r.debug, null, 2);
         } else {
           w.out.textContent = '';
         }
-        // â”€â”€ Resources: Worker-provided evidence as direct wiki links â”€â”€
-        try{
-          const ev = r.evidence || [];
-          if (Array.isArray(ev) && ev.length && w.evidence){
-            const heading = el('h2', { class: 'ub-ai-resources' }, 'Resources');
-            w.evidence.appendChild(heading);
-            const sep = el('hr', { class: 'ub-ai-resources-sep' }, '');
-            w.evidence.appendChild(sep);
-            const list = el('ul', { class: 'ub-ai-evidence-list' }, []);
+
+        // Resources: worker evidence as direct wiki links
+        try {
+          var ev = r.evidence || [];
+          if (Array.isArray(ev) && ev.length && w.evidence) {
+            w.evidence.appendChild(el('h2', { class: 'ub-ai-resources' }, 'Resources'));
+            w.evidence.appendChild(el('hr', { class: 'ub-ai-resources-sep' }));
+            var list = el('ul', { class: 'ub-ai-evidence-list' });
             w.evidence.appendChild(list);
-            ev.forEach(item => {
-              // Prefer path (contains UID-based permalink) over id (raw filename)
-              const id = item.path || item.id || '';
-              const titleText = item.title || '';
-              let slug = String(id).replace(/\.md$/,'').replace(/^\/+|\/+$/g, '').replace(/\/index$/, '');
-              const text = titleText || slug || id;
+            ev.forEach(function (item) {
+              var id = item.path || item.id || '';
+              var titleText = item.title || '';
+              var slug = String(id).replace(/\.md$/, '').replace(/^\/+|\/+$/g, '').replace(/\/index$/, '');
+              var text = titleText || slug || id;
               if (!text.trim()) return;
-              // Build direct wiki link
-              let href;
-              if (slug.startsWith('wiki/')) {
-                href = SITE_ROOT + '/' + slug + '/';
-              } else {
-                href = SITE_ROOT + '/wiki/' + slug + '/';
-              }
-              const a = el('a', { href: href, target: '_blank', rel: 'noopener noreferrer' }, text);
-              const li = el('li', {}, a);
-              list.appendChild(li);
+              var href = slug.startsWith('wiki/')
+                ? U.SITE_ROOT + '/' + slug + '/'
+                : U.SITE_ROOT + '/wiki/' + slug + '/';
+              list.appendChild(el('li', {}, el('a', { href: href, target: '_blank', rel: 'noopener noreferrer' }, text)));
               w._lastResources.push({ text: text.trim(), href: href });
             });
           }
-        }catch(e){ /* ignore evidence rendering errors */ }
+        } catch (e) { /* evidence rendering */ }
 
-        // â”€â”€ Related: Model-provided sources as search links â”€â”€
-        try{
-          const modelSources = Array.isArray(r.sources) ? r.sources : [];
-          if (SHOW_MODEL_SOURCES && modelSources.length && w.evidence){
-            const heading = el('h2', { class: 'ub-ai-related' }, 'Related');
-            w.evidence.appendChild(heading);
-            const sep = el('hr', { class: 'ub-ai-related-sep' }, '');
-            w.evidence.appendChild(sep);
-            const list = el('ul', { class: 'ub-ai-related-list' }, []);
-            w.evidence.appendChild(list);
-            modelSources.forEach(s => {
-              const text = s.title || (s.path || s.id) || '';
-              const query = String(text).trim();
+        // Related: model sources as search links
+        try {
+          var modelSources = Array.isArray(r.sources) ? r.sources : [];
+          if (U.SHOW_MODEL_SOURCES && modelSources.length && w.evidence) {
+            w.evidence.appendChild(el('h2', { class: 'ub-ai-related' }, 'Related'));
+            w.evidence.appendChild(el('hr', { class: 'ub-ai-related-sep' }));
+            var rlist = el('ul', { class: 'ub-ai-related-list' });
+            w.evidence.appendChild(rlist);
+            modelSources.forEach(function (s) {
+              var text = s.title || s.path || s.id || '';
+              var query = String(text).trim();
               if (!query) return;
-              const href = 'search:' + encodeURIComponent(query);
-              const a = el('a', { href: href, class: 'search-link', 'data-query': query }, text);
-              const li = el('li', {}, a);
-              list.appendChild(li);
+              rlist.appendChild(el('li', {}, el('a', {
+                href: 'search:' + encodeURIComponent(query),
+                class: 'search-link', 'data-query': query
+              }, text)));
               w._lastRelated.push({ text: query, query: query });
             });
           }
-        }catch(e){ /* ignore model source rendering errors */ }
-        try{ updateVisibility(); }catch(e){}
-        // If nothing was rendered and there was no answer, show silence
-        if (!w.out.textContent && (!r.evidence || !r.evidence.length)) w.out.textContent = 'silence';
-        // Silence response: unlock the input so the user can edit/correct their query.
-        // No auto-clear - the user decides what to do next.
-        if (r.silence) {
-          w._silenceMode = true;
-          try{ if (typeof unlockInput === 'function') unlockInput(); }catch(e){}
-        }
-      };
-      w.btn.addEventListener('click', handleAsk);
-      // Helper accessors for faux input support. Treat the inline
-      // placeholder (stored in `data-ub-placeholder`) as empty content.
-      w.getValue = ()=>{
-        try{
-          if (w.input && (w.input.contentEditable === 'true' || w.input._inputLocked)) {
-            if (w.input._phAnimating) return ''; // animation in progress - treat as empty
-            const txt = String(w.input.textContent || '');
-            const ph = String(w.input.getAttribute('data-ub-placeholder') || '');
-            return txt === ph ? '' : txt;
-          }
-        }catch(e){}
-        try{ return String((w.input && w.input.value) || ''); }catch(e){ return ''; }
-      };
-      w.setValue = (v)=>{
-        try{
-          if (w.input && w.input.contentEditable === 'true') {
-            if (!v) {
-              // clearing: stop any running animation, blank the field, restart animation
-              try{ if (typeof stopPhAnim === 'function') stopPhAnim(); }catch(e){}
-              w.input.textContent = '';
-              try{ w.input.removeAttribute('data-ub-placeholder-active'); }catch(e){}
-              try{ if (typeof startPhAnim === 'function') startPhAnim(); }catch(e){}
-            } else {
-              try{ if (typeof stopPhAnim === 'function') stopPhAnim(); }catch(e){}
-              w.input.textContent = v;
-              try{ w.input.removeAttribute('data-ub-placeholder-active'); }catch(e){}
-            }
-            return;
-          }
-        }catch(e){}
-        try{ if (w.input) w.input.value = v; }catch(e){}
-      };
+        } catch (e) { /* model source rendering */ }
 
-      // Typewriter animation engine for placeholder.
-      // Picked fresh on every blur-when-empty / clear / init.
-      let _phAnimHandle = null;
-      let _phLastIdx    = -1;
-      let _postSilence  = false; // true when a clear was triggered by a silence response
-      const stopPhAnim = ()=>{
-        try{ if (_phAnimHandle !== null){ clearTimeout(_phAnimHandle); _phAnimHandle = null; } }catch(e){}
-        try{ w.input._phAnimating = false; }catch(e){}
-      };
-      // startPhAnim([startFull])
-      // When startFull=true the placeholder is shown pre-filled and idle text is
-      // set immediately; the delete phase runs right away without typing first.
-      // Used on page init/refresh so the widget appears fully populated.
-      const startPhAnim = (startFull = false)=>{
-        stopPhAnim();
-        if (document.activeElement === w.input) return; // don't animate while focused
-        let idx;
-        do { idx = Math.floor(Math.random() * _PLACEHOLDERS.length); }
-        while (_PLACEHOLDERS.length > 1 && idx === _phLastIdx);
-        _phLastIdx = idx;
-        const text = _PLACEHOLDERS[idx];
-        try{ w.input.setAttribute('data-ub-placeholder', text); }catch(e){}
-        w.input._phAnimating = true;
-        let pos = 0;
-        const TYPE_SPEED  = 65;   // ms per char typed (Â±jitter)
-        const DEL_SPEED   = 30;   // ms per char deleted
-        const PAUSE_TYPED = 360;  // tiny pause right after last char lands
-        const PAUSE_END   = 1600; // pause at full string before deleting
-        const PAUSE_INIT  = 3200; // longer pause on first page-load pre-fill before deleting
-        const PAUSE_START = 350;  // pause after full delete before next word
-        const typeNext = ()=>{
-          if (document.activeElement === w.input){ stopPhAnim(); w.input.textContent = ''; return; }
-          if (pos <= text.length){
-            try{ w.input.textContent = text.slice(0, pos); }catch(e){}
-            pos++;
-            _phAnimHandle = setTimeout(typeNext, TYPE_SPEED + Math.random() * 40 - 20);
-          } else {
-            _phAnimHandle = setTimeout(()=>{
-              if (w._idleMode) { try{ w.out.textContent = idleText(); }catch(e){} }
-              _phAnimHandle = setTimeout(delNext, PAUSE_END);
-            }, PAUSE_TYPED);
-          }
-        };
-        const delNext = ()=>{
-          if (document.activeElement === w.input){ stopPhAnim(); w.input.textContent = ''; return; }
-          if (pos > 0){
-            pos--;
-            try{ w.input.textContent = text.slice(0, pos); }catch(e){}
-            _phAnimHandle = setTimeout(delNext, DEL_SPEED + Math.random() * 20 - 10);
-          } else {
-            w.input._phAnimating = false;
-            _phAnimHandle = setTimeout(()=>{ if (document.activeElement !== w.input) startPhAnim(); }, PAUSE_START);
-          }
-        };
-        if (startFull) {
-          // Pre-fill: show full placeholder + idle text immediately, then delete
-          pos = text.length;
-          try{ w.input.textContent = text; }catch(e){}
-          if (w._idleMode) { try{ w.out.textContent = idleText(); }catch(e){} }
-          _phAnimHandle = setTimeout(delNext, PAUSE_INIT);
-        } else {
-          _phAnimHandle = setTimeout(typeNext, 300);
-        }
-      };
-
-      // Lock/unlock the input after a response is shown / cleared.
-      // Declared at outer scope so handleAsk (defined earlier) can close over them.
-      const lockInput = ()=>{
-        try{ w.input.setAttribute('contenteditable', 'false'); w.input._inputLocked = true; }catch(e){}
-        try{ if (w.btn)   { w.btn.style.display   = 'flex'; w.btn.disabled   = false; } }catch(e){}
-        try{ if (w.clear) { w.clear.style.display = 'flex'; w.clear.disabled = false; } }catch(e){}
-      };
-      const unlockInput = ()=>{
-        try{ w.input.setAttribute('contenteditable', 'true'); w.input._inputLocked = false; }catch(e){}
-      };
-      // Declared at outer scope so the silence-timeout in handleAsk can close over it.
-      const doClear = () => {
-        w._idleMode = true;
-        w._lastResponseText = null;
-        w._lastResources = [];
-        w._lastRelated = [];
-        try{ if (typeof unlockInput === 'function') unlockInput(); }catch(e){}
-        try{ if (typeof w.setValue === 'function') w.setValue(''); else if (w.input) w.input.value = ''; }catch(e){}
-        // Only show idle text immediately if input is not focused; otherwise let the typewriter callback restore it.
-        // After a silence response, show the dedicated post-silence text; otherwise show the blur bridge text
-        // (same as the blur-empty path) - the typewriter will replace it with a random idle text after its first cycle.
-        const _idleInitText = _postSilence ? IDLE_SILENCE_TEXT : IDLE_BLUR_TEXT;
-        _postSilence = false;
-        try{ if (w.out) { w.out.innerHTML = ''; if (document.activeElement !== w.input) w.out.textContent = _idleInitText; } }catch(e){}
-        try{ if (w.evidence) w.evidence.innerHTML = ''; }catch(e){}
-        try{ if (w.input && w.input.contentEditable === 'true') w.input.style.height = ''; }catch(e){}
-        try { updateVisibility(); } catch(e){ w.clear.style.display = 'none'; w.btn.style.display = 'none'; w.share && (w.share.style.display = 'none'); }
-      };
-      // Declared at outer scope so all closures (handleAsk, doClear, keydown) can reach them.
-      const resizeIcons = ()=>{
-        try{
-          const btnRect = w.btn.getBoundingClientRect();
-          let targetH = 0;
-          if (btnRect && btnRect.height > 0) targetH = Math.round(btnRect.height);
-          else targetH = Math.round(parseFloat(getComputedStyle(w.btn).fontSize) || 16);
-          targetH = Math.max(12, targetH);
-        }catch(e){}
-      };
-      const updateVisibility = ()=>{
-        const has = String((typeof w.getValue === 'function' ? w.getValue() : (w.input && w.input.value || '')) || '').trim();
-        if (has) {
-          try{ if (w.clear) { w.clear.style.display = 'flex'; w.clear.disabled = false; } }catch(e){}
-          try{ if (w.btn)   { w.btn.style.display   = 'flex'; w.btn.disabled   = false; } }catch(e){}
-          // Share: visible with input text; enabled only when a response is available
-          try{ if (w.share) { w.share.style.display = 'flex'; w.share.disabled = !w._lastResponseText; } }catch(e){}
-        } else {
-          try{ if (w.clear) { w.clear.style.display = 'none'; w.clear.disabled = true; } }catch(e){}
-          try{ if (w.btn)   { w.btn.style.display   = 'none'; w.btn.disabled   = true; } }catch(e){}
-          try{ if (w.share) { w.share.style.display = 'none'; w.share.disabled = true; } }catch(e){}
-        }
-        setTimeout(resizeIcons, 0);
-      };
-
-      // Focus: kill animation and clear field only when placeholder is showing.
-      // If the user already has text in the field, leave it untouched.
-      // Blur: restart animation after a short delay if still empty
-      try{
-        w.input.addEventListener('focus', ()=>{
-          try{
-            if (w.input._phAnimating) { stopPhAnim(); w.input.textContent = ''; }
-            // After a silence response the user focuses to edit: transition into idle
-            // mode so the blur/typewriter machinery works normally from here on.
-            if (w._silenceMode) { w._silenceMode = false; w._idleMode = true; }
-            // Hide idle text while focused; typewriter callback restores it after blur
-            if (w._idleMode) { try{ w.out.textContent = IDLE_FOCUSED_TEXT; }catch(e){} }
-          }catch(e){}
-        });
-        w.input.addEventListener('blur', ()=>{
-          try{
-            const hasText = !!String(w.input.textContent || '').trim();
-            // Only show transient blur text when the field is empty (no user query present)
-            if (w._idleMode && !hasText) { try{ w.out.textContent = IDLE_BLUR_TEXT; }catch(e){} }
-            if (!hasText){
-              _phAnimHandle = setTimeout(startPhAnim, 400);
-            }
-          }catch(e){}
-        });
-      }catch(e){}
-      // Submit on plain Enter. Ctrl/Cmd+Enter inserts a newline at the caret.
-      w.input.addEventListener('keydown', (ev)=>{
-        if (ev.key === 'Enter') {
-          if (ev.ctrlKey || ev.metaKey) {
-            // Insert a newline at the current caret position
-            try{
-              ev.preventDefault();
-              if (w.input && w.input.contentEditable === 'true') {
-                try{
-                  const sel = window.getSelection();
-                  if (sel && sel.rangeCount) {
-                    const range = sel.getRangeAt(0);
-                    range.deleteContents();
-                    const node = document.createTextNode('\n');
-                    range.insertNode(node);
-                    // move caret after inserted node
-                    range.setStartAfter(node);
-                    range.collapse(true);
-                    sel.removeAllRanges(); sel.addRange(range);
-                  }
-                }catch(e){}
-                try { updateVisibility(); } catch(e){}
-              } else {
-                const el = w.input;
-                const start = el.selectionStart || 0;
-                const end = el.selectionEnd || 0;
-                const v = el.value || '';
-                el.value = v.slice(0, start) + '\n' + v.slice(end);
-                const pos = start + 1;
-                el.selectionStart = el.selectionEnd = pos;
-                try { updateVisibility(); } catch(e){}
-              }
-            }catch(e){}
-          } else {
-            ev.preventDefault();
-            try { handleAsk(); } catch(e){}
-          }
-        }
-      });
-      // placeholder rotation removed for test
-      // Wire clear button and replace Ask text with an SVG ask-icon that only appears when input has text
-      // Helper: immediately collapse a textarea to a conservative single-line
-      // visual height (line-height + vertical padding). Used by focus and clear flows.
-      const collapseToSingleLine = (inputEl) => {
-        try{
-          if (!inputEl) return;
-          const cs = window.getComputedStyle(inputEl);
-          const fontSize = parseFloat(cs.fontSize) || 16;
-          let lh = cs.lineHeight;
-          let lineH = 0;
-          if (lh === 'normal' || !lh) {
-            lineH = fontSize * 1.2;
-          } else if (lh.indexOf && lh.indexOf('px') !== -1) {
-            lineH = parseFloat(lh);
-          } else {
-            const n = parseFloat(lh) || 1.2;
-            lineH = fontSize * n;
-          }
-          const padTop = parseFloat(cs.paddingTop) || 0;
-          const padBottom = parseFloat(cs.paddingBottom) || 0;
-          const target = Math.max(12, Math.round(lineH + padTop + padBottom));
-          inputEl.style.height = target + 'px';
-        }catch(e){}
-      };
-      try{
-        // Ensure clear button exists
-        if (w.clear){
-          // set image for the clear button (published site path)
-          const clearImg = document.createElement('img');
-          clearImg.src = SITE_ROOT + '/assets/images/icons/cancel-icon.svg';
-          clearImg.alt = 'Clear';
-          
-          // ensure clear button starts hidden; layout/spacing handled by CSS
-          w.clear.style.display = 'none';
-          w.clear.appendChild(clearImg);
-          w.clear.addEventListener('click', ()=>{ if (!w._idleMode) _postSilence = true; doClear(); });
-        }
-
-        // Replace textual Ask label with an SVG inside the Ask button
-        const askImg = document.createElement('img');
-        askImg.src = SITE_ROOT + '/assets/images/icons/ask-icon.svg';
-        askImg.alt = 'Ask';
-        
-        // Clear any existing textual content in the button and append the SVG
-        w.btn.textContent = '';
-        w.btn.appendChild(askImg);
-        // Share button image
-        try {
-          const shareImg = document.createElement('img');
-          shareImg.src = SITE_ROOT + '/assets/images/icons/share-icon.svg';
-          shareImg.alt = 'Share';
-          w.share.textContent = '';
-          w.share.appendChild(shareImg);
-        } catch (e) {}
-        // Start hidden; only show when the input has text (mirrors clear button behavior)
-        w.btn.style.display = 'none';
-        if (w.share) { w.share.style.display = 'none'; w.share.disabled = true; }
-
-        // Share button: copy a permalink that encodes the query so it can be shared
-        if (w.share) {
-          try {
-            w.share.addEventListener('click', () => {
-              try {
-                const responseText = w._lastResponseText;
-                if (!responseText) return;
-                // Prepend the user's query as a ## heading
-                let queryHeading = '';
-                try {
-                  const q = String((typeof w.getValue === 'function' ? w.getValue() : (w.input && w.input.value || '')) || '').trim();
-                  if (q) queryHeading = '## ' + q + '\n\n';
-                } catch(e){}
-                // Build Resources footer with direct wiki links
-                let resourcesFooter = '';
-                try {
-                  const res = w._lastResources || [];
-                  if (res.length) resourcesFooter = '\n\n## Resources\n' + res.map(r => '- [' + r.text + '](' + r.href + ')').join('\n');
-                } catch(e){}
-                // Build Related footer with search links
-                let relatedFooter = '';
-                try {
-                  const rel = w._lastRelated || [];
-                  if (rel.length) relatedFooter = '\n\n## Related\n' + rel.map(r => '- [' + r.text + '](' + WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(r.query) + ')').join('\n');
-                } catch(e){}
-                const disclaimer = '\n\n### Disclaimer\nThis response was synthesized by [The Librarian](' + SITE_ROOT + '/wiki/about/#ai-search). Take it with a grain of salt - always verify against the source pages.';
-                const text = queryHeading + responseText.trim() + resourcesFooter + relatedFooter + disclaimer;
-                navigator.clipboard.writeText(text).then(() => {
-                  try { showCopiedToast && showCopiedToast('Copied to clipboard'); } catch (e) {}
-                }).catch(err => {
-                  try { showCopiedToast && showCopiedToast('Copy failed'); } catch (e) {}
-                  console.error('copy response failed', err);
-                });
-              } catch (err) { console.error('share click error', err); }
-            });
-          } catch (e) {}
-        }
-
-        ['input','change','paste','cut','compositionend'].forEach(evt => w.input.addEventListener(evt, ()=>{
-          // Enforce character cap on contenteditable
-          try{
-            if (w.input.contentEditable === 'true'){
-              const cur = w.input.textContent || '';
-              if (cur.length > MAX_QUERY_CHARS){
-                w.input.textContent = cur.slice(0, MAX_QUERY_CHARS);
-                // Move caret to end
-                try{
-                  const sel = window.getSelection();
-                  const range = document.createRange();
-                  const node = w.input.childNodes[0] || w.input;
-                  range.setStart(node, Math.min(MAX_QUERY_CHARS, node.length || 0));
-                  range.collapse(true);
-                  sel.removeAllRanges(); sel.addRange(range);
-                }catch(e){}
-              }
-            }
-          }catch(e){}
-          try{ updateVisibility(); }catch(e){}
-        }));
-        // initial sizing and keep in sync with resizes
-        resizeIcons();
-        window.addEventListener('resize', resizeIcons);
-        // initial state
         updateVisibility();
-        // kick off placeholder animation - start pre-filled so the page
-        // loads with content immediately; delete phase runs first cycle.
-        try{ startPhAnim(true); }catch(e){}
+        if (!w.out.textContent && (!r.evidence || !r.evidence.length)) w.out.textContent = 'silence';
+        if (r.silence) { w._silenceMode = true; unlockInput(); }
+      };
 
-        
-      }catch(e){ /* ignore */ }
-      // Keep rune centered while on the AI page
-      try{ document.body.classList.add('ultrabroken-center-rune'); }catch(e){}
-      placeholder.dataset.aiInitialized = '1';
-    }catch(e){ console.debug('initAIWidget error', e); }
-  }
+      /* ── Event wiring ───────────────────────────────────────── */
 
-  // Fast rune-centering update that runs immediately on mutations/navigation
-  function updateCenteredRune(){
-    try{
-      const placeholder = document.querySelector('#ai-search-root');
-      if (placeholder) {
-        document.body.classList.add('ultrabroken-center-rune');
-      } else {
-        document.body.classList.remove('ultrabroken-center-rune');
-      }
-    }catch(e){ console.debug('updateCenteredRune error', e); }
-  }
+      w.btn.addEventListener('click', handleAsk);
 
-  // Monitor navigation using MkDocs Material's built-in observable
-  function attachNavObserver(){
-    if (typeof document$ !== 'undefined') {
-      document$.subscribe(function() {
-        updateCenteredRune(); 
-        setTimeout(initAIWidget, 50);
+      // Focus: kill animation, clear placeholder text
+      w.input.addEventListener('focus', function () {
+        if (w.input._phAnimating) { tw.stop(); w.input.textContent = ''; }
+        if (w._silenceMode) { w._silenceMode = false; w._idleMode = true; }
+        if (w._idleMode) w.out.textContent = U.IDLE_FOCUSED_TEXT;
       });
-    } else {
-      try{
-        const target = document.body; if (!target) return;
-        const mo = new MutationObserver(()=>{ updateCenteredRune(); setTimeout(initAIWidget, 50); });
-        mo.observe(target, { childList: true, subtree: true });
-        window.addEventListener('popstate', ()=>{ updateCenteredRune(); setTimeout(initAIWidget, 50); });
-        const _pushState = history.pushState;
-        history.pushState = function () { _pushState.apply(this, arguments); updateCenteredRune(); setTimeout(initAIWidget, 50); };
-      }catch(e){ console.debug('attachNavObserver error', e); }
+
+      // Blur: restart animation after short delay if empty
+      w.input.addEventListener('blur', function () {
+        var hasText = !!String(w.input.textContent || '').trim();
+        if (w._idleMode && !hasText) w.out.textContent = U.IDLE_BLUR_TEXT;
+        if (!hasText) setTimeout(function () { tw.start(false); }, 400);
+      });
+
+      // Enter = submit, Ctrl/Cmd+Enter = newline
+      w.input.addEventListener('keydown', function (ev) {
+        if (ev.key !== 'Enter') return;
+        if (ev.ctrlKey || ev.metaKey) {
+          ev.preventDefault();
+          try {
+            var sel = window.getSelection();
+            if (sel && sel.rangeCount) {
+              var range = sel.getRangeAt(0);
+              range.deleteContents();
+              var nl = document.createTextNode('\n');
+              range.insertNode(nl);
+              range.setStartAfter(nl);
+              range.collapse(true);
+              sel.removeAllRanges();
+              sel.addRange(range);
+            }
+          } catch (e) {}
+          updateVisibility();
+        } else {
+          ev.preventDefault();
+          handleAsk();
+        }
+      });
+
+      /* ── Button setup ───────────────────────────────────────── */
+
+      // Clear button
+      if (w.clear) {
+        w.clear.appendChild(el('img', { src: U.SITE_ROOT + '/assets/images/icons/cancel-icon.svg', alt: 'Clear' }));
+        w.clear.style.display = 'none';
+        w.clear.addEventListener('click', function () {
+          if (!w._idleMode) postSilence = true;
+          doClear();
+        });
+      }
+
+      // Ask button
+      w.btn.appendChild(el('img', { src: U.SITE_ROOT + '/assets/images/icons/ask-icon.svg', alt: 'Ask' }));
+      w.btn.style.display = 'none';
+
+      // Share button
+      if (w.share) {
+        w.share.appendChild(el('img', { src: U.SITE_ROOT + '/assets/images/icons/share-icon.svg', alt: 'Share' }));
+        w.share.style.display = 'none';
+        w.share.disabled = true;
+
+        w.share.addEventListener('click', function () {
+          var responseText = w._lastResponseText;
+          if (!responseText) return;
+
+          var queryHeading = '';
+          var q = w.getValue().trim();
+          if (q) queryHeading = '## ' + q + '\n\n';
+
+          var resourcesFooter = '';
+          var res = w._lastResources || [];
+          if (res.length) resourcesFooter = '\n\n## Resources\n' + res.map(function (r) {
+            return '- [' + r.text + '](' + r.href + ')';
+          }).join('\n');
+
+          var relatedFooter = '';
+          var rel = w._lastRelated || [];
+          if (rel.length) relatedFooter = '\n\n## Related\n' + rel.map(function (r) {
+            return '- [' + r.text + '](' + U.WIKI_SEARCH_BASE + '?q=' + encodeURIComponent(r.query) + ')';
+          }).join('\n');
+
+          var disclaimer = '\n\n### Disclaimer\nThis response was synthesized by [The Librarian]('
+            + U.SITE_ROOT + '/wiki/about/#ai-search). Take it with a grain of salt - always verify against the source pages.';
+
+          var text = queryHeading + responseText.trim() + resourcesFooter + relatedFooter + disclaimer;
+          navigator.clipboard.writeText(text).then(function () {
+            try { showCopiedToast('Copied to clipboard'); } catch (e) {}
+          }).catch(function (err) {
+            try { showCopiedToast('Copy failed'); } catch (e) {}
+            console.error('copy response failed', err);
+          });
+        });
+      }
+
+      /* ── Input events (character cap + visibility) ──────────── */
+
+      ['input', 'change', 'paste', 'cut', 'compositionend'].forEach(function (evt) {
+        w.input.addEventListener(evt, function () {
+          if (w.input.contentEditable === 'true') {
+            var cur = w.input.textContent || '';
+            if (cur.length > U.MAX_QUERY_CHARS) {
+              w.input.textContent = cur.slice(0, U.MAX_QUERY_CHARS);
+              try {
+                var sel = window.getSelection();
+                var range = document.createRange();
+                var node = w.input.childNodes[0] || w.input;
+                range.setStart(node, Math.min(U.MAX_QUERY_CHARS, node.length || 0));
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+              } catch (e) {}
+            }
+          }
+          updateVisibility();
+        });
+      });
+
+      /* ── Initial state ──────────────────────────────────────── */
+
+      updateVisibility();
+      tw.start(true);
+      document.body.classList.add('ultrabroken-center-rune');
+      placeholder.dataset.aiInitialized = '1';
+
+    } catch (e) {
+      console.debug('initAIWidget error', e);
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', ()=>{ updateCenteredRune(); initAIWidget(); attachNavObserver(); });
-  } else {
-    updateCenteredRune(); initAIWidget(); attachNavObserver();
+  /* ── Navigation hooks ──────────────────────────────────────────── */
+
+  function updateCenteredRune() {
+    var ph = document.querySelector('#ai-search-root');
+    if (ph) document.body.classList.add('ultrabroken-center-rune');
+    else document.body.classList.remove('ultrabroken-center-rune');
   }
 
+  function attachNavObserver() {
+    if (typeof document$ !== 'undefined') {
+      document$.subscribe(function () {
+        updateCenteredRune();
+        setTimeout(initAIWidget, 50);
+      });
+    } else {
+      var mo = new MutationObserver(function () {
+        updateCenteredRune();
+        setTimeout(initAIWidget, 50);
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+      window.addEventListener('popstate', function () {
+        updateCenteredRune();
+        setTimeout(initAIWidget, 50);
+      });
+      var _pushState = history.pushState;
+      history.pushState = function () {
+        _pushState.apply(this, arguments);
+        updateCenteredRune();
+        setTimeout(initAIWidget, 50);
+      };
+    }
+  }
+
+  /* ── Entry point ───────────────────────────────────────────────── */
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      updateCenteredRune();
+      initAIWidget();
+      attachNavObserver();
+    });
+  } else {
+    updateCenteredRune();
+    initAIWidget();
+    attachNavObserver();
+  }
 })();

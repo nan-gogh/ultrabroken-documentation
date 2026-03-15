@@ -6,7 +6,7 @@
  *
  * Physics model: Obsidian-style force-directed graph with
  *   - Alpha (temperature) decay for smooth convergence
- *   - Many-body repulsion (Coulomb 1/dist², O(n²) brute-force)
+ *   - Many-body repulsion (Coulomb 1/dist², Barnes–Hut O(n log n))
  *   - Spring link force with degree-weighted strength
  *   - Per-node center gravity (Obsidian "center force")
  *   - All forces have a minimum alpha floor so the lattice self-heals
@@ -31,6 +31,7 @@
   var CHARGE        = -800;     // long-range repulsion strength
   var DIST_MIN      = 1;        // avoid infinite force at coincident points
   var DIST_MAX      = 2000;     // repulsion effective over very large range
+  var BH_THETA      = 0.9;      // Barnes–Hut approximation threshold (s/d ratio)
 
   // Short-range collision (nuclear-style hard repulsion)
   var COLLIDE_RADIUS = 30;      // minimum spacing between node centres
@@ -196,6 +197,84 @@
     }
   }
 
+  /* ── Barnes–Hut quadtree (O(n log n) many-body) ────────────────── */
+
+  function qtBuild() {
+    if (nodes.length === 0) return null;
+    var x0 = nodes[0].x, y0 = nodes[0].y, x1 = x0, y1 = y0;
+    for (var i = 1; i < nodes.length; i++) {
+      var nd = nodes[i];
+      if (nd.x < x0) x0 = nd.x; if (nd.y < y0) y0 = nd.y;
+      if (nd.x > x1) x1 = nd.x; if (nd.y > y1) y1 = nd.y;
+    }
+    // Square bounding box with 1-unit padding
+    var dx = x1 - x0, dy = y1 - y0;
+    if (dx > dy) { var p = (dx - dy) / 2; y0 -= p; y1 += p; }
+    else         { var p = (dy - dx) / 2; x0 -= p; x1 += p; }
+    var sz = (x1 - x0) || 1;
+    var root = { x0: x0, y0: y0, sz: sz, cx: 0, cy: 0, m: 0, body: null, ch: null };
+    for (var i = 0; i < nodes.length; i++) qtInsert(root, nodes[i], 0);
+    return root;
+  }
+
+  function qtInsert(q, body, depth) {
+    if (depth > 40) return; // guard against coincident nodes
+    if (q.m === 0 && !q.body) {
+      q.body = body; q.cx = body.x; q.cy = body.y; q.m = 1;
+      return;
+    }
+    if (q.body) {
+      var old = q.body; q.body = null;
+      if (!q.ch) q.ch = [null, null, null, null];
+      qtChild(q, old, depth);
+    }
+    if (!q.ch) q.ch = [null, null, null, null];
+    qtChild(q, body, depth);
+    q.cx = (q.cx * q.m + body.x) / (q.m + 1);
+    q.cy = (q.cy * q.m + body.y) / (q.m + 1);
+    q.m += 1;
+  }
+
+  function qtChild(q, body, depth) {
+    var half = q.sz / 2, midX = q.x0 + half, midY = q.y0 + half;
+    var idx = (body.x < midX ? 0 : 1) + (body.y < midY ? 0 : 2);
+    if (!q.ch[idx]) {
+      var cx0 = (idx & 1) ? midX : q.x0;
+      var cy0 = (idx & 2) ? midY : q.y0;
+      q.ch[idx] = { x0: cx0, y0: cy0, sz: half, cx: 0, cy: 0, m: 0, body: null, ch: null };
+    }
+    qtInsert(q.ch[idx], body, depth + 1);
+  }
+
+  function qtForce(q, node, alpha) {
+    if (!q || q.m === 0) return;
+    var dx = q.cx - node.x, dy = q.cy - node.y;
+    var dist2 = dx * dx + dy * dy;
+    if (q.body) {
+      if (q.body === node) return;
+      var dist = Math.sqrt(dist2);
+      if (dist < DIST_MIN) dist = DIST_MIN;
+      if (dist > DIST_MAX) return;
+      var f = alpha * CHARGE / (dist * dist);
+      node.vx += (dx / dist) * f;
+      node.vy += (dy / dist) * f;
+      return;
+    }
+    // Barnes–Hut criterion: treat cell as single body if s/d < θ
+    if (q.sz * q.sz < BH_THETA * BH_THETA * dist2) {
+      var dist = Math.sqrt(dist2);
+      if (dist < DIST_MIN) dist = DIST_MIN;
+      if (dist > DIST_MAX) return;
+      var f = alpha * CHARGE * q.m / (dist * dist);
+      node.vx += (dx / dist) * f;
+      node.vy += (dy / dist) * f;
+      return;
+    }
+    if (q.ch) {
+      for (var c = 0; c < 4; c++) if (q.ch[c]) qtForce(q.ch[c], node, alpha);
+    }
+  }
+
   /* ── physics simulation (d3-force model) ──────────────────────── */
 
   function tick() {
@@ -208,29 +287,11 @@
     // is always weakly self-correcting even after the sim has "cooled"
     var effectiveAlpha = Math.max(simAlpha, 0.01);
 
-    // ② Many-body repulsion: each pair pushes apart
-    for (i = 0; i < nodes.length; i++) {
-      n = nodes[i];
-      for (j = i + 1; j < nodes.length; j++) {
-        n2 = nodes[j];
-        dx = n2.x - n.x;
-        dy = n2.y - n.y;
-        dist = Math.sqrt(dx * dx + dy * dy);
-
-        // Enforce minimum distance to avoid singularity
-        if (dist < DIST_MIN) dist = DIST_MIN;
-        // Skip if beyond max range
-        if (dist > DIST_MAX) continue;
-
-        // Coulomb-like: F = effectiveAlpha * charge / dist²
-        force = effectiveAlpha * CHARGE / (dist * dist);
-        fx = (dx / dist) * force;
-        fy = (dy / dist) * force;
-        // Negative charge = repulsion, so this pushes nodes apart
-        n.vx  -= fx;
-        n.vy  -= fy;
-        n2.vx += fx;
-        n2.vy += fy;
+    // ② Many-body repulsion via Barnes–Hut quadtree (O(n log n))
+    var tree = qtBuild();
+    if (tree) {
+      for (i = 0; i < nodes.length; i++) {
+        qtForce(tree, nodes[i], effectiveAlpha);
       }
     }
 
