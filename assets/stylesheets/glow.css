@@ -886,6 +886,9 @@ button.ub-card-copy {
   background: none;
   border: none;
   padding: 0;
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
 }
 .ub-card-copy--ok {
   color: var(--teal-glow);
