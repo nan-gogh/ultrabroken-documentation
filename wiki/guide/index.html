@@ -27,7 +27,7 @@
     
     
       
-        <title>Guide - Ultrabroken Archives</title>
+        <title>Editor Guide & Markdown Reference - Ultrabroken Archives</title>
       
     
     
@@ -80,12 +80,12 @@
     @media(max-width:76.25em){.ub-header-toggles{display:none!important}}
   </style>
 
-      <meta property="og:title" content="Guide">
+      <meta property="og:title" content="Editor Guide &amp; Markdown Reference">
     <meta property="og:description" content="Community-driven encyclopedia documenting glitches, techniques and investigations for the videogame The Legend of Zelda Tears of the Kingdom">
     <meta property="og:url" content="https://nan-gogh.github.io/ultrabroken-documentation/wiki/guide/">
     <meta property="og:site_name" content="Ultrabroken Archives">
     <meta name="theme-color" content="#00f0c2">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Guide","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/guide/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/guide/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"author":{"@type":"Organization","name":"NaN Gogh & Community"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Editor Guide & Markdown Reference","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/guide/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/guide/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"author":{"@type":"Organization","name":"NaN Gogh & Community"}}</script>
 </head>
   
   
@@ -139,7 +139,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Guide
+              Editor Guide & Markdown Reference
             
           </span>
         </div>
@@ -986,6 +986,17 @@
     <span class="md-ellipsis">
       
         Using draft: true (near-final drafts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-unlisted-true-permanent-reference-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using unlisted: true (permanent reference pages)
       
     </span>
   </a>
@@ -2441,6 +2452,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#using-unlisted-true-permanent-reference-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using unlisted: true (permanent reference pages)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3878,6 +3900,52 @@
 <span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <p>When ready to publish, simply remove the <code>draft: true</code> line and commit. The page immediately becomes discoverable.</p>
+<h4 id="using-unlisted-true-permanent-reference-pages">Using <code>unlisted: true</code> (permanent reference pages)</h4>
+<p>For pages that are fully published and intentionally permanent — but shouldn't surface in search or AI results (e.g. editor guides, about pages, meta content) — use <code>unlisted: true</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">Reference</span><span class="nv"> </span><span class="s">Page&quot;</span>
+<span class="nt">unlisted</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Unlisted?</th>
+<th>vs Draft</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Site search</td>
+<td>Excluded</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>AI evidence</td>
+<td>Excluded</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Web crawlers</td>
+<td><strong>Crawlable</strong></td>
+<td>Draft is noindex</td>
+</tr>
+<tr>
+<td>Draft banner</td>
+<td><strong>None</strong></td>
+<td>Draft shows banner</td>
+</tr>
+<tr>
+<td>Social cards / OG</td>
+<td><strong>Generated</strong></td>
+<td>Draft skips</td>
+</tr>
+<tr>
+<td>Direct URL access</td>
+<td>Accessible</td>
+<td>Same</td>
+</tr>
+</tbody>
+</table>
 <h3 id="style-best-practices">Style Best Practices</h3>
 <ul>
 <li>Write in the present tense and keep instructions concise.</li>
@@ -3915,6 +3983,7 @@
 <li><code>tags</code>: Categorization tags. Auto-indexed into <a href="../../assets/data/tags.json">tags.json</a> - used for filtering and search discovery</li>
 <li><code>aliases</code>: Alternative names for search discovery. Case-insensitive — used for autolinking (see <a href="#glitch-autolinks">Glitch Autolinks</a>)</li>
 <li><code>draft</code>: Set to <code>true</code> to mark a page as a draft — hides it from search, grimoire, and web crawlers while keeping it accessible via direct URL (see <a href="#drafts--previews">Drafts &amp; Previews</a>)</li>
+<li><code>unlisted</code>: Set to <code>true</code> to permanently exclude a page from search and AI evidence without marking it as a draft — no banner, no noindex, social cards still generated. Use for reference pages or meta content that belongs in the wiki but shouldn't appear in discovery results.</li>
 <li><code>uid</code>: Auto-generated unique identifier. <strong>Do not add manually.</strong></li>
 </ul>
 <h4 id="example">Example</h4>
@@ -4636,6 +4705,9 @@ Another Term
 
 
 
+
+  
+  
 
 
 
