@@ -891,37 +891,15 @@ html, body, .md-content, .md-nav, .md-sidebar {
   fill: currentColor;
 }
 
-/* Subtle social-card copy button appended to h1 */
-.ub-card-copy {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+/* Social-card copy button in the page-actions row */
+button.ub-card-copy {
+  cursor: pointer;
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 2px;
-  margin-left: .5rem;
-  color: var(--teal-glow);
-  opacity: 0;
-  transition: opacity .2s ease;
-  vertical-align: middle;
-  line-height: 1;
-}
-.md-content h1:hover .ub-card-copy,
-.ub-card-copy:focus-visible {
-  opacity: .55;
-}
-.ub-card-copy:hover {
-  opacity: 1;
+  padding: 0;
 }
 .ub-card-copy--ok {
-  opacity: 1 !important;
-}
-.ub-card-copy svg,
-.ub-card-copy img {
-  display: block;
-  width: .6em;
-  height: .6em;
+  color: var(--teal-glow);
 }
 
 /* Remove focus outline on code-block copy button (mobile tap leaves stuck blue ring) */
