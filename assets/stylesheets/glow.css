@@ -902,6 +902,9 @@ html, body, .md-content, .md-nav, .md-sidebar {
   margin: 0;
   position: static;
 }
+[data-ub-editor="off"] .ub-page-actions {
+  display: none;
+}
 
 /* Social-card copy button in the page-actions row */
 button.ub-card-copy {
