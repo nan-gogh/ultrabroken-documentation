@@ -891,6 +891,22 @@ html, body, .md-content, .md-nav, .md-sidebar {
   fill: currentColor;
 }
 
+/* ── Page-actions row: lift into the gap between tabs and content ── */
+.md-content {
+  position: relative;
+}
+.md-content__button {
+  float: none;
+  position: absolute;
+  top: -2rem;
+  margin: 0;
+}
+/* Stack buttons right-to-left: first button rightmost, second left of it, etc.
+   Material renders edit first, then view-source; JS appends card-copy last. */
+.md-content__button:first-of-type        { right: 0; }
+.md-content__button:nth-of-type(2)       { right: 2rem; }
+.md-content__button:nth-of-type(3)       { right: 4rem; }
+
 /* Social-card copy button in the page-actions row */
 button.ub-card-copy {
   cursor: pointer;
