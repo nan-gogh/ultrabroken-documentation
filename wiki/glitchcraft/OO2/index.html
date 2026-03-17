@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Makes weapons immovable, except by picking up and dropping them.">
+        <meta name="description" content="Allows weapons with the 'kinematic' motion type to be obtained, which don't react to outside forces (making them movable only by certain techniques).">
       
       
         <meta name="author" content="NaN Gogh & Community">
@@ -79,11 +79,11 @@
   </style>
 
       <meta property="og:title" content="Kinematic Weapons [KW]">
-    <meta property="og:description" content="Makes weapons immovable, except by picking up and dropping them.&#10;&#10;[1.1.0] [1.1.1] [1.1.2] [1.2.0] [1.2.1] [1.3.0/1.4.0] [1.4.1] [1.4.2] [1.4.3] [Switch 2]&#10;&#10;[OO2]">
+    <meta property="og:description" content="Allows weapons with the &#x27;kinematic&#x27; motion type to be obtained, which don&#x27;t react to outside forces (making them movable only by certain techniques).&#10;&#10;[1.1.0] [1.1.1] [1.1.2] [1.2.0] [1.2.1] [1.3.0/1.4.0] [1.4.1] [1.4.2] [1.4.3] [Switch 2]&#10;&#10;[OO2]">
     <meta property="og:url" content="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/kinematic-weapons/">
     <meta property="og:site_name" content="Ultrabroken Archives">
     <meta name="theme-color" content="#00f0c2">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Kinematic Weapons","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/OO2/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/OO2/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"Makes weapons immovable, except by picking up and dropping them.","author":[{"@type":"Person","name":"mulberry"},{"@type":"Person","name":"dt13269"},{"@type":"Person","name":"Squidwest"}],"datePublished":"2026-02-25","keywords":"equipment"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Kinematic Weapons","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/OO2/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/OO2/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"Allows weapons with the 'kinematic' motion type to be obtained, which don't react to outside forces (making them movable only by certain techniques).","author":[{"@type":"Person","name":"mulberry"},{"@type":"Person","name":"dt13269"},{"@type":"Person","name":"Squidwest"}],"datePublished":"2026-02-25","keywords":"equipment"}</script>
 </head>
   
   
@@ -957,6 +957,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ways-to-move-kinematic-weapons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ways to move Kinematic Weapons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ways to move Kinematic Weapons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pickup-related-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pickup-related Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recall-related-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recall-related Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#others" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Others
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1034,13 +1095,122 @@
 <p><code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
 <hr />
-<p>Makes weapons immovable, except by picking up and dropping them.</p>
+<p>Allows weapons with the 'kinematic' motion type to be obtained, which don't react to outside forces (making them movable only by certain techniques).</p>
 <p><em>mulberry, dt13269; Optimizations by mulberry, Squidwest - 25 February 2026</em></p>
 <h2 id="instructions">Instructions</h2>
 <hr />
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Basic Setup</label><label for="__tabbed_1_2">DI PSLOT Kinematic Weapon Setup</label><label for="__tabbed_1_3">Basic Loadless Setup</label></div>
+<p>All methods require a weapon currently held by a Depths Ghost, which will be referred to as the "target weapon" or "target".</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pause-Cancel FE Methods</label><label for="__tabbed_1_2">Overload Pickup Methods</label><label for="__tabbed_1_3">Legacy Methods</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<p>These Methods pause the game while performing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> on the target, preventing the ghost from detecting it being tampered with.</p>
+<details class="abstract">
+<summary>Method 1: Pause-Cancel Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> + Load Null Fuse</summary>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> any shield</li>
+<li>Overload drop another shield and fuse it to a weapon</li>
+<li>Highlight the target weapon with fuse</li>
+<li>Press ZL and pause the game on the same frame. This can be done by buffering the ability wheel, or by opening a menu</li>
+<li>When the game unpauses, the target should <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> to the zuggled shield, but remain floating and interactible</li>
+<li>Highlight the target weapon with fuse again</li>
+<li>Press ZL and +/- on the same frame, then load a save. The target should be where it was, but not uninteractible.</li>
+<li>Move away from the target weapon and use a Rocket Shield to detangle it from the zuggled shield</li>
+<li>The target weapon should regain interaction and remain floating</li>
+</ol>
+</details>
+<details class="abstract">
+<summary>Method 2: Pause-Cancel Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> + Load Null Fuse</summary>
+<ol>
+<li>Find a large weapon cairn, with 3 ghosts atop it. These are large enough for Mineru to spawn atop them.</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> any shield</li>
+<li>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> another shield</li>
+<li>Highlight the target weapon with fuse</li>
+<li>Induce Mineru to cull, and perform "Animated" Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> on the target weapon (the frame which causes the visual and sound effects to play)</li>
+<li>On the frame you press ZL, pause the game. This can be done by opening a menu, or by performing this method on an unobtained weapon (??? prompt)</li>
+<li>When the game unpauses, the target should <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> to the zuggled shield, but remain floating and interactible</li>
+<li>Highlight the target weapon with fuse again</li>
+<li>Press ZL and +/- on the same frame, then load a save. The target should be where it was, but now uninteractible.</li>
+<li>Move away from the target weapon and use a Rocket Shield to detangle it from teh zuggled shield</li>
+<li>The target weapon should regain interaction and remain floating</li>
+</ol>
+</details>
+<details class="abstract">
+<summary>Method 3: Pause-Cancel Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> + Warp Fuse</summary>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> any non-<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield</li>
+<li>Overload drop another shield and fuse it to a weapon</li>
+<li>Highlight the target weapon with fuse</li>
+<li>Press ZL and pause the game on the same frame. This can be done by buffering the ability wheel, or by opening a menu</li>
+<li>When the game unpauses, the target should <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> to the zuggled shield, but remain floating and interactible</li>
+<li>Highlight the target weapon with fuse again.</li>
+<li>Press ZL and +/- on the same frame, then warp to your destination</li>
+<li>Use <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/B3B/" class="glitch-autolink" title="Octo-balloon Detanglement" target="_blank" rel="noopener noreferrer">Octo Detanglement</a> on the <em>equipped</em> shield. This will detangle from the <em>zuggled</em> parent shield without having to time the cancel</li>
+<li>The target weapon should regain interaction and remain floating</li>
+</ol>
+</details>
+<details class="tip">
+<summary>Pause-Cancel???</summary>
+<p>Instead of pausing during the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>, any method requiring it can alternatively be performed with Overload Pickup:</p>
+<ol>
+<li>Overload Pickup the target weapon</li>
+<li>Move out of the ghost's update range, but stay within its spawn range</li>
+<li>This distance varies between ghosts, but can be made more lenient by facing the camera away from it</li>
+<li>Fail-drop the target, then drop it once it returns</li>
+<li>Proceed with a given Pause-Cancel method; The ghost will not despawn even without performing Wheel-Cancel.</li>
+</ol>
+</details>
+</div>
+<div class="tabbed-block">
+<p>These Methods use Overload Pickup to move the target to a distance where the ghost can't detect it being tampered with.</p>
+<details class="abstract">
+<summary>Method 4: Basic Loadless</summary>
+<ol>
+<li>Overload Pickup the target weapon</li>
+<li>Move out of the ghost's update range, but stay within its spawn range</li>
+<li>This distance varies between ghosts, but can be made more lenient by facing the camera away from it</li>
+<li>Fail-drop the target, then drop it once it returns. It should remain floating and interactible</li>
+<li>Overload Pickup the target again and fuse it to a shield</li>
+<li>Move out of the spawn range of the ghost</li>
+<li>Fail-drop the target, then drop it once it moves from the shield</li>
+<li>Move out of update range of the target and use <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/B3B/" class="glitch-autolink" title="Octo-balloon Detanglement" target="_blank" rel="noopener noreferrer">Octo Detanglement</a> on the parent shield</li>
+<li>The target weapon should regain interaction and remain floating</li>
+</ol>
+<p>This method relies on the ability to detach a fully-fused and ghosted weapon from its parent via Overload Pickup, allowing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/B3B/" class="glitch-autolink" title="Octo-balloon Detanglement" target="_blank" rel="noopener noreferrer">Octo Detanglement</a> to be done out of update range.</p>
+</details>
+<details class="abstract">
+<summary>Method 5: Minimalist Loadless</summary>
+<ol>
+<li>Overload Pickup the target weapon</li>
+<li>Move to the edge of the ghost's spawn range. Face away from the ghost to prevent it from updating</li>
+<li>Fail-drop the target, then drop it once it returns. It should remain floating and interactible</li>
+<li>Overload drop a shield and fuse it to a weapon</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> the target to the shield on the frame Link exits the ghost's spawn range</li>
+<li>The target weapon should remain floating and interactible</li>
+</ol>
+<p>This method relies on the fact that an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> causes the target to be considered "Fused" for a single frame.</p>
+</details>
+<details class="abstract">
+<summary>Method 6: Temporary Ghosting</summary>
+<ol>
+<li>Overload Pickup the target weapon</li>
+<li>Move out of the ghost's update range, but stay within its spawn range</li>
+<li>This distance varies between ghosts, but can be made more lenient by facing the camera away from it</li>
+<li>Fail-drop the target, then drop it once it returns. It should remain floating and interactible</li>
+<li>Overload drop a shield (A) and fuse it to a weapon</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> a shield (B) to A</li>
+<li>Fail-drop and drop A, then Overload Pickup B</li>
+<li>Move B to the edge of Ultrahand range</li>
+<li>Highlight the target weapon with fuse</li>
+<li>Press ZL and pause the game on the same frame. This can be done by buffering the ability wheel, or by opening a menu</li>
+<li>The target weapon should become uninteractible, without appearing fused to the equipped shield</li>
+<li>Exit the ghost's spawn range, then return to the target weapon; it should regain interation and remain floating</li>
+</ol>
+</details>
+</div>
+<div class="tabbed-block">
+<p>These original methods are retained here for archival purposes, but are surpassed by the other given methods.</p>
+<details>
+<summary>Basic Setup</summary>
 <ol>
 <li>Overload pickup weapon held by depths ghost</li>
 <li>Go out of range - this varies between ghosts</li>
@@ -1052,8 +1222,9 @@
 <li>Load a save</li>
 <li>Either detangle out of weapon range or drop the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> and octo detangle it</li>
 </ol>
-</div>
-<div class="tabbed-block">
+</details>
+<details>
+<summary><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/BOF/" class="glitch-autolink" title="PSLOT" target="_blank" rel="noopener noreferrer">PSLOT</a> Kinematic Weapon Setup</summary>
 <ol>
 <li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost shield</li>
 <li>Overload pick up a kinematic weapon held by ghost</li>
@@ -1062,37 +1233,60 @@
 <li>Detangle out of range</li>
 <li>Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the kinematic weapon and unzuggle parent</li>
 </ol>
-</div>
-<div class="tabbed-block">
-<ol>
-<li>Overload pick up a kinematic weapon held by ghost</li>
-<li>Fail-drop and drop the weapon out of update range</li>
-<li>Overload pickup the weapon again and fuse it to a shield</li>
-<li>Unload the ghost by distance</li>
-<li>Fail-drop and drop the weapon again</li>
-<li>Use <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/B3B/" class="glitch-autolink" title="Octo-balloon Detanglement" target="_blank" rel="noopener noreferrer">Octo Detanglement</a> out of update range of the weapon</li>
-<li>Pick up the weapon</li>
-</ol>
-<p>Due to the lack of a save load, the ghost will not automatically regain its weapon in this setup.</p>
+</details>
 </div>
 </div>
 </div>
-<h2 id="notes">Notes</h2>
+<h2 id="ways-to-move-kinematic-weapons">Ways to move Kinematic Weapons</h2>
 <hr />
+<h3 id="pickup-related-actions">Pickup-related Actions</h3>
+<ul>
+<li>Carrying it around; Drop Smuggle-like states retain collision and are notably more forceful than normal</li>
+<li>Dropping it while moving, which directly adds Link's velocity</li>
+<li>Throwing it, which directly adds throw velocity; Boomerangs will follow a return arc</li>
+</ul>
+<h3 id="recall-related-actions">Recall-related Actions</h3>
+<p>Kinematic Weapons obey the "position lock" and "velocity reset" of recall, so the following will work to move/stop it:</p>
+<ul>
+<li>Recalling an attached object; May break the glue sometimes</li>
+<li>Recalling the kw along a return path</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/EY8/" class="glitch-autolink" title="Recall Locking" target="_blank" rel="noopener noreferrer">Recall-locking</a> it and dropping it somewhere else</li>
+</ul>
+<h3 id="others">Others</h3>
+<ul>
+<li>Attaching an upside-down wing; Seems to directly add velocity to build instead of applying a force</li>
+<li>The "gravitational" force of attaching with Ultrahand can affect the velocity</li>
+</ul>
+<h2 id="other-properties">Other properties</h2>
+<hr />
+<ul>
+<li>Doesn't collide with objects with Kinematic or Static motion types (npcs, terrain, other KWs, etc)</li>
+<li>Cannot be glued "from" (holding it or something attached to it), only "to" (holding something unattached to it)</li>
+</ul>
 <div class="admonition warning">
 <p class="admonition-title">Take care!</p>
 <p>Warping causes a "sleep" on equipped items, which will undo this state! You can <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> it to take it with you safely.</p>
 </div>
+<h2 id="notes">Notes</h2>
+<hr />
+<p>Version <code>1.0.0</code> lacks a check for whether the weapon is fused, making it impossible to take the weapon in a way that preserves the motion type.</p>
 <h2 id="resources">Resources</h2>
 <hr />
 <ul>
 <li><a href="https://discordapp.com/channels/1086729144307564648/1110956205624532993/1476367185642520639">Original discovery</a></li>
-<li><a href="https://discord.com/channels/1086729144307564648/1110956205624532993/1476693921533923390">DI PSLOT Kinematic Weapon</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1110956205624532993/1476693921533923390">Original Load Null Fuse Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481259601495195739">Pause-Cancel Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481251852237672609">Mineru Pause-Cancel Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481411419093340222">Pause-Cancel Warp Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481190445135691836">Basic Loadless Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481347605215580363">Minimalist Loadless Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481367458517487877">Temporary Ghosting Method</a></li>
 </ul>
 <h2 id="related">Related</h2>
 <hr />
 <ul>
 <li><a href="search:Zuggle Overload">Zuggle Overload</a></li>
+<li><a href="search:Mineru Fuse Entanglement">Mineru FE</a></li>
 </ul>
 
 
