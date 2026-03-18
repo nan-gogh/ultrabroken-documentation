@@ -31,16 +31,9 @@ _ATTR_RE = re.compile(
 )
 
 
-def _figwrap(inner, caption):
-    """Wrap element in <figure>/<figcaption> if caption is non-empty."""
-    if not caption:
-        return inner
-    return f'<figure class="media-embed">{inner}<figcaption>{_esc(caption)}</figcaption></figure>'
-
-
 def _media_img_rewrite(m):
     """Convert <img src="media:video/..."> to <video>, or rewrite image src.
-    Wraps in <figure> when alt text is present."""
+    Prepends a bold title when alt text is present."""
     kind = m.group('kind').lower()
     path = m.group('path').lstrip('/')
     alt_m = _ALT_ATTR.search(m.group('pre') + m.group('post'))
@@ -52,7 +45,9 @@ def _media_img_rewrite(m):
     else:
         embed = f'<img alt="{_esc(alt)}" src="{url}" />'
 
-    return _figwrap(embed, alt)
+    if alt:
+        return f'<p><strong>{_esc(alt)}</strong></p>{embed}'
+    return embed
 
 
 def _attr_rewrite(m):

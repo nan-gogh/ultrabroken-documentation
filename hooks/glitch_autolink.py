@@ -55,7 +55,7 @@ def _load_glossary() -> list[dict]:
 # closing tag corresponding to the opening tag (e.g. <label>...</label>),
 # preventing nested tags (like <a> inside <label>) from breaking the match.
 _PROTECTED_RE = re.compile(
-    r'<(?P<tag>a|code|pre|h[1-6]|script|style|label|video|figure|figcaption)\b[^>]*>[\s\S]*?</(?P=tag)>'
+    r'<(?P<tag>a|code|pre|h[1-6]|script|style|label|video)\b[^>]*>[\s\S]*?</(?P=tag)>'
     r'|<(?:img|input|br|hr|meta|source)\b[^>]*/?>',
     re.IGNORECASE,
 )
