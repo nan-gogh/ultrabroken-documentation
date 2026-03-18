@@ -1122,19 +1122,4 @@ li.task-list-item a, li.task-list a {
   }
 }
 
-/* ── Media embed figures (media_links hook) ── */
-.media-embed {
-  margin: 1em 0;
-}
-.media-embed img,
-.media-embed video {
-  display: block;
-  max-width: 100%;
-  border-radius: 4px;
-}
-.media-embed figcaption {
-  color: var(--muted-text);
-  font-size: 0.78rem;
-  margin-top: 0.35em;
-}
 
