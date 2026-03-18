@@ -957,6 +957,18 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#ways-to-move-kinematic-weapons" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -991,10 +1003,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#others" class="md-nav__link">
+  <a href="#other-actions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Others
+        Other Actions
       
     </span>
   </a>
@@ -1005,15 +1017,9 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#other-properties" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Other Properties
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1209,36 +1215,37 @@
 </div>
 </div>
 </div>
-<h2 id="ways-to-move-kinematic-weapons">Ways to Move Kinematic Weapons</h2>
-<hr />
-<h3 id="pickup-related-actions">Pickup-related Actions</h3>
-<ul>
-<li>Carrying it around; Drop Smuggle-like states retain collision and are notably more forceful than normal</li>
-<li>Dropping it while moving, which directly adds Link's velocity</li>
-<li>Throwing it, which directly adds throw velocity; Boomerangs will follow a return arc</li>
-</ul>
-<h3 id="recall-related-actions">Recall-related Actions</h3>
-<p>Kinematic Weapons obey the "position lock" and "velocity reset" of recall, so the following will work to move/stop it:</p>
-<ul>
-<li>Recalling an attached object; May break the glue sometimes</li>
-<li>Recalling the Kinematic Weapon along a return path</li>
-<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/EY8/" class="glitch-autolink" title="Recall Locking" target="_blank" rel="noopener noreferrer">Recall-locking</a> it and dropping it somewhere else</li>
-</ul>
-<h3 id="others">Others</h3>
-<ul>
-<li>Attaching an upside-down wing; Seems to directly add velocity to build instead of applying a force</li>
-<li>The "gravitational" force of attaching with Ultrahand can affect the velocity</li>
-</ul>
-<h2 id="other-properties">Other Properties</h2>
+<h2 id="properties">Properties</h2>
 <hr />
 <ul>
-<li>Doesn't collide with objects with Kinematic or Static motion types (npcs, terrain, other KWs, etc)</li>
-<li>Cannot be glued "from" (holding it or something attached to it), only "to" (holding something unattached to it)</li>
+<li>Cannot be glued "from" (holding it/something attached to it), only "to" (holding something unattached to it)</li>
+<li>Uses an effective mass of 1,000,000 for certain purposes, such as calculating glue strength</li>
+<li>Does not collide with anything, though regular ("Dynamic") objects <em>will still collide with it</em></li>
+<li>As it does not collide, external forces do not affect it, thus only a select few actions can change its velocity</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Take care!</p>
 <p>Warping causes a "sleep" on equipped items, which will undo this state! You can <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> it to take it with you safely.</p>
 </div>
+<h3 id="ways-to-move-kinematic-weapons">Ways to Move Kinematic Weapons</h3>
+<h4 id="pickup-related-actions">Pickup-related Actions</h4>
+<ul>
+<li>Carrying it around; Drop Smuggle-like states retain collision and are notably more forceful than normal</li>
+<li>Dropping it while moving, which directly adds Link's velocity</li>
+<li>Throwing it, which directly adds throw velocity; Boomerangs will follow a return arc</li>
+</ul>
+<h4 id="recall-related-actions">Recall-related Actions</h4>
+<p>Kinematic Weapons obey the "position lock" and "velocity reset" of recall, so the following will work to <strong>move</strong>, then <strong>stop</strong> it:</p>
+<ul>
+<li>Recalling an attached object; May break the glue sometimes</li>
+<li>Recalling the Kinematic Weapon along a return path</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/EY8/" class="glitch-autolink" title="Recall Locking" target="_blank" rel="noopener noreferrer">Recall-locking</a> it and dropping it somewhere else</li>
+</ul>
+<h4 id="other-actions">Other Actions</h4>
+<ul>
+<li>Attaching an upside-down wing; Seems to directly add velocity to build instead of applying a force</li>
+<li>The "gravitational" force of attaching with Ultrahand can affect the velocity</li>
+</ul>
 <h2 id="notes">Notes</h2>
 <hr />
 <p>Version <code>1.0.0</code> lacks a check for whether the weapon is fused, making it impossible to take the weapon in a way that preserves the motion type.</p>
