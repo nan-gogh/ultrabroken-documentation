@@ -1103,25 +1103,21 @@
 </div>
 <div class="admonition info">
 <p class="admonition-title">Local or persistent?</p>
-<p>There are two main types of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> method: Local methods, which <em>do not</em> persist through warps and loads, and Persistent methods, which... <em>do</em> persist through warps and loads.
+<p>There are two main types of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> method: Local methods, which <em>do not</em> persist through warps and loads (including Panic Blood Moons), and Persistent methods, which... <em>do</em> persist through warps and loads.
 Local methods are usually faster and easier, but cannot be used for some cases (eg Zelda's Torch).
 Persistent methods can be used for all cases, but are usually more time consuming and complex, and their persistence can make them difficult to work with in some cases (eg Mineru's Arm).</p>
 </div>
 <h2 id="instructions">Instructions</h2>
 <hr />
-<div class="admonition note">
-<p class="admonition-title">Choose your fighter!</p>
 <p>There are three main use cases for <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>: Obtaining Mineru's Arm, obtaining Zelda's Torch, and duplicating anything you can throw. For the sake of providing clear instructions, a variant of each method is given for each valid use case.</p>
-</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1</label><label for="__tabbed_1_2">Method 2</label><label for="__tabbed_1_3">Method 3</label><label for="__tabbed_1_4">Method 4</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>This is a persistent method that makes use of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment to maximize setup speed. It can be used for anything, but is best-suited for Zelda's Torch and duplication.</p>
-<p>(these shall be Mandelbrot's Method)
-(I actually think mine is the better persistent method, but it feels wrong to put mine first)</p>
+<p>(these shall be Mandelbrot's Method)</p>
 <details class="abstract">
 <summary>For Zelda's Torch</summary>
-<p>(Mandelbrot's Method with Zorch extension)</p>
+<p>(Mandelbrot's Method with ZTorch extension)</p>
 </details>
 <details class="abstract">
 <summary>For duplication</summary>
@@ -1135,7 +1131,7 @@ Persistent methods can be used for all cases, but are usually more time consumin
 </div>
 <div class="tabbed-block">
 <p>This is a persistent method for versions <code>1.2.0</code> and up that makes use of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment to maximize adjustability, ease of use, and framerate. It can be used for anything, but is best-suited for Zelda's Torch and duplication.</p>
-<details>
+<details class="abstract">
 <summary>For Zelda's Torch</summary>
 <p>Prepare:</p>
 <ul>
@@ -1182,9 +1178,9 @@ Persistent methods can be used for all cases, but are usually more time consumin
 <summary>Diagram</summary>
 <pre class="mermaid"><code>graph TD
     A[B1] --&gt;|FE| B[B2]
-    C[A1] --&gt;|DI| D[A3]
-    E[A2] --&gt;|DI| D
-    C --&gt; |FE| F[A4]
+    C[A2] --&gt;|DI| D[A3]
+    E[A1] --&gt;|DI| D
+    E --&gt; |FE| F[A4]
     D --&gt; |Batch DI| G["C1-20"]
     F --&gt; |Batch DI| G
     G --&gt; |Batch DI| H["D1-30"]
@@ -1235,17 +1231,16 @@ Persistent methods can be used for all cases, but are usually more time consumin
 </ol>
 <details class="example">
 <summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[B1] --&gt;|FE| B[B2]
+    C[A2] --&gt;|DI| D[A3]
+    E[A1] --&gt;|DI| D
+    E --&gt; |FE| F[A4]
+    D --&gt; |Batch DI| G["C1-20"]
+    F --&gt; |Batch DI| G
+    G --&gt; |Batch DI| H["D1-30"]
+    B --&gt; |Batch DI| H</code></pre>
 </details>
-<p><code>mermaid
-    graph TD
-        A[B1] --&gt;|FE| B[B2]
-        C[A1] --&gt;|DI| D[A3]
-        E[A2] --&gt;|DI| D
-        C --&gt; |FE| F[A4]
-        D --&gt; |Batch DI| G["C1-20"]
-        F --&gt; |Batch DI| G
-        G --&gt; |Batch DI| H["D1-30"]
-        B --&gt; |Batch DI| H</code></p>
 </details>
 <details class="abstract">
 <summary>For Mineru's Arm</summary>
@@ -1304,29 +1299,32 @@ Due to requiring recall-locks</p>
 </ol>
 <details class="example">
 <summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[B1] --&gt;|FE| B[B2]
+    C[A2] --&gt;|DI| D[A3]
+    E[A1] --&gt;|DI| D
+    E --&gt; |FE| F[A4]
+    D --&gt; |Batch DI| G["C1-20"]
+    F --&gt; |Batch DI| G
+    G --&gt; |Batch DI| H["D1-30"]
+    B --&gt; |Batch DI| H
+    H --&gt;|Take in 1+| I[Ganon's Room]</code></pre>
 </details>
-<p><code>mermaid
-    graph TD
-        A[B1] --&gt;|FE| B[B2]
-        C[A1] --&gt;|DI| D[A3]
-        E[A2] --&gt;|DI| D
-        C --&gt; |FE| F[A4]
-        D --&gt; |Batch DI| G["C1-20"]
-        F --&gt; |Batch DI| G
-        G --&gt; |Batch DI| H["D1-30"]
-        B --&gt; |Batch DI| H
-        H --&gt;|Take in 1+| I[Ganon's Room]</code></p>
 </details>
 </div>
 <div class="tabbed-block">
 <p>This is a local method that makes use of specially-prepared <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment to maximize portability and speed. It is ideal for Mineru's Arm and duplication, but cannot be used for Zelda's Torch.</p>
 <details class="abstract">
 <summary>For Mineru's Arm</summary>
-<p>(Mulberry's Method with MinArm extension)</p>
+<p>(mulberry's Method with MinArm extension)</p>
 </details>
 <details class="abstract">
 <summary>For Duplication</summary>
-<p>(Mulberry's Method with duping extension)</p>
+<p>(mulberry's Method with duping extension)</p>
+</details>
+<details class="failure">
+<summary>No, it really can't</summary>
+<p>(Explanation of the fact that taking the time to pcull all of the other <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parents in mulberry's setup would be a profound waste of the special equipment you have to create as part of the setup, since you would be forced to close the game after using <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> to undo it, which would also cost you the special equipment)</p>
 </details>
 </div>
 <div class="tabbed-block">
@@ -1448,7 +1446,7 @@ Due to requiring recall-locks</p>
 <p>Then, after reaching <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>:</p>
 <ol>
 <li>Equip your <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> weapon</li>
-<li>Smuggle E and equip one of B, C, or D</li>
+<li>Smuggle E and equip one of B, C, or D. If you didn't prepare E, use the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/XTY/" class="glitch-autolink" title="SRZ" target="_blank" rel="noopener noreferrer">SRZ</a> a random other shield</li>
 <li><strong>Pause</strong></li>
 <li>Drop-swap the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a>, and drop your shield</li>
 <li><strong>Pause Buffer</strong> (must be maximum speed)</li>
