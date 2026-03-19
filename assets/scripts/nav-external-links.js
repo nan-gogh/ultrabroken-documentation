@@ -1,10 +1,17 @@
-// Open external links in navigation tabs/drawer in a new tab.
-// Runs on every instant-navigation page change via Material's document$ observable,
-// and also via a capturing click handler as a fallback.
+// Mark external nav links for new-tab opening.
+// Uses [data-external] attribute set by tabs-item.html template override.
+// The window-level capture listener in main.html handles the actual interception.
 function markExternalNavLinks() {
   document.querySelectorAll('.md-tabs__link, .md-nav__link').forEach(function (a) {
     try {
-      if (new URL(a.href).hostname !== location.hostname) {
+      var u = new URL(a.href);
+      if (u.origin === location.origin && u.pathname.replace(/\/$/,'') !== location.pathname.replace(/\/$/,'').split('/').slice(0,2).join('/')) {
+        // Same origin but different site path — treat as external
+        a.setAttribute('data-external', '');
+        a.target = '_blank';
+        a.rel = 'noopener';
+      } else if (u.origin !== location.origin) {
+        a.setAttribute('data-external', '');
         a.target = '_blank';
         a.rel = 'noopener';
       }
@@ -16,16 +23,3 @@ if (typeof document$ !== 'undefined') {
 } else {
   document.addEventListener('DOMContentLoaded', markExternalNavLinks);
 }
-document.addEventListener('click', function (e) {
-  var a = e.target.closest && e.target.closest('a');
-  if (!a) return;
-  try {
-    if (new URL(a.href).hostname !== location.hostname &&
-        (a.classList.contains('md-tabs__link') || a.classList.contains('md-nav__link'))) {
-      e.preventDefault();
-      e.stopPropagation();
-      window.open(a.href, '_blank', 'noopener');
-    }
-  } catch (_) {}
-}, true);
-}, true);
