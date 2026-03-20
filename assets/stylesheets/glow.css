@@ -357,102 +357,85 @@ html, body {
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
-/* Nav link glow on hover and active (sidebar) */
-.md-nav__link {
-  transition: color .18s ease, text-shadow .18s ease;
-}
-.md-nav__link:hover,
+/* ── Sidebar nav: press-only glow (no hover states) ──────────────
+   All interactive highlights in the sidebar use :active instead of
+   :hover.  This avoids stuck/flickering hover states on touch devices
+   without needing device detection.  Material's own :hover/:focus
+   rules are neutralised; the scrollspy .md-nav__link--active class
+   (JS-driven) is preserved.                                      ── */
+
+/* Scrollspy active heading — always visible */
 .md-nav__link--active {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
+
+/* Kill Material's hover/focus color changes on nav links */
+.md-nav__link:hover,
+.md-nav__link[href]:hover,
+.md-nav__link[for]:hover,
+.md-nav--primary .md-nav__item--active > .md-nav__link:hover,
+.md-nav__link:focus,
+.md-nav__link[href]:focus,
+.md-nav__link[for]:focus,
+.md-nav--primary .md-nav__item--active > .md-nav__link:focus {
+  color: var(--md-default-fg-color) !important;
+  text-shadow: none !important;
+  outline: none !important;
+}
+
+/* Kill Material's .focus-visible class (JS polyfill) */
+.md-nav__link.focus-visible {
+  color: var(--md-default-fg-color) !important;
+  outline: none !important;
+}
+
+/* Kill inline code accent within hovered/focused links */
+.md-nav__link[href]:hover code,
+.md-nav__link[for]:hover code,
+.md-nav__link[href]:focus code,
+.md-nav__link[for]:focus code {
+  background-color: transparent !important;
+  color: var(--md-default-fg-color) !important;
+}
+
+/* Press: teal glow while pointer/finger is down */
+.md-nav__link:active {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+}
+
+/* Nav icons (expand chevrons): press only */
+.md-nav__icon:hover {
+  background-color: transparent !important;
+}
+.md-nav__icon:active {
+  background-color: var(--md-accent-fg-color--transparent);
+}
+.md-nav__icon:focus,
+.md-nav__icon:focus-visible {
+  outline: none !important;
+}
+
+/* Back-button titles: press only */
+.md-nav__title[for]:hover,
+.md-nav__title[for]:focus {
+  color: var(--md-default-fg-color) !important;
+}
+.md-nav__title[for]:active {
+  color: var(--md-accent-fg-color);
+}
+
 /* Override ellipsis clipping on sidebar links */
 .md-nav__link .md-ellipsis {
   overflow: visible !important;
   text-overflow: clip !important;
 }
 
-/* Mobile sidebar: prevent scroll chaining from ANY sidebar nav list
-   to the page body when the user reaches the top/bottom boundary.
-   Material gives .md-nav__title ~ .md-nav__list overflow-y:auto on
-   mobile but no overscroll containment. */
+/* Mobile sidebar: prevent scroll chaining from nav list to page body */
 @media screen and (max-width: 76.1875em) {
   .md-nav--primary .md-nav__title ~ .md-nav__list {
     overscroll-behavior: contain;
-  }
-
-  /* ── Mobile: convert hover → press (active) to prevent sticky highlights ──
-     Material's compiled CSS uses attribute selectors for nav link hover/focus:
-       .md-nav__link[href]:hover  /  .md-nav__link[for]:hover
-       .md-nav__link[href]:focus  /  .md-nav__link[for]:focus
-     and a separate rule for the active section:
-       .md-nav--primary .md-nav__item--active > .md-nav__link:hover/:focus
-     All are overridden here with !important so specificity doesn't matter. */
-
-  /* Nav links: suppress ALL hover states (glow.css + Material) */
-  .md-nav__link:hover,
-  .md-nav__link[href]:hover,
-  .md-nav__link[for]:hover,
-  .md-nav--primary .md-nav__item--active > .md-nav__link:hover {
-    color: inherit !important;
-    text-shadow: none !important;
-  }
-
-  /* Nav links: suppress ALL focus states (stuck after touch tap) */
-  .md-nav__link:focus,
-  .md-nav__link[href]:focus,
-  .md-nav__link[for]:focus,
-  .md-nav--primary .md-nav__item--active > .md-nav__link:focus {
-    color: inherit !important;
-    text-shadow: none !important;
-    outline: none !important;
-  }
-
-  /* Suppress Material's .focus-visible class (added by JS, not pseudo-class) */
-  .md-nav__link.focus-visible {
-    outline: none !important;
-    outline-color: transparent !important;
-  }
-
-  /* Suppress inline code styling within hovered/focused links */
-  .md-nav__link[href]:hover code,
-  .md-nav__link[for]:hover code,
-  .md-nav__link[href]:focus code,
-  .md-nav__link[for]:focus code {
-    background-color: inherit !important;
-    color: inherit !important;
-  }
-
-  /* Press state: teal glow only while finger is down */
-  .md-nav__link:active {
-    color: var(--teal-glow) !important;
-    text-shadow: 0 0 10px rgba(0,240,194,0.9);
-  }
-
-  /* Keep the scrollspy active-heading highlight (JS-driven, not a hover) */
-  .md-nav__link--active {
-    color: var(--teal-glow) !important;
-    text-shadow: 0 0 10px rgba(0,240,194,0.9);
-  }
-
-  /* Nav icons (expand chevrons): suppress hover, press only */
-  .md-nav__icon:hover {
-    background-color: transparent !important;
-  }
-  .md-nav__icon:active {
-    background-color: var(--md-accent-fg-color--transparent);
-  }
-  .md-nav__icon:focus,
-  .md-nav__icon:focus-visible {
-    outline: none !important;
-  }
-
-  /* Back-button titles: suppress hover, press only */
-  .md-nav__title[for]:hover {
-    color: inherit !important;
-  }
-  .md-nav__title[for]:active {
-    color: var(--md-accent-fg-color);
   }
 }
 
