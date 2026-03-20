@@ -1088,10 +1088,35 @@ li.task-list-item a, li.task-list a {
     color: var(--md-default-fg-color);
     cursor: pointer;
     border-top: 0.05rem solid var(--md-default-fg-color--lightest);
-    transition: color 125ms;
+    transition: none;
+    -webkit-tap-highlight-color: transparent;
   }
+  /* Suppress hover on the TOC button: this element only exists on mobile
+     where hover is "sticky" after a tap and causes the teal glow to jump
+     to whatever link ends up under the original tap position. */
   .ub-toc-header__label:hover {
-    color: var(--md-accent-fg-color);
+    color: var(--md-default-fg-color);
+  }
+
+  /* ── Suppress sticky hover inside the mobile TOC panel ──────
+     After tapping the TOC button, mobile browsers keep a "hover
+     point" at the tap position.  As the panel slides in (or the
+     list scrolls), every link that passes through that point
+     receives :hover → teal glow, creating a distracting jumping
+     highlight.  Removing the visual hover change makes the stuck
+     state invisible.  Scrollspy (.md-nav__link--active) still
+     shows which heading is current. */
+  .ub-toc-header .md-nav__link {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ub-toc-header .md-nav__link:hover {
+    color: var(--md-default-fg-color--light) !important;
+    text-shadow: none !important;
+  }
+  .ub-toc-header .md-nav__link--active,
+  .ub-toc-header .md-nav__link--active:hover {
+    color: var(--teal-glow) !important;
+    text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
   }
 
   /* TOC icon (instead of the default nav chevron) */
