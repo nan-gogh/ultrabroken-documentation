@@ -390,6 +390,12 @@
     var link = e.target.closest(
       '.md-sidebar--secondary .md-nav__link, .ub-toc-header .md-nav__link'
     );
+    // TOC links have pointer-events:none (to kill sticky hover), so
+    // clicks land on the parent <li> instead.  Find the <a> child.
+    if (!link) {
+      var item = e.target.closest('.ub-toc-header .md-nav__item');
+      if (item) link = item.querySelector('.md-nav__link');
+    }
     if (!link) return;
 
     // Material rewrites href="#foo" to full absolute URLs at runtime,
