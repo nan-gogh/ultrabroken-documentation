@@ -340,7 +340,7 @@ html, body {
 .md-tabs__link {
   color: rgba(0,240,194,0.6) !important;
   opacity: 1 !important;
-  transition: color .18s ease, text-shadow .18s ease;
+  transition: none !important;
 }
 /* Active tabs - bright teal with glow (override ellipsis clipping) */
 .md-tabs__item--active .md-tabs__link {
@@ -351,18 +351,23 @@ html, body {
   overflow: visible !important;
   text-overflow: clip !important;
 }
-/* Hover state */
-.md-tabs__link:hover {
+/* Kill hover/focus on tabs — press only */
+.md-tabs__link:hover,
+.md-tabs__link:focus {
+  color: rgba(0,240,194,0.6) !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+.md-tabs__link:active {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
-/* ── Sidebar nav: press-only glow (no hover states) ──────────────
-   All interactive highlights in the sidebar use :active instead of
-   :hover.  This avoids stuck/flickering hover states on touch devices
-   without needing device detection.  Material's own :hover/:focus
-   rules are neutralised; the scrollspy .md-nav__link--active class
-   (JS-driven) is preserved.                                      ── */
+/* ── All navigation: press-only glow (no hover/focus states) ─────
+   Hover/focus are neutralised globally — :active gives visual
+   feedback on press only.  Material's :hover/:focus color changes,
+   opacity transitions, and focus-visible outlines are all killed.
+   The scrollspy .md-nav__link--active class is preserved.        ── */
 
 /* Scrollspy active heading — always visible */
 .md-nav__link--active {
@@ -371,6 +376,9 @@ html, body {
 }
 
 /* Kill Material's hover/focus color changes on nav links */
+.md-nav__link {
+  transition: none !important;
+}
 .md-nav__link:hover,
 .md-nav__link[href]:hover,
 .md-nav__link[for]:hover,
