@@ -364,21 +364,19 @@ html, body {
 }
 
 /* ── All navigation: press-only glow (no hover/focus states) ─────
-   Hover/focus are neutralised globally — :active gives visual
-   feedback on press only.  Material's :hover/:focus color changes,
-   opacity transitions, and focus-visible outlines are all killed.
-   The scrollspy .md-nav__link--active class is preserved.        ── */
+   Base color is set EXPLICITLY so hover/focus can use the exact same
+   value — guaranteeing zero visual change on :hover.  No inheritance
+   mismatches, no transitions, no flicker.
+   The scrollspy .md-nav__link--active class overrides everything.  ── */
 
-/* Scrollspy active heading — always visible */
-.md-nav__link--active {
-  color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9);
-}
-
-/* Kill Material's hover/focus color changes on nav links */
+/* Base state: explicit color + kill transitions + kill tap highlight */
 .md-nav__link {
+  color: var(--md-default-fg-color) !important;
   transition: none !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
+
+/* Hover/focus: identical to base — zero visual delta */
 .md-nav__link:hover,
 .md-nav__link[href]:hover,
 .md-nav__link[for]:hover,
@@ -386,15 +384,10 @@ html, body {
 .md-nav__link:focus,
 .md-nav__link[href]:focus,
 .md-nav__link[for]:focus,
-.md-nav--primary .md-nav__item--active > .md-nav__link:focus {
-  color: var(--md-default-fg-color) !important;
-  text-shadow: none !important;
-  outline: none !important;
-}
-
-/* Kill Material's .focus-visible class (JS polyfill) */
+.md-nav--primary .md-nav__item--active > .md-nav__link:focus,
 .md-nav__link.focus-visible {
   color: var(--md-default-fg-color) !important;
+  text-shadow: none !important;
   outline: none !important;
 }
 
@@ -409,6 +402,14 @@ html, body {
 
 /* Press: teal glow while pointer/finger is down */
 .md-nav__link:active {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+}
+
+/* Scrollspy active heading — always teal, even when hovered/focused */
+.md-nav__link--active,
+.md-nav__link--active:hover,
+.md-nav__link--active:focus {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
