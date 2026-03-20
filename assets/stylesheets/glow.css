@@ -1114,11 +1114,14 @@ li.task-list-item a, li.task-list a {
     text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
   }
 
-  /* While the TOC panel is closed, its hidden slide-in nav sits
+  /* While a TOC panel is closed, its hidden slide-in nav sits
      position:absolute; height:100%; z-index:1 and Material never
      disables its pointer-events.  This lets the invisible overlay
-     swallow taps on sidebar entries underneath it. */
-  .ub-toc-header .md-nav__toggle:not(:checked) ~ .md-nav {
+     swallow taps on sidebar entries underneath it.
+     Applies to BOTH our custom TOC panels AND Material's native
+     __toc panel inside the active page's <li>. */
+  .ub-toc-header .md-nav__toggle:not(:checked) ~ .md-nav,
+  .md-nav--primary #__toc:not(:checked) ~ .md-nav {
     pointer-events: none;
   }
 
