@@ -340,7 +340,7 @@ html, body {
 .md-tabs__link {
   color: rgba(0,240,194,0.6) !important;
   opacity: 1 !important;
-  transition: none !important;
+  transition: color .18s ease, text-shadow .18s ease;
 }
 /* Active tabs - bright teal with glow (override ellipsis clipping) */
 .md-tabs__item--active .md-tabs__link {
@@ -351,99 +351,58 @@ html, body {
   overflow: visible !important;
   text-overflow: clip !important;
 }
-/* Kill hover/focus on tabs — press only */
-.md-tabs__link:hover,
-.md-tabs__link:focus {
+/* Hover state */
+.md-tabs__link:hover {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+}
+
+/* Nav link glow on hover and active (sidebar) */
+.md-nav__link {
+  transition: color .18s ease, text-shadow .18s ease;
+}
+.md-nav__link:hover,
+.md-nav__link--active {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+}
+
+/* ── Touch-scroll suppression ──────────────────────────────────────
+   While .ub-touch-scrolling is on <html> (set by touch-scroll-fix.js),
+   kill the hover/active glow so links don't flash as the finger
+   passes over them during a swipe-scroll. */
+.ub-touch-scrolling .md-nav__link:hover,
+.ub-touch-scrolling .md-nav__link:active {
+  color: inherit !important;
+  text-shadow: none !important;
+}
+/* Preserve the active-page / scrollspy glow even during scrolling */
+.ub-touch-scrolling .md-nav__link--active:hover,
+.ub-touch-scrolling .md-nav__link--active:active,
+.ub-touch-scrolling .md-nav__link--active {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+}
+.ub-touch-scrolling .md-tabs__link:hover,
+.ub-touch-scrolling .md-tabs__link:active {
   color: rgba(0,240,194,0.6) !important;
   text-shadow: none !important;
-  opacity: 1 !important;
 }
-.md-tabs__link:active {
+.ub-touch-scrolling .md-tabs__item--active .md-tabs__link:hover,
+.ub-touch-scrolling .md-tabs__item--active .md-tabs__link:active {
   color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
 }
-
-/* ── All navigation: press-only teal glow (no hover/focus states) ─
-   Don't touch the base color — let links inherit naturally.
-   Hover/focus are forced to inherit so they match the resting state.
-   :active uses high-specificity selectors to beat the hover rules.
-   Transitions are killed to prevent any flicker.                  ── */
-
-/* Kill transitions + browser tap highlight */
-.md-nav__link {
-  transition: none !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-
-/* Hover/focus: inherit = same as resting state = zero visual change */
-.md-nav__link:hover,
-.md-nav__link[href]:hover,
-.md-nav__link[for]:hover,
-.md-nav--primary .md-nav__item--active > .md-nav__link:hover,
-.md-nav__link:focus,
-.md-nav__link[href]:focus,
-.md-nav__link[for]:focus,
-.md-nav--primary .md-nav__item--active > .md-nav__link:focus,
-.md-nav__link.focus-visible {
-  color: inherit !important;
-  text-shadow: none !important;
-  outline: none !important;
-}
-
-/* Kill inline code accent within hovered/focused links */
-.md-nav__link[href]:hover code,
-.md-nav__link[for]:hover code,
-.md-nav__link[href]:focus code,
-.md-nav__link[for]:focus code {
-  background-color: transparent !important;
-  color: inherit !important;
-}
-
-/* Press: teal glow — selectors match hover specificity so :active wins */
-.md-nav__link:active,
-.md-nav__link[href]:active,
-.md-nav__link[for]:active,
-.md-nav--primary .md-nav__item--active > .md-nav__link:active {
-  color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9);
-}
-
-/* Scrollspy active heading — always teal, even when hovered/focused */
-.md-nav__link--active,
-.md-nav__link--active:hover,
-.md-nav__link--active:focus {
-  color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9);
-}
-
-/* Nav icons (expand chevrons): press only */
-.md-nav__icon:hover {
-  background-color: transparent !important;
-}
-.md-nav__icon:active {
-  background-color: var(--md-accent-fg-color--transparent);
-}
-.md-nav__icon:focus,
-.md-nav__icon:focus-visible {
-  outline: none !important;
-}
-
-/* Back-button titles: press only */
-.md-nav__title[for]:hover,
-.md-nav__title[for]:focus {
-  color: inherit !important;
-}
-.md-nav__title[for]:active {
-  color: var(--md-accent-fg-color);
-}
-
 /* Override ellipsis clipping on sidebar links */
 .md-nav__link .md-ellipsis {
   overflow: visible !important;
   text-overflow: clip !important;
 }
 
-/* Mobile sidebar: prevent scroll chaining from nav list to page body */
+/* Mobile sidebar: prevent scroll chaining from ANY sidebar nav list
+   to the page body when the user reaches the top/bottom boundary.
+   Material gives .md-nav__title ~ .md-nav__list overflow-y:auto on
+   mobile but no overscroll containment. */
 @media screen and (max-width: 76.1875em) {
   .md-nav--primary .md-nav__title ~ .md-nav__list {
     overscroll-behavior: contain;
@@ -1158,7 +1117,7 @@ li.task-list-item a, li.task-list a {
     border-top: 0.05rem solid var(--md-default-fg-color--lightest);
     transition: color 125ms;
   }
-  .ub-toc-header__label:active {
+  .ub-toc-header__label:hover {
     color: var(--md-accent-fg-color);
   }
 
