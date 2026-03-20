@@ -1088,6 +1088,15 @@
   color: var(--md-accent-fg-color);
   border-color: var(--md-accent-fg-color);
 }
+.ub-file-row .ub-actions .ub-media-btn {
+  color: #00f0c2;
+  border-color: rgba(0,240,194,0.25);
+  transition: filter 0.15s, border-color 0.15s;
+}
+.ub-file-row .ub-actions .ub-media-btn:hover {
+  filter: drop-shadow(0 0 6px rgba(0,240,194,0.9));
+  border-color: #00f0c2;
+}
 
 .ub-media-status {
   position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 900;
@@ -1147,7 +1156,7 @@
 <script>
 (function() {
   var WORKER = 'https://ultrabroken-media.gl1tchcr4vt.workers.dev';
-  var shareIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.02 14.4" width="12" height="13" style="vertical-align:middle;fill:currentColor"><path d="M10.85,10.18c-.55,0-1.04.22-1.42.56l-5.16-3c.04-.17.07-.33.07-.51s-.03-.34-.07-.51l5.1-2.97c.39.36.9.59,1.48.59,1.2,0,2.17-.97,2.17-2.17s-.97-2.17-2.17-2.17-2.17.97-2.17,2.17c0,.17.03.34.07.51l-5.1,2.97c-.39-.36-.9-.59-1.48-.59-1.2,0-2.17.97-2.17,2.17s.97,2.17,2.17,2.17c.57,0,1.08-.22,1.48-.59l5.15,3c-.04.15-.06.31-.06.48,0,1.16.95,2.1,2.11,2.1s2.11-.94,2.11-2.1-.95-2.11-2.11-2.11"/></svg>';
+  var shareIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.02 14.4" width="12" height="13" style="vertical-align:middle;fill:#00f0c2"><path d="M10.85,10.18c-.55,0-1.04.22-1.42.56l-5.16-3c.04-.17.07-.33.07-.51s-.03-.34-.07-.51l5.1-2.97c.39.36.9.59,1.48.59,1.2,0,2.17-.97,2.17-2.17s-.97-2.17-2.17-2.17-2.17.97-2.17,2.17c0,.17.03.34.07.51l-5.1,2.97c-.39-.36-.9-.59-1.48-.59-1.2,0-2.17.97-2.17,2.17s.97,2.17,2.17,2.17c.57,0,1.08-.22,1.48-.59l5.15,3c-.04.15-.06.31-.06.48,0,1.16.95,2.1,2.11,2.1s2.11-.94,2.11-2.1-.95-2.11-2.11-2.11"/></svg>';
   var currentPrefix = 'image/';
   var statusTimer = null;
 
