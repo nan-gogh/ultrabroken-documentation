@@ -378,6 +378,51 @@
     drawer.__ubTocListener = true;
   }
 
+  /* ── Press-state feedback for mobile TOC links ────────────────
+     pointer-events:none kills CSS :active, so we drive press
+     visuals via touch events on the parent <li> instead.  If the
+     finger moves (scroll), we cancel the visual immediately.   ── */
+  (function () {
+    var PRESS_CLASS = 'ub-toc-pressed';
+    var MOVE_THRESHOLD = 8;
+    var activeLink = null;
+    var startY = 0;
+
+    document.addEventListener('touchstart', function (e) {
+      var item = e.target.closest('.ub-toc-header .md-nav__item');
+      if (!item) return;
+      var link = item.querySelector('.md-nav__link');
+      if (!link) return;
+      startY = e.touches[0].clientY;
+      activeLink = link;
+      link.classList.add(PRESS_CLASS);
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!activeLink) return;
+      if (Math.abs(e.touches[0].clientY - startY) > MOVE_THRESHOLD) {
+        activeLink.classList.remove(PRESS_CLASS);
+        activeLink = null;
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchend', function () {
+      if (activeLink) {
+        // Keep press visual briefly for tactile feedback
+        var el = activeLink;
+        setTimeout(function () { el.classList.remove(PRESS_CLASS); }, 120);
+        activeLink = null;
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', function () {
+      if (activeLink) {
+        activeLink.classList.remove(PRESS_CLASS);
+        activeLink = null;
+      }
+    }, { passive: true });
+  })();
+
   /* ── Smooth-scroll for ALL TOC links (desktop + mobile) ──────
      Registered on `window` in the capture phase — the EARLIEST
      possible interception point in the DOM event flow:

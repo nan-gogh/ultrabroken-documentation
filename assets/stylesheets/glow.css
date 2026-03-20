@@ -366,6 +366,11 @@ html, body {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
+/* Current page in sidebar — Material puts .md-nav__item--active on the <li> */
+.md-nav__item--active > .md-nav__link {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 10px rgba(0,240,194,0.9);
+}
 /* Override ellipsis clipping on sidebar links */
 .md-nav__link .md-ellipsis {
   overflow: visible !important;
@@ -1100,6 +1105,20 @@ li.task-list-item a, li.task-list a {
      or :active to these links at all.  Taps are handled via event
      delegation on the parent list (see mobile-toc.js). */
   .ub-toc-header .md-nav__link {
+    pointer-events: none;
+  }
+
+  /* JS-driven press state (set by mobile-toc.js on touchstart) */
+  .ub-toc-header .md-nav__link.ub-toc-pressed {
+    color: var(--teal-glow) !important;
+    text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+  }
+
+  /* While the TOC panel is closed, its hidden slide-in nav sits
+     position:absolute; height:100%; z-index:1 and Material never
+     disables its pointer-events.  This lets the invisible overlay
+     swallow taps on sidebar entries underneath it. */
+  .ub-toc-header .md-nav__toggle:not(:checked) ~ .md-nav {
     pointer-events: none;
   }
 
