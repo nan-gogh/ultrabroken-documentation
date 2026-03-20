@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/icons/ultrabroken_rune.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -223,7 +223,10 @@
   
   
     <li class="md-tabs__item">
+      
+      
       <a href="../../" class="md-tabs__link">
+      
         
   
   
@@ -242,7 +245,10 @@
   
   
     <li class="md-tabs__item">
+      
+      
       <a href="../../about/" class="md-tabs__link">
+      
         
   
   
@@ -261,7 +267,10 @@
   
   
     <li class="md-tabs__item">
+      
+      
       <a href="../_glitchcraft-grimoire/" class="md-tabs__link">
+      
         
   
   
@@ -346,7 +355,10 @@
   
   
     <li class="md-tabs__item">
+      
+      
       <a href="../../despawn-interrupt/" class="md-tabs__link">
+      
         
   
   
@@ -365,7 +377,10 @@
   
   
     <li class="md-tabs__item">
+      
+      
       <a href="../../culling/" class="md-tabs__link">
+      
         
   
   
@@ -384,7 +399,10 @@
   
   
     <li class="md-tabs__item">
+      
+      
       <a href="../../overload/" class="md-tabs__link">
+      
         
   
   
@@ -403,7 +421,10 @@
   
   
     <li class="md-tabs__item">
+      
+      
       <a href="../../memorandum/" class="md-tabs__link">
+      
         
   
   
@@ -422,7 +443,10 @@
   
   
     <li class="md-tabs__item">
+      
+      
       <a href="../../guide/" class="md-tabs__link">
+      
         
   
   
@@ -441,7 +465,10 @@
   
   
     <li class="md-tabs__item">
-      <a href="https://nan-gogh.github.io/ultrabroken-media/" class="md-tabs__link">
+      
+      
+      <a href="https://nan-gogh.github.io/ultrabroken-media/" class="md-tabs__link" target="_blank" rel="noopener" data-external onclick="event.stopImmediatePropagation();event.preventDefault();window.open(this.href,'_blank','noopener')">
+      
         
   
   
@@ -461,6 +488,16 @@
   
 </header>
     
+  <script>
+  // Intercept external nav-tab/drawer clicks before Material's instant navigation
+  window.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('.md-tabs__link,.md-nav__link');
+    if(a&&/^https?:\/\//i.test(a.getAttribute('href'))){
+      e.stopImmediatePropagation();e.preventDefault();
+      window.open(a.href,'_blank','noopener');
+    }
+  },true);
+  </script>
   
   <script>
   (function(){
@@ -1313,8 +1350,6 @@
         <script src="../../../assets/scripts/cosmetic-urls.js"></script>
       
         <script src="../../../assets/scripts/mobile-toc.js"></script>
-      
-        <script src="../../../assets/scripts/nav-external-links.js"></script>
       
         <script src="../../../js/open_in_new_tab.js"></script>
       
