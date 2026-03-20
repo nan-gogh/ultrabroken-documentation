@@ -363,20 +363,19 @@ html, body {
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
 
-/* ── All navigation: press-only glow (no hover/focus states) ─────
-   Base color is set EXPLICITLY so hover/focus can use the exact same
-   value — guaranteeing zero visual change on :hover.  No inheritance
-   mismatches, no transitions, no flicker.
-   The scrollspy .md-nav__link--active class overrides everything.  ── */
+/* ── All navigation: press-only teal glow (no hover/focus states) ─
+   Don't touch the base color — let links inherit naturally.
+   Hover/focus are forced to inherit so they match the resting state.
+   :active uses high-specificity selectors to beat the hover rules.
+   Transitions are killed to prevent any flicker.                  ── */
 
-/* Base state: explicit color + kill transitions + kill tap highlight */
+/* Kill transitions + browser tap highlight */
 .md-nav__link {
-  color: var(--md-default-fg-color) !important;
   transition: none !important;
   -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Hover/focus: identical to base — zero visual delta */
+/* Hover/focus: inherit = same as resting state = zero visual change */
 .md-nav__link:hover,
 .md-nav__link[href]:hover,
 .md-nav__link[for]:hover,
@@ -386,7 +385,7 @@ html, body {
 .md-nav__link[for]:focus,
 .md-nav--primary .md-nav__item--active > .md-nav__link:focus,
 .md-nav__link.focus-visible {
-  color: var(--md-default-fg-color) !important;
+  color: inherit !important;
   text-shadow: none !important;
   outline: none !important;
 }
@@ -397,11 +396,14 @@ html, body {
 .md-nav__link[href]:focus code,
 .md-nav__link[for]:focus code {
   background-color: transparent !important;
-  color: var(--md-default-fg-color) !important;
+  color: inherit !important;
 }
 
-/* Press: teal glow while pointer/finger is down */
-.md-nav__link:active {
+/* Press: teal glow — selectors match hover specificity so :active wins */
+.md-nav__link:active,
+.md-nav__link[href]:active,
+.md-nav__link[for]:active,
+.md-nav--primary .md-nav__item--active > .md-nav__link:active {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
@@ -429,7 +431,7 @@ html, body {
 /* Back-button titles: press only */
 .md-nav__title[for]:hover,
 .md-nav__title[for]:focus {
-  color: var(--md-default-fg-color) !important;
+  color: inherit !important;
 }
 .md-nav__title[for]:active {
   color: var(--md-accent-fg-color);
