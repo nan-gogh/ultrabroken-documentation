@@ -1,49 +1,63 @@
 /**
- * touch-scroll-fix.js — Suppress hover/active glow during swipe-scrolling
- * ────────────────────────────────────────────────────────────────────────
- * On touch devices, swiping through a scrollable list fires :hover and
- * :active on every element the finger passes over.  This causes the teal
- * glow to flash on sidebar nav links during normal scrolling.
+ * touch-scroll-fix.js — Kill hover/active flicker during swipe-scrolling
+ * ──────────────────────────────────────────────────────────────────────
+ * On touch devices the browser fires :hover and :active on every element
+ * the finger passes over while scrolling.  This makes nav-link glows
+ * flash and "stick" unpredictably.
  *
- * Solution: detect when a touch gesture becomes a scroll (finger moves
- * beyond a small threshold) and add .ub-touch-scrolling to <html>.
- * Companion CSS rules in glow.css suppress the glow while that class is
- * present.  The class is removed shortly after the finger lifts.
+ * Fix: set  pointer-events: none  on all nav links the moment a touch
+ * gesture turns into a scroll (> small threshold of movement).  With
+ * pointer-events disabled the browser literally cannot assign any
+ * pseudo-state to those elements.  Re-enable after the finger lifts.
+ *
+ * pointer-events: none does NOT block scrolling — scroll is handled by
+ * the scroll container, not the individual links.
  */
 (function () {
   'use strict';
 
-  var CLASS = 'ub-touch-scrolling';
-  var THRESHOLD = 10; // px of movement before we call it a scroll
-
+  var THRESHOLD = 8; // px before we call it a scroll
   var startY = 0;
-  var isScrolling = false;
+  var scrolling = false;
+  var style = null; // injected <style> element
+
+  function inject() {
+    if (style) return;
+    style = document.createElement('style');
+    style.textContent =
+      '.md-nav__link,.md-tabs__link{pointer-events:none!important}';
+    document.head.appendChild(style);
+  }
+
+  function remove() {
+    if (!style) return;
+    style.remove();
+    style = null;
+  }
 
   document.addEventListener('touchstart', function (e) {
     startY = e.touches[0].clientY;
-    isScrolling = false;
+    scrolling = false;
   }, { passive: true });
 
   document.addEventListener('touchmove', function (e) {
-    if (isScrolling) return;
+    if (scrolling) return;
     if (Math.abs(e.touches[0].clientY - startY) > THRESHOLD) {
-      isScrolling = true;
-      document.documentElement.classList.add(CLASS);
+      scrolling = true;
+      inject();
     }
   }, { passive: true });
 
   document.addEventListener('touchend', function () {
-    if (isScrolling) {
-      // Brief delay so the final touch position doesn't flash a hover
-      setTimeout(function () {
-        document.documentElement.classList.remove(CLASS);
-      }, 80);
+    if (scrolling) {
+      // Small delay so the lift position doesn't flash a hover
+      setTimeout(remove, 100);
     }
-    isScrolling = false;
+    scrolling = false;
   }, { passive: true });
 
   document.addEventListener('touchcancel', function () {
-    document.documentElement.classList.remove(CLASS);
-    isScrolling = false;
+    remove();
+    scrolling = false;
   }, { passive: true });
 })();

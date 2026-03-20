@@ -366,33 +366,6 @@ html, body {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
-
-/* ── Touch-scroll suppression ──────────────────────────────────────
-   While .ub-touch-scrolling is on <html> (set by touch-scroll-fix.js),
-   kill the hover/active glow so links don't flash as the finger
-   passes over them during a swipe-scroll. */
-.ub-touch-scrolling .md-nav__link:hover,
-.ub-touch-scrolling .md-nav__link:active {
-  color: inherit !important;
-  text-shadow: none !important;
-}
-/* Preserve the active-page / scrollspy glow even during scrolling */
-.ub-touch-scrolling .md-nav__link--active:hover,
-.ub-touch-scrolling .md-nav__link--active:active,
-.ub-touch-scrolling .md-nav__link--active {
-  color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
-}
-.ub-touch-scrolling .md-tabs__link:hover,
-.ub-touch-scrolling .md-tabs__link:active {
-  color: rgba(0,240,194,0.6) !important;
-  text-shadow: none !important;
-}
-.ub-touch-scrolling .md-tabs__item--active .md-tabs__link:hover,
-.ub-touch-scrolling .md-tabs__item--active .md-tabs__link:active {
-  color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
-}
 /* Override ellipsis clipping on sidebar links */
 .md-nav__link .md-ellipsis {
   overflow: visible !important;
