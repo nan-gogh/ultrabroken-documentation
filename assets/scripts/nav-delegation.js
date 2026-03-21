@@ -80,3 +80,34 @@
     if (link) link.click();
   });
 })();
+
+/* ── Scroll active nav entry into view when drawer opens ────────
+   On mobile, when the user opens the sidebar, we want the current
+   page's entry to be visible and centered, similar to mobile-toc.js. */
+(function () {
+  'use strict';
+
+  var drawer = document.getElementById('__drawer');
+  if (!drawer) return;
+
+  function scrollActiveIntoView() {
+    var navList = document.querySelector('.md-nav--primary > .md-nav__list');
+    if (!navList) return;
+
+    var active = navList.querySelector('.md-nav__item--active');
+    if (!active || !active.offsetParent) return;
+
+    // Center the active item in the visible list area
+    var top = active.offsetTop - navList.offsetTop
+              - (navList.clientHeight - active.offsetHeight) / 2;
+    navList.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
+  drawer.addEventListener('change', function () {
+    if (drawer.checked) {
+      // Delay slightly to let the drawer render/animate
+      setTimeout(scrollActiveIntoView, 150);
+    }
+  });
+})();
+
