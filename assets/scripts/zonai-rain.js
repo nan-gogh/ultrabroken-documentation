@@ -113,15 +113,25 @@
   }
 
   /* ── Head-character cycling (single shared interval) ───────────── */
+  // Classic matrix behaviour: on each tick the head gets a fresh random
+  // character, and every span above it shifts up by one position — so the
+  // trail is literally the history of previous head characters.
   function startHeadCycle() {
     if (headTimer) return;
     animating = true;
     headTimer = setInterval(function () {
       if (!columns.length) return;
-      // Cycle a batch of heads per tick for even distribution
+      // Cycle a batch of columns per tick for even distribution
       var batch = Math.max(1, Math.ceil(columns.length / 6));
-      for (var i = 0; i < batch; i++) {
-        columns[headIndex].head.textContent = pickChar();
+      for (var b = 0; b < batch; b++) {
+        var col = columns[headIndex];
+        var spans = col.spans;
+        // Shift every character up by one (oldest falls off the top)
+        for (var i = 0; i < spans.length - 1; i++) {
+          spans[i].textContent = spans[i + 1].textContent;
+        }
+        // New random character at the head (bottom)
+        col.head.textContent = pickChar();
         headIndex = (headIndex + 1) % columns.length;
       }
     }, HEAD_MS);
