@@ -1053,6 +1053,34 @@ li.task-list-item a, li.task-list a {
   }
 }
 
+/* Event Viewer Embed Responsive */
+.ub-event-embed {
+  margin: 1rem 0;
+}
+
+.ub-event-embed iframe {
+  max-height: 600px;
+}
+
+@media (max-width: 76.25em) {
+  .ub-event-embed iframe {
+    height: 450px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .ub-event-embed iframe {
+    height: 350px !important;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .ub-event-embed iframe {
+    height: 55vh !important;
+    max-height: 400px;
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════════
    MOBILE TOC IN NAV DRAWER
    Collapsible "Table of contents" section injected into the nav drawer.
