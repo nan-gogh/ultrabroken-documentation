@@ -1046,7 +1046,6 @@ li.task-list-item a, li.task-list a {
 /* Map Embed Responsive */
 .ub-map-embed {
   margin: 1rem 0;
-  position: relative;
   touch-action: none;
 }
 
@@ -1097,7 +1096,6 @@ li.task-list-item a, li.task-list a {
 /* Event Viewer Embed Responsive */
 .ub-event-embed {
   margin: 1rem 0;
-  position: relative;
   touch-action: none;
 }
 
