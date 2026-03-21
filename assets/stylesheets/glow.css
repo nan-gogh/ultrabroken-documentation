@@ -1095,15 +1095,21 @@ li.task-list-item a, li.task-list a {
     color: var(--md-default-fg-color);
   }
 
-  /* ── Root-cause fix for sticky hover in mobile TOC ──────────
-     pointer-events:none makes the browser unable to assign :hover
-     or :active to these links at all.  Taps are handled via event
-     delegation on the parent list (see mobile-toc.js). */
-  .ub-toc-header .md-nav__link {
+  /* ── Kill hover/active on mobile sidebar links ──────────────
+     pointer-events:none prevents :hover and :active from firing
+     during swipe-scrolling.  Taps are restored via JS delegation
+     on the parent <li> (see nav-delegation.js / mobile-toc.js). */
+  .md-nav--primary .md-nav__link {
     pointer-events: none;
   }
 
-  /* JS-driven press state (set by mobile-toc.js on touchstart) */
+  /* JS-driven press state for sidebar links (touch-scroll-fix.js) */
+  .md-nav--primary .md-nav__link.ub-nav-pressed {
+    color: var(--teal-glow) !important;
+    text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+  }
+
+  /* JS-driven press state for TOC links (mobile-toc.js) */
   .ub-toc-header .md-nav__link.ub-toc-pressed {
     color: var(--teal-glow) !important;
     text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
@@ -1142,14 +1148,13 @@ li.task-list-item a, li.task-list a {
     width: 100%;
   }
 
-  /* Hide Material's native TOC entry in the nav — ours replaces it */
+  /* On mobile, Material replaces the <a> link with a non-navigating
+     <label for="__toc"> (TOC toggle + chevron icon) and hides the <a>.
+     Our custom TOC button replaces this toggle, so swap them back:
+     hide the label, restore the <a> as the visible/clickable entry. */
   .md-nav--primary .md-nav__link[for="__toc"] {
     display: none !important;
   }
-
-  /* Material hides the <a> link on mobile when the TOC label is present
-     (.md-nav__link[for=__toc]+.md-nav__link { display:none }).
-     Since we hide the label above, restore the <a> so the nav entry stays visible. */
   .md-nav--primary .md-nav__link[for="__toc"] + .md-nav__link {
     display: flex !important;
   }
