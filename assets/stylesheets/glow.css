@@ -723,7 +723,7 @@ button.search-link:focus,
 }
 
 
-/* ── Zonai rain (CSS-based matrix digital rain) ──────────────────── */
+/* ── Zonai rain (static grid + JS opacity raindrops) ─────────────── */
 
 .ub-rain-bg {
   position: fixed;
@@ -742,23 +742,11 @@ button.search-link:focus,
   font-size: 18px;
   line-height: 2.4;
   color: var(--teal-glow);
-  animation: ub-rain-fall linear infinite;
-  will-change: transform;
 }
 
 .ub-rain-col > span {
   display: block;
   user-select: none;
-}
-
-@keyframes ub-rain-fall {
-  from { transform: translateY(-100%); }
-  to   { transform: translateY(100vh); }
-}
-
-/* Frozen mode: pause all columns mid-fall */
-[data-ub-bg="frozen"] .ub-rain-col {
-  animation-play-state: paused;
 }
 
 /* Hidden mode: remove entirely */
