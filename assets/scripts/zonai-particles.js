@@ -25,13 +25,21 @@
   'use strict';
 
   var CHARS = 'BCDHJLMNRSTUWYbcdhjlmnrstuwy'.split('');
-  var MAX_PARTICLES = 18;
   var SPAWN_INTERVAL = 1400;
   var LIFE_MIN = 9000;
   var LIFE_MAX = 16000;
   var SIZE_MIN = 1.2;
   var SIZE_MAX = 4.0;
-  var INITIAL_COUNT = 7;  // Pre-aged particles seeded on load / mode change
+
+  // Scale particle counts with available screen area.
+  // Breakpoints mirror MkDocs Material's responsive tiers.
+  function particleLimits() {
+    var w = window.innerWidth;
+    if (w < 600)  return { max: 4,  initial: 3 };  // phone portrait
+    if (w < 960)  return { max: 7,  initial: 4 };  // phone landscape / small tablet
+    if (w < 1220) return { max: 11, initial: 6 };  // tablet
+    return            { max: 18, initial: 7 };      // desktop
+  }
 
   var container = null;
   var activeCount = 0;
@@ -63,7 +71,7 @@
   // Core spawn. preAge=true applies a negative delay so the particle starts
   // in the visible plateau (30-65% through its animation) rather than at opacity 0.
   function spawnOne(preAge) {
-    if (activeCount >= MAX_PARTICLES || !container) return;
+    if (activeCount >= particleLimits().max || !container) return;
     var pos = validPosition();
     if (!pos) return;
 
@@ -110,6 +118,17 @@
     }
   }
 
+  // Remove excess particles when the viewport shrinks below the current count
+  function cullToLimit() {
+    if (!container) return;
+    var limit = particleLimits().max;
+    var chars = container.querySelectorAll('.ub-zonai-char');
+    for (var i = chars.length - 1; i >= limit; i--) {
+      if (chars[i].parentNode) chars[i].parentNode.removeChild(chars[i]);
+      activeCount = Math.max(0, activeCount - 1);
+    }
+  }
+
   function clearAll() {
     if (!container) return;
     var chars = container.querySelectorAll('.ub-zonai-char');
@@ -135,10 +154,11 @@
 
   function applyMode(mode) {
     if (!container) return;
+    var limits = particleLimits();
     if (mode === 'animate') {
       // Seed immediately if screen is sparse (first load or coming from hidden)
       if (activeCount < 3) {
-        seedVisible(INITIAL_COUNT);
+        seedVisible(limits.initial);
       }
       startSpawner();
     } else if (mode === 'frozen') {
@@ -146,7 +166,7 @@
       // Seed if nothing is present (first load in frozen, or coming from hidden).
       // Existing animate particles are held visually by CSS animation-play-state:paused.
       if (activeCount === 0) {
-        seedVisible(INITIAL_COUNT);
+        seedVisible(limits.initial);
       }
     } else { // hidden
       stopSpawner();
@@ -165,6 +185,14 @@
 
     window.addEventListener('motion-toggle', function (e) {
       applyMode(e.detail.mode);
+    });
+
+    // Cull excess particles when the viewport shrinks (e.g. orientation change,
+    // DevTools resize). Debounced to avoid thrashing on continuous resize.
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(cullToLimit, 200);
     });
   }
 
