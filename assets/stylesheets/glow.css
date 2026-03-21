@@ -1098,6 +1098,7 @@ li.task-list-item a, li.task-list a {
 
 .ub-event-embed iframe {
   max-height: 600px;
+  touch-action: none;
 }
 
 @media (max-width: 76.25em) {
