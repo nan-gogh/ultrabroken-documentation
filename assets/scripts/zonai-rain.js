@@ -1,200 +1,175 @@
 /**
- * Zonai Rain — Matrix digital rain using the Zonai font
- * ─────────────────────────────────────────────────────
- * Lightweight canvas-based falling-character effect.  Each column renders
- * a trail of Zonai glyphs that scroll downward at randomised speeds.
+ * Zonai Rain — CSS-based matrix digital rain using the Zonai font
+ * ───────────────────────────────────────────────────────────────
+ * Lightweight falling-character effect built entirely on DOM + CSS
+ * animations (translateY).  No <canvas>, so mobile pinch-zoom cannot
+ * trigger a buffer reallocation crash.
+ *
+ * Each column is a <div> containing a vertical strip of <span>
+ * characters.  The strip translates from above the viewport to below
+ * it via a CSS @keyframes animation.  A CSS gradient mask on each
+ * column reveals only the trailing portion, creating the classic
+ * bright-head + fading-trail appearance.
  *
  * Modes (driven by toolbar.js via data-ub-bg on <html>):
- *   'animate' → rain falls continuously
- *   'frozen'  → rain paused; canvas retains last frame (static rain)
- *   'hidden'  → canvas hidden via CSS display:none
+ *   'animate' → rain falls continuously, head characters cycle
+ *   'frozen'  → CSS animation-play-state:paused; static snapshot
+ *   'hidden'  → container display:none via CSS
  *
  * PRE-AGING
  * ─────────
- * On init, every column starts at a random mid-screen position so rain
- * is visible immediately — even when loading directly into frozen mode.
+ * Every column gets a random negative animation-delay so the rain is
+ * already mid-fall on first paint — even in frozen mode.
  *
- * FONT READINESS
- * ──────────────
- * If the Zonai web font hasn't loaded when the first frame draws, the
- * canvas falls back to sans-serif.  A document.fonts.ready callback
- * redraws the static frame once the font is available.
+ * HEAD CYCLING
+ * ────────────
+ * A single shared setInterval (~100 ms) rotates through all columns
+ * and changes the head <span>'s textContent, achieving the classic
+ * matrix "morphing lead character" look without per-column timers.
+ * On each animationiteration, all trail characters are re-randomised
+ * so loops never look identical.
  */
 (function () {
   'use strict';
 
   /* ── Tunables ──────────────────────────────────────────────────── */
-  var CHARS      = 'BCDHJLMNRSTUWYbcdhjlmnrstuwy';
-  var CHAR_SIZE  = 16;      // px – row height and font size
-  var CELL_W     = 34;      // px – horizontal spacing between columns
-  var TRAIL_LEN  = 18;      // characters in each falling trail
-  var MAX_ALPHA  = 0.06;    // peak trail-body opacity (subtle)
-  var HEAD_ALPHA = 0.14;    // lead-character brightness
-  var STEP_MS    = 75;      // ms between simulation steps (~13 FPS)
-  var COLOR      = '#00f0c2'; // --teal-glow
+  var CHARS       = 'BCDHJLMNRSTUWYbcdhjlmnrstuwy';
+  var FONT_PX     = 18;       // font-size in px
+  var LINE_H      = 2.4;      // line-height multiplier (vertical spacing)
+  var COL_GAP     = 38;       // px between column centres
+  var TRAIL_LEN   = 14;       // characters per falling strip
+  var SPEED_MIN   = 7;        // seconds (slowest column)
+  var SPEED_MAX   = 14;       // seconds (fastest column)
+  var HEAD_ALPHA  = 0.16;     // head character opacity
+  var TRAIL_ALPHA = 0.06;     // max trail-body opacity (linear fade)
+  var HEAD_MS     = 100;      // head-character cycle interval
 
   /* ── State ─────────────────────────────────────────────────────── */
-  var canvas, ctx;
-  var drops = [];             // per-column { y, speed, chars[] }
-  var tickTimer = null;
-  var running = false;
+  var container   = null;
+  var columns     = [];       // { el, head, spans[] }
+  var headTimer   = null;
+  var headIndex   = 0;        // round-robin pointer for head cycling
+  var animating   = false;
 
   /* ── Helpers ───────────────────────────────────────────────────── */
-  function rand(min, max) {
-    return Math.random() * (max - min) + min;
-  }
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+  function pickChar() { return CHARS[Math.floor(Math.random() * CHARS.length)]; }
 
-  function pickChar() {
-    return CHARS[Math.floor(Math.random() * CHARS.length)];
-  }
+  /* ── Build one column ──────────────────────────────────────────── */
+  function createColumn() {
+    var col = document.createElement('div');
+    col.className = 'ub-rain-col';
 
-  function totalRows() {
-    return Math.ceil(canvas.height / CHAR_SIZE);
-  }
+    var dur   = rand(SPEED_MIN, SPEED_MAX);
+    var delay = -rand(0, dur);              // pre-age: start mid-fall
+    col.style.animationDuration = dur + 's';
+    col.style.animationDelay    = delay + 's';
 
-  /* ── Column lifecycle ──────────────────────────────────────────── */
-  function newDrop(preAge) {
-    var rows  = totalRows();
-    var speed = rand(0.3, 1.0);          // rows per step
-    var head  = preAge
-      ? rand(0, rows + TRAIL_LEN)        // random position across full screen
-      : -rand(2, rows * 0.5);            // start above viewport
+    var spans = [];
+    for (var i = 0; i < TRAIL_LEN; i++) {
+      var sp = document.createElement('span');
+      sp.textContent = pickChar();
 
-    // Pre-generate character ring (avoids per-frame allocation)
-    var chars = [];
-    for (var i = 0; i < TRAIL_LEN + 4; i++) chars.push(pickChar());
+      // Opacity gradient: head (last span) brightest, fading toward top
+      var t = i / (TRAIL_LEN - 1);           // 0 = top (faintest) → 1 = bottom (head)
+      sp.style.opacity = (i === TRAIL_LEN - 1)
+        ? HEAD_ALPHA
+        : (TRAIL_ALPHA * t).toFixed(4);
 
-    return { y: head, speed: speed, chars: chars };
-  }
-
-  function buildColumns(preAge) {
-    var cols = Math.ceil(canvas.width / CELL_W);
-    while (drops.length < cols) drops.push(newDrop(preAge));
-    drops.length = cols;
-  }
-
-  /* ── Rendering ─────────────────────────────────────────────────── */
-  function drawFrame() {
-    if (!ctx) return;
-    var w = canvas.width, h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-    ctx.font = CHAR_SIZE + 'px Zonai, sans-serif';
-    ctx.textBaseline = 'top';
-    ctx.fillStyle = COLOR;
-
-    for (var i = 0; i < drops.length; i++) {
-      var d = drops[i];
-      var x = i * CELL_W;
-      var headRow = Math.floor(d.y);
-
-      for (var j = 0; j < TRAIL_LEN; j++) {
-        var row = headRow - j;
-        var py  = row * CHAR_SIZE;
-        if (py < -CHAR_SIZE || py > h) continue;
-
-        // Head is brightest, linear fade down the trail
-        ctx.globalAlpha = j === 0
-          ? HEAD_ALPHA
-          : MAX_ALPHA * (1 - j / TRAIL_LEN);
-
-        // Occasional character flicker (3 % chance)
-        var ch = Math.random() < 0.03
-          ? pickChar()
-          : d.chars[j % d.chars.length];
-
-        ctx.fillText(ch, x, py);
-      }
+      col.appendChild(sp);
+      spans.push(sp);
     }
-    ctx.globalAlpha = 1;
+
+    var head = spans[spans.length - 1];
+
+    // Re-randomise all characters on each loop iteration
+    col.addEventListener('animationiteration', function () {
+      for (var j = 0; j < spans.length; j++) {
+        spans[j].textContent = pickChar();
+      }
+    });
+
+    return { el: col, head: head, spans: spans };
   }
 
-  /* ── Simulation step ───────────────────────────────────────────── */
-  function advanceDrops() {
-    for (var i = 0; i < drops.length; i++) {
-      var d = drops[i];
-      d.y += d.speed;
-      // Reset when entire trail has left the viewport
-      if ((d.y - TRAIL_LEN) * CHAR_SIZE > canvas.height) {
-        drops[i] = newDrop(false);
-      }
+  /* ── Populate / trim columns to fill viewport width ────────────── */
+  function syncColumns() {
+    if (!container) return;
+    var needed = Math.ceil(window.innerWidth / COL_GAP);
+
+    // Add missing columns
+    while (columns.length < needed) {
+      var c = createColumn();
+      c.el.style.left = (columns.length * COL_GAP) + 'px';
+      container.appendChild(c.el);
+      columns.push(c);
+    }
+
+    // Remove excess columns
+    while (columns.length > needed) {
+      var removed = columns.pop();
+      if (removed.el.parentNode) removed.el.parentNode.removeChild(removed.el);
     }
   }
 
-  /* ── Animation loop (setTimeout — auto-throttled in hidden tabs) ─ */
-  function tick() {
-    if (!running) return;
-    advanceDrops();
-    drawFrame();
-    tickTimer = setTimeout(tick, STEP_MS);
+  /* ── Head-character cycling (single shared interval) ───────────── */
+  function startHeadCycle() {
+    if (headTimer) return;
+    animating = true;
+    headTimer = setInterval(function () {
+      if (!columns.length) return;
+      // Cycle a batch of heads per tick for even distribution
+      var batch = Math.max(1, Math.ceil(columns.length / 6));
+      for (var i = 0; i < batch; i++) {
+        columns[headIndex].head.textContent = pickChar();
+        headIndex = (headIndex + 1) % columns.length;
+      }
+    }, HEAD_MS);
   }
 
-  function startAnimation() {
-    if (running) return;
-    running = true;
-    tick();
-  }
-
-  function stopAnimation() {
-    running = false;
-    if (tickTimer) {
-      clearTimeout(tickTimer);
-      tickTimer = null;
+  function stopHeadCycle() {
+    animating = false;
+    if (headTimer) {
+      clearInterval(headTimer);
+      headTimer = null;
     }
   }
 
   /* ── Mode switching ────────────────────────────────────────────── */
   function applyMode(mode) {
     if (mode === 'animate') {
-      startAnimation();
-    } else if (mode === 'frozen') {
-      stopAnimation();
-      drawFrame();   // ensure canvas has content (e.g. coming from hidden)
-    } else {         // hidden — CSS hides canvas; clear to free GPU memory
-      stopAnimation();
-      if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+      startHeadCycle();
+    } else {
+      // frozen + hidden: stop head cycling
+      // CSS handles animation-play-state:paused (frozen) and display:none (hidden)
+      stopHeadCycle();
     }
   }
 
   /* ── Resize handling ───────────────────────────────────────────── */
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-    buildColumns(true);
-    if (!running) drawFrame();
+  var resizeTimer = null;
+  function onResize() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(syncColumns, 200);
   }
 
   /* ── Bootstrap ─────────────────────────────────────────────────── */
   function init() {
-    canvas = document.createElement('canvas');
-    canvas.className = 'ub-rain-bg';
-    canvas.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(canvas);
+    container = document.createElement('div');
+    container.className = 'ub-rain-bg';
+    container.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(container);
 
-    ctx = canvas.getContext('2d');
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-    buildColumns(true);                         // pre-age all columns
+    syncColumns();
 
     var mode = window.__ubBgMode || 'animate';
     applyMode(mode);
-
-    // Re-draw once Zonai font is loaded (fixes sans-serif flash in frozen mode)
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(function () {
-        var m = window.__ubBgMode || 'animate';
-        if (!running && m !== 'hidden') drawFrame();
-      });
-    }
 
     window.addEventListener('motion-toggle', function (e) {
       applyMode(e.detail.mode);
     });
 
-    var resizeTimer = null;
-    window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(resize, 200);
-    });
+    window.addEventListener('resize', onResize);
   }
 
   if (document.body) {

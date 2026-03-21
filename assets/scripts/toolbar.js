@@ -247,6 +247,7 @@
     btn.className = toggle.className;
     btn.setAttribute('aria-label', toggle.ariaLabel);
     btn.setAttribute('title', toggle.title(m));
+    btn.setAttribute('data-ub-live', '');
     btn.innerHTML = toggle.icon(m);
     btn.addEventListener('click', function (e) {
       e.preventDefault();
@@ -270,9 +271,10 @@
       }
 
       TOGGLES.forEach(function (toggle) {
-        if (!document.querySelector('.' + toggle.className)) {
-          container.appendChild(createButton(toggle));
-        }
+        var existing = document.querySelector('.' + toggle.className);
+        if (existing && existing.hasAttribute('data-ub-live')) return;
+        if (existing) existing.parentNode.removeChild(existing);
+        container.appendChild(createButton(toggle));
       });
     } else {
       var searchBtn = document.querySelector('label[for="__search"]');
@@ -286,9 +288,10 @@
       }
 
       TOGGLES.forEach(function (toggle) {
-        if (!document.querySelector('.' + toggle.className)) {
-          container.appendChild(createButton(toggle));
-        }
+        var existing = document.querySelector('.' + toggle.className);
+        if (existing && existing.hasAttribute('data-ub-live')) return;
+        if (existing) existing.parentNode.removeChild(existing);
+        container.appendChild(createButton(toggle));
       });
     }
     return true;
