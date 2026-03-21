@@ -79,17 +79,18 @@
     col.prevHead = headRow;
 
     // Compute the range of rows whose opacity may have changed
+    // Trail is below the head (higher row indices) since drops move upward
     var lo, hi;
     if (oldHead === -999) {
       lo = 0;
       hi = col.rows - 1;
     } else {
-      lo = Math.max(0, Math.min(oldHead, headRow) - TRAIL_LEN - 1);
-      hi = Math.min(col.rows - 1, Math.max(oldHead, headRow));
+      lo = Math.max(0, Math.min(oldHead, headRow));
+      hi = Math.min(col.rows - 1, Math.max(oldHead, headRow) + TRAIL_LEN + 1);
     }
 
     for (var i = lo; i <= hi; i++) {
-      var dist = headRow - i;           // how far row i is behind the head
+      var dist = i - headRow;           // how far row i is behind the head (below it)
       var a;
       if (dist < 0 || dist > TRAIL_LEN) {
         a = 0;
@@ -104,7 +105,7 @@
 
   /* ── Reset a column for a new pass ─────────────────────────────── */
   function resetColumn(col) {
-    col.pos   = -(TRAIL_LEN + rand(0, GAP_MAX));
+    col.pos   = col.rows + TRAIL_LEN + rand(0, GAP_MAX);  // restart below viewport
     col.speed = rand(SPEED_MIN, SPEED_MAX);
     col.prevHead = -999;
     for (var j = 0; j < col.spans.length; j++) {
@@ -123,9 +124,9 @@
 
     for (var c = 0; c < columns.length; c++) {
       var col = columns[c];
-      col.pos += col.speed * dt;
+      col.pos -= col.speed * dt;          // move upward
 
-      if (col.pos > col.rows + TRAIL_LEN) {
+      if (col.pos < -TRAIL_LEN) {
         resetColumn(col);
       }
 

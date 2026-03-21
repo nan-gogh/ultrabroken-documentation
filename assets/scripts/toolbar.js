@@ -99,7 +99,7 @@
     modes: ['enabled', 'disabled'],
     defaultMode: 'enabled',
     getMode: function () { return storageIsEnabled() ? 'enabled' : 'disabled'; },
-    icon: function (m) { return m === 'enabled' ? STORAGE_ICON_ENABLED : STORAGE_ICON_DISABLED; },
+    icon: function (m) { return m === 'enabled' ? STORAGE_ICON_DISABLED : STORAGE_ICON_ENABLED; },
     title: function (m) {
       return m === 'enabled'
         ? 'Local storage: enabled — click to disable and clear data'
