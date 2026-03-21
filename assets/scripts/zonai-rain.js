@@ -27,8 +27,8 @@
   var LINE_H      = 2.4;      // line-height multiplier (vertical spacing)
   var COL_GAP     = 38;       // px between column centres
   var TRAIL_LEN   = 14;       // characters in the fading trail
-  var SPEED_MIN   = 4;        // rows per second (slowest column)
-  var SPEED_MAX   = 10;       // rows per second (fastest column)
+  var SPEED_MIN   = 8;        // rows per second (slowest column)
+  var SPEED_MAX   = 16;       // rows per second (fastest column)
   var HEAD_ALPHA  = 0.09;     // head character opacity
   var TRAIL_ALPHA = 0.08;     // max trail-body opacity (linear fade)
   var GAP_MAX     = 20;       // max extra blank rows between passes
