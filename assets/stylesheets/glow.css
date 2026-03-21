@@ -770,6 +770,45 @@ button.search-link:focus,
   transform: scaleY(-1);
 }
 
+/* ── Zonai background particles ──────────────────────────────────── */
+
+.ub-zonai-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;          /* Behind the rune (-1) */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ub-zonai-char {
+  position: absolute;
+  font-family: 'Zonai', sans-serif;
+  color: var(--teal-glow);
+  opacity: 0;
+  animation: ub-zonai-fade ease-in-out forwards;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+@keyframes ub-zonai-fade {
+  0%   { opacity: 0; }
+  20%  { opacity: 0.06; }
+  50%  { opacity: 0.09; }
+  80%  { opacity: 0.06; }
+  100% { opacity: 0; }
+}
+
+/* Frozen mode: pause mid-animation, no new spawns */
+[data-ub-bg="frozen"] .ub-zonai-char {
+  animation-play-state: paused;
+}
+
+/* Hidden mode: remove entirely */
+[data-ub-bg="hidden"] .ub-zonai-bg {
+  display: none !important;
+}
+
 /* Keep content above the rune without forcing layout changes on core
    layout elements.  The header already has a higher z-index. */
 
