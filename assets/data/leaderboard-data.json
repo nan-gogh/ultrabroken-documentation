@@ -1,5 +1,5 @@
 {
-  "total": 140,
+  "total": 139,
   "updated": "2026-03-21",
   "entries": [
     {
@@ -51,6 +51,12 @@
       "count": 12
     },
     {
+      "rank": 7,
+      "name": "NX",
+      "url": "https://x.com/nx721_",
+      "count": 12
+    },
+    {
       "rank": 8,
       "name": "BigDUCCO",
       "url": null,
@@ -78,12 +84,6 @@
       "rank": 9,
       "name": "LegendofLinkk",
       "url": "https://www.youtube.com/@legendoflukesr",
-      "count": 8
-    },
-    {
-      "rank": 9,
-      "name": "nx",
-      "url": null,
       "count": 8
     },
     {
@@ -156,12 +156,6 @@
       "rank": 12,
       "name": "kurocat471",
       "url": null,
-      "count": 4
-    },
-    {
-      "rank": 12,
-      "name": "NX",
-      "url": "https://x.com/nx721_",
       "count": 4
     },
     {
