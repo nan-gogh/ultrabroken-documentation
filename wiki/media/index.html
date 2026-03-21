@@ -1156,7 +1156,7 @@
 <script>
 (function() {
   var WORKER = 'https://ultrabroken-media.gl1tchcr4vt.workers.dev';
-  var shareIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.02 14.4" width="12" height="13" style="vertical-align:middle;fill:#00f0c2"><path d="M10.85,10.18c-.55,0-1.04.22-1.42.56l-5.16-3c.04-.17.07-.33.07-.51s-.03-.34-.07-.51l5.1-2.97c.39.36.9.59,1.48.59,1.2,0,2.17-.97,2.17-2.17s-.97-2.17-2.17-2.17-2.17.97-2.17,2.17c0,.17.03.34.07.51l-5.1,2.97c-.39-.36-.9-.59-1.48-.59-1.2,0-2.17.97-2.17,2.17s.97,2.17,2.17,2.17c.57,0,1.08-.22,1.48-.59l5.15,3c-.04.15-.06.31-.06.48,0,1.16.95,2.1,2.11,2.1s2.11-.94,2.11-2.1-.95-2.11-2.11-2.11"/></svg>';
+  var shareIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.02 14.4" width="12" height="13" style="vertical-align:middle;fill:#00f0c2;transform:translateY(-1px)"><path d="M10.85,10.18c-.55,0-1.04.22-1.42.56l-5.16-3c.04-.17.07-.33.07-.51s-.03-.34-.07-.51l5.1-2.97c.39.36.9.59,1.48.59,1.2,0,2.17-.97,2.17-2.17s-.97-2.17-2.17-2.17-2.17.97-2.17,2.17c0,.17.03.34.07.51l-5.1,2.97c-.39-.36-.9-.59-1.48-.59-1.2,0-2.17.97-2.17,2.17s.97,2.17,2.17,2.17c.57,0,1.08-.22,1.48-.59l5.15,3c-.04.15-.06.31-.06.48,0,1.16.95,2.1,2.11,2.1s2.11-.94,2.11-2.1-.95-2.11-2.11-2.11"/></svg>';
   var currentPrefix = 'image/';
   var statusTimer = null;
 
@@ -1196,7 +1196,7 @@
           + '<span class="ub-meta"><span class="ub-size">' + size + '</span>'
           + '<span class="ub-date">' + date + '</span></span>'
           + '<span class="ub-actions">'
-          + '  <a class="ub-media-btn" href="' + WORKER + '/' + encodeURI(f.key) + '" download title="Download"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.03 14.03" width="12" height="12" style="vertical-align:middle;fill:#00f0c2;transform:rotate(-90deg)"><path d="M14.03,6.13v1.77H3.4l4.87,4.87-1.26,1.26L0,7.02,7.02,0l1.26,1.26L3.4,6.13h10.63Z"/></svg></a>'
+          + '  <a class="ub-media-btn" href="' + WORKER + '/' + encodeURI(f.key) + '" download title="Download"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.03 14.03" width="12" height="12" style="vertical-align:middle;fill:#00f0c2;transform:rotate(-90deg) translateY(-1px)"><path d="M14.03,6.13v1.77H3.4l4.87,4.87-1.26,1.26L0,7.02,7.02,0l1.26,1.26L3.4,6.13h10.63Z"/></svg></a>'
           + '  <button class="ub-media-btn" onclick="ubCopyUrl(\'' + escAttr(f.key) + '\')" title="Copy URL">' + shareIcon + '</button>'
           + '</span></div>';
       }
