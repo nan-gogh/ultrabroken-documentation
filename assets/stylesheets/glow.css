@@ -726,11 +726,23 @@ button.search-link:focus,
 /* ── Zonai rain (static grid + JS opacity raindrops) ─────────────── */
 
 .ub-rain-bg {
+  --rain-font-px: 18;
+  --rain-line-h: 2.4;
+  --rain-col-gap: 38;
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
+}
+
+/* Tablet / narrow desktop */
+@media (max-width: 76.25em) {
+  .ub-rain-bg { --rain-font-px: 14; --rain-col-gap: 28; }
+}
+/* Mobile */
+@media (max-width: 45em) {
+  .ub-rain-bg { --rain-font-px: 11; --rain-line-h: 2.0; --rain-col-gap: 20; }
 }
 
 .ub-rain-col {
@@ -739,8 +751,8 @@ button.search-link:focus,
   display: flex;
   flex-direction: column;
   font-family: 'Zonai', sans-serif;
-  font-size: 18px;
-  line-height: 2.4;
+  font-size: calc(var(--rain-font-px) * 1px);
+  line-height: var(--rain-line-h);
   color: var(--teal-glow);
 }
 

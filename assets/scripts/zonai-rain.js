@@ -23,16 +23,27 @@
 
   /* ── Tunables ──────────────────────────────────────────────────── */
   var CHARS       = 'BCDHJLMNRSTUWYbcdhjlmnrstuwy';
-  var FONT_PX     = 18;       // font-size in px
-  var LINE_H      = 2.4;      // line-height multiplier (vertical spacing)
-  var COL_GAP     = 38;       // px between column centres
   var TRAIL_LEN   = 14;       // characters in the fading trail
   var SPEED_MIN   = 8;        // rows per second (slowest column)
   var SPEED_MAX   = 16;       // rows per second (fastest column)
   var HEAD_ALPHA  = 0.09;     // head character opacity
   var TRAIL_ALPHA = 0.08;     // max trail-body opacity (linear fade)
   var GAP_MAX     = 20;       // max extra blank rows between passes
-  var CELL_H      = FONT_PX * LINE_H; // pixel height per character row
+
+  /* ── Responsive tunables (read from CSS custom properties) ─────── */
+  var FONT_PX = 18;
+  var LINE_H  = 2.4;
+  var COL_GAP = 38;
+  var CELL_H  = FONT_PX * LINE_H;
+
+  function readCSSVars() {
+    if (!container) return;
+    var s = getComputedStyle(container);
+    FONT_PX = parseFloat(s.getPropertyValue('--rain-font-px')) || 18;
+    LINE_H  = parseFloat(s.getPropertyValue('--rain-line-h'))  || 2.4;
+    COL_GAP = parseFloat(s.getPropertyValue('--rain-col-gap')) || 38;
+    CELL_H  = FONT_PX * LINE_H;
+  }
 
   /* ── State ─────────────────────────────────────────────────────── */
   var container = null;
@@ -183,6 +194,7 @@
   function onResize() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
+      readCSSVars();
       while (columns.length) {
         var r = columns.pop();
         if (r.el.parentNode) r.el.parentNode.removeChild(r.el);
@@ -198,6 +210,7 @@
     container.setAttribute('aria-hidden', 'true');
     document.body.appendChild(container);
 
+    readCSSVars();
     syncColumns();
 
     var mode = window.__ubBgMode || 'animate';
