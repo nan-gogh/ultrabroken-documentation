@@ -366,11 +366,6 @@ html, body {
   color: var(--teal-glow) !important;
   text-shadow: 0 0 10px rgba(0,240,194,0.9);
 }
-/* Current page in sidebar — Material puts .md-nav__item--active on the <li> */
-.md-nav__item--active > .md-nav__link {
-  color: var(--teal-glow) !important;
-  text-shadow: 0 0 10px rgba(0,240,194,0.9);
-}
 /* Override ellipsis clipping on sidebar links */
 .md-nav__link .md-ellipsis {
   overflow: visible !important;
@@ -1150,6 +1145,13 @@ li.task-list-item a, li.task-list a {
   /* Hide Material's native TOC entry in the nav — ours replaces it */
   .md-nav--primary .md-nav__link[for="__toc"] {
     display: none !important;
+  }
+
+  /* Material hides the <a> link on mobile when the TOC label is present
+     (.md-nav__link[for=__toc]+.md-nav__link { display:none }).
+     Since we hide the label above, restore the <a> so the nav entry stays visible. */
+  .md-nav--primary .md-nav__link[for="__toc"] + .md-nav__link {
+    display: flex !important;
   }
 }
 
