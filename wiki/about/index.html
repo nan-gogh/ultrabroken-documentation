@@ -1272,7 +1272,7 @@
 <p>When you ask The Librarian, an algorithm searches our archives for documents that match your query and supplies only those matched records to the answer syntesizer. The syntesizer creates a response and assembles searchbar links from involved sources for your single request based solely on the provided records — it does not retain your query nor learn from it or the answer it created. This way we don't trade our archives for the conveniece of AI-assisted navigation features. The accuracy of responses depends mainly the zeal of our Archivists and the quality of their contributions - always verify against the source pages.</p>
 <h2 id="infrastructure">Infrastructure</h2>
 <hr />
-<p>The archives run on open-source tooling across GitHub and Cloudflare. Media uploads require authentication via the <a href="https://github.com/ultrabroken-archivists"><code>ultrabroken-archivists</code></a> GitHub organisation — membership is managed by invite only. No personal data is collected; Cloudflare Access verifies org membership through GitHub OAuth and does not store credentials beyond session tokens.</p>
+<p>The archives run on open-source tooling across GitHub and Cloudflare. Media uploads require authentication via the <a href="https://github.com/ultrabroken-archivists"><code>ultrabroken-archivists</code></a> GitHub organisation — membership is managed by invite only. No personal data is collected; Cloudflare Access verifies org membership through GitHub OAuth and does not store credentials beyond session tokens. Media management is available through a browser-based remote editor and a local machine editor (both require org authentication), alongside a public read-only R2 browser accessible to all visitors.</p>
 <div class="diagram-pan">
   <div class="diagram-zoom">
     <input type="range" min="40" max="400" value="100">
@@ -1293,7 +1293,10 @@
     TRANSCODE["🎬 transcode.yml&lt;br/&gt;H.264 via ffmpeg"]
 
     ACCESS["🚪 Cloudflare Access&lt;br/&gt;Zero Trust gateway&lt;br/&gt;requires org membership"]
-    WORKER["💼 Worker&lt;br/&gt;serves files + /manage UI&lt;br/&gt;upload · delete · purge"]
+    WORKER["💼 Worker&lt;br/&gt;static file serving + API&lt;br/&gt;routes auth + public UIs"]
+    REMOTE_EDITOR["🖊️ Remote Editor&lt;br/&gt;browser-based · auth-only&lt;br/&gt;upload · delete · purge"]
+    PUBLIC_BROWSER["🌐 Public Browser&lt;br/&gt;R2 media index&lt;br/&gt;no auth required"]
+    LOCAL_EDITOR["💻 Local Editor&lt;br/&gt;local machine · public repo&lt;br/&gt;upload · delete · purge"]
     R2["🗄️ R2 Object Storage&lt;br/&gt;image/ · video/ · social/"]
     PAGES["📖 GitHub Pages&lt;br/&gt;hosts the wiki"]
     VISITOR["👁️ Wiki Visitors&lt;br/&gt;public — no auth"]
@@ -1305,7 +1308,16 @@
     OWNER --&gt;|GitHub login| ACCESS
     MEMBERS --&gt;|GitHub login| ACCESS
     ACCESS --&gt;|authenticated| WORKER
+    WORKER --&gt;|auth-only route| REMOTE_EDITOR
+    WORKER --&gt;|public route| PUBLIC_BROWSER
+    REMOTE_EDITOR --&gt;|read / write| R2
+    PUBLIC_BROWSER --&gt;|reads| R2
     WORKER --&gt;|read / write| R2
+
+    OWNER --&gt;|runs locally| LOCAL_EDITOR
+    MEMBERS --&gt;|runs locally| LOCAL_EDITOR
+    LOCAL_EDITOR --&gt;|GitHub login| ACCESS
+    LOCAL_EDITOR --&gt;|API call + session token| WORKER
 
     MEDIA_REPO --&gt;|push triggers| DEPLOY
     DEPLOY --&gt;|wrangler deploy| ACCESS
@@ -1317,7 +1329,8 @@
     WIKI_REPO --&gt;|push triggers| PAGES
     PAGES --&gt;|media links| R2
     VISITOR --&gt;|reads| PAGES
-    VISITOR --&gt;|loads media| R2</code></pre>
+    VISITOR --&gt;|loads media| R2
+    VISITOR --&gt;|browses| PUBLIC_BROWSER</code></pre>
   </div>
 </div>
 
