@@ -35,16 +35,16 @@ _LINK_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 
-# Matches restite.org eventviewer-totk URLs (full URL fallback).
+# Matches restite.org eventviewer-totk viewer URLs (full URL fallback).
 _EVENT_URL_RE = re.compile(
-    r'https?://restite\.org/eventviewer-totk/',
+    r'https?://restite\.org/eventviewer-totk/viewer\.html',
     re.IGNORECASE,
 )
 
-# Matches the shorthand: one to three comma-separated tokens, no slashes or
-# query chars (which would indicate a real URL).
+# Matches the shorthand: one to three comma-separated tokens, no slashes,
+# query chars, or colons (which would indicate a real URL or prefixed link).
 _SHORTHAND_RE = re.compile(
-    r'^([^,/?&#]+?)(?:\s*,\s*([^,/?&#]+?))?(?:\s*,\s*([^,/?&#]+?))?\s*$'
+    r'^([^,/?&#:]+?)(?:\s*,\s*([^,/?&#:]+?))?(?:\s*,\s*([^,/?&#:]+?))?\s*$'
 )
 
 
