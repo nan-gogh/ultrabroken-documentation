@@ -42,7 +42,7 @@
   var SPEED_MAX   = 14;       // seconds (fastest column)
   var HEAD_ALPHA  = 0.16;     // head character opacity
   var TRAIL_ALPHA = 0.06;     // max trail-body opacity (linear fade)
-  var HEAD_MS     = 40;       // head-character cycle interval (faster to match fall speed)
+  var HEAD_MS     = 100;       // head-character cycle interval (faster to match fall speed)
 
   /* ── State ─────────────────────────────────────────────────────── */
   var container   = null;
