@@ -1046,11 +1046,13 @@ li.task-list-item a, li.task-list a {
 /* Map Embed Responsive */
 .ub-map-embed {
   margin: 1rem 0;
+  position: relative;
   touch-action: none;
 }
 
 .ub-map-embed iframe {
   max-height: 500px;
+  touch-action: none;
 }
 
 /* Mobile iframe hidden by default (desktop shows desktop iframe) */
@@ -1095,11 +1097,13 @@ li.task-list-item a, li.task-list a {
 /* Event Viewer Embed Responsive */
 .ub-event-embed {
   margin: 1rem 0;
+  position: relative;
   touch-action: none;
 }
 
 .ub-event-embed iframe {
   max-height: 600px;
+  touch-action: none;
 }
 
 @media (max-width: 76.25em) {
