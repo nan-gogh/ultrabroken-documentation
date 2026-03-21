@@ -52,10 +52,6 @@
       startY = e.touches[0].clientY;
     }, { passive: true });
 
-    overlay.addEventListener('touchmove', function (e) {
-      e.preventDefault();  // Block page scroll/zoom
-    }, { passive: false });
-
     overlay.addEventListener('touchend', function (e) {
       var t = e.changedTouches[0];
       var dx = t.clientX - startX;
@@ -65,10 +61,6 @@
         dismiss(overlay);
       }
     }, { passive: true });
-
-    // iOS gesture events
-    overlay.addEventListener('gesturestart', function (e) { e.preventDefault(); });
-    overlay.addEventListener('gesturechange', function (e) { e.preventDefault(); });
 
     wrapper.appendChild(overlay);
   }
