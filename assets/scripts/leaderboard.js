@@ -47,7 +47,7 @@
   function render(root, json) {
     var rows = json.entries.map(function (e) {
       var name = e.url
-        ? '<a href="' + esc(e.url) + '">' + esc(e.name) + '</a>'
+        ? '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.name) + '</a>'
         : esc(e.name);
       return '<tr><td class="cell-rank">' + esc(medal(e.rank)) + '</td><td class="cell-name">' + name + '</td><td class="cell-count">' + e.count + ' ' + emoji(e.rank) + '</td></tr>';
     }).join('');
