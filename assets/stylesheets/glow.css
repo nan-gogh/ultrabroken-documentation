@@ -760,7 +760,7 @@ button.search-link:focus,
 }
 
 /* Hidden mode: remove entirely (data-ub-bg is set synchronously by
-   motion-toggle.js before the element is appended - no flash) */
+   toolbar.js before the element is appended - no flash) */
 [data-ub-bg="hidden"] .ub-rune-bg {
   display: none !important;
 }
@@ -1046,6 +1046,7 @@ li.task-list-item a, li.task-list a {
 /* Map Embed Responsive */
 .ub-map-embed {
   margin: 1rem 0;
+  touch-action: none;
 }
 
 .ub-map-embed iframe {
@@ -1094,11 +1095,11 @@ li.task-list-item a, li.task-list a {
 /* Event Viewer Embed Responsive */
 .ub-event-embed {
   margin: 1rem 0;
+  touch-action: none;
 }
 
 .ub-event-embed iframe {
   max-height: 600px;
-  touch-action: none;
 }
 
 @media (max-width: 76.25em) {
