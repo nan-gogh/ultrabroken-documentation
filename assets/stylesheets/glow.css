@@ -722,89 +722,16 @@ button.search-link:focus,
 
 
 /* Background rune (watermark) */
-/* SVG image centred via JavaScript positioning. The image is placed at a
-   fixed pixel distance from the physical screen top (screen.height / 2 minus
-   half the image height). Since screen dimensions are immutable, the rune
-   stays vertically locked even when address bars appear/disappear or zoom
-   changes the viewport. When orientation changes, the lock is re-applied. */
-.ub-rune-bg {
+/* ── Zonai rain (canvas) ─────────────────────────────────────────── */
+
+.ub-rain-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  overflow: hidden;
 }
 
-.ub-rune-img {
-  /* JS positions absolutely at fixed pixel distance from screen top
-     (screen.height / 2 minus half the image height). This ensures the rune
-     stays vertically centred regardless of viewport shifts from address bars
-     or resize events. Measured and updated on init and orientation change. */
-  width: 48vmin;
-  max-width: 60vw;
-  max-height: 60vh;
-  aspect-ratio: 1 / 1;
-  opacity: 0.07;
-  animation: ub-rune-pulse 4.2s ease-in-out infinite;
-}
-
-@keyframes ub-rune-pulse {
-  0%, 100% { opacity: 0.04; }
-  50%      { opacity: 0.10; }
-}
-
-/* Frozen mode: hold at mid opacity, no animation */
-[data-ub-bg="frozen"] .ub-rune-img {
-  animation: none;
-  opacity: 0.07;
-}
-
-/* Hidden mode: remove entirely (data-ub-bg is set synchronously by
-   toolbar.js before the element is appended - no flash) */
-[data-ub-bg="hidden"] .ub-rune-bg {
-  display: none !important;
-}
-
-/* 404: flip rune upside-down */
-.ultrabroken-404 .ub-rune-img {
-  transform: scaleY(-1);
-}
-
-/* ── Zonai background particles ──────────────────────────────────── */
-
-.ub-zonai-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;          /* Behind the rune (-1) */
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.ub-zonai-char {
-  position: absolute;
-  font-family: 'Zonai', sans-serif;
-  color: var(--teal-glow);
-  opacity: 0;
-  animation: ub-zonai-fade ease-in-out forwards;
-  pointer-events: none;
-  user-select: none;
-  line-height: 1;
-}
-
-@keyframes ub-zonai-fade {
-  0%   { opacity: 0; }
-  30%  { opacity: 0.07; }
-  70%  { opacity: 0.07; }
-  100% { opacity: 0; }
-}
-
-/* Frozen mode: pause mid-animation, no new spawns */
-[data-ub-bg="frozen"] .ub-zonai-char {
-  animation-play-state: paused;
-}
-
-/* Hidden mode: remove entirely */
-[data-ub-bg="hidden"] .ub-zonai-bg {
+[data-ub-bg="hidden"] .ub-rain-bg {
   display: none !important;
 }
 
