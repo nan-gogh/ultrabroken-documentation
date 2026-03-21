@@ -3,10 +3,10 @@ MkDocs hook: event_viewer
 =========================
 Converts shorthand event viewer links into embedded restite.org iframes.
 
-Shorthand syntax — comma-separated positional parameters (href is not a URL):
-    [Label](BreakawayFromSage)
-    [Label](BreakawayFromSage, BreakawayFromSage3)
-    [Label](BreakawayFromSage, BreakawayFromSage3, EventFlow_v1.2.1)
+Shorthand syntax — ev: prefix on the href, rest is positional parameters:
+    [Label](ev:BreakawayFromSage)
+    [Label](ev:BreakawayFromSage, BreakawayFromSage3)
+    [Label](ev:BreakawayFromSage, BreakawayFromSage3, EventFlow_v1.2.1)
 
 Positions
 ---------
@@ -33,10 +33,12 @@ _LINK_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 
-# Matches the shorthand: one to three comma-separated tokens, no slashes,
-# query chars, or colons (which would indicate a real URL or prefixed link).
+# Matches the ev: shorthand: href must start with 'ev:' followed by the data
+# token, then optional entry and version tokens separated by commas.
+# The ev: prefix is required — this makes matching unambiguous with any real
+# link or filename (analogous to search: and media: prefixes in this project).
 _SHORTHAND_RE = re.compile(
-    r'^([^,/?&#:]+?)(?:\s*,\s*([^,/?&#:]+?))?(?:\s*,\s*([^,/?&#:]+?))?\s*$'
+    r'^ev:([^,]+?)(?:\s*,\s*([^,]+?))?(?:\s*,\s*([^,]+?))?\s*$'
 )
 
 
