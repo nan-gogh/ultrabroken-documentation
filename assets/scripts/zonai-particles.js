@@ -109,8 +109,8 @@
     if (spawnTimer) return;
     paused = false;
     spawnTimer = setInterval(spawn, SPAWN_INTERVAL);
-    // Seed a few immediately so the background is not empty on load/resume
-    for (var i = 0; i < 4; i++) {
+    // Seed on resume (toggling back from frozen/hidden to animate)
+    for (var i = 0; i < 3; i++) {
       setTimeout(spawn, i * 300);
     }
   }
@@ -145,6 +145,15 @@
     document.body.appendChild(container);
 
     var mode = window.__ubBgMode || 'animate';
+
+    // Always seed initial particles so the background is populated on load,
+    // regardless of mode. For 'frozen' the CSS animation-play-state:paused
+    // rule (already stamped on <html> by motion-toggle.js) immediately holds
+    // them still. For 'hidden' applyMode will clearAll() them right after.
+    for (var i = 0; i < 5; i++) {
+      setTimeout(spawn, i * 250);
+    }
+
     applyMode(mode);
 
     window.addEventListener('motion-toggle', function (e) {
