@@ -14,8 +14,6 @@ Positions
 2  entry    (optional) — entry point name.
 3  version  (optional) — defaults to EventFlow_v1.2.1.
 
-Full restite.org URLs are also accepted (backwards-compatible fallback).
-
 Generic labels (case-insensitive: "event", "event viewer", "flowchart")
 produce a bare iframe. Descriptive labels emit a caption linking to the
 full viewer URL.
@@ -33,12 +31,6 @@ _DEFAULT_VERSION = 'EventFlow_v1.2.1'
 _LINK_RE = re.compile(
     r'<a\s[^>]*href="([^"]+)"[^>]*>(.*?)</a>',
     re.IGNORECASE | re.DOTALL,
-)
-
-# Matches restite.org eventviewer-totk viewer URLs (full URL fallback).
-_EVENT_URL_RE = re.compile(
-    r'https?://restite\.org/eventviewer-totk/viewer\.html',
-    re.IGNORECASE,
 )
 
 # Matches the shorthand: one to three comma-separated tokens, no slashes,
@@ -97,14 +89,10 @@ def on_page_content(html: str, page, config, files) -> str:
         href = match.group(1)
         label_html = match.group(2)
 
-        # Determine URL — prefer shorthand, fall back to full URL.
         parsed = _parse_shorthand(href)
-        if parsed:
-            url = _build_url(*parsed)
-        elif _EVENT_URL_RE.search(href):
-            url = href
-        else:
+        if not parsed:
             return full_tag
+        url = _build_url(*parsed)
 
         clean_label = re.sub(r'<[^>]+>', '', label_html).strip()
         caption = None if clean_label.lower() in _GENERIC else clean_label
