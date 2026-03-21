@@ -1,5 +1,5 @@
 {
-  "total": 139,
+  "total": 140,
   "updated": "2026-03-21",
   "entries": [
     {
@@ -473,7 +473,7 @@
     {
       "rank": 15,
       "name": "CM30",
-      "url": null,
+      "url": "https://www.youtube.com/@GamingReinvented",
       "count": 1
     },
     {
@@ -576,6 +576,12 @@
       "rank": 15,
       "name": "Kaldemar",
       "url": "https://www.youtube.com/@Kaldemar",
+      "count": 1
+    },
+    {
+      "rank": 15,
+      "name": "Kleric",
+      "url": null,
       "count": 1
     },
     {
