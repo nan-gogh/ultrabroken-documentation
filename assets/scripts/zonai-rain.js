@@ -30,7 +30,7 @@
   var SPEED_MIN   = 4;        // rows per second (slowest column)
   var SPEED_MAX   = 10;       // rows per second (fastest column)
   var HEAD_ALPHA  = 0.09;     // head character opacity
-  var TRAIL_ALPHA = 0.06;     // max trail-body opacity (linear fade)
+  var TRAIL_ALPHA = 0.08;     // max trail-body opacity (linear fade)
   var GAP_MAX     = 20;       // max extra blank rows between passes
   var CELL_H      = FONT_PX * LINE_H; // pixel height per character row
 
