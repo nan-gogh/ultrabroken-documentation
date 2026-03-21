@@ -439,6 +439,7 @@ label.md-header__button[for^="__palette_"]:hover {
   z-index: 2;
 }
 
+
 /* Sidebar toggle containers (mobile/compact view) —
    Positioned inside .md-sidebar--primary, above the sliding nav panels.
    Needs its own stacking context (via translateZ) to beat the nested nav
