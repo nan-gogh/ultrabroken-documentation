@@ -1264,7 +1264,7 @@
           var msg = document.createElement('div');
           msg.style.cssText = 'text-align:center;color:var(--md-default-fg-color);padding:32px;';
           msg.innerHTML = '<p style="margin-bottom:12px;color:var(--md-default-fg-color--light);">This browser cannot play this video format.</p>'
-            + '<a class="ub-media-btn" href="' + url + '" download style="font-size:0.85rem;padding:8px 18px;">Download to view</a>';
+            + '<div class="ub-event-embed"><div style="margin-bottom: 0.5rem;"><strong><a href="https://restite.org/eventviewer-totk/viewer.html?data=%27+%2B+url+%2B+%27.json&params=1&version=EventFlow_v1.2.1" target="_blank" rel="noopener">Download to view</a></strong></div><iframe src="https://restite.org/eventviewer-totk/viewer.html?data=%27+%2B+url+%2B+%27.json&params=1&version=EventFlow_v1.2.1" width="100%" height="600" style="border:0; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);" loading="lazy" allowfullscreen></iframe></div>';
           overlay.appendChild(msg);
         }
       };
