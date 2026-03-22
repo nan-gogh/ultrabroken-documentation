@@ -205,6 +205,9 @@
   color: var(--teal-glow);
   text-shadow: 0 0 8px rgba(0, 240, 194, 0.3);
 }
+.grim-li code {
+  color: var(--md-default-fg-color);
+}
 .grim-abbr { color: var(--muted-text); font-size: 0.84em; }
 .grim-date {
   color: var(--muted-text);
