@@ -449,7 +449,7 @@
       h += '<div class="grim-li">'
          + '<span class="grim-num">' + (i + 1) + '.</span>'
          + '<a href="' + at(toHref(e.href)) + '" target="_blank" rel="noopener noreferrer">'
-         + esc(e.name) + '</a>' + ab
+         + esc(e.name) + ab + '</a>'
          + '<span class="grim-date">' + esc(dl) + '</span></div>';
     }
     el.innerHTML = h + '</div>';
