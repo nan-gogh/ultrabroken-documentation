@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Short summary">
+        <meta name="description" content="A collection of methods to produce large numbers of DI Ghost items quickly.">
       
       
         <meta name="author" content="NaN Gogh & Community">
@@ -25,7 +25,7 @@
     
     
       
-        <title>Glitch Name - Ultrabroken Archives</title>
+        <title>Batch DI - Ultrabroken Archives</title>
       
     
     
@@ -78,7 +78,7 @@
     @media(max-width:76.25em){.ub-header-toggles{display:none!important}}
   </style>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Glitch Name","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/batch-di/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/batch-di/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"Short summary","author":[{"@type":"Person","name":"glitchHunterA"},{"@type":"Person","name":"glitchHunterB"}],"datePublished":"2023-05-12","keywords":"entanglement, culling, ultrabroken, zuggling"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Batch DI","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/batch-di/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/batch-di/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"A collection of methods to produce large numbers of DI Ghost items quickly.","author":{"@type":"Person","name":"Does this really have credits, per se?"},"datePublished":"2023-05-12","keywords":"despawn-interrupt, culling"}</script>
     <meta name="robots" content="noindex">
   </head>
   
@@ -133,7 +133,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Glitch Name
+              Batch DI
             
           </span>
         </div>
@@ -996,34 +996,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Instructions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#base-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Base Setup
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ohter-setup-variation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ohter Setup / Variation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1138,23 +1110,138 @@
 
 
 <h1 id="glitch-name">Glitch Name</h1>
-<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code></p>
+<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
 <hr />
-<p>Short overview</p>
+<p>Some of the properties of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts (typically equipment, sometimes otherwise) are best exploited with large numbers of them. This page provides various convenient ways to produce large numbers of them.</p>
 <p><em>Credits - Day Month Year</em></p>
 <h2 id="instructions">Instructions</h2>
-<hr />
-<h3 id="base-setup">Base Setup</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1: Overload Batch DI</label><label for="__tabbed_1_2">Method 2: DI Chaining</label><label for="__tabbed_1_3">Method 3: "Purgatory + Turbo Replication</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>This method uses overload to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> targets without ever creating normal parents, removing the need to despawn them between targets. It is ideal for creating very large quantities of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts, especially on <code>1.2.0</code> and up. The steps given are specific to those patches.</p>
+<p>Prepare:</p>
+<p>Two <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost equipment items, A and B</p>
+<p>Creating the setup:</p>
 <ol>
-<li>Step one</li>
-<li>Step two</li>
+<li>Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> normal item (C) to A; must be opposite of B's type</li>
+<li>Leave A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped after completing step 1</li>
+<li>B make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost (D) of C's type; keep the normal parent (E)</li>
+<li>Smuggle D, equip E, and overload pick up C</li>
+<li>glue C to something to elevate it and ensure it cannot accidentally be targeted by Fuse</li>
+<li>Optionally, position a wall behind Link's back which can force E to fail-drop</li>
 </ol>
-<h3 id="ohter-setup-variation">Ohter Setup / Variation</h3>
+<p>Creating <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts</p>
 <ol>
-<li>Step one</li>
-<li>Step two</li>
+<li>Fuse target to C (overload fe)</li>
+<li>Fuse target to C again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (D), this time it will Pseudo-fuse to C and begin fading away</li>
+<li>Pause the game before the target fully fades out</li>
+<li>Drop E, swap to another of that type, and unequip it. This will cull E, and thus D, and thus the target, DIing it</li>
+<li>If you fail-dropped E, proceed with the next target. If not, you'll need to pick it up</li>
 </ol>
+</div>
+<div class="tabbed-block">
+<p>This method creates a chain of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghosts, allowing the normal-parent despawning to be saved until the end of the process (as each target retains a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent as long as desired). It is ideal for medium batches and minimal replication, but can <em>only</em> be used for weapons and shields. Steps given are specific to <code>1.2.0</code> and up.</p>
+<p>Prepare:</p>
+<p>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapon or Shield (A)</p>
+<details class="abstract">
+<summary>Safe Method</summary>
+</details>
+<ol>
+<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (B, C, &amp; D)</li>
+<li>Smuggle A and equip B, then drop C on the ground</li>
+<li>Start to fuse C to B, then pause the game a few frames later (after it starts to fade, but before it fades fully)</li>
+<li>Drop B and swap to D</li>
+<li>C will be attached to B on the ground. Dupe two replacement copies (E and F), then drop D</li>
+<li>Optionally, pick up and drop A to remove its overload</li>
+<li>Pick up C</li>
+<li>Repeat from step 2, with C as the new smuggle, E as the new normal parent, and D as the new target</li>
+<li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance or chasm (which is also distance)</li>
+<li>If the chain is long, detangle it (oh im just so tired for this)</li>
+</ol>
+<details class="abstract">
+<summary>Fast Method</summary>
+</details>
+<ol>
+<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (B, C, &amp; D)</li>
+<li>Equip A and drop C on the ground</li>
+<li>Ready fuse targeting C and pause the game</li>
+<li>Drop A and swap to B</li>
+<li>Unpause and press fuse immediately</li>
+<li>Either [pause immediately after pressing fuse, then pause buffer] or [pause a few frames after pressing fuse]</li>
+<li>Drop B and swap to D</li>
+<li>Dupe 2 copies of C, then drop D and pick up C</li>
+<li>Repeat from step 3 with D as the next target</li>
+<li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance or chasm (easy distance)</li>
+<li>detangle it</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<p>This method uses a purgatorized <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield to repeatedly fuse, then Octo Detangle, each target in turn. It is ideal for shield batches of any size, but can be adapted for others.</p>
+<p>Prepare:</p>
+<p>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield (A)</p>
+<p>First, creating the base setup:</p>
+<ol>
+<li>Dupe [several] copies of A</li>
+<li>A make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost B, dispose of the normal parent</li>
+<li>A make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Octo Balloon, use the normal parent to detangle it</li>
+<li>Smuggle B and equip another shield over it</li>
+<li>Get shocked with shield unsheathed; this will purgatorize B and cause it to only attach when it has a dependency chain back to Link via A</li>
+</ol>
+<p>Then, production, seperated by target type:</p>
+<details class="abstract">
+<summary>For shields</summary>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Drop A to attach B</li>
+<li>Equip another shield and a random weapon, then unsheathe them</li>
+<li>Face A and pick up a dupe of it, then turn 90 degrees (to face the target, if it already exists)</li>
+<li>Drop a target shield on the ground (if it doesn't yet exist) and highlight it with fuse</li>
+<li>Start holding ZL and pause the game a few frames later; one way to do this is to also start holding L at the same time, and select the Map Rune</li>
+<li>Drop the equipped shield and swap to the Octo Balloon shield</li>
+<li>Unpause the game and mash cancel (B/X)</li>
+<li>Execution permitting, the new <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Shield will be detangled from both parents and have its pickup prompt displaced, the former normal parent will be left on the ground, and another shield will be already equipped for use</li>
+<li>Repeat from Step 3 until satisfied</li>
+<li>Pick up and drop A to detach B</li>
+</ol>
+<p>Done correctly, each new target will drop on the opposite side of Link as the previous one, and none will block A from being duped from. The only necessary movement will be turning to face A to grab a dupe, then turning to face the target before fusing it.</p>
+</details>
+<details class="abstract">
+<summary>For other equipment</summary>
+<ol>
+<li>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost of the target is already prepared, place it next to A</li>
+<li>Leave only one empty space in the Shield pouch and the target type's pouch    </li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Drop A to attach B</li>
+<li>Equip another shield and a random weapon, then unsheathe them</li>
+<li>Face A and pick up a dupe of it (and the target, if possible)</li>
+<li>Drop the target (dupe) and turn 90 degrees, then highlight it with fuse</li>
+<li>Start holding ZL and pause the game a few frames later; one way to do this is to also start holding L at the same time, and select the Map Rune</li>
+<li>Drop the equipped shield and swap to the Octo Balloon Shield</li>
+<li>Unpause the game and mash cancel (B/X)</li>
+<li>Execution permitting, the new <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost equipment will be detangled from both parents and have its pickup prompt displaced. The spent Octo Balloon Shields will build up on one side of Link, leaving the duping and fusing targets easily accessible</li>
+<li>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost of the target was not yet prepared, there is now one to be used</li>
+<li>Repeat from step 5 until satisfied</li>
+<li>Pick up and drop A to detach B</li>
+</ol>
+</details>
+<details class="abstract">
+<summary>For non-equipment</summary>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Drop A to attach B</li>
+<li>Equip another shield and a random weapon, then unsheathe them</li>
+<li>Face A and pick up a dupe of it, then turn 90 degrees</li>
+<li>Drop/Deploy a target material/device and highlight it with fuse</li>
+<li>Start holding ZL and pause the game a few frames later; one way to do this is to also start holding L at the same time, and select the Map Rune</li>
+<li>Drop the equipped shield and swap to the Octo Balloon Shield</li>
+<li>Unpause the game and mash cancel (B/X)</li>
+<li>Execution permitting, the new <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> object will be detangled from both parents. The spent Octo Balloon Shields will build up on one side of Link, leaving A and the fuse targets easily accessible</li>
+<li>Repeat from Step 3 until satisfied</li>
+<li>Pick up and drop A to detach B</li>
+</ol>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost objects cannot be interacted with, so this variant is perhaps of intellectual interest only.</p>
+</details>
+</div>
+</div>
+</div>
 <h2 id="notes">Notes</h2>
 <hr />
 <h3 id="remarks">Remarks</h3>
