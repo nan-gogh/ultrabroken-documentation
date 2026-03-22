@@ -206,7 +206,7 @@
   text-shadow: 0 0 8px rgba(0, 240, 194, 0.3);
 }
 .grim-li a code {
-  color: var(--md-code-fg-color, #adbac7);
+  color: var(--md-default-fg-color--light);
 }
 .grim-abbr { color: var(--muted-text); font-size: 0.84em; }
 .grim-date {
