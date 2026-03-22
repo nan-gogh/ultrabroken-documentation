@@ -2723,10 +2723,11 @@
   {
     "name": "Ultra Save Load Object Transfer",
     "uid": "OL6",
-    "label": "UltraSLOT",
+    "label": "USLOT",
     "aliases": [
       "ultra-save-load-object-transfer",
-      "ultraslot"
+      "ultraslot",
+      "UltraSLOT"
     ],
     "path": "wiki/glitchcraft/OL6/",
     "filename": "ultra-save-load-object-transfer.md"
