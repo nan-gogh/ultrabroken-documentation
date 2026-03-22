@@ -17,15 +17,7 @@
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/media/</loc>
-         <lastmod>2026-03-22</lastmod>
-    </url>
-    <url>
          <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/memorandum/</loc>
-         <lastmod>2026-03-22</lastmod>
-    </url>
-    <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/batch-di/</loc>
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
@@ -37,10 +29,6 @@
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/despawn-interrupt-library/</loc>
-         <lastmod>2026-03-22</lastmod>
-    </url>
-    <url>
          <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/frox_ipr_/</loc>
          <lastmod>2026-03-22</lastmod>
     </url>
@@ -49,11 +37,11 @@
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/cold-warm-drop/</loc>
+         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/version-differences/</loc>
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/culled-purgatory/</loc>
+         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/cold-warm-drop/</loc>
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
@@ -69,14 +57,6 @@
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/dropped-purgatory/</loc>
-         <lastmod>2026-03-22</lastmod>
-    </url>
-    <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/dynamic-purgatory/</loc>
-         <lastmod>2026-03-22</lastmod>
-    </url>
-    <url>
          <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/dynamic-smuggle/</loc>
          <lastmod>2026-03-22</lastmod>
     </url>
@@ -86,10 +66,6 @@
     </url>
     <url>
          <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/equipped-ghost/</loc>
-         <lastmod>2026-03-22</lastmod>
-    </url>
-    <url>
-         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/equipped-purgatory/</loc>
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
@@ -110,6 +86,10 @@
     </url>
     <url>
          <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/overload-drop/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/equipment-states/purgatory/</loc>
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>

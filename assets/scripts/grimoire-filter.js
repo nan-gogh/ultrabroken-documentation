@@ -445,7 +445,8 @@
     for (var i = 0; i < list.length; i++) {
       var e = list[i];
       var dl = unk(e.date) ? 'Unknown' : e.date;
-      var ab = e.label ? ' <code>' + esc(e.label) + '</code>' : '';
+      var ab = e.label || e.uid
+        ? ' <span class="grim-abbr">(' + esc(e.label || '') + (e.uid ? ' ' + esc(e.uid) : '') + ')</span>' : '';
       h += '<div class="grim-li">'
          + '<span class="grim-num">' + (i + 1) + '.</span>'
          + '<a href="' + at(toHref(e.href)) + '" target="_blank" rel="noopener noreferrer">'

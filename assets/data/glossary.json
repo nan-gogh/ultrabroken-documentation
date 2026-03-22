@@ -1815,7 +1815,7 @@
   {
     "name": "Moe Enlargement",
     "uid": "DNU",
-    "label": "MOE",
+    "label": "ME",
     "aliases": [
       "object-(moe)-enlargement",
       "moe-enlargement",
@@ -2723,11 +2723,10 @@
   {
     "name": "Ultra Save Load Object Transfer",
     "uid": "OL6",
-    "label": "USLOT",
+    "label": "UltraSLOT",
     "aliases": [
       "ultra-save-load-object-transfer",
-      "ultraslot",
-      "UltraSLOT"
+      "ultraslot"
     ],
     "path": "wiki/glitchcraft/OL6/",
     "filename": "ultra-save-load-object-transfer.md"
