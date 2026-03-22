@@ -1,0 +1,147 @@
+/* ── Media browser — R2 file listing UI ── */
+
+.ub-media-tabs {
+  display: flex; gap: 0; margin-bottom: 16px;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.ub-media-tabs button {
+  padding: 8px 20px;
+  border: 1px solid transparent; border-bottom: none;
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+  font-family: var(--md-code-font-family);
+  font-size: 0.82rem;
+  border-radius: 6px 6px 0 0;
+  transition: color 0.15s, background 0.15s;
+  position: relative; bottom: -1px;
+}
+
+.ub-media-tabs button:hover {
+  color: var(--md-default-fg-color);
+}
+
+.ub-media-tabs button.active {
+  background: var(--md-code-bg-color);
+  color: var(--md-accent-fg-color);
+  border-color: var(--md-default-fg-color--lightest);
+  border-bottom-color: var(--md-code-bg-color);
+}
+
+.ub-file-list {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px; overflow: hidden;
+  background: var(--md-code-bg-color);
+}
+
+.ub-file-row {
+  display: flex; flex-wrap: wrap; align-items: center;
+  padding: 10px 16px; gap: 4px 12px;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  font-size: 0.82rem;
+  transition: background 0.1s;
+}
+
+.ub-file-row:last-child {
+  border-bottom: none;
+}
+
+.ub-file-row:hover {
+  background: var(--md-default-fg-color--lightest);
+}
+
+.ub-file-row .ub-name {
+  flex: 1 1 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: var(--md-code-font-family); font-size: 0.78rem;
+  color: var(--md-default-fg-color); cursor: pointer;
+}
+
+.ub-file-row .ub-name:hover {
+  color: var(--md-accent-fg-color);
+}
+
+.ub-file-row .ub-meta {
+  display: flex; gap: 12px; align-items: center; flex: 1; min-width: 0;
+}
+
+.ub-file-row .ub-size {
+  color: var(--md-default-fg-color--light); white-space: nowrap;
+  font-family: var(--md-code-font-family); font-size: 0.75rem;
+}
+
+.ub-file-row .ub-date {
+  color: var(--md-default-fg-color--light); white-space: nowrap; font-size: 0.75rem;
+}
+
+.ub-file-row .ub-actions {
+  display: flex; gap: 6px; flex-shrink: 0; margin-left: auto;
+}
+
+.ub-media-btn {
+  padding: 4px 11px; border-radius: 4px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-code-bg-color);
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+  font-family: var(--md-code-font-family); font-size: 0.75rem;
+  transition: color 0.15s, border-color 0.15s;
+  text-decoration: none; display: inline-block; line-height: 1.4;
+}
+
+.ub-media-btn:hover {
+  color: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+}
+
+.ub-file-row .ub-actions .ub-media-btn {
+  color: #00f0c2;
+  border-color: rgba(0,240,194,0.25);
+  transition: filter 0.15s, border-color 0.15s;
+}
+
+.ub-file-row .ub-actions .ub-media-btn:hover {
+  filter: drop-shadow(0 0 6px rgba(0,240,194,0.9));
+  border-color: #00f0c2;
+}
+
+.ub-media-empty {
+  padding: 48px; text-align: center; color: var(--md-default-fg-color--light); font-size: 0.9rem;
+}
+
+.ub-media-loading {
+  padding: 24px; text-align: center; color: var(--md-default-fg-color--light); font-size: 0.85rem;
+}
+
+.ub-preview-overlay {
+  position: fixed; inset: 0; z-index: 800; background: rgba(0,0,0,0.8);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+
+.ub-preview-overlay img, .ub-preview-overlay video {
+  max-width: 90vw; max-height: 85vh; border-radius: 8px; background: #000; cursor: default;
+}
+
+.ub-preview-overlay .ub-close-btn {
+  position: absolute; top: 12px; right: 18px;
+  color: var(--md-default-fg-color);
+  font-size: 1.8rem; cursor: pointer; line-height: 1; background: none; border: none;
+  font-family: var(--md-code-font-family);
+}
+
+.ub-preview-overlay .ub-close-btn:hover {
+  color: var(--md-accent-fg-color);
+}
+
+.ub-vault-login {
+  display: inline-flex; align-items: center;
+  color: var(--md-default-fg-color--lighter);
+}
+
+.ub-vault-login:hover {
+  color: var(--md-accent-fg-color);
+}
+
+[data-ub-editor="off"] .ub-vault-login {
+  display: none;
+}
