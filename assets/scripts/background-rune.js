@@ -137,9 +137,21 @@
   }
 
   /* â”€â”€ Bootstrap â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    function attachMotionListener() {
+    var prevMode = window.__ubBgMode || 'animate';
+    window.addEventListener('motion-toggle', function (e) {
+      var newMode = e.detail.mode;
+      if (prevMode === 'hidden' && newMode !== 'hidden') {
+        lockImageVerticalPosition();
+      }
+      prevMode = newMode;
+    });
+  }
+
   function init() {
     lockImageVerticalPosition();
     attachOrientationListener();
+    attachMotionListener();
     refresh404();
     attach404Observer();
   }

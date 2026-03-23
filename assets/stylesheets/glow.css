@@ -436,7 +436,9 @@ label.md-header__button[for^="__palette_"]:hover {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
 }
+
 
 /* Sidebar toggle containers (mobile/compact view) —
    Positioned inside .md-sidebar--primary, above the sliding nav panels.
@@ -721,13 +723,12 @@ button.search-link:focus,
 }
 
 
-/* Background rune (watermark) */
-/* SVG image centred via JavaScript positioning. The image is placed at a
-   fixed pixel distance from the physical screen top (screen.height / 2 minus
-   half the image height). Since screen dimensions are immutable, the rune
-   stays vertically locked even when address bars appear/disappear or zoom
-   changes the viewport. When orientation changes, the lock is re-applied. */
-.ub-rune-bg {
+/* ── Zonai rain (static grid + JS opacity raindrops) ─────────────── */
+
+.ub-rain-bg {
+  --rain-font-px: 18;
+  --rain-line-h: 2.4;
+  --rain-col-gap: 38;
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -735,39 +736,34 @@ button.search-link:focus,
   overflow: hidden;
 }
 
-.ub-rune-img {
-  /* JS positions absolutely at fixed pixel distance from screen top
-     (screen.height / 2 minus half the image height). This ensures the rune
-     stays vertically centred regardless of viewport shifts from address bars
-     or resize events. Measured and updated on init and orientation change. */
-  width: 48vmin;
-  max-width: 60vw;
-  max-height: 60vh;
-  aspect-ratio: 1 / 1;
-  opacity: 0.07;
-  animation: ub-rune-pulse 4.2s ease-in-out infinite;
+/* Tablet / narrow desktop */
+@media (max-width: 76.25em) {
+  .ub-rain-bg { --rain-font-px: 14; --rain-col-gap: 28; }
+}
+/* Mobile */
+@media (max-width: 45em) {
+  .ub-rain-bg { --rain-font-px: 11; --rain-line-h: 2.0; --rain-col-gap: 20; }
 }
 
-@keyframes ub-rune-pulse {
-  0%, 100% { opacity: 0.04; }
-  50%      { opacity: 0.10; }
+.ub-rain-col {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Zonai', sans-serif;
+  font-size: calc(var(--rain-font-px) * 1px);
+  line-height: var(--rain-line-h);
+  color: var(--teal-glow);
 }
 
-/* Frozen mode: hold at mid opacity, no animation */
-[data-ub-bg="frozen"] .ub-rune-img {
-  animation: none;
-  opacity: 0.07;
+.ub-rain-col > span {
+  display: block;
+  user-select: none;
 }
 
-/* Hidden mode: remove entirely (data-ub-bg is set synchronously by
-   motion-toggle.js before the element is appended - no flash) */
-[data-ub-bg="hidden"] .ub-rune-bg {
+/* Hidden mode: remove entirely */
+[data-ub-bg="hidden"] .ub-rain-bg {
   display: none !important;
-}
-
-/* 404: flip rune upside-down */
-.ultrabroken-404 .ub-rune-img {
-  transform: scaleY(-1);
 }
 
 /* Keep content above the rune without forcing layout changes on core
@@ -1053,6 +1049,34 @@ li.task-list-item a, li.task-list a {
   }
 }
 
+/* Event Viewer Embed Responsive */
+.ub-event-embed {
+  margin: 1rem 0;
+}
+
+.ub-event-embed iframe {
+  max-height: 600px;
+}
+
+@media (max-width: 76.25em) {
+  .ub-event-embed iframe {
+    height: 450px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .ub-event-embed iframe {
+    height: 350px !important;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .ub-event-embed iframe {
+    height: 55vh !important;
+    max-height: 400px;
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════════
    MOBILE TOC IN NAV DRAWER
    Collapsible "Table of contents" section injected into the nav drawer.
@@ -1088,10 +1112,42 @@ li.task-list-item a, li.task-list a {
     color: var(--md-default-fg-color);
     cursor: pointer;
     border-top: 0.05rem solid var(--md-default-fg-color--lightest);
-    transition: color 125ms;
+    transition: none;
+    -webkit-tap-highlight-color: transparent;
   }
   .ub-toc-header__label:hover {
-    color: var(--md-accent-fg-color);
+    color: var(--md-default-fg-color);
+  }
+
+  /* ── Kill hover/active on mobile sidebar links ──────────────
+     pointer-events:none prevents :hover and :active from firing
+     during swipe-scrolling.  Taps are restored via JS delegation
+     on the parent <li> (see nav-delegation.js / mobile-toc.js). */
+  .md-nav--primary .md-nav__link {
+    pointer-events: none;
+  }
+
+  /* JS-driven press state for sidebar links (touch-scroll-fix.js) */
+  .md-nav--primary .md-nav__link.ub-nav-pressed {
+    color: var(--teal-glow) !important;
+    text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+  }
+
+  /* JS-driven press state for TOC links (mobile-toc.js) */
+  .ub-toc-header .md-nav__link.ub-toc-pressed {
+    color: var(--teal-glow) !important;
+    text-shadow: 0 0 10px rgba(0,240,194,0.9) !important;
+  }
+
+  /* While a TOC panel is closed, its hidden slide-in nav sits
+     position:absolute; height:100%; z-index:1 and Material never
+     disables its pointer-events.  This lets the invisible overlay
+     swallow taps on sidebar entries underneath it.
+     Applies to BOTH our custom TOC panels AND Material's native
+     __toc panel inside the active page's <li>. */
+  .ub-toc-header .md-nav__toggle:not(:checked) ~ .md-nav,
+  .md-nav--primary #__toc:not(:checked) ~ .md-nav {
+    pointer-events: none;
   }
 
   /* TOC icon (instead of the default nav chevron) */
@@ -1116,9 +1172,15 @@ li.task-list-item a, li.task-list a {
     width: 100%;
   }
 
-  /* Hide Material's native TOC entry in the nav — ours replaces it */
+  /* On mobile, Material replaces the <a> link with a non-navigating
+     <label for="__toc"> (TOC toggle + chevron icon) and hides the <a>.
+     Our custom TOC button replaces this toggle, so swap them back:
+     hide the label, restore the <a> as the visible/clickable entry. */
   .md-nav--primary .md-nav__link[for="__toc"] {
     display: none !important;
+  }
+  .md-nav--primary .md-nav__link[for="__toc"] + .md-nav__link {
+    display: flex !important;
   }
 }
 
