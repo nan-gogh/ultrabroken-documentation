@@ -41,13 +41,19 @@ Processing:
 import json
 import re
 
+# The version string treated as "current" (latest known release).
+# When the last entry in a method's versions list equals this value, the range
+# label uses the open-ended "X.X.X+" form instead of "X.X.X-Y.Y.Y".
+_CURRENT_VERSION = "Switch 2"
+
 # ── Syntax ───────────────────────────────────────────────────────────────────
-# Matches a ---delimited block (resembling YAML frontmatter) that can appear
-# at any indentation level.  The opening and closing --- must share the same
-# indent.  The body between them is parsed line-by-line for known keys.
+# Optionally captures the tab header line (=== "Label") that immediately
+# precedes a ---delimited block, so the hook can inject a version range into
+# the tab title.  The opening and closing --- must share the same indent.
 
 _BLOCK_RE = re.compile(
-    r"^(?P<indent>[ \t]*)---[ \t]*\n"
+    r"^(?P<tab>[ \t]*===[ \t]+\"[^\"\n]*\"[ \t]*\n)?"
+    r"(?P<indent>[ \t]*)---[ \t]*\n"
     r"(?P<body>(?:(?P=indent)(?!---).*\n)*)"
     r"(?P=indent)---[ \t]*\n",
     re.MULTILINE,
@@ -61,6 +67,51 @@ _OBSOLETE_RE = re.compile(r'^obsolete:\s*(.+)$', re.MULTILINE)
 _SENTINEL_RE = re.compile(
     r"<!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?P<obsolete>true|false) -->"
 )
+
+# Second-pass: heading immediately before a sentinel (blank line optional).
+# Captures any ATX heading (##, ###, …) so range badges work for all levels.
+_HEADING_SENTINEL_RE = re.compile(
+    r"^(?P<heading>#{1,6} [^\n]+)\n"
+    r"(?P<blank>\n)?"
+    r"(?P<sentinel><!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?:true|false) -->)",
+    re.MULTILINE,
+)
+
+
+def _make_range_label(versions: list[str]) -> str:
+    """Produce a short range badge string from a versions list.
+
+    Examples:
+        []                               -> ""
+        ["1.0.0"]                        -> "`1.0.0`"
+        ["1.0.0", "1.1.0", "1.1.1"]    -> "`1.0.0-1.1.1`"
+        ["1.2.0", ..., "Switch 2"]      -> "`1.2.0+`"  (open-ended)
+    """
+    if not versions:
+        return ""
+    if len(versions) == 1:
+        return f"`{versions[0]}`"
+    first = versions[0]
+    last = versions[-1]
+    if last == _CURRENT_VERSION:
+        return f"`{first}+`"
+    return f"`{first}-{last}`"
+
+
+def _rewrite_tab_label(tab_line: str, versions: list[str]) -> str:
+    """Strip any existing range badge from a tab header and inject the computed one."""
+    range_label = _make_range_label(versions)
+    m = re.match(r'^([ \t]*===[ \t]+")(.*?)("[ \t]*\n)$', tab_line)
+    if not m:
+        return tab_line
+    prefix = m.group(1)   # e.g. '=== "'
+    content = m.group(2)  # e.g. 'Method 1 `1.2.0+`' or 'Method 1'
+    suffix = m.group(3)   # e.g. '"\n'
+    # Strip any trailing backtick badge injected by a previous build.
+    content = re.sub(r'\s*`[^`]+`\s*$', '', content)
+    if range_label:
+        return f"{prefix}{content} {range_label}{suffix}"
+    return f"{prefix}{content}{suffix}"
 
 
 def _parse_versions(raw: str) -> list[str]:
@@ -88,6 +139,7 @@ def _is_method_block(body: str) -> bool:
 
 
 def _replace_block(match: re.Match) -> str:
+    tab_line = match.group("tab")  # None when block is not inside a tab.
     indent = match.group("indent")
     body = match.group("body")
 
@@ -95,7 +147,7 @@ def _replace_block(match: re.Match) -> str:
     dedented = re.sub(r"^" + re.escape(indent), "", body, flags=re.MULTILINE)
 
     if not _is_method_block(dedented):
-        return match.group(0)  # Not a method block — leave untouched.
+        return match.group(0)  # Not a method block — leave untouched (tab line included).
 
     # Parse fields.
     vm = _VERSIONS_RE.search(dedented)
@@ -117,6 +169,11 @@ def _replace_block(match: re.Match) -> str:
         badge_str = " ".join(f"`{v}`" for v in versions)
         badges = f"{indent}{badge_str}\n\n"
 
+    # Rewrite the tab header with the computed range badge.
+    new_tab_line = ""
+    if tab_line is not None:
+        new_tab_line = _rewrite_tab_label(tab_line, versions)
+
     # Build deprecation admonition.
     admonition = ""
     if obsolete:
@@ -126,7 +183,26 @@ def _replace_block(match: re.Match) -> str:
             f" Check out the other methods listed on this page.\n\n"
         )
 
-    return sentinel + badges + admonition
+    return new_tab_line + sentinel + badges + admonition
+
+
+def _patch_headings(markdown: str) -> str:
+    """Second pass: inject range badge into any heading that precedes a sentinel."""
+    def _rewrite_heading(m: re.Match) -> str:
+        heading = m.group("heading")
+        blank = m.group("blank") or ""
+        sentinel = m.group("sentinel")
+        try:
+            versions = json.loads(m.group("versions"))
+        except Exception:
+            versions = []
+        range_label = _make_range_label(versions)
+        # Strip any existing badge, then append the computed one.
+        clean = re.sub(r"\s*`[^`]+`\s*$", "", heading)
+        new_heading = f"{clean} {range_label}" if range_label else clean
+        return f"{new_heading}\n{blank}{sentinel}"
+
+    return _HEADING_SENTINEL_RE.sub(_rewrite_heading, markdown)
 
 
 def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
@@ -138,8 +214,12 @@ def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
     if fm_match:
         frontmatter = fm_match.group(0)
         rest = markdown[fm_match.end():]
-        return frontmatter + _BLOCK_RE.sub(_replace_block, rest)
-    return _BLOCK_RE.sub(_replace_block, markdown)
+        after_blocks = _BLOCK_RE.sub(_replace_block, rest)
+    else:
+        after_blocks = _BLOCK_RE.sub(_replace_block, markdown)
+        frontmatter = ""
+    after_headings = _patch_headings(after_blocks)
+    return frontmatter + after_headings
 
 
 # ── HTML phase ───────────────────────────────────────────────────────────────
