@@ -234,28 +234,29 @@
      INJECT
      ════════════════════════════════════════════════════════════ */
   function inject() {
-    if (gearBtn) return true;
+    // Desktop: adopt or create gear button in header
+    if (!gearBtn || !gearBtn.isConnected) {
+      gearBtn = null;
+      var existing = document.querySelector('.ub-header-toggles .ub-settings-gear');
+      if (existing) {
+        gearBtn = existing;
+        attachGear(gearBtn);
+      } else {
+        var searchBtn = document.querySelector('label[for="__search"]');
+        if (!searchBtn) return false;
 
-    // Adopt pre-existing gear button from inline main.html script, or create one
-    var existing = document.querySelector('.ub-settings-gear');
-    if (existing) {
-      gearBtn = existing;
-      attachGear(gearBtn);
-    } else {
-      var searchBtn = document.querySelector('label[for="__search"]');
-      if (!searchBtn) return false;
-
-      var container = document.querySelector('.ub-header-toggles');
-      if (!container) {
-        container = document.createElement('div');
-        container.className = 'ub-header-toggles';
-        searchBtn.parentNode.insertBefore(container, searchBtn.nextSibling);
+        var container = document.querySelector('.ub-header-toggles');
+        if (!container) {
+          container = document.createElement('div');
+          container.className = 'ub-header-toggles';
+          searchBtn.parentNode.insertBefore(container, searchBtn.nextSibling);
+        }
+        gearBtn = createGearButton();
+        container.appendChild(gearBtn);
       }
-      gearBtn = createGearButton();
-      container.appendChild(gearBtn);
     }
 
-    // Mobile: gear button in sidebar
+    // Mobile: re-inject if sidebar gear was destroyed by instant navigation
     injectMobileGear();
 
     return true;
