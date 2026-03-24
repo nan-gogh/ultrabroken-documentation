@@ -672,7 +672,7 @@ button.search-link:focus,
 
 /* Nudge above footer when it scrolls into view */
 .ub-back-to-top.above-footer {
-  bottom: 4rem !important;
+  bottom: var(--footer-offset, 4rem) !important;
   transition: opacity 0.25s ease, visibility 0.25s ease, bottom 0.2s ease !important;
 }
 

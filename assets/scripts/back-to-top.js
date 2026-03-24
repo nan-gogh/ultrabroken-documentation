@@ -12,6 +12,8 @@
 
   var button = null;
   var isVisible = false;
+  var footerHeight = 0;
+  var MARGIN = 12;
 
   /**
    * Create the back-to-top button element
@@ -35,7 +37,8 @@
   }
 
   /**
-   * Update button visibility based on scroll position
+   * Update button visibility and position based on scroll.
+   * Nudges the button above the footer when near the bottom.
    */
   function updateButtonVisibility() {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -48,17 +51,20 @@
       button.classList.remove('visible');
       isVisible = false;
     }
+
+    var nearBottom = scrollTop + window.innerHeight >= document.documentElement.scrollHeight - footerHeight;
+    button.classList.toggle('above-footer', nearBottom);
   }
 
   /**
-   * Watch the footer and nudge the button above it when it enters the viewport.
+   * Measure footer height (changes on resize / orientation)
    */
-  function watchFooter() {
+  function measureFooter() {
     var footer = document.querySelector('.md-footer');
-    if (!footer || !button) return;
-    new IntersectionObserver(function (entries) {
-      button.classList.toggle('above-footer', entries[0].isIntersecting);
-    }).observe(footer);
+    footerHeight = footer ? footer.offsetHeight : 0;
+    if (button) {
+      button.style.setProperty('--footer-offset', (footerHeight + MARGIN) + 'px');
+    }
   }
 
   /**
@@ -77,9 +83,12 @@
    */
   function boot() {
     inject();
-    watchFooter();
+    measureFooter();
     window.addEventListener('scroll', updateButtonVisibility);
-    window.addEventListener('resize', updateButtonVisibility);
+    window.addEventListener('resize', function () {
+      measureFooter();
+      updateButtonVisibility();
+    });
   }
 
   if (document.readyState === 'loading') {
