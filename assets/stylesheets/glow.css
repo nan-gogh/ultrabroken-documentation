@@ -679,14 +679,8 @@ button.search-link:focus,
   margin-bottom: 0.75rem !important;
 }
 
-/* Obsolete method tab labels and headings - dimmed */
-.md-typeset .tabbed-labels label.ub-obsolete,
-.md-content h1.ub-obsolete,
-.md-content h2.ub-obsolete,
-.md-content h3.ub-obsolete,
-.md-content h4.ub-obsolete,
-.md-content h5.ub-obsolete,
-.md-content h6.ub-obsolete {
+/* Obsolete method tab labels - dimmed */
+.md-typeset .tabbed-labels label.ub-obsolete {
   opacity: 0.45;
   /*text-decoration: line-through;*/
   text-decoration-color: var(--muted-text);
