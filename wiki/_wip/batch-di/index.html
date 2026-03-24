@@ -80,7 +80,7 @@
     @media(max-width:76.25em){.ub-header-toggles{display:none!important}}
   </style>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Batch DI","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/batch-di/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/batch-di/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"A collection of methods to produce large numbers of DI Ghost items quickly.","author":[{"@type":"Person","name":"mulberry"},{"@type":"Person","name":"Squidwest"}],"datePublished":"2025-01-17","keywords":"despawn-interrupt, culling"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Batch DI","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/batch-di/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/batch-di/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"A collection of methods to produce large numbers of DI Ghost items quickly.","author":[{"@type":"Person","name":"Aergyl"},{"@type":"Person","name":"mulberry\""},{"@type":"Person","name":"Squidwest"}],"datePublished":"2025-01-17","keywords":"despawn-interrupt, culling"}</script>
     <meta name="robots" content="noindex">
   </head>
   
@@ -1009,18 +1009,7 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-due-to-the-difference-in-resulting-structure-these-methods-are-usually-not-interchangable" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        - Due to the difference in resulting structure, these methods are usually not interchangable
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="- Due to the difference in resulting structure, these methods are usually not interchangable">
+    <nav class="md-nav" aria-label="Notes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1120,7 +1109,7 @@
 <h2 id="instructions">Instructions</h2>
 <hr />
 <p>Due to the absence of "Drop-Swap Culling" on versions prior to <code>1.2.0</code>, all applicable methods will be given with both an all-versions variant and a variant specific to 1.2.0 and up.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1: Overload Batch DI <code>1.0.0+</code></label><label for="__tabbed_1_2">Method 2: DI Chaining <code>1.0.0+</code></label><label for="__tabbed_1_3">Method 3: "Purgatory + Turbo Replication</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1: Overload Batch DI <code>1.0.0+</code></label><label for="__tabbed_1_2">Method 2: DI Chaining <code>1.0.0+</code></label><label for="__tabbed_1_3">Method 3: Purgatory + Turbo Replication <code>1.2.0+</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
@@ -1184,14 +1173,12 @@ Intangible Aerophasing</p>
 </div>
 <details class="example">
 <summary>Diagram</summary>
-<div class="highlight"><pre><span></span><code>mermaid
-graph TD
+<pre class="mermaid"><code>graph TD
     A[A] --&gt;|FE| B[C]
     C[B] --&gt;|DI| D[D]
     E[E] --&gt;|DI| D
     D --&gt;|FE| F[Target]
-    C --&gt;|CF| F
-</code></pre></div>
+    C --&gt;|CF| F</code></pre>
 </details>
 <p><em>Method developed by mulberry - Jan 17, 2026</em></p>
 </div>
@@ -1277,8 +1264,7 @@ Intangible Aerophasing</p>
 </div>
 <details class="example">
 <summary>Diagram</summary>
-<div class="highlight"><pre><span></span><code>mermaid
-graph TD
+<pre class="mermaid"><code>graph TD
     A[DI Ancestor] --&gt;|DI| B[DI Child]
     C[Normal Parent] --&gt;|DI| B
     B --&gt;|DI| D[DI Grandchild]
@@ -1286,8 +1272,7 @@ graph TD
     D --&gt;|DI| F[DI Descendant]
     G[Normal Parent] --&gt;|DI| F
     F --&gt;|...| H{Further Generations}
-    I[Normal Parent] --&gt;|...| H
-</code></pre></div>
+    I[Normal Parent] --&gt;|...| H</code></pre>
 </details>
 <p><em>Method developed by Squidwest(?) - Jan 23, 2026(?)</em></p>
 </div>
@@ -1373,16 +1358,14 @@ graph TD
 </details>
 <details class="example">
 <summary>Diagram</summary>
-<div class="highlight"><pre><span></span><code>mermaid
-Graph TD
+<pre class="mermaid"><code>Graph TD
     A[A] --&gt;|DI-&gt;CF| B[B]
     A --&gt;|DI-&gt;FE| C[Octo Balloon]
     B --&gt;|DI| D[Target 1]
     E[Normal Parent 1] --&gt;|DI| D
     F[Dupe of A] --&gt;|Detangles| D
     E --&gt;|Becomes| G[Target 2]
-    F --&gt;|Becomes| H[Normal Parent 2]
-</code></pre></div>
+    F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
 </details>
 <p><em>Turbo Replication developed by Aergyl - Jan 31, 2026</em></p>
 <p><em>Batch methods developed by Squidwest - Mar 05, 2026</em></p>
@@ -1391,7 +1374,9 @@ Graph TD
 </div>
 <h2 id="notes">Notes</h2>
 <hr />
-<h2 id="-due-to-the-difference-in-resulting-structure-these-methods-are-usually-not-interchangable">- Due to the difference in resulting structure, these methods are usually <em>not</em> interchangable</h2>
+<ul>
+<li>Due to the difference in resulting structure, these methods are usually <em>not</em> interchangable</li>
+</ul>
 <h3 id="additions">Additions</h3>
 <p>Additions</p>
 <h3 id="extensions">Extensions</h3>
