@@ -57,6 +57,9 @@
     // Keep the fade only for true appear/disappear (isVisible changing).
     if (!visibilityChanged && nearBottomChanged) {
       fixedBtn.classList.add('ub-no-transition');
+      // Force style recalculation *before* toggling visible, otherwise browsers
+      // may batch both class changes together and still animate the transition.
+      void fixedBtn.offsetHeight;
     } else {
       fixedBtn.classList.remove('ub-no-transition');
     }
