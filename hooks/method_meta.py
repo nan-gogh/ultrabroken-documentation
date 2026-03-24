@@ -259,4 +259,37 @@ def on_page_content(html: str, page, config, **kwargs) -> str:
             f"hidden></div>"
         )
 
-    return _SENTINEL_RE.sub(_sentinel_to_div, html)
+    html = _SENTINEL_RE.sub(_sentinel_to_div, html)
+
+    # Mark tab labels of obsolete methods so CSS can style them.
+    html = _mark_obsolete_labels(html)
+
+    return html
+
+
+def _mark_obsolete_labels(html: str) -> str:
+    """Walk each tabbed-set and add 'ub-obsolete' class to labels whose
+    corresponding tabbed-block contains a method-meta div with
+    data-obsolete="true"."""
+    TABBED_SET = re.compile(
+        r'<div class="tabbed-set[^"]*"[^>]*>'
+        r'(?P<body>.*?)</div>\s*</div>\s*</div>',
+        re.DOTALL,
+    )
+    for ts in TABBED_SET.finditer(html):
+        body = ts.group("body")
+        # Extract label `for` attributes in order.
+        labels = re.findall(r'<label for="([^"]+)">', body)
+        # Extract each tabbed-block and check for obsolete.
+        blocks = list(re.finditer(
+            r'<div class="tabbed-block">(.*?)(?=<div class="tabbed-block">|</div>\s*</div>)',
+            body, re.DOTALL,
+        ))
+        for i, block in enumerate(blocks):
+            if i >= len(labels):
+                break
+            if 'data-obsolete="true"' in block.group(1):
+                old_label = f'<label for="{labels[i]}">'
+                new_label = f'<label for="{labels[i]}" class="ub-obsolete">'
+                html = html.replace(old_label, new_label, 1)
+    return html
