@@ -670,17 +670,19 @@ button.search-link:focus,
   visibility: visible !important;
 }
 
-@media (max-width: 76.1875em) {
-  /*.ub-back-to-top {
-    bottom: 3rem !important;
-  }*/
+/* Nudge above footer when it scrolls into view */
+.ub-back-to-top.above-footer {
+  bottom: 4rem !important;
+  transition: opacity 0.25s ease, visibility 0.25s ease, bottom 0.2s ease !important;
+}
 
+@media (max-width: 76.1875em) {
   /* Center social icons row on mobile (Material defaults to margin-left: auto → right-aligned) */
-  .md-social {
+  /*.md-social {
     width: 100%;
     margin: 0;
     justify-content: center;
-  }
+  }*/
 }
 
 /* Explicitly keep header sticky */

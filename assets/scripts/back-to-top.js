@@ -39,7 +39,7 @@
    */
   function updateButtonVisibility() {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    var shouldBeVisible = scrollTop > 300; // Show after scrolling 300px
+    var shouldBeVisible = scrollTop > 300;
 
     if (shouldBeVisible && !isVisible) {
       button.classList.add('visible');
@@ -48,6 +48,17 @@
       button.classList.remove('visible');
       isVisible = false;
     }
+  }
+
+  /**
+   * Watch the footer and nudge the button above it when it enters the viewport.
+   */
+  function watchFooter() {
+    var footer = document.querySelector('.md-footer');
+    if (!footer || !button) return;
+    new IntersectionObserver(function (entries) {
+      button.classList.toggle('above-footer', entries[0].isIntersecting);
+    }).observe(footer);
   }
 
   /**
@@ -66,6 +77,7 @@
    */
   function boot() {
     inject();
+    watchFooter();
     window.addEventListener('scroll', updateButtonVisibility);
     window.addEventListener('resize', updateButtonVisibility);
   }
