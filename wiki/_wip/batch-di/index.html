@@ -1162,7 +1162,7 @@ Intangible Aerophasing</p>
 <li>Leave A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped after completing step 1</li>
 <li>Smuggle B and equip normal item of B's type (E)</li>
 <li>Stand on the phasing platform
-5  Right after Link unculls, fuse an item of C's type to E; it will <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
+5  Right after Link unculls, fuse an item (D) of C's type to E; it will <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
 <li>Smuggle D, equip E, and overload pickup C</li>
 <li>glue C to something to elevate it and ensure it cannot accidentally be targeted by Fuse</li>
 </ol>
@@ -1182,6 +1182,17 @@ Intangible Aerophasing</p>
 <p class="admonition-title">Self-Fusing</p>
 <p>When an overload-pickup has a connection back to link, it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
 </div>
+<details class="example">
+<summary>Diagram</summary>
+<div class="highlight"><pre><span></span><code>mermaid
+graph TD
+    A[A] --&gt;|FE| B[C]
+    C[B] --&gt;|DI| D[D]
+    E[E] --&gt;|DI| D
+    D --&gt;|FE| F[Target]
+    C --&gt;|CF| F
+</code></pre></div>
+</details>
 <p><em>Method developed by mulberry - Jan 17, 2026</em></p>
 </div>
 <div class="tabbed-block">
@@ -1264,6 +1275,20 @@ Intangible Aerophasing</p>
 <p>If this method is performed with shields, simply <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> a handful at once and use a rocket shield to fully detangle them all, repeating for all of them.</p>
 <p>If weapons were used, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> every other in the chain (or less frequently if desired), use fuse-over detangle to leave only a cf remnant, then <strong>destroy</strong> the detangled weapons to break the chain apart. (a proper weapon <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is not viable for this use-case)</p>
 </div>
+<details class="example">
+<summary>Diagram</summary>
+<div class="highlight"><pre><span></span><code>mermaid
+graph TD
+    A[DI Ancestor] --&gt;|DI| B[DI Child]
+    C[Normal Parent] --&gt;|DI| B
+    B --&gt;|DI| D[DI Grandchild]
+    E[Normal Parent] --&gt;|DI| D
+    D --&gt;|DI| F[DI Descendant]
+    G[Normal Parent] --&gt;|DI| F
+    F --&gt;|...| H{Further Generations}
+    I[Normal Parent] --&gt;|...| H
+</code></pre></div>
+</details>
 <p><em>Method developed by Squidwest(?) - Jan 23, 2026(?)</em></p>
 </div>
 <div class="tabbed-block">
@@ -1345,6 +1370,19 @@ Intangible Aerophasing</p>
 <p>If the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is failed, disregard the still-attached target.</p>
 <p>If the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> is failed, continue as though it succeeded.</p>
 </div>
+</details>
+<details class="example">
+<summary>Diagram</summary>
+<div class="highlight"><pre><span></span><code>mermaid
+Graph TD
+    A[A] --&gt;|DI-&gt;CF| B[B]
+    A --&gt;|DI-&gt;FE| C[Octo Balloon]
+    B --&gt;|DI| D[Target 1]
+    E[Normal Parent 1] --&gt;|DI| D
+    F[Dupe of A] --&gt;|Detangles| D
+    E --&gt;|Becomes| G[Target 2]
+    F --&gt;|Becomes| H[Normal Parent 2]
+</code></pre></div>
 </details>
 <p><em>Turbo Replication developed by Aergyl - Jan 31, 2026</em></p>
 <p><em>Batch methods developed by Squidwest - Mar 05, 2026</em></p>
