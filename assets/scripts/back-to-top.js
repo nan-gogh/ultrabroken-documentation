@@ -11,7 +11,7 @@
   'use strict';
 
   // Configuration
-  var FOOTER_SWITCH_OFFSET = 10; // pixels above footer to trigger switch (increase to switch earlier)
+  var FOOTER_SWITCH_OFFSET = -10; // pixels above footer to trigger switch (increase to switch earlier)
 
   var fixedBtn = null;
   var footerBtn = null;
