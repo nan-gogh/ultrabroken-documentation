@@ -70,12 +70,11 @@
   <!-- Preload critical Latin font files (same-origin, no DNS hops) -->
   <link rel="preload" href="../../../assets/fonts/texturina-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../../assets/fonts/new-rocker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <!-- Critical above-fold CSS: button + title styles available before glow.css loads.
-       Prevents unstyled button flash and title width jump on hard refresh. -->
+  <!-- Critical above-fold CSS: gear button + title styles available before glow.css loads. -->
   <style>
     .ub-header-toggles{display:flex;align-items:center;gap:0;position:absolute;left:50%;transform:translateX(-50%);z-index:2}
-    .ub-motion-toggle,.ub-storage-toggle,.ub-font-toggle{display:inline-flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:4px;color:#00f0c2;vertical-align:middle;line-height:1}
-    .ub-motion-toggle svg,.ub-storage-toggle svg,.ub-font-toggle svg{width:24px;height:24px;display:block}
+    .ub-settings-gear{display:inline-flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:4px;color:#00f0c2;vertical-align:middle;line-height:1}
+    .ub-settings-gear svg{width:20px;height:20px;display:block}
     .md-header__title .md-ellipsis{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:var(--header-available-width,100%)}
     @media(max-width:76.25em){.ub-header-toggles{display:none!important}}
   </style>
@@ -471,17 +470,17 @@
     var c=document.createElement('div');
     c.className='ub-header-toggles';
     c.innerHTML=
-      '<button class="ub-motion-toggle" aria-label="Toggle background mode">'
-      +'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><rect fill="currentColor" x="6" y="4" width="4" height="16" rx="1"/><rect fill="currentColor" x="14" y="4" width="4" height="16" rx="1"/></svg>'
-      +'</button>'
-      +'<button class="ub-storage-toggle" aria-label="Toggle local storage">'
-      +'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><ellipse cx="12" cy="6" rx="8" ry="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 10v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 14v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" fill="none" stroke="currentColor" stroke-width="2"/></svg>'
-      +'</button>'
-      +'<button class="ub-font-toggle" aria-label="Toggle font size">'
-      +'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><text x="10" y="18" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="currentColor" text-anchor="middle">A</text><text x="19" y="10" font-family="Arial,sans-serif" font-size="10" font-weight="bold" fill="currentColor" text-anchor="middle">+</text></svg>'
-      +'</button>'
-      +'<button class="ub-editor-toggle" aria-label="Toggle editor links">'
-      +'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>'
+      '<button class="ub-settings-gear" aria-label="Open settings">'
+      +'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">'
+      +'<path fill="currentColor" d="M19.14 12.94a7.07 7.07 0 0 0 .06-.94 7.07 7.07 0 0 0-.06-.94l2.03-1.58'
+      +'a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.04 7.04 0 0 0-1.62-.94'
+      +'l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.48.41l-.36 2.54a7.04 7.04 0 0 0-1.62.94'
+      +'l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58a7.07 7.07 0 0 0-.06.94'
+      +' 7.07 7.07 0 0 0 .06.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32a.49.49 0 0 0 .59.22l2.39-.96'
+      +'a7.04 7.04 0 0 0 1.62.94l.36 2.54a.48.48 0 0 0 .48.41h3.84a.48.48 0 0 0 .48-.41l.36-2.54'
+      +'a7.04 7.04 0 0 0 1.62-.94l2.39.96a.49.49 0 0 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.03-1.58z'
+      +'M12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/>'
+      +'</svg>'
       +'</button>';
     s.parentNode.insertBefore(c,s.nextSibling);
   })();
@@ -1304,6 +1303,8 @@
         <script src="../../../assets/scripts/storage-manager.js"></script>
       
         <script src="../../../assets/scripts/toolbar.js"></script>
+      
+        <script src="../../../assets/scripts/settings-modal.js"></script>
       
         <script src="../../../assets/scripts/tasklist-enhance.js"></script>
       
