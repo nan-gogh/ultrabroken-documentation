@@ -671,9 +671,9 @@ button.search-link:focus,
 }
 
 @media (max-width: 76.1875em) {
-  .ub-back-to-top {
+  /*.ub-back-to-top {
     bottom: 3rem !important;
-  }
+  }*/
 
   /* Center social icons row on mobile (Material defaults to margin-left: auto → right-aligned) */
   .md-social {
