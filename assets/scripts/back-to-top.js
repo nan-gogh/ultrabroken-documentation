@@ -10,6 +10,9 @@
 (function () {
   'use strict';
 
+  // Configuration
+  var FOOTER_SWITCH_OFFSET = 10; // pixels above footer to trigger switch (increase to switch earlier)
+
   var fixedBtn = null;
   var footerBtn = null;
   var isVisible = false;
@@ -44,7 +47,7 @@
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var shouldBeVisible = scrollTop > 300;
     var nearBottom = scrollTop + window.innerHeight >=
-      document.documentElement.scrollHeight - footerHeight;
+      document.documentElement.scrollHeight - footerHeight - FOOTER_SWITCH_OFFSET;
 
     var visibilityChanged = shouldBeVisible !== isVisible;
     var nearBottomChanged = nearBottom !== wasNearBottom;
