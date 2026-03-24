@@ -18,7 +18,8 @@
   var isVisible = false;
   var wasNearBottom = false;
   var footerHeight = 0;
-  var swapOffset = 0; // computed: CSS bottom of fixed btn minus margin-bottom of footer btn
+  // Swap offset = fixed button CSS bottom (1.5rem=24px) minus footer button margin-bottom (0.75rem=12px)
+  var SWAP_OFFSET = 12;
 
   /**
    * Create the back-to-top button element
@@ -51,7 +52,7 @@
     // Switch when the footer button would be at the same position as the fixed button.
     // Both buttons align when: scrollTop + innerHeight == scrollHeight - footerHeight + swapOffset
     var nearBottom = scrollTop + window.innerHeight >=
-      document.documentElement.scrollHeight - footerHeight + swapOffset + FOOTER_SWITCH_NUDGE;
+      document.documentElement.scrollHeight - footerHeight + SWAP_OFFSET + FOOTER_SWITCH_NUDGE;
 
     var visibilityChanged = shouldBeVisible !== isVisible;
     var nearBottomChanged = nearBottom !== wasNearBottom;
@@ -80,13 +81,6 @@
   function measureFooter() {
     var footer = document.querySelector('.md-footer');
     footerHeight = footer ? footer.offsetHeight : 0;
-    // Compute swap offset: CSS bottom of fixed button minus margin-bottom of footer button.
-    // At this scroll offset the two buttons' bottom edges are vertically aligned.
-    if (fixedBtn && footerBtn) {
-      var fixedBottom = parseFloat(getComputedStyle(fixedBtn).bottom);
-      var footerMargin = parseFloat(getComputedStyle(footerBtn).marginBottom);
-      swapOffset = fixedBottom - footerMargin;
-    }
   }
 
   /**
