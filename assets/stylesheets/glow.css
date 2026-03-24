@@ -674,6 +674,13 @@ button.search-link:focus,
   .ub-back-to-top {
     bottom: 2rem !important;
   }
+
+  /* Center social icons row on mobile (Material defaults to margin-left: auto → right-aligned) */
+  .md-social {
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+  }
 }
 
 /* Explicitly keep header sticky */
