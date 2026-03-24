@@ -40,11 +40,20 @@ Processing:
 
 import json
 import re
+from pathlib import Path
 
-# The version string treated as "current" (latest known release).
-# When the last entry in a method's versions list equals this value, the range
-# label uses the open-ended "X.X.X+" form instead of "X.X.X-Y.Y.Y".
-_CURRENT_VERSION = "Switch 2"
+# ── Version catalogue (single source of truth) ──────────────────────────────
+_VERSIONS_FILE = Path(__file__).resolve().parents[1] / "assets" / "data" / "versions.json"
+
+def _load_versions():
+    with open(_VERSIONS_FILE, encoding="utf-8") as f:
+        data = json.load(f)
+    all_versions = data["versions"]
+    platforms = set(data.get("platforms", []))
+    software = [v for v in all_versions if v not in platforms]
+    return all_versions, platforms, software[-1] if software else ""
+
+_ALL_VERSIONS, _PLATFORMS, _CURRENT_VERSION = _load_versions()
 
 # ── Syntax ───────────────────────────────────────────────────────────────────
 # Optionally captures the tab header line (=== "Label") that immediately
@@ -81,18 +90,26 @@ _HEADING_SENTINEL_RE = re.compile(
 def _make_range_label(versions: list[str]) -> str:
     """Produce a short range badge string from a versions list.
 
+    Platform tags (e.g. "Switch 2") are excluded from range computation
+    but still rendered as individual badges elsewhere.
+
     Examples:
         []                               -> ""
         ["1.0.0"]                        -> "`1.0.0`"
         ["1.0.0", "1.1.0", "1.1.1"]    -> "`1.0.0-1.1.1`"
-        ["1.2.0", ..., "Switch 2"]      -> "`1.2.0+`"  (open-ended)
+        ["1.2.0", ..., "1.4.3"]         -> "`1.2.0+`"  (open-ended)
+        ["1.0.0", ..., "1.4.3"]         -> "`All versions`"  (full catalogue)
+        ["1.0.0", ..., "Switch 2"]      -> "`All versions`"  (platforms filtered)
     """
-    if not versions:
+    sw = [v for v in versions if v not in _PLATFORMS]
+    if not sw:
         return ""
-    if len(versions) == 1:
-        return f"`{versions[0]}`"
-    first = versions[0]
-    last = versions[-1]
+    if len(sw) == 1:
+        return f"`{sw[0]}`"
+    first = sw[0]
+    last = sw[-1]
+    if first == _ALL_VERSIONS[0] and last == _CURRENT_VERSION:
+        return "`All versions`"
     if last == _CURRENT_VERSION:
         return f"`{first}+`"
     return f"`{first}-{last}`"
