@@ -11,14 +11,14 @@
   'use strict';
 
   // Configuration
-  var FOOTER_SWITCH_MARGIN = 12; // px gap kept between button and footer top when switching
+  var FOOTER_SWITCH_NUDGE = 0; // extra px to shift swap point (positive = earlier, negative = later)
 
   var fixedBtn = null;
   var footerBtn = null;
   var isVisible = false;
   var wasNearBottom = false;
   var footerHeight = 0;
-  var btnClearance = 0; // distance from viewport bottom to fixed button top
+  var swapOffset = 0; // computed: CSS bottom of fixed btn minus margin-bottom of footer btn
 
   /**
    * Create the back-to-top button element
@@ -48,9 +48,10 @@
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var shouldBeVisible = scrollTop > 300;
 
-    // Switch when the footer would overlap the fixed button.
+    // Switch when the footer button would be at the same position as the fixed button.
+    // Both buttons align when: scrollTop + innerHeight == scrollHeight - footerHeight + swapOffset
     var nearBottom = scrollTop + window.innerHeight >=
-      document.documentElement.scrollHeight - footerHeight + btnClearance - FOOTER_SWITCH_MARGIN;
+      document.documentElement.scrollHeight - footerHeight + swapOffset + FOOTER_SWITCH_NUDGE;
 
     var visibilityChanged = shouldBeVisible !== isVisible;
     var nearBottomChanged = nearBottom !== wasNearBottom;
@@ -79,9 +80,12 @@
   function measureFooter() {
     var footer = document.querySelector('.md-footer');
     footerHeight = footer ? footer.offsetHeight : 0;
-    if (fixedBtn) {
-      var style = getComputedStyle(fixedBtn);
-      btnClearance = fixedBtn.offsetHeight + parseFloat(style.bottom);
+    // Compute swap offset: CSS bottom of fixed button minus margin-bottom of footer button.
+    // At this scroll offset the two buttons' bottom edges are vertically aligned.
+    if (fixedBtn && footerBtn) {
+      var fixedBottom = parseFloat(getComputedStyle(fixedBtn).bottom);
+      var footerMargin = parseFloat(getComputedStyle(footerBtn).marginBottom);
+      swapOffset = fixedBottom - footerMargin;
     }
   }
 
