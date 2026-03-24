@@ -268,11 +268,8 @@ def on_page_content(html: str, page, config, **kwargs) -> str:
 
 
 def _mark_obsolete_labels(html: str) -> str:
-    """Add 'ub-obsolete' class to:
-    1. Tab labels whose corresponding tabbed-block contains a method-meta div
-       with data-obsolete="true".
-    2. Headings (h1–h6) immediately followed by an obsolete method-meta div
-       (non-tabbed single-method case)."""
+    """Add 'ub-obsolete' class to tab labels whose corresponding tabbed-block
+    contains a method-meta div with data-obsolete="true"."""
 
     # ── Tabbed methods ──
     TABBED_SET = re.compile(
@@ -294,25 +291,5 @@ def _mark_obsolete_labels(html: str) -> str:
                 old_label = f'<label for="{labels[i]}">'
                 new_label = f'<label for="{labels[i]}" class="ub-obsolete">'
                 html = html.replace(old_label, new_label, 1)
-
-    # ── Non-tabbed methods (heading followed by obsolete meta div) ──
-    HEADING_OBSOLETE = re.compile(
-        r'(<h([1-6])\b[^>]*>)'                       # opening tag + level
-        r'((?:(?!<h[1-6]\b).)*?</h\2>\s*)'           # content (no crossing headings) + same-level close
-        r'(<div class="ub-method-meta"[^>]*'
-        r'data-obsolete="true"[^>]*hidden></div>)',
-        re.DOTALL,
-    )
-    def _add_heading_class(m: re.Match) -> str:
-        tag = m.group(1)
-        rest = m.group(3)
-        meta = m.group(4)
-        if 'class="' in tag:
-            tag = tag.replace('class="', 'class="ub-obsolete ', 1)
-        else:
-            tag = tag.replace('>', ' class="ub-obsolete">', 1)
-        return tag + rest + meta
-
-    html = HEADING_OBSOLETE.sub(_add_heading_class, html)
 
     return html
