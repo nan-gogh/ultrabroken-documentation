@@ -50,7 +50,7 @@
 
     // Switch when the footer would overlap the fixed button.
     var nearBottom = scrollTop + window.innerHeight >=
-      document.documentElement.scrollHeight - footerHeight - btnClearance - FOOTER_SWITCH_MARGIN;
+      document.documentElement.scrollHeight - footerHeight + btnClearance - FOOTER_SWITCH_MARGIN;
 
     var visibilityChanged = shouldBeVisible !== isVisible;
     var nearBottomChanged = nearBottom !== wasNearBottom;
