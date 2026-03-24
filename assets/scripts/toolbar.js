@@ -203,6 +203,13 @@
      ═══════════════════════════════════════════════════════════════ */
   var TOGGLES = [motionToggle, storageToggle, fontToggle, editorToggle];
 
+  /* ── Public API for settings modal ─────────────────────────── */
+  window.__ubToolbar = {
+    toggles: TOGGLES,
+    cycle: function (toggle) { cycle(toggle); },
+    updateButton: function (toggle) { updateButton(toggle); }
+  };
+
   /* ═══════════════════════════════════════════════════════════════
      SHARED FRAMEWORK
      ═══════════════════════════════════════════════════════════════ */
@@ -257,60 +264,17 @@
     return btn;
   }
 
-  /* ── Inject all toggle buttons into the correct container ──── */
+  /* ── Inject all toggle buttons into the correct container ────
+     NOTE: Button injection is now handled by settings-modal.js (gear
+     button + modal).  This function is kept as a no-op so the boot
+     sequence doesn't error.  The state-management IIFEs above still
+     run and set data attributes / globals on load.
+     ─────────────────────────────────────────────────────────────── */
   function inject() {
-    if (isMobileView()) {
-      var sidebar = document.querySelector('.md-sidebar--primary');
-      if (!sidebar) return false;
-
-      var container = document.querySelector('.ub-sidebar-toggles');
-      if (!container) {
-        container = document.createElement('div');
-        container.className = 'ub-sidebar-toggles';
-        sidebar.appendChild(container);
-      }
-
-      TOGGLES.forEach(function (toggle) {
-        var existing = document.querySelector('.' + toggle.className);
-        if (existing && existing.hasAttribute('data-ub-live')) return;
-        if (existing) existing.parentNode.removeChild(existing);
-        container.appendChild(createButton(toggle));
-      });
-    } else {
-      var searchBtn = document.querySelector('label[for="__search"]');
-      if (!searchBtn) return false;
-
-      var container = document.querySelector('.ub-header-toggles');
-      if (!container) {
-        container = document.createElement('div');
-        container.className = 'ub-header-toggles';
-        searchBtn.parentNode.insertBefore(container, searchBtn.nextSibling);
-      }
-
-      TOGGLES.forEach(function (toggle) {
-        var existing = document.querySelector('.' + toggle.className);
-        if (existing && existing.hasAttribute('data-ub-live')) return;
-        if (existing) existing.parentNode.removeChild(existing);
-        container.appendChild(createButton(toggle));
-      });
-    }
-    return true;
+    return true;  // no-op — modal handles UI
   }
 
-  /* ── Resize: move all toggles between header / sidebar ─────── */
-  var wasMobile = isMobileView();
-  window.addEventListener('resize', function () {
-    var isMobile = isMobileView();
-    if (isMobile !== wasMobile) {
-      wasMobile = isMobile;
-      // Remove all toggle buttons, re-inject into correct container
-      TOGGLES.forEach(function (toggle) {
-        var btn = document.querySelector('.' + toggle.className);
-        if (btn) btn.parentNode.removeChild(btn);
-      });
-      inject();
-    }
-  });
+  /* ── Resize: no-op (modal handles responsive layout) ─────── */
 
   /* ── Listen for storage-toggle event (storage enabled/disabled) ── */
   window.addEventListener('storage-toggle', function (e) {
