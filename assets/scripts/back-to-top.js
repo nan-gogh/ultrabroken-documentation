@@ -13,6 +13,7 @@
   var fixedBtn = null;
   var footerBtn = null;
   var isVisible = false;
+  var wasNearBottom = false;
   var footerHeight = 0;
 
   /**
@@ -42,13 +43,23 @@
   function updateButtonVisibility() {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var shouldBeVisible = scrollTop > 300;
-
-    if (shouldBeVisible !== isVisible) {
-      isVisible = shouldBeVisible;
-    }
-
     var nearBottom = scrollTop + window.innerHeight >=
       document.documentElement.scrollHeight - footerHeight;
+
+    var visibilityChanged = shouldBeVisible !== isVisible;
+    var nearBottomChanged = nearBottom !== wasNearBottom;
+
+    isVisible = shouldBeVisible;
+    wasNearBottom = nearBottom;
+
+    // Suppress the fixed button's fade transition when only swapping
+    // between fixed/footer (button already visible) — instant positional swap.
+    // Keep the fade only for true appear/disappear (isVisible changing).
+    if (!visibilityChanged && nearBottomChanged) {
+      fixedBtn.classList.add('ub-no-transition');
+    } else {
+      fixedBtn.classList.remove('ub-no-transition');
+    }
 
     // Fixed button: visible when scrolled down AND not near footer
     fixedBtn.classList.toggle('visible', isVisible && !nearBottom);

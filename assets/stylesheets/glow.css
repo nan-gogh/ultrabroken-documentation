@@ -639,8 +639,7 @@ button.search-link:focus,
   justify-content: center !important;
   opacity: 0 !important;
   visibility: hidden !important;
-  /*transition: opacity 0.25s ease, visibility 0.25s ease !important;*/
-  transition: none !important;
+  transition: opacity 0.25s ease, visibility 0.25s ease !important;
   color: transparent !important;
   font-size: 0 !important;
 }
@@ -669,6 +668,10 @@ button.search-link:focus,
 .ub-back-to-top.visible {
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+.ub-back-to-top.ub-no-transition {
+  transition: none !important;
 }
 
 /* Nudge above footer: footer-anchored variant */
