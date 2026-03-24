@@ -679,6 +679,13 @@ button.search-link:focus,
   margin-bottom: 0.75rem !important;
 }
 
+/* Obsolete method tab labels - dimmed with strikethrough */
+.md-typeset .tabbed-labels label.ub-obsolete {
+  opacity: 0.45;
+  text-decoration: line-through;
+  text-decoration-color: var(--muted-text);
+}
+
 @media (max-width: 76.1875em) {
   /* Center social icons row on mobile (Material defaults to margin-left: auto → right-aligned) */
   /*.md-social {
