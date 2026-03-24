@@ -674,12 +674,13 @@ button.search-link:focus,
   transition: none !important;
 }
 
-/* Nudge above footer: footer-anchored variant */
+/* Nudge above footer: footer-anchored variant — instant, no fade */
 .ub-back-to-top--footer {
   position: absolute !important;
   bottom: 100% !important;
   right: 1.5rem !important;
   margin-bottom: 0.75rem !important;
+  transition: none !important;
 }
 
 /* Obsolete method tab labels - dimmed */
