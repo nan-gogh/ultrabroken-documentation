@@ -682,7 +682,7 @@ button.search-link:focus,
 /* Obsolete method tab labels - dimmed with strikethrough */
 .md-typeset .tabbed-labels label.ub-obsolete {
   opacity: 0.45;
-  text-decoration: line-through;
+  /*text-decoration: line-through;*/
   text-decoration-color: var(--muted-text);
 }
 
