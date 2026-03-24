@@ -11,13 +11,14 @@
   'use strict';
 
   // Configuration
-  var FOOTER_SWITCH_OFFSET = -19; // pixels above footer to trigger switch (increase to switch earlier)
+  var FOOTER_SWITCH_MARGIN = 12; // px gap kept between button and footer top when switching
 
   var fixedBtn = null;
   var footerBtn = null;
   var isVisible = false;
   var wasNearBottom = false;
   var footerHeight = 0;
+  var btnClearance = 0; // distance from viewport bottom to fixed button top
 
   /**
    * Create the back-to-top button element
@@ -46,8 +47,10 @@
   function updateButtonVisibility() {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var shouldBeVisible = scrollTop > 300;
+
+    // Switch when the footer would overlap the fixed button.
     var nearBottom = scrollTop + window.innerHeight >=
-      document.documentElement.scrollHeight - footerHeight - FOOTER_SWITCH_OFFSET;
+      document.documentElement.scrollHeight - footerHeight - btnClearance - FOOTER_SWITCH_MARGIN;
 
     var visibilityChanged = shouldBeVisible !== isVisible;
     var nearBottomChanged = nearBottom !== wasNearBottom;
@@ -76,6 +79,10 @@
   function measureFooter() {
     var footer = document.querySelector('.md-footer');
     footerHeight = footer ? footer.offsetHeight : 0;
+    if (fixedBtn) {
+      var style = getComputedStyle(fixedBtn);
+      btnClearance = fixedBtn.offsetHeight + parseFloat(style.bottom);
+    }
   }
 
   /**
