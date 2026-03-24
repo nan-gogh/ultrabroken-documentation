@@ -670,10 +670,12 @@ button.search-link:focus,
   visibility: visible !important;
 }
 
-/* Nudge above footer when it scrolls into view */
-.ub-back-to-top.above-footer {
-  bottom: var(--footer-offset, 4rem) !important;
-  transition: opacity 0.25s ease, visibility 0.25s ease, bottom 0.2s ease !important;
+/* Nudge above footer: footer-anchored variant */
+.ub-back-to-top--footer {
+  position: absolute !important;
+  bottom: 100% !important;
+  right: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
 }
 
 @media (max-width: 76.1875em) {

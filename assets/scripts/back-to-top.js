@@ -10,20 +10,19 @@
 (function () {
   'use strict';
 
-  var button = null;
+  var fixedBtn = null;
+  var footerBtn = null;
   var isVisible = false;
   var footerHeight = 0;
-  var MARGIN = 12;
 
   /**
    * Create the back-to-top button element
    */
-  function createButton() {
+  function createButton(className) {
     var btn = document.createElement('button');
-    btn.className = 'ub-back-to-top';
+    btn.className = className;
     btn.setAttribute('aria-label', 'Back to top');
     btn.setAttribute('type', 'button');
-    
     btn.addEventListener('click', scrollToTop);
     return btn;
   }
@@ -37,43 +36,48 @@
   }
 
   /**
-   * Update button visibility and position based on scroll.
-   * Nudges the button above the footer when near the bottom.
+   * Update button visibility based on scroll position.
+   * Crossfades between the fixed button and the footer-anchored button.
    */
   function updateButtonVisibility() {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var shouldBeVisible = scrollTop > 300;
 
-    if (shouldBeVisible && !isVisible) {
-      button.classList.add('visible');
-      isVisible = true;
-    } else if (!shouldBeVisible && isVisible) {
-      button.classList.remove('visible');
-      isVisible = false;
+    if (shouldBeVisible !== isVisible) {
+      isVisible = shouldBeVisible;
     }
 
-    var nearBottom = scrollTop + window.innerHeight >= document.documentElement.scrollHeight - footerHeight;
-    button.classList.toggle('above-footer', nearBottom);
+    var nearBottom = scrollTop + window.innerHeight >=
+      document.documentElement.scrollHeight - footerHeight;
+
+    // Fixed button: visible when scrolled down AND not near footer
+    fixedBtn.classList.toggle('visible', isVisible && !nearBottom);
+    // Footer button: visible when scrolled down AND near footer
+    footerBtn.classList.toggle('visible', isVisible && nearBottom);
   }
 
   /**
-   * Measure footer height (changes on resize / orientation)
+   * Cache footer height (recalculated on resize)
    */
   function measureFooter() {
     var footer = document.querySelector('.md-footer');
     footerHeight = footer ? footer.offsetHeight : 0;
-    if (button) {
-      button.style.setProperty('--footer-offset', (footerHeight + MARGIN) + 'px');
-    }
   }
 
   /**
    * Inject the button into the page
    */
   function inject() {
-    if (!button) {
-      button = createButton();
-      document.body.appendChild(button);
+    if (!fixedBtn) {
+      fixedBtn = createButton('ub-back-to-top');
+      document.body.appendChild(fixedBtn);
+    }
+    if (!footerBtn) {
+      var footer = document.querySelector('.md-footer');
+      if (footer) {
+        footerBtn = createButton('ub-back-to-top ub-back-to-top--footer');
+        footer.insertBefore(footerBtn, footer.firstChild);
+      }
     }
     updateButtonVisibility();
   }
