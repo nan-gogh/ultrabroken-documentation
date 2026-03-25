@@ -92,6 +92,12 @@
     var hA   = col.headAlpha  || HEAD_ALPHA;
     var tA   = col.trailAlpha || TRAIL_ALPHA;
 
+    // Clamp trail to distance traveled since spawn
+    if (col.startPos !== undefined) {
+      var traveled = Math.floor(col.startPos - col.pos);
+      if (traveled < tLen) tLen = Math.max(0, traveled);
+    }
+
     var oldHead = col.prevHead;
     col.prevHead = headRow;
 
@@ -156,6 +162,7 @@
     }
     c.el.style.left = (colIdx * COL_GAP) + 'px';
     c.pos        = startRow;
+    c.startPos   = startRow;
     c.speed      = rand(SPEED_MIN, SPEED_MAX);
     c.prevHead   = -999;
     c.headAlpha  = 0.30;
