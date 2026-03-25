@@ -1043,22 +1043,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Instructions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ohter-setup-variation" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ohter Setup / Variation
+        Properties
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1174,20 +1168,21 @@
 
 
 <hr />
-<p>title: "Glitch Name"
+<p>title: "<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Cloning"
 draft: true
 label: "DIC"
 versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "Switch 2"]
-credits: ["mulberry"]
+credits: ["Aergyl", "mulberry", "Squidwest"]
 date: "2026-01-16"
 description: "<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Eaten DI</a> passes a despawn attempt down to newly-fused main children, which can itself be interrupted to cause the "Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>" state."
-aliases: ["Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>"]
+aliases: ["Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>", "Ghost-<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>"]
 tags: ["item", "despawn", "fuse", "culling"]</p>
 <hr />
 <h1 id="di-cloning">DI Cloning</h1>
 <h2 id="summary">Summary</h2>
 <hr />
-<p><em>Mulberry - Jan 16, 2026</em></p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Eaten DI</a> equipment passes an Eaten death down to newly-fused children (<em>if</em> the main parent is <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>), which can itself be interrupted. This causes the "Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>" state, which has additional properties over the standard <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Eaten DI</a> state.</p>
+<p><em>Discovered by mulberry; Properties, methods, and optimizations found by Aergyl, mulberry, Squidwest - Jan 16, 2026</em></p>
 <h2 id="instructions">Instructions</h2>
 <hr />
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Full Fuse Methods</label><label for="__tabbed_1_2">Pseudo Fuse Methods</label></div>
@@ -1267,11 +1262,18 @@ tags: ["item", "despawn", "fuse", "culling"]</p>
 </div>
 </div>
 </div>
-<h3 id="ohter-setup-variation">Ohter Setup / Variation</h3>
-<ol>
-<li>Step one</li>
-<li>Step two</li>
-</ol>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>Retains all(?) properties of non-ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
+<li>Has no collision, gravity, or ability to move on its own once detached from its "model-bind" parent</li>
+<li>So long as it does not have non-persistent parents, it is "Auto-slotted" and will travel through warps and loads when dropped in the world</li>
+<li>Passes this persistence down to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> children</li>
+<li>Can be made persistently invisible with certain processes and passes this invisibility down to anything that attempts to fuse to it</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Take care!</p>
+<p>Warping causes a "sleep" on equipped items, which will undo this state! You can <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> it to take it with you safely.</p>
+</div>
 <h2 id="notes">Notes</h2>
 <hr />
 <h3 id="remarks">Remarks</h3>
