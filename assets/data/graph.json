@@ -1543,8 +1543,8 @@
       "label": "TD"
     },
     {
-      "id": "wiki/glitchcraft/SCP/",
-      "uid": "SCP",
+      "id": "wiki/glitchcraft/D0X/",
+      "uid": "D0X",
       "name": "Glitch Test",
       "label": "TST"
     },
@@ -1940,11 +1940,11 @@
     },
     {
       "source": "wiki/glitchcraft/0T9/",
-      "target": "wiki/glitchcraft/GIO/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/0T9/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/GIO/"
     },
     {
       "source": "wiki/glitchcraft/0UY/",
@@ -2024,15 +2024,15 @@
     },
     {
       "source": "wiki/glitchcraft/1TZ/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
+    },
+    {
+      "source": "wiki/glitchcraft/1ZI/",
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/1ZI/",
       "target": "wiki/glitchcraft/JNU/"
-    },
-    {
-      "source": "wiki/glitchcraft/1ZI/",
-      "target": "wiki/glitchcraft/SCP/"
     },
     {
       "source": "wiki/glitchcraft/2C6/",
@@ -2096,7 +2096,7 @@
     },
     {
       "source": "wiki/glitchcraft/46A/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/4BI/",
@@ -2104,11 +2104,11 @@
     },
     {
       "source": "wiki/glitchcraft/4R4/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/51R/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/51R/",
@@ -2120,15 +2120,15 @@
     },
     {
       "source": "wiki/glitchcraft/5BC/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
+    },
+    {
+      "source": "wiki/glitchcraft/5DZ/",
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/5DZ/",
       "target": "wiki/glitchcraft/MCM/"
-    },
-    {
-      "source": "wiki/glitchcraft/5DZ/",
-      "target": "wiki/glitchcraft/SCP/"
     },
     {
       "source": "wiki/glitchcraft/5RG/",
@@ -2272,11 +2272,11 @@
     },
     {
       "source": "wiki/glitchcraft/7DQ/",
-      "target": "wiki/glitchcraft/DHQ/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/7DQ/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/DHQ/"
     },
     {
       "source": "wiki/glitchcraft/7F7/",
@@ -2344,7 +2344,7 @@
     },
     {
       "source": "wiki/glitchcraft/7P8/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/7S4/",
@@ -2353,6 +2353,10 @@
     {
       "source": "wiki/glitchcraft/7S4/",
       "target": "wiki/glitchcraft/CVH/"
+    },
+    {
+      "source": "wiki/glitchcraft/7S4/",
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/7S4/",
@@ -2365,10 +2369,6 @@
     {
       "source": "wiki/glitchcraft/7S4/",
       "target": "wiki/glitchcraft/MCM/"
-    },
-    {
-      "source": "wiki/glitchcraft/7S4/",
-      "target": "wiki/glitchcraft/SCP/"
     },
     {
       "source": "wiki/glitchcraft/7VW/",
@@ -2404,7 +2404,7 @@
     },
     {
       "source": "wiki/glitchcraft/80I/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/80I/",
@@ -2456,11 +2456,11 @@
     },
     {
       "source": "wiki/glitchcraft/8MP/",
-      "target": "wiki/glitchcraft/K4F/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/8MP/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/K4F/"
     },
     {
       "source": "wiki/glitchcraft/8QH/",
@@ -2468,11 +2468,11 @@
     },
     {
       "source": "wiki/glitchcraft/8QH/",
-      "target": "wiki/glitchcraft/MCM/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/8QH/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/MCM/"
     },
     {
       "source": "wiki/glitchcraft/8QH/",
@@ -2508,11 +2508,11 @@
     },
     {
       "source": "wiki/glitchcraft/93G/",
-      "target": "wiki/glitchcraft/MW4/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/93G/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/MW4/"
     },
     {
       "source": "wiki/glitchcraft/94V/",
@@ -2520,11 +2520,11 @@
     },
     {
       "source": "wiki/glitchcraft/9HN/",
-      "target": "wiki/glitchcraft/MCM/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/9HN/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/MCM/"
     },
     {
       "source": "wiki/glitchcraft/9R0/",
@@ -2584,7 +2584,7 @@
     },
     {
       "source": "wiki/glitchcraft/A17/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/A4A/",
@@ -2688,6 +2688,10 @@
     },
     {
       "source": "wiki/glitchcraft/BSN/",
+      "target": "wiki/glitchcraft/D0X/"
+    },
+    {
+      "source": "wiki/glitchcraft/BSN/",
       "target": "wiki/glitchcraft/JDP/"
     },
     {
@@ -2697,10 +2701,6 @@
     {
       "source": "wiki/glitchcraft/BSN/",
       "target": "wiki/glitchcraft/MG1/"
-    },
-    {
-      "source": "wiki/glitchcraft/BSN/",
-      "target": "wiki/glitchcraft/SCP/"
     },
     {
       "source": "wiki/glitchcraft/BVN/",
@@ -2752,15 +2752,15 @@
     },
     {
       "source": "wiki/glitchcraft/DDB/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
+    },
+    {
+      "source": "wiki/glitchcraft/DGS/",
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/DGS/",
       "target": "wiki/glitchcraft/QVO/"
-    },
-    {
-      "source": "wiki/glitchcraft/DGS/",
-      "target": "wiki/glitchcraft/SCP/"
     },
     {
       "source": "wiki/glitchcraft/DHQ/",
@@ -2832,11 +2832,11 @@
     },
     {
       "source": "wiki/glitchcraft/DN4/",
-      "target": "wiki/glitchcraft/MCM/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/DN4/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/MCM/"
     },
     {
       "source": "wiki/glitchcraft/DNU/",
@@ -2948,11 +2948,11 @@
     },
     {
       "source": "wiki/glitchcraft/F4G/",
-      "target": "wiki/glitchcraft/FD4/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/F4G/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/FD4/"
     },
     {
       "source": "wiki/glitchcraft/F51/",
@@ -3032,7 +3032,11 @@
     },
     {
       "source": "wiki/glitchcraft/GIO/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
+    },
+    {
+      "source": "wiki/glitchcraft/GJ2/",
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/GJ2/",
@@ -3045,10 +3049,6 @@
     {
       "source": "wiki/glitchcraft/GJ2/",
       "target": "wiki/glitchcraft/MCM/"
-    },
-    {
-      "source": "wiki/glitchcraft/GJ2/",
-      "target": "wiki/glitchcraft/SCP/"
     },
     {
       "source": "wiki/glitchcraft/GLW/",
@@ -3192,7 +3192,7 @@
     },
     {
       "source": "wiki/glitchcraft/IHC/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/IK1/",
@@ -3292,7 +3292,7 @@
     },
     {
       "source": "wiki/glitchcraft/JMU/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/JNU/",
@@ -3336,6 +3336,10 @@
     },
     {
       "source": "wiki/glitchcraft/K4F/",
+      "target": "wiki/glitchcraft/D0X/"
+    },
+    {
+      "source": "wiki/glitchcraft/K4F/",
       "target": "wiki/glitchcraft/J43/"
     },
     {
@@ -3348,27 +3352,23 @@
     },
     {
       "source": "wiki/glitchcraft/K4F/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/WWV/"
     },
     {
-      "source": "wiki/glitchcraft/K4F/",
-      "target": "wiki/glitchcraft/WWV/"
+      "source": "wiki/glitchcraft/K7J/",
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/K7J/",
       "target": "wiki/glitchcraft/QVO/"
     },
     {
-      "source": "wiki/glitchcraft/K7J/",
-      "target": "wiki/glitchcraft/SCP/"
+      "source": "wiki/glitchcraft/KFV/",
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/KFV/",
       "target": "wiki/glitchcraft/LMB/"
-    },
-    {
-      "source": "wiki/glitchcraft/KFV/",
-      "target": "wiki/glitchcraft/SCP/"
     },
     {
       "source": "wiki/glitchcraft/KID/",
@@ -3408,7 +3408,7 @@
     },
     {
       "source": "wiki/glitchcraft/KVB/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/KXM/",
@@ -3472,11 +3472,11 @@
     },
     {
       "source": "wiki/glitchcraft/L54/",
-      "target": "wiki/glitchcraft/K4F/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/L54/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/K4F/"
     },
     {
       "source": "wiki/glitchcraft/LJH/",
@@ -3624,6 +3624,10 @@
     },
     {
       "source": "wiki/glitchcraft/MG1/",
+      "target": "wiki/glitchcraft/D0X/"
+    },
+    {
+      "source": "wiki/glitchcraft/MG1/",
       "target": "wiki/glitchcraft/GDL/"
     },
     {
@@ -3633,10 +3637,6 @@
     {
       "source": "wiki/glitchcraft/MG1/",
       "target": "wiki/glitchcraft/K4F/"
-    },
-    {
-      "source": "wiki/glitchcraft/MG1/",
-      "target": "wiki/glitchcraft/SCP/"
     },
     {
       "source": "wiki/glitchcraft/MLG/",
@@ -3748,11 +3748,11 @@
     },
     {
       "source": "wiki/glitchcraft/NU6/",
-      "target": "wiki/glitchcraft/GM7/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/NU6/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/GM7/"
     },
     {
       "source": "wiki/glitchcraft/NU6/",
@@ -3780,7 +3780,7 @@
     },
     {
       "source": "wiki/glitchcraft/O9Q/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/OII/",
@@ -3789,6 +3789,10 @@
     {
       "source": "wiki/glitchcraft/OJU/",
       "target": "wiki/glitchcraft/BOF/"
+    },
+    {
+      "source": "wiki/glitchcraft/OJU/",
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/OJU/",
@@ -3803,16 +3807,12 @@
       "target": "wiki/glitchcraft/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/OJU/",
-      "target": "wiki/glitchcraft/SCP/"
-    },
-    {
       "source": "wiki/glitchcraft/OL6/",
       "target": "wiki/glitchcraft/K4F/"
     },
     {
       "source": "wiki/glitchcraft/OL9/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/OL9/",
@@ -3896,7 +3896,7 @@
     },
     {
       "source": "wiki/glitchcraft/PEY/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/PII/",
@@ -4000,7 +4000,7 @@
     },
     {
       "source": "wiki/glitchcraft/S8G/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/S8G/",
@@ -4044,15 +4044,15 @@
     },
     {
       "source": "wiki/glitchcraft/TC3/",
-      "target": "wiki/glitchcraft/MCM/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/TC3/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/MCM/"
     },
     {
       "source": "wiki/glitchcraft/TN5/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/TRL/",
@@ -4112,11 +4112,11 @@
     },
     {
       "source": "wiki/glitchcraft/V84/",
-      "target": "wiki/glitchcraft/MCM/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/V84/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/MCM/"
     },
     {
       "source": "wiki/glitchcraft/V84/",
@@ -4164,11 +4164,11 @@
     },
     {
       "source": "wiki/glitchcraft/WBZ/",
-      "target": "wiki/glitchcraft/J5Q/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/WBZ/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/J5Q/"
     },
     {
       "source": "wiki/glitchcraft/WEI/",
@@ -4176,11 +4176,11 @@
     },
     {
       "source": "wiki/glitchcraft/WFM/",
-      "target": "wiki/glitchcraft/E75/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/WFM/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/E75/"
     },
     {
       "source": "wiki/glitchcraft/WLM/",
@@ -4268,11 +4268,11 @@
     },
     {
       "source": "wiki/glitchcraft/X5Y/",
-      "target": "wiki/glitchcraft/K4F/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/X5Y/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/K4F/"
     },
     {
       "source": "wiki/glitchcraft/X9I/",
@@ -4280,7 +4280,11 @@
     },
     {
       "source": "wiki/glitchcraft/XH0/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/D0X/"
+    },
+    {
+      "source": "wiki/glitchcraft/XN2/",
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/XN2/",
@@ -4289,10 +4293,6 @@
     {
       "source": "wiki/glitchcraft/XN2/",
       "target": "wiki/glitchcraft/M7L/"
-    },
-    {
-      "source": "wiki/glitchcraft/XN2/",
-      "target": "wiki/glitchcraft/SCP/"
     },
     {
       "source": "wiki/glitchcraft/XTY/",
@@ -4316,11 +4316,11 @@
     },
     {
       "source": "wiki/glitchcraft/YIS/",
-      "target": "wiki/glitchcraft/OT8/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/YIS/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/OT8/"
     },
     {
       "source": "wiki/glitchcraft/YK3/",
@@ -4392,11 +4392,11 @@
     },
     {
       "source": "wiki/glitchcraft/ZJF/",
-      "target": "wiki/glitchcraft/JMU/"
+      "target": "wiki/glitchcraft/D0X/"
     },
     {
       "source": "wiki/glitchcraft/ZJF/",
-      "target": "wiki/glitchcraft/SCP/"
+      "target": "wiki/glitchcraft/JMU/"
     },
     {
       "source": "wiki/glitchcraft/ZTD/",

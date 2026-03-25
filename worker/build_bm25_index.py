@@ -31,9 +31,12 @@ produce embeddings — the Worker uses BM25 lexical retrieval over this index.
 from pathlib import Path
 from collections import Counter
 import argparse
+import hashlib
 import re
 import json
 import gzip
+import string
+import time
 
 
 CHUNK_SIZE_WORDS = 400
@@ -345,7 +348,6 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
     tags_set: set[str] = set()
     
     parsed_files = []
-    existing_uids = set()
 
     for p in sorted(glitchcraft_dir.glob('*.md')):
         if p.stem in _SKIP:
@@ -354,73 +356,10 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
         title = fm.get('title', '')
         if not title:
             continue  # skip pages without a title (index/meta pages)
-            
-        uid = fm.get('uid')
-        if uid:
-            existing_uids.add(uid)
-            
         parsed_files.append((p, fm, title))
 
-    import time
-    import hashlib
-    import string
-    
     for p, fm, title in parsed_files:
         uid = fm.get('uid')
-        if not uid:
-            # Use nanoseconds for unique seeds
-            seed_str = str(time.time_ns())
-            hash_hex = hashlib.md5(seed_str.encode()).hexdigest()
-            charset = string.ascii_uppercase + string.digits
-            
-            # Convert pairs of hex chars (0-255) and mod into charset (0-35)
-            # This ensures good distribution across letters AND digits
-            uid = ''.join(charset[int(hash_hex[i:i+2], 16) % 36] for i in range(0, 6, 2))
-            
-            attempts = 0
-            while uid in existing_uids and attempts < 1000:
-                seed_str = f"{time.time_ns()}{attempts}"
-                hash_hex = hashlib.md5(seed_str.encode()).hexdigest()
-                uid = ''.join(charset[int(hash_hex[i:i+2], 16) % 36] for i in range(0, 6, 2))
-                attempts += 1
-                
-            existing_uids.add(uid)
-            
-            try:
-                content = p.read_text(encoding='utf-8-sig')
-                fm_match = re.search(r'^---\n(.*?)\n---\n', content, re.DOTALL)
-                if fm_match:
-                    frontmatter = fm_match.group(1)
-                    new_frontmatter = re.sub(
-                        r'(title:.*?\n)',
-                        f'\\1uid: "{uid}"\n',
-                        frontmatter,
-                        count=1
-                    )
-                    if new_frontmatter != frontmatter and 'uid:' not in frontmatter:
-                        new_content = content.replace(
-                            f'---\n{frontmatter}\n---',
-                            f'---\n{new_frontmatter}\n---'
-                        )
-                        
-                        # Also update the H1 title to include label and uid
-                        label = fm.get('label', '')
-                        if label:
-                            body_after_fm = new_content[fm_match.end():]
-                            h1_match = re.search(r'^#\s+(.+?)\s*\n', body_after_fm, re.MULTILINE)
-                            if h1_match:
-                                old_h1 = h1_match.group(0)
-                                title_text = h1_match.group(1)
-                                # Remove any existing backticks if present
-                                title_clean = re.sub(r'\s+`.*`', '', title_text)
-                                new_h1 = f"# {title_clean} `{label}` `{uid}`\n"
-                                new_content = new_content.replace(old_h1, new_h1, 1)
-                        
-                        p.write_text(new_content, encoding='utf-8-sig')
-                        print(f"Generated new UID {uid} for {p.name}")
-            except Exception as e:
-                print(f"Warning: failed to write UID {uid} to {p.name}: {e}")
-
         credits_list = [c.strip() for c in fm.get('credits', []) if c.strip()]
         for name in credits_list:
             all_credits[name] += 1
@@ -445,6 +384,78 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
     print('WROTE', out)
     return entries, all_credits, tags_set
 
+
+
+def generate_uids() -> set[str]:
+    """Scan glitchcraft pages and generate UIDs for any files missing one.
+
+    Writes the ``uid:`` field directly into the source markdown frontmatter
+    (inserted immediately after ``title:``).
+
+    Returns the set of all UIDs (existing + newly generated) so callers
+    can rely on every file having a UID after this runs.
+    """
+    _SKIP = {'_glitchcraft-grimoire'}
+    glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
+
+    parsed_files = []
+    existing_uids: set[str] = set()
+
+    for p in sorted(glitchcraft_dir.glob('*.md')):
+        if p.stem in _SKIP:
+            continue
+        fm = extract_frontmatter(p)
+        title = fm.get('title', '')
+        if not title:
+            continue
+        uid = fm.get('uid')
+        if uid:
+            existing_uids.add(uid)
+        parsed_files.append((p, fm, title))
+
+    charset = string.ascii_uppercase + string.digits
+
+    for p, fm, title in parsed_files:
+        uid = fm.get('uid')
+        if uid:
+            continue  # already has a UID
+
+        # Generate a random 3-char alphanumeric UID
+        seed_str = str(time.time_ns())
+        hash_hex = hashlib.md5(seed_str.encode()).hexdigest()
+        uid = ''.join(charset[int(hash_hex[i:i+2], 16) % 36] for i in range(0, 6, 2))
+
+        attempts = 0
+        while uid in existing_uids and attempts < 1000:
+            seed_str = f"{time.time_ns()}{attempts}"
+            hash_hex = hashlib.md5(seed_str.encode()).hexdigest()
+            uid = ''.join(charset[int(hash_hex[i:i+2], 16) % 36] for i in range(0, 6, 2))
+            attempts += 1
+
+        existing_uids.add(uid)
+
+        try:
+            content = p.read_text(encoding='utf-8-sig')
+            fm_match = re.search(r'^---\n(.*?)\n---\n', content, re.DOTALL)
+            if fm_match:
+                frontmatter = fm_match.group(1)
+                new_frontmatter = re.sub(
+                    r'(title:.*?\n)',
+                    f'\\1uid: "{uid}"\n',
+                    frontmatter,
+                    count=1
+                )
+                if new_frontmatter != frontmatter and 'uid:' not in frontmatter:
+                    new_content = content.replace(
+                        f'---\n{frontmatter}\n---',
+                        f'---\n{new_frontmatter}\n---'
+                    )
+                    p.write_text(new_content, encoding='utf-8-sig')
+                    print(f"Generated new UID {uid} for {p.name}")
+        except Exception as e:
+            print(f"Warning: failed to write UID {uid} to {p.name}: {e}")
+
+    return existing_uids
 
 
 _CONTRIBUTORS_JSON = ROOT / 'docs' / 'assets' / 'data' / 'credits.json'
@@ -883,12 +894,20 @@ def main():
                    help='Skip generating glossary.json')
     p.add_argument('--no-graph', dest='graph', action='store_false',
                    help='Skip generating graph.json')
+    p.add_argument('--uid-only', action='store_true',
+                   help='Only generate UIDs for new glitchcraft pages, then exit')
     p.add_argument(
         '--graph-output',
         default=None,
         help='If given, also copy the updated graph.json to this path (e.g. site/assets/data/graph.json)',
     )
     args = p.parse_args()
+
+    # --uid-only: generate missing UIDs and exit without building anything else
+    if args.uid_only:
+        generate_uids()
+        return
+
     # allow overriding which docs subtree to index (default 'docs')
     global DOCS
     DOCS = ROOT / args.docs_dir
