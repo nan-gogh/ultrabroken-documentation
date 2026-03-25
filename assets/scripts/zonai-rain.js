@@ -48,6 +48,7 @@
   /* ── State ─────────────────────────────────────────────────────── */
   var container = null;
   var columns   = [];         // { el, spans[], rows, speed, pos, prevHead }
+  var brightDrops = [];       // overlay columns spawned by clicks
   var rafId     = null;
   var lastTime  = 0;
   var running   = false;
@@ -82,9 +83,14 @@
   }
 
   /* ── Render one column: update only the spans that changed ─────── */
+  /* Per-column overrides: col.headAlpha, col.trailAlpha, col.trailLen */
   function renderColumn(col) {
     var headRow = Math.floor(col.pos);
     if (headRow === col.prevHead) return;
+
+    var tLen = col.trailLen || TRAIL_LEN;
+    var hA   = col.headAlpha  || HEAD_ALPHA;
+    var tA   = col.trailAlpha || TRAIL_ALPHA;
 
     var oldHead = col.prevHead;
     col.prevHead = headRow;
@@ -97,18 +103,18 @@
       hi = col.rows - 1;
     } else {
       lo = Math.max(0, Math.min(oldHead, headRow));
-      hi = Math.min(col.rows - 1, Math.max(oldHead, headRow) + TRAIL_LEN + 1);
+      hi = Math.min(col.rows - 1, Math.max(oldHead, headRow) + tLen + 1);
     }
 
     for (var i = lo; i <= hi; i++) {
       var dist = i - headRow;           // how far row i is behind the head (below it)
       var a;
-      if (dist < 0 || dist > TRAIL_LEN) {
+      if (dist < 0 || dist > tLen) {
         a = 0;
       } else if (dist === 0) {
-        a = HEAD_ALPHA;
+        a = hA;
       } else {
-        a = TRAIL_ALPHA * (1 - dist / TRAIL_LEN);
+        a = tA * (1 - dist / tLen);
       }
       col.spans[i].style.opacity = a;
     }
@@ -123,6 +129,37 @@
       col.spans[j].textContent = pickChar();
       col.spans[j].style.opacity = '0';
     }
+  }
+
+  /* ── Click-spawned bright drops ────────────────────────────────── */
+  function removeBrightDrops() {
+    for (var i = brightDrops.length - 1; i >= 0; i--) {
+      var bd = brightDrops[i];
+      if (bd.el.parentNode) bd.el.parentNode.removeChild(bd.el);
+    }
+    brightDrops.length = 0;
+  }
+
+  function spawnClickDrop(e) {
+    if (!running || !container) return;
+
+    var colIdx = Math.round(e.clientX / COL_GAP);
+    if (colIdx < 0 || colIdx >= columns.length) return;
+
+    var rows = computeRows();
+    var startRow = Math.round(e.clientY / CELL_H);
+
+    var c = createColumn(rows);
+    c.el.style.left = (colIdx * COL_GAP) + 'px';
+    c.pos        = startRow;
+    c.speed      = rand(SPEED_MIN, SPEED_MAX);
+    c.prevHead   = -999;
+    c.headAlpha  = 0.30;
+    c.trailAlpha = 0.25;
+    c.trailLen   = 10;
+    container.appendChild(c.el);
+
+    brightDrops.push(c);
   }
 
   /* ── Animation loop ────────────────────────────────────────────── */
@@ -142,6 +179,17 @@
       }
 
       renderColumn(col);
+    }
+
+    for (var b = brightDrops.length - 1; b >= 0; b--) {
+      var bd = brightDrops[b];
+      bd.pos -= bd.speed * dt;
+      if (bd.pos < -(bd.trailLen || TRAIL_LEN)) {
+        if (bd.el.parentNode) bd.el.parentNode.removeChild(bd.el);
+        brightDrops.splice(b, 1);
+        continue;
+      }
+      renderColumn(bd);
     }
 
     rafId = requestAnimationFrame(tick);
@@ -178,6 +226,7 @@
   function stop() {
     running = false;
     if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    removeBrightDrops();
   }
 
   /* ── Mode switching ────────────────────────────────────────────── */
@@ -195,6 +244,7 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
       readCSSVars();
+      removeBrightDrops();
       while (columns.length) {
         var r = columns.pop();
         if (r.el.parentNode) r.el.parentNode.removeChild(r.el);
@@ -221,6 +271,8 @@
     });
 
     window.addEventListener('resize', onResize);
+
+    document.addEventListener('click', spawnClickDrop);
   }
 
   if (document.body) {
