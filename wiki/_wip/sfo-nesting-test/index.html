@@ -1151,7 +1151,7 @@
 <hr />
 <p>By creating 600-700 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> connections, the game will be overloaded and unable to form any new dependencies. This causes every actor to act <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Overloaded, and every equipment to act Fuse Overloaded.</p>
 <p><em>Discovered by mulberry, Aergyl; Optimizations by Jordan, MandelbrotChaylay, mulberry, Squidwest</em></p>
-<p>Todo:</p>
+<p>Page Todos:</p>
 <ul>
 <li>Find a good, stable minigame or two to recommend (minecart land pre-cart entry seems good, provisionally)</li>
 <li>Recheck duplication method(s)</li>
@@ -1161,6 +1161,7 @@
 <li>write everything after the methods :/</li>
 <li>Run the pre-<code>1.2.0</code> aerophasing setup by someone who actually plays an old patch</li>
 <li>Make/update all the pages necessary to make all the steps you abbreviated as pretend page links actually viable</li>
+<li>Figure out why version-tagging the methods erases the entire instructions section 😭</li>
 </ul>
 <h2 id="forewarnings-and-tips">Forewarnings and Tips</h2>
 <hr />
@@ -1173,7 +1174,7 @@
 <p>Due to the massive number of connections required, every method is relatively complex. Before you begin, be sure to read the steps carefully, and be sure you understand the glitches that go into your chosen method.</p>
 </div>
 <div class="admonition info">
-<p class="admonition-title">Local or persistent?</p>
+<p class="admonition-title">Method Types</p>
 <p>There are three types of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> method:</p>
 <ul>
 <li>Local methods are usually simpler and easier, but cannot be used for some cases (eg Zelda's Torch) because they will be destroyed on warp (including Panic Blood Moons), load, or excessive distance.</li>
@@ -1210,11 +1211,11 @@
 <li>A1 Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> normal Shield A4</li>
 <li>Equip A2, [<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Smuggle] A3, and [Overload Pickup] A4</li>
 <li>A2-A4 [Overload Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>] 19 Weapons C1-C19</li>
-<li><em>Fail-Drop</em> A4</li>
+<li><strong>Fail-Drop</strong> A4</li>
 <li>A3 &amp; A4 make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon C20</li>
-<li>Drop A4</li>
+<li><strong>Drop</strong> A4</li>
 <li>Re-smuggle A3, equip a random shield, and fuse something disposable to it. This will leave A4 as the sole <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent of C20</li>
-<li>[Throw purgatory] all C</li>
+<li>Throw purgatory all C: smuggle <em>one</em> C, equip and throw any random weapon, and unequip that weapon, then repeat</li>
 <li>Recall-Lock A4, discarding A2 and A3 through the load</li>
 </ol>
 <p>Part 2: Performing and undoing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
@@ -1238,14 +1239,24 @@
 <details class="example">
 <summary>Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[B1] --&gt;|FE| B[B2]
-    C[A2] --&gt;|DI| D[A3]
-    E[A1] --&gt;|DI| D
-    E --&gt; |FE| F[A4]
-    D --&gt; |Batch DI| G["C1-20"]
-    F --&gt; |Batch DI| G
-    G --&gt; |Batch DI| H["D1-30"]
-    B --&gt; |Batch DI| H</code></pre>
+
+    B1[B1]
+    B2[B2]
+    A1[A1]
+    A2[A2]
+    A3[A3]
+    A4[A4]
+    PARENTS["Purgatory Parents&lt;br/&gt;(C1-C20)"]
+    CHILDREN["DI Children&lt;br/&gt;(D1-D30"]
+
+    B1 --&gt;|FE| B2
+    A2 --&gt;|DI| A3
+    A1 --&gt;|DI| A3
+    A1 --&gt;|FE| A4
+    A3 --&gt;|Batch DI| PARENTS
+    A4 --&gt;|Batch DI| PARENTS
+    PARENTS --&gt;|Batch DI| CHILDREN
+    B2 --&gt;|Batch DI| CHILDREN</code></pre>
 </details>
 </details>
 <details class="abstract">
@@ -1270,11 +1281,11 @@
 <li>A1 Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> normal Shield A4</li>
 <li>Equip A2, [<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Smuggle] A3, and [Overload Pickup] A4</li>
 <li>A2-A4 [Overload Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>] 19 Weapons C1-C19</li>
-<li><em>Fail-Drop</em> A4</li>
+<li><strong>Fail-Drop</strong> A4</li>
 <li>A3 &amp; A4 make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon C20</li>
-<li>Drop A4</li>
+<li><strong>Drop</strong> A4</li>
 <li>Re-smuggle A3, equip a random shield, and fuse something disposable to it. This will leave A4 as the sole <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent of C20</li>
-<li>[Throw purgatory] all C</li>
+<li>Throw purgatory all C: smuggle <em>one</em> C, equip and throw any random weapon, and unequip that weapon, then repeat</li>
 <li>Recall-Lock A4, discarding A2 and A3 through the load</li>
 </ol>
 <p>Part 2: Performing and undoing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
@@ -1326,11 +1337,11 @@
 <li>A1 Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> normal Shield A4</li>
 <li>Equip A2, [<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Smuggle] A3, and [Overload Pickup] A4</li>
 <li>A2-A4 [Overload Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>] 19 Weapons C1-C19</li>
-<li><em>Fail-Drop</em> A4</li>
+<li><strong>Fail-Drop</strong> A4</li>
 <li>A3 &amp; A4 make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon C20</li>
-<li>Drop A4</li>
+<li><strong>Drop</strong> A4</li>
 <li>Re-smuggle A3, equip a random shield, and fuse something disposable to it. This will leave A4 as the sole <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent of C20</li>
-<li>[Throw purgatory] all C</li>
+<li>Throw purgatory all C: smuggle <em>one</em> C, equip and throw any random weapon, and unequip that weapon, then repeat</li>
 <li>Recall-Lock A4, discarding A2 and A3 through the load</li>
 </ol>
 <p>Part 2: Performing and undoing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
@@ -1369,7 +1380,7 @@
 <p>This is a <strong>Local</strong> method that makes use of a specially-prepared <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment "multitool". to maximize portability and in-the-moment speed. It is ideal for duplication, and can be used for Mineru's Arm by an older route, but cannot be used for Zelda's Torch.</p>
 <p>Prepare:</p>
 <ul>
-<li>The "Multitool Loadout" (should I make a page for this, then? I don't want to uncritically write all the steps for it when I've never made it)</li>
+<li>The "Multitool Loadout" (see discord link below (for now))</li>
 <li>Up to 21 materials</li>
 <li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon to dupe with</li>
 </ul>
@@ -1392,6 +1403,17 @@
 <li>Destroy <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> as above before ending the minigame/exiting the shrine</li>
 <li>Save the game/get an autosave</li>
 </ol>
+<details class="example">
+<summary>Diagram</summary>
+<p>```mermaid
+graph <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/DGS/" class="glitch-autolink" title="TD" target="_blank" rel="noopener noreferrer">TD</a>
+    MULTITOOL["Multitool's 31<br/>Purgatory Weapons"]
+    PARENTS["Normal Parents<br/>(A1-A21)"]
+    CHILDREN["<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Children"<br/>(B1-B21)"]</p>
+<div class="highlight"><pre><span></span><code>MULTITOOL --&gt;|Fuse (becomes cf)| CHILDREN
+PARENTS --&gt;|Fuse (stays attached)| CHILDREN
+</code></pre></div>
+</details>
 </details>
 <details class="abstract">
 <summary>For Mineru's Arm (Local <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> variant)</summary>
@@ -1420,6 +1442,17 @@
 <li>Destroy the fuse on Mineru's Arm, this will prevent it from crashing the game when used as a faildrop wall while docked</li>
 <li>Save the game/Get an autosave</li>
 </ol>
+<details class="example">
+<summary>Diagram</summary>
+<p>```mermaid
+graph <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/DGS/" class="glitch-autolink" title="TD" target="_blank" rel="noopener noreferrer">TD</a>
+    MULTITOOL["Multitool's<br/>Purgatory Weapons"]
+    PARENTS["Normal Parents<br/>(A1-A21)"]
+    CHILDREN["<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Children"<br/>(B1-B21)"]</p>
+<div class="highlight"><pre><span></span><code>MULTITOOL --&gt;|Fuse (becomes cf)| CHILDREN
+PARENTS --&gt;|Fuse (stays attached)| CHILDREN
+</code></pre></div>
+</details>
 </details>
 <details class="failure">
 <summary>No, it really can't</summary>
@@ -1532,7 +1565,7 @@
     D --&gt;|Take in| E</code></pre>
 </details>
 </details>
-<p><em>Method by Aergyl and mulberry</em></p>
+<p><em>Method by Aergyl and mulberry</em> (needs double-checked; this was a little before my time)</p>
 </div>
 <div class="tabbed-block">
 <p>This is a <strong>Permanent</strong> method with minimal additional glitches required. It is acceptable for Zelda's Torch and Mineru's Arm. It <em>can</em> be used for duplication, but is needlessly complex for this usage; Use Method 3 instead.</p>
@@ -1590,7 +1623,8 @@
     C --&gt;|cf| D[Shields D1-D30]
     A --&gt;|Permacull| E{Persists}
     C --&gt;|Permacull| E
-    D --&gt;|Permacull| E</code></pre>
+    D --&gt;|Permacull| E
+    B --&gt;|Indirect Permacull| E</code></pre>
 </details>
 </details>
 <details class="abstract">
@@ -1649,7 +1683,8 @@
     C --&gt;|cf| D[Shields D1-D30]
     A --&gt;|Permacull| E{Permanent}
     C --&gt;|Permacull| E
-    D --&gt;|Permacull| E</code></pre>
+    D --&gt;|Permacull| E
+    B --&gt;|Indirect Permacull| E</code></pre>
 </details>
 </details>
 </div>
