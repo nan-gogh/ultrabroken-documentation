@@ -1166,10 +1166,11 @@
     "uid": "WEI",
     "label": "HSD",
     "aliases": [
-      "hold-storage-duplication"
+      "hold-storage-duplication",
+      "minus dupe"
     ],
     "path": "wiki/glitchcraft/WEI/",
-    "filename": "hold-storage-duplication-also-known-as-minus-dupe.md"
+    "filename": "hold-storage-duplication.md"
   },
   {
     "name": "Hold Storage",
