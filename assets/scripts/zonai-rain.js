@@ -146,10 +146,14 @@
     var colIdx = Math.round(e.clientX / COL_GAP);
     if (colIdx < 0 || colIdx >= columns.length) return;
 
-    var rows = computeRows();
     var startRow = Math.round(e.clientY / CELL_H);
+    var src = columns[colIdx];
 
-    var c = createColumn(rows);
+    var c = createColumn(src.rows);
+    // Clone characters from the background column
+    for (var i = 0; i < src.spans.length; i++) {
+      c.spans[i].textContent = src.spans[i].textContent;
+    }
     c.el.style.left = (colIdx * COL_GAP) + 'px';
     c.pos        = startRow;
     c.speed      = rand(SPEED_MIN, SPEED_MAX);
