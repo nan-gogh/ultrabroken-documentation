@@ -2607,6 +2607,19 @@
     "filename": "temporary-devices.md"
   },
   {
+    "name": "Glitch Test",
+    "uid": "SCP",
+    "label": "TST",
+    "aliases": [
+      "glitch",
+      "exploit",
+      "bug",
+      "error"
+    ],
+    "path": "wiki/glitchcraft/SCP/",
+    "filename": "test.md"
+  },
+  {
     "name": "Texture Tearing",
     "uid": "11M",
     "label": "TT",
