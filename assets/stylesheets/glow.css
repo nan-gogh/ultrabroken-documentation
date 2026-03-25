@@ -445,6 +445,9 @@ label.md-header__button[for^="__palette_"]:hover {
    Needs its own stacking context (via translateZ) to beat the nested nav
    panels which get transform:translateX(0) when checked.
    Vertically aligned with the back-arrow icon (top: .4rem + .2rem margin). */
+.ub-sidebar-toggles {
+  display: none;
+}
 @media (max-width: 76.1875em) {
   .ub-sidebar-toggles {
     display: flex;

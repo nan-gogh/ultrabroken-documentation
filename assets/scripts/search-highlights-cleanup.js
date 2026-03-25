@@ -6,12 +6,24 @@
 (function() {
   'use strict';
 
-  // Clear highlight parameter from URL immediately (before Material processes it)
+  // Clear highlight parameter from URL immediately (before Material processes it).
+  // Uses regex instead of URLSearchParams.toString() to avoid corrupting the
+  // cosmetic slug (e.g. ?Despawn-Interrupt) which has no '=' sign —
+  // URLSearchParams normalizes it to "Despawn-Interrupt=" which is unwanted.
   function clearHighlightFromURL() {
-    const url = new URL(window.location.href);
-    if (url.searchParams.has('h')) {
-      url.searchParams.delete('h');
-      history.replaceState(null, '', url.toString());
+    var search = window.location.search;
+    if (!search || search.indexOf('h=') === -1) return false;
+    // Remove &h=... or the leading ?h=...& or a lone ?h=...
+    var cleaned = search
+      .replace(/[&?]h=[^&]*/g, '')
+      .replace(/[&?]q=[^&]*/g, '');
+    // Restore leading '?' if params remain, otherwise drop query string entirely
+    if (cleaned && cleaned.charAt(0) !== '?') cleaned = '?' + cleaned;
+    if (cleaned === '?') cleaned = '';
+    // Reattach the cosmetic slug prefix if it was stripped
+    var newUrl = window.location.pathname + cleaned + window.location.hash;
+    if (newUrl !== window.location.pathname + search + window.location.hash) {
+      history.replaceState(null, '', newUrl);
       return true;
     }
     return false;
