@@ -2607,19 +2607,6 @@
     "filename": "temporary-devices.md"
   },
   {
-    "name": "Glitch Test",
-    "uid": "D0X",
-    "label": "TST",
-    "aliases": [
-      "glitch",
-      "exploit",
-      "bug",
-      "error"
-    ],
-    "path": "wiki/glitchcraft/D0X/",
-    "filename": "test.md"
-  },
-  {
     "name": "Texture Tearing",
     "uid": "11M",
     "label": "TT",
