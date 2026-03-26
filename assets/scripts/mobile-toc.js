@@ -118,12 +118,9 @@
   }
 
   /* ── toc.follow for mobile ─────────────────────────────────
-     Independent scrollspy that determines the active heading
-     using the SAME offset the smooth-scroll handler uses
-     (headerHeight + padding).  This avoids relying on Material's
-     built-in scrollspy which uses a slightly different threshold
-     and causes the wrong heading to appear active after a
-     programmatic scroll.
+     Listens to the unified toc-scrollspy.js via the
+     'ub:toc-active' CustomEvent to mirror the active heading
+     into all mobile TOC clones.
 
      Manual-scroll respect: when the user touches/wheels the TOC
      list, auto-scroll pauses for a cooldown period, then resumes
@@ -216,7 +213,8 @@
         if (!checkbox.checked) return;
         manualUntil = 0;
         // Re-sync on open so the panel always shows the current heading
-        syncClones(computeActiveHref());
+        var href = window.__ubTocSpy ? window.__ubTocSpy.getActiveHref() : null;
+        syncClones(href);
         setTimeout(function () { clone.__ubAutoScroll(); }, 300);
       }
       checkbox.addEventListener('change', onPanelOpen);
