@@ -327,7 +327,7 @@ def _mark_obsolete_labels(html: str) -> str:
     This avoids fragile regex parsing of deeply-nested div structures."""
 
     # Locate every tabbed-set boundary so we can map blocks → labels.
-    SET_OPEN = re.compile(r'<div class="tabbed-set[^"]*"[^>]*>')
+    SET_OPEN = re.compile(r'<div\b[^>]*class="tabbed-set[^"]*"[^>]*>')
     LABEL_RE = re.compile(r'<label for="([^"]+)">')
     BLOCK_RE = re.compile(r'<div class="tabbed-block">')
 
