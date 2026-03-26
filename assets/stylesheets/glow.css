@@ -47,8 +47,6 @@
 }
 .md-typeset .tabbed-set[data-ub-level="2"] > .tabbed-labels label { font-size: 1.1rem; }
 .md-typeset .tabbed-set[data-ub-level="4"] > .tabbed-labels label { font-size: 0.9rem; }
-.md-typeset .tabbed-set[data-ub-level="5"] > .tabbed-labels label { font-size: 0.8rem; }
-.md-typeset .tabbed-set[data-ub-level="6"] > .tabbed-labels label { font-size: 0.7rem; }
 
 /* Inline code (version badges) in tab labels: inherit text color and
    scale down to match the heading badge treatment (0.7em). */
@@ -66,8 +64,6 @@
 }
 [data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="2"] > .tabbed-labels label { font-size: 1.375rem; }
 [data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="4"] > .tabbed-labels label { font-size: 1.125rem; }
-[data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="5"] > .tabbed-labels label { font-size: 1rem; }
-[data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="6"] > .tabbed-labels label { font-size: 0.875rem; }
 
 /* Fix alignment of tab scroll arrows to match enlarged tab labels.
    Default Material height is 1.9rem for 0.8rem font labels.
