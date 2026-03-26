@@ -994,7 +994,7 @@ button.search-link:focus,
   opacity: 0;
   cursor: pointer;
   transition: opacity 0.15s ease;
-  vertical-align: 0.05em;
+  vertical-align: 0.01em;
 }
 
 .ub-heading-share img {
