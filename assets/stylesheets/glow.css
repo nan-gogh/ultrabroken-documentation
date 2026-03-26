@@ -43,9 +43,12 @@
   font-weight: normal;
   font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
-/* Force inline code in tab titles to use standard text color, avoiding teal tint */
+/* Inline code (version badges) in tab labels: inherit text color and
+   scale down to match the heading badge treatment (0.7em). */
 .md-typeset .tabbed-labels label code {
   color: inherit !important;
+  font-size: 0.7em;
+  vertical-align: 0.1em;
 }
 [data-ub-font="large"] .md-typeset .tabbed-labels label {
   font-size: 1.25rem;
