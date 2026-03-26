@@ -688,8 +688,7 @@ button.search-link:focus,
 
 /* Obsolete method tab labels */
 .md-typeset .tabbed-labels label.ub-obsolete {
-  text-decoration: line-through;
-  text-decoration-color: var(--muted-text);
+  text-decoration: line-through 2px currentColor;
 }
 
 /* Obsolete method headings */
@@ -699,8 +698,17 @@ button.search-link:focus,
 .md-typeset h4.ub-obsolete,
 .md-typeset h5.ub-obsolete,
 .md-typeset h6.ub-obsolete {
-  text-decoration: line-through;
-  text-decoration-color: var(--muted-text);
+  text-decoration: line-through 2px currentColor;
+}
+
+/* Version badges inside obsolete headings should not be struck through */
+.md-typeset h1.ub-obsolete code,
+.md-typeset h2.ub-obsolete code,
+.md-typeset h3.ub-obsolete code,
+.md-typeset h4.ub-obsolete code,
+.md-typeset h5.ub-obsolete code,
+.md-typeset h6.ub-obsolete code {
+  text-decoration: none;
 }
 
 /* ── Settings gear button ─────────────────────────────────── */
