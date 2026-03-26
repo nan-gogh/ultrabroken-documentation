@@ -15,9 +15,8 @@
  *   ## Starts Open { .collapse .open }
  *   This section is expanded on load.
  *
- * TOC fix: headings inside hidden containers (collapsed body,
- * inactive tab) have their `id` moved to `data-ub-id` so
- * Material's scroll-spy excludes them from offset sorting.
+ * Exposes window.__ubRevealTarget(el) so other scripts (e.g.
+ * TOC click handlers) can reveal hidden tab/collapse content.
  */
 (function () {
   'use strict';
@@ -28,77 +27,51 @@
     ? scriptEl.src.replace(/assets\/scripts\/[^/]+$/, '')
     : location.href.replace(/\/[^/]*$/, '/');
 
-  /* ── Heading ID management for TOC scroll-spy ──────────── */
+  /* ── Reveal a hidden target (tab + collapse) ───────────── */
 
   /**
-   * Move `id` → `data-ub-id` for headings inside hidden containers
-   * so Material's scroll-spy excludes them from its offset index.
-   * Restore `id` when the container becomes visible.
+   * Walk upward from `target`, activating any inactive Material
+   * tabs and opening any collapsed sections along the way.
+   * If the target itself is a collapsed heading, expand it.
    */
-  function syncHeadingIds() {
-    var article = document.querySelector('.md-content__inner');
-    if (!article) return;
-    var headings = article.querySelectorAll(
-      'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id], ' +
-      'h1[data-ub-id], h2[data-ub-id], h3[data-ub-id], ' +
-      'h4[data-ub-id], h5[data-ub-id], h6[data-ub-id]'
-    );
-    for (var i = 0; i < headings.length; i++) {
-      var h = headings[i];
-      var hiddenBody = h.closest('.ub-collapse-body[hidden]');
-      var tabBlock   = h.closest('.tabbed-block');
-      var inactiveTab = tabBlock && tabBlock.offsetHeight === 0;
-      var isHidden = !!hiddenBody || inactiveTab;
-
-      if (isHidden && h.id) {
-        h.setAttribute('data-ub-id', h.id);
-        h.removeAttribute('id');
-      } else if (!isHidden && !h.id && h.hasAttribute('data-ub-id')) {
-        h.id = h.getAttribute('data-ub-id');
-        h.removeAttribute('data-ub-id');
-      }
-    }
-  }
-
-  /** Hide/show sidebar TOC entries for hidden headings */
-  function syncToc() {
-    var tocNav = document.querySelector('.md-sidebar--secondary .md-nav');
-    if (!tocNav) return;
-    var links = tocNav.querySelectorAll('a.md-nav__link');
-    for (var i = 0; i < links.length; i++) {
-      var href = links[i].getAttribute('href');
-      if (!href || href.charAt(0) !== '#') continue;
-      var slug = href.slice(1);
-      // If heading's ID was moved to data-ub-id, it's hidden
-      var hidden = !document.getElementById(slug) &&
-                   !!document.querySelector('[data-ub-id]');
-      // More precise: check if this specific slug is in a data-ub-id
-      var headings = document.querySelectorAll('[data-ub-id]');
-      var isHidden = false;
-      for (var j = 0; j < headings.length; j++) {
-        if (headings[j].getAttribute('data-ub-id') === slug) {
-          isHidden = true;
-          break;
+  function revealTarget(target) {
+    var el = target;
+    while (el) {
+      if (el.classList && el.classList.contains('ub-collapse-body') && el.hidden) {
+        el.hidden = false;
+        var hdr = el.previousElementSibling;
+        if (hdr && hdr.classList.contains('ub-collapsible')) {
+          hdr.classList.remove('ub-collapsed');
         }
       }
-      var li = links[i].closest('li');
-      if (li) li.style.display = isHidden ? 'none' : '';
+      if (el.classList && el.classList.contains('tabbed-block')) {
+        var content = el.parentElement;
+        if (content) {
+          var blocks = [].slice.call(content.children);
+          var idx = blocks.indexOf(el);
+          var set = content.closest('.tabbed-set');
+          if (set && idx >= 0) {
+            var radios = set.querySelectorAll(':scope > input[type="radio"]');
+            if (radios[idx] && !radios[idx].checked) {
+              radios[idx].checked = true;
+              radios[idx].dispatchEvent(new Event('change'));
+            }
+          }
+        }
+      }
+      el = el.parentElement;
     }
+    if (target.classList.contains('ub-collapsed')) {
+      target.classList.remove('ub-collapsed');
+      var nextBody = target.nextElementSibling;
+      if (nextBody && nextBody.classList.contains('ub-collapse-body')) {
+        nextBody.hidden = false;
+      }
+    }
+    if (window.__ubTocSpy) window.__ubTocSpy.refresh();
   }
 
-  /**
-   * Full TOC sync: update heading IDs, hide/show TOC entries,
-   * then nudge body height so Material rebuilds its scroll-spy index.
-   */
-  function rebuildToc() {
-    syncHeadingIds();
-    syncToc();
-    // Force Material's ResizeObserver to fire and rebuild the index
-    var bump = document.createElement('div');
-    bump.style.height = '1px';
-    document.body.appendChild(bump);
-    requestAnimationFrame(function () { bump.remove(); });
-  }
+  window.__ubRevealTarget = revealTarget;
 
   /* ── Collapsible section setup ─────────────────────────── */
 
@@ -162,7 +135,6 @@
       }
     }
 
-    rebuildToc();
     openForHash();
   }
 
@@ -176,13 +148,15 @@
 
     h.classList.toggle('ub-collapsed');
     body.hidden = !body.hidden;
-    rebuildToc();
+    if (window.__ubTocSpy) window.__ubTocSpy.refresh();
   });
 
   /* ── Tab changes → re-sync TOC ─────────────────────────── */
   document.addEventListener('change', function (e) {
     if (e.target.closest('.tabbed-set')) {
-      setTimeout(rebuildToc, 50);
+      setTimeout(function () {
+        if (window.__ubTocSpy) window.__ubTocSpy.refresh();
+      }, 50);
     }
   });
 
@@ -190,61 +164,13 @@
   function openForHash() {
     var id = location.hash.slice(1);
     if (!id) return;
-
-    // Find target — may have ID moved to data-ub-id if hidden
     var target = document.getElementById(id);
-    if (!target) {
-      var candidates = document.querySelectorAll('[data-ub-id]');
-      for (var j = 0; j < candidates.length; j++) {
-        if (candidates[j].getAttribute('data-ub-id') === id) {
-          target = candidates[j];
-          // Restore ID
-          target.id = id;
-          target.removeAttribute('data-ub-id');
-          break;
-        }
-      }
-    }
     if (!target) return;
 
-    // Activate parent Material tab
-    var tabbedBlock = target.closest('.tabbed-block');
-    if (tabbedBlock) {
-      var content = tabbedBlock.parentElement;
-      if (content) {
-        var blocks = [].slice.call(content.children);
-        var idx    = blocks.indexOf(tabbedBlock);
-        var set    = content.closest('.tabbed-set');
-        if (set && idx >= 0) {
-          var radios = set.querySelectorAll(':scope > input[type="radio"]');
-          if (radios[idx]) {
-            radios[idx].checked = true;
-            radios[idx].dispatchEvent(new Event('change'));
-          }
-        }
-      }
-    }
-
-    // Open collapsed ancestors
-    var body = target.closest('.ub-collapse-body');
-    while (body) {
-      body.hidden = false;
-      var hdr = body.previousElementSibling;
-      if (hdr) hdr.classList.remove('ub-collapsed');
-      body = body.parentElement ? body.parentElement.closest('.ub-collapse-body') : null;
-    }
-
-    // If the target itself is a collapsed heading, expand it
-    if (target.classList.contains('ub-collapsed')) {
-      target.classList.remove('ub-collapsed');
-      var nextBody = target.nextElementSibling;
-      if (nextBody && nextBody.classList.contains('ub-collapse-body')) {
-        nextBody.hidden = false;
-      }
-    }
-
-    rebuildToc();
-    setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+    revealTarget(target);
+    setTimeout(function () {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
   }
 
   window.addEventListener('hashchange', openForHash);

@@ -923,7 +923,7 @@ button.search-link:focus,
 }
 
 .ub-collapsed .ub-collapse-chevron {
-  transform: rotate(-90deg);   /* collapsed: pointing right */
+  transform: rotate(90deg);   /* collapsed: pointing right */
 }
 
 .ub-collapsible:hover .ub-collapse-chevron {

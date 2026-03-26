@@ -132,60 +132,13 @@
 
   var MANUAL_SCROLL_COOLDOWN = 3000; // ms to pause after manual scroll
 
-  /* Compute the scroll offset we use for smooth-scroll — must stay
-     in sync with the click handler further below. */
-  function getScrollThreshold() {
-    var header = document.querySelector('.md-header');
-    var headerHeight = header ? header.offsetHeight : 0;
-    var padding = Math.max(8, Math.round(headerHeight * 0.5));
-    return headerHeight + padding;
-  }
-
   function startTocFollow(tocNav) {
     stopTocFollow();
 
     var clones = document.querySelectorAll('.ub-toc-header nav.md-nav');
     if (!clones.length) return;
 
-    // Build ordered list of { href, el } from the desktop TOC
-    var headings = [];
-    tocNav.querySelectorAll('a.md-nav__link').forEach(function (a) {
-      var href = a.getAttribute('href');
-      if (!href) return;
-      var hash = a.hash || href;
-      var id = decodeURIComponent(hash.replace(/^#/, ''));
-      var el = document.getElementById(id);
-      if (el) headings.push({ href: href, el: el });
-    });
-
-    var lastActiveHref = null; // deduplicate — only auto-scroll on change
-
-    // ── Compute active heading from scroll position ──
-
-    function computeActiveHref() {
-      var threshold = window.scrollY + getScrollThreshold();
-      var active = null;
-      for (var i = 0; i < headings.length; i++) {
-        // Absolute top of heading
-        var el = headings[i].el;
-        var top = 0;
-        var node = el;
-        while (node) {
-          top += node.offsetTop;
-          node = node.offsetParent;
-        }
-        if (top <= threshold) {
-          active = headings[i].href;
-        } else {
-          break;
-        }
-      }
-      // At bottom of page, activate the last heading
-      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-        if (headings.length) active = headings[headings.length - 1].href;
-      }
-      return active;
-    }
+    var lastActiveHref = null;
 
     // ── Sync active class to all mobile clones ──
 
@@ -214,24 +167,19 @@
       }
     }
 
-    // ── Throttled scroll listener ──
+    // ── Listen to unified scroll spy ──
 
-    var scrollRAF = 0;
-    function onScroll() {
-      if (scrollRAF) return;
-      scrollRAF = requestAnimationFrame(function () {
-        scrollRAF = 0;
-        syncClones(computeActiveHref());
-      });
+    function onTocActive(e) {
+      syncClones(e.detail ? e.detail.href : null);
     }
 
-    // Initial sync + listen
-    syncClones(computeActiveHref());
-    window.addEventListener('scroll', onScroll, { passive: true });
+    var initialHref = window.__ubTocSpy
+      ? window.__ubTocSpy.getActiveHref() : null;
+    syncClones(initialHref);
+    window.addEventListener('ub:toc-active', onTocActive);
 
     tocFollowCleanups.push(function () {
-      window.removeEventListener('scroll', onScroll);
-      if (scrollRAF) { cancelAnimationFrame(scrollRAF); scrollRAF = 0; }
+      window.removeEventListener('ub:toc-active', onTocActive);
     });
 
     // ── Per-clone: auto-scroll + manual-scroll detection ────
@@ -459,6 +407,11 @@
 
     var targetId = decodeURIComponent(hash.slice(1));
     var target = document.getElementById(targetId);
+
+    // Reveal hidden target (switch tab, open collapsed section)
+    if (target && !target.offsetParent) {
+      if (window.__ubRevealTarget) window.__ubRevealTarget(target);
+    }
 
     // On mobile, close the drawer first
     var drawer = document.getElementById('__drawer');

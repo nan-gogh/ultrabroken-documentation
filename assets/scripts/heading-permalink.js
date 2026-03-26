@@ -46,7 +46,7 @@
   /* ── Copy permalink + feedback ──────────────────────────── */
   function copyPermalink(heading) {
     // Use id or data-ub-id (hidden headings have id moved there)
-    var slug = heading ? (heading.id || heading.getAttribute('data-ub-id')) : null;
+    var slug = heading ? heading.id : null;
     if (!slug) return;
     var url = location.href.split('#')[0] + '#' + slug;
 
