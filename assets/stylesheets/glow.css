@@ -705,17 +705,17 @@ button.search-link:focus,
 }
 
 /* Version badges (code spans) inside headings:
-   - font-size: fixed rem so badges don't scale with the heading
-   - vertical-align: keeps the badge backdrop centred on the text line
-   Material default is 0.85em which inherits the heading's larger base. */
+   Material default 0.85em is slightly too large inside headings —
+   0.7em keeps proportional scaling while tightening the badge.
+   A small vertical-align nudge lifts the backdrop to sit centred. */
 .md-typeset h1 > code,
 .md-typeset h2 > code,
 .md-typeset h3 > code,
 .md-typeset h4 > code,
 .md-typeset h5 > code,
 .md-typeset h6 > code {
-  font-size: 0.85rem;
-  vertical-align: middle;
+  font-size: 0.7em;
+  vertical-align: 0.1em;
 }
 
 /* Version badges inside obsolete headings should not be struck through.
