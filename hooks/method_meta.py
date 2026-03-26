@@ -63,7 +63,9 @@ _ALL_VERSIONS, _PLATFORMS, _CURRENT_VERSION = _load_versions()
 _BLOCK_RE = re.compile(
     r"^(?P<tab>[ \t]*===[ \t]+\"[^\"\n]*\"[ \t]*\n)?"
     r"(?P<indent>[ \t]*)---[ \t]*\n"
-    r"(?P<body>(?:(?P=indent)(?!---).*\n)*)"
+    # First body line MUST start with a known key so standalone --- (thematic
+    # breaks used as section dividers) are never mistaken for block openers.
+    r"(?P<body>(?P=indent)(?:versions:|obsolete:)[^\n]*\n(?:(?P=indent)(?!---).*\n)*)"
     r"(?P=indent)---[ \t]*\n",
     re.MULTILINE,
 )
@@ -382,15 +384,15 @@ def _mark_obsolete_headings(html: str) -> str:
     # Match the closest </hN> before the meta div (with optional <p> gap)
     CLOSE_BEFORE = re.compile(r'</h([1-6])>[\s]*(?:<p>[\s]*)?$')
 
+    # Collect all edits first, then apply in reverse order so positions stay valid.
+    edits = []  # list of (start, end, new_attrs)
     for meta_m in META_RE.finditer(html):
         before = html[:meta_m.start()]
         close_m = CLOSE_BEFORE.search(before)
         if not close_m:
             continue
         level = close_m.group(1)
-        # Find the opening <hN> that pairs with this </hN>
         open_pat = re.compile(rf'<h{level}(\s[^>]*)>')
-        # Search backwards: find the last <hN ...> before the </hN>
         last_open = None
         for om in open_pat.finditer(before[:close_m.start() + 1]):
             last_open = om
@@ -398,10 +400,13 @@ def _mark_obsolete_headings(html: str) -> str:
             continue
         attrs = last_open.group(1)
         if 'ub-obsolete' in attrs:
-            continue  # already marked
+            continue
         if 'class="' in attrs:
             new_attrs = re.sub(r'class="', 'class="ub-obsolete ', attrs, count=1)
         else:
             new_attrs = f' class="ub-obsolete"{attrs}'
-        html = html[:last_open.start(1)] + new_attrs + html[last_open.end(1):]
+        edits.append((last_open.start(1), last_open.end(1), new_attrs))
+
+    for start, end, new_attrs in reversed(edits):
+        html = html[:start] + new_attrs + html[end:]
     return html
