@@ -73,6 +73,7 @@
 
   /* Toggle on heading click */
   document.addEventListener('click', function (e) {
+    if (e.target.closest('.ub-heading-share')) return;   // permalink icon has its own handler
     var h = e.target.closest('.ub-collapsible');
     if (!h) return;
     var body = h.nextElementSibling;
