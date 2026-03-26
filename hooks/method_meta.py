@@ -183,7 +183,7 @@ def _replace_block(match: re.Match) -> str:
     admonition = ""
     if obsolete:
         admonition = (
-            f"{indent}!!! warning \"Obsolete section\"\n"
+            f"{indent}!!! warning \"OBSOLETE SECTION\"\n"
             f"{indent}    This section is obsolete."
             f" Check out the other sections on this page.\n\n"
         )
