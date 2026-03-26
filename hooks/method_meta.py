@@ -223,7 +223,24 @@ def _patch_headings(markdown: str) -> str:
     return _HEADING_SENTINEL_RE.sub(_rewrite_heading, markdown)
 
 
+# Collapse shorthand: heading ending with ` ?` → { .collapse },
+# ` !` → { .collapse .open }.  Must be preceded by a space to avoid
+# matching ordinary punctuation (e.g. "Pause-Cancel???").
+_COLLAPSE_SHORT_RE = re.compile(
+    r"^(?P<heading>[ \t]*#{1,6} .+) (?P<marker>[?!])[ \t]*$",
+    re.MULTILINE,
+)
+
+def _expand_collapse_shorthand(markdown: str) -> str:
+    def _repl(m: re.Match) -> str:
+        marker = m.group("marker")
+        attr = "{ .collapse .open }" if marker == "!" else "{ .collapse }"
+        return f"{m.group('heading')} {attr}"
+    return _COLLAPSE_SHORT_RE.sub(_repl, markdown)
+
+
 def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
+    markdown = _expand_collapse_shorthand(markdown)
     if "---" not in markdown:
         return markdown
     # Skip the page-level YAML frontmatter (first --- ... --- at column 0).
