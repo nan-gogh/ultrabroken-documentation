@@ -82,12 +82,18 @@
   /* ── TOC entry visibility ──────────────────────────────── */
 
   function syncTocVisibility() {
+    var hiddenIds = [];
     for (var id in tocLinks) {
       var heading = document.getElementById(id);
       var hidden  = !heading || !isVisible(heading);
       var li = tocLinks[id].closest('li');
       if (li) li.style.display = hidden ? 'none' : '';
+      if (hidden) hiddenIds.push(id);
     }
+    // Notify mobile TOC clones
+    window.dispatchEvent(
+      new CustomEvent('ub:toc-visibility', { detail: { hiddenIds: hiddenIds } })
+    );
   }
 
   /* ── Compute active heading ────────────────────────────── */
