@@ -46,7 +46,7 @@
       if (depth > 0) li.classList.add('ub-toc-indent-' + Math.min(depth, 4));
 
       var link = document.createElement('a');
-      link.href = a.getAttribute('href');
+      link.setAttribute('href', a.hash || a.getAttribute('href'));
       link.className = 'md-nav__link';
       link.innerHTML = a.innerHTML;
 

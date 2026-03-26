@@ -73,9 +73,9 @@
 
     var links = tocNav.querySelectorAll('a.md-nav__link');
     for (var j = 0; j < links.length; j++) {
-      var href = links[j].getAttribute('href');
-      if (!href || href.charAt(0) !== '#') continue;
-      tocLinks[decodeURIComponent(href.slice(1))] = links[j];
+      var hash = links[j].hash;
+      if (!hash) continue;
+      tocLinks[decodeURIComponent(hash.slice(1))] = links[j];
     }
   }
 
