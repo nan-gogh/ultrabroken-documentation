@@ -1,4 +1,4 @@
-/* Glowy teal theme tweaks for MkDocs Material */
+﻿/* Glowy teal theme tweaks for MkDocs Material */
 :root {
   --teal-glow: #00f0c2;
   --teal-dark: #00796b;
@@ -874,27 +874,7 @@ button.search-link:focus,
   z-index: 4 !important;
 }
 
-/* Clickable headings for permalink copy - cursor pointer and hover link icon */
-.md-content h1,
-.md-content h2,
-.md-content h3,
-.md-content h4,
-.md-content h5,
-.md-content h6 {
-  cursor: pointer;
-}
-/*
-.md-content h1:hover::after,
-.md-content h2:hover::after,
-.md-content h3:hover::after,
-.md-content h4:hover::after,
-.md-content h5:hover::after,
-.md-content h6:hover::after {
-  content: " ðŸ”—";
-  opacity: 0.5;
-  font-size: 0.8em;
-}*/
-
+/* (Blanket heading cursor:pointer removed — now scoped to .ub-collapsible) */
 /* Tasklist checkbox styling - match project teal theme */
 .task-list-item input[type="checkbox"],
 .md-typeset li.task-list input[type="checkbox"],
@@ -1047,31 +1027,7 @@ html, body, .md-content, .md-nav, .md-sidebar {
   background: transparent;
 }
 
-/* Transient checkmark shown when a heading permalink is copied */
-.ub-copy-check {
-  display: inline-block;
-  margin-left: 0.5rem;
-  font-size: 1em; /* match heading size by default (inherits from heading) */
-  line-height: 1;
-  color: var(--teal-glow);
-  opacity: 0;
-  transform: translateY(-2px) scale(0.92);
-  transition: opacity .18s ease/*, transform .18s ease;*/;
-  pointer-events: none;
-}
-.ub-copy-check--visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Ensure inline SVG inside the copy check inherits color and matches heading size */
-.ub-copy-check svg {
-  display: inline-block;
-  vertical-align: text-bottom;
-  width: 1em;
-  height: 1em;
-  fill: currentColor;
-}
+/* (.ub-copy-check styles removed — replaced by .ub-heading-share in collapsible section) */
 
 /* (editor-toggle styles consolidated above) */
 
