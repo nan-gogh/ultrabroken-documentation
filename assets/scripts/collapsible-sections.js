@@ -37,6 +37,13 @@
       h.classList.remove('collapse', 'open');
       h.classList.add('ub-collapsible');
 
+      if (!h.querySelector('.ub-collapse-chevron')) {
+        var chev = document.createElement('span');
+        chev.className = 'ub-collapse-chevron';
+        chev.setAttribute('aria-hidden', 'true');
+        h.insertBefore(chev, h.firstChild);
+      }
+
       // Collect following siblings belonging to this section
       var body = document.createElement('div');
       body.className = 'ub-collapse-body';

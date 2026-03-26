@@ -924,27 +924,27 @@ button.search-link:focus,
 
 .ub-collapsible {
   cursor: pointer;
+  font-weight: inherit;
 }
 
-.ub-collapsible::after {
-  content: '';
+.ub-collapsible .ub-collapse-chevron {
   display: inline-block;
   border: solid currentColor;
   border-width: 0 1.5px 1.5px 0;
   padding: 0.18em;
   transform: rotate(-135deg);
-  vertical-align: 0;
-  margin-left: 0.4em;
+  vertical-align: 0.12em;
+  margin-right: 0.42em;
   opacity: 0.3;
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-.ub-collapsible.ub-collapsed::after {
+.ub-collapsible.ub-collapsed .ub-collapse-chevron {
   transform: rotate(45deg);
   vertical-align: 0.15em;
 }
 
-.ub-collapsible:hover::after {
+.ub-collapsible:hover .ub-collapse-chevron {
   opacity: 0.6;
 }
 
