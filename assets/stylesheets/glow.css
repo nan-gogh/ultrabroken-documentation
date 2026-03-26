@@ -920,73 +920,32 @@ button.search-link:focus,
 }
 
 
-/* ── Collapsible sections ({ .collapse } headings → details/summary) ── */
+/* ── Collapsible sections ({ .collapse } headings) ─────────────────── */
 
-/* Reset Material admonition / details styling */
-.md-typeset details.ub-collapse {
-  border: none;
-  box-shadow: none;
-  background: none;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-  font-size: inherit;
-}
-
-.md-typeset details.ub-collapse > summary {
-  list-style: none;
+.ub-collapsible {
   cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font-weight: inherit;
-  min-height: 0;
 }
 
-/* Strip Material's default summary icon / markers */
-.md-typeset details.ub-collapse > summary::before,
-.md-typeset details.ub-collapse > summary::after {
-  content: none;
-  display: none;
-}
-
-.md-typeset details.ub-collapse > summary::-webkit-details-marker {
-  display: none;
-}
-
-/* Heading inside summary should look identical to a normal heading */
-.md-typeset details.ub-collapse > summary > :is(h1, h2, h3, h4, h5, h6) {
-  margin-top: 0;
-}
-
-/* Subtle chevron indicator after the heading text */
-.md-typeset details.ub-collapse > summary > :is(h1, h2, h3, h4, h5, h6)::after {
+.ub-collapsible::after {
   content: '';
   display: inline-block;
   border: solid currentColor;
   border-width: 0 1.5px 1.5px 0;
   padding: 0.18em;
-  transform: rotate(45deg);
-  vertical-align: 0.15em;
+  transform: rotate(-135deg);
+  vertical-align: 0;
   margin-left: 0.4em;
   opacity: 0.3;
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-.md-typeset details.ub-collapse[open] > summary > :is(h1, h2, h3, h4, h5, h6)::after {
-  transform: rotate(-135deg);
-  vertical-align: -0.05em;
+.ub-collapsible.ub-collapsed::after {
+  transform: rotate(45deg);
+  vertical-align: 0.15em;
 }
 
-.md-typeset details.ub-collapse > summary:hover > :is(h1, h2, h3, h4, h5, h6)::after {
+.ub-collapsible:hover::after {
   opacity: 0.6;
-}
-
-/* Remove Material's open-state bottom border */
-.md-typeset details.ub-collapse[open] > summary {
-  border-bottom: none;
-  min-height: 0;
 }
 
 

@@ -1,21 +1,19 @@
 /**
  * Collapsible Sections — attr_list { .collapse } on headings
  * ────────────────────────────────────────────────────────────
- * Wraps headings marked with `.collapse` (via attr_list) and all
- * their section content in native <details>/<summary> elements.
+ * Headings marked with `.collapse` become clickable toggles.
+ * Their section content (everything until the next heading of
+ * equal or higher level) is wrapped in a plain <div> whose
+ * visibility is toggled on click.
  *
- * Editors write standard markdown with no indentation overhead:
+ * No <details>/<summary> — avoids Material for MkDocs hijacking
+ * the element with admonition styling.
  *
  *   ## Section Title { .collapse }
  *   Content here, no special indentation needed...
  *
- *   ## Open Section { .collapse .open }
- *   This section starts expanded.
- *
- * A section spans from the marked heading up to (but not including)
- * the next heading of equal or higher level.  Nested collapsibles
- * are supported — an h3.collapse inside an h2.collapse works as
- * expected.
+ *   ## Starts Open { .collapse .open }
+ *   This section is expanded on load.
  */
 (function () {
   'use strict';
@@ -31,52 +29,64 @@
 
     for (var i = 0; i < headings.length; i++) {
       var h = headings[i];
+      if (h.classList.contains('ub-collapsible')) continue;   // already processed
+
       var level = parseInt(h.tagName[1], 10);
-      var isOpen = h.classList.contains('open');
+      var startOpen = h.classList.contains('open');
 
-      var details = document.createElement('details');
-      details.className = 'ub-collapse';
-      if (isOpen) details.open = true;
-
-      var summary = document.createElement('summary');
-
-      // Insert <details> where the heading was
-      h.parentNode.insertBefore(details, h);
-
-      // Move heading into <summary>
       h.classList.remove('collapse', 'open');
-      summary.appendChild(h);
-      details.appendChild(summary);
+      h.classList.add('ub-collapsible');
 
-      // Sweep following siblings until the next heading of equal or higher level
-      var sib = details.nextElementSibling;
+      // Collect following siblings belonging to this section
+      var body = document.createElement('div');
+      body.className = 'ub-collapse-body';
+
+      var sib = h.nextElementSibling;
       while (sib) {
-        // Stop at a bare heading of same or higher level
         if (/^H[1-6]$/i.test(sib.tagName) && parseInt(sib.tagName[1], 10) <= level) break;
-        // Stop at an already-wrapped collapsible whose heading is same or higher level
-        if (sib.classList && sib.classList.contains('ub-collapse')) {
-          var innerH = sib.querySelector('summary > h1, summary > h2, summary > h3, summary > h4, summary > h5, summary > h6');
-          if (innerH && parseInt(innerH.tagName[1], 10) <= level) break;
+        if (sib.classList.contains('ub-collapse-body')) {
+          // Already-wrapped nested section — peek at its preceding heading
+          break;
         }
         var next = sib.nextElementSibling;
-        details.appendChild(sib);
+        body.appendChild(sib);
         sib = next;
+      }
+
+      h.parentNode.insertBefore(body, h.nextSibling);
+
+      if (!startOpen) {
+        h.classList.add('ub-collapsed');
+        body.hidden = true;
       }
     }
 
     openForHash();
   }
 
+  /* Toggle on heading click */
+  document.addEventListener('click', function (e) {
+    var h = e.target.closest('.ub-collapsible');
+    if (!h) return;
+    var body = h.nextElementSibling;
+    if (!body || !body.classList.contains('ub-collapse-body')) return;
+
+    h.classList.toggle('ub-collapsed');
+    body.hidden = !body.hidden;
+  });
+
   /* Auto-open collapsed sections when a hash targets content inside */
   function openForHash() {
     var id = location.hash.slice(1);
     if (!id) return;
-    var el = document.getElementById(id);
-    if (!el) return;
-    var d = el.closest('details.ub-collapse');
-    while (d) {
-      d.open = true;
-      d = d.parentElement ? d.parentElement.closest('details.ub-collapse') : null;
+    var target = document.getElementById(id);
+    if (!target) return;
+    var body = target.closest('.ub-collapse-body');
+    while (body) {
+      body.hidden = false;
+      var h = body.previousElementSibling;
+      if (h) h.classList.remove('ub-collapsed');
+      body = body.parentElement ? body.parentElement.closest('.ub-collapse-body') : null;
     }
   }
 
