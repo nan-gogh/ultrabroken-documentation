@@ -170,33 +170,13 @@
       syncClones(e.detail ? e.detail.href : null);
     }
 
-    // ── Sync visibility of hidden headings in clones ──
-
-    function onTocVisibility(e) {
-      var hiddenIds = (e.detail && e.detail.hiddenIds) || [];
-      var hiddenSet = {};
-      for (var i = 0; i < hiddenIds.length; i++) hiddenSet[hiddenIds[i]] = true;
-
-      clones.forEach(function (clone) {
-        clone.querySelectorAll('a.md-nav__link').forEach(function (a) {
-          var hash = a.getAttribute('href');
-          if (!hash || hash.charAt(0) !== '#') return;
-          var id = decodeURIComponent(hash.slice(1));
-          var li = a.closest('li');
-          if (li) li.style.display = hiddenSet[id] ? 'none' : '';
-        });
-      });
-    }
-
     var initialHref = window.__ubTocSpy
       ? window.__ubTocSpy.getActiveHref() : null;
     syncClones(initialHref);
     window.addEventListener('ub:toc-active', onTocActive);
-    window.addEventListener('ub:toc-visibility', onTocVisibility);
 
     tocFollowCleanups.push(function () {
       window.removeEventListener('ub:toc-active', onTocActive);
-      window.removeEventListener('ub:toc-visibility', onTocVisibility);
     });
 
     // ── Per-clone: auto-scroll + manual-scroll detection ────

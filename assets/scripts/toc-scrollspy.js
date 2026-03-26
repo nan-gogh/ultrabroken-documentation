@@ -14,7 +14,6 @@
  *   • .md-nav__link--active on the desktop TOC
  *   • Desktop TOC sidebar auto-scroll  (replaces toc.follow)
  *   • navigation.tracking hash updates (replaces native feature)
- *   • TOC entry visibility management  (hides hidden headings)
  *   • 'ub:toc-active' CustomEvent for mobile TOC sync
  *   • window.__ubTocSpy.refresh() for external callers
  */
@@ -77,23 +76,6 @@
       if (!hash) continue;
       tocLinks[decodeURIComponent(hash.slice(1))] = links[j];
     }
-  }
-
-  /* ── TOC entry visibility ──────────────────────────────── */
-
-  function syncTocVisibility() {
-    var hiddenIds = [];
-    for (var id in tocLinks) {
-      var heading = document.getElementById(id);
-      var hidden  = !heading || !isVisible(heading);
-      var li = tocLinks[id].closest('li');
-      if (li) li.style.display = hidden ? 'none' : '';
-      if (hidden) hiddenIds.push(id);
-    }
-    // Notify mobile TOC clones
-    window.dispatchEvent(
-      new CustomEvent('ub:toc-visibility', { detail: { hiddenIds: hiddenIds } })
-    );
   }
 
   /* ── Compute active heading ────────────────────────────── */
@@ -164,15 +146,11 @@
     var scrollwrap = link.closest('.md-sidebar__scrollwrap');
     if (!scrollwrap) return;
 
-    // Offset of link relative to scrollwrap
-    var top = 0, el = link;
-    while (el && el !== scrollwrap) {
-      top += el.offsetTop;
-      el = el.offsetParent;
-    }
-
-    var half = scrollwrap.clientHeight / 2;
-    scrollwrap.scrollTo({ top: Math.max(0, top - half), behavior: 'smooth' });
+    var linkRect = link.getBoundingClientRect();
+    var wrapRect = scrollwrap.getBoundingClientRect();
+    var linkTopInWrap = linkRect.top - wrapRect.top + scrollwrap.scrollTop;
+    var target = linkTopInWrap - scrollwrap.clientHeight / 2 + link.offsetHeight / 2;
+    scrollwrap.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
   }
 
   /* ── Scroll handler (rAF-throttled) ────────────────────── */
@@ -188,7 +166,6 @@
   /* ── Public API ────────────────────────────────────────── */
 
   function refresh() {
-    syncTocVisibility();
     lastActiveId = null;
     applyActive(computeActive());
   }
@@ -204,7 +181,6 @@
 
   function init() {
     buildHeadingList();
-    syncTocVisibility();
     applyActive(computeActive());
     window.addEventListener('scroll', onScroll, { passive: true });
   }
