@@ -51,7 +51,13 @@
       // Sweep following siblings until the next heading of equal or higher level
       var sib = details.nextElementSibling;
       while (sib) {
+        // Stop at a bare heading of same or higher level
         if (/^H[1-6]$/i.test(sib.tagName) && parseInt(sib.tagName[1], 10) <= level) break;
+        // Stop at an already-wrapped collapsible whose heading is same or higher level
+        if (sib.classList && sib.classList.contains('ub-collapse')) {
+          var innerH = sib.querySelector('summary > h1, summary > h2, summary > h3, summary > h4, summary > h5, summary > h6');
+          if (innerH && parseInt(innerH.tagName[1], 10) <= level) break;
+        }
         var next = sib.nextElementSibling;
         details.appendChild(sib);
         sib = next;
