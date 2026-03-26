@@ -1137,73 +1137,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Properties">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#known-ways-to-move-kinematic-weapons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Known Ways to Move Kinematic Weapons
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Known Ways to Move Kinematic Weapons">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pickup-related-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pickup-related Actions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recall-related-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Recall-related Actions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#other-actions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Other Actions
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Notes
-      
-    </span>
-  </a>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1278,7 +1211,7 @@
 <h2 id="instructions">Instructions</h2>
 <hr />
 <p>All methods require a weapon currently held by a Depths Ghost, which will be referred to as the "target weapon" or "target".</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pause-Cancel FE Methods</label><label for="__tabbed_1_2">Overload Pickup Methods</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pause-Cancel FE Methods</label><label for="__tabbed_1_2" class="ub-obsolete">Overload Pickup Methods <code>1.2.0+</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>These Methods pause the game while performing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> on the target, preventing the ghost from detecting it being tampered with.</p>
@@ -1337,6 +1270,12 @@
 </ol>
 </div>
 <div class="tabbed-block">
+<p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="true" hidden></div>
+<code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<div class="admonition warning">
+<p class="admonition-title">Obsolete Method</p>
+<p>This method is obsolete. Check out the other methods listed on this page.</p>
+</div>
 <p>These Methods use Overload Pickup to move the target to a distance where the ghost can't detect it being tampered with.</p>
 <h4 class="collapse" id="method-4-basic-loadless">Method 4: Basic Loadless</h4>
 <ol>
@@ -1380,38 +1319,8 @@
 </div>
 </div>
 <h2 id="properties">Properties</h2>
-<hr />
-<ul>
-<li>Cannot be glued "from" (holding it/something attached to it), only "to" (holding something unattached to it)</li>
-<li>Uses an effective mass of 1,000,000 for certain purposes, such as calculating glue strength</li>
-<li>Does not collide with anything, though regular ("Dynamic") objects <em>will still collide with it</em></li>
-<li>As it does not collide, external forces do not affect it, thus only a select few actions can change its velocity</li>
-</ul>
-<h3 class="collapse" id="known-ways-to-move-kinematic-weapons">Known Ways to Move Kinematic Weapons</h3>
-<h4 id="pickup-related-actions">Pickup-related Actions</h4>
-<ul>
-<li>Carrying it around; Drop Smuggle-like states retain collision and are notably more forceful than normal</li>
-<li>Dropping it while moving, which directly adds Link's velocity</li>
-<li>Throwing it, which directly adds throw velocity; Boomerangs will follow a return arc</li>
-</ul>
-<h4 id="recall-related-actions">Recall-related Actions</h4>
-<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/OO2/" class="glitch-autolink" title="Kinematic Weapons" target="_blank" rel="noopener noreferrer">Kinematic Weapons</a> obey the "position lock" and "velocity reset" of recall, so the following will work to <strong>move</strong>, then <strong>stop</strong> it:</p>
-<ul>
-<li>Recalling an attached object; May break the glue sometimes</li>
-<li>Recalling the Kinematic Weapon along a return path</li>
-<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/EY8/" class="glitch-autolink" title="Recall Locking" target="_blank" rel="noopener noreferrer">Recall-locking</a> it and dropping it somewhere else</li>
-</ul>
-<h4 id="other-actions">Other Actions</h4>
-<ul>
-<li>Attaching an upside-down wing; Seems to directly add velocity to build instead of applying a force</li>
-<li>The "gravitational" force of attaching with Ultrahand can affect the velocity</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Take care!</p>
-<p>Warping causes a "sleep" on equipped items, which will undo this state! You can <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> it to take it with you safely.</p>
-</div>
-<h2 id="notes">Notes</h2>
-<hr />
+<div class="ub-method-meta" data-versions='[]' data-obsolete="false" hidden></div>
+
 <p>Version <code>1.0.0</code> lacks a check for whether the weapon is fused, making it impossible to take the weapon in a way that preserves the motion type.</p>
 <h2 id="resources">Resources</h2>
 <hr />
