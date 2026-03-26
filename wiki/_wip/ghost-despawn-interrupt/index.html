@@ -12,7 +12,7 @@
         <meta name="author" content="NaN Gogh & Community">
       
       
-        <link rel="canonical" href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/di-cloning/">
+        <link rel="canonical" href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/ghost-despawn-interrupt/">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>DI Cloning - Ultrabroken Archives</title>
+        <title>Ghost Despawn Interrupt - Ultrabroken Archives</title>
       
     
     
@@ -79,7 +79,7 @@
     @media(max-width:76.25em){.ub-header-toggles{display:none!important}}
   </style>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"DI Cloning","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/di-cloning/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/di-cloning/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"Eaten DI passes a despawn attempt down to newly-fused main children, which can itself be interrupted to cause the Ghost DI state.","author":[{"@type":"Person","name":"Aergyl"},{"@type":"Person","name":"mulberry"},{"@type":"Person","name":"Squidwest"}],"datePublished":"2026-01-16","keywords":"item, despawn, fuse, culling"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Ghost Despawn Interrupt","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/ghost-despawn-interrupt/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/ghost-despawn-interrupt/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"Eaten DI passes a despawn attempt down to newly-fused main children, which can itself be interrupted to cause the Ghost DI state.","author":[{"@type":"Person","name":"Aergyl"},{"@type":"Person","name":"mulberry"},{"@type":"Person","name":"Squidwest"}],"datePublished":"2026-01-16","keywords":"item, despawn, fuse, culling"}</script>
     <meta name="robots" content="noindex">
   </head>
   
@@ -98,7 +98,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#di-cloning-dic" class="md-skip">
+        <a href="#ghost-despawn-interrupt-gdi" class="md-skip">
           Skip to content
         </a>
       
@@ -134,7 +134,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DI Cloning
+              Ghost Despawn Interrupt
             
           </span>
         </div>
@@ -1147,7 +1147,7 @@
 <div class="ub-page-actions">
   
   
-    <a href="https://github.com/nan-gogh/ultrabroken-documentation/edit/main/docs/wiki/_wip/di-cloning.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/nan-gogh/ultrabroken-documentation/edit/main/docs/wiki/_wip/ghost-despawn-interrupt.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1156,7 +1156,7 @@
     
       
     
-    <a href="https://github.com/nan-gogh/ultrabroken-documentation/raw/main/docs/wiki/_wip/di-cloning.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/nan-gogh/ultrabroken-documentation/raw/main/docs/wiki/_wip/ghost-despawn-interrupt.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -1167,7 +1167,7 @@
 
 
 
-<h1 id="di-cloning-dic">DI Cloning <code>DIC</code></h1>
+<h1 id="ghost-despawn-interrupt-gdi">Ghost Despawn Interrupt <code>GDI</code></h1>
 <p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
 <hr />
@@ -1181,6 +1181,8 @@
 <p>These methods fully fuse the target to a normal parent and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> it to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; the former will need to be detangled/despawned to make the target persistent.</p>
 <details class="abstract">
 <summary>Method 1: Fuse + Drop-Swap</summary>
+<p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <ol>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield</li>
 <li>Equip a normal item of the same type</li>
@@ -1196,6 +1198,8 @@
 </details>
 <details class="abstract">
 <summary>Method 2: Turbo Replication</summary>
+<p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <ol>
 <li>Prepare an Octo Balloon Shield</li>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield</li>
@@ -1209,6 +1213,8 @@
 </details>
 <details class="abstract">
 <summary>Method 3: Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> Target + Fuse</summary>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <ol>
 <li>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the target; This will cause it to cull with Mineru</li>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield</li>
@@ -1223,6 +1229,8 @@
 </details>
 <details class="abstract">
 <summary>Method 4: Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> Parent + Fuse</summary>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <ol>
 <li>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> a normal weapon or shield</li>
 <li>Smuggle a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> item of the same type</li>
@@ -1235,6 +1243,8 @@
 </details>
 <details class="abstract">
 <summary>Method 5: Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> + Fuse</summary>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <ol>
 <li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> a weapon or shield (A) with Method 2 and <em>do not</em> detangle it from Mineru</li>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> A and equip a normal item over it</li>
@@ -1250,6 +1260,8 @@
 <p>These methods <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the target to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> the target to a normal parent, resulting in PF; this removes the need to detangle it from the normal parent.</p>
 <details class="abstract">
 <summary>Method 6: Overload Pseudo Fuse</summary>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <p>(normal overload pfdi without any batching considerations)
 (I don't actually know what's minimal, so I'm coming back to this one later)</p>
 </details>
