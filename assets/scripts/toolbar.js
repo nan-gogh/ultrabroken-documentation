@@ -179,15 +179,15 @@
   var editorToggle = {
     key: 'editor',
     className: 'ub-editor-toggle',
-    ariaLabel: 'Toggle editor links',
+    ariaLabel: 'Toggle editing tools',
     modes: ['off', 'on'],
     defaultMode: 'off',
     getMode: function () { return editorMode; },
     icon: function (m) { return m === 'on' ? EDITOR_ICON_ON : EDITOR_ICON_OFF; },
     title: function (m) {
       return m === 'off'
-        ? 'Editor links: hidden — click to show'
-        : 'Editor links: visible — click to hide';
+        ? 'Editing tools: hidden — click to show'
+        : 'Editing tools: visible — click to hide';
     },
     onCycle: function (m) {
       editorMode = m;

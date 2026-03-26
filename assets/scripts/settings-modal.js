@@ -51,7 +51,7 @@
     'ub-motion-toggle':  'Background',
     'ub-storage-toggle': 'Local storage',
     'ub-font-toggle':    'Font size',
-    'ub-editor-toggle':  'Editor links'
+    'ub-editor-toggle':  'Editing tools'
   };
 
   /* ════════════════════════════════════════════════════════════

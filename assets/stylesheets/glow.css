@@ -1138,6 +1138,9 @@ html, body, .md-content, .md-nav, .md-sidebar {
 [data-ub-editor="off"] .ub-page-actions .ub-page-uid {
   display: none;
 }
+[data-ub-editor="off"] .ub-heading-share {
+  display: none;
+}
 
 /* UID badge: ensure Material's inline code styling applies in flex context */
 .ub-page-uid {
