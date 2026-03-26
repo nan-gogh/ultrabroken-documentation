@@ -304,7 +304,19 @@ def _mark_obsolete_labels(html: str) -> str:
         for i, block in enumerate(blocks):
             if i >= len(labels):
                 break
-            if 'data-obsolete="true"' in block.group(1):
+            block_html = block.group(1)
+            # Only mark the tab label if the block has a *tab-level* obsolete
+            # meta div — one that is NOT immediately preceded by a heading.
+            # Heading-level obsolete is handled separately by _mark_obsolete_headings.
+            has_tab_obsolete = False
+            for m in re.finditer(
+                r'<div class="ub-method-meta"[^>]*data-obsolete="true"', block_html
+            ):
+                before = block_html[:m.start()]
+                if not re.search(r'</h[1-6]>\s*$', before):
+                    has_tab_obsolete = True
+                    break
+            if has_tab_obsolete:
                 old_label = f'<label for="{labels[i]}">'
                 new_label = f'<label for="{labels[i]}" class="ub-obsolete">'
                 html = html.replace(old_label, new_label, 1)
