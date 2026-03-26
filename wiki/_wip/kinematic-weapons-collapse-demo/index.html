@@ -1137,6 +1137,84 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#known-ways-to-move-kinematic-weapons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Ways to Move Kinematic Weapons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known Ways to Move Kinematic Weapons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pickup-related-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pickup-related Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recall-related-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recall-related Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test section
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1319,8 +1397,44 @@
 </div>
 </div>
 <h2 id="properties">Properties</h2>
-<div class="ub-method-meta" data-versions='[]' data-obsolete="false" hidden></div>
-
+<hr />
+<ul>
+<li>Cannot be glued "from" (holding it/something attached to it), only "to" (holding something unattached to it)</li>
+<li>Uses an effective mass of 1,000,000 for certain purposes, such as calculating glue strength</li>
+<li>Does not collide with anything, though regular ("Dynamic") objects <em>will still collide with it</em></li>
+<li>As it does not collide, external forces do not affect it, thus only a select few actions can change its velocity</li>
+</ul>
+<h3 class="collapse" id="known-ways-to-move-kinematic-weapons">Known Ways to Move Kinematic Weapons</h3>
+<h4 id="pickup-related-actions">Pickup-related Actions</h4>
+<ul>
+<li>Carrying it around; Drop Smuggle-like states retain collision and are notably more forceful than normal</li>
+<li>Dropping it while moving, which directly adds Link's velocity</li>
+<li>Throwing it, which directly adds throw velocity; Boomerangs will follow a return arc</li>
+</ul>
+<h4 id="recall-related-actions">Recall-related Actions</h4>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/OO2/" class="glitch-autolink" title="Kinematic Weapons" target="_blank" rel="noopener noreferrer">Kinematic Weapons</a> obey the "position lock" and "velocity reset" of recall, so the following will work to <strong>move</strong>, then <strong>stop</strong> it:</p>
+<ul>
+<li>Recalling an attached object; May break the glue sometimes</li>
+<li>Recalling the Kinematic Weapon along a return path</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/EY8/" class="glitch-autolink" title="Recall Locking" target="_blank" rel="noopener noreferrer">Recall-locking</a> it and dropping it somewhere else</li>
+</ul>
+<h4 id="other-actions">Other Actions</h4>
+<ul>
+<li>Attaching an upside-down wing; Seems to directly add velocity to build instead of applying a force</li>
+<li>The "gravitational" force of attaching with Ultrahand can affect the velocity</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Take care!</p>
+<p>Warping causes a "sleep" on equipped items, which will undo this state! You can <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> it to take it with you safely.</p>
+</div>
+<h3 id="test-section">Test section</h3>
+<hr />
+<p>versions: ["1.1.0", "1.1.1", "1.1.2"]
+obsolete: true</p>
+<hr />
+<p>Bla</p>
+<h2 id="notes">Notes</h2>
+<hr />
 <p>Version <code>1.0.0</code> lacks a check for whether the weapon is fused, making it impossible to take the weapon in a way that preserves the motion type.</p>
 <h2 id="resources">Resources</h2>
 <hr />
