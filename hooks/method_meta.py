@@ -146,18 +146,6 @@ def _parse_versions(raw: str) -> list[str]:
     return []
 
 
-def _is_method_block(body: str) -> bool:
-    """Return True if the block body contains at least one known method key."""
-    stripped = body.strip()
-    if not stripped:
-        return False
-    for line in stripped.splitlines():
-        line = line.strip()
-        if line.startswith("versions:") or line.startswith("obsolete:"):
-            return True
-    return False
-
-
 def _replace_block(match: re.Match) -> str:
     tab_line = match.group("tab")  # None when block is not inside a tab.
     indent = match.group("indent")
@@ -165,9 +153,6 @@ def _replace_block(match: re.Match) -> str:
 
     # Dedent the body to strip the common indent before parsing keys.
     dedented = re.sub(r"^" + re.escape(indent), "", body, flags=re.MULTILINE)
-
-    if not _is_method_block(dedented):
-        return match.group(0)  # Not a method block — leave untouched (tab line included).
 
     # Parse fields.
     vm = _VERSIONS_RE.search(dedented)
@@ -198,9 +183,9 @@ def _replace_block(match: re.Match) -> str:
     admonition = ""
     if obsolete:
         admonition = (
-            f"{indent}!!! warning \"Obsolete Method\"\n"
-            f"{indent}    This method is obsolete."
-            f" Check out the other methods listed on this page.\n\n"
+            f"{indent}!!! warning \"Obsolete section\"\n"
+            f"{indent}    This section is obsolete."
+            f" Check out the other sections on this page.\n\n"
         )
 
     return new_tab_line + sentinel + badges + admonition
