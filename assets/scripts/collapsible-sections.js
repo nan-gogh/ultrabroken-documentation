@@ -18,6 +18,33 @@
 (function () {
   'use strict';
 
+  /* ── TOC sync helpers ──────────────────────────────────── */
+
+  /** Hide/show sidebar TOC entries whose target headings are inside hidden containers */
+  function syncToc() {
+    var tocNav = document.querySelector('.md-sidebar--secondary .md-nav');
+    if (!tocNav) return;
+    var links = tocNav.querySelectorAll('a.md-nav__link');
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute('href');
+      if (!href || href.charAt(0) !== '#') continue;
+      var id = href.slice(1);
+      var target = document.getElementById(id);
+      if (!target) continue;
+      var li = links[i].closest('li');
+      if (!li) continue;
+      // Hidden if inside a collapsed body or an inactive tab block
+      var hiddenBody = target.closest('.ub-collapse-body[hidden]');
+      var inactiveTab = target.closest('.tabbed-block');
+      var tabHidden = inactiveTab && inactiveTab.offsetHeight === 0;
+      if (hiddenBody || tabHidden) {
+        li.style.display = 'none';
+      } else {
+        li.style.display = '';
+      }
+    }
+  }
+
   function init() {
     var article = document.querySelector('.md-content__inner');
     if (!article) return;
@@ -42,7 +69,13 @@
         chev.className = 'ub-collapse-chevron';
         chev.setAttribute('aria-hidden', 'true');
         chev.textContent = '\u25BC';   // ▼ (expanded)
-        h.appendChild(chev);
+        // Insert before share icon if present, else append
+        var shareIcon = h.querySelector('.ub-heading-share');
+        if (shareIcon) {
+          h.insertBefore(chev, shareIcon);
+        } else {
+          h.appendChild(chev);
+        }
       }
 
       // Collect following siblings belonging to this section
@@ -71,6 +104,7 @@
       }
     }
 
+    syncToc();
     openForHash();
   }
 
@@ -88,6 +122,17 @@
     // Swap chevron glyph
     var chev = h.querySelector('.ub-collapse-chevron');
     if (chev) chev.textContent = body.hidden ? '\u25B6' : '\u25BC';
+
+    // Update TOC visibility for headings inside this body
+    syncToc();
+  });
+
+  /* Listen for tab changes to re-sync TOC */
+  document.addEventListener('change', function (e) {
+    if (e.target.closest('.tabbed-set')) {
+      // Defer so Material finishes toggling tab visibility
+      setTimeout(syncToc, 50);
+    }
   });
 
   /* Auto-open collapsed sections (and activate parent tabs) when a hash targets content inside */
@@ -122,7 +167,11 @@
     while (body) {
       body.hidden = false;
       var h = body.previousElementSibling;
-      if (h) h.classList.remove('ub-collapsed');
+      if (h) {
+        h.classList.remove('ub-collapsed');
+        var chev = h.querySelector('.ub-collapse-chevron');
+        if (chev) chev.textContent = '\u25BC';
+      }
       body = body.parentElement ? body.parentElement.closest('.ub-collapse-body') : null;
     }
 
@@ -133,7 +182,12 @@
       if (nextBody && nextBody.classList.contains('ub-collapse-body')) {
         nextBody.hidden = false;
       }
+      var chev = target.querySelector('.ub-collapse-chevron');
+      if (chev) chev.textContent = '\u25BC';
     }
+
+    // Re-sync TOC after opening sections/tabs
+    syncToc();
 
     // Scroll into view (defer slightly so tab/collapse transitions settle)
     setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);

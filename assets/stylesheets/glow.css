@@ -912,7 +912,8 @@ button.search-link:focus,
   margin-left: 0.35em;
   font-size: 0.55em;
   vertical-align: 0.15em;
-  opacity: 0.3;
+  color: var(--teal-glow);
+  opacity: 0.5;
   transition: opacity 0.15s ease;
 }
 
@@ -921,7 +922,7 @@ button.search-link:focus,
 }
 
 .ub-collapsible:hover .ub-collapse-chevron {
-  opacity: 0.6;
+  opacity: 0.85;
 }
 
 
