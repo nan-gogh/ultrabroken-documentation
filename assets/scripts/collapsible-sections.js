@@ -83,12 +83,34 @@
     body.hidden = !body.hidden;
   });
 
-  /* Auto-open collapsed sections when a hash targets content inside */
+  /* Auto-open collapsed sections (and activate parent tabs) when a hash targets content inside */
   function openForHash() {
     var id = location.hash.slice(1);
     if (!id) return;
     var target = document.getElementById(id);
     if (!target) return;
+
+    // ── Activate any Material tabbed-set ancestor ──
+    var tabbedBlock = target.closest('.tabbed-block');
+    if (tabbedBlock) {
+      var content = tabbedBlock.parentElement;            // .tabbed-content
+      if (content) {
+        var blocks = [].slice.call(content.children);
+        var idx    = blocks.indexOf(tabbedBlock);         // 0-based tab index
+        var set    = content.closest('.tabbed-set');
+        if (set && idx >= 0) {
+          // Material uses <input type="radio" id="__tabbed_X_Y"> to toggle tabs
+          var radios = set.querySelectorAll(':scope > input[type="radio"]');
+          if (radios[idx]) {
+            radios[idx].checked = true;
+            // Some Material versions also need a change event
+            radios[idx].dispatchEvent(new Event('change'));
+          }
+        }
+      }
+    }
+
+    // ── Open collapsed ancestors ──
     var body = target.closest('.ub-collapse-body');
     while (body) {
       body.hidden = false;
@@ -96,6 +118,18 @@
       if (h) h.classList.remove('ub-collapsed');
       body = body.parentElement ? body.parentElement.closest('.ub-collapse-body') : null;
     }
+
+    // Also handle the case where the hash targets a collapsible heading itself
+    if (target.classList.contains('ub-collapsed')) {
+      target.classList.remove('ub-collapsed');
+      var nextBody = target.nextElementSibling;
+      if (nextBody && nextBody.classList.contains('ub-collapse-body')) {
+        nextBody.hidden = false;
+      }
+    }
+
+    // Scroll into view (defer slightly so tab/collapse transitions settle)
+    setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
   }
 
   window.addEventListener('hashchange', openForHash);
