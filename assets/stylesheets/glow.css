@@ -690,6 +690,9 @@ button.search-link:focus,
 .md-typeset .tabbed-labels label.ub-obsolete {
   text-decoration: line-through 2px currentColor;
 }
+.md-typeset .tabbed-labels label.ub-obsolete code {
+  display: inline-block;
+}
 
 /* Obsolete method headings */
 .md-typeset h1.ub-obsolete,
@@ -701,14 +704,16 @@ button.search-link:focus,
   text-decoration: line-through 2px currentColor;
 }
 
-/* Version badges inside obsolete headings should not be struck through */
+/* Version badges inside obsolete headings should not be struck through.
+   text-decoration propagates to inline children and cannot be cancelled
+   with text-decoration:none — display:inline-block breaks the chain. */
 .md-typeset h1.ub-obsolete code,
 .md-typeset h2.ub-obsolete code,
 .md-typeset h3.ub-obsolete code,
 .md-typeset h4.ub-obsolete code,
 .md-typeset h5.ub-obsolete code,
 .md-typeset h6.ub-obsolete code {
-  text-decoration: none;
+  display: inline-block;
 }
 
 /* ── Settings gear button ─────────────────────────────────── */
