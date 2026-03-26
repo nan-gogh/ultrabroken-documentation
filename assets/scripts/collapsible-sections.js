@@ -41,7 +41,8 @@
         var chev = document.createElement('span');
         chev.className = 'ub-collapse-chevron';
         chev.setAttribute('aria-hidden', 'true');
-        h.insertBefore(chev, h.firstChild);
+        chev.textContent = '\u25BC';   // ▼ (expanded)
+        h.appendChild(chev);
       }
 
       // Collect following siblings belonging to this section
@@ -65,6 +66,8 @@
       if (!startOpen) {
         h.classList.add('ub-collapsed');
         body.hidden = true;
+        var chev = h.querySelector('.ub-collapse-chevron');
+        if (chev) chev.textContent = '\u25B6';   // ▶ (collapsed)
       }
     }
 
@@ -81,6 +84,10 @@
 
     h.classList.toggle('ub-collapsed');
     body.hidden = !body.hidden;
+
+    // Swap chevron glyph
+    var chev = h.querySelector('.ub-collapse-chevron');
+    if (chev) chev.textContent = body.hidden ? '\u25B6' : '\u25BC';
   });
 
   /* Auto-open collapsed sections (and activate parent tabs) when a hash targets content inside */

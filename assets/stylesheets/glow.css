@@ -631,7 +631,7 @@ button.search-link:focus,
   z-index: 3; /* below header (4), same as .md-top */
   width: 1.5rem !important;
   height: 1.5rem !important;
-  background: url('/ultrabroken-documentation/assets/images/icons/back-to-top.svg') no-repeat center center !important;
+  background: url('/ultrabroken-documentation/assets/images/icons/vector-icon.svg') no-repeat center center !important;
   background-size: 1rem 1.25rem !important;
   border: none !important;
   border-radius: 0 !important;
@@ -909,19 +909,15 @@ button.search-link:focus,
 
 .ub-collapsible .ub-collapse-chevron {
   display: inline-block;
-  border: solid currentColor;
-  border-width: 0 1.5px 1.5px 0;
-  padding: 0.18em;
-  transform: rotate(-135deg);
-  vertical-align: 0.12em;
-  margin-right: 0.42em;
+  margin-left: 0.35em;
+  font-size: 0.55em;
+  vertical-align: 0.15em;
   opacity: 0.3;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 
 .ub-collapsible.ub-collapsed .ub-collapse-chevron {
-  transform: rotate(45deg);
-  vertical-align: 0.15em;
+  /* JS swaps textContent to ▶ */
 }
 
 .ub-collapsible:hover .ub-collapse-chevron {
