@@ -259,7 +259,35 @@ def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
 
 # ── HTML phase ───────────────────────────────────────────────────────────────
 
+_TABBED_SET_OPEN_RE = re.compile(r'<div class="tabbed-set\b')
+_HEADING_OPEN_RE = re.compile(r'<h([1-6])\b')
+
+def _inject_tab_levels(html: str) -> str:
+    """Add data-ub-level to each tabbed-set based on the nearest preceding heading.
+
+    Level = parent heading level + 1, so tabs under an <h2> get level 3.
+    CSS uses this to scale tab label font-size proportionally."""
+    edits = []  # (insert_pos, attr_string)
+    for m in _TABBED_SET_OPEN_RE.finditer(html):
+        headings = list(_HEADING_OPEN_RE.finditer(html, 0, m.start()))
+        if not headings:
+            continue
+        level = int(headings[-1].group(1))
+        tab_level = min(level + 1, 6)
+        # Insert right after '<div '
+        insert_pos = m.start() + len('<div ')
+        edits.append((insert_pos, f'data-ub-level="{tab_level}" '))
+
+    for pos, attr in reversed(edits):
+        html = html[:pos] + attr + html[pos:]
+    return html
+
+
 def on_page_content(html: str, page, config, **kwargs) -> str:
+    # Inject heading-level hints into tabbed-sets (independent of method-meta).
+    if 'class="tabbed-set' in html:
+        html = _inject_tab_levels(html)
+
     if "<!-- @method-meta " not in html:
         return html
 

@@ -37,12 +37,19 @@
 }
 
 
-/* Tab labels match h3 headline size in both modes */
+/* Tab labels — base size matches h3; data-ub-level (injected by
+   method_meta hook) scales each set relative to its parent heading.
+   Level = parent heading + 1, so tabs under h2 = level 3 (default). */
 .md-typeset .tabbed-labels label {
   font-size: 1rem;
   font-weight: normal;
   font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
+.md-typeset .tabbed-set[data-ub-level="2"] > .tabbed-labels label { font-size: 1.1rem; }
+.md-typeset .tabbed-set[data-ub-level="4"] > .tabbed-labels label { font-size: 0.9rem; }
+.md-typeset .tabbed-set[data-ub-level="5"] > .tabbed-labels label { font-size: 0.8rem; }
+.md-typeset .tabbed-set[data-ub-level="6"] > .tabbed-labels label { font-size: 0.7rem; }
+
 /* Inline code (version badges) in tab labels: inherit text color and
    scale down to match the heading badge treatment (0.7em). */
 .md-typeset .tabbed-labels label code {
@@ -50,11 +57,17 @@
   font-size: 0.7em;
   vertical-align: 0.1em;
 }
+
+/* Large font mode */
 [data-ub-font="large"] .md-typeset .tabbed-labels label {
   font-size: 1.25rem;
   font-weight: normal;
   font-family: 'New Rocker', 'Texturina', Georgia, serif !important;
 }
+[data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="2"] > .tabbed-labels label { font-size: 1.375rem; }
+[data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="4"] > .tabbed-labels label { font-size: 1.125rem; }
+[data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="5"] > .tabbed-labels label { font-size: 1rem; }
+[data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="6"] > .tabbed-labels label { font-size: 0.875rem; }
 
 /* Fix alignment of tab scroll arrows to match enlarged tab labels.
    Default Material height is 1.9rem for 0.8rem font labels.
