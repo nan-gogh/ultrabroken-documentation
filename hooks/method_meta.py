@@ -286,60 +286,122 @@ def on_page_content(html: str, page, config, **kwargs) -> str:
 
 def _mark_obsolete_labels(html: str) -> str:
     """Add 'ub-obsolete' class to tab labels whose corresponding tabbed-block
-    contains a method-meta div with data-obsolete="true"."""
+    contains a *tab-level* obsolete method-meta div (not one belonging to a
+    sub-heading).
 
-    # ── Tabbed methods ──
-    TABBED_SET = re.compile(
-        r'<div class="tabbed-set[^"]*"[^>]*>'
-        r'(?P<body>.*?)</div>\s*</div>\s*</div>',
-        re.DOTALL,
+    Strategy: find each ``tabbed-block`` that has ``data-obsolete="true"``
+    not preceded by a heading, then walk backwards to its parent
+    ``tabbed-set`` to locate the matching ``<label>`` by block index.
+    This avoids fragile regex parsing of deeply-nested div structures."""
+
+    # Locate every tabbed-set boundary so we can map blocks → labels.
+    SET_OPEN = re.compile(r'<div class="tabbed-set[^"]*"[^>]*>')
+    LABEL_RE = re.compile(r'<label for="([^"]+)">')
+    BLOCK_RE = re.compile(r'<div class="tabbed-block">')
+
+    # Pre-compute label lists per tabbed-set (by start position).
+    sets = []  # [(start, end_of_labels_area, [label_id, …])]
+    for m in SET_OPEN.finditer(html):
+        set_start = m.start()
+        # Labels appear between the set opening and the first tabbed-block.
+        first_block = BLOCK_RE.search(html, m.end())
+        if not first_block:
+            continue
+        label_area = html[m.end():first_block.start()]
+        labels = LABEL_RE.findall(label_area)
+        sets.append((set_start, first_block.start(), labels))
+
+    if not sets:
+        return html
+
+    # For each tabbed-block with a tab-level obsolete meta div, find its
+    # index within its parent set and mark the corresponding label.
+    META_OBS = re.compile(
+        r'<div class="ub-method-meta"[^>]*data-obsolete="true"'
     )
-    for ts in TABBED_SET.finditer(html):
-        body = ts.group("body")
-        labels = re.findall(r'<label for="([^"]+)">', body)
-        blocks = list(re.finditer(
-            r'<div class="tabbed-block">(.*?)(?=<div class="tabbed-block">|</div>\s*</div>)',
-            body, re.DOTALL,
-        ))
-        for i, block in enumerate(blocks):
-            if i >= len(labels):
+    labels_to_mark = set()  # label for="" ids to mark
+
+    for block_m in BLOCK_RE.finditer(html):
+        block_start = block_m.end()
+        # Find the next tabbed-block or a run of closing </div>s.
+        next_block = BLOCK_RE.search(html, block_start)
+        block_end = next_block.start() if next_block else len(html)
+        block_html = html[block_start:block_end]
+
+        # Does this block have a tab-level obsolete meta div?
+        has_tab_obsolete = False
+        for obs_m in META_OBS.finditer(block_html):
+            before = block_html[:obs_m.start()]
+            # If a heading immediately precedes (possibly with <p>), it
+            # belongs to that heading, not the tab.
+            if not re.search(r'</h[1-6]>[\s<p>/]*$', before):
+                has_tab_obsolete = True
                 break
-            block_html = block.group(1)
-            # Only mark the tab label if the block has a *tab-level* obsolete
-            # meta div — one that is NOT immediately preceded by a heading.
-            # Heading-level obsolete is handled separately by _mark_obsolete_headings.
-            has_tab_obsolete = False
-            for m in re.finditer(
-                r'<div class="ub-method-meta"[^>]*data-obsolete="true"', block_html
-            ):
-                before = block_html[:m.start()]
-                if not re.search(r'</h[1-6]>\s*$', before):
-                    has_tab_obsolete = True
-                    break
-            if has_tab_obsolete:
-                old_label = f'<label for="{labels[i]}">'
-                new_label = f'<label for="{labels[i]}" class="ub-obsolete">'
-                html = html.replace(old_label, new_label, 1)
+
+        if not has_tab_obsolete:
+            continue
+
+        # Determine which tabbed-set this block belongs to and its index.
+        parent_set = None
+        for s in reversed(sets):
+            if s[0] < block_m.start():
+                parent_set = s
+                break
+        if not parent_set:
+            continue
+
+        # Count how many tabbed-blocks appear before this one within the
+        # same set (between set start and this block).
+        block_index = 0
+        for earlier in BLOCK_RE.finditer(html, parent_set[0], block_m.start()):
+            block_index += 1
+        # block_index is now 1-based count of earlier blocks; the current one
+        # is at that index (0-based).  But we counted *earlier* blocks, so
+        # index = block_index (the first block has 0 earlier blocks = index 0).
+
+        labels = parent_set[2]
+        if block_index < len(labels):
+            labels_to_mark.add(labels[block_index])
+
+    # Apply the class to all identified labels.
+    for label_id in labels_to_mark:
+        old = f'<label for="{label_id}">'
+        new = f'<label for="{label_id}" class="ub-obsolete">'
+        html = html.replace(old, new, 1)
 
     return html
 
 
 def _mark_obsolete_headings(html: str) -> str:
-    """Add 'ub-obsolete' class to headings directly followed by a
-    ub-method-meta div with data-obsolete="true".  This covers collapsible
-    section headings (which are not inside tabbed-labels)."""
-    pattern = re.compile(
-        r'(<h[1-6])(\s[^>]*?)(>.*?</h[1-6]>\s*)'
-        r'(?=<div class="ub-method-meta"[^>]*data-obsolete="true")',
-        re.DOTALL,
+    """Add 'ub-obsolete' class to headings directly before a ub-method-meta div
+    with data-obsolete="true".  Works backwards from the meta div to find the
+    nearest heading, avoiding greedy cross-heading matches."""
+    META_RE = re.compile(
+        r'<div class="ub-method-meta"[^>]*data-obsolete="true"[^>]*>',
     )
-    def _add_class(m: re.Match) -> str:
-        tag = m.group(1)        # '<h4'
-        attrs = m.group(2)      # ' class="collapse" id="..."'
-        rest = m.group(3)       # '>…</h4>\n'
+    # Match the closest </hN> before the meta div (with optional <p> gap)
+    CLOSE_BEFORE = re.compile(r'</h([1-6])>[\s]*(?:<p>[\s]*)?$')
+
+    for meta_m in META_RE.finditer(html):
+        before = html[:meta_m.start()]
+        close_m = CLOSE_BEFORE.search(before)
+        if not close_m:
+            continue
+        level = close_m.group(1)
+        # Find the opening <hN> that pairs with this </hN>
+        open_pat = re.compile(rf'<h{level}(\s[^>]*)>')
+        # Search backwards: find the last <hN ...> before the </hN>
+        last_open = None
+        for om in open_pat.finditer(before[:close_m.start() + 1]):
+            last_open = om
+        if not last_open:
+            continue
+        attrs = last_open.group(1)
+        if 'ub-obsolete' in attrs:
+            continue  # already marked
         if 'class="' in attrs:
-            attrs = re.sub(r'class="', 'class="ub-obsolete ', attrs)
+            new_attrs = re.sub(r'class="', 'class="ub-obsolete ', attrs, count=1)
         else:
-            attrs = f' class="ub-obsolete"{attrs}'
-        return tag + attrs + rest
-    return pattern.sub(_add_class, html)
+            new_attrs = f' class="ub-obsolete"{attrs}'
+        html = html[:last_open.start(1)] + new_attrs + html[last_open.end(1):]
+    return html
