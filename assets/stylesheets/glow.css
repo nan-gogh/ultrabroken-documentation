@@ -693,6 +693,16 @@ button.search-link:focus,
   text-decoration-color: var(--muted-text);
 }
 
+/* Obsolete method collapsible headings - dimmed */
+.md-typeset h1.ub-obsolete,
+.md-typeset h2.ub-obsolete,
+.md-typeset h3.ub-obsolete,
+.md-typeset h4.ub-obsolete,
+.md-typeset h5.ub-obsolete,
+.md-typeset h6.ub-obsolete {
+  opacity: 0.45;
+}
+
 /* ── Settings gear button ─────────────────────────────────── */
 .ub-settings-gear {
   display: inline-flex;
@@ -902,9 +912,13 @@ button.search-link:focus,
 
 /* ── Collapsible sections ({ .collapse } headings) ─────────────────── */
 
+/* h4 headings are always non-bold (Material makes them bold by default) */
+.md-typeset h4 {
+  font-weight: 400;
+}
+
 .md-typeset .ub-collapsible {
   cursor: pointer;
-  font-weight: 400;
 }
 
 .ub-collapsible .ub-collapse-chevron {

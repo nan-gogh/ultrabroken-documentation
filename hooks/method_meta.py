@@ -79,10 +79,11 @@ _SENTINEL_RE = re.compile(
 
 # Second-pass: heading immediately before a sentinel (blank line optional).
 # Captures any ATX heading (##, ###, …) so range badges work for all levels.
+# Leading whitespace is allowed so headings inside tabs (indented) are matched.
 _HEADING_SENTINEL_RE = re.compile(
-    r"^(?P<heading>#{1,6} [^\n]+)\n"
+    r"^(?P<heading>[ \t]*#{1,6} [^\n]+)\n"
     r"(?P<blank>\n)?"
-    r"(?P<sentinel><!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?:true|false) -->)",
+    r"(?P<sentinel>[ \t]*<!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?:true|false) -->)",
     re.MULTILINE,
 )
 
@@ -214,9 +215,22 @@ def _patch_headings(markdown: str) -> str:
         except Exception:
             versions = []
         range_label = _make_range_label(versions)
+
+        # Separate trailing attr_list suffix { ... } so badge goes before it.
+        attr_match = re.search(r'\s*(\{[^}]+\})\s*$', heading)
+        if attr_match:
+            core = heading[:attr_match.start()]
+            attr_suffix = ' ' + attr_match.group(1)
+        else:
+            core = heading
+            attr_suffix = ''
+
         # Strip any existing badge, then append the computed one.
-        clean = re.sub(r"\s*`[^`]+`\s*$", "", heading)
-        new_heading = f"{clean} {range_label}" if range_label else clean
+        core = re.sub(r"\s*`[^`]+`\s*$", "", core)
+        if range_label:
+            new_heading = f"{core} {range_label}{attr_suffix}"
+        else:
+            new_heading = f"{core}{attr_suffix}"
         return f"{new_heading}\n{blank}{sentinel}"
 
     return _HEADING_SENTINEL_RE.sub(_rewrite_heading, markdown)
@@ -264,6 +278,9 @@ def on_page_content(html: str, page, config, **kwargs) -> str:
     # Mark tab labels of obsolete methods so CSS can style them.
     html = _mark_obsolete_labels(html)
 
+    # Mark headings (e.g. collapsible sections) of obsolete methods.
+    html = _mark_obsolete_headings(html)
+
     return html
 
 
@@ -293,3 +310,24 @@ def _mark_obsolete_labels(html: str) -> str:
                 html = html.replace(old_label, new_label, 1)
 
     return html
+
+
+def _mark_obsolete_headings(html: str) -> str:
+    """Add 'ub-obsolete' class to headings directly followed by a
+    ub-method-meta div with data-obsolete="true".  This covers collapsible
+    section headings (which are not inside tabbed-labels)."""
+    pattern = re.compile(
+        r'(<h[1-6])(\s[^>]*?)(>.*?</h[1-6]>\s*)'
+        r'(?=<div class="ub-method-meta"[^>]*data-obsolete="true")',
+        re.DOTALL,
+    )
+    def _add_class(m: re.Match) -> str:
+        tag = m.group(1)        # '<h4'
+        attrs = m.group(2)      # ' class="collapse" id="..."'
+        rest = m.group(3)       # '>…</h4>\n'
+        if 'class="' in attrs:
+            attrs = re.sub(r'class="', 'class="ub-obsolete ', attrs)
+        else:
+            attrs = f' class="ub-obsolete"{attrs}'
+        return tag + attrs + rest
+    return pattern.sub(_add_class, html)
