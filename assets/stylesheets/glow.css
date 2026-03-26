@@ -902,9 +902,9 @@ button.search-link:focus,
 
 /* ── Collapsible sections ({ .collapse } headings) ─────────────────── */
 
-.ub-collapsible {
+.md-typeset .ub-collapsible {
   cursor: pointer;
-  font-weight: inherit;
+  font-weight: 400;
 }
 
 .ub-collapsible .ub-collapse-chevron {
@@ -926,6 +926,53 @@ button.search-link:focus,
 
 .ub-collapsible:hover .ub-collapse-chevron {
   opacity: 0.6;
+}
+
+
+/* ── Heading share icon (permalink copy) ───────────────────────────── */
+
+.ub-heading-share {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.35em;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  vertical-align: middle;
+}
+
+.ub-heading-share img {
+  width: 0.55em;
+  height: 0.55em;
+  display: block;
+}
+
+/* Desktop hover reveal */
+:is(h1, h2, h3, h4, h5, h6):hover > .ub-heading-share {
+  opacity: 0.4;
+}
+
+.ub-heading-share:hover {
+  opacity: 0.8 !important;
+}
+
+/* Touch-primary: show faintly so users know it's tappable */
+@media (hover: none) {
+  .ub-heading-share {
+    opacity: 0.25;
+  }
+}
+
+/* Flash state after successful copy */
+.ub-heading-share--flash {
+  opacity: 1 !important;
+  animation: ub-share-flash 1.4s ease-out forwards;
+}
+
+@keyframes ub-share-flash {
+  0%   { opacity: 1; transform: scale(1.25); }
+  20%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; }
 }
 
 
