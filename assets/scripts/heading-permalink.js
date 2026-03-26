@@ -45,8 +45,10 @@
 
   /* ── Copy permalink + feedback ──────────────────────────── */
   function copyPermalink(heading) {
-    if (!heading || !heading.id) return;
-    var url = location.href.split('#')[0] + '#' + heading.id;
+    // Use id or data-ub-id (hidden headings have id moved there)
+    var slug = heading ? (heading.id || heading.getAttribute('data-ub-id')) : null;
+    if (!slug) return;
+    var url = location.href.split('#')[0] + '#' + slug;
 
     navigator.clipboard.writeText(url).then(function () {
       // Flash the share icon

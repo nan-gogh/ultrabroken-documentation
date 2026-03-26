@@ -908,21 +908,26 @@ button.search-link:focus,
 }
 
 .ub-collapsible .ub-collapse-chevron {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-left: 0.35em;
-  font-size: 0.55em;
-  vertical-align: 0.15em;
-  color: var(--teal-glow);
-  opacity: 0.5;
-  transition: opacity 0.15s ease;
+  opacity: 0.7;
+  transition: transform 0.2s ease, opacity 0.15s ease;
+  transform: rotate(180deg);   /* default (expanded): pointing down */
 }
 
-.ub-collapsible.ub-collapsed .ub-collapse-chevron {
-  /* JS swaps textContent to ▶ */
+.ub-collapse-chevron img {
+  width: 0.55em;
+  height: 0.55em;
+  display: block;
+}
+
+.ub-collapsed .ub-collapse-chevron {
+  transform: rotate(-90deg);   /* collapsed: pointing right */
 }
 
 .ub-collapsible:hover .ub-collapse-chevron {
-  opacity: 0.85;
+  opacity: 1;
 }
 
 
@@ -939,8 +944,8 @@ button.search-link:focus,
 }
 
 .ub-heading-share img {
-  width: 0.7em;
-  height: 0.7em;
+  width: 0.85em;
+  height: 0.85em;
   display: block;
 }
 

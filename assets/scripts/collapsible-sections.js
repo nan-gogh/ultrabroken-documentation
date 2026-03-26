@@ -14,13 +14,53 @@
  *
  *   ## Starts Open { .collapse .open }
  *   This section is expanded on load.
+ *
+ * TOC fix: headings inside hidden containers (collapsed body,
+ * inactive tab) have their `id` moved to `data-ub-id` so
+ * Material's scroll-spy excludes them from offset sorting.
  */
 (function () {
   'use strict';
 
-  /* ── TOC sync helpers ──────────────────────────────────── */
+  /* ── Site root for chevron SVG ─────────────────────────── */
+  var scriptEl = document.currentScript || document.querySelector('script[src*="collapsible-sections"]');
+  var SITE_ROOT = (scriptEl && scriptEl.src)
+    ? scriptEl.src.replace(/assets\/scripts\/[^/]+$/, '')
+    : location.href.replace(/\/[^/]*$/, '/');
 
-  /** Hide/show sidebar TOC entries whose target headings are inside hidden containers */
+  /* ── Heading ID management for TOC scroll-spy ──────────── */
+
+  /**
+   * Move `id` → `data-ub-id` for headings inside hidden containers
+   * so Material's scroll-spy excludes them from its offset index.
+   * Restore `id` when the container becomes visible.
+   */
+  function syncHeadingIds() {
+    var article = document.querySelector('.md-content__inner');
+    if (!article) return;
+    var headings = article.querySelectorAll(
+      'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id], ' +
+      'h1[data-ub-id], h2[data-ub-id], h3[data-ub-id], ' +
+      'h4[data-ub-id], h5[data-ub-id], h6[data-ub-id]'
+    );
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      var hiddenBody = h.closest('.ub-collapse-body[hidden]');
+      var tabBlock   = h.closest('.tabbed-block');
+      var inactiveTab = tabBlock && tabBlock.offsetHeight === 0;
+      var isHidden = !!hiddenBody || inactiveTab;
+
+      if (isHidden && h.id) {
+        h.setAttribute('data-ub-id', h.id);
+        h.removeAttribute('id');
+      } else if (!isHidden && !h.id && h.hasAttribute('data-ub-id')) {
+        h.id = h.getAttribute('data-ub-id');
+        h.removeAttribute('data-ub-id');
+      }
+    }
+  }
+
+  /** Hide/show sidebar TOC entries for hidden headings */
   function syncToc() {
     var tocNav = document.querySelector('.md-sidebar--secondary .md-nav');
     if (!tocNav) return;
@@ -28,22 +68,39 @@
     for (var i = 0; i < links.length; i++) {
       var href = links[i].getAttribute('href');
       if (!href || href.charAt(0) !== '#') continue;
-      var id = href.slice(1);
-      var target = document.getElementById(id);
-      if (!target) continue;
-      var li = links[i].closest('li');
-      if (!li) continue;
-      // Hidden if inside a collapsed body or an inactive tab block
-      var hiddenBody = target.closest('.ub-collapse-body[hidden]');
-      var inactiveTab = target.closest('.tabbed-block');
-      var tabHidden = inactiveTab && inactiveTab.offsetHeight === 0;
-      if (hiddenBody || tabHidden) {
-        li.style.display = 'none';
-      } else {
-        li.style.display = '';
+      var slug = href.slice(1);
+      // If heading's ID was moved to data-ub-id, it's hidden
+      var hidden = !document.getElementById(slug) &&
+                   !!document.querySelector('[data-ub-id]');
+      // More precise: check if this specific slug is in a data-ub-id
+      var headings = document.querySelectorAll('[data-ub-id]');
+      var isHidden = false;
+      for (var j = 0; j < headings.length; j++) {
+        if (headings[j].getAttribute('data-ub-id') === slug) {
+          isHidden = true;
+          break;
+        }
       }
+      var li = links[i].closest('li');
+      if (li) li.style.display = isHidden ? 'none' : '';
     }
   }
+
+  /**
+   * Full TOC sync: update heading IDs, hide/show TOC entries,
+   * then nudge body height so Material rebuilds its scroll-spy index.
+   */
+  function rebuildToc() {
+    syncHeadingIds();
+    syncToc();
+    // Force Material's ResizeObserver to fire and rebuild the index
+    var bump = document.createElement('div');
+    bump.style.height = '1px';
+    document.body.appendChild(bump);
+    requestAnimationFrame(function () { bump.remove(); });
+  }
+
+  /* ── Collapsible section setup ─────────────────────────── */
 
   function init() {
     var article = document.querySelector('.md-content__inner');
@@ -56,19 +113,25 @@
 
     for (var i = 0; i < headings.length; i++) {
       var h = headings[i];
-      if (h.classList.contains('ub-collapsible')) continue;   // already processed
+      if (h.classList.contains('ub-collapsible')) continue;
 
-      var level = parseInt(h.tagName[1], 10);
+      var level     = parseInt(h.tagName[1], 10);
       var startOpen = h.classList.contains('open');
 
       h.classList.remove('collapse', 'open');
       h.classList.add('ub-collapsible');
 
+      // Chevron (right of text, before share icon)
       if (!h.querySelector('.ub-collapse-chevron')) {
         var chev = document.createElement('span');
         chev.className = 'ub-collapse-chevron';
         chev.setAttribute('aria-hidden', 'true');
-        chev.textContent = '\u25BC';   // ▼ (expanded)
+
+        var img = document.createElement('img');
+        img.src = SITE_ROOT + 'assets/images/icons/vector-icon.svg';
+        img.alt = '';
+        chev.appendChild(img);
+
         // Insert before share icon if present, else append
         var shareIcon = h.querySelector('.ub-heading-share');
         if (shareIcon) {
@@ -85,10 +148,7 @@
       var sib = h.nextElementSibling;
       while (sib) {
         if (/^H[1-6]$/i.test(sib.tagName) && parseInt(sib.tagName[1], 10) <= level) break;
-        if (sib.classList.contains('ub-collapse-body')) {
-          // Already-wrapped nested section — peek at its preceding heading
-          break;
-        }
+        if (sib.classList.contains('ub-collapse-body')) break;
         var next = sib.nextElementSibling;
         body.appendChild(sib);
         sib = next;
@@ -99,18 +159,16 @@
       if (!startOpen) {
         h.classList.add('ub-collapsed');
         body.hidden = true;
-        var chev = h.querySelector('.ub-collapse-chevron');
-        if (chev) chev.textContent = '\u25B6';   // ▶ (collapsed)
       }
     }
 
-    syncToc();
+    rebuildToc();
     openForHash();
   }
 
-  /* Toggle on heading click */
+  /* ── Toggle on heading click ───────────────────────────── */
   document.addEventListener('click', function (e) {
-    if (e.target.closest('.ub-heading-share')) return;   // permalink icon has its own handler
+    if (e.target.closest('.ub-heading-share')) return;
     var h = e.target.closest('.ub-collapsible');
     if (!h) return;
     var body = h.nextElementSibling;
@@ -118,78 +176,74 @@
 
     h.classList.toggle('ub-collapsed');
     body.hidden = !body.hidden;
-
-    // Swap chevron glyph
-    var chev = h.querySelector('.ub-collapse-chevron');
-    if (chev) chev.textContent = body.hidden ? '\u25B6' : '\u25BC';
-
-    // Update TOC visibility for headings inside this body
-    syncToc();
+    rebuildToc();
   });
 
-  /* Listen for tab changes to re-sync TOC */
+  /* ── Tab changes → re-sync TOC ─────────────────────────── */
   document.addEventListener('change', function (e) {
     if (e.target.closest('.tabbed-set')) {
-      // Defer so Material finishes toggling tab visibility
-      setTimeout(syncToc, 50);
+      setTimeout(rebuildToc, 50);
     }
   });
 
-  /* Auto-open collapsed sections (and activate parent tabs) when a hash targets content inside */
+  /* ── Hash navigation ───────────────────────────────────── */
   function openForHash() {
     var id = location.hash.slice(1);
     if (!id) return;
+
+    // Find target — may have ID moved to data-ub-id if hidden
     var target = document.getElementById(id);
+    if (!target) {
+      var candidates = document.querySelectorAll('[data-ub-id]');
+      for (var j = 0; j < candidates.length; j++) {
+        if (candidates[j].getAttribute('data-ub-id') === id) {
+          target = candidates[j];
+          // Restore ID
+          target.id = id;
+          target.removeAttribute('data-ub-id');
+          break;
+        }
+      }
+    }
     if (!target) return;
 
-    // ── Activate any Material tabbed-set ancestor ──
+    // Activate parent Material tab
     var tabbedBlock = target.closest('.tabbed-block');
     if (tabbedBlock) {
-      var content = tabbedBlock.parentElement;            // .tabbed-content
+      var content = tabbedBlock.parentElement;
       if (content) {
         var blocks = [].slice.call(content.children);
-        var idx    = blocks.indexOf(tabbedBlock);         // 0-based tab index
+        var idx    = blocks.indexOf(tabbedBlock);
         var set    = content.closest('.tabbed-set');
         if (set && idx >= 0) {
-          // Material uses <input type="radio" id="__tabbed_X_Y"> to toggle tabs
           var radios = set.querySelectorAll(':scope > input[type="radio"]');
           if (radios[idx]) {
             radios[idx].checked = true;
-            // Some Material versions also need a change event
             radios[idx].dispatchEvent(new Event('change'));
           }
         }
       }
     }
 
-    // ── Open collapsed ancestors ──
+    // Open collapsed ancestors
     var body = target.closest('.ub-collapse-body');
     while (body) {
       body.hidden = false;
-      var h = body.previousElementSibling;
-      if (h) {
-        h.classList.remove('ub-collapsed');
-        var chev = h.querySelector('.ub-collapse-chevron');
-        if (chev) chev.textContent = '\u25BC';
-      }
+      var hdr = body.previousElementSibling;
+      if (hdr) hdr.classList.remove('ub-collapsed');
       body = body.parentElement ? body.parentElement.closest('.ub-collapse-body') : null;
     }
 
-    // Also handle the case where the hash targets a collapsible heading itself
+    // If the target itself is a collapsed heading, expand it
     if (target.classList.contains('ub-collapsed')) {
       target.classList.remove('ub-collapsed');
       var nextBody = target.nextElementSibling;
       if (nextBody && nextBody.classList.contains('ub-collapse-body')) {
         nextBody.hidden = false;
       }
-      var chev = target.querySelector('.ub-collapse-chevron');
-      if (chev) chev.textContent = '\u25BC';
     }
 
-    // Re-sync TOC after opening sections/tabs
-    syncToc();
-
-    // Scroll into view (defer slightly so tab/collapse transitions settle)
+    rebuildToc();
     setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
   }
 
