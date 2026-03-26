@@ -920,6 +920,47 @@ button.search-link:focus,
 }
 
 
+/* ── Collapsible sections ({ .collapse } headings → details/summary) ── */
+
+.ub-collapse {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ub-collapse > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.ub-collapse > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Subtle chevron indicator after the heading text */
+.ub-collapse > summary > :is(h1, h2, h3, h4, h5, h6)::after {
+  content: '';
+  display: inline-block;
+  border: solid currentColor;
+  border-width: 0 1.5px 1.5px 0;
+  padding: 0.18em;
+  transform: rotate(45deg);
+  vertical-align: 0.15em;
+  margin-left: 0.4em;
+  opacity: 0.3;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.ub-collapse[open] > summary > :is(h1, h2, h3, h4, h5, h6)::after {
+  transform: rotate(-135deg);
+  vertical-align: -0.05em;
+}
+
+.ub-collapse > summary:hover > :is(h1, h2, h3, h4, h5, h6)::after {
+  opacity: 0.6;
+}
+
+
 /* ── Zonai rain (static grid + JS opacity raindrops) ─────────────── */
 
 .ub-rain-bg {
