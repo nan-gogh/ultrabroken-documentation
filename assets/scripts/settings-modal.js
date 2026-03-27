@@ -45,8 +45,9 @@
     regular: 'Regular', large: 'Large',
     // editor
     off: 'Hidden', on: 'Visible',
-    // deprecation
-    shown: 'Shown', hidden: 'Hidden'
+    // obsolete markers
+    shown: 'Shown'
+    // 'hidden' already defined by motion — same label, shared intentionally
   };
 
   var TOGGLE_LABELS = {
@@ -174,14 +175,15 @@
 
     function updateControl() {
       var mode = getDeprecationMode();
-      // Shown = strikethrough active → struck-through S icon
-      // Hidden = normal look → plain S icon
+      // Shown → strikethrough icon (horizontal line through text)
+      // Hidden → plain text icon (no line)
       var icon = mode === 'shown'
         ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
-          + '<text x="12" y="17" fill="currentColor" font-family="serif" font-size="16" font-weight="bold" text-anchor="middle" text-decoration="line-through">S</text>'
+          + '<path fill="currentColor" d="M10 19h4v-3h-4v3zM5 4v3h5v3h4V7h5V4H5z"/>'
+          + '<rect fill="currentColor" x="3" y="11" width="18" height="2" rx="0.5"/>'
           + '</svg>'
         : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
-          + '<text x="12" y="17" fill="currentColor" font-family="serif" font-size="16" font-weight="bold" text-anchor="middle">S</text>'
+          + '<path fill="currentColor" d="M10 19h4v-3h-4v3zM5 4v3h5v3h4V7h5V4H5z"/>'
           + '</svg>';
       control.innerHTML = icon + '<span class="ub-settings-mode">' + (MODE_LABELS[mode] || mode) + '</span>';
       control.setAttribute('title', mode === 'shown' ? 'Obsolete markers: shown — click to hide' : 'Obsolete markers: hidden — click to show');

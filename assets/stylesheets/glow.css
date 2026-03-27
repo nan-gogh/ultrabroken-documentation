@@ -716,28 +716,13 @@ button.search-link:focus,
   transition: none !important;
 }
 
-/* Obsolete method tab labels — strikethrough shown only when deprecation toggle is ON */
-.md-typeset .tabbed-labels label.ub-obsolete {
-  /* default: normal appearance */
-}
-.md-typeset .tabbed-labels label.ub-obsolete code {
-  display: inline-block;
-}
-/* Show strikethrough when deprecation toggle is ON (no ub-hide-deprecated class) */
+/* Obsolete markers — strikethrough shown only when toggle is ON */
 html:not(.ub-hide-deprecated) .md-typeset .tabbed-labels label.ub-obsolete {
   text-decoration: line-through 2px currentColor;
 }
-
-/* Obsolete method headings */
-.md-typeset h1.ub-obsolete,
-.md-typeset h2.ub-obsolete,
-.md-typeset h3.ub-obsolete,
-.md-typeset h4.ub-obsolete,
-.md-typeset h5.ub-obsolete,
-.md-typeset h6.ub-obsolete {
-  /* default: normal appearance */
+html:not(.ub-hide-deprecated) .md-typeset .tabbed-labels label.ub-obsolete code {
+  display: inline-block;
 }
-/* Show strikethrough on headings when deprecation toggle is ON */
 html:not(.ub-hide-deprecated) .md-typeset h1.ub-obsolete,
 html:not(.ub-hide-deprecated) .md-typeset h2.ub-obsolete,
 html:not(.ub-hide-deprecated) .md-typeset h3.ub-obsolete,
@@ -763,13 +748,14 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete {
 
 /* Version badges inside obsolete headings should not be struck through.
    text-decoration propagates to inline children and cannot be cancelled
-   with text-decoration:none — display:inline-block breaks the chain. */
-.md-typeset h1.ub-obsolete code,
-.md-typeset h2.ub-obsolete code,
-.md-typeset h3.ub-obsolete code,
-.md-typeset h4.ub-obsolete code,
-.md-typeset h5.ub-obsolete code,
-.md-typeset h6.ub-obsolete code {
+   with text-decoration:none — display:inline-block breaks the chain.
+   Scoped to toggle-ON so badges render normally when markers are off. */
+html:not(.ub-hide-deprecated) .md-typeset h1.ub-obsolete code,
+html:not(.ub-hide-deprecated) .md-typeset h2.ub-obsolete code,
+html:not(.ub-hide-deprecated) .md-typeset h3.ub-obsolete code,
+html:not(.ub-hide-deprecated) .md-typeset h4.ub-obsolete code,
+html:not(.ub-hide-deprecated) .md-typeset h5.ub-obsolete code,
+html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   display: inline-block;
 }
 
