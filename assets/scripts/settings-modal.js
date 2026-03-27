@@ -339,9 +339,14 @@
   }
 
   /* ── Listen for storage-toggle to refresh modal if open ───── */
-  window.addEventListener('storage-toggle', function () {
+  window.addEventListener('storage-toggle', function (e) {
     if (isOpen && toggleRows['ub-storage-toggle']) {
       toggleRows['ub-storage-toggle'].update();
+    }
+    // Persist deprecation toggle state when storage is first enabled
+    if (e.detail && e.detail.enabled && window.__ubStorage) {
+      var shown = !document.documentElement.classList.contains('ub-hide-deprecated');
+      window.__ubStorage.set('deprecated-shown', shown ? 'true' : 'false');
     }
   });
 
