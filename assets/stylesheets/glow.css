@@ -584,6 +584,17 @@ button.search-link:focus,
   color: var(--teal-glow) !important;
 }
 
+/* Auto section separators — thin line above H2-H4 headings */
+.md-typeset :is(h2, h3, h4) {
+  border-top: 1px solid var(--hr-sep);
+  padding-top: 0.6em;
+}
+/* No separator on the very first heading after H1 (tight spacing) */
+.md-typeset h1 + h2 {
+  border-top: none;
+  padding-top: 0;
+}
+
 /* Using default MkDocs Material permalink styles (no custom permalink overrides) */
 
 /* Sidebar section headers - override ellipsis clipping */
