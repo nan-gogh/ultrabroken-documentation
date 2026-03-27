@@ -126,10 +126,17 @@
     );
 
     // navigation.tracking — debounced hash update
+    // H1 maps to the page itself, so clear the hash instead of setting it.
     if (newId) {
+      var isH1 = activeHeading && activeHeading.el &&
+                 activeHeading.el.tagName === 'H1';
       clearTimeout(trackingTimer);
       trackingTimer = setTimeout(function () {
-        if (location.hash !== '#' + newId) {
+        if (isH1) {
+          if (location.hash) {
+            history.replaceState(null, '', location.pathname + location.search);
+          }
+        } else if (location.hash !== '#' + newId) {
           history.replaceState(null, '', '#' + newId);
         }
       }, 250);
