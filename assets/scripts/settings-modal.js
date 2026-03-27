@@ -168,8 +168,8 @@
     control.setAttribute('type', 'button');
 
     function getDeprecationMode() {
-      var shown = window.__ubStorage ? window.__ubStorage.get('deprecated-shown') : null;
-      return shown !== 'false' ? 'shown' : 'hidden';
+      // Check the actual DOM state, not storage — toggle should reflect current state immediately
+      return document.documentElement.classList.contains('ub-hide-deprecated') ? 'hidden' : 'shown';
     }
 
     function updateControl() {
