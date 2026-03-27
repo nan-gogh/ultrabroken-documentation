@@ -716,12 +716,16 @@ button.search-link:focus,
   transition: none !important;
 }
 
-/* Obsolete method tab labels */
+/* Obsolete method tab labels — strikethrough shown only when deprecation toggle is ON */
 .md-typeset .tabbed-labels label.ub-obsolete {
-  text-decoration: line-through 2px currentColor;
+  /* default: normal appearance */
 }
 .md-typeset .tabbed-labels label.ub-obsolete code {
   display: inline-block;
+}
+/* Show strikethrough when deprecation toggle is ON (no ub-hide-deprecated class) */
+html:not(.ub-hide-deprecated) .md-typeset .tabbed-labels label.ub-obsolete {
+  text-decoration: line-through 2px currentColor;
 }
 
 /* Obsolete method headings */
@@ -731,6 +735,15 @@ button.search-link:focus,
 .md-typeset h4.ub-obsolete,
 .md-typeset h5.ub-obsolete,
 .md-typeset h6.ub-obsolete {
+  /* default: normal appearance */
+}
+/* Show strikethrough on headings when deprecation toggle is ON */
+html:not(.ub-hide-deprecated) .md-typeset h1.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h2.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h3.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h4.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h5.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete {
   text-decoration: line-through 2px currentColor;
 }
 
