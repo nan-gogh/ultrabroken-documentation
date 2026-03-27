@@ -245,7 +245,6 @@
    Also replaces Material's faint box-shadow with a proper separator line. */
 .md-typeset .tabbed-labels {
   overscroll-behavior-x: contain;
-  --md-default-fg-color: var(--teal-glow);
   --md-default-fg-color--light: var(--muted-text);
   --md-accent-fg-color: var(--teal-glow);
   box-shadow: none;
