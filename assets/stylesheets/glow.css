@@ -981,15 +981,16 @@ button.search-link:focus,
   cursor: pointer;
   /* Reserve space so heading text wraps before reaching the chevron */
   padding-right: 1.2em;
+  position: relative;
 }
 
 .ub-collapsible .ub-collapse-chevron {
-  float: right;
+  position: absolute;
+  right: 0;
+  top: 0;
   display: flex;
   align-items: center;
   height: 1.2em;
-  margin-left: 0.35em;
-  margin-right: -1.2em;  /* pull into the reserved padding */
   opacity: 0.7;
   transition: transform 0.2s ease, opacity 0.15s ease;
   transform: rotate(180deg);   /* default (expanded): pointing down */
