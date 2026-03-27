@@ -239,14 +239,17 @@
   overflow-x: auto;
 }
 
-/* Prevent tab scroll overshoot on mobile (stops elastic bounce at boundaries) */
+/* Tab label visual segmentation — override Material's palette variables
+   within the tab row so labels act as section dividers matching headings.
+   Active + hover = teal-glow; inactive = muted.
+   Also replaces Material's faint box-shadow with a proper separator line. */
 .md-typeset .tabbed-labels {
   overscroll-behavior-x: contain;
-  /* scroll-snap-type: x mandatory;  snap to tab labels after scroll - DISABLED */
-  /* scroll-snap-align: start;  DISABLED */
-}
-.md-typeset .tabbed-labels label {
-  /* scroll-snap-align: start;  DISABLED */
+  --md-default-fg-color: var(--teal-glow);
+  --md-default-fg-color--light: var(--muted-text);
+  --md-accent-fg-color: var(--teal-glow);
+  box-shadow: none;
+  border-bottom: 1px solid var(--hr-sep);
 }
 
 /* ── Shared header / sidebar toggle buttons ── */
