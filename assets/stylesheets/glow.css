@@ -961,13 +961,14 @@ button.search-link:focus,
 }
 
 .ub-collapsible .ub-collapse-chevron {
-  display: inline-flex;
+  float: right;
+  display: flex;
   align-items: center;
+  height: 1.2em;
   margin-left: 0.35em;
   opacity: 0.7;
   transition: transform 0.2s ease, opacity 0.15s ease;
   transform: rotate(180deg);   /* default (expanded): pointing down */
-  vertical-align: 0.1em;
 }
 
 .ub-collapse-chevron img {
