@@ -183,7 +183,7 @@
           + '<rect fill="currentColor" x="3" y="11" width="18" height="2" rx="0.5"/>'
           + '</svg>'
         : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">'
-          + '<path fill="currentColor" d="M10 19h4v-3h-4v3zM5 4v3h5v3h4V7h5V4H5z"/>'
+          + '<path fill="currentColor" d="M5 4h14v3h-5v12h-4V7H5V4z"/>'
           + '</svg>';
       control.innerHTML = icon + '<span class="ub-settings-mode">' + (MODE_LABELS[mode] || mode) + '</span>';
       control.setAttribute('title', mode === 'shown' ? 'Obsolete markers: shown — click to hide' : 'Obsolete markers: hidden — click to show');
