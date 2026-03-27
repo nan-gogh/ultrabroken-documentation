@@ -47,7 +47,8 @@
   function copyPermalink(heading) {
     var slug = heading ? heading.id : null;
     if (!slug) return;
-    var url = location.href.split('#')[0] + '#' + slug;
+    var base = location.href.split('#')[0];
+    var url = heading.tagName === 'H1' ? base : base + '#' + slug;
 
     navigator.clipboard.writeText(url).then(function () {
       // Flash the share icon
