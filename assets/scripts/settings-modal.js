@@ -54,7 +54,7 @@
     'ub-storage-toggle':      'Local storage',
     'ub-font-toggle':         'Font size',
     'ub-editor-toggle':       'Editing tools',
-    'ub-deprecation-toggle':  'Deprecated content'
+    'ub-deprecation-toggle':  'Obsolete content'
   };
 
   /* ════════════════════════════════════════════════════════════
@@ -106,7 +106,7 @@
     // --- Deprecation toggle ---
     var divider = document.createElement('div');
     divider.className = 'ub-settings-divider';
-    divider.textContent = 'Content';
+    divider.textContent = 'Filtering';
     body.appendChild(divider);
 
     body.appendChild(buildDeprecationToggle());
@@ -178,7 +178,7 @@
         ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 4C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4m0 13c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7m0-11c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/></svg>'
         : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.75-2.84 3.58-4.59-1.73-4.39-6-7.5-11.14-7.5-1.48 0-2.89.2-4.24.56l3.6 3.6c.57-.23 1.18-.36 1.83-.36m0 2c-1.66 0-3 1.34-3 3 0 .29.05.57.13.84l3.87 3.87c.27-.08.55-.13.84-.13 1.66 0 3-1.34 3-3s-1.34-3-3-3zm9.69-5.48l-5.29 5.29c.07.31.11.63.11.97 0 2.21-1.79 4-4 4-.34 0-.66-.04-.97-.11l-5.29 5.29c1.5.92 3.27 1.47 5.16 1.47 6.04 0 11-4.48 12.7-10.39-1.05-1.96-2.65-3.73-4.58-4.87m-6.69.3l.94 1.06c-.26.18-.49.43-.63.73l1.06.94 1.06-1.06c.3-.14.55-.37.73-.63l.94 1.06c.17-.25.3-.54.38-.85l-1.41-1.41c-.31.08-.6.21-.85.38l-1.06-1.06-1.06 1.06c-.17.25-.3.54-.38.85l1.41 1.41c.31-.08.6-.21.85-.38z"/></svg>';
       control.innerHTML = icon + '<span class="ub-settings-mode">' + (MODE_LABELS[mode] || mode) + '</span>';
-      control.setAttribute('title', mode === 'shown' ? 'Deprecated content: shown — click to hide' : 'Deprecated content: hidden — click to show');
+      control.setAttribute('title', mode === 'shown' ? 'Obsolete content: shown — click to hide' : 'Obsolete content: hidden — click to show');
     }
 
     control.addEventListener('click', function (e) {
