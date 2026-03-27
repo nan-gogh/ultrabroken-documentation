@@ -245,10 +245,15 @@
    Also replaces Material's faint box-shadow with a proper separator line. */
 .md-typeset .tabbed-labels {
   overscroll-behavior-x: contain;
+  --md-default-fg-color: var(--teal-glow);
   --md-default-fg-color--light: var(--muted-text);
   --md-accent-fg-color: var(--teal-glow);
   box-shadow: none;
   border-bottom: 1px solid var(--hr-sep);
+}
+/* Keep sliding indicator bar at default foreground color, not teal */
+.md-typeset .tabbed-labels::before {
+  background: hsla(0, 0%, 100%, 0.87) !important;
 }
 
 /* ── Shared header / sidebar toggle buttons ── */
