@@ -579,8 +579,8 @@ button.search-link:focus,
   text-shadow: 0 0 6px rgba(0,240,194,0.06);
 }
 
-/* Use teal accent for top-level headings only (h1) */
-.md-content h1, h1 {
+/* Use teal accent for all content headings */
+.md-content :is(h1, h2, h3, h4, h5, h6) {
   color: var(--teal-glow) !important;
 }
 
@@ -950,11 +950,6 @@ button.search-link:focus,
 
 
 /* ── Collapsible sections ({ .collapse } headings) ─────────────────── */
-
-/* Match all headings to H1's lighter color (Material only sets it on h1, h5, h6) */
-.md-typeset :is(h2, h3, h4) {
-  color: var(--md-default-fg-color--light);
-}
 
 /* h4 headings are always non-bold (Material makes them bold by default) */
 .md-typeset h4 {
