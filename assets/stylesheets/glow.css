@@ -965,9 +965,12 @@ button.search-link:focus,
 
 /* ── Collapsible sections ({ .collapse } headings) ─────────────────── */
 
-/* h4 headings are always non-bold (Material makes them bold by default) */
+/* h4 headings are always non-bold (Material makes them bold by default).
+   Also increase top margin — Material's default 1em is noticeably tighter
+   than the 1.6em gap above H2/H3. */
 .md-typeset h4 {
   font-weight: 400;
+  margin-top: 1.6em;
 }
 
 .md-typeset .ub-collapsible {
