@@ -240,8 +240,7 @@
     var legend = document.createElement('div');
     legend.className = 'ub-vf-legend';
     legend.innerHTML = '<span class="ub-vf-leg-item" data-state="neutral">\u25CB Ignore</span>'
-      + '<span class="ub-vf-leg-item" data-state="include">\u25C9 Include</span>'
-      + '<span class="ub-vf-leg-item" data-state="exclude">\u25CE Exclude</span>';
+      + '<span class="ub-vf-leg-item" data-state="include">\u25C9 Include</span>';
     wrapper.appendChild(legend);
 
     // Reset button
@@ -252,7 +251,7 @@
     reset.addEventListener('click', function (e) {
       e.preventDefault();
       if (window.__ubVersionFilter) {
-        window.__ubVersionFilter.setState({ include: [], exclude: [] });
+        window.__ubVersionFilter.setState({ include: [] });
       }
       refreshVersionGrid();
     });
@@ -283,13 +282,12 @@
   function refreshVersionGrid() {
     if (!_vfContainer || !_versionData) return;
     var versions = _versionData.versions || [];
-    var state = window.__ubVersionFilter ? window.__ubVersionFilter.getState() : { include: [], exclude: [] };
+    var state = window.__ubVersionFilter ? window.__ubVersionFilter.getState() : { include: [] };
 
     _vfContainer.innerHTML = '';
     versions.forEach(function (v) {
       var s = 'neutral';
       if (state.include.indexOf(v) >= 0) s = 'include';
-      else if (state.exclude.indexOf(v) >= 0) s = 'exclude';
 
       var btn = document.createElement('button');
       btn.className = 'ub-vf-chip';
@@ -307,38 +305,30 @@
   }
 
   function cycleVersion(v, btn) {
-    var state = window.__ubVersionFilter ? window.__ubVersionFilter.getState() : { include: [], exclude: [] };
+    var state = window.__ubVersionFilter ? window.__ubVersionFilter.getState() : { include: [] };
     var inc = state.include.slice();
-    var exc = state.exclude.slice();
-    var cur = 'neutral';
-    if (inc.indexOf(v) >= 0) cur = 'include';
-    else if (exc.indexOf(v) >= 0) cur = 'exclude';
+    var cur = inc.indexOf(v) >= 0 ? 'include' : 'neutral';
 
-    // neutral -> include -> exclude -> neutral
+    // neutral -> include -> neutral
     var next;
     if (cur === 'neutral') {
       next = 'include';
       inc.push(v);
-    } else if (cur === 'include') {
-      next = 'exclude';
-      inc.splice(inc.indexOf(v), 1);
-      exc.push(v);
     } else {
       next = 'neutral';
-      exc.splice(exc.indexOf(v), 1);
+      inc.splice(inc.indexOf(v), 1);
     }
 
     btn.setAttribute('data-state', next);
     btn.setAttribute('title', vfTitle(v, next));
 
     if (window.__ubVersionFilter) {
-      window.__ubVersionFilter.setState({ include: inc, exclude: exc });
+      window.__ubVersionFilter.setState({ include: inc });
     }
   }
 
   function vfTitle(v, state) {
-    if (state === 'include') return v + ': must include \u2014 click to exclude';
-    if (state === 'exclude') return v + ': must not include \u2014 click to ignore';
+    if (state === 'include') return v + ': included \u2014 click to ignore';
     return v + ': ignored \u2014 click to include';
   }
 

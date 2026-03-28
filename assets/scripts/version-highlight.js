@@ -24,20 +24,19 @@
   /* ══════════════════════════════════════════════════════════════
      State
      ══════════════════════════════════════════════════════════════ */
-  var filterState = { include: [], exclude: [] };
+  var filterState = { include: [] };
 
   function loadState() {
     if (window.__ubStorage && window.__ubStorage.allowed()) {
       var s = window.__ubStorage.getJSON(STORAGE_KEY);
       if (s && typeof s === 'object') {
         filterState = {
-          include: Array.isArray(s.include) ? s.include : [],
-          exclude: Array.isArray(s.exclude) ? s.exclude : []
+          include: Array.isArray(s.include) ? s.include : []
         };
         return;
       }
     }
-    filterState = { include: [], exclude: [] };
+    filterState = { include: [] };
   }
 
   function saveState() {
@@ -47,34 +46,18 @@
   }
 
   function isActive() {
-    return filterState.include.length > 0 || filterState.exclude.length > 0;
+    return filterState.include.length > 0;
   }
 
   /** Classify a versions array against the current filter.
    *  Returns 'match' | 'mismatch' | 'neutral'. */
   function classify(versions) {
-    if (!versions || !versions.length || !isActive()) return 'neutral';
-    var hasInclude = filterState.include.length > 0;
-    var hasExclude = filterState.exclude.length > 0;
-
-    if (hasInclude) {
-      for (var i = 0; i < filterState.include.length; i++) {
-        if (versions.indexOf(filterState.include[i]) >= 0) return 'match';
-      }
+    if (!isActive()) return 'neutral';
+    if (!versions || !versions.length) return 'mismatch';
+    for (var i = 0; i < filterState.include.length; i++) {
+      if (versions.indexOf(filterState.include[i]) >= 0) return 'match';
     }
-
-    if (hasExclude) {
-      var allExcluded = true;
-      for (var j = 0; j < versions.length; j++) {
-        if (filterState.exclude.indexOf(versions[j]) < 0) {
-          allExcluded = false;
-          break;
-        }
-      }
-      if (allExcluded) return 'mismatch';
-    }
-
-    return hasInclude ? 'mismatch' : 'neutral';
+    return 'mismatch';
   }
 
   /* ══════════════════════════════════════════════════════════════
@@ -136,6 +119,14 @@
       while (prev && prev.tagName === 'P') {
         prev = prev.previousElementSibling;
       }
+      // If no heading found, check if meta is inside a collapse body
+      // (collapsible-sections.js wraps content after the heading)
+      if (!prev || !/^H[1-6]$/.test(prev.tagName)) {
+        var collapseBody = meta.closest('.ub-collapse-body');
+        if (collapseBody) {
+          prev = collapseBody.previousElementSibling;
+        }
+      }
       if (prev && /^H[1-6]$/.test(prev.tagName)) {
         applyClass(prev, cls);
       }
@@ -161,8 +152,7 @@
     getState: function () { return filterState; },
     setState: function (newState) {
       filterState = {
-        include: Array.isArray(newState.include) ? newState.include : [],
-        exclude: Array.isArray(newState.exclude) ? newState.exclude : []
+        include: Array.isArray(newState.include) ? newState.include : []
       };
       saveState();
       apply();
@@ -175,7 +165,7 @@
 
   function broadcast() {
     window.dispatchEvent(new CustomEvent(EVENT_NAME, {
-      detail: { include: filterState.include, exclude: filterState.exclude }
+      detail: { include: filterState.include }
     }));
   }
 

@@ -944,12 +944,6 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   color: var(--teal-glow);
   background: rgba(0, 240, 194, 0.1);
 }
-.ub-vf-chip[data-state="exclude"] {
-  border-color: #ff5252;
-  color: #ff5252;
-  background: rgba(255, 82, 82, 0.08);
-  text-decoration: line-through;
-}
 .ub-vf-legend {
   display: flex;
   gap: 0.75rem;
@@ -958,7 +952,6 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   color: var(--muted-text);
 }
 .ub-vf-leg-item[data-state="include"] { color: var(--teal-glow); }
-.ub-vf-leg-item[data-state="exclude"] { color: #ff5252; }
 .ub-vf-reset {
   display: inline-flex;
   align-items: center;
@@ -983,15 +976,21 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
 
 /* Match: teal glow + subtle text-shadow */
 .md-typeset .tabbed-labels label.ub-version-match,
+.grim-li a.ub-version-match {
+  color: var(--teal-glow);
+  text-shadow: 0 0 8px rgba(0, 240, 194, 0.5);
+}
+/* Headings get a left accent bar for stronger contrast */
 .md-typeset h1.ub-version-match,
 .md-typeset h2.ub-version-match,
 .md-typeset h3.ub-version-match,
 .md-typeset h4.ub-version-match,
 .md-typeset h5.ub-version-match,
-.md-typeset h6.ub-version-match,
-.grim-li a.ub-version-match {
+.md-typeset h6.ub-version-match {
   color: var(--teal-glow);
-  text-shadow: 0 0 8px rgba(0, 240, 194, 0.5);
+  text-shadow: 0 0 10px rgba(0, 240, 194, 0.6);
+  border-left: 3px solid var(--teal-glow);
+  padding-left: 0.5rem;
 }
 
 /* Mismatch: muted color (not opacity — preserves strikethrough visibility) */
