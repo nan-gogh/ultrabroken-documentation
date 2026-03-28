@@ -183,9 +183,8 @@ def _replace_block(match: re.Match) -> str:
     admonition = ""
     if obsolete:
         admonition = (
-            f"{indent}!!! warning \"OBSOLETE SECTION\"\n"
-            f"{indent}    This section is obsolete."
-            f" Check out the other sections on this page.\n\n"
+            f"{indent}!!! warning \"OBSOLETE CONTENT\"\n"
+            f"{indent}    This content is obsolete. Check out alternatives.\n\n"
         )
 
     return new_tab_line + sentinel + badges + admonition

@@ -52,7 +52,7 @@ def on_page_markdown(markdown: str, page, **kwargs) -> str:
         if obsolete:
             obsolete_block = (
                 '\n\n!!! warning "OBSOLETE CONTENT"\n'
-                "    This content is obsolete."
+                "    This content is obsolete. Check out alternatives."
             )
 
         return h1 + version_line + obsolete_block
