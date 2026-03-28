@@ -30,8 +30,9 @@ _H1_RE = re.compile(r"^(# .+)", re.MULTILINE)
 def on_page_markdown(markdown: str, page, **kwargs) -> str:
     label: str | None = page.meta.get("label")
     versions: list = page.meta.get("versions") or []
+    obsolete: bool = page.meta.get("obsolete") is True
 
-    if not label and not versions:
+    if not label and not versions and not obsolete:
         return markdown
 
     def inject(m: re.Match) -> str:
@@ -46,7 +47,15 @@ def on_page_markdown(markdown: str, page, **kwargs) -> str:
         if versions:
             version_line = "\n" + " ".join(f"`{v}`" for v in versions)
 
-        return h1 + version_line
+        # Build obsolete admonition
+        obsolete_block = ""
+        if obsolete:
+            obsolete_block = (
+                '\n\n!!! warning "OBSOLETE CONTENT"\n'
+                "    This content is obsolete."
+            )
+
+        return h1 + version_line + obsolete_block
 
     # Only replace the first H1 on the page
     return _H1_RE.sub(inject, markdown, count=1)
