@@ -238,9 +238,122 @@ def _expand_collapse_shorthand(markdown: str) -> str:
     return _COLLAPSE_SHORT_RE.sub(_repl, markdown)
 
 
+# Matches a tab header line that was NOT immediately followed by a metadata
+# block (i.e. no sentinel was injected directly after it by _replace_block).
+# After _replace_block runs, tabs WITH explicit metadata look like:
+#   === "Label"
+#   <!-- @method-meta ... -->
+# Tabs WITHOUT explicit metadata look like:
+#   === "Label"
+#   <anything other than <!-- @method-meta>
+_TAB_LINE_RE = re.compile(
+    r'^(?P<tab>[ \t]*===[ \t]+"[^"\n]*"[ \t]*)\n'
+    r'(?![ \t]*<!-- @method-meta )',   # NOT followed by a sentinel on the next line
+    re.MULTILINE,
+)
+
+# Sentinel produced by _replace_block, used to scan child methods.
+_CHILD_SENTINEL_RE = re.compile(
+    r'<!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?P<obsolete>true|false) -->'
+)
+
+
+def _aggregate_tab(markdown: str, tab_match: re.Match) -> tuple[list[str], bool] | None:
+    """Scan the indented scope of a tab for child method sentinels.
+
+    Returns (union_versions, all_obsolete) or None if no sentinels found.
+    The tab's indented scope runs from after the tab line until the next
+    line at the same (or lesser) indent level that starts a new tab or
+    other non-indented content.
+    """
+    tab_line = tab_match.group(0)          # full matched string incl. newline
+    tab_start = tab_match.group('tab')     # === "Label" part (no newline)
+    # Determine indent of the tab itself.
+    tab_indent = len(tab_start) - len(tab_start.lstrip())
+    # Content indent is tab_indent + 4 (MkDocs tabbed content).
+    content_indent = tab_indent + 4
+
+    scope_start = tab_match.end()          # character position after the tab line
+    lines = markdown[scope_start:].splitlines(keepends=True)
+    scope_chars = 0
+    for line in lines:
+        stripped = line.lstrip()
+        # Blank lines are always part of the scope.
+        if not stripped:
+            scope_chars += len(line)
+            continue
+        this_indent = len(line) - len(stripped)
+        # Stop when we hit a line that is NOT indented enough to be content of
+        # this tab, unless it is another === line at the same level or higher.
+        if this_indent < content_indent:
+            break
+        scope_chars += len(line)
+
+    scope_text = markdown[scope_start:scope_start + scope_chars]
+
+    # Collect all method-level sentinels in this scope.
+    sentinels = list(_CHILD_SENTINEL_RE.finditer(scope_text))
+    if not sentinels:
+        return None
+
+    # Union of versions in catalogue order.
+    seen: set[str] = set()
+    union_versions: list[str] = []
+    for v in _ALL_VERSIONS:
+        for s in sentinels:
+            try:
+                vlist = json.loads(s.group('versions'))
+            except Exception:
+                vlist = []
+            if v in vlist and v not in seen:
+                seen.add(v)
+                union_versions.append(v)
+
+    # Tab is considered obsolete only when every child method is obsolete.
+    all_obsolete = all(
+        s.group('obsolete') == 'true' for s in sentinels
+    )
+
+    return union_versions, all_obsolete
+
+
+def _auto_aggregate_tabs(markdown: str) -> str:
+    """For every tab line that has no explicit metadata block, aggregate
+    version/obsolete info from child method sentinels and:
+      - rewrite the tab label with a range badge
+      - inject a tab-level sentinel so _mark_obsolete_labels works correctly
+    """
+    def _replace_tab(m: re.Match) -> str:
+        result = _aggregate_tab(markdown, m)
+        if result is None:
+            return m.group(0)   # no child methods — leave tab line unchanged
+
+        union_versions, all_obsolete = result
+        tab_line = m.group('tab') + '\n'  # restore the newline
+
+        # Rewrite label with range badge.
+        new_tab_line = _rewrite_tab_label(tab_line, union_versions)
+
+        # Determine the indent of tab content (tab indent + 4).
+        tab_indent = len(m.group('tab')) - len(m.group('tab').lstrip())
+        sentinel_indent = ' ' * (tab_indent + 4)
+
+        # Tab-level sentinel (no version badges or admonition — those belong
+        # to individual methods, not the tab as a whole).
+        sentinel = (
+            f"{sentinel_indent}<!-- @method-meta "
+            f"versions={json.dumps(union_versions)} "
+            f"obsolete={'true' if all_obsolete else 'false'} -->\n"
+        )
+
+        return new_tab_line + sentinel
+
+    return _TAB_LINE_RE.sub(_replace_tab, markdown)
+
+
 def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
     markdown = _expand_collapse_shorthand(markdown)
-    if "---" not in markdown:
+    if "---" not in markdown and '===' not in markdown:
         return markdown
     # Skip the page-level YAML frontmatter (first --- ... --- at column 0).
     # We locate it and protect it from replacement.
@@ -252,7 +365,11 @@ def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
     else:
         after_blocks = _BLOCK_RE.sub(_replace_block, markdown)
         frontmatter = ""
-    after_headings = _patch_headings(after_blocks)
+    # Auto-aggregate tab metadata from child method sentinels (tabs with no
+    # explicit metadata block get a label badge + tab-level sentinel derived
+    # from the union of their contained methods).
+    after_agg = _auto_aggregate_tabs(after_blocks)
+    after_headings = _patch_headings(after_agg)
     return frontmatter + after_headings
 
 
