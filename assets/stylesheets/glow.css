@@ -973,23 +973,9 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
    These compose with strikethrough from ub-obsolete and
    work on both regular-colored and teal-colored elements. */
 
-/* Match: teal glow + subtle text-shadow */
-.grim-li a.ub-version-match {
-  color: var(--teal-glow);
-  text-shadow: 0 0 8px rgba(0, 240, 194, 0.5);
-  border-left: 3px solid var(--teal-glow);
-  padding-left: 0.5rem;
-}
-/* Tab labels: teal text + underline accent (no border-left — it shifts horizontal layout) */
-.md-typeset .tabbed-labels label.ub-version-match {
-  color: var(--teal-glow);
-  text-shadow: 0 0 10px rgba(0, 240, 194, 0.6);
-  text-decoration: underline;
-  text-decoration-color: var(--teal-glow);
-  text-underline-offset: 4px;
-  text-decoration-thickness: 2px;
-}
-/* Headings get a left accent bar */
+/* Match: teal glow + underline accent — applied uniformly to all match targets */
+.grim-li a.ub-version-match,
+.md-typeset .tabbed-labels label.ub-version-match,
 .md-typeset h1.ub-version-match,
 .md-typeset h2.ub-version-match,
 .md-typeset h3.ub-version-match,
@@ -998,8 +984,10 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
 .md-typeset h6.ub-version-match {
   color: var(--teal-glow);
   text-shadow: 0 0 10px rgba(0, 240, 194, 0.6);
-  border-left: 3px solid var(--teal-glow);
-  padding-left: 0.5rem;
+  text-decoration: underline;
+  text-decoration-color: var(--teal-glow);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
 }
 
 /* Mismatch: muted color (not opacity — preserves strikethrough visibility) */
