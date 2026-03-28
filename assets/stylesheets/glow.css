@@ -51,7 +51,6 @@
 /* Inline code (version badges) in tab labels: inherit text color and
    scale down to match the heading badge treatment (0.7em). */
 .md-typeset .tabbed-labels label code {
-  color: inherit !important;
   font-size: 0.7em;
   vertical-align: 0.1em;
 }
@@ -981,8 +980,16 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   border-left: 3px solid var(--teal-glow);
   padding-left: 0.5rem;
 }
-/* Headings and tab labels get a left accent bar for stronger contrast */
-.md-typeset .tabbed-labels label.ub-version-match,
+/* Tab labels: teal text + underline accent (no border-left — it shifts horizontal layout) */
+.md-typeset .tabbed-labels label.ub-version-match {
+  color: var(--teal-glow);
+  text-shadow: 0 0 10px rgba(0, 240, 194, 0.6);
+  text-decoration: underline;
+  text-decoration-color: var(--teal-glow);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+/* Headings get a left accent bar */
 .md-typeset h1.ub-version-match,
 .md-typeset h2.ub-version-match,
 .md-typeset h3.ub-version-match,
@@ -1034,6 +1041,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
    nav panels (TOC etc.) when open.                           */
 .ub-settings-sidebar-wrapper .md-nav {
   z-index: 3;
+  overflow-y: auto;
 }
 .ub-sidebar-settings-body {
   padding: 0.5rem 0.8rem 2rem;
