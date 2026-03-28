@@ -975,12 +975,12 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
    work on both regular-colored and teal-colored elements. */
 
 /* Match: teal glow + subtle text-shadow */
-.md-typeset .tabbed-labels label.ub-version-match,
 .grim-li a.ub-version-match {
   color: var(--teal-glow);
   text-shadow: 0 0 8px rgba(0, 240, 194, 0.5);
 }
-/* Headings get a left accent bar for stronger contrast */
+/* Headings and tab labels get a left accent bar for stronger contrast */
+.md-typeset .tabbed-labels label.ub-version-match,
 .md-typeset h1.ub-version-match,
 .md-typeset h2.ub-version-match,
 .md-typeset h3.ub-version-match,
