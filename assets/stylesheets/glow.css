@@ -1030,8 +1030,11 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
 
 /* ── Sidebar settings slide-in panel ─────────────────────────
    The inner nav uses Material's own checkbox-driven slide UX
-   (same as the TOC panel). Only the body padding needs tweaking
-   for the narrower sidebar context.                           */
+   (same as the TOC panel). z-index ensures it covers all other
+   nav panels (TOC etc.) when open.                           */
+.ub-settings-sidebar-wrapper .md-nav {
+  z-index: 3;
+}
 .ub-sidebar-settings-body {
   padding: 0.5rem 0.8rem 2rem;
 }

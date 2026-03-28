@@ -517,13 +517,9 @@
     sidebarWrapper.appendChild(checkbox);
     sidebarWrapper.appendChild(innerNav);
 
-    // Insert before the nav list (same pattern as TOC injection)
-    var list = primaryNav.querySelector(':scope > .md-nav__list');
-    if (list) {
-      primaryNav.insertBefore(sidebarWrapper, list);
-    } else {
-      primaryNav.appendChild(sidebarWrapper);
-    }
+    // Append last so this panel sits above all other panels (TOC etc.)
+    // in the same stacking context — later DOM order = paints on top.
+    primaryNav.appendChild(sidebarWrapper);
 
     // Refresh the vf chip states each time the panel slides open
     checkbox.addEventListener('change', function () {
