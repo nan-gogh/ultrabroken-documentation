@@ -28,20 +28,14 @@
     + '<line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
     + '</svg>';
 
-  var BACK_ARROW = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">'
-    + '<path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>'
-    + '</svg>';
-
   /* ── State ─────────────────────────────────────────────────── */
   var modal = null;
   var backdrop = null;
   var gearBtn = null;
   var isOpen = false;
-  var toggleRows = {};        // modal: className → { row, update }
-  var sidebarPanel = null;
-  var sidebarPanelOpen = false;
-  var sidebarPanelRows = {};  // sidebar panel: className → { row, update }
-  var _vfContainerModal = null; // reference to modal's version-filter grid
+  var toggleRows = {};            // modal: className → { row, update }
+  var sidebarWrapper = null;      // .ub-settings-sidebar-wrapper injected into primary nav
+  var _vfContainerModal = null;   // modal's vf grid (restored before openModal refreshes)
 
   /* ── Human-readable labels for toggle modes ────────────────── */
   var MODE_LABELS = {
@@ -451,19 +445,105 @@
       }
     }
 
-    // Mobile: re-inject if sidebar gear was destroyed by instant navigation
+    // Mobile: rebuild sidebar settings panel on each SPA nav
     injectMobileGear();
-
-    // Reset sidebar panel if SPA navigation detached it
-    if (sidebarPanel && !sidebarPanel.isConnected) {
-      sidebarPanel = null;
-      sidebarPanelOpen = false;
-    }
 
     return true;
   }
 
+  /* ════════════════════════════════════════════════════════════
+     SIDEBAR SETTINGS PANEL
+     Uses Material's native checkbox-driven slide panel, exactly
+     like mobile-toc.js: a hidden md-nav__toggle checkbox +
+     sibling nav.md-nav[data-md-level] that Material animates.
+     The gear in .ub-sidebar-toggles is a <label for=checkbox>.
+     The back button is the native <label class="md-nav__title">.
+     ════════════════════════════════════════════════════════════ */
+
+  var SETTINGS_TOGGLE_ID = '__ub_settings';
+
+  function buildSidebarPanel() {
+    var primaryNav = document.querySelector('.md-sidebar--primary .md-nav--primary');
+    if (!primaryNav) return;
+
+    // Remove stale wrapper from a previous SPA navigation
+    var old = primaryNav.querySelector('.ub-settings-sidebar-wrapper');
+    if (old) old.remove();
+
+    sidebarWrapper = document.createElement('div');
+    sidebarWrapper.className = 'ub-settings-sidebar-wrapper';
+
+    // Hidden checkbox — Material's CSS animates the sibling nav when checked
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = SETTINGS_TOGGLE_ID;
+    checkbox.className = 'md-nav__toggle md-toggle';
+
+    // Inner nav — Material slides this in (position:absolute, translateX)
+    var innerNav = document.createElement('nav');
+    innerNav.className = 'md-nav';
+    innerNav.setAttribute('data-md-level', '1');
+    innerNav.setAttribute('aria-label', 'Settings');
+
+    // Back button: clicking this label unchecks the checkbox → panel slides back
+    var backLabel = document.createElement('label');
+    backLabel.className = 'md-nav__title';
+    backLabel.setAttribute('for', SETTINGS_TOGGLE_ID);
+    // Material renders the <span class="md-nav__icon md-icon"> as a ‹ chevron
+    backLabel.innerHTML = '<span class="md-nav__icon md-icon"></span>Settings';
+    innerNav.appendChild(backLabel);
+
+    // Settings content
+    var body = document.createElement('div');
+    body.className = 'ub-settings-body ub-sidebar-settings-body';
+
+    var toolbar = window.__ubToolbar;
+    if (toolbar && toolbar.toggles) {
+      toolbar.toggles.forEach(function (toggle) {
+        body.appendChild(buildToggleRow(toggle, toolbar, {}));
+      });
+    }
+
+    var divider = document.createElement('div');
+    divider.className = 'ub-settings-divider';
+    divider.textContent = 'Filtering';
+    body.appendChild(divider);
+
+    body.appendChild(buildDeprecationToggle());
+    body.appendChild(buildVersionFilter());
+    // buildVersionFilter() sets _vfContainer to this panel's grid
+
+    innerNav.appendChild(body);
+    sidebarWrapper.appendChild(checkbox);
+    sidebarWrapper.appendChild(innerNav);
+
+    // Insert before the nav list (same pattern as TOC injection)
+    var list = primaryNav.querySelector(':scope > .md-nav__list');
+    if (list) {
+      primaryNav.insertBefore(sidebarWrapper, list);
+    } else {
+      primaryNav.appendChild(sidebarWrapper);
+    }
+
+    // Refresh the vf chip states each time the panel slides open
+    checkbox.addEventListener('change', function () {
+      if (!checkbox.checked) return;
+      var grid = innerNav.querySelector('.ub-vf-grid');
+      if (grid && _versionData) {
+        _vfContainer = grid;
+        refreshVersionGrid();
+      }
+    });
+  }
+
   function injectMobileGear() {
+    // Only inject on mobile — desktop uses header gear → modal
+    if (window.innerWidth >= 1220) return;
+
+    // Rebuild the settings panel in the primary nav (contents are SPA-nav-sensitive)
+    buildSidebarPanel();
+
+    // Gear: a <label for=checkbox> so clicking it checks/unchecks the panel
     if (document.querySelector('.ub-sidebar-toggles .ub-settings-gear')) return;
     var sidebar = document.querySelector('.md-sidebar--primary');
     if (!sidebar) return;
@@ -475,103 +555,12 @@
       sidebar.appendChild(container);
     }
 
-    container.appendChild(createSidebarGearButton());
-    setupDrawerListener();
-  }
-
-  /* ════════════════════════════════════════════════════════════
-     SIDEBAR SETTINGS PANEL
-     Slides over the primary nav like a Material sub-panel.
-     ════════════════════════════════════════════════════════════ */
-
-  function buildSidebarPanel() {
-    var sidebar = document.querySelector('.md-sidebar--primary');
-    if (!sidebar) return;
-
-    if (!sidebarPanel || !sidebarPanel.isConnected) {
-      sidebarPanel = document.createElement('div');
-      sidebarPanel.className = 'ub-sidebar-settings-panel';
-
-      var backBtn = document.createElement('button');
-      backBtn.className = 'ub-sidebar-settings-back';
-      backBtn.setAttribute('aria-label', 'Back to navigation');
-      backBtn.innerHTML = BACK_ARROW + '<span>Settings</span>';
-      backBtn.addEventListener('click', closeSidebarPanel);
-      sidebarPanel.appendChild(backBtn);
-
-      var bodyEl = document.createElement('div');
-      bodyEl.className = 'ub-sidebar-settings-panel-body ub-settings-body';
-      sidebarPanel.appendChild(bodyEl);
-
-      sidebar.appendChild(sidebarPanel);
-    }
-
-    // Rebuild body content to always reflect current toggle states
-    sidebarPanelRows = {};
-    var body = sidebarPanel.querySelector('.ub-sidebar-settings-panel-body');
-    body.innerHTML = '';
-
-    var toolbar = window.__ubToolbar;
-    if (toolbar && toolbar.toggles) {
-      toolbar.toggles.forEach(function (toggle) {
-        body.appendChild(buildToggleRow(toggle, toolbar, sidebarPanelRows));
-      });
-    }
-
-    var divider = document.createElement('div');
-    divider.className = 'ub-settings-divider';
-    divider.textContent = 'Filtering';
-    body.appendChild(divider);
-
-    body.appendChild(buildDeprecationToggle());
-    body.appendChild(buildVersionFilter());
-    // After buildVersionFilter(), _vfContainer points to this panel's grid
-  }
-
-  function openSidebarPanel() {
-    if (sidebarPanelOpen) return;
-    buildSidebarPanel();
-    refreshVersionGrid();
-    sidebarPanel.classList.add('ub-visible');
-    sidebarPanelOpen = true;
-    var back = sidebarPanel.querySelector('.ub-sidebar-settings-back');
-    if (back) back.focus();
-  }
-
-  function closeSidebarPanel() {
-    if (!sidebarPanelOpen || !sidebarPanel) return;
-    sidebarPanel.classList.remove('ub-visible');
-    sidebarPanelOpen = false;
-    var gear = document.querySelector('.ub-sidebar-toggles .ub-settings-gear');
-    if (gear) gear.focus();
-  }
-
-  function createSidebarGearButton() {
-    var btn = document.createElement('button');
-    btn.className = 'ub-settings-gear';
-    btn.setAttribute('aria-label', 'Open settings');
-    btn.setAttribute('title', 'Settings');
-    btn.innerHTML = GEAR_ICON;
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (sidebarPanelOpen) closeSidebarPanel(); else openSidebarPanel();
-    });
-    return btn;
-  }
-
-  var _drawerListenerAttached = false;
-  function setupDrawerListener() {
-    if (_drawerListenerAttached) return;
-    var drawer = document.getElementById('__drawer');
-    if (!drawer) return;
-    drawer.addEventListener('change', function () {
-      if (!drawer.checked && sidebarPanelOpen) {
-        if (sidebarPanel) sidebarPanel.classList.remove('ub-visible');
-        sidebarPanelOpen = false;
-      }
-    });
-    _drawerListenerAttached = true;
+    var gearLabel = document.createElement('label');
+    gearLabel.setAttribute('for', SETTINGS_TOGGLE_ID);
+    gearLabel.className = 'ub-settings-gear';
+    gearLabel.setAttribute('title', 'Settings');
+    gearLabel.innerHTML = GEAR_ICON;
+    container.appendChild(gearLabel);
   }
 
   /* ── Listen for storage-toggle to refresh modal if open ───── */

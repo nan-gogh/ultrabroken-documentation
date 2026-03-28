@@ -1029,56 +1029,11 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
 }
 
 /* ── Sidebar settings slide-in panel ─────────────────────────
-   Slides over the primary nav like a Material sub-panel.
-   Only shown on mobile (desktop uses header gear → modal). */
-.ub-sidebar-settings-panel {
-  display: none;
-}
-
-.ub-sidebar-settings-back {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.6rem 0.8rem;
-  background: var(--md-default-bg-color);
-  border: none;
-  border-bottom: 1px solid rgba(0, 240, 194, 0.15);
-  cursor: pointer;
-  color: var(--teal-glow);
-  font-family: 'Texturina', Georgia, serif;
-  font-size: 0.95rem;
-  text-align: left;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  transition: background 0.15s ease;
-}
-.ub-sidebar-settings-back:hover {
-  background: rgba(0, 240, 194, 0.06);
-}
-.ub-sidebar-settings-back svg {
-  flex-shrink: 0;
-}
-
-@media (max-width: 76.1875em) {
-  .ub-sidebar-settings-panel {
-    display: block;
-    position: absolute;
-    inset: 0;
-    z-index: 6; /* above nav panels */
-    background: var(--md-default-bg-color);
-    overflow-y: auto;
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .ub-sidebar-settings-panel.ub-visible {
-    transform: translateX(0);
-  }
-  /* Override modal body's horizontal padding for the narrower sidebar context */
-  .ub-sidebar-settings-panel-body.ub-settings-body {
-    padding: 0.5rem 0.8rem 2rem;
-  }
+   The inner nav uses Material's own checkbox-driven slide UX
+   (same as the TOC panel). Only the body padding needs tweaking
+   for the narrower sidebar context.                           */
+.ub-sidebar-settings-body {
+  padding: 0.5rem 0.8rem 2rem;
 }
 
 @media (max-width: 76.1875em) {
