@@ -92,6 +92,10 @@
       tabbedSets.push({ el: set, labels: labels, blocks: blocks });
     });
 
+    // Accumulate best classification per tab label.
+    // A tab shows 'match' if ANY contained method matches the filter.
+    var labelBest = new Map();
+
     metas.forEach(function (meta) {
       var versions;
       try { versions = JSON.parse(meta.getAttribute('data-versions')); }
@@ -102,12 +106,16 @@
       // Determine context: is this meta inside a tabbed-block?
       var block = meta.closest('.tabbed-block');
       if (block) {
-        // Find the parent tabbed-set and mark the corresponding label
+        // Find the parent tabbed-set and accumulate the best classification.
+        // 'match' is sticky — once any method in a tab matches, the label matches.
         for (var i = 0; i < tabbedSets.length; i++) {
           var ts = tabbedSets[i];
           var idx = ts.blocks.indexOf(block);
           if (idx >= 0 && idx < ts.labels.length) {
-            applyClass(ts.labels[idx], cls);
+            var label = ts.labels[idx];
+            if (labelBest.get(label) !== 'match') {
+              labelBest.set(label, cls);
+            }
             break;
           }
         }
@@ -130,6 +138,11 @@
       if (prev && /^H[1-6]$/.test(prev.tagName)) {
         applyClass(prev, cls);
       }
+    });
+
+    // Apply accumulated best classifications to tab labels
+    labelBest.forEach(function (cls, label) {
+      applyClass(label, cls);
     });
   }
 

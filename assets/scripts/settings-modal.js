@@ -28,12 +28,20 @@
     + '<line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
     + '</svg>';
 
+  var BACK_ARROW = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">'
+    + '<path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>'
+    + '</svg>';
+
   /* ── State ─────────────────────────────────────────────────── */
   var modal = null;
   var backdrop = null;
   var gearBtn = null;
   var isOpen = false;
-  var toggleRows = {};   // className → row element (for updating icons/labels)
+  var toggleRows = {};        // modal: className → { row, update }
+  var sidebarPanel = null;
+  var sidebarPanelOpen = false;
+  var sidebarPanelRows = {};  // sidebar panel: className → { row, update }
+  var _vfContainerModal = null; // reference to modal's version-filter grid
 
   /* ── Human-readable labels for toggle modes ────────────────── */
   var MODE_LABELS = {
@@ -122,7 +130,8 @@
   }
 
   /* ── Build a single toggle row ─────────────────────────────── */
-  function buildToggleRow(toggle, toolbar) {
+  function buildToggleRow(toggle, toolbar, rowsMap) {
+    rowsMap = rowsMap || toggleRows;
     var row = document.createElement('div');
     row.className = 'ub-settings-row';
 
@@ -154,7 +163,7 @@
     row.appendChild(label);
     row.appendChild(control);
 
-    toggleRows[toggle.className] = { row: row, update: updateControl };
+    rowsMap[toggle.className] = { row: row, update: updateControl };
     return row;
   }
 
@@ -337,7 +346,12 @@
      ════════════════════════════════════════════════════════════ */
   function openModal() {
     if (isOpen) return;
-    if (!modal) buildModal();
+    if (!modal) {
+      buildModal();
+      _vfContainerModal = _vfContainer; // capture modal's grid after first build
+    }
+    // Restore _vfContainer to modal's grid (sidebar panel may have changed it)
+    if (_vfContainerModal) _vfContainer = _vfContainerModal;
 
     // Refresh toggle states before showing
     Object.keys(toggleRows).forEach(function (k) {
@@ -440,6 +454,12 @@
     // Mobile: re-inject if sidebar gear was destroyed by instant navigation
     injectMobileGear();
 
+    // Reset sidebar panel if SPA navigation detached it
+    if (sidebarPanel && !sidebarPanel.isConnected) {
+      sidebarPanel = null;
+      sidebarPanelOpen = false;
+    }
+
     return true;
   }
 
@@ -455,8 +475,103 @@
       sidebar.appendChild(container);
     }
 
-    var mobileGear = createGearButton();
-    container.appendChild(mobileGear);
+    container.appendChild(createSidebarGearButton());
+    setupDrawerListener();
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     SIDEBAR SETTINGS PANEL
+     Slides over the primary nav like a Material sub-panel.
+     ════════════════════════════════════════════════════════════ */
+
+  function buildSidebarPanel() {
+    var sidebar = document.querySelector('.md-sidebar--primary');
+    if (!sidebar) return;
+
+    if (!sidebarPanel || !sidebarPanel.isConnected) {
+      sidebarPanel = document.createElement('div');
+      sidebarPanel.className = 'ub-sidebar-settings-panel';
+
+      var backBtn = document.createElement('button');
+      backBtn.className = 'ub-sidebar-settings-back';
+      backBtn.setAttribute('aria-label', 'Back to navigation');
+      backBtn.innerHTML = BACK_ARROW + '<span>Settings</span>';
+      backBtn.addEventListener('click', closeSidebarPanel);
+      sidebarPanel.appendChild(backBtn);
+
+      var bodyEl = document.createElement('div');
+      bodyEl.className = 'ub-sidebar-settings-panel-body ub-settings-body';
+      sidebarPanel.appendChild(bodyEl);
+
+      sidebar.appendChild(sidebarPanel);
+    }
+
+    // Rebuild body content to always reflect current toggle states
+    sidebarPanelRows = {};
+    var body = sidebarPanel.querySelector('.ub-sidebar-settings-panel-body');
+    body.innerHTML = '';
+
+    var toolbar = window.__ubToolbar;
+    if (toolbar && toolbar.toggles) {
+      toolbar.toggles.forEach(function (toggle) {
+        body.appendChild(buildToggleRow(toggle, toolbar, sidebarPanelRows));
+      });
+    }
+
+    var divider = document.createElement('div');
+    divider.className = 'ub-settings-divider';
+    divider.textContent = 'Filtering';
+    body.appendChild(divider);
+
+    body.appendChild(buildDeprecationToggle());
+    body.appendChild(buildVersionFilter());
+    // After buildVersionFilter(), _vfContainer points to this panel's grid
+  }
+
+  function openSidebarPanel() {
+    if (sidebarPanelOpen) return;
+    buildSidebarPanel();
+    refreshVersionGrid();
+    sidebarPanel.classList.add('ub-visible');
+    sidebarPanelOpen = true;
+    var back = sidebarPanel.querySelector('.ub-sidebar-settings-back');
+    if (back) back.focus();
+  }
+
+  function closeSidebarPanel() {
+    if (!sidebarPanelOpen || !sidebarPanel) return;
+    sidebarPanel.classList.remove('ub-visible');
+    sidebarPanelOpen = false;
+    var gear = document.querySelector('.ub-sidebar-toggles .ub-settings-gear');
+    if (gear) gear.focus();
+  }
+
+  function createSidebarGearButton() {
+    var btn = document.createElement('button');
+    btn.className = 'ub-settings-gear';
+    btn.setAttribute('aria-label', 'Open settings');
+    btn.setAttribute('title', 'Settings');
+    btn.innerHTML = GEAR_ICON;
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (sidebarPanelOpen) closeSidebarPanel(); else openSidebarPanel();
+    });
+    return btn;
+  }
+
+  var _drawerListenerAttached = false;
+  function setupDrawerListener() {
+    if (_drawerListenerAttached) return;
+    var drawer = document.getElementById('__drawer');
+    if (!drawer) return;
+    drawer.addEventListener('change', function () {
+      if (!drawer.checked && sidebarPanelOpen) {
+        if (sidebarPanel) sidebarPanel.classList.remove('ub-visible');
+        sidebarPanelOpen = false;
+      }
+    });
+    _drawerListenerAttached = true;
   }
 
   /* ── Listen for storage-toggle to refresh modal if open ───── */
