@@ -351,9 +351,90 @@ def _auto_aggregate_tabs(markdown: str) -> str:
     return _TAB_LINE_RE.sub(_replace_tab, markdown)
 
 
+# Matches a collapsible heading (any level) that has NO sentinel immediately
+# after it. _expand_collapse_shorthand has already run, so we look for the
+# { .collapse } attr_list in the heading. The negative lookahead ensures we
+# skip headings that already got a sentinel from an explicit metadata block.
+_COLLAPSE_HEADING_RE = re.compile(
+    r'^(?P<heading>(?P<indent>[ \t]*)(?P<hashes>#{1,6}) [^\n]+\{[^}]*\.collapse[^}]*\})[ \t]*\n'
+    r'(?P<blank>\n)?'
+    r'(?![ \t]*<!-- @method-meta )',
+    re.MULTILINE,
+)
+
+
+def _aggregate_collapsible_heading(markdown: str, m: re.Match) -> tuple[list[str], bool] | None:
+    """Collect all child sentinels within the scope of a collapsible heading.
+
+    Scope: from after the heading line to (but not including) the next heading
+    whose level is <= this heading's level.
+    Returns (union_versions, all_obsolete) or None if no sentinels found.
+    """
+    level = len(m.group('hashes'))
+    scope_start = m.end()
+
+    # A heading boundary is any heading at the same or higher level.
+    # #{1,level}(?!#) matches exactly 1..level hashes not followed by another #.
+    boundary_re = re.compile(
+        r'^[ \t]*#{1,' + str(level) + r'}(?!#) ',
+        re.MULTILINE,
+    )
+    boundary = boundary_re.search(markdown, scope_start)
+    scope_end = boundary.start() if boundary else len(markdown)
+    scope_text = markdown[scope_start:scope_end]
+
+    sentinels = list(_CHILD_SENTINEL_RE.finditer(scope_text))
+    if not sentinels:
+        return None
+
+    # Union of versions in catalogue order (de-duplicated).
+    seen: set[str] = set()
+    union_versions: list[str] = []
+    for v in _ALL_VERSIONS:
+        for s in sentinels:
+            try:
+                vlist = json.loads(s.group('versions'))
+            except Exception:
+                vlist = []
+            if v in vlist and v not in seen:
+                seen.add(v)
+                union_versions.append(v)
+                break
+
+    all_obsolete = all(s.group('obsolete') == 'true' for s in sentinels)
+    return union_versions, all_obsolete
+
+
+def _auto_aggregate_collapsible_headings(markdown: str) -> str:
+    """For every collapsible heading with no explicit metadata sentinel,
+    aggregate version/obsolete info from all sentinels in its scope and:
+      - inject a heading-level sentinel so _patch_headings adds a range badge
+      - inject a heading-level sentinel so _mark_obsolete_headings works
+    """
+    def _replace(m: re.Match) -> str:
+        result = _aggregate_collapsible_heading(markdown, m)
+        if result is None:
+            return m.group(0)  # no child methods — leave heading unchanged
+
+        union_versions, all_obsolete = result
+        heading = m.group('heading')
+        blank = m.group('blank') or ''
+        indent = m.group('indent')
+
+        sentinel = (
+            f"{indent}<!-- @method-meta "
+            f"versions={json.dumps(union_versions)} "
+            f"obsolete={'true' if all_obsolete else 'false'} -->\n"
+        )
+
+        return f"{heading}\n{blank}{sentinel}"
+
+    return _COLLAPSE_HEADING_RE.sub(_replace, markdown)
+
+
 def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
     markdown = _expand_collapse_shorthand(markdown)
-    if "---" not in markdown and '===' not in markdown:
+    if "---" not in markdown and '===' not in markdown and '{ .collapse' not in markdown:
         return markdown
     # Skip the page-level YAML frontmatter (first --- ... --- at column 0).
     # We locate it and protect it from replacement.
@@ -365,10 +446,11 @@ def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
     else:
         after_blocks = _BLOCK_RE.sub(_replace_block, markdown)
         frontmatter = ""
-    # Auto-aggregate tab metadata from child method sentinels (tabs with no
-    # explicit metadata block get a label badge + tab-level sentinel derived
-    # from the union of their contained methods).
+    # Auto-aggregate tab metadata from child method sentinels.
     after_agg = _auto_aggregate_tabs(after_blocks)
+    # Auto-aggregate collapsible heading metadata from child sentinels
+    # (runs after tabs so tab-level sentinels are already available).
+    after_agg = _auto_aggregate_collapsible_headings(after_agg)
     after_headings = _patch_headings(after_agg)
     return frontmatter + after_headings
 
