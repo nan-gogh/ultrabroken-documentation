@@ -165,8 +165,8 @@
         exclude: Array.isArray(newState.exclude) ? newState.exclude : []
       };
       saveState();
-      broadcast();
       apply();
+      broadcast();
     },
     classify: classify,
     isActive: isActive,

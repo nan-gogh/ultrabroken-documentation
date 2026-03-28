@@ -424,16 +424,17 @@
   function applySort(list) {
     var dir = state.dir === 'asc' ? 1 : -1;
     return list.slice().sort(function (a, b) {
+      /* Unknown dates always sort to the end, above all other criteria */
+      var da = dateMs(a.date), db = dateMs(b.date);
+      if (da === null && db !== null) return 1;
+      if (da !== null && db === null) return -1;
+
       // Global version filter priority: match first, mismatch last
       var va = vfRank(a), vb = vfRank(b);
       if (va !== vb) return vb - va;
 
       if (state.sort === 'date') {
-        var da = dateMs(a.date), db = dateMs(b.date);
-        /* unknown dates always sort to end regardless of direction */
         if (da === null && db === null) return a.name.localeCompare(b.name);
-        if (da === null) return 1;
-        if (db === null) return -1;
         var c = (da - db) * dir;
         return c || a.name.localeCompare(b.name);
       }
