@@ -90,7 +90,7 @@
 
   function freshState() {
     return { sort: 'date', dir: 'asc', q: '',
-             years: [], versions: [], labels: [], credits: [] };
+             years: [], labels: [], credits: [] };
   }
 
   /* ================================================================
@@ -163,8 +163,7 @@
     });
     h += '</div></div>';
 
-    /* dropdowns */
-    h += ddHTML('grim-dd-ver',  'Version', 'version', facets.versions, false);
+    /* dropdowns (version filter is global — in settings modal) */
     h += ddHTML('grim-dd-lbl',  'Label',   'label',   facets.labels,   true);
     h += ddHTML('grim-dd-cred', 'Credit',  'credit',  facets.credits,  true);
 
@@ -209,7 +208,6 @@
       labelDD(dd, singular);
     }
 
-    syncCheckboxes('#grim-dd-ver', 'versions', 'version');
     syncCheckboxes('#grim-dd-lbl', 'labels', 'label');
     syncCheckboxes('#grim-dd-cred', 'credits', 'credit');
   }
@@ -333,7 +331,6 @@
     }
 
     /* dropdown checkbox delegation */
-    wireDDCB(root, '#grim-dd-ver',  'versions', 'version');
     wireDDCB(root, '#grim-dd-lbl',  'labels',   'label');
     wireDDCB(root, '#grim-dd-cred', 'credits',  'credit');
 
@@ -404,10 +401,6 @@
       }
       if (state.years.length &&
           state.years.indexOf(yearOf(e.date)) < 0) return false;
-      if (state.versions.length &&
-          !state.versions.some(function (v) {
-            return (e.versions || []).indexOf(v) >= 0;
-          })) return false;
       if (state.labels.length &&
           state.labels.indexOf(e.label) < 0) return false;
       if (state.credits.length &&
@@ -418,9 +411,23 @@
     });
   }
 
+  /** Classify an entry against the global version filter.
+   *  Returns 1 (match), 0 (neutral), or -1 (mismatch). */
+  function vfRank(entry) {
+    if (!window.__ubVersionFilter || !window.__ubVersionFilter.isActive()) return 0;
+    var c = window.__ubVersionFilter.classify(entry.versions || []);
+    if (c === 'match') return 1;
+    if (c === 'mismatch') return -1;
+    return 0;
+  }
+
   function applySort(list) {
     var dir = state.dir === 'asc' ? 1 : -1;
     return list.slice().sort(function (a, b) {
+      // Global version filter priority: match first, mismatch last
+      var va = vfRank(a), vb = vfRank(b);
+      if (va !== vb) return vb - va;
+
       if (state.sort === 'date') {
         var da = dateMs(a.date), db = dateMs(b.date);
         /* unknown dates always sort to end regardless of direction */
@@ -446,10 +453,15 @@
       var e = list[i];
       var dl = unk(e.date) ? 'Unknown' : e.date;
       var ab = e.label ? ' <code>' + esc(e.label) + '</code>' : '';
-      var obsCls = e.obsolete ? ' class="ub-obsolete"' : '';
+      var cls = [];
+      if (e.obsolete) cls.push('ub-obsolete');
+      var vfc = vfRank(e);
+      if (vfc === 1) cls.push('ub-version-match');
+      else if (vfc === -1) cls.push('ub-version-mismatch');
+      var clsAttr = cls.length ? ' class="' + cls.join(' ') + '"' : '';
       h += '<div class="grim-li">'
          + '<span class="grim-num">' + (i + 1) + '.</span>'
-         + '<a' + obsCls + ' href="' + at(toHref(e.href)) + '" target="_blank" rel="noopener noreferrer">'
+         + '<a' + clsAttr + ' href="' + at(toHref(e.href)) + '" target="_blank" rel="noopener noreferrer">'
          + esc(e.name) + ab + '</a>'
          + '<span class="grim-date">' + esc(dl) + '</span></div>';
     }
@@ -530,5 +542,10 @@
       /* Storage just got enabled — save current state */
       if (state) saveApp();
     }
+  });
+
+  /* Listen for global version filter changes */
+  window.addEventListener('version-filter', function () {
+    if (data && document.getElementById(APP)) refresh();
   });
 })();

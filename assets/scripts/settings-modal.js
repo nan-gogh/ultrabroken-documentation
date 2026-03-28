@@ -112,6 +112,9 @@
 
     body.appendChild(buildDeprecationToggle());
 
+    // --- Version filter ---
+    body.appendChild(buildVersionFilter());
+
     modal.appendChild(body);
 
     document.body.appendChild(backdrop);
@@ -214,6 +217,131 @@
     return row;
   }
 
+  /* ── Build version filter ──────────────────────────────────── */
+  var _versionData = null;   // cached versions.json
+  var _vfContainer = null;   // the grid container, for refreshing
+
+  function buildVersionFilter() {
+    var wrapper = document.createElement('div');
+    wrapper.className = 'ub-vf-wrapper';
+
+    var header = document.createElement('div');
+    header.className = 'ub-settings-divider';
+    header.textContent = 'Version filter';
+    wrapper.appendChild(header);
+
+    var grid = document.createElement('div');
+    grid.className = 'ub-vf-grid';
+    grid.textContent = 'Loading\u2026';
+    wrapper.appendChild(grid);
+    _vfContainer = grid;
+
+    // Legend
+    var legend = document.createElement('div');
+    legend.className = 'ub-vf-legend';
+    legend.innerHTML = '<span class="ub-vf-leg-item" data-state="neutral">\u25CB Ignore</span>'
+      + '<span class="ub-vf-leg-item" data-state="include">\u25C9 Include</span>'
+      + '<span class="ub-vf-leg-item" data-state="exclude">\u25CE Exclude</span>';
+    wrapper.appendChild(legend);
+
+    // Reset button
+    var reset = document.createElement('button');
+    reset.className = 'ub-vf-reset';
+    reset.setAttribute('type', 'button');
+    reset.textContent = '\u21BA Reset filter';
+    reset.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (window.__ubVersionFilter) {
+        window.__ubVersionFilter.setState({ include: [], exclude: [] });
+      }
+      refreshVersionGrid();
+    });
+    wrapper.appendChild(reset);
+
+    // Fetch versions
+    fetchVersions(function () { refreshVersionGrid(); });
+
+    return wrapper;
+  }
+
+  function fetchVersions(cb) {
+    if (_versionData) { cb(); return; }
+    // Derive site root from an absolute stylesheet URL (works with SPA navigation + sub-path deploys)
+    var link = document.querySelector('link[rel="stylesheet"][href*="assets/stylesheets/"]');
+    var prefix = link ? link.href.split('assets/stylesheets/')[0] : '';
+    fetch(prefix + 'assets/data/versions.json').then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function (data) {
+      _versionData = data;
+      cb();
+    }).catch(function () {
+      if (_vfContainer) _vfContainer.textContent = 'Failed to load versions.';
+    });
+  }
+
+  function refreshVersionGrid() {
+    if (!_vfContainer || !_versionData) return;
+    var versions = _versionData.versions || [];
+    var state = window.__ubVersionFilter ? window.__ubVersionFilter.getState() : { include: [], exclude: [] };
+
+    _vfContainer.innerHTML = '';
+    versions.forEach(function (v) {
+      var s = 'neutral';
+      if (state.include.indexOf(v) >= 0) s = 'include';
+      else if (state.exclude.indexOf(v) >= 0) s = 'exclude';
+
+      var btn = document.createElement('button');
+      btn.className = 'ub-vf-chip';
+      btn.setAttribute('type', 'button');
+      btn.setAttribute('data-version', v);
+      btn.setAttribute('data-state', s);
+      btn.textContent = v;
+      btn.setAttribute('title', vfTitle(v, s));
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        cycleVersion(v, btn);
+      });
+      _vfContainer.appendChild(btn);
+    });
+  }
+
+  function cycleVersion(v, btn) {
+    var state = window.__ubVersionFilter ? window.__ubVersionFilter.getState() : { include: [], exclude: [] };
+    var inc = state.include.slice();
+    var exc = state.exclude.slice();
+    var cur = 'neutral';
+    if (inc.indexOf(v) >= 0) cur = 'include';
+    else if (exc.indexOf(v) >= 0) cur = 'exclude';
+
+    // neutral -> include -> exclude -> neutral
+    var next;
+    if (cur === 'neutral') {
+      next = 'include';
+      inc.push(v);
+    } else if (cur === 'include') {
+      next = 'exclude';
+      inc.splice(inc.indexOf(v), 1);
+      exc.push(v);
+    } else {
+      next = 'neutral';
+      exc.splice(exc.indexOf(v), 1);
+    }
+
+    btn.setAttribute('data-state', next);
+    btn.setAttribute('title', vfTitle(v, next));
+
+    if (window.__ubVersionFilter) {
+      window.__ubVersionFilter.setState({ include: inc, exclude: exc });
+    }
+  }
+
+  function vfTitle(v, state) {
+    if (state === 'include') return v + ': must include \u2014 click to exclude';
+    if (state === 'exclude') return v + ': must not include \u2014 click to ignore';
+    return v + ': ignored \u2014 click to include';
+  }
+
   /* ════════════════════════════════════════════════════════════
      OPEN / CLOSE
      ════════════════════════════════════════════════════════════ */
@@ -225,6 +353,9 @@
     Object.keys(toggleRows).forEach(function (k) {
       toggleRows[k].update();
     });
+
+    // Refresh version filter grid
+    refreshVersionGrid();
 
     backdrop.classList.add('ub-visible');
     modal.classList.add('ub-visible');

@@ -913,6 +913,103 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   padding: 0.25rem 0;
 }
 
+/* ── Version filter (settings modal) ─────────────────────── */
+.ub-vf-wrapper {
+  margin-top: 0.25rem;
+}
+.ub-vf-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.4rem 0;
+}
+.ub-vf-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: var(--md-default-fg-color, #ccc);
+  font-family: 'Texturina', Georgia, serif;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.ub-vf-chip:hover {
+  border-color: rgba(0, 240, 194, 0.4);
+}
+.ub-vf-chip[data-state="include"] {
+  border-color: var(--teal-glow);
+  color: var(--teal-glow);
+  background: rgba(0, 240, 194, 0.1);
+}
+.ub-vf-chip[data-state="exclude"] {
+  border-color: #ff5252;
+  color: #ff5252;
+  background: rgba(255, 82, 82, 0.08);
+  text-decoration: line-through;
+}
+.ub-vf-legend {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.2rem 0 0.4rem;
+  font-size: 0.7rem;
+  color: var(--muted-text);
+}
+.ub-vf-leg-item[data-state="include"] { color: var(--teal-glow); }
+.ub-vf-leg-item[data-state="exclude"] { color: #ff5252; }
+.ub-vf-reset {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted-text);
+  font-family: 'Texturina', Georgia, serif;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.ub-vf-reset:hover {
+  border-color: var(--teal-glow);
+  color: var(--teal-glow);
+}
+
+/* ── Version highlight / mute (additive, color-based) ─────
+   These compose with strikethrough from ub-obsolete and
+   work on both regular-colored and teal-colored elements. */
+
+/* Match: teal glow + subtle text-shadow */
+.md-typeset .tabbed-labels label.ub-version-match,
+.md-typeset h1.ub-version-match,
+.md-typeset h2.ub-version-match,
+.md-typeset h3.ub-version-match,
+.md-typeset h4.ub-version-match,
+.md-typeset h5.ub-version-match,
+.md-typeset h6.ub-version-match,
+.grim-li a.ub-version-match {
+  color: var(--teal-glow);
+  text-shadow: 0 0 8px rgba(0, 240, 194, 0.5);
+}
+
+/* Mismatch: muted color (not opacity — preserves strikethrough visibility) */
+.md-typeset .tabbed-labels label.ub-version-mismatch {
+  color: var(--muted-text);
+}
+.md-typeset h1.ub-version-mismatch,
+.md-typeset h2.ub-version-mismatch,
+.md-typeset h3.ub-version-mismatch,
+.md-typeset h4.ub-version-mismatch,
+.md-typeset h5.ub-version-mismatch,
+.md-typeset h6.ub-version-mismatch {
+  color: var(--muted-text);
+}
+.grim-li a.ub-version-mismatch {
+  color: var(--muted-text);
+}
+
 /* Mobile: bottom sheet style */
 @media (max-width: 76.1875em) {
   .ub-settings-modal {
