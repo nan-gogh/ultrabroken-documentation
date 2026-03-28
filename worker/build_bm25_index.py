@@ -312,7 +312,7 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
         for t in fm.get('tags', []):
             if t := (t or '').strip():
                 tags_set.add(t)
-        entries.append({
+        entry = {
             'name':     title,
             'uid':      uid,
             'label':    fm.get('label', ''),
@@ -323,7 +323,10 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
             'aliases':  fm.get('aliases', []),
             'href':     f'./{uid}/',
             'filename': p.name,
-        })
+        }
+        if fm.get('obsolete'):
+            entry['obsolete'] = True
+        entries.append(entry)
     out = Path(output)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(entries, ensure_ascii=False), encoding='utf-8')

@@ -750,6 +750,12 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete {
    text-decoration propagates to inline children and cannot be cancelled
    with text-decoration:none — display:inline-block breaks the chain.
    Scoped to toggle-ON so badges render normally when markers are off. */
+html:not(.ub-hide-deprecated) .grim-li a.ub-obsolete {
+  text-decoration: line-through 2px currentColor;
+}
+html:not(.ub-hide-deprecated) .grim-li a.ub-obsolete code {
+  display: inline-block;
+}
 html:not(.ub-hide-deprecated) .md-typeset h1.ub-obsolete code,
 html:not(.ub-hide-deprecated) .md-typeset h2.ub-obsolete code,
 html:not(.ub-hide-deprecated) .md-typeset h3.ub-obsolete code,

@@ -446,9 +446,10 @@
       var e = list[i];
       var dl = unk(e.date) ? 'Unknown' : e.date;
       var ab = e.label ? ' <code>' + esc(e.label) + '</code>' : '';
+      var obsCls = e.obsolete ? ' class="ub-obsolete"' : '';
       h += '<div class="grim-li">'
          + '<span class="grim-num">' + (i + 1) + '.</span>'
-         + '<a href="' + at(toHref(e.href)) + '" target="_blank" rel="noopener noreferrer">'
+         + '<a' + obsCls + ' href="' + at(toHref(e.href)) + '" target="_blank" rel="noopener noreferrer">'
          + esc(e.name) + ab + '</a>'
          + '<span class="grim-date">' + esc(dl) + '</span></div>';
     }
