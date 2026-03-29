@@ -37,6 +37,9 @@
   var sidebarWrapper = null;      // .ub-settings-sidebar-wrapper injected into primary nav
   var _vfContainerModal = null;   // modal's vf grid (restored before openModal refreshes)
 
+  // Matches Material's own mobile breakpoint (primary sidebar hidden on desktop)
+  var MOBILE_MQ = window.matchMedia('(max-width: 76.1875em)');
+
   /* ── Human-readable labels for toggle modes ────────────────── */
   var MODE_LABELS = {
     // motion
@@ -446,7 +449,7 @@
     }
 
     // Mobile: rebuild sidebar settings panel on each SPA nav
-    injectMobileGear();
+    if (MOBILE_MQ.matches) injectMobileGear();
 
     return true;
   }
@@ -532,10 +535,27 @@
     });
   }
 
-  function injectMobileGear() {
-    // Only inject on mobile — desktop uses header gear → modal
-    if (window.innerWidth >= 1220) return;
+  function teardownMobile() {
+    // Remove the sidebar settings panel
+    if (sidebarWrapper && sidebarWrapper.isConnected) sidebarWrapper.remove();
+    sidebarWrapper = null;
+    // Remove the gear label container
+    var togglesEl = document.querySelector('.ub-sidebar-toggles');
+    if (togglesEl) togglesEl.remove();
+  }
 
+  function handleBreakpoint(e) {
+    if (e.matches) {
+      // Crossed into mobile: ensure panel + gear are present
+      injectMobileGear();
+    } else {
+      // Crossed into desktop: remove mobile-only elements so they don't
+      // appear inline in the desktop sidebar nav
+      teardownMobile();
+    }
+  }
+
+  function injectMobileGear() {
     // Rebuild the settings panel in the primary nav (contents are SPA-nav-sensitive)
     buildSidebarPanel();
 
@@ -592,6 +612,11 @@
         if (inject() || ++tries > 20) clearInterval(timer);
       }, 100);
     }
+
+    // Watch breakpoint crossings (e.g. browser zoom) so mobile-only DOM
+    // is added/removed without requiring a page reload or SPA navigation.
+    MOBILE_MQ.removeEventListener('change', handleBreakpoint);
+    MOBILE_MQ.addEventListener('change', handleBreakpoint);
   }
 
   if (typeof document$ !== 'undefined') {
