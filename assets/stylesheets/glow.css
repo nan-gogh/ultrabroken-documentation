@@ -1055,18 +1055,14 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-version-match.ub-obsolete {
 }
 
 /* Mismatch: muted color (not opacity — preserves strikethrough visibility) */
-.md-typeset .tabbed-labels label.ub-version-mismatch {
-  color: var(--muted-text);
-}
+.grim-li a.ub-version-mismatch,
+.md-typeset .tabbed-labels label.ub-version-mismatch,
 .md-typeset h1.ub-version-mismatch,
 .md-typeset h2.ub-version-mismatch,
 .md-typeset h3.ub-version-mismatch,
 .md-typeset h4.ub-version-mismatch,
 .md-typeset h5.ub-version-mismatch,
 .md-typeset h6.ub-version-mismatch {
-  color: var(--muted-text);
-}
-.grim-li a.ub-version-mismatch {
   color: var(--muted-text);
 }
 
