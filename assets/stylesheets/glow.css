@@ -53,9 +53,18 @@
 .md-typeset .tabbed-labels label code {
   font-size: 0.7em;
   vertical-align: 0.1em;
-  /* Always use default code color — never inherit teal from selected/highlighted label */
+  /* Always default code color — never inherit teal from selected/highlighted label.
+     display:inline-block breaks text-decoration propagation in all label states. */
+  display: inline-block;
   color: var(--md-code-fg-color) !important;
   text-shadow: none !important;
+}
+/* Material derives hover/focus backdrops from --md-default-fg-color which we've
+   overridden to teal — kill any background change on label interaction. */
+.md-typeset .tabbed-labels label:hover,
+.md-typeset .tabbed-labels label:focus,
+.md-typeset .tabbed-labels label:active {
+  background-color: transparent !important;
 }
 
 /* Large font mode */
@@ -994,10 +1003,10 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
 }
-/* Don't underline or teal-colour code badges (version ranges) inside matched elements.
-   display:inline-block breaks text-decoration propagation; explicit color resets inheritance. */
+/* Don't underline code badges inside matched headings/grimoire entries.
+   display:inline-block breaks text-decoration propagation.
+   Tab label code is already handled unconditionally by the base rule above. */
 .grim-li a.ub-version-match code,
-.md-typeset .tabbed-labels label.ub-version-match code,
 .md-typeset h1.ub-version-match code,
 .md-typeset h2.ub-version-match code,
 .md-typeset h3.ub-version-match code,
