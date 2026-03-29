@@ -24,6 +24,9 @@
 
   var TOGGLE_PREFIX = '__ub_toc';
 
+  // Matches Material's sidebar activation breakpoint
+  var MOBILE_MQ = window.matchMedia('(max-width: 76.1875em)');
+
   /* ── Build the flattened TOC list from the secondary sidebar ── */
   function buildTocList(tocNav) {
     var tocLinks = tocNav.querySelectorAll('a.md-nav__link');
@@ -59,7 +62,7 @@
 
   /* ── Only run on mobile ──────────────────────────────────── */
   function isMobileView() {
-    return window.innerWidth < 1220;
+    return MOBILE_MQ.matches;
   }
 
   /* ── Inject TOC into a single nav panel's header area ──────── */
@@ -437,23 +440,25 @@
   }, true);  // <-- capture phase on window
 
   /* ── Bootstrap ─────────────────────────────────────────────── */
+
+  function boot() {
+    injectHeaderToc();
+    captureInitialStates();
+    attachDrawerListener();
+
+    // Re-run when the viewport crosses the breakpoint (e.g. browser zoom).
+    // injectHeaderToc() already cleans up on desktop and injects on mobile.
+    MOBILE_MQ.removeEventListener('change', injectHeaderToc);
+    MOBILE_MQ.addEventListener('change', injectHeaderToc);
+  }
+
   if (typeof document$ !== 'undefined') {
-    document$.subscribe(function () {
-      injectHeaderToc();
-      captureInitialStates();
-      attachDrawerListener();
-    });
+    document$.subscribe(boot);
   } else {
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function () {
-        injectHeaderToc();
-        captureInitialStates();
-        attachDrawerListener();
-      });
+      document.addEventListener('DOMContentLoaded', boot);
     } else {
-      injectHeaderToc();
-      captureInitialStates();
-      attachDrawerListener();
+      boot();
     }
   }
 })();
