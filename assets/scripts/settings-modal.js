@@ -63,6 +63,31 @@
     'ub-deprecation-toggle':  'Obsolete markers'
   };
 
+  /* ── Build settings body (shared between modal and sidebar) ─ */
+  function buildSettingsBody(rowsMap) {
+    var body = document.createElement('div');
+    body.className = 'ub-settings-body';
+
+    // Toggle rows
+    var toolbar = window.__ubToolbar;
+    if (toolbar && toolbar.toggles) {
+      toolbar.toggles.forEach(function (toggle) {
+        body.appendChild(buildToggleRow(toggle, toolbar, rowsMap));
+      });
+    }
+
+    // --- Filtering section (deprecation + version filter combined) ---
+    var divider = document.createElement('div');
+    divider.className = 'ub-settings-divider';
+    divider.textContent = 'Filtering';
+    body.appendChild(divider);
+
+    body.appendChild(buildDeprecationToggle());
+    body.appendChild(buildVersionFilter());
+
+    return body;
+  }
+
   /* ════════════════════════════════════════════════════════════
      BUILD MODAL DOM
      ════════════════════════════════════════════════════════════ */
@@ -97,29 +122,7 @@
     header.appendChild(closeBtn);
     modal.appendChild(header);
 
-    // Body
-    var body = document.createElement('div');
-    body.className = 'ub-settings-body';
-
-    // Toggle rows
-    var toolbar = window.__ubToolbar;
-    if (toolbar && toolbar.toggles) {
-      toolbar.toggles.forEach(function (toggle) {
-        body.appendChild(buildToggleRow(toggle, toolbar));
-      });
-    }
-
-    // --- Deprecation toggle ---
-    var divider = document.createElement('div');
-    divider.className = 'ub-settings-divider';
-    divider.textContent = 'Filtering';
-    body.appendChild(divider);
-
-    body.appendChild(buildDeprecationToggle());
-
-    // --- Version filter ---
-    body.appendChild(buildVersionFilter());
-
+    var body = buildSettingsBody(toggleRows);
     modal.appendChild(body);
 
     document.body.appendChild(backdrop);
@@ -231,29 +234,17 @@
     var wrapper = document.createElement('div');
     wrapper.className = 'ub-vf-wrapper';
 
-    var header = document.createElement('div');
-    header.className = 'ub-settings-divider';
-    header.textContent = 'Version filter';
-    wrapper.appendChild(header);
-
     var grid = document.createElement('div');
     grid.className = 'ub-vf-grid';
     grid.textContent = 'Loading\u2026';
     wrapper.appendChild(grid);
     _vfContainer = grid;
 
-    // Legend
-    var legend = document.createElement('div');
-    legend.className = 'ub-vf-legend';
-    legend.innerHTML = '<span class="ub-vf-leg-item" data-state="neutral">\u25CB Ignore</span>'
-      + '<span class="ub-vf-leg-item" data-state="include">\u25C9 Include</span>';
-    wrapper.appendChild(legend);
-
     // Reset button
     var reset = document.createElement('button');
     reset.className = 'ub-vf-reset';
     reset.setAttribute('type', 'button');
-    reset.textContent = '\u21BA Reset filter';
+    reset.textContent = '\u21BA Reset filters';
     reset.addEventListener('click', function (e) {
       e.preventDefault();
       if (window.__ubVersionFilter) {
@@ -497,24 +488,8 @@
     innerNav.appendChild(backLabel);
 
     // Settings content
-    var body = document.createElement('div');
-    body.className = 'ub-settings-body ub-sidebar-settings-body';
-
-    var toolbar = window.__ubToolbar;
-    if (toolbar && toolbar.toggles) {
-      toolbar.toggles.forEach(function (toggle) {
-        body.appendChild(buildToggleRow(toggle, toolbar, {}));
-      });
-    }
-
-    var divider = document.createElement('div');
-    divider.className = 'ub-settings-divider';
-    divider.textContent = 'Filtering';
-    body.appendChild(divider);
-
-    body.appendChild(buildDeprecationToggle());
-    body.appendChild(buildVersionFilter());
-    // buildVersionFilter() sets _vfContainer to this panel's grid
+    var body = buildSettingsBody({});
+    body.classList.add('ub-sidebar-settings-body');
 
     innerNav.appendChild(body);
     sidebarWrapper.appendChild(checkbox);
