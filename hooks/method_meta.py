@@ -147,19 +147,46 @@ def _make_range_label(versions: list[str]) -> str:
     return " ".join(labels)
 
 
+def _range_badge_html(versions: list[str]) -> str:
+    """Return an HTML badge group for injection into headings and tab labels.
+
+    Wraps all range badges in ``<span class='ub-vr'>`` (rendered as
+    ``display: inline-block`` via CSS) so that ``text-decoration`` from
+    parent elements (underline, strikethrough from version-match / obsolete
+    states) does not bleed onto the badge group or the surrounding spaces:
+
+    - No space is prepended before the span — CSS ``margin-left`` provides it.
+    - No space between consecutive ``<code>`` badges — CSS ``code+code``
+      ``margin-left`` provides those gaps.
+
+    This means there are no text nodes adjacent to the badge span that could
+    carry the parent's decoration line.
+    """
+    md_label = _make_range_label(versions)
+    if not md_label:
+        return ""
+    # Convert backtick inline codes to <code> elements.
+    html = re.sub(r"`([^`]+)`", r"<code>\1</code>", md_label)
+    # Remove spaces between adjacent </code><code> pairs so there are no
+    # decorated text nodes between badges (CSS margin provides the gap).
+    html = re.sub(r"</code>\s+<code>", "</code><code>", html)
+    return f"<span class='ub-vr'>{html}</span>"
+
+
 def _rewrite_tab_label(tab_line: str, versions: list[str]) -> str:
     """Strip any existing range badge from a tab header and inject the computed one."""
-    range_label = _make_range_label(versions)
+    badge_html = _range_badge_html(versions)
     m = re.match(r'^([ \t]*===[ \t]+")(.*?)("[ \t]*\n)$', tab_line)
     if not m:
         return tab_line
     prefix = m.group(1)   # e.g. '=== "'
     content = m.group(2)  # e.g. 'Method 1 `1.2.0+`' or 'Method 1'
     suffix = m.group(3)   # e.g. '"\n'
-    # Strip any trailing backtick badges injected by a previous build.
-    content = re.sub(r'(\s*`[^`]+`)+\s*$', '', content)
-    if range_label:
-        return f"{prefix}{content} {range_label}{suffix}"
+    # Strip any trailing backtick badges (author markup) or prior HTML span.
+    content = re.sub(r"(\s*`[^`]+`)+\s*$|\s*<span class='ub-vr'>.*?</span>\s*$", "", content)
+    if badge_html:
+        # No explicit space — CSS margin-left on .ub-vr provides the gap.
+        return f"{prefix}{content}{badge_html}{suffix}"
     return f"{prefix}{content}{suffix}"
 
 
@@ -229,7 +256,7 @@ def _patch_headings(markdown: str) -> str:
             versions = json.loads(m.group("versions"))
         except Exception:
             versions = []
-        range_label = _make_range_label(versions)
+        badge_html = _range_badge_html(versions)
 
         # Separate trailing attr_list suffix { ... } so badge goes before it.
         attr_match = re.search(r'\s*(\{[^}]+\})\s*$', heading)
@@ -240,10 +267,11 @@ def _patch_headings(markdown: str) -> str:
             core = heading
             attr_suffix = ''
 
-        # Strip any existing badges, then append the computed one.
-        core = re.sub(r"(\s*`[^`]+`)+\s*$", "", core)
-        if range_label:
-            new_heading = f"{core} {range_label}{attr_suffix}"
+        # Strip any existing badges (backtick or prior HTML span format).
+        core = re.sub(r"(\s*`[^`]+`)+\s*$|\s*<span class='ub-vr'>.*?</span>\s*$", "", core)
+        if badge_html:
+            # No explicit space — CSS margin-left on .ub-vr provides the gap.
+            new_heading = f"{core}{badge_html}{attr_suffix}"
         else:
             new_heading = f"{core}{attr_suffix}"
         return f"{new_heading}\n{blank}{sentinel}"
