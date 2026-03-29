@@ -68,6 +68,12 @@
     var body = document.createElement('div');
     body.className = 'ub-settings-body';
 
+    // --- General section ---
+    var generalDivider = document.createElement('div');
+    generalDivider.className = 'ub-settings-divider';
+    generalDivider.textContent = 'General';
+    body.appendChild(generalDivider);
+
     // Toggle rows
     var toolbar = window.__ubToolbar;
     if (toolbar && toolbar.toggles) {
