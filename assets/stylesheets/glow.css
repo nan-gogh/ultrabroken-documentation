@@ -59,17 +59,22 @@
   color: var(--md-code-fg-color) !important;
   text-shadow: none !important;
 }
-/* Material derives hover/focus backdrops from --md-default-fg-color which we've
-   overridden to teal. In linked-label mode (.tabbed-labels--linked) the hover
-   target is the <a> inside the label, not the label itself — cover both. */
+/* Suppress Material's hover/focus backdrop on tab labels entirely.
+   In linked-label mode the interactive element is the <a> inside the label.
+   Material renders the hover tint via background-color AND ::before/::after
+   pseudo-elements — kill all three. Do NOT set color here (causes transitions). */
 .md-typeset .tabbed-labels label:hover,
 .md-typeset .tabbed-labels label:focus,
 .md-typeset .tabbed-labels label:active,
+.md-typeset .tabbed-labels label a,
 .md-typeset .tabbed-labels label a:hover,
 .md-typeset .tabbed-labels label a:focus,
 .md-typeset .tabbed-labels label a:active {
   background-color: transparent !important;
-  color: inherit !important;
+}
+.md-typeset .tabbed-labels label a::before,
+.md-typeset .tabbed-labels label a::after {
+  display: none !important;
 }
 
 /* Large font mode */
