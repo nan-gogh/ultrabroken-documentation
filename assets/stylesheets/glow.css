@@ -48,6 +48,24 @@
 .md-typeset .tabbed-set[data-ub-level="2"] > .tabbed-labels label { font-size: 1.1rem; }
 .md-typeset .tabbed-set[data-ub-level="4"] > .tabbed-labels label { font-size: 0.9rem; }
 
+/* Version range badge group — wraps all <code> badges for a heading or tab
+   label. inline-block + text-decoration-line:none stops the parent element's
+   underline / strikethrough from bleeding onto the badge area (CSS Text
+   Decoration L4: parent decoration is not painted on atomic inline-blocks
+   whose own text-decoration-line differs from the parent's).
+   margin-left replaces the space character that was between heading text and
+   the first badge (no text node → nothing to decorate).
+   code+code margin replaces the space character between consecutive badges. */
+.md-typeset .ub-vr {
+  display: inline-block;
+  margin-left: 0.3em;
+  text-decoration-line: none !important;
+  white-space: nowrap;
+}
+.md-typeset .ub-vr code + code {
+  margin-left: 0.2em;
+}
+
 /* Inline code (version badges) in tab labels: inherit text color and
    scale down to match the heading badge treatment (0.7em). */
 .md-typeset .tabbed-labels label code {
