@@ -79,6 +79,13 @@
   background-color: var(--md-code-bg-color) !important;
   text-shadow: none !important;
 }
+/* .ub-vr code in tab labels: version range badges should match the heading
+   code size (Material typeset uses ~0.85em code-in-heading), so they appear
+   the same height as the label text — not the 0.7em shrink for author badges. */
+.md-typeset .tabbed-labels label .ub-vr code {
+  font-size: 0.85em;
+  vertical-align: 0;
+}
 /* Suppress Material's hover/focus backdrop on tab labels entirely.
    In linked-label mode the interactive element is the <a> inside the label.
    Material renders the hover tint via background-color AND ::before/::after
