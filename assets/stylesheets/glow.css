@@ -773,6 +773,14 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete {
    text-decoration propagates to inline children and cannot be cancelled
    with text-decoration:none — display:inline-block breaks the chain.
    Scoped to toggle-ON so badges render normally when markers are off. */
+/* Unconditionally pin code badge appearance in grimoire links: color, background
+   and text-shadow must never change on hover/focus regardless of link state. */
+.grim-li a code {
+  display: inline-block;
+  color: var(--md-code-fg-color) !important;
+  background-color: var(--md-code-bg-color) !important;
+  text-shadow: none !important;
+}
 html:not(.ub-hide-deprecated) .grim-li a.ub-obsolete {
   text-decoration: line-through 2px currentColor;
 }
