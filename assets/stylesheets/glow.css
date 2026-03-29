@@ -53,6 +53,9 @@
 .md-typeset .tabbed-labels label code {
   font-size: 0.7em;
   vertical-align: 0.1em;
+  /* Always use default code color — never inherit teal from selected/highlighted label */
+  color: var(--md-code-fg-color) !important;
+  text-shadow: none !important;
 }
 
 /* Large font mode */
