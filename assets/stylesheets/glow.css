@@ -53,10 +53,12 @@
 .md-typeset .tabbed-labels label code {
   font-size: 0.7em;
   vertical-align: 0.1em;
-  /* Always default code color — never inherit teal from selected/highlighted label.
-     display:inline-block breaks text-decoration propagation in all label states. */
+  /* Always default code color/background — never inherit teal from selected/highlighted label.
+     display:inline-block breaks text-decoration propagation in all label states.
+     Background is pinned to stop Material's link-hover rule from tinting it. */
   display: inline-block;
   color: var(--md-code-fg-color) !important;
+  background-color: var(--md-code-bg-color) !important;
   text-shadow: none !important;
 }
 /* Suppress Material's hover/focus backdrop on tab labels entirely.
