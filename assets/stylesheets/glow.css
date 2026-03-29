@@ -1023,6 +1023,13 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
 }
+/* Intensify glow on hover for grimoire match entries (Material's link hover
+   would otherwise override color and flatten text-shadow). */
+.grim-li a.ub-version-match:hover,
+.grim-li a.ub-version-match:focus {
+  color: var(--teal-glow) !important;
+  text-shadow: 0 0 16px rgba(0, 240, 194, 0.9) !important;
+}
 /* Don't underline code badges inside matched headings/grimoire entries.
    display:inline-block breaks text-decoration propagation.
    Tab label code is already handled unconditionally by the base rule above. */
