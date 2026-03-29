@@ -991,9 +991,8 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
 }
-/* Don't underline code badges (version ranges) inside matched elements.
-   display:inline-block breaks the text-decoration propagation chain,
-   the same technique used for .ub-obsolete code above. */
+/* Don't underline or teal-colour code badges (version ranges) inside matched elements.
+   display:inline-block breaks text-decoration propagation; explicit color resets inheritance. */
 .grim-li a.ub-version-match code,
 .md-typeset .tabbed-labels label.ub-version-match code,
 .md-typeset h1.ub-version-match code,
@@ -1003,6 +1002,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
 .md-typeset h5.ub-version-match code,
 .md-typeset h6.ub-version-match code {
   display: inline-block;
+  color: var(--md-code-fg-color) !important;
 }
 /* When a match element is also obsolete (version-filtered AND deprecated),
    show both underline and strikethrough simultaneously.
@@ -1060,6 +1060,9 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-version-match.ub-obsolete {
 .ub-settings-sidebar-wrapper .md-nav {
   z-index: 3;
   overflow-y: auto;
+  /* Material sets its own scrollbar-color on .md-nav — override to match site teal */
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent !important;
 }
 .ub-sidebar-settings-body {
   padding: 0.5rem 0.8rem 2rem;
