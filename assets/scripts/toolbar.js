@@ -99,7 +99,7 @@
     modes: ['enabled', 'disabled'],
     defaultMode: 'enabled',
     getMode: function () { return storageIsEnabled() ? 'enabled' : 'disabled'; },
-    icon: function (m) { return m === 'enabled' ? STORAGE_ICON_DISABLED : STORAGE_ICON_ENABLED; },
+    icon: function (m) { return m === 'enabled' ? STORAGE_ICON_ENABLED : STORAGE_ICON_DISABLED; },
     title: function (m) {
       return m === 'enabled'
         ? 'Local storage: enabled — click to disable and clear data'
@@ -140,7 +140,7 @@
     modes: ['regular', 'large'],
     defaultMode: 'regular',
     getMode: function () { return fontMode; },
-    icon: function (m) { return m === 'large' ? FONT_ICON_LARGE : FONT_ICON_REGULAR; },
+    icon: function (m) { return m === 'large' ? FONT_ICON_REGULAR : FONT_ICON_LARGE; },
     title: function (m) {
       return m === 'regular'
         ? 'Font size: regular (A+) — click to enlarge'
@@ -183,7 +183,7 @@
     modes: ['off', 'on'],
     defaultMode: 'off',
     getMode: function () { return editorMode; },
-    icon: function (m) { return m === 'on' ? EDITOR_ICON_ON : EDITOR_ICON_OFF; },
+    icon: function (m) { return m === 'on' ? EDITOR_ICON_OFF : EDITOR_ICON_ON; },
     title: function (m) {
       return m === 'off'
         ? 'Editing tools: hidden — click to show'
