@@ -973,7 +973,9 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
    These compose with strikethrough from ub-obsolete and
    work on both regular-colored and teal-colored elements. */
 
-/* Match: teal glow + underline accent — applied uniformly to all match targets */
+/* Match: teal glow + underline accent — applied uniformly to all match targets.
+   Uses longhands (not the shorthand) so the obsolete strikethrough rule can't
+   clobber text-decoration-line when both classes are present. */
 .grim-li a.ub-version-match,
 .md-typeset .tabbed-labels label.ub-version-match,
 .md-typeset h1.ub-version-match,
@@ -984,9 +986,37 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
 .md-typeset h6.ub-version-match {
   color: var(--teal-glow);
   text-shadow: 0 0 10px rgba(0, 240, 194, 0.6);
-  text-decoration: underline;
+  text-decoration-line: underline;
   text-decoration-color: var(--teal-glow);
   text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+/* Don't underline code badges (version ranges) inside matched elements.
+   display:inline-block breaks the text-decoration propagation chain,
+   the same technique used for .ub-obsolete code above. */
+.grim-li a.ub-version-match code,
+.md-typeset .tabbed-labels label.ub-version-match code,
+.md-typeset h1.ub-version-match code,
+.md-typeset h2.ub-version-match code,
+.md-typeset h3.ub-version-match code,
+.md-typeset h4.ub-version-match code,
+.md-typeset h5.ub-version-match code,
+.md-typeset h6.ub-version-match code {
+  display: inline-block;
+}
+/* When a match element is also obsolete (version-filtered AND deprecated),
+   show both underline and strikethrough simultaneously.
+   html:not() + two classes beats either individual rule in specificity. */
+html:not(.ub-hide-deprecated) .grim-li a.ub-version-match.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset .tabbed-labels label.ub-version-match.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h1.ub-version-match.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h2.ub-version-match.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h3.ub-version-match.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h4.ub-version-match.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h5.ub-version-match.ub-obsolete,
+html:not(.ub-hide-deprecated) .md-typeset h6.ub-version-match.ub-obsolete {
+  text-decoration-line: underline line-through;
+  text-decoration-color: var(--teal-glow);
   text-decoration-thickness: 2px;
 }
 
