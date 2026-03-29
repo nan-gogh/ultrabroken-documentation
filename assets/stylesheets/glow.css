@@ -1027,6 +1027,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
 .md-typeset h6.ub-version-match code {
   display: inline-block;
   color: var(--md-code-fg-color) !important;
+  text-shadow: none !important;
 }
 /* When a match element is also obsolete (version-filtered AND deprecated),
    show both underline and strikethrough simultaneously.
