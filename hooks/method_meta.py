@@ -54,6 +54,8 @@ def _load_versions():
     return all_versions, platforms, software[-1] if software else ""
 
 _ALL_VERSIONS, _PLATFORMS, _CURRENT_VERSION = _load_versions()
+_SOFTWARE_VERSIONS = [v for v in _ALL_VERSIONS if v not in _PLATFORMS]
+_SW_INDEX = {v: i for i, v in enumerate(_SOFTWARE_VERSIONS)}
 
 # ── Syntax ───────────────────────────────────────────────────────────────────
 # Optionally captures the tab header line (=== "Label") that immediately
@@ -96,26 +98,53 @@ def _make_range_label(versions: list[str]) -> str:
     Platform tags (e.g. "Switch 2") are excluded from range computation
     but still rendered as individual badges elsewhere.
 
+    When the version list has gaps relative to the catalogue, multiple
+    range badges are produced — one per contiguous run.
+
     Examples:
-        []                               -> ""
-        ["1.0.0"]                        -> "`1.0.0`"
-        ["1.0.0", "1.1.0", "1.1.1"]    -> "`1.0.0-1.1.1`"
-        ["1.2.0", ..., "1.4.3"]         -> "`1.2.0+`"  (open-ended)
-        ["1.0.0", ..., "1.4.3"]         -> "`All versions`"  (full catalogue)
-        ["1.0.0", ..., "Switch 2"]      -> "`All versions`"  (platforms filtered)
+        []                                       -> ""
+        ["1.0.0"]                                -> "`1.0.0`"
+        ["1.0.0", "1.1.0", "1.1.1"]            -> "`1.0.0-1.1.1`"
+        ["1.2.0", ..., "1.4.3"]                 -> "`1.2.0+`"  (open-ended)
+        ["1.0.0", ..., "1.4.3"]                 -> "`All versions`"  (full catalogue)
+        ["1.0.0", ..., "Switch 2"]              -> "`All versions`"  (platforms filtered)
+        ["1.0.0", "1.1.0", "1.2.0", "1.2.1"]  -> "`1.0.0-1.1.0` `1.2.0-1.2.1`"  (gap)
     """
     sw = [v for v in versions if v not in _PLATFORMS]
     if not sw:
         return ""
+    # Full coverage — every software version present.
+    if set(sw) >= set(_SOFTWARE_VERSIONS):
+        return "`All versions`"
     if len(sw) == 1:
         return f"`{sw[0]}`"
-    first = sw[0]
-    last = sw[-1]
-    if first == _ALL_VERSIONS[0] and last == _CURRENT_VERSION:
-        return "`All versions`"
-    if last == _CURRENT_VERSION:
-        return f"`{first}+`"
-    return f"`{first}-{last}`"
+
+    # Split into contiguous runs using catalogue order.
+    runs: list[list[str]] = []
+    current_run: list[str] = [sw[0]]
+    for i in range(1, len(sw)):
+        prev_idx = _SW_INDEX.get(sw[i - 1])
+        curr_idx = _SW_INDEX.get(sw[i])
+        if prev_idx is not None and curr_idx is not None and curr_idx == prev_idx + 1:
+            current_run.append(sw[i])
+        else:
+            runs.append(current_run)
+            current_run = [sw[i]]
+    runs.append(current_run)
+
+    # Format each run.
+    labels: list[str] = []
+    for run in runs:
+        if len(run) == 1:
+            labels.append(f"`{run[0]}`")
+        else:
+            first, last = run[0], run[-1]
+            if last == _CURRENT_VERSION:
+                labels.append(f"`{first}+`")
+            else:
+                labels.append(f"`{first}-{last}`")
+
+    return " ".join(labels)
 
 
 def _rewrite_tab_label(tab_line: str, versions: list[str]) -> str:
@@ -127,8 +156,8 @@ def _rewrite_tab_label(tab_line: str, versions: list[str]) -> str:
     prefix = m.group(1)   # e.g. '=== "'
     content = m.group(2)  # e.g. 'Method 1 `1.2.0+`' or 'Method 1'
     suffix = m.group(3)   # e.g. '"\n'
-    # Strip any trailing backtick badge injected by a previous build.
-    content = re.sub(r'\s*`[^`]+`\s*$', '', content)
+    # Strip any trailing backtick badges injected by a previous build.
+    content = re.sub(r'(\s*`[^`]+`)+\s*$', '', content)
     if range_label:
         return f"{prefix}{content} {range_label}{suffix}"
     return f"{prefix}{content}{suffix}"
@@ -211,8 +240,8 @@ def _patch_headings(markdown: str) -> str:
             core = heading
             attr_suffix = ''
 
-        # Strip any existing badge, then append the computed one.
-        core = re.sub(r"\s*`[^`]+`\s*$", "", core)
+        # Strip any existing badges, then append the computed one.
+        core = re.sub(r"(\s*`[^`]+`)+\s*$", "", core)
         if range_label:
             new_heading = f"{core} {range_label}{attr_suffix}"
         else:
@@ -296,18 +325,24 @@ def _aggregate_tab(markdown: str, tab_match: re.Match) -> tuple[list[str], bool]
     if not sentinels:
         return None
 
+    # Pre-parse sentinel version lists once (avoids re-parsing inside the
+    # O(V×S) loop below).
+    parsed_versions = []
+    for s in sentinels:
+        try:
+            parsed_versions.append(json.loads(s.group('versions')))
+        except Exception:
+            parsed_versions.append([])
+
     # Union of versions in catalogue order.
     seen: set[str] = set()
     union_versions: list[str] = []
     for v in _ALL_VERSIONS:
-        for s in sentinels:
-            try:
-                vlist = json.loads(s.group('versions'))
-            except Exception:
-                vlist = []
+        for vlist in parsed_versions:
             if v in vlist and v not in seen:
                 seen.add(v)
                 union_versions.append(v)
+                break
 
     # Tab is considered obsolete only when every child method is obsolete.
     all_obsolete = all(
@@ -387,15 +422,19 @@ def _aggregate_collapsible_heading(markdown: str, m: re.Match) -> tuple[list[str
     if not sentinels:
         return None
 
+    # Pre-parse sentinel version lists once.
+    parsed_versions = []
+    for s in sentinels:
+        try:
+            parsed_versions.append(json.loads(s.group('versions')))
+        except Exception:
+            parsed_versions.append([])
+
     # Union of versions in catalogue order (de-duplicated).
     seen: set[str] = set()
     union_versions: list[str] = []
     for v in _ALL_VERSIONS:
-        for s in sentinels:
-            try:
-                vlist = json.loads(s.group('versions'))
-            except Exception:
-                vlist = []
+        for vlist in parsed_versions:
             if v in vlist and v not in seen:
                 seen.add(v)
                 union_versions.append(v)
@@ -517,81 +556,65 @@ def on_page_content(html: str, page, config, **kwargs) -> str:
 def _mark_obsolete_labels(html: str) -> str:
     """Add 'ub-obsolete' class to tab labels whose corresponding tabbed-block
     contains a *tab-level* obsolete method-meta div (not one belonging to a
-    sub-heading).
+    sub-heading or nested tabbed-set).
 
-    Strategy: find each ``tabbed-block`` that has ``data-obsolete="true"``
-    not preceded by a heading, then walk backwards to its parent
-    ``tabbed-set`` to locate the matching ``<label>`` by block index.
-    This avoids fragile regex parsing of deeply-nested div structures."""
+    Uses ``<div>``/``</div>`` depth tracking to identify direct-child blocks
+    of each tabbed-set, so nested tabbed-sets don't inflate the block index."""
 
-    # Locate every tabbed-set boundary so we can map blocks → labels.
-    SET_OPEN = re.compile(r'<div\b[^>]*class="tabbed-set[^"]*"[^>]*>')
-    LABEL_RE = re.compile(r'<label for="([^"]+)">')
-    BLOCK_RE = re.compile(r'<div class="tabbed-block">')
-
-    # Pre-compute label lists per tabbed-set (by start position).
-    sets = []  # [(start, end_of_labels_area, [label_id, …])]
-    for m in SET_OPEN.finditer(html):
-        set_start = m.start()
-        # Labels appear between the set opening and the first tabbed-block.
-        first_block = BLOCK_RE.search(html, m.end())
-        if not first_block:
-            continue
-        label_area = html[m.end():first_block.start()]
-        labels = LABEL_RE.findall(label_area)
-        sets.append((set_start, first_block.start(), labels))
-
-    if not sets:
-        return html
-
-    # For each tabbed-block with a tab-level obsolete meta div, find its
-    # index within its parent set and mark the corresponding label.
-    META_OBS = re.compile(
+    SET_OPEN  = re.compile(r'<div\b[^>]*class="tabbed-set[^"]*"[^>]*>')
+    LABEL_RE  = re.compile(r'<label for="([^"]+)">')
+    BLOCK_TAG = re.compile(r'<div class="tabbed-block">')
+    DIV_RE    = re.compile(r'<div\b[^>]*>|</div>')
+    META_OBS  = re.compile(
         r'<div class="ub-method-meta"[^>]*data-obsolete="true"'
     )
-    labels_to_mark = set()  # label for="" ids to mark
+    NESTED_SET = re.compile(r'<div\b[^>]*class="tabbed-set')
 
-    for block_m in BLOCK_RE.finditer(html):
-        block_start = block_m.end()
-        # Find the next tabbed-block or a run of closing </div>s.
-        next_block = BLOCK_RE.search(html, block_start)
-        block_end = next_block.start() if next_block else len(html)
-        block_html = html[block_start:block_end]
+    labels_to_mark: set[str] = set()
 
-        # Does this block have a tab-level obsolete meta div?
-        has_tab_obsolete = False
-        for obs_m in META_OBS.finditer(block_html):
-            before = block_html[:obs_m.start()]
-            # If a heading immediately precedes (possibly with <p>), it
-            # belongs to that heading, not the tab.
-            if not re.search(r'</h[1-6]>[\s<p>/]*$', before):
-                has_tab_obsolete = True
-                break
-
-        if not has_tab_obsolete:
+    for set_m in SET_OPEN.finditer(html):
+        # Labels live between the set opening and its first tabbed-block.
+        first_block = BLOCK_TAG.search(html, set_m.end())
+        if not first_block:
+            continue
+        labels = LABEL_RE.findall(html[set_m.end():first_block.start()])
+        if not labels:
             continue
 
-        # Determine which tabbed-set this block belongs to and its index.
-        parent_set = None
-        for s in reversed(sets):
-            if s[0] < block_m.start():
-                parent_set = s
-                break
-        if not parent_set:
-            continue
+        # Walk <div>…</div> tags from the set opening, tracking depth.
+        # depth 0 = just inside the set's own div.
+        # Direct-child tabbed-blocks open at depth 1 (inside tabbed-content).
+        depth = 0
+        block_count = 0
+        block_start = -1          # content start of current direct block
 
-        # Count how many tabbed-blocks appear before this one within the
-        # same set (between set start and this block).
-        block_index = 0
-        for earlier in BLOCK_RE.finditer(html, parent_set[0], block_m.start()):
-            block_index += 1
-        # block_index is now 1-based count of earlier blocks; the current one
-        # is at that index (0-based).  But we counted *earlier* blocks, so
-        # index = block_index (the first block has 0 earlier blocks = index 0).
-
-        labels = parent_set[2]
-        if block_index < len(labels):
-            labels_to_mark.add(labels[block_index])
+        for tag_m in DIV_RE.finditer(html, set_m.end()):
+            tag = tag_m.group()
+            if tag.startswith('</'):
+                depth -= 1
+                if depth < 0:
+                    break         # exited the set
+                if depth == 1 and block_start >= 0:
+                    # Closing a direct-child block — check for obsolete.
+                    block_html = html[block_start:tag_m.start()]
+                    # Restrict to content before any nested tabbed-set to
+                    # avoid false positives from inner tab-level sentinels.
+                    nested = NESTED_SET.search(block_html)
+                    search_end = nested.start() if nested else len(block_html)
+                    has_tab_obsolete = False
+                    for obs_m in META_OBS.finditer(block_html, 0, search_end):
+                        before = block_html[:obs_m.start()]
+                        if not re.search(r'</h[1-6]>[\s<p>/]*$', before):
+                            has_tab_obsolete = True
+                            break
+                    if has_tab_obsolete and block_count < len(labels):
+                        labels_to_mark.add(labels[block_count])
+                    block_count += 1
+                    block_start = -1
+            else:
+                if depth == 1 and BLOCK_TAG.match(tag):
+                    block_start = tag_m.end()
+                depth += 1
 
     # Apply the class to all identified labels.
     for label_id in labels_to_mark:
