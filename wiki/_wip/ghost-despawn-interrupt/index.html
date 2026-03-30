@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Eaten DI passes a despawn attempt down to newly-fused main children, which can itself be interrupted to cause the Ghost DI state.">
+        <meta name="description" content="Eaten DI passes a despawn attempt down to newly-fused children, which can itself be interrupted to cause the Ghost DI state.">
       
       
         <meta name="author" content="NaN Gogh & Community">
@@ -79,7 +79,7 @@
     @media(max-width:76.25em){.ub-header-toggles{display:none!important}}
   </style>
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Ghost Despawn Interrupt","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/ghost-despawn-interrupt/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/ghost-despawn-interrupt/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"Eaten DI passes a despawn attempt down to newly-fused main children, which can itself be interrupted to cause the Ghost DI state.","author":[{"@type":"Person","name":"Aergyl"},{"@type":"Person","name":"mulberry"},{"@type":"Person","name":"Squidwest"}],"datePublished":"2026-01-16","keywords":"item, despawn, fuse, culling"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Ghost Despawn Interrupt","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/ghost-despawn-interrupt/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/_wip/ghost-despawn-interrupt/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"Eaten DI passes a despawn attempt down to newly-fused children, which can itself be interrupted to cause the Ghost DI state.","author":[{"@type":"Person","name":"Aergyl"},{"@type":"Person","name":"mulberry"},{"@type":"Person","name":"Squidwest"}],"datePublished":"2026-01-16","keywords":"item, despawn, fuse, culling"}</script>
     <meta name="robots" content="noindex">
   </head>
   
@@ -1043,6 +1043,100 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-fuse-drop-swap120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Fuse + Drop-Swap1.2.0+
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-turbo-replication120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: Turbo Replication1.2.0+
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-mineru-fe-target-fuseall-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 3: Mineru FE Target + FuseAll versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-4-mineru-fe-parent-fuseall-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 4: Mineru FE Parent + FuseAll versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-5-mineru-di-fuseall-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 5: Mineru DI + FuseAll versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-6-overload-pseudo-fuseall-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 6: Overload Pseudo FuseAll versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-7culling-area-distant-pseudo-fuse120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 7Culling Area Distant Pseudo Fuse1.2.0+
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-8culling-area-recull-pseudo-fuse120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 8Culling Area Recull Pseudo Fuse1.2.0+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1173,15 +1267,22 @@
 <p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Eaten DI</a> equipment passes an Eaten death down to newly-fused children (<em>if</em> the main parent is <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>), which can itself be interrupted. This causes the "Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>" state, which has additional properties over the standard <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Eaten DI</a> state.</p>
 <p><em>Discovered by mulberry; methods, optimizations, and properties found by Aergyl, mulberry, Squidwest - Jan 16, 2026</em></p>
 <h2 id="instructions">Instructions</h2>
+<p>All methods follow the same general pattern:</p>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the target to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield (must be the "main" parent, which is usually automatically true but can be deliberately controlled)</li>
+<li>Put the target in the "Ghost" state (aka fused state; often happens with the same Fuse input as step 1, but is always at least a frame later)</li>
+<li>Cull the target to interrupt the resulting fadeout despawn, locking in the state</li>
+<li>(usually) Detangle the target from its parent(s) to make it independent</li>
+</ol>
 <div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Full Fuse Methods<span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_2">Pseudo Fuse Methods<span class='ub-vr'><code>All versions</code></span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<p>These methods fully fuse the target to a normal parent and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> it to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; the former will need to be detangled/despawned to make the target persistent.</p>
-<details class="abstract">
-<summary>Method 1: Fuse + Drop-Swap</summary>
+<p>These methods <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the target to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and fully fuse the target to a normal parent; the latter will need to be detangled/despawned to make the target persistent.</p>
+<h4 class="collapse" id="method-1-fuse-drop-swap120">Method 1: Fuse + Drop-Swap<span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This is the simplest method, and the easiest to understand. It uses drop-swap culling as the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> method, making it exclusive to newer patches.</p>
 <ol>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield</li>
 <li>Equip a normal item of the same type</li>
@@ -1194,11 +1295,10 @@
 <li>Delete the normal parent by "FarDelete"; this can be done by sending it away with a rocket, dropping it down a chasm, or simply moving about 60m away</li>
 <li>Detangle the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; The fastest way to do this is to just use it again (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> objects with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parents are protected from "Fuse-over" deletion)</li>
 </ol>
-</details>
-<details class="abstract">
-<summary>Method 2: Turbo Replication</summary>
+<h4 class="collapse" id="method-2-turbo-replication120">Method 2: Turbo Replication<span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This method builds on Method 1, incorporating <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/B3B/" class="glitch-autolink" title="Octo-balloon Detanglement" target="_blank" rel="noopener noreferrer">Octo Detanglement</a> to instantly detangle both parents.</p>
 <ol>
 <li>Prepare an Octo Balloon Shield</li>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield</li>
@@ -1209,11 +1309,10 @@
 <li><strong>Unpause</strong> the game and press B within a couple frames of the game actually unpausing</li>
 <li>Done correctly, the target will detangle from both the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and the normal parent, and its pickup prompt will be displaced from its visual model</li>
 </ol>
-</details>
-<details class="abstract">
-<summary>Method 3: Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> Target + Fuse</summary>
+<h4 class="collapse" id="method-3-mineru-fe-target-fuseall-versions">Method 3: Mineru FE Target + Fuse<span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This method entangles the target to Mineru, allowing her to be used as the culling source to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> that target. The target will continue culling with Mineru afterwards.</p>
 <ol>
 <li>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the target; This will cause it to cull with Mineru</li>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield</li>
@@ -1221,15 +1320,14 @@
 <li>Induce Mineru to cull and <strong>fuse</strong> the target a few frames before it culls with her; It will immediately begin despawning</li>
 <li>When Mineru culls the target, it will <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> and remain attached to the normal parent</li>
 <li><strong>Pick up</strong> the target off of the normal parent and set it aside</li>
-<li>Detangle the target from Mineru by fusing something else to the slot the target is on</li>
+<li>If desired, detangle the target from Mineru by fusing something else to the slot the target is on</li>
 <li>Delete the normal parent by "FarDelete"; this can be done by sending it away with a rocket, dropping it down a chasm, or simply moving about 60m away</li>
 <li>Detangle the target from the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; The fastest way to do this is to just use it again (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> objects with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parents are protected from "Fuse-over" deletion)</li>
 </ol>
-</details>
-<details class="abstract">
-<summary>Method 4: Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> Parent + Fuse</summary>
+<h4 class="collapse" id="method-4-mineru-fe-parent-fuseall-versions">Method 4: Mineru FE Parent + Fuse<span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This method entangles the "normal parent" to Mineru, allowing her to be used as the culling source to make one <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost.</p>
 <ol>
 <li>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> a normal weapon or shield</li>
 <li>Smuggle a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> item of the same type</li>
@@ -1239,13 +1337,12 @@
 <li>Delete the normal parent by "FarDelete"; this can be done by sending it away with a rocket, dropping it down a chasm, or simply moving about 60m away</li>
 <li>Detangle the target from the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; The fastest way to do this is to just use it again (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> objects with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parents are protected from "fuse-over" deletion)</li>
 </ol>
-</details>
-<details class="abstract">
-<summary>Method 5: Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> + Fuse</summary>
+<h4 class="collapse" id="method-5-mineru-di-fuseall-versions">Method 5: Mineru DI + Fuse<span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This method entangles the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent to Mineru, allowing her to be used as the culling source to make many ghosts.</p>
 <ol>
-<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> a weapon or shield (A) with Method 2 and <em>do not</em> detangle it from Mineru</li>
+<li>Prepare a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield (A) which is entangled to Mineru (for example, with Method 3)</li>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> A and equip a normal item over it</li>
 <li>Induce Mineru to cull and <strong>fuse</strong> the target a few frames before she culls</li>
 <li>The target will immediately begin despawning, then be culled with the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent, resulting in <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
@@ -1253,22 +1350,20 @@
 <li>Delete the normal parent by "FarDelete"; this can be done by sending it away with a rocket, dropping it down a chasm, or simply moving about 60m away</li>
 <li>Detangle the target from the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; the fastest way to do this is to just use it again (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> objects with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parents are protected from "fuse-over" deletion)</li>
 </ol>
-</details>
 </div>
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <p>These methods <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the target to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> the target to a normal parent, resulting in PF; this removes the need to detangle it from the normal parent.</p>
-<details class="abstract">
-<summary>Method 6: Overload Pseudo Fuse</summary>
+<h4 class="collapse" id="method-6-overload-pseudo-fuseall-versions">Method 6: Overload Pseudo Fuse<span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This method uses overload to Pseudo-Fuse the target, and then literally idk how it culls the target</p>
 <p>(normal overload pfdi without any batching considerations)
 (I don't actually know what's minimal, so I'm coming back to this one later)</p>
-</details>
-<details class="abstract">
-<summary>Method 7: Culling Area Pseudo Fuse</summary>
+<h4 class="collapse" id="method-7culling-area-distant-pseudo-fuse120">Method 7<br/>Culling Area Distant Pseudo Fuse<span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This method uses a culling area to Pseudo-Fuse the target, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to perform the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>.</p>
 <p>Prepare a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield, another item of that type, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> of the opposite type</p>
 <ol>
 <li>Use a small culling area to store fuse on the target with a normal parent</li>
@@ -1279,15 +1374,35 @@
 <li>Use the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to cull the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and the target</li>
 <li>The target, now <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>'d, will be attached to the normal parent, but not fused</li>
 </ol>
-</details>
-<p>Well hopefully trying to metadata tag that dropdown up there doesn't break everything</p>
+<h4 class="ub-obsolete collapse" id="method-8culling-area-recull-pseudo-fuse120">Method 8<br/>Culling Area Recull Pseudo Fuse<span class='ub-vr'><code>1.2.0+</code></span></h4>
+<p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="true" hidden></div>
+<code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<div class="admonition warning">
+<p class="admonition-title">OBSOLETE CONTENT</p>
+<p>This content is obsolete. Check out alternatives.</p>
+</div>
+<p>This method uses a culling area to Pseudo-Fuse the target, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to perform the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>. It's more difficult than Method 7, for no benefit. Don't do it.</p>
+<p>Prepare a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield, another item of that type, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> of the opposite type</p>
+<ol>
+<li>Use a small culling area to store fuse on the target with a normal parent</li>
+<li>Move into and quickly back out of the culling margin to uncull the target for 1 frame</li>
+<li>Drop the normal parent and move it out of update range (the far end of the platform at Akkala Citadel Ruins' small culling area is enough)</li>
+<li>Pick up the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> item</li>
+<li>Move into and quickly back out of the culling margin again to uncull the target for 1 frame, again</li>
+<li>Shortly after the target unculls, pause the game (timing is frame perfect)</li>
+<li>Use the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to cull the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and the target</li>
+<li>The target, now <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>'d, will be attached to the normal parent, but not fused</li>
+</ol>
+<p>Don't.</p>
 </div>
 </div>
 </div>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>Retains all(?) properties of non-ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
+<li>Can be picked up off its "model-bind" parent, permanently detaching it (and turning the connection into plain <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>/<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a>)</li>
 <li>Has no collision, gravity, or ability to move on its own once detached from its "model-bind" parent</li>
+<li>Its <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> connection to its <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent can be "fused over", reducing it to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> connection</li>
 <li>So long as it does not have non-persistent parents, it is "Auto-slotted" and will travel through warps and loads when dropped in the world</li>
 <li>Passes this persistence down to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> children</li>
 <li>Can be made persistently invisible with certain processes and passes this invisibility down to anything that attempts to fuse to it</li>
@@ -1305,6 +1420,10 @@
 <p class="admonition-title">Pre-fused Ghosts</p>
 <p>If a non-ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment is created with a fuse already attached, the fuse (if it survives at all) will <em>seem</em> to be in the Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> state, but is in fact missing any form of persistence (even warping with it zuggled will delete it).</p>
 <p>This is due to a property of the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> state: it stops updating various flags and variables, including whether it is a "resident" (aka persistent) actor. <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts which are attached to Link on creation (like fusing to a zuggled equipment) keep their resident state even when dropped, and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts created while unattached (such as being fused to a detached piece of equipment) fail to gain the resident state even when attached.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a></p>
+<p>If a piece of equipment has 30 direct child dependencies, it will become "Fuse Overloaded". Further fuse attempts will fail, producing a "reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will usually <strong>crash the game</strong> if the "failed parent" is dropped. Because "fusing over" a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost leaves a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> connection to that parent, a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent can only be used 30 times unless full <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is used or some children are destroyed.</p>
 </div>
 <h3 id="remarks">Remarks</h3>
 <p>Remarks</p>
