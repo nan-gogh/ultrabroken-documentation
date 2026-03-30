@@ -37,7 +37,7 @@
 }
 
 
-/* Tab labels — base size matches h3; data-ub-level (injected by
+/* Tab labels � base size matches h3; data-ub-level (injected by
    method_meta hook) scales each set relative to its parent heading.
    Level = parent heading + 1, so tabs under h2 = level 3 (default). */
 .md-typeset .tabbed-labels label {
@@ -48,13 +48,13 @@
 .md-typeset .tabbed-set[data-ub-level="2"] > .tabbed-labels label { font-size: 1.1rem; }
 .md-typeset .tabbed-set[data-ub-level="4"] > .tabbed-labels label { font-size: 0.9rem; }
 
-/* Version range badge group — wraps all <code> badges for a heading or tab
+/* Version range badge group � wraps all <code> badges for a heading or tab
    label. inline-block + text-decoration-line:none stops the parent element's
    underline / strikethrough from bleeding onto the badge area (CSS Text
    Decoration L4: parent decoration is not painted on atomic inline-blocks
    whose own text-decoration-line differs from the parent's).
    margin-left replaces the space character that was between heading text and
-   the first badge (no text node → nothing to decorate).
+   the first badge (no text node ? nothing to decorate).
    code+code margin replaces the space character between consecutive badges. */
 .md-typeset .ub-vr {
   display: inline-block;
@@ -71,7 +71,7 @@
 .md-typeset .tabbed-labels label code {
   font-size: 0.7em;
   vertical-align: 0.1em;
-  /* Always default code color/background — never inherit teal from selected/highlighted label.
+  /* Always default code color/background � never inherit teal from selected/highlighted label.
      display:inline-block breaks text-decoration propagation in all label states.
      Background is pinned to stop Material's link-hover rule from tinting it. */
   display: inline-block;
@@ -81,7 +81,7 @@
 }
 /* .ub-vr code in tab labels: version range badges should match the heading
    code size (Material typeset uses ~0.85em code-in-heading), so they appear
-   the same height as the label text — not the 0.7em shrink for author badges. */
+   the same height as the label text � not the 0.7em shrink for author badges. */
 .md-typeset .tabbed-labels label .ub-vr code {
   font-size: 0.85em;
   vertical-align: 0;
@@ -89,7 +89,7 @@
 /* Suppress Material's hover/focus backdrop on tab labels entirely.
    In linked-label mode the interactive element is the <a> inside the label.
    Material renders the hover tint via background-color AND ::before/::after
-   pseudo-elements — kill all three. Do NOT set color here (causes transitions). */
+   pseudo-elements � kill all three. Do NOT set color here (causes transitions). */
 .md-typeset .tabbed-labels label:hover,
 .md-typeset .tabbed-labels label:focus,
 .md-typeset .tabbed-labels label:active,
@@ -287,7 +287,7 @@
   overflow-x: auto;
 }
 
-/* Tab label visual segmentation — override Material's palette variables
+/* Tab label visual segmentation � override Material's palette variables
    within the tab row so labels act as section dividers matching headings.
    Active + hover = teal-glow; inactive = muted.
    Also replaces Material's faint box-shadow with a proper separator line. */
@@ -304,7 +304,7 @@
   background: hsla(0, 0%, 100%, 0.87) !important;
 }
 
-/* ── Shared header / sidebar toggle buttons ── */
+/* -- Shared header / sidebar toggle buttons -- */
 .ub-motion-toggle,
 .ub-storage-toggle,
 .ub-font-toggle,
@@ -507,7 +507,7 @@ label.md-header__button[for^="__palette_"]:hover {
 }
 
 
-/* Sidebar toggle containers (mobile/compact view) —
+/* Sidebar toggle containers (mobile/compact view) �
    Positioned inside .md-sidebar--primary, above the sliding nav panels.
    Needs its own stacking context (via translateZ) to beat the nested nav
    panels which get transform:translateX(0) when checked.
@@ -639,7 +639,7 @@ button.search-link:focus,
   color: var(--teal-glow) !important;
 }
 
-/* Auto section separators — thin line below H2-H4 headings */
+/* Auto section separators � thin line below H2-H4 headings */
 .md-typeset :is(h2, h3, h4) {
   border-bottom: 1px solid var(--hr-sep);
   padding-bottom: 0.4em;
@@ -755,7 +755,7 @@ button.search-link:focus,
   transition: none !important;
 }
 
-/* Nudge above footer: footer-anchored variant — instant, no fade */
+/* Nudge above footer: footer-anchored variant � instant, no fade */
 .ub-back-to-top--footer {
   position: absolute !important;
   bottom: 100% !important;
@@ -764,7 +764,7 @@ button.search-link:focus,
   transition: none !important;
 }
 
-/* Obsolete markers — strikethrough shown only when toggle is ON */
+/* Obsolete markers � strikethrough shown only when toggle is ON */
 html:not(.ub-hide-deprecated) .md-typeset .tabbed-labels label.ub-obsolete {
   text-decoration: line-through 2px currentColor;
 }
@@ -781,7 +781,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete {
 }
 
 /* Version badges (code spans) inside headings:
-   Material default 0.85em is slightly too large inside headings —
+   Material default 0.85em is slightly too large inside headings �
    0.7em keeps proportional scaling while tightening the badge.
    A small vertical-align nudge lifts the backdrop to sit centred. */
 .md-typeset h1 > code,
@@ -796,7 +796,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete {
 
 /* Version badges inside obsolete headings should not be struck through.
    text-decoration propagates to inline children and cannot be cancelled
-   with text-decoration:none — display:inline-block breaks the chain.
+   with text-decoration:none � display:inline-block breaks the chain.
    Scoped to toggle-ON so badges render normally when markers are off. */
 /* Unconditionally pin code badge appearance in grimoire links: color, background
    and text-shadow must never change on hover/focus regardless of link state. */
@@ -821,7 +821,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   display: inline-block;
 }
 
-/* ── Settings gear button ─────────────────────────────────── */
+/* -- Settings gear button ----------------------------------- */
 .ub-settings-gear {
   display: inline-flex;
   align-items: center;
@@ -846,7 +846,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   display: block;
 }
 
-/* ── Settings modal ───────────────────────────────────────── */
+/* -- Settings modal ----------------------------------------- */
 .ub-settings-backdrop {
   position: fixed;
   inset: 0;
@@ -915,7 +915,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   opacity: 1;
 }
 
-/* Shared body — used by modal and sidebar */
+/* Shared body � used by modal and sidebar */
 .ub-settings-body {
   padding: 0.5rem 1rem 1rem;
 }
@@ -970,7 +970,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   letter-spacing: 0.06em;
 }
 
-/* ── Version filter chips ────────────────────────────────── */
+/* -- Version filter chips ---------------------------------- */
 .ub-vf-wrapper {
   margin-top: 0.15rem;
 }
@@ -1020,11 +1020,11 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-obsolete code {
   color: var(--teal-glow);
 }
 
-/* ── Version highlight / mute (additive, color-based) ─────
+/* -- Version highlight / mute (additive, color-based) -----
    These compose with strikethrough from ub-obsolete and
    work on both regular-colored and teal-colored elements. */
 
-/* Match: teal glow + underline accent — applied uniformly to all match targets.
+/* Match: teal glow + underline accent � applied uniformly to all match targets.
    Uses longhands (not the shorthand) so the obsolete strikethrough rule can't
    clobber text-decoration-line when both classes are present. */
 .grim-li a.ub-version-match,
@@ -1079,7 +1079,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-version-match.ub-obsolete {
   text-decoration-thickness: 2px;
 }
 
-/* Mismatch: muted color (not opacity — preserves strikethrough visibility) */
+/* Mismatch: muted color (not opacity � preserves strikethrough visibility) */
 .grim-li a.ub-version-mismatch,
 .md-typeset .tabbed-labels label.ub-version-mismatch,
 .md-typeset h1.ub-version-mismatch,
@@ -1108,20 +1108,20 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-version-match.ub-obsolete {
   }
 }
 
-/* ── Sidebar settings slide-in panel ─────────────────────────
+/* -- Sidebar settings slide-in panel -------------------------
    The inner nav uses Material's own checkbox-driven slide UX
    (same as the TOC panel). z-index ensures it covers all other
    nav panels (TOC etc.) when open.                           */
 .ub-settings-sidebar-wrapper .md-nav {
   z-index: 3;
   overflow-y: auto;
-  /* Material sets its own scrollbar-color on .md-nav — override to match site teal */
+  /* Material sets its own scrollbar-color on .md-nav � override to match site teal */
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent !important;
 }
 
 @media (max-width: 76.1875em) {
-  /* Center social icons row on mobile (Material defaults to margin-left: auto → right-aligned) */
+  /* Center social icons row on mobile (Material defaults to margin-left: auto ? right-aligned) */
   /*.md-social {
     width: 100%;
     margin: 0;
@@ -1136,7 +1136,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-version-match.ub-obsolete {
   z-index: 4 !important;
 }
 
-/* (Blanket heading cursor:pointer removed — now scoped to .ub-collapsible) */
+/* (Blanket heading cursor:pointer removed � now scoped to .ub-collapsible) */
 /* Tasklist checkbox styling - match project teal theme */
 .task-list-item input[type="checkbox"],
 .md-typeset li.task-list input[type="checkbox"],
@@ -1162,10 +1162,10 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-version-match.ub-obsolete {
 }
 
 
-/* ── Collapsible sections ({ .collapse } headings) ─────────────────── */
+/* -- Collapsible sections ({ .collapse } headings) ------------------- */
 
 /* h4 headings are always non-bold (Material makes them bold by default).
-   Also increase top margin — Material's default 1em is noticeably tighter
+   Also increase top margin � Material's default 1em is noticeably tighter
    than the 1.6em gap above H2/H3. */
 .md-typeset h4 {
   font-weight: 400;
@@ -1206,7 +1206,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-version-match.ub-obsolete {
 }
 
 
-/* ── Heading share icon (permalink copy) ───────────────────────────── */
+/* -- Heading share icon (permalink copy) ----------------------------- */
 
 .ub-heading-share {
   display: inline-flex;
@@ -1253,7 +1253,7 @@ html:not(.ub-hide-deprecated) .md-typeset h6.ub-version-match.ub-obsolete {
 }
 
 
-/* ── Zonai rain (static grid + JS opacity raindrops) ─────────────── */
+/* -- Zonai rain (static grid + JS opacity raindrops) --------------- */
 
 .ub-rain-bg {
   --rain-font-px: 18;
@@ -1351,11 +1351,11 @@ html, body, .md-content, .md-nav, .md-sidebar {
   background: transparent;
 }
 
-/* (.ub-copy-check styles removed — replaced by .ub-heading-share in collapsible section) */
+/* (.ub-copy-check styles removed � replaced by .ub-heading-share in collapsible section) */
 
 /* (editor-toggle styles consolidated above) */
 
-/* ── Page-actions row: compact left-aligned bar above the h1 ── */
+/* -- Page-actions row: compact left-aligned bar above the h1 -- */
 .ub-page-actions {
   display: flex;
   align-items: center;
@@ -1430,7 +1430,7 @@ li.task-list-item a, li.task-list a {
 /* Asset publish trigger: do not remove - used to trigger asset-only workflow */
 /* timestamp: 2026-02-13T00:00:00Z */
 
-/* â”€â”€ Leaderboard table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Leaderboard table ────────────────────────────────────────────────────── */
 #leaderboard-root .leaderboard-table {
   table-layout: fixed;
   width: 100%;
@@ -1586,18 +1586,18 @@ li.task-list-item a, li.task-list a {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════════
+/* -------------------------------------------------------------------------------
    MOBILE TOC IN NAV DRAWER
    Collapsible "Table of contents" section injected into the nav drawer.
-   ═══════════════════════════════════════════════════════════════════════════════ */
+   ------------------------------------------------------------------------------- */
 
-/* ── TOC header widget ────────────────────────────────────────────────────────
+/* -- TOC header widget --------------------------------------------------------
    Injected between each nav panel's title and scrollable list so it lives
-   OUTSIDE the scroll container — always visible, no sticky tricks needed.
+   OUTSIDE the scroll container � always visible, no sticky tricks needed.
    Tapping the label opens Material's native slide-in panel (full TOC + back).
-   ─────────────────────────────────────────────────────────────────────────── */
+   --------------------------------------------------------------------------- */
 
-/* Indent levels for flattened TOC sub-items — matches Material's native values */
+/* Indent levels for flattened TOC sub-items � matches Material's native values */
 .ub-toc-indent-1 > .md-nav__link { padding-left: 1.4rem; }
 .ub-toc-indent-2 > .md-nav__link { padding-left: 2rem; }
 .ub-toc-indent-3 > .md-nav__link { padding-left: 2.6rem; }
@@ -1628,7 +1628,7 @@ li.task-list-item a, li.task-list a {
     color: var(--md-default-fg-color);
   }
 
-  /* ── Kill hover/active on mobile sidebar links ──────────────
+  /* -- Kill hover/active on mobile sidebar links --------------
      pointer-events:none prevents :hover and :active from firing
      during swipe-scrolling.  Taps are restored via JS delegation
      on the parent <li> (see nav-delegation.js / mobile-toc.js). */
@@ -1692,211 +1692,3 @@ li.task-list-item a, li.task-list a {
     display: flex !important;
   }
 }
-
-/* ── Version compatibility chart ────────────────────────────────────────── */
-
-.ub-vc-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.ub-vc-search {
-  flex: 1 1 180px;
-  padding: 0.3rem 0.6rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
-  background: transparent;
-  color: var(--md-default-fg-color);
-  font-family: 'Texturina', Georgia, serif;
-  font-size: 0.8rem;
-  line-height: 1.4;
-}
-.ub-vc-search:focus {
-  outline: none;
-  border-color: rgba(0, 240, 194, 0.45);
-}
-.ub-vc-search::-webkit-search-cancel-button { cursor: pointer; }
-
-.ub-vc-btn {
-  padding: 0.28rem 0.65rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
-  background: transparent;
-  color: var(--md-default-fg-color);
-  font-family: 'Texturina', Georgia, serif;
-  font-size: 0.8rem;
-  line-height: 1.4;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: border-color 0.15s, color 0.15s;
-}
-.ub-vc-btn:hover {
-  border-color: rgba(0, 240, 194, 0.4);
-  color: var(--teal-glow);
-}
-.ub-vc-clear { margin-left: auto; }
-
-.ub-vc-count {
-  font-size: 0.72rem;
-  color: var(--muted-text);
-  white-space: nowrap;
-}
-
-.ub-vc-wrap {
-  overflow: auto;
-  max-height: 72vh;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 4px;
-  background: var(--md-default-bg-color);
-  isolation: isolate;
-}
-
-.ub-vc-table {
-  border-collapse: separate;
-  border-spacing: 0 2px;
-  width: max-content;
-  min-width: 100%;
-}
-
-/* Reset any global table borders that could bleed into sticky header */
-.ub-vc-table td,
-.ub-vc-table th {
-  border: none;
-}
-
-/* Corner th — sticky at both top and left */
-.ub-vc-table .ub-vc-lh {
-  position: sticky;
-  left: 0;
-  top: 0;
-  z-index: 3;
-  background: var(--md-default-bg-color);
-  padding: 0.4rem 0.5rem;
-  text-align: left;
-  white-space: nowrap;
-  /* box-shadow replaces border-bottom so it paints above scrolling body cells */
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), inset -1px 0 0 rgba(255, 255, 255, 0.1);
-  font-size: 0.72rem;
-  color: var(--muted-text);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* Version column headers — sticky top */
-.ub-vc-table thead th.ub-vc-vh {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: var(--md-default-bg-color);
-  padding: 0.5rem 2px 0.25rem;
-  text-align: center;
-  vertical-align: bottom;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
-  min-width: 28px;
-  width: 28px;
-  cursor: pointer;
-}
-.ub-vc-table thead th.ub-vc-vh span {
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 400;
-  font-family: 'Texturina', Georgia, serif;
-  color: var(--muted-text);
-  transition: color 0.12s;
-  user-select: none;
-  padding: 0 2px;
-}
-.ub-vc-table thead th.ub-vc-vh:hover span { color: var(--md-default-fg-color); }
-.ub-vc-table thead th.ub-vc-vh.ub-vc-active span { color: var(--teal-glow); }
-/* Active: opaque background + inset bottom accent — never semi-transparent over fill cells */
-.ub-vc-table thead th.ub-vc-vh.ub-vc-active {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -2px 0 var(--teal-glow);
-}
-
-/* Platform column separator — use box-shadow on thead to avoid bleed */
-.ub-vc-table thead th.ub-vc-plat {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), -1px 0 0 rgba(0, 240, 194, 0.18);
-}
-.ub-vc-table thead th.ub-vc-plat.ub-vc-active {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), -1px 0 0 rgba(0, 240, 194, 0.18), inset 0 -2px 0 var(--teal-glow);
-}
-.ub-vc-table tbody td.ub-vc-platcol {
-  border-left: 1px solid rgba(0, 240, 194, 0.18);
-}
-
-/* Label / name column — sticky left */
-.ub-vc-table td.ub-vc-lc {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  background: var(--md-default-bg-color);
-  padding: 0 0.4rem 0 0.3rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.07);
-  width: 1px;           /* shrink-to-content; browser respects child min-width */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-/* Name mode (toggled via JS class): cap long names */
-.ub-vc-wrap.ub-vc-names .ub-vc-table td.ub-vc-lc {
-  max-width: 180px;
-  width: auto;
-}
-.ub-vc-table td.ub-vc-lc a {
-  font-family: 'Texturina', Georgia, serif;
-  font-size: 0.78rem;
-  color: var(--md-default-fg-color);
-  text-decoration: none;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.ub-vc-table td.ub-vc-lc a:hover { color: var(--teal-glow); }
-.ub-vc-table td.ub-vc-lc a code {
-  font-size: 0.72rem;
-  padding: 0.1em 0.35em;
-  color: var(--md-default-fg-color);
-}
-.ub-vc-table td.ub-vc-lc a:hover code {
-  color: var(--teal-glow);
-  background: rgba(0, 240, 194, 0.1);
-}
-
-/* Body rows */
-.ub-vc-table tbody tr { height: 10px; background: var(--md-default-bg-color); }
-.ub-vc-table tbody tr:hover td.ub-vc-lc { background: var(--md-default-bg-color) !important; }
-.ub-vc-table tbody tr:hover td.ub-vc-lc a { color: var(--teal-glow); }
-
-/* Version body cells */
-.ub-vc-table tbody td {
-  padding: 0;
-  height: 10px;
-}
-
-/* Bar fill */
-.ub-vc-table tbody td.ub-vc-fill { background: rgba(0, 240, 194, 0.55); }
-
-/* Unknown-version rows: dim the label */
-.ub-vc-table tbody tr.ub-vc-unk-row td.ub-vc-lc { opacity: 0.4; }
-.ub-vc-table tbody td.ub-vc-unk-mark {
-  font-size: 0.65rem;
-  color: var(--muted-text);
-  text-align: center;
-  opacity: 0.5;
-}
-
-/* Loading / error */
-.ub-vc-loading,
-.ub-vc-error {
-  color: var(--muted-text);
-  font-style: italic;
-  font-size: 0.85rem;
-  padding: 1rem 0;
-}
-
-
