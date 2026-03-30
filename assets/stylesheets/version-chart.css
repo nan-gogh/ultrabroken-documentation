@@ -50,14 +50,20 @@
   white-space: nowrap;
 }
 
-/* ── 4-panel layout ──────────────────────────────────────────────────────
-   .ub-vc-outer
-   ├── .ub-vc-left   (.ub-vc-corner + .ub-vc-vscroll)
-   └── .ub-vc-right  (.ub-vc-hscroll + .ub-vc-bscroll)
+/* ── 4-panel CSS Grid layout ─────────────────────────────────────────────
+   .ub-vc-outer (2 × 2 grid)
+   ┌─────────────┬──────────────┐
+   │  corner     │  hscroll     │  row 1: auto height
+   ├─────────────┼──────────────┤
+   │  vscroll    │  bscroll     │  row 2: remaining height
+   └─────────────┴──────────────┘
+   col 1: auto (label width)   col 2: 1fr (bars)
    ────────────────────────────────────────────────────────────────────── */
 
 .ub-vc-outer {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 40%) 1fr;
+  grid-template-rows: auto 1fr;
   height: 72vh;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 4px;
@@ -66,19 +72,9 @@
   overflow: hidden;
 }
 
-/* Left panel: corner + label column */
-.ub-vc-left {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  max-width: 40%;
-  z-index: 2;
-  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.07); /* right separator */
-}
-
-/* Corner: top-left fixed cell, height set by JS to match hscroll */
+/* Corner: top-left fixed cell */
 .ub-vc-corner {
-  flex-shrink: 0;
+  grid-row: 1; grid-column: 1;
   padding: 0.4rem 0.5rem;
   text-align: right;
   white-space: nowrap;
@@ -87,38 +83,29 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   background: var(--md-default-bg-color);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12); /* bottom separator */
-}
-
-/* Label list: scrollTop driven by bscroll via JS */
-.ub-vc-vscroll {
-  overflow: hidden;
-  flex: 1;
-  min-width: 0;
-  min-height: 0;
-}
-
-/* Right panel: header + body */
-.ub-vc-right {
-  flex: 1;
-  min-width: 0;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(255, 255, 255, 0.12);
+  z-index: 2;
 }
 
 /* Header: scrollLeft driven by bscroll via JS */
 .ub-vc-hscroll {
+  grid-row: 1; grid-column: 2;
   overflow: hidden;
-  flex-shrink: 0;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12); /* bottom separator */
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Label list: scrollTop driven by bscroll via JS */
+.ub-vc-vscroll {
+  grid-row: 2; grid-column: 1;
+  overflow: hidden;
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.07);
+  z-index: 1;
 }
 
 /* Body: the scroll driver */
 .ub-vc-bscroll {
+  grid-row: 2; grid-column: 2;
   overflow: auto;
-  flex: 1;
-  min-height: 0;
 }
 
 /* ── Tables ─────────────────────────────────────────────────────────────── */
@@ -145,8 +132,8 @@
   padding: 0.5rem 2px 0.25rem;
   text-align: center;
   vertical-align: bottom;
-  min-width: 28px;
-  width: 28px;
+  min-width: 24px;
+  width: 24px;
   cursor: pointer;
   background: var(--md-default-bg-color);
 }
@@ -220,8 +207,8 @@
   padding: 1px 0;
   background-clip: content-box;
   background: var(--md-default-bg-color);
-  width: 28px;
-  min-width: 28px;
+  width: 24px;
+  min-width: 24px;
   height: 10px;
 }
 

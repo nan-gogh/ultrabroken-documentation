@@ -123,36 +123,16 @@
     ctrlBar.appendChild(countEl);
     ctrlBar.appendChild(clearBtn);
 
-    /* ── 4-panel outer container ────────────── */
-    /*   .outer                                  */
-    /*   +-- .left  (corner + vscroll)           */
-    /*   +-- .right (hscroll + bscroll)          */
+    /* ── 4-panel grid container ──────────────
+       CSS Grid: 2 × 2
+       corner  | hscroll
+       vscroll | bscroll                       */
     var outer = document.createElement('div');
     outer.className = 'ub-vc-outer';
-
-    /* Left panel: corner + label column (scrollTop synced from bscroll) */
-    var leftPanel = document.createElement('div');
-    leftPanel.className = 'ub-vc-left';
 
     var corner = document.createElement('div');
     corner.className   = 'ub-vc-corner';
     corner.textContent = 'Label';
-
-    var vscroll = document.createElement('div');
-    vscroll.className = 'ub-vc-vscroll';
-
-    var ltable = document.createElement('table');
-    ltable.className = 'ub-vc-ltable';
-    var ltbody = document.createElement('tbody');
-    ltable.appendChild(ltbody);
-    vscroll.appendChild(ltable);
-
-    leftPanel.appendChild(corner);
-    leftPanel.appendChild(vscroll);
-
-    /* Right panel: header row + body (scrollLeft/Top driven by bscroll) */
-    var rightPanel = document.createElement('div');
-    rightPanel.className = 'ub-vc-right';
 
     var hscroll = document.createElement('div');
     hscroll.className = 'ub-vc-hscroll';
@@ -165,6 +145,15 @@
     htable.appendChild(hthead);
     hscroll.appendChild(htable);
 
+    var vscroll = document.createElement('div');
+    vscroll.className = 'ub-vc-vscroll';
+
+    var ltable = document.createElement('table');
+    ltable.className = 'ub-vc-ltable';
+    var ltbody = document.createElement('tbody');
+    ltable.appendChild(ltbody);
+    vscroll.appendChild(ltable);
+
     var bscroll = document.createElement('div');
     bscroll.className = 'ub-vc-bscroll';
 
@@ -173,9 +162,6 @@
     var btbody = document.createElement('tbody');
     btable.appendChild(btbody);
     bscroll.appendChild(btable);
-
-    rightPanel.appendChild(hscroll);
-    rightPanel.appendChild(bscroll);
 
     /* ── version header cells ───────────────── */
     var vhCells = [];
@@ -260,22 +246,24 @@
     /* ── assemble ───────────────────────────── */
     /* min-width keeps htable and btable column-aligned;
        width:100% lets them stretch to fill available space. */
-    var tableMinW = (n * 28) + 'px';
+    var COL_W   = 24;
+    var tableMinW = (n * COL_W) + 'px';
     htable.style.minWidth = tableMinW;
     htable.style.width    = '100%';
     btable.style.minWidth = tableMinW;
     btable.style.width    = '100%';
 
-    outer.appendChild(leftPanel);
-    outer.appendChild(rightPanel);
+    outer.appendChild(corner);
+    outer.appendChild(hscroll);
+    outer.appendChild(vscroll);
+    outer.appendChild(bscroll);
 
     root.innerHTML = '';
     root.appendChild(ctrlBar);
     root.appendChild(outer);
 
     /* Equalise row heights after layout so ltable and btable scroll in sync. */
-    /* Corner height is synced to the header row height.                      */
-    /* Scrollbar width is compensated on hscroll so columns stay aligned.     */
+    /* Scrollbar width is compensated on hscroll so columns stay aligned.    */
     requestAnimationFrame(function () {
       var lrows = ltbody.rows;
       var brows = btbody.rows;
@@ -291,7 +279,6 @@
           brows[m].style.height = hStr;
         }
       }
-      corner.style.height = hscroll.offsetHeight + 'px';
 
       /* Compensate hscroll for the vertical scrollbar in bscroll */
       var sbW = bscroll.offsetWidth - bscroll.clientWidth;
