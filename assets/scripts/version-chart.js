@@ -370,6 +370,27 @@
           anchor.title = rg.name;
         }
       }
+      /* Re-sync row heights in case label/name content differs */
+      requestAnimationFrame(function () {
+        var lrows = ltbody.rows;
+        var brows = btbody.rows;
+        for (var k = 0; k < lrows.length; k++) {
+          lrows[k].style.height = '';
+          brows[k].style.height = '';
+        }
+        var maxH = 0;
+        for (var k = 0; k < lrows.length; k++) {
+          var rh = lrows[k].offsetHeight;
+          if (rh > maxH) maxH = rh;
+        }
+        if (maxH > 0) {
+          var hStr = maxH + 'px';
+          for (var m = 0; m < lrows.length; m++) {
+            lrows[m].style.height = hStr;
+            brows[m].style.height = hStr;
+          }
+        }
+      });
     });
 
     /* Version column header click — toggle version filter */
@@ -399,6 +420,11 @@
         applyFilter();
       }
     }
+    /* Remove any previous listener from an earlier render (SPA navigation) */
+    if (window.__ubVCVersionFilterCb) {
+      window.removeEventListener('version-filter', window.__ubVCVersionFilterCb);
+    }
+    window.__ubVCVersionFilterCb = onGlobalVersionFilter;
     window.addEventListener('version-filter', onGlobalVersionFilter);
   }
 
