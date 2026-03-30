@@ -1756,7 +1756,7 @@ li.task-list-item a, li.task-list a {
 
 .ub-vc-table {
   border-collapse: separate;
-  border-spacing: 0;
+  border-spacing: 0 2px;
   width: max-content;
   min-width: 100%;
 }
@@ -1813,11 +1813,17 @@ li.task-list-item a, li.task-list a {
 }
 .ub-vc-table thead th.ub-vc-vh:hover span { color: var(--md-default-fg-color); }
 .ub-vc-table thead th.ub-vc-vh.ub-vc-active span { color: var(--teal-glow); }
-.ub-vc-table thead th.ub-vc-vh.ub-vc-active { background: rgba(0, 240, 194, 0.04); }
+/* Active: opaque background + inset bottom accent — never semi-transparent over fill cells */
+.ub-vc-table thead th.ub-vc-vh.ub-vc-active {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -2px 0 var(--teal-glow);
+}
 
 /* Platform column separator — use box-shadow on thead to avoid bleed */
 .ub-vc-table thead th.ub-vc-plat {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), -1px 0 0 rgba(0, 240, 194, 0.18);
+}
+.ub-vc-table thead th.ub-vc-plat.ub-vc-active {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), -1px 0 0 rgba(0, 240, 194, 0.18), inset 0 -2px 0 var(--teal-glow);
 }
 .ub-vc-table tbody td.ub-vc-platcol {
   border-left: 1px solid rgba(0, 240, 194, 0.18);
@@ -1854,6 +1860,7 @@ li.task-list-item a, li.task-list a {
 .ub-vc-table td.ub-vc-lc a code {
   font-size: 0.72rem;
   padding: 0.1em 0.35em;
+  color: var(--md-default-fg-color);
 }
 .ub-vc-table td.ub-vc-lc a:hover code {
   color: var(--teal-glow);
@@ -1861,23 +1868,18 @@ li.task-list-item a, li.task-list a {
 }
 
 /* Body rows */
-.ub-vc-table tbody tr { height: 14px; background: var(--md-default-bg-color); }
+.ub-vc-table tbody tr { height: 10px; background: var(--md-default-bg-color); }
 .ub-vc-table tbody tr:hover td.ub-vc-lc { background: var(--md-default-bg-color) !important; }
 .ub-vc-table tbody tr:hover td.ub-vc-lc a { color: var(--teal-glow); }
 
 /* Version body cells */
 .ub-vc-table tbody td {
   padding: 0;
-  height: 14px;
+  height: 10px;
 }
 
 /* Bar fill */
 .ub-vc-table tbody td.ub-vc-fill { background: rgba(0, 240, 194, 0.55); }
-
-/* Run boundary rounding */
-.ub-vc-table tbody td.ub-vc-rs { border-radius: 3px 0 0 3px; }
-.ub-vc-table tbody td.ub-vc-re { border-radius: 0 3px 3px 0; }
-.ub-vc-table tbody td.ub-vc-sg { border-radius: 3px; }
 
 /* Unknown-version rows: dim the label */
 .ub-vc-table tbody tr.ub-vc-unk-row td.ub-vc-lc { opacity: 0.4; }
