@@ -229,10 +229,10 @@
       rows.push({ ltr: ltr, btr: btr, glitch: g });
     }
 
-    /* ── set table widths ───────────────────── */
-    var tableW = (n * COL_W) + 'px';
-    htable.style.width = tableW;
-    btable.style.width = tableW;
+    /* ── set minimum table widths ────────── */
+    var tableMinW = (n * COL_W) + 'px';
+    htable.style.minWidth = tableMinW;
+    btable.style.minWidth = tableMinW;
 
     /* ── assemble DOM ───────────────────────── */
     outer.appendChild(corner);

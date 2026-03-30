@@ -125,11 +125,13 @@
   border-collapse: separate;
   border-spacing: 0;
   table-layout: fixed;
+  width: 100%;
 }
 .ub-vc-btable {
   border-collapse: separate;
   border-spacing: 0 2px;
   table-layout: fixed;
+  width: 100%;
   background: var(--md-default-bg-color);
 }
 .ub-vc-ltable {
