@@ -1,10 +1,10 @@
 /**
  * version-chart.js — Version Compatibility Chart
  * ================================================
- * Renders a sticky Gantt-style table showing which game versions each
- * documented glitch is known to work on.  Glitch labels/names populate
- * the Y-axis; versions populate the X-axis.  Non-contiguous coverage
- * (gaps) appear as split bars.
+ * Renders a 4-panel layout showing which game versions each documented
+ * glitch is known to work on.  The version-header row and label column
+ * are fully externalised: each lives in its own overflow-hidden container
+ * whose scroll position is driven by the body scroll container via JS.
  *
  * Only activates on pages containing <div id="ub-version-chart">.
  * Data is loaded from assets/data/grimoire-data.json and versions.json.
@@ -80,7 +80,7 @@
   /* ── render ─────────────────────────────────────────────────── */
 
   function render(root, glitches, vd) {
-    var versionList = vd.versions;        /* e.g. ["1.0.0", …, "Switch 2"] */
+    var versionList = vd.versions;        /* e.g. ["1.0.0", ..., "Switch 2"] */
     var platforms   = vd.platforms || []; /* versions treated as platform columns */
     var n           = versionList.length;
 
@@ -123,25 +123,61 @@
     ctrlBar.appendChild(countEl);
     ctrlBar.appendChild(clearBtn);
 
-    /* ── table wrapper ──────────────────────── */
-    var wrap = document.createElement('div');
-    wrap.className = 'ub-vc-wrap';
+    /* ── 4-panel outer container ────────────── */
+    /*   .outer                                  */
+    /*   +-- .left  (corner + vscroll)           */
+    /*   +-- .right (hscroll + bscroll)          */
+    var outer = document.createElement('div');
+    outer.className = 'ub-vc-outer';
 
-    var tbl  = document.createElement('table');
-    tbl.className = 'ub-vc-table';
+    /* Left panel: corner + label column (scrollTop synced from bscroll) */
+    var leftPanel = document.createElement('div');
+    leftPanel.className = 'ub-vc-left';
 
-    /* ── thead ───────── */
-    var thead = document.createElement('thead');
-    var hrow  = document.createElement('tr');
-
-    /* Corner cell — sticky both top and left */
-    var corner = document.createElement('th');
-    corner.className   = 'ub-vc-lh';
-    corner.scope       = 'col';
+    var corner = document.createElement('div');
+    corner.className   = 'ub-vc-corner';
     corner.textContent = 'Label';
-    hrow.appendChild(corner);
 
-    /* Version header cells */
+    var vscroll = document.createElement('div');
+    vscroll.className = 'ub-vc-vscroll';
+
+    var ltable = document.createElement('table');
+    ltable.className = 'ub-vc-ltable';
+    var ltbody = document.createElement('tbody');
+    ltable.appendChild(ltbody);
+    vscroll.appendChild(ltable);
+
+    leftPanel.appendChild(corner);
+    leftPanel.appendChild(vscroll);
+
+    /* Right panel: header row + body (scrollLeft/Top driven by bscroll) */
+    var rightPanel = document.createElement('div');
+    rightPanel.className = 'ub-vc-right';
+
+    var hscroll = document.createElement('div');
+    hscroll.className = 'ub-vc-hscroll';
+
+    var htable = document.createElement('table');
+    htable.className = 'ub-vc-htable';
+    var hthead = document.createElement('thead');
+    var hrow   = document.createElement('tr');
+    hthead.appendChild(hrow);
+    htable.appendChild(hthead);
+    hscroll.appendChild(htable);
+
+    var bscroll = document.createElement('div');
+    bscroll.className = 'ub-vc-bscroll';
+
+    var btable = document.createElement('table');
+    btable.className = 'ub-vc-btable';
+    var btbody = document.createElement('tbody');
+    btable.appendChild(btbody);
+    bscroll.appendChild(btable);
+
+    rightPanel.appendChild(hscroll);
+    rightPanel.appendChild(bscroll);
+
+    /* ── version header cells ───────────────── */
     var vhCells = [];
     for (var vi = 0; vi < n; vi++) {
       var vname  = versionList[vi];
@@ -150,7 +186,6 @@
       th.className     = 'ub-vc-vh' + (isPlat ? ' ub-vc-plat' : '');
       th.scope         = 'col';
       th.title         = 'Filter to \u201c' + vname + '\u201d';
-      th.dataset.vi    = String(vi);
       th.dataset.vname = vname;
 
       var span = document.createElement('span');
@@ -161,23 +196,20 @@
       vhCells.push(th);
     }
 
-    thead.appendChild(hrow);
-    tbl.appendChild(thead);
-
-    /* ── tbody ──────────────────────────────── */
-    var tbody = document.createElement('tbody');
-    var rows  = []; /* { el: <tr>, glitch } */
+    /* ── body rows: label table + bar table ─── */
+    var rows = []; /* { ltr: <tr>, btr: <tr>, glitch } */
 
     for (var gi = 0; gi < sorted.length; gi++) {
       var g   = sorted[gi];
-      var tr  = document.createElement('tr');
       var unk = isUnknown(g);
-      if (unk) tr.className = 'ub-vc-unk-row';
 
-      /* Label / name cell (sticky left) */
-      var td0 = document.createElement('td');
-      td0.className = 'ub-vc-lc';
-      if (unk) td0.title = 'Version compatibility unknown';
+      /* ── label row ──── */
+      var ltr = document.createElement('tr');
+      if (unk) ltr.className = 'ub-vc-unk-row';
+
+      var ltd = document.createElement('td');
+      ltd.className = 'ub-vc-lc';
+      if (unk) ltd.title = 'Version compatibility unknown';
 
       var a = document.createElement('a');
       a.href   = '../glitchcraft/' + g.uid + '/';
@@ -187,10 +219,14 @@
       var lCode = document.createElement('code');
       lCode.textContent = g.label;
       a.appendChild(lCode);
-      td0.appendChild(a);
-      tr.appendChild(td0);
+      ltd.appendChild(a);
+      ltr.appendChild(ltd);
+      ltbody.appendChild(ltr);
 
-      /* Version cells */
+      /* ── bar row ────── */
+      var btr = document.createElement('tr');
+      if (unk) btr.className = 'ub-vc-unk-row';
+
       if (unk) {
         /* All cells empty; first cell gets a faint "?" marker */
         for (var vu = 0; vu < n; vu++) {
@@ -202,7 +238,7 @@
             utd.textContent  = '?';
             utd.title        = 'Unknown';
           }
-          tr.appendChild(utd);
+          btr.appendChild(utd);
         }
       } else {
         var covered = coveredSet(g, versionList);
@@ -213,21 +249,47 @@
           var cellCls   = cls[vj];
           if (isPlatCol) cellCls = (cellCls ? cellCls + ' ' : '') + 'ub-vc-platcol';
           if (cellCls) vtd.className = cellCls;
-          tr.appendChild(vtd);
+          btr.appendChild(vtd);
         }
       }
 
-      tbody.appendChild(tr);
-      rows.push({ el: tr, glitch: g });
+      btbody.appendChild(btr);
+      rows.push({ ltr: ltr, btr: btr, glitch: g });
     }
 
-    tbl.appendChild(tbody);
-    wrap.appendChild(tbl);
+    /* ── assemble ───────────────────────────── */
+    outer.appendChild(leftPanel);
+    outer.appendChild(rightPanel);
 
-    /* Place everything */
     root.innerHTML = '';
     root.appendChild(ctrlBar);
-    root.appendChild(wrap);
+    root.appendChild(outer);
+
+    /* Equalise row heights after layout so ltable and btable scroll in sync. */
+    /* Corner height is synced to the header row height.                      */
+    requestAnimationFrame(function () {
+      var lrows = ltbody.rows;
+      var brows = btbody.rows;
+      var maxH  = 0;
+      for (var k = 0; k < lrows.length; k++) {
+        var rh = lrows[k].offsetHeight;
+        if (rh > maxH) maxH = rh;
+      }
+      if (maxH > 0) {
+        var hStr = maxH + 'px';
+        for (var m = 0; m < lrows.length; m++) {
+          lrows[m].style.height = hStr;
+          brows[m].style.height = hStr;
+        }
+      }
+      corner.style.height = hscroll.offsetHeight + 'px';
+    });
+
+    /* Scroll sync: bscroll drives hscroll (x) and vscroll (y) */
+    bscroll.addEventListener('scroll', function () {
+      hscroll.scrollLeft = bscroll.scrollLeft;
+      vscroll.scrollTop  = bscroll.scrollTop;
+    });
 
     /* ── filter / search logic ──────────────── */
     function applyFilter() {
@@ -256,7 +318,8 @@
         var matchVersion = !vFilter || rg.versions.indexOf(vFilter) >= 0;
 
         var show = matchSearch && matchVersion;
-        rows[i].el.style.display = show ? '' : 'none';
+        rows[i].ltr.style.display = show ? '' : 'none';
+        rows[i].btr.style.display = show ? '' : 'none';
         if (show) visible++;
       }
 
@@ -286,10 +349,10 @@
       showName = !showName;
       toggleBtn.textContent = showName ? 'Show label' : 'Show name';
       corner.textContent    = showName ? 'Name' : 'Label';
-      wrap.classList.toggle('ub-vc-names', showName);
+      outer.classList.toggle('ub-vc-names', showName);
       for (var i = 0; i < rows.length; i++) {
         var rg     = rows[i].glitch;
-        var anchor = rows[i].el.querySelector('td.ub-vc-lc a');
+        var anchor = rows[i].ltr.querySelector('td.ub-vc-lc a');
         if (!anchor) continue;
         anchor.innerHTML = '';
         if (showName) {

@@ -50,68 +50,103 @@
   white-space: nowrap;
 }
 
-.ub-vc-wrap {
-  overflow: auto;
+/* ── 4-panel layout ──────────────────────────────────────────────────────
+   .ub-vc-outer
+   ├── .ub-vc-left   (.ub-vc-corner + .ub-vc-vscroll)
+   └── .ub-vc-right  (.ub-vc-hscroll + .ub-vc-bscroll)
+   ────────────────────────────────────────────────────────────────────── */
+
+.ub-vc-outer {
+  display: flex;
   max-height: 72vh;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 4px;
   background: var(--md-default-bg-color);
   isolation: isolate;
+  overflow: hidden;
 }
 
-.ub-vc-table {
-  border-collapse: separate;
-  border-spacing: 0 2px;
-  width: max-content;
-  min-width: 100%;
-  /* Opaque bg so border-spacing row-gap areas aren't transparent */
-  background: var(--md-default-bg-color);
+/* Left panel: corner + label column */
+.ub-vc-left {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 2;
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.07); /* right separator */
 }
 
-/* Reset any global table borders that could bleed into sticky header */
-.ub-vc-table td,
-.ub-vc-table th {
-  border: none;
-}
-
-/* Corner th — sticky at both top and left */
-.ub-vc-table .ub-vc-lh {
-  position: sticky;
-  left: 0;
-  top: 0;
-  z-index: 3;
-  /* GPU layer prevents sub-pixel paint bleed from body cells at fractional zoom */
-  transform: translateZ(0);
-  background: var(--md-default-bg-color);
+/* Corner: top-left fixed cell, height set by JS to match hscroll */
+.ub-vc-corner {
+  flex-shrink: 0;
   padding: 0.4rem 0.5rem;
   text-align: right;
   white-space: nowrap;
-  /* 3px guard (> 2px row gap) covers sub-pixel rounding; separator on top */
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 3px 0 var(--md-default-bg-color), inset -1px 0 0 rgba(255, 255, 255, 0.1);
   font-size: 0.72rem;
   color: var(--muted-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12); /* bottom separator */
 }
 
-/* Version column headers — sticky top */
-.ub-vc-table thead th.ub-vc-vh {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  /* GPU layer prevents sub-pixel paint bleed from body cells at fractional zoom */
-  transform: translateZ(0);
-  background: var(--md-default-bg-color);
+/* Label list: scrollTop driven by bscroll via JS */
+.ub-vc-vscroll {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Right panel: header + body */
+.ub-vc-right {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header: scrollLeft driven by bscroll via JS */
+.ub-vc-hscroll {
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12); /* bottom separator */
+}
+
+/* Body: the scroll driver */
+.ub-vc-bscroll {
+  overflow: auto;
+  flex: 1;
+}
+
+/* ── Tables ─────────────────────────────────────────────────────────────── */
+
+.ub-vc-htable,
+.ub-vc-btable {
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+.ub-vc-ltable {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Reset any global table borders */
+.ub-vc-htable th,
+.ub-vc-ltable td,
+.ub-vc-btable td { border: none; }
+
+/* ── Version header cells ───────────────────────────────────────────────── */
+
+.ub-vc-htable thead th.ub-vc-vh {
   padding: 0.5rem 2px 0.25rem;
   text-align: center;
   vertical-align: bottom;
-  /* 3px guard covers border-spacing gap + sub-pixel rounding */
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 3px 0 var(--md-default-bg-color);
   min-width: 28px;
   width: 28px;
   cursor: pointer;
+  background: var(--md-default-bg-color);
 }
-.ub-vc-table thead th.ub-vc-vh span {
+.ub-vc-htable thead th.ub-vc-vh span {
   writing-mode: vertical-lr;
   transform: rotate(180deg);
   display: inline-block;
@@ -123,45 +158,35 @@
   user-select: none;
   padding: 0 2px;
 }
-.ub-vc-table thead th.ub-vc-vh:hover span { color: var(--md-default-fg-color); }
-.ub-vc-table thead th.ub-vc-vh.ub-vc-active span { color: var(--teal-glow); }
-/* Active: opaque background + inset bottom accent — never semi-transparent over fill cells */
-.ub-vc-table thead th.ub-vc-vh.ub-vc-active {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 3px 0 var(--md-default-bg-color), inset 0 -2px 0 var(--teal-glow);
+.ub-vc-htable thead th.ub-vc-vh:hover span { color: var(--md-default-fg-color); }
+.ub-vc-htable thead th.ub-vc-vh.ub-vc-active span { color: var(--teal-glow); }
+.ub-vc-htable thead th.ub-vc-vh.ub-vc-active {
+  box-shadow: inset 0 -2px 0 var(--teal-glow);
 }
 
-/* Platform column separator — use box-shadow on thead to avoid bleed */
-.ub-vc-table thead th.ub-vc-plat {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 3px 0 var(--md-default-bg-color), -1px 0 0 rgba(0, 240, 194, 0.18);
-}
-.ub-vc-table thead th.ub-vc-plat.ub-vc-active {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 3px 0 var(--md-default-bg-color), -1px 0 0 rgba(0, 240, 194, 0.18), inset 0 -2px 0 var(--teal-glow);
-}
-/* Inset shadow keeps the separator inside the cell box; no bleed into border-spacing area */
-.ub-vc-table tbody td.ub-vc-platcol {
+/* Platform column separator in header */
+.ub-vc-htable thead th.ub-vc-plat {
   box-shadow: inset 1px 0 0 rgba(0, 240, 194, 0.18);
 }
+.ub-vc-htable thead th.ub-vc-plat.ub-vc-active {
+  box-shadow: inset 1px 0 0 rgba(0, 240, 194, 0.18), inset 0 -2px 0 var(--teal-glow);
+}
 
-/* Label / name column — sticky left */
-.ub-vc-table td.ub-vc-lc {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  background: var(--md-default-bg-color);
+/* ── Label column ───────────────────────────────────────────────────────── */
+
+.ub-vc-ltable td.ub-vc-lc {
   padding: 0 0.4rem 0 0.3rem;
   text-align: right;
-  border-right: 1px solid rgba(255, 255, 255, 0.07);
-  width: 1px;           /* shrink-to-content; browser respects child min-width */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: var(--md-default-bg-color);
 }
-/* Name mode (toggled via JS class): cap long names */
-.ub-vc-wrap.ub-vc-names .ub-vc-table td.ub-vc-lc {
+/* Name mode: cap long names */
+.ub-vc-outer.ub-vc-names .ub-vc-ltable td.ub-vc-lc {
   max-width: 180px;
-  width: auto;
 }
-.ub-vc-table td.ub-vc-lc a {
+.ub-vc-ltable td.ub-vc-lc a {
   font-family: 'Texturina', Georgia, serif;
   font-size: 0.78rem;
   color: var(--md-default-fg-color);
@@ -170,38 +195,50 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.ub-vc-table td.ub-vc-lc a:hover { color: var(--teal-glow); }
-.ub-vc-table td.ub-vc-lc a code {
+.ub-vc-ltable td.ub-vc-lc a:hover { color: var(--teal-glow); }
+.ub-vc-ltable td.ub-vc-lc a code {
   font-size: 0.72rem;
   padding: 0.1em 0.35em;
   color: var(--md-default-fg-color);
 }
-.ub-vc-table td.ub-vc-lc a:hover code {
+.ub-vc-ltable td.ub-vc-lc a:hover code {
   color: var(--teal-glow);
   background: rgba(0, 240, 194, 0.1);
 }
 
-/* Body rows */
-.ub-vc-table tbody tr { height: 10px; background: var(--md-default-bg-color); }
-.ub-vc-table tbody tr:hover td.ub-vc-lc { background: var(--md-default-bg-color) !important; }
-.ub-vc-table tbody tr:hover td.ub-vc-lc a { color: var(--teal-glow); }
+/* Unknown-version rows: dim the label */
+.ub-vc-ltable tbody tr.ub-vc-unk-row td.ub-vc-lc { opacity: 0.4; }
 
-/* Version body cells */
-.ub-vc-table tbody td {
-  padding: 0;
-  height: 10px;
+/* ── Bar cells ──────────────────────────────────────────────────────────── */
+
+/* Cell gap via padding + background-clip so border-spacing: 0 still gives a gap */
+.ub-vc-btable tbody td {
+  padding: 1px 0;
+  background-clip: content-box;
+  background: var(--md-default-bg-color);
+  width: 28px;
+  min-width: 28px;
 }
 
 /* Bar fill */
-.ub-vc-table tbody td.ub-vc-fill { background: rgba(0, 240, 194, 0.55); }
+.ub-vc-btable tbody td.ub-vc-fill {
+  background: rgba(0, 240, 194, 0.55);
+  background-clip: content-box;
+}
 
-/* Unknown-version rows: dim the label */
-.ub-vc-table tbody tr.ub-vc-unk-row td.ub-vc-lc { opacity: 0.4; }
-.ub-vc-table tbody td.ub-vc-unk-mark {
+/* Platform separator — continuous vertical line (no gap interruptions) */
+.ub-vc-btable tbody td.ub-vc-platcol {
+  box-shadow: inset 1px 0 0 rgba(0, 240, 194, 0.18);
+}
+
+/* Unknown-version mark */
+.ub-vc-btable tbody td.ub-vc-unk-mark {
   font-size: 0.65rem;
   color: var(--muted-text);
   text-align: center;
   opacity: 0.5;
+  background: var(--md-default-bg-color);
+  background-clip: content-box;
 }
 
 /* Loading / error */
