@@ -23,7 +23,7 @@
   'use strict';
 
   var CHART_ID = 'ub-version-chart';
-  var COL_W = 24;
+  var COL_W = 28;
 
   /* ── helpers ────────────────────────────────────────────────── */
 

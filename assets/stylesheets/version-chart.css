@@ -149,8 +149,8 @@
   padding: 0.5rem 2px 0.25rem;
   text-align: center;
   vertical-align: bottom;
-  min-width: 24px;
-  width: 24px;
+  min-width: 28px;
+  width: 28px;
   cursor: pointer;
   background: var(--md-default-bg-color);
 }
@@ -158,6 +158,7 @@
   writing-mode: vertical-lr;
   transform: rotate(180deg);
   display: inline-block;
+  white-space: nowrap;
   font-size: 0.7rem;
   font-weight: 400;
   font-family: 'Texturina', Georgia, serif;
@@ -221,8 +222,8 @@
 
 .ub-vc-btable tbody td {
   padding: 0;
-  width: 24px;
-  min-width: 24px;
+  width: 28px;
+  min-width: 28px;
   height: 10px;
 }
 
