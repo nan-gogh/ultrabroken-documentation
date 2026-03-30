@@ -180,9 +180,13 @@
       if (unk) td0.title = 'Version compatibility unknown';
 
       var a = document.createElement('a');
-      a.href        = '../glitchcraft/' + g.uid + '/';
-      a.textContent = g.label;
-      a.title       = g.name;
+      a.href   = '../glitchcraft/' + g.uid + '/';
+      a.target = '_blank';
+      a.rel    = 'noopener noreferrer';
+      a.title  = g.name;
+      var lCode = document.createElement('code');
+      lCode.textContent = g.label;
+      a.appendChild(lCode);
       td0.appendChild(a);
       tr.appendChild(td0);
 
@@ -280,14 +284,23 @@
 
     toggleBtn.addEventListener('click', function () {
       showName = !showName;
-      toggleBtn.textContent  = showName ? 'Show label' : 'Show name';
-      corner.textContent     = showName ? 'Name' : 'Label';
+      toggleBtn.textContent = showName ? 'Show label' : 'Show name';
+      corner.textContent    = showName ? 'Name' : 'Label';
+      wrap.classList.toggle('ub-vc-names', showName);
       for (var i = 0; i < rows.length; i++) {
         var rg     = rows[i].glitch;
         var anchor = rows[i].el.querySelector('td.ub-vc-lc a');
         if (!anchor) continue;
-        anchor.textContent = showName ? rg.name : rg.label;
-        anchor.title       = showName ? rg.label : rg.name;
+        anchor.innerHTML = '';
+        if (showName) {
+          anchor.textContent = rg.name;
+          anchor.title       = rg.label;
+        } else {
+          var c = document.createElement('code');
+          c.textContent = rg.label;
+          anchor.appendChild(c);
+          anchor.title = rg.name;
+        }
       }
     });
 

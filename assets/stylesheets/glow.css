@@ -1750,6 +1750,8 @@ li.task-list-item a, li.task-list a {
   max-height: 72vh;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 4px;
+  background: var(--md-default-bg-color);
+  isolation: isolate;
 }
 
 .ub-vc-table {
@@ -1759,6 +1761,12 @@ li.task-list-item a, li.task-list a {
   min-width: 100%;
 }
 
+/* Reset any global table borders that could bleed into sticky header */
+.ub-vc-table td,
+.ub-vc-table th {
+  border: none;
+}
+
 /* Corner th — sticky at both top and left */
 .ub-vc-table .ub-vc-lh {
   position: sticky;
@@ -1766,16 +1774,15 @@ li.task-list-item a, li.task-list a {
   top: 0;
   z-index: 3;
   background: var(--md-default-bg-color);
-  padding: 0.4rem 0.6rem;
+  padding: 0.4rem 0.5rem;
   text-align: left;
   white-space: nowrap;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  /* box-shadow replaces border-bottom so it paints above scrolling body cells */
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), inset -1px 0 0 rgba(255, 255, 255, 0.1);
   font-size: 0.72rem;
   color: var(--muted-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  min-width: 80px;
 }
 
 /* Version column headers — sticky top */
@@ -1787,7 +1794,7 @@ li.task-list-item a, li.task-list a {
   padding: 0.5rem 2px 0.25rem;
   text-align: center;
   vertical-align: bottom;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
   min-width: 28px;
   width: 28px;
   cursor: pointer;
@@ -1808,8 +1815,10 @@ li.task-list-item a, li.task-list a {
 .ub-vc-table thead th.ub-vc-vh.ub-vc-active span { color: var(--teal-glow); }
 .ub-vc-table thead th.ub-vc-vh.ub-vc-active { background: rgba(0, 240, 194, 0.04); }
 
-/* Platform column separator */
-.ub-vc-table thead th.ub-vc-plat,
+/* Platform column separator — use box-shadow on thead to avoid bleed */
+.ub-vc-table thead th.ub-vc-plat {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), -1px 0 0 rgba(0, 240, 194, 0.18);
+}
 .ub-vc-table tbody td.ub-vc-platcol {
   border-left: 1px solid rgba(0, 240, 194, 0.18);
 }
@@ -1820,12 +1829,17 @@ li.task-list-item a, li.task-list a {
   left: 0;
   z-index: 1;
   background: var(--md-default-bg-color);
-  padding: 0 0.5rem 0 0.4rem;
+  padding: 0 0.4rem 0 0.3rem;
   border-right: 1px solid rgba(255, 255, 255, 0.07);
-  max-width: 200px;
+  width: 1px;           /* shrink-to-content; browser respects child min-width */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+/* Name mode (toggled via JS class): cap long names */
+.ub-vc-wrap.ub-vc-names .ub-vc-table td.ub-vc-lc {
+  max-width: 180px;
+  width: auto;
 }
 .ub-vc-table td.ub-vc-lc a {
   font-family: 'Texturina', Georgia, serif;
@@ -1837,16 +1851,24 @@ li.task-list-item a, li.task-list a {
   text-overflow: ellipsis;
 }
 .ub-vc-table td.ub-vc-lc a:hover { color: var(--teal-glow); }
+.ub-vc-table td.ub-vc-lc a code {
+  font-size: 0.72rem;
+  padding: 0.1em 0.35em;
+}
+.ub-vc-table td.ub-vc-lc a:hover code {
+  color: var(--teal-glow);
+  background: rgba(0, 240, 194, 0.1);
+}
 
 /* Body rows */
-.ub-vc-table tbody tr { height: 20px; }
+.ub-vc-table tbody tr { height: 14px; background: var(--md-default-bg-color); }
 .ub-vc-table tbody tr:hover td.ub-vc-lc { background: var(--md-default-bg-color) !important; }
 .ub-vc-table tbody tr:hover td.ub-vc-lc a { color: var(--teal-glow); }
 
 /* Version body cells */
 .ub-vc-table tbody td {
-  padding: 1px 0;
-  height: 20px;
+  padding: 0;
+  height: 14px;
 }
 
 /* Bar fill */
