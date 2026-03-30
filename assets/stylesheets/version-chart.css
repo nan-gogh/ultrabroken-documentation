@@ -80,10 +80,10 @@
   z-index: 3;
   background: var(--md-default-bg-color);
   padding: 0.4rem 0.5rem;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
-  /* box-shadow replaces border-bottom so it paints above scrolling body cells */
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), inset -1px 0 0 rgba(255, 255, 255, 0.1);
+  /* Layers: 1px white separator | 2px bg-color guard (covers border-spacing gap) | inset right divider */
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 0 var(--md-default-bg-color), inset -1px 0 0 rgba(255, 255, 255, 0.1);
   font-size: 0.72rem;
   color: var(--muted-text);
   text-transform: uppercase;
@@ -99,7 +99,8 @@
   padding: 0.5rem 2px 0.25rem;
   text-align: center;
   vertical-align: bottom;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+  /* 2px bg-color guard covers the border-spacing row gap so body fills can't bleed up */
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 0 var(--md-default-bg-color);
   min-width: 28px;
   width: 28px;
   cursor: pointer;
@@ -120,18 +121,19 @@
 .ub-vc-table thead th.ub-vc-vh.ub-vc-active span { color: var(--teal-glow); }
 /* Active: opaque background + inset bottom accent — never semi-transparent over fill cells */
 .ub-vc-table thead th.ub-vc-vh.ub-vc-active {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -2px 0 var(--teal-glow);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 0 var(--md-default-bg-color), inset 0 -2px 0 var(--teal-glow);
 }
 
 /* Platform column separator — use box-shadow on thead to avoid bleed */
 .ub-vc-table thead th.ub-vc-plat {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), -1px 0 0 rgba(0, 240, 194, 0.18);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 0 var(--md-default-bg-color), -1px 0 0 rgba(0, 240, 194, 0.18);
 }
 .ub-vc-table thead th.ub-vc-plat.ub-vc-active {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), -1px 0 0 rgba(0, 240, 194, 0.18), inset 0 -2px 0 var(--teal-glow);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 0 var(--md-default-bg-color), -1px 0 0 rgba(0, 240, 194, 0.18), inset 0 -2px 0 var(--teal-glow);
 }
+/* Inset shadow keeps the separator inside the cell box; no bleed into border-spacing area */
 .ub-vc-table tbody td.ub-vc-platcol {
-  border-left: 1px solid rgba(0, 240, 194, 0.18);
+  box-shadow: inset 1px 0 0 rgba(0, 240, 194, 0.18);
 }
 
 /* Label / name column — sticky left */
@@ -141,6 +143,7 @@
   z-index: 1;
   background: var(--md-default-bg-color);
   padding: 0 0.4rem 0 0.3rem;
+  text-align: right;
   border-right: 1px solid rgba(255, 255, 255, 0.07);
   width: 1px;           /* shrink-to-content; browser respects child min-width */
   white-space: nowrap;
