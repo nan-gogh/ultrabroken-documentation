@@ -258,6 +258,11 @@
     }
 
     /* ── assemble ───────────────────────────── */
+    /* Explicit width keeps htable and btable column-aligned */
+    var tableW = (n * 28) + 'px';
+    htable.style.width = tableW;
+    btable.style.width = tableW;
+
     outer.appendChild(leftPanel);
     outer.appendChild(rightPanel);
 
