@@ -246,10 +246,11 @@
     htable.style.minWidth = tableMinW;
     btable.style.minWidth = tableMinW;
 
-    outer.appendChild(corner);
-    outer.appendChild(hscroll);
-    outer.appendChild(vscroll);
+    /* DOM order: bscroll first (flow child), then absolute overlays */
     outer.appendChild(bscroll);
+    outer.appendChild(vscroll);
+    outer.appendChild(hscroll);
+    outer.appendChild(corner);
 
     root.innerHTML = '';
     root.appendChild(ctrlBar);
@@ -258,13 +259,12 @@
 
     /* ── layout pass (runs on init and after label/name toggle) ── */
     function layoutPanels() {
-      /* Clear position overrides so natural sizes can be measured */
+      /* 1. Clear JS-applied dimensions for measurement */
+      corner.style.width  = ''; corner.style.height = '';
+      hscroll.style.left  = ''; hscroll.style.right  = ''; hscroll.style.height = '';
+      vscroll.style.top   = ''; vscroll.style.bottom = ''; vscroll.style.width  = '';
+      btable.style.marginTop  = ''; btable.style.marginLeft = ''; btable.style.width = '';
       htable.style.width = '';
-      btable.style.width = '';
-      corner.style.width = ''; corner.style.height = '';
-      hscroll.style.left = ''; hscroll.style.right  = ''; hscroll.style.height = '';
-      vscroll.style.top  = ''; vscroll.style.bottom = ''; vscroll.style.width  = '';
-      bscroll.style.top  = ''; bscroll.style.left   = ''; bscroll.style.right  = ''; bscroll.style.bottom = '';
       var lrows = ltbody.rows;
       var brows = btbody.rows;
       for (var k = 0; k < lrows.length; k++) {
@@ -272,16 +272,16 @@
         brows[k].style.height = '';
       }
 
-      /* Measure natural dimensions */
-      var headerH = hscroll.offsetHeight;
-      var labelW  = vscroll.offsetWidth;
+      /* 2. Measure natural dimensions */
+      var headerH = hscroll.offsetHeight || 60;
+      var labelW  = vscroll.offsetWidth  || 80;
       var maxLW   = Math.floor(outer.offsetWidth * 0.4);
-      if (labelW > maxLW) labelW = maxLW;
+      if (maxLW > 0 && labelW > maxLW) labelW = maxLW;
 
       var lw = labelW + 'px';
       var hh = headerH + 'px';
 
-      /* Position the four panels with pixel values */
+      /* 3. Position absolute overlays */
       corner.style.width  = lw;
       corner.style.height = hh;
 
@@ -293,16 +293,20 @@
       vscroll.style.bottom = '0';
       vscroll.style.width  = lw;
 
-      bscroll.style.top    = hh;
-      bscroll.style.left   = lw;
-      bscroll.style.right  = '0';
-      bscroll.style.bottom = '0';
+      /* 4. Push btable content out from under the overlays */
+      btable.style.marginTop  = hh;
+      btable.style.marginLeft = lw;
 
-      /* Stretch tables to fill their (now-sized) containers */
-      htable.style.width = '100%';
-      btable.style.width = '100%';
+      /* 5. Match table widths so columns align */
+      var sbW = bscroll.offsetWidth  - bscroll.clientWidth;
+      var sbH = bscroll.offsetHeight - bscroll.clientHeight;
+      var barAreaW = bscroll.clientWidth - labelW;
+      var minTW    = n * COL_W;
+      var tw = (barAreaW > minTW ? barAreaW : minTW) + 'px';
+      htable.style.width = tw;
+      btable.style.width = tw;
 
-      /* Sync row heights so label and bar tables scroll in lock-step */
+      /* 6. Sync row heights so label and bar tables scroll in lock-step */
       var maxH = 0;
       for (var k = 0; k < lrows.length; k++) {
         var rh = lrows[k].offsetHeight;
@@ -316,16 +320,14 @@
         }
       }
 
-      /* Compensate header/labels for scrollbar thickness */
-      var sbW = bscroll.offsetWidth - bscroll.clientWidth;
-      var sbH = bscroll.offsetHeight - bscroll.clientHeight;
+      /* 7. Compensate overlays for scrollbar thickness */
       if (sbW > 0) hscroll.style.right  = sbW + 'px';
       if (sbH > 0) vscroll.style.bottom = sbH + 'px';
 
       outer.style.visibility = '';
     }
 
-    requestAnimationFrame(layoutPanels);
+    requestAnimationFrame(function () { requestAnimationFrame(layoutPanels); });
 
     /* Scroll sync: bscroll drives hscroll (x) and vscroll (y) */
     bscroll.addEventListener('scroll', function () {
@@ -408,7 +410,7 @@
         }
       }
       /* Re-compute layout since label widths may have changed */
-      requestAnimationFrame(layoutPanels);
+      requestAnimationFrame(function () { requestAnimationFrame(layoutPanels); });
     });
 
     /* Version column header click — toggle version filter */
