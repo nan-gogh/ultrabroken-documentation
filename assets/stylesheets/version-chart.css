@@ -50,19 +50,25 @@
   white-space: nowrap;
 }
 
-/* ── 4-panel layout ──────────────────────────────────────────────────────
-   outer (relative, 72vh)
-   ├── bscroll  (flow child, 100% × 100%, overflow: auto — SCROLL DRIVER)
-   │   └── btable  (margin-top/left set by JS to clear overlays)
-   ├── corner   (absolute overlay, z-index 3)
-   ├── hscroll  (absolute overlay, z-index 2, scrollLeft synced from bscroll)
-   │   └── htable
-   └── vscroll  (absolute overlay, z-index 1, scrollTop  synced from bscroll)
-       └── ltable
+/* ── 4-panel CSS Grid layout ─────────────────────────────────────────────
+   ┌──────────┬───────────────────┐
+   │  corner   │  header  (htable) │  auto row
+   ├──────────┼───────────────────┤
+   │  labels   │  bars    (btable) │  1fr  row
+   │ (ltable)  │                   │
+   └──────────┴───────────────────┘
+     auto col       1fr col
+
+   CSS Grid handles all sizing — no JS measurements needed for layout.
    ────────────────────────────────────────────────────────────────────── */
 
 .ub-vc-outer {
-  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "corner header"
+    "labels bars";
   height: 72vh;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -71,50 +77,46 @@
   isolation: isolate;
 }
 
-/* Scroll driver — fills outer via width/height 100%, always has dimensions */
-.ub-vc-bscroll {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.ub-vc-corner,
-.ub-vc-hscroll,
-.ub-vc-vscroll {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .ub-vc-corner {
-  z-index: 3;
-  box-sizing: border-box;
+  grid-area: corner;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   padding: 0.4rem 0.5rem;
+  overflow: hidden;
   white-space: nowrap;
   font-size: 0.72rem;
   color: var(--muted-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   background: var(--md-default-bg-color);
-  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .ub-vc-hscroll {
+  grid-area: header;
   overflow: hidden;
-  z-index: 2;
+  min-width: 0;                /* allow grid to constrain below content size */
   background: var(--md-default-bg-color);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .ub-vc-vscroll {
+  grid-area: labels;
   overflow: hidden;
-  z-index: 1;
+  min-height: 0;              /* allow grid to constrain below content size */
+  max-width: 40vw;
   background: var(--md-default-bg-color);
-  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.07);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.ub-vc-bscroll {
+  grid-area: bars;
+  overflow: auto;
+  min-width: 0;               /* CRITICAL: allow horizontal scrolling */
+  min-height: 0;              /* CRITICAL: allow vertical scrolling */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Tables ─────────────────────────────────────────────────────────────── */

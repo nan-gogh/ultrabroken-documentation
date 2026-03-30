@@ -1,10 +1,19 @@
 /**
  * version-chart.js — Version Compatibility Chart
  * ================================================
- * Renders a 4-panel layout showing which game versions each documented
- * glitch is known to work on.  The version-header row and label column
- * are fully externalised: each lives in its own overflow-hidden container
- * whose scroll position is driven by the body scroll container via JS.
+ * Renders a 4-panel CSS Grid layout showing which game versions each
+ * documented glitch is known to work on.  The version-header row and
+ * label column live in separate overflow-hidden containers whose scroll
+ * position is synced from the body scroll container via JS.
+ *
+ * Layout (CSS Grid — no JS measurements needed for panel sizing):
+ *   ┌──────────┬───────────────────┐
+ *   │  corner   │  hscroll (htable) │   auto row
+ *   ├──────────┼───────────────────┤
+ *   │  vscroll  │  bscroll (btable) │   1fr row
+ *   │ (ltable)  │                   │
+ *   └──────────┴───────────────────┘
+ *     auto col       1fr col
  *
  * Only activates on pages containing <div id="ub-version-chart">.
  * Data is loaded from assets/data/grimoire-data.json and versions.json.
@@ -14,13 +23,10 @@
   'use strict';
 
   var CHART_ID = 'ub-version-chart';
+  var COL_W = 24;
 
   /* ── helpers ────────────────────────────────────────────────── */
 
-  /**
-   * Build a set of covered column indices from a glitch's versions array.
-   * Returns a plain object mapping index → true.
-   */
   function coveredSet(glitch, versionList) {
     var set = {};
     for (var i = 0; i < glitch.versions.length; i++) {
@@ -30,10 +36,6 @@
     return set;
   }
 
-  /**
-   * Find contiguous "runs" of covered column indices.
-   * Returns array of [startIndex, endIndex] pairs.
-   */
   function getRuns(covered, n) {
     var runs  = [];
     var start = -1;
@@ -48,10 +50,6 @@
     return runs;
   }
 
-  /**
-   * Returns an array of CSS class strings, one per column index.
-   * Fill classes: ub-vc-fill  +  ub-vc-sg | ub-vc-rs | ub-vc-re | ub-vc-rm
-   */
   function buildCellClasses(covered, n) {
     var classes = new Array(n);
     for (var i = 0; i < n; i++) classes[i] = '';
@@ -71,7 +69,6 @@
     return classes;
   }
 
-  /** True when a glitch has no entries in the known versions catalogue. */
   function isUnknown(glitch) {
     return glitch.versions.length === 0 ||
            (glitch.versions.length === 1 && glitch.versions[0] === 'Unknown');
@@ -80,11 +77,10 @@
   /* ── render ─────────────────────────────────────────────────── */
 
   function render(root, glitches, vd) {
-    var versionList = vd.versions;        /* e.g. ["1.0.0", ..., "Switch 2"] */
-    var platforms   = vd.platforms || []; /* versions treated as platform columns */
+    var versionList = vd.versions;
+    var platforms   = vd.platforms || [];
     var n           = versionList.length;
 
-    /* Sort alphabetically by label */
     var sorted = glitches.slice().sort(function (a, b) {
       return a.label.localeCompare(b.label);
     });
@@ -92,7 +88,7 @@
     /* ── state ──────────────────────────────── */
     var showName = false;
     var searchQ  = '';
-    var vFilter  = null; /* null | version-string */
+    var vFilter  = null;
 
     /* ── controls bar ───────────────────────── */
     var ctrlBar = document.createElement('div');
@@ -105,8 +101,8 @@
     searchEl.setAttribute('aria-label', 'Search glitches by label, name or tag');
 
     var toggleBtn = document.createElement('button');
-    toggleBtn.className = 'ub-vc-btn';
-    toggleBtn.type      = 'button';
+    toggleBtn.className   = 'ub-vc-btn';
+    toggleBtn.type        = 'button';
     toggleBtn.textContent = 'Show name';
 
     var countEl = document.createElement('span');
@@ -123,7 +119,7 @@
     ctrlBar.appendChild(countEl);
     ctrlBar.appendChild(clearBtn);
 
-    /* ── 4-panel container ──────────────────── */
+    /* ── 4-panel container (CSS Grid) ───────── */
     var outer = document.createElement('div');
     outer.className = 'ub-vc-outer';
 
@@ -180,7 +176,7 @@
     }
 
     /* ── body rows: label table + bar table ─── */
-    var rows = []; /* { ltr: <tr>, btr: <tr>, glitch } */
+    var rows = [];
 
     for (var gi = 0; gi < sorted.length; gi++) {
       var g   = sorted[gi];
@@ -211,15 +207,14 @@
       if (unk) btr.className = 'ub-vc-unk-row';
 
       if (unk) {
-        /* All cells empty; first cell gets a faint "?" marker */
         for (var vu = 0; vu < n; vu++) {
           var utd = document.createElement('td');
           var isP = platforms.indexOf(versionList[vu]) >= 0;
           if (isP) utd.className = 'ub-vc-platcol';
           if (vu === 0) {
-            utd.className    = (utd.className ? utd.className + ' ' : '') + 'ub-vc-unk-mark';
-            utd.textContent  = '?';
-            utd.title        = 'Unknown';
+            utd.className   = (utd.className ? utd.className + ' ' : '') + 'ub-vc-unk-mark';
+            utd.textContent = '?';
+            utd.title       = 'Unknown';
           }
           btr.appendChild(utd);
         }
@@ -240,94 +235,51 @@
       rows.push({ ltr: ltr, btr: btr, glitch: g });
     }
 
-    /* ── assemble ───────────────────────────── */
-    var COL_W = 24;
-    var tableMinW = (n * COL_W) + 'px';
-    htable.style.minWidth = tableMinW;
-    btable.style.minWidth = tableMinW;
+    /* ── set table widths ───────────────────── */
+    var tableW = (n * COL_W) + 'px';
+    htable.style.width = tableW;
+    btable.style.width = tableW;
 
-    /* DOM order: bscroll first (flow child), then absolute overlays */
-    outer.appendChild(bscroll);
-    outer.appendChild(vscroll);
-    outer.appendChild(hscroll);
+    /* ── assemble DOM ───────────────────────── */
     outer.appendChild(corner);
+    outer.appendChild(hscroll);
+    outer.appendChild(vscroll);
+    outer.appendChild(bscroll);
 
     root.innerHTML = '';
     root.appendChild(ctrlBar);
     root.appendChild(outer);
-    outer.style.visibility = 'hidden';
 
-    /* ── layout pass (runs on init and after label/name toggle) ── */
-    function layoutPanels() {
-      /* 1. Clear JS-applied dimensions for measurement */
-      corner.style.width  = ''; corner.style.height = '';
-      hscroll.style.left  = ''; hscroll.style.right  = ''; hscroll.style.height = '';
-      vscroll.style.top   = ''; vscroll.style.bottom = ''; vscroll.style.width  = '';
-      btable.style.marginTop  = ''; btable.style.marginLeft = ''; btable.style.width = '';
-      htable.style.width = '';
+    /* ── post-render layout sync ────────────── */
+    function syncLayout() {
       var lrows = ltbody.rows;
       var brows = btbody.rows;
-      for (var k = 0; k < lrows.length; k++) {
-        lrows[k].style.height = '';
-        brows[k].style.height = '';
+
+      /* Reset heights for re-measurement */
+      for (var i = 0; i < lrows.length; i++) {
+        lrows[i].style.height = '';
+        brows[i].style.height = '';
       }
 
-      /* 2. Measure natural dimensions */
-      var headerH = hscroll.offsetHeight || 60;
-      var labelW  = vscroll.offsetWidth  || 80;
-      var maxLW   = Math.floor(outer.offsetWidth * 0.4);
-      if (maxLW > 0 && labelW > maxLW) labelW = maxLW;
-
-      var lw = labelW + 'px';
-      var hh = headerH + 'px';
-
-      /* 3. Position absolute overlays */
-      corner.style.width  = lw;
-      corner.style.height = hh;
-
-      hscroll.style.left   = lw;
-      hscroll.style.right  = '0';
-      hscroll.style.height = hh;
-
-      vscroll.style.top    = hh;
-      vscroll.style.bottom = '0';
-      vscroll.style.width  = lw;
-
-      /* 4. Push btable content out from under the overlays */
-      btable.style.marginTop  = hh;
-      btable.style.marginLeft = lw;
-
-      /* 5. Match table widths so columns align */
-      var sbW = bscroll.offsetWidth  - bscroll.clientWidth;
-      var sbH = bscroll.offsetHeight - bscroll.clientHeight;
-      var barAreaW = bscroll.clientWidth - labelW;
-      var minTW    = n * COL_W;
-      var tw = (barAreaW > minTW ? barAreaW : minTW) + 'px';
-      htable.style.width = tw;
-      btable.style.width = tw;
-
-      /* 6. Sync row heights so label and bar tables scroll in lock-step */
-      var maxH = 0;
-      for (var k = 0; k < lrows.length; k++) {
-        var rh = lrows[k].offsetHeight;
-        if (rh > maxH) maxH = rh;
-      }
-      if (maxH > 0) {
-        var hStr = maxH + 'px';
-        for (var m = 0; m < lrows.length; m++) {
-          lrows[m].style.height = hStr;
-          brows[m].style.height = hStr;
+      /* Sync row heights between label and bar tables */
+      for (var i = 0; i < lrows.length; i++) {
+        var lh = lrows[i].offsetHeight;
+        var bh = brows[i].offsetHeight;
+        if (lh !== bh) {
+          var h = Math.max(lh, bh) + 'px';
+          lrows[i].style.height = h;
+          brows[i].style.height = h;
         }
       }
 
-      /* 7. Compensate overlays for scrollbar thickness */
-      if (sbW > 0) hscroll.style.right  = sbW + 'px';
-      if (sbH > 0) vscroll.style.bottom = sbH + 'px';
-
-      outer.style.visibility = '';
+      /* Compensate for scrollbar thickness */
+      var sbW = bscroll.offsetWidth  - bscroll.clientWidth;
+      var sbH = bscroll.offsetHeight - bscroll.clientHeight;
+      htable.style.paddingRight  = sbW > 0 ? sbW + 'px' : '';
+      ltable.style.paddingBottom = sbH > 0 ? sbH + 'px' : '';
     }
 
-    requestAnimationFrame(function () { requestAnimationFrame(layoutPanels); });
+    requestAnimationFrame(syncLayout);
 
     /* Scroll sync: bscroll drives hscroll (x) and vscroll (y) */
     bscroll.addEventListener('scroll', function () {
@@ -343,7 +295,6 @@
       for (var i = 0; i < rows.length; i++) {
         var rg = rows[i].glitch;
 
-        /* Search: label, name, tags */
         var matchSearch = !q;
         if (!matchSearch) {
           matchSearch = rg.label.toLowerCase().indexOf(q) >= 0 ||
@@ -358,7 +309,6 @@
           }
         }
 
-        /* Version filter */
         var matchVersion = !vFilter || rg.versions.indexOf(vFilter) >= 0;
 
         var show = matchSearch && matchVersion;
@@ -367,20 +317,17 @@
         if (show) visible++;
       }
 
-      /* Update count */
       var total = rows.length;
       countEl.textContent = (visible === total)
         ? total + ' glitches'
         : visible + '\u202f/\u202f' + total + ' glitches';
 
-      /* Show/hide clear button; highlight active version column */
       clearBtn.style.display = vFilter ? '' : 'none';
       for (var h = 0; h < vhCells.length; h++) {
         vhCells[h].classList.toggle('ub-vc-active', vhCells[h].dataset.vname === vFilter);
       }
     }
 
-    /* Initial count */
     countEl.textContent = rows.length + ' glitches';
 
     /* ── events ─────────────────────────────── */
@@ -409,11 +356,9 @@
           anchor.title = rg.name;
         }
       }
-      /* Re-compute layout since label widths may have changed */
-      requestAnimationFrame(function () { requestAnimationFrame(layoutPanels); });
+      requestAnimationFrame(syncLayout);
     });
 
-    /* Version column header click — toggle version filter */
     for (var hi = 0; hi < vhCells.length; hi++) {
       (function (cell) {
         cell.addEventListener('click', function () {
@@ -440,12 +385,25 @@
         applyFilter();
       }
     }
-    /* Remove any previous listener from an earlier render (SPA navigation) */
+
+    /* Re-sync layout on resize (e.g. phone rotation) */
+    var resizeTimer;
+    function onResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(syncLayout, 150);
+    }
+
+    /* Remove previous listeners from an earlier render (SPA navigation) */
     if (window.__ubVCVersionFilterCb) {
       window.removeEventListener('version-filter', window.__ubVCVersionFilterCb);
     }
+    if (window.__ubVCResizeCb) {
+      window.removeEventListener('resize', window.__ubVCResizeCb);
+    }
     window.__ubVCVersionFilterCb = onGlobalVersionFilter;
+    window.__ubVCResizeCb = onResize;
     window.addEventListener('version-filter', onGlobalVersionFilter);
+    window.addEventListener('resize', onResize);
   }
 
   /* ── data loading ───────────────────────────────────────────── */
@@ -456,7 +414,6 @@
 
     root.innerHTML = '<p class="ub-vc-loading">Loading\u2026</p>';
 
-    /* The chart page lives at wiki/chart/ so data is two levels up. */
     var base = '../../';
 
     var p1 = fetch(base + 'assets/data/grimoire-data.json').then(function (r) {
