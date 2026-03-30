@@ -4397,7 +4397,7 @@
 <p>On glitchcraft pages, each method (tab or single-method page) can declare its own version applicability and obsolescence status using a <code>---</code>-delimited block inside the page body. This is distinct from the page-level frontmatter — it describes a specific <em>method</em>, not the page as a whole.</p>
 <p>The hook automatically:</p>
 <ul>
-<li>Appends a version range badge to the tab label (e.g. <code>`1.2.0+`</code>, <code>`All versions`</code>, <code>`1.0.0-1.1.1`</code>)</li>
+<li>Appends a version range badge to the tab label and to any collapsible heading (<code>{ .collapse }</code>) that wraps the method (e.g. <code>`1.2.0+`</code>, <code>`All versions`</code>, <code>`1.0.0-1.1.1`</code>)</li>
 <li>Inserts inline version badges into the method body</li>
 <li>Injects a <code>!!! warning "Obsolete Method"</code> admonition when <code>obsolete: true</code></li>
 <li>Produces a hidden <code>&lt;div class="ub-method-meta"&gt;</code> consumed by the version filter UI</li>
@@ -4432,8 +4432,11 @@
 
 <span class="w">    </span><span class="k">1.</span> Step one…
 </code></pre></div>
-<p>The tab label is rewritten automatically:</p>
+<p>The tab label (and any enclosing collapsible heading) is rewritten automatically:</p>
 <div class="highlight"><pre><span></span><code>=== &quot;Method 1 <span class="sb">`1.2.0+`</span>&quot;
+</code></pre></div>
+<p>If the version list has a gap (non-contiguous), multiple badges are emitted:</p>
+<div class="highlight"><pre><span></span><code>=== &quot;Method 1 <span class="sb">`1.0.0-1.1.1`</span> <span class="sb">`1.2.0+`</span>&quot;
 </code></pre></div>
 <h4 id="syntax-single-method-pages">Syntax — Single-method pages</h4>
 <p>On pages with no tabs, place the block at the top of the <code>## Instructions</code> section (no indentation needed):</p>
@@ -4447,7 +4450,7 @@
 <span class="k">1.</span> Step one…
 </code></pre></div>
 <h4 id="version-range-badge-logic">Version range badge logic</h4>
-<p>The badge shown in the tab label is computed from the <code>versions</code> list:</p>
+<p>The badge shown in the tab label and collapsible heading is computed from the <code>versions</code> list:</p>
 <table>
 <thead>
 <tr>
@@ -4461,20 +4464,24 @@
 <td><code>`1.0.0`</code></td>
 </tr>
 <tr>
-<td>Spans from the first to the current game version</td>
+<td>Covers every version in the catalogue</td>
 <td><code>`All versions`</code></td>
 </tr>
 <tr>
-<td>Last version is the current game version</td>
+<td>Contiguous run ending at the current version</td>
 <td><code>`1.2.0+`</code> (open-ended)</td>
 </tr>
 <tr>
-<td>Otherwise</td>
+<td>Contiguous run not reaching the current version</td>
 <td><code>`1.0.0-1.1.1`</code> (closed range)</td>
+</tr>
+<tr>
+<td>Non-contiguous (gap in the list)</td>
+<td><code>`1.0.0-1.1.1`</code> <code>`1.2.0+`</code> (one badge per run)</td>
 </tr>
 </tbody>
 </table>
-<p>Platform tags like <code>"Switch 2"</code> are excluded from range computation and listed separately.</p>
+<p>Platform tags like <code>"Switch 2"</code> are excluded from range computation entirely — they are appended as separate badges after the version range badges.</p>
 <h2 id="site-specific-features">Site-Specific Features</h2>
 <p>These are site-specific enhancements beyond standard Markdown.</p>
 <h3 id="search-links">Search Links</h3>
