@@ -50,33 +50,41 @@
   white-space: nowrap;
 }
 
-/* ── 4-panel CSS Grid layout ─────────────────────────────────────────────
-   .ub-vc-outer (2 × 2 grid)
+/* ── 4-panel absolute layout ─────────────────────────────────────────────
+   .ub-vc-outer (relative container, height: 72vh)
    ┌─────────────┬──────────────┐
-   │  corner     │  hscroll     │  row 1: auto height
-   ├─────────────┼──────────────┤
-   │  vscroll    │  bscroll     │  row 2: remaining height
+   │  corner     │  hscroll     │  all children position: absolute
+   ├─────────────┼──────────────┤  dimensions & positions set by JS
+   │  vscroll    │  bscroll     │  after measuring natural sizes
    └─────────────┴──────────────┘
-   col 1: auto (label width)   col 2: 1fr (bars)
    ────────────────────────────────────────────────────────────────────── */
 
 .ub-vc-outer {
-  display: grid;
-  grid-template-columns: minmax(0, 40%) 1fr;
-  grid-template-rows: auto 1fr;
+  position: relative;
   height: 72vh;
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 4px;
   background: var(--md-default-bg-color);
   isolation: isolate;
-  overflow: hidden;
 }
 
-/* Corner: top-left fixed cell */
+.ub-vc-corner,
+.ub-vc-hscroll,
+.ub-vc-vscroll,
+.ub-vc-bscroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .ub-vc-corner {
-  grid-row: 1; grid-column: 1;
+  z-index: 3;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
   padding: 0.4rem 0.5rem;
-  text-align: right;
   white-space: nowrap;
   font-size: 0.72rem;
   color: var(--muted-text);
@@ -84,28 +92,23 @@
   letter-spacing: 0.05em;
   background: var(--md-default-bg-color);
   box-shadow: 1px 0 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(255, 255, 255, 0.12);
-  z-index: 2;
 }
 
-/* Header: scrollLeft driven by bscroll via JS */
 .ub-vc-hscroll {
-  grid-row: 1; grid-column: 2;
   overflow: hidden;
+  z-index: 2;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-/* Label list: scrollTop driven by bscroll via JS */
 .ub-vc-vscroll {
-  grid-row: 2; grid-column: 1;
   overflow: hidden;
-  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.07);
   z-index: 1;
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.07);
 }
 
-/* Body: the scroll driver */
 .ub-vc-bscroll {
-  grid-row: 2; grid-column: 2;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Tables ─────────────────────────────────────────────────────────────── */

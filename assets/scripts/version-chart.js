@@ -123,10 +123,7 @@
     ctrlBar.appendChild(countEl);
     ctrlBar.appendChild(clearBtn);
 
-    /* ── 4-panel grid container ──────────────
-       CSS Grid: 2 × 2
-       corner  | hscroll
-       vscroll | bscroll                       */
+    /* ── 4-panel container ──────────────────── */
     var outer = document.createElement('div');
     outer.className = 'ub-vc-outer';
 
@@ -244,14 +241,10 @@
     }
 
     /* ── assemble ───────────────────────────── */
-    /* min-width keeps htable and btable column-aligned;
-       width:100% lets them stretch to fill available space. */
-    var COL_W   = 24;
+    var COL_W = 24;
     var tableMinW = (n * COL_W) + 'px';
     htable.style.minWidth = tableMinW;
-    htable.style.width    = '100%';
     btable.style.minWidth = tableMinW;
-    btable.style.width    = '100%';
 
     outer.appendChild(corner);
     outer.appendChild(hscroll);
@@ -261,13 +254,56 @@
     root.innerHTML = '';
     root.appendChild(ctrlBar);
     root.appendChild(outer);
+    outer.style.visibility = 'hidden';
 
-    /* Equalise row heights after layout so ltable and btable scroll in sync. */
-    /* Scrollbar width is compensated on hscroll so columns stay aligned.    */
-    requestAnimationFrame(function () {
+    /* ── layout pass (runs on init and after label/name toggle) ── */
+    function layoutPanels() {
+      /* Clear position overrides so natural sizes can be measured */
+      htable.style.width = '';
+      btable.style.width = '';
+      corner.style.width = ''; corner.style.height = '';
+      hscroll.style.left = ''; hscroll.style.right  = ''; hscroll.style.height = '';
+      vscroll.style.top  = ''; vscroll.style.bottom = ''; vscroll.style.width  = '';
+      bscroll.style.top  = ''; bscroll.style.left   = ''; bscroll.style.right  = ''; bscroll.style.bottom = '';
       var lrows = ltbody.rows;
       var brows = btbody.rows;
-      var maxH  = 0;
+      for (var k = 0; k < lrows.length; k++) {
+        lrows[k].style.height = '';
+        brows[k].style.height = '';
+      }
+
+      /* Measure natural dimensions */
+      var headerH = hscroll.offsetHeight;
+      var labelW  = vscroll.offsetWidth;
+      var maxLW   = Math.floor(outer.offsetWidth * 0.4);
+      if (labelW > maxLW) labelW = maxLW;
+
+      var lw = labelW + 'px';
+      var hh = headerH + 'px';
+
+      /* Position the four panels with pixel values */
+      corner.style.width  = lw;
+      corner.style.height = hh;
+
+      hscroll.style.left   = lw;
+      hscroll.style.right  = '0';
+      hscroll.style.height = hh;
+
+      vscroll.style.top    = hh;
+      vscroll.style.bottom = '0';
+      vscroll.style.width  = lw;
+
+      bscroll.style.top    = hh;
+      bscroll.style.left   = lw;
+      bscroll.style.right  = '0';
+      bscroll.style.bottom = '0';
+
+      /* Stretch tables to fill their (now-sized) containers */
+      htable.style.width = '100%';
+      btable.style.width = '100%';
+
+      /* Sync row heights so label and bar tables scroll in lock-step */
+      var maxH = 0;
       for (var k = 0; k < lrows.length; k++) {
         var rh = lrows[k].offsetHeight;
         if (rh > maxH) maxH = rh;
@@ -280,10 +316,16 @@
         }
       }
 
-      /* Compensate hscroll for the vertical scrollbar in bscroll */
+      /* Compensate header/labels for scrollbar thickness */
       var sbW = bscroll.offsetWidth - bscroll.clientWidth;
-      hscroll.style.paddingRight = sbW > 0 ? sbW + 'px' : '';
-    });
+      var sbH = bscroll.offsetHeight - bscroll.clientHeight;
+      if (sbW > 0) hscroll.style.right  = sbW + 'px';
+      if (sbH > 0) vscroll.style.bottom = sbH + 'px';
+
+      outer.style.visibility = '';
+    }
+
+    requestAnimationFrame(layoutPanels);
 
     /* Scroll sync: bscroll drives hscroll (x) and vscroll (y) */
     bscroll.addEventListener('scroll', function () {
@@ -365,27 +407,8 @@
           anchor.title = rg.name;
         }
       }
-      /* Re-sync row heights in case label/name content differs */
-      requestAnimationFrame(function () {
-        var lrows = ltbody.rows;
-        var brows = btbody.rows;
-        for (var k = 0; k < lrows.length; k++) {
-          lrows[k].style.height = '';
-          brows[k].style.height = '';
-        }
-        var maxH = 0;
-        for (var k = 0; k < lrows.length; k++) {
-          var rh = lrows[k].offsetHeight;
-          if (rh > maxH) maxH = rh;
-        }
-        if (maxH > 0) {
-          var hStr = maxH + 'px';
-          for (var m = 0; m < lrows.length; m++) {
-            lrows[m].style.height = hStr;
-            brows[m].style.height = hStr;
-          }
-        }
-      });
+      /* Re-compute layout since label widths may have changed */
+      requestAnimationFrame(layoutPanels);
     });
 
     /* Version column header click — toggle version filter */
