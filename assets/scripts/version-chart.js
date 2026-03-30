@@ -258,10 +258,13 @@
     }
 
     /* ── assemble ───────────────────────────── */
-    /* Explicit width keeps htable and btable column-aligned */
-    var tableW = (n * 28) + 'px';
-    htable.style.width = tableW;
-    btable.style.width = tableW;
+    /* min-width keeps htable and btable column-aligned;
+       width:100% lets them stretch to fill available space. */
+    var tableMinW = (n * 28) + 'px';
+    htable.style.minWidth = tableMinW;
+    htable.style.width    = '100%';
+    btable.style.minWidth = tableMinW;
+    btable.style.width    = '100%';
 
     outer.appendChild(leftPanel);
     outer.appendChild(rightPanel);
