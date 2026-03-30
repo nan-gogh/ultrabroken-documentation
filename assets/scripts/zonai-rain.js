@@ -283,7 +283,9 @@
 
     window.addEventListener('resize', onResize);
 
-    document.addEventListener('click', spawnClickDrop);
+    // Use capture phase so Material's stopPropagation on tab label clicks
+    // doesn't swallow the event before it reaches our handler.
+    document.addEventListener('click', spawnClickDrop, true);
   }
 
   if (document.body) {
