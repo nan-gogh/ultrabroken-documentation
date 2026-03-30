@@ -121,15 +121,21 @@
 
 /* ── Tables ─────────────────────────────────────────────────────────────── */
 
-.ub-vc-htable,
-.ub-vc-btable {
+.ub-vc-htable {
   border-collapse: separate;
   border-spacing: 0;
   table-layout: fixed;
 }
+.ub-vc-btable {
+  border-collapse: separate;
+  border-spacing: 0 2px;
+  table-layout: fixed;
+  background: var(--md-default-bg-color);
+}
 .ub-vc-ltable {
   border-collapse: separate;
-  border-spacing: 0;
+  border-spacing: 0 2px;
+  background: var(--md-default-bg-color);
 }
 
 /* Reset any global table borders */
@@ -213,11 +219,8 @@
 
 /* ── Bar cells ──────────────────────────────────────────────────────────── */
 
-/* Cell gap via padding + background-clip so border-spacing: 0 still gives a gap */
 .ub-vc-btable tbody td {
-  padding: 1px 0;
-  background-clip: content-box;
-  background: var(--md-default-bg-color);
+  padding: 0;
   width: 24px;
   min-width: 24px;
   height: 10px;
@@ -226,7 +229,6 @@
 /* Bar fill */
 .ub-vc-btable tbody td.ub-vc-fill {
   background: rgba(0, 240, 194, 0.55);
-  background-clip: content-box;
 }
 
 /* Platform separator — continuous vertical line (no gap interruptions) */
@@ -240,8 +242,6 @@
   color: var(--muted-text);
   text-align: center;
   opacity: 0.5;
-  background: var(--md-default-bg-color);
-  background-clip: content-box;
 }
 
 /* Loading / error */
