@@ -58,7 +58,7 @@
 
 .ub-vc-outer {
   display: flex;
-  max-height: 72vh;
+  height: 72vh;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 4px;
   background: var(--md-default-bg-color);
@@ -222,6 +222,7 @@
   background: var(--md-default-bg-color);
   width: 28px;
   min-width: 28px;
+  height: 10px;
 }
 
 /* Bar fill */

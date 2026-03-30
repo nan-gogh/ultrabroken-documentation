@@ -275,6 +275,7 @@
 
     /* Equalise row heights after layout so ltable and btable scroll in sync. */
     /* Corner height is synced to the header row height.                      */
+    /* Scrollbar width is compensated on hscroll so columns stay aligned.     */
     requestAnimationFrame(function () {
       var lrows = ltbody.rows;
       var brows = btbody.rows;
@@ -291,6 +292,10 @@
         }
       }
       corner.style.height = hscroll.offsetHeight + 'px';
+
+      /* Compensate hscroll for the vertical scrollbar in bscroll */
+      var sbW = bscroll.offsetWidth - bscroll.clientWidth;
+      hscroll.style.paddingRight = sbW > 0 ? sbW + 'px' : '';
     });
 
     /* Scroll sync: bscroll drives hscroll (x) and vscroll (y) */
