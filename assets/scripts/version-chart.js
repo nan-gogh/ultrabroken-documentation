@@ -78,7 +78,6 @@
 
   function render(root, glitches, vd) {
     var versionList = vd.versions;
-    var platforms   = vd.platforms || [];
     var n           = versionList.length;
 
     var sorted = glitches.slice().sort(function (a, b) {
@@ -160,15 +159,14 @@
     var vhCells = [];
     for (var vi = 0; vi < n; vi++) {
       var vname  = versionList[vi];
-      var isPlat = platforms.indexOf(vname) >= 0;
       var th     = document.createElement('th');
-      th.className     = 'ub-vc-vh' + (isPlat ? ' ub-vc-plat' : '');
+      th.className     = 'ub-vc-vh';
       th.scope         = 'col';
       th.title         = 'Filter to \u201c' + vname + '\u201d';
       th.dataset.vname = vname;
 
       var span = document.createElement('span');
-      span.textContent = vname;
+      span.textContent = vname.replace(/ /g, '\u00A0');
       th.appendChild(span);
 
       hrow.appendChild(th);
@@ -209,10 +207,8 @@
       if (unk) {
         for (var vu = 0; vu < n; vu++) {
           var utd = document.createElement('td');
-          var isP = platforms.indexOf(versionList[vu]) >= 0;
-          if (isP) utd.className = 'ub-vc-platcol';
           if (vu === 0) {
-            utd.className   = (utd.className ? utd.className + ' ' : '') + 'ub-vc-unk-mark';
+            utd.className   = 'ub-vc-unk-mark';
             utd.textContent = '?';
             utd.title       = 'Unknown';
           }
@@ -223,9 +219,7 @@
         var cls     = buildCellClasses(covered, n);
         for (var vj = 0; vj < n; vj++) {
           var vtd = document.createElement('td');
-          var isPlatCol = platforms.indexOf(versionList[vj]) >= 0;
-          var cellCls   = cls[vj];
-          if (isPlatCol) cellCls = (cellCls ? cellCls + ' ' : '') + 'ub-vc-platcol';
+          var cellCls = cls[vj];
           if (cellCls) vtd.className = cellCls;
           btr.appendChild(vtd);
         }
