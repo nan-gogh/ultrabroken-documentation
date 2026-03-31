@@ -66,7 +66,6 @@
   border-collapse: separate;
   border-spacing: 0 2px;
   width: max-content;
-  min-width: 100%;
   background: var(--md-default-bg-color);
 }
 
@@ -147,10 +146,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.ub-vc-wrap.ub-vc-names .ub-vc-table td.ub-vc-lc {
-  max-width: 180px;
-  width: auto;
 }
 .ub-vc-table td.ub-vc-lc a {
   font-family: 'Texturina', Georgia, serif;

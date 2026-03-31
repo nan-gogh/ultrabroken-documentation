@@ -122,6 +122,9 @@
   document.addEventListener('click', function (e) {
     var share = e.target.closest('.ub-heading-share');
     if (!share) return;
+    // Stop label's for-attribute behaviour from switching tabs
+    e.preventDefault();
+    e.stopPropagation();
     var h = share.closest('h1, h2, h3, h4, h5, h6');
     if (h) { copyPermalink(h); return; }
     // Tab label share icon

@@ -168,8 +168,20 @@
     if (!target) return;
 
     revealTarget(target);
+
+    // For tab-toc-heading targets, scroll to the tab labels bar instead
+    // of the sr-only hidden heading inside the tab content.
+    var scrollTarget = target;
+    if (target.classList.contains('tab-toc-heading')) {
+      var set = target.closest('.tabbed-set');
+      if (set) {
+        var labels = set.querySelector('.tabbed-labels');
+        if (labels) scrollTarget = labels;
+      }
+    }
+
     setTimeout(function () {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 80);
   }
 

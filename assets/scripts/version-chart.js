@@ -75,7 +75,6 @@
     });
 
     /* ── state ──────────────────────────────── */
-    var showName = false;
     var searchQ  = '';
     var vFilter  = null;
 
@@ -89,11 +88,6 @@
     searchEl.className   = 'ub-vc-search';
     searchEl.setAttribute('aria-label', 'Search glitches by label, name or tag');
 
-    var toggleBtn = document.createElement('button');
-    toggleBtn.className   = 'ub-vc-btn';
-    toggleBtn.type        = 'button';
-    toggleBtn.textContent = 'Show name';
-
     var countEl = document.createElement('span');
     countEl.className = 'ub-vc-count';
 
@@ -104,7 +98,6 @@
     clearBtn.style.display = 'none';
 
     ctrlBar.appendChild(searchEl);
-    ctrlBar.appendChild(toggleBtn);
     ctrlBar.appendChild(countEl);
     ctrlBar.appendChild(clearBtn);
 
@@ -261,28 +254,6 @@
     searchEl.addEventListener('input', function () {
       searchQ = searchEl.value;
       applyFilter();
-    });
-
-    toggleBtn.addEventListener('click', function () {
-      showName = !showName;
-      toggleBtn.textContent = showName ? 'Show label' : 'Show name';
-      corner.textContent    = showName ? 'Name' : 'Label';
-      wrap.classList.toggle('ub-vc-names', showName);
-      for (var i = 0; i < rows.length; i++) {
-        var rg     = rows[i].glitch;
-        var anchor = rows[i].el.querySelector('td.ub-vc-lc a');
-        if (!anchor) continue;
-        anchor.innerHTML = '';
-        if (showName) {
-          anchor.textContent = rg.name;
-          anchor.title       = rg.label;
-        } else {
-          var c = document.createElement('code');
-          c.textContent = rg.label;
-          anchor.appendChild(c);
-          anchor.title = rg.name;
-        }
-      }
     });
 
     for (var hi = 0; hi < vhCells.length; hi++) {
