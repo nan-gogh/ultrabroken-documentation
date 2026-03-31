@@ -37,9 +37,10 @@
 }
 
 
-/* Tab labels � base size matches h3; data-ub-level (injected by
-   method_meta hook) scales each set relative to its parent heading.
-   Level = parent heading + 1, so tabs under h2 = level 3 (default). */
+/* Tab labels — default size for plain tabs (no # marks).
+   data-ub-level (injected by method_meta hook) is only set when
+   tab-toc-headings are present, scaling labels to match the
+   explicit heading level chosen by the author. */
 .md-typeset .tabbed-labels label {
   font-size: 1rem;
   font-weight: normal;
