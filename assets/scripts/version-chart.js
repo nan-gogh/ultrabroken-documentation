@@ -166,7 +166,9 @@
       th.dataset.vname = vname;
 
       var span = document.createElement('span');
-      span.textContent = vname.replace(/ /g, '\u00A0');
+      var code = document.createElement('code');
+      code.textContent = vname.replace(/ /g, '\u00A0');
+      span.appendChild(code);
       th.appendChild(span);
 
       hrow.appendChild(th);
@@ -276,16 +278,9 @@
     requestAnimationFrame(syncLayout);
 
     /* Scroll sync: bscroll drives hscroll (x) and vscroll (y) */
-    var scrollTicking = false;
     bscroll.addEventListener('scroll', function () {
-      if (!scrollTicking) {
-        scrollTicking = true;
-        requestAnimationFrame(function () {
-          hscroll.scrollLeft = bscroll.scrollLeft;
-          vscroll.scrollTop  = bscroll.scrollTop;
-          scrollTicking = false;
-        });
-      }
+      hscroll.scrollLeft = bscroll.scrollLeft;
+      vscroll.scrollTop  = bscroll.scrollTop;
     }, { passive: true });
 
     /* ── filter / search logic ──────────────── */
