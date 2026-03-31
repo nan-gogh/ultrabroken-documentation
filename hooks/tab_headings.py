@@ -48,7 +48,26 @@ def _inject_heading(m: re.Match) -> str:
     return f'{m.group("pre")}\n\n{heading}'
 
 
+# Matches fenced code blocks (``` or ~~~) so we can skip them.
+_FENCE_RE = re.compile(
+    r'^(?P<fence>`{3,}|~{3,}).*\n[\s\S]*?\n(?P=fence)[ \t]*$',
+    re.MULTILINE,
+)
+
+
 def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
     if '===' not in markdown:
         return markdown
-    return _TAB_HEADING_RE.sub(_inject_heading, markdown)
+
+    # Process only outside fenced code blocks.
+    parts = []
+    last = 0
+    for m in _FENCE_RE.finditer(markdown):
+        # Transform the plain-text segment before this fence.
+        parts.append(_TAB_HEADING_RE.sub(_inject_heading, markdown[last:m.start()]))
+        # Emit the fenced block verbatim.
+        parts.append(m.group(0))
+        last = m.end()
+    # Transform the remaining text after the last fence.
+    parts.append(_TAB_HEADING_RE.sub(_inject_heading, markdown[last:]))
+    return ''.join(parts)
