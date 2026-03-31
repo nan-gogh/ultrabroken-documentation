@@ -173,9 +173,10 @@
         for (var vu = 0; vu < n; vu++) {
           var utd = document.createElement('td');
           if (vu === 0) {
-            utd.className   = 'ub-vc-unk-mark';
-            utd.textContent = '?';
-            utd.title       = 'Unknown';
+            var ughost = document.createElement('span');
+            ughost.className = 'ub-vc-ghost-name';
+            ughost.textContent = g.name;
+            utd.appendChild(ughost);
           }
           tr.appendChild(utd);
         }
@@ -186,7 +187,6 @@
           var vtd = document.createElement('td');
           if (cls[vj]) vtd.className = cls[vj];
           if (vj === 0) {
-            vtd.classList.add('ub-vc-first-bar');
             var ghost = document.createElement('span');
             ghost.className = 'ub-vc-ghost-name';
             ghost.textContent = g.name;

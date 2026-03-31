@@ -161,6 +161,16 @@
   });
 
   /* ── Hash navigation ───────────────────────────────────── */
+  function scrollToTarget(el) {
+    var rect = el.getBoundingClientRect();
+    var header = document.querySelector('.md-header');
+    var offset = header ? header.offsetHeight : 0;
+    window.scrollTo({
+      top: Math.max(0, window.scrollY + rect.top - offset - 8),
+      behavior: 'smooth'
+    });
+  }
+
   function openForHash() {
     var id = location.hash.slice(1);
     if (!id) return;
@@ -169,20 +179,16 @@
 
     revealTarget(target);
 
-    // For tab-toc-heading targets, scroll to the tab labels bar instead
-    // of the sr-only hidden heading inside the tab content.
+    // For tab-toc-heading targets, scroll to the tabbed-set itself
+    // (which starts with the labels bar) instead of the hidden heading.
     var scrollTarget = target;
     if (target.classList.contains('tab-toc-heading')) {
       var set = target.closest('.tabbed-set');
-      if (set) {
-        var labels = set.querySelector('.tabbed-labels');
-        if (labels) scrollTarget = labels;
-      }
+      if (set) scrollTarget = set;
     }
 
-    setTimeout(function () {
-      scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 80);
+    // Allow layout to settle after tab activation before scrolling.
+    setTimeout(function () { scrollToTarget(scrollTarget); }, 120);
   }
 
   window.addEventListener('hashchange', openForHash);

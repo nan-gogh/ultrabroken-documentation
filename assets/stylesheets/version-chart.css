@@ -186,23 +186,20 @@
   background: rgba(0, 240, 194, 0.55);
 }
 
-/* Ghost name overlay inside bar area */
-.ub-vc-table tbody td.ub-vc-first-bar {
-  position: relative;
-  overflow: hidden;
-}
+/* Ghost name overlay inside bar area — in-flow with width:0
+   so text is ink-overflow only (does NOT extend scrollable width). */
 .ub-vc-ghost-name {
-  position: absolute;
-  left: 0.3em;
-  top: 50%;
-  transform: translateY(-50%);
+  display: block;
+  width: 0;
+  overflow: visible;
   font-family: 'Texturina', Georgia, serif;
   font-size: 0.6rem;
-  line-height: 1;
+  line-height: 10px;
   color: rgba(255, 255, 255, 0.12);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
+  padding-left: 0.3em;
 }
 .ub-vc-table tbody tr:hover .ub-vc-ghost-name {
   color: rgba(0, 240, 194, 0.18);
@@ -210,10 +207,7 @@
 
 /* Unknown-version rows */
 .ub-vc-table tbody tr.ub-vc-unk-row td.ub-vc-lc { opacity: 0.4; }
-.ub-vc-table tbody td.ub-vc-unk-mark {
-  font-size: 0.65rem;
-  color: var(--muted-text);
-  text-align: center;
+.ub-vc-table tbody tr.ub-vc-unk-row .ub-vc-ghost-name {
   opacity: 0.5;
 }
 
