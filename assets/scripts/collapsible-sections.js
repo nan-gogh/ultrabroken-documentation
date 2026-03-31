@@ -33,8 +33,10 @@
    * Walk upward from `target`, activating any inactive Material
    * tabs and opening any collapsed sections along the way.
    * If the target itself is a collapsed heading, expand it.
+   * Returns true if anything was actually revealed.
    */
   function revealTarget(target) {
+    var revealed = false;
     var el = target;
     while (el) {
       if (el.classList && el.classList.contains('ub-collapse-body') && el.hidden) {
@@ -43,6 +45,7 @@
         if (hdr && hdr.classList.contains('ub-collapsible')) {
           hdr.classList.remove('ub-collapsed');
         }
+        revealed = true;
       }
       if (el.classList && el.classList.contains('tabbed-block')) {
         var content = el.parentElement;
@@ -55,6 +58,7 @@
             if (radios[idx] && !radios[idx].checked) {
               radios[idx].checked = true;
               radios[idx].dispatchEvent(new Event('change'));
+              revealed = true;
             }
           }
         }
@@ -67,8 +71,10 @@
       if (nextBody && nextBody.classList.contains('ub-collapse-body')) {
         nextBody.hidden = false;
       }
+      revealed = true;
     }
     if (window.__ubTocSpy) window.__ubTocSpy.refresh();
+    return revealed;
   }
 
   window.__ubRevealTarget = revealTarget;
@@ -177,19 +183,28 @@
     var target = document.getElementById(id);
     if (!target) return;
 
-    revealTarget(target);
+    var revealed = revealTarget(target);
+    var isTabHeading = target.classList.contains('tab-toc-heading');
 
-    // For tab-toc-heading targets, scroll to the tabbed-set itself
-    // (which starts with the labels bar) instead of the hidden heading.
+    // For regular headings that didn't need revealing, the browser's
+    // native scroll-to-anchor is sufficient — skip to avoid double-scroll
+    // on page refresh.
+    if (!revealed && !isTabHeading) return;
+
+    // For tab-toc-headings, scroll to the tabbed-set (labels bar visible).
     var scrollTarget = target;
-    if (target.classList.contains('tab-toc-heading')) {
+    if (isTabHeading) {
       var set = target.closest('.tabbed-set');
       if (set) scrollTarget = set;
     }
 
-    // Allow layout to settle after tab activation before scrolling.
+    // Allow layout to settle after tab activation / collapse reveal.
     setTimeout(function () { scrollToTarget(scrollTarget); }, 120);
   }
+
+  // Expose for other scripts (e.g. mobile-toc interceptor).
+  window.__ubOpenForHash = openForHash;
+  window.__ubScrollToTarget = scrollToTarget;
 
   window.addEventListener('hashchange', openForHash);
 
