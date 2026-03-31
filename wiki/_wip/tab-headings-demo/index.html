@@ -1346,7 +1346,7 @@
 </ol>
 </div>
 <div class="tabbed-block">
-<p>This tab has no <code>#</code> marks — it does <strong>not</strong> appear in the TOC and uses the default parent-based sizing.</p>
+<p>This tab has no <code>#</code> marks — it does <strong>not</strong> appear in the TOC and renders at the default size.</p>
 </div>
 </div>
 </div>
@@ -1376,7 +1376,7 @@
 </div>
 </div>
 <h2 id="nested-tabs">Nested Tabs</h2>
-<p>Tabs can be nested by indenting the inner tab set by 4 additional spaces inside the outer tab's content.</p>
+<p>Tabs can be nested by indenting the inner tab set by 4 additional spaces inside the outer tab's content. Inner tabs with <code>#</code> marks get their own heading size; inner tabs without <code>#</code> marks render at the default size.</p>
 <div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Version 1.0</label><label for="__tabbed_3_2">Version 1.2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1407,8 +1407,8 @@
 </div>
 <div class="tabbed-block">
 <h3 class="tab-toc-heading" id="version-12">Version 1.2</h3>
-<p>Updated techniques after the first major patch.</p>
-<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Method A</label><label for="__tabbed_5_2">Method B</label></div>
+<p>These inner tabs have no <code>#</code> marks, so they render at the default size and don't appear in the TOC.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Method A</label><label for="__tabbed_5_2">Method B</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Adapted from the 1.0 method with timing adjustments.</p>
@@ -1456,7 +1456,7 @@
 <li>Use a tree launch to fly over the arena</li>
 <li>Land on the far side</li>
 </ol>
-<h4 class="collapse" id="lynel-strategy">Lynel Strategy</h4>
+<h4 class="collapse open" id="lynel-strategy">Lynel Strategy</h4>
 <ol>
 <li>Mount the Lynel immediately</li>
 <li>Use the infinite mount glitch</li>

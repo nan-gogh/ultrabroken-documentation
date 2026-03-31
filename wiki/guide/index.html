@@ -5002,7 +5002,7 @@ Another Term
     Content for tab 2.
 </code></pre></div>
 <h4 id="example_18">Example</h4>
-<div data-ub-level="5" class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method A</label><label for="__tabbed_1_2">Method B</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method A</label><label for="__tabbed_1_2">Method B</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>This is approach A.</p>
@@ -5073,7 +5073,7 @@ Another Term
 <p>A single <code>#</code> or no <code>#</code> at all leaves the tab as a plain label with no TOC entry — this is the default behaviour.</p>
 <h4 id="tab-sizing">Tab sizing</h4>
 <p>When <code>#</code> marks are specified, the tab label font size is scaled to match the chosen heading level — so <code>###</code> tabs render at the same size as regular h3 headings, <code>####</code> at h4 size, and so on. This gives tab headings the full visual weight of their heading level.</p>
-<p>When no <code>#</code> marks are specified (plain tabs), the font size is determined automatically from the parent heading in the document. Tabs below an <code>h2</code> render at the default size; tabs below an <code>h3</code> render slightly smaller. This automatic sizing requires no extra markup.</p>
+<p>When no <code>#</code> marks are specified (plain tabs), all tab labels render at the same default size regardless of where they appear in the document. To control sizing, add <code>#</code> marks.</p>
 <h3 id="collapsible-sections">Collapsible Sections</h3>
 <p>Any heading can be turned into a clickable toggle that hides or reveals the content beneath it (everything until the next heading of equal or higher level). This uses the Attr List <code>{ .collapse }</code> class, which is processed client-side — no <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> is involved.</p>
 <h4 id="syntax_20">Syntax</h4>

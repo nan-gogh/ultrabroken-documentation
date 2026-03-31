@@ -529,16 +529,15 @@ def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
 
 _TABBED_SET_OPEN_RE = re.compile(r'<div class="tabbed-set\b')
 _HEADING_OPEN_RE = re.compile(r'<h([1-6])\b')
-_REAL_HEADING_RE = re.compile(r'<h([1-6])(?![^>]*\btab-toc-heading\b)\b')
 _TAB_TOC_HEADING_RE = re.compile(r'<h([1-6])[^>]*\btab-toc-heading\b')
 
 def _inject_tab_levels(html: str) -> str:
-    """Add data-ub-level to each tabbed-set based on the nearest preceding heading.
+    """Add data-ub-level to each tabbed-set that contains tab-toc-headings.
 
-    When the set contains tab-toc-headings (from the tab_headings hook), their
-    explicit level is used directly so tab label font-size matches the author's
-    chosen heading level.  Otherwise falls back to parent heading level + 1,
-    so tabs under an <h2> get level 3.
+    Only sets with explicit heading marks (from the tab_headings hook) receive
+    a data-ub-level attribute — the level is taken directly from the hidden
+    heading.  Plain tabs (no # marks) get no attribute and use the CSS default
+    size.
     CSS uses this to scale tab label font-size proportionally."""
     edits = []  # (insert_pos, attr_string)
     tab_matches = list(_TABBED_SET_OPEN_RE.finditer(html))
@@ -546,17 +545,11 @@ def _inject_tab_levels(html: str) -> str:
         # Search boundary: until next tabbed-set or end of document.
         end = tab_matches[i + 1].start() if i + 1 < len(tab_matches) else len(html)
 
-        # If this set contains tab-toc-headings, use their explicit level.
+        # Only set level when explicit tab-toc-headings are present.
         toc_heading = _TAB_TOC_HEADING_RE.search(html, m.end(), end)
-        if toc_heading:
-            tab_level = int(toc_heading.group(1))
-        else:
-            # Fall back to parent heading + 1 (skip hidden tab-toc-headings).
-            headings = list(_REAL_HEADING_RE.finditer(html, 0, m.start()))
-            if not headings:
-                continue
-            level = int(headings[-1].group(1))
-            tab_level = min(level + 1, 6)
+        if not toc_heading:
+            continue
+        tab_level = int(toc_heading.group(1))
 
         # Insert right after '<div '
         insert_pos = m.start() + len('<div ')
