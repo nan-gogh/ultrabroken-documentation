@@ -409,9 +409,9 @@
     var targetId = decodeURIComponent(hash.slice(1));
     var target = document.getElementById(targetId);
 
-    // Reveal hidden target (switch tab, open collapsed section)
-    if (target && (!target.offsetParent || target.classList.contains('tab-toc-heading'))) {
-      if (window.__ubRevealTarget) window.__ubRevealTarget(target);
+    // Activate the correct tab if the target is inside one.
+    if (target && window.__ubRevealTarget) {
+      window.__ubRevealTarget(target);
     }
 
     // On mobile, close the drawer first
