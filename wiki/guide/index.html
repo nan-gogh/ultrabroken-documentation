@@ -5072,7 +5072,8 @@ Another Term
 </table>
 <p>A single <code>#</code> or no <code>#</code> at all leaves the tab as a plain label with no TOC entry — this is the default behaviour.</p>
 <h4 id="tab-sizing">Tab sizing</h4>
-<p>Tab labels automatically scale their font size based on the heading they appear under. Tabs below an <code>h2</code> render at the default size; tabs below an <code>h3</code> render slightly smaller, and so on. This keeps tab labels visually proportional to their surrounding heading hierarchy. The sizing is injected automatically — no extra markup is needed.</p>
+<p>When <code>#</code> marks are specified, the tab label font size is scaled to match the chosen heading level — so <code>###</code> tabs render at the same size as regular h3 headings, <code>####</code> at h4 size, and so on. This gives tab headings the full visual weight of their heading level.</p>
+<p>When no <code>#</code> marks are specified (plain tabs), the font size is determined automatically from the parent heading in the document. Tabs below an <code>h2</code> render at the default size; tabs below an <code>h3</code> render slightly smaller. This automatic sizing requires no extra markup.</p>
 <h3 id="collapsible-sections">Collapsible Sections</h3>
 <p>Any heading can be turned into a clickable toggle that hides or reveals the content beneath it (everything until the next heading of equal or higher level). This uses the Attr List <code>{ .collapse }</code> class, which is processed client-side — no <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> is involved.</p>
 <h4 id="syntax_20">Syntax</h4>
