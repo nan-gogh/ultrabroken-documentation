@@ -31,9 +31,8 @@
 
   /**
    * Walk upward from `target`, activating any inactive Material
-   * tabs and opening parent collapsed sections so child headings
-   * become visible.  The target itself is never expanded if it's
-   * a collapsible heading (leaf) — the user decides.
+   * tabs and opening collapsed sections along the way.
+   * If the target itself is a collapsed heading, expand it too.
    * Returns true if anything was actually revealed.
    */
   function revealTarget(target) {
@@ -66,6 +65,15 @@
         }
       }
       el = el.parentElement;
+    }
+    // If the target itself is a collapsed heading, expand it.
+    if (target.classList && target.classList.contains('ub-collapsed')) {
+      target.classList.remove('ub-collapsed');
+      var nextBody = target.nextElementSibling;
+      if (nextBody && nextBody.classList.contains('ub-collapse-body')) {
+        nextBody.hidden = false;
+      }
+      revealed = true;
     }
     if (window.__ubTocSpy) window.__ubTocSpy.refresh();
     return revealed;
@@ -177,7 +185,7 @@
     // For headings, include half the computed top margin so the
     // breathing room above the heading is proportional but not excessive.
     if (/^H[1-6]$/.test(el.tagName)) {
-      offset += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.5;
+      offset += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.45;
     }
     el.style.scrollMarginTop = offset + 'px';
     el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
