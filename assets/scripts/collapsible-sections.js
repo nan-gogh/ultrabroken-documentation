@@ -185,7 +185,7 @@
     // For headings, include half the computed top margin so the
     // breathing room above the heading is proportional but not excessive.
     if (/^H[1-6]$/.test(el.tagName)) {
-      offset += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.4;
+      offset += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
     }
     el.style.scrollMarginTop = offset + 'px';
     el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
