@@ -422,26 +422,34 @@
     if (target) {
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
-        // Get the sticky header height (adapts to zoom, font-size changes, viewport)
-        var header = document.querySelector('.md-header');
-        var headerHeight = header ? header.offsetHeight : 0;
-        
-        // Proportional padding: ~25% of header height for visual harmony
-        // Scales automatically with zoom, font-size toggles, and everything else
-        var padding = Math.max(8, Math.round(headerHeight * 0.5));
-
-        // Tab-toc-headings are zero-height hidden anchors inside tabs.
-        // Delegate to the same scrollToTarget that permalinks use so the
-        // scroll position is pixel-identical.
-        if (target.classList.contains('tab-toc-heading') && window.__ubScrollToTarget) {
+        // For tab-toc-headings, scroll to the visible labels bar.
+        var scrollEl = target;
+        if (target.classList.contains('tab-toc-heading')) {
           var set = target.closest('.tabbed-set');
           var labels = set ? set.querySelector('.tabbed-labels') : null;
-          window.__ubScrollToTarget(labels || target, true);
-          return;
+          if (labels) {
+            scrollEl = labels;
+            // Horizontally scroll the activated tab label into view.
+            var activeLabel = labels.querySelector('label[for="' + CSS.escape(
+              (set.querySelector('input:checked') || {}).id || ''
+            ) + '"]');
+            if (activeLabel) {
+              activeLabel.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+            }
+          }
         }
-        
-        var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - padding;
-        window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+
+        // Use the same scroll logic as permalink navigation so the
+        // position is pixel-identical for every entry type.
+        if (window.__ubScrollToTarget) {
+          window.__ubScrollToTarget(scrollEl, true);
+        } else {
+          // Fallback if collapsible-sections hasn't loaded yet.
+          var header = document.querySelector('.md-header');
+          var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+          scrollEl.style.scrollMarginTop = (offset + 4) + 'px';
+          scrollEl.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }
       }, delay);
     }
 
