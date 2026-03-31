@@ -429,12 +429,17 @@
           var labels = set ? set.querySelector('.tabbed-labels') : null;
           if (labels) {
             scrollEl = labels;
-            // Horizontally scroll the activated tab label into view.
+            // Horizontally scroll the activated tab label into view
+            // within the labels container only (no vertical scroll).
             var activeLabel = labels.querySelector('label[for="' + CSS.escape(
               (set.querySelector('input:checked') || {}).id || ''
-            ) + '"]');
+            ) + '"');
             if (activeLabel) {
-              activeLabel.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+              var lr = activeLabel.getBoundingClientRect();
+              var cr = labels.getBoundingClientRect();
+              var left = labels.scrollLeft + lr.left - cr.left
+                       - (cr.width - lr.width) / 2;
+              labels.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
             }
           }
         }
