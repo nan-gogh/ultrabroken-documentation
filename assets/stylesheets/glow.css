@@ -114,17 +114,17 @@
 [data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="4"] > .tabbed-labels label { font-size: 1.125rem; }
 
 /* Hidden companion heading injected by tab_headings hook.
-   sr-only: invisible, but present in DOM for TOC + scroll spy + deep links. */
+   Zero-height in-flow: stays at the correct scroll anchor position
+   (top of tab content, just below labels bar) while being invisible. */
 .tab-toc-heading {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
+  display: block !important;
+  height: 0 !important;
+  margin: 0 !important;
   padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
   border: 0 !important;
+  overflow: hidden !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
 }
 
 /* Share icon on tab labels — same hover reveal as headings */

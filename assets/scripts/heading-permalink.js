@@ -114,6 +114,17 @@
       img.setAttribute('aria-hidden', 'true');
       share.appendChild(img);
 
+      // Direct listener: must fire at the element level to prevent
+      // the <label>'s native for-attribute radio toggle.
+      (function (lbl, shareEl) {
+        shareEl.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          ev.stopImmediatePropagation();
+          var base = location.href.split('#')[0];
+          doCopy(base + '#' + lbl.dataset.headingId, lbl);
+        });
+      })(label, share);
+
       label.appendChild(share);
     }
   }
@@ -122,17 +133,9 @@
   document.addEventListener('click', function (e) {
     var share = e.target.closest('.ub-heading-share');
     if (!share) return;
-    // Stop label's for-attribute behaviour from switching tabs
-    e.preventDefault();
-    e.stopPropagation();
     var h = share.closest('h1, h2, h3, h4, h5, h6');
     if (h) { copyPermalink(h); return; }
-    // Tab label share icon
-    var label = share.closest('label[data-heading-id]');
-    if (label) {
-      var base = location.href.split('#')[0];
-      doCopy(base + '#' + label.dataset.headingId, label);
-    }
+    // Tab label share icons are handled by their direct listener
   });
 
   /* ── Keyboard activation on share icon ─────────────────── */
@@ -143,11 +146,7 @@
     e.preventDefault();
     var h = share.closest('h1, h2, h3, h4, h5, h6');
     if (h) { copyPermalink(h); return; }
-    var label = share.closest('label[data-heading-id]');
-    if (label) {
-      var base = location.href.split('#')[0];
-      doCopy(base + '#' + label.dataset.headingId, label);
-    }
+    // Tab label share icons are handled by their direct listener
   });
 
   /* ── Init ───────────────────────────────────────────────── */

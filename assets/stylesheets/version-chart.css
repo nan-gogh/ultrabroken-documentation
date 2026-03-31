@@ -66,6 +66,7 @@
   border-collapse: separate;
   border-spacing: 0 2px;
   width: max-content;
+  min-width: 100%;
   background: var(--md-default-bg-color);
 }
 
@@ -188,6 +189,7 @@
 /* Ghost name overlay inside bar area */
 .ub-vc-table tbody td.ub-vc-first-bar {
   position: relative;
+  overflow: hidden;
 }
 .ub-vc-ghost-name {
   position: absolute;
