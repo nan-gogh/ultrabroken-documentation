@@ -529,6 +529,7 @@ def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
 
 _TABBED_SET_OPEN_RE = re.compile(r'<div class="tabbed-set\b')
 _HEADING_OPEN_RE = re.compile(r'<h([1-6])\b')
+_REAL_HEADING_RE = re.compile(r'<h([1-6])(?![^>]*\btab-toc-heading\b)\b')
 _TAB_TOC_HEADING_RE = re.compile(r'<h([1-6])[^>]*\btab-toc-heading\b')
 
 def _inject_tab_levels(html: str) -> str:
@@ -550,8 +551,8 @@ def _inject_tab_levels(html: str) -> str:
         if toc_heading:
             tab_level = int(toc_heading.group(1))
         else:
-            # Fall back to parent heading + 1.
-            headings = list(_HEADING_OPEN_RE.finditer(html, 0, m.start()))
+            # Fall back to parent heading + 1 (skip hidden tab-toc-headings).
+            headings = list(_REAL_HEADING_RE.finditer(html, 0, m.start()))
             if not headings:
                 continue
             level = int(headings[-1].group(1))
