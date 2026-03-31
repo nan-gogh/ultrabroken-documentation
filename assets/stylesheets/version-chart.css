@@ -55,8 +55,6 @@
 .ub-vc-wrap {
   overflow: auto;
   max-height: 72vh;
-  width: fit-content;
-  max-width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 4px;
   background: var(--md-default-bg-color);
@@ -68,6 +66,7 @@
   border-collapse: separate;
   border-spacing: 0 2px;
   width: max-content;
+  min-width: 100%;
   background: var(--md-default-bg-color);
 }
 
@@ -201,6 +200,8 @@
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
+  max-width: var(--ub-vc-bar-w, 9999px);
+  overflow: hidden;
 }
 .ub-vc-table tbody tr:hover .ub-vc-ghost-name {
   color: rgba(0, 240, 194, 0.18);

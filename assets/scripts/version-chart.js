@@ -203,6 +203,19 @@
     root.appendChild(ctrlBar);
     root.appendChild(wrap);
 
+    /* ── ghost-name clipping ─────────────────── */
+    /* Measure the bar-area width (everything right of the label column)
+       and expose it as a CSS variable so ghost names are clipped at the
+       last version column instead of bleeding into dead table space. */
+    function updateBarWidth() {
+      var barW = tbl.offsetWidth - corner.offsetWidth;
+      tbl.style.setProperty('--ub-vc-bar-w', barW + 'px');
+    }
+    updateBarWidth();
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(updateBarWidth).observe(wrap);
+    }
+
     /* ── filter / search logic ──────────────── */
     function applyFilter() {
       var q       = searchQ.toLowerCase();
