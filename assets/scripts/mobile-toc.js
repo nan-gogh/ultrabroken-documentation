@@ -410,7 +410,7 @@
     var target = document.getElementById(targetId);
 
     // Reveal hidden target (switch tab, open collapsed section)
-    if (target && !target.offsetParent) {
+    if (target && (!target.offsetParent || target.classList.contains('tab-toc-heading'))) {
       if (window.__ubRevealTarget) window.__ubRevealTarget(target);
     }
 
@@ -429,8 +429,18 @@
         // Proportional padding: ~25% of header height for visual harmony
         // Scales automatically with zoom, font-size toggles, and everything else
         var padding = Math.max(8, Math.round(headerHeight * 0.5));
+
+        // Tab-toc-headings are zero-height hidden anchors inside tabs.
+        // Scroll to the visible labels bar instead, so the tab row sits
+        // neatly below the sticky header.
+        var scrollEl = target;
+        if (target.classList.contains('tab-toc-heading')) {
+          var set = target.closest('.tabbed-set');
+          var labels = set ? set.querySelector('.tabbed-labels') : null;
+          if (labels) scrollEl = labels;
+        }
         
-        var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - padding;
+        var scrollTarget = scrollEl.getBoundingClientRect().top + window.scrollY - headerHeight - padding;
         window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
       }, delay);
     }

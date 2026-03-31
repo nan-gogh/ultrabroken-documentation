@@ -149,7 +149,6 @@
       var g   = sorted[gi];
       var tr  = document.createElement('tr');
       var unk = isUnknown(g);
-      if (unk) tr.className = 'ub-vc-unk-row';
 
       /* Label cell — sticky left */
       var td0 = document.createElement('td');

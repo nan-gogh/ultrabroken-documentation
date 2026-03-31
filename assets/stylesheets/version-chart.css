@@ -199,12 +199,6 @@
   color: rgba(0, 240, 194, 0.18);
 }
 
-/* Unknown-version rows */
-.ub-vc-table tbody tr.ub-vc-unk-row td.ub-vc-lc { opacity: 0.4; }
-.ub-vc-table tbody tr.ub-vc-unk-row .ub-vc-ghost-name {
-  opacity: 0.5;
-}
-
 /* Loading / error */
 .ub-vc-loading,
 .ub-vc-error {
