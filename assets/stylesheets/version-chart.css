@@ -145,8 +145,6 @@
   text-align: right;
   width: 1px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .ub-vc-table td.ub-vc-lc a {
   font-family: 'Texturina', Georgia, serif;
@@ -186,20 +184,22 @@
   background: rgba(0, 240, 194, 0.55);
 }
 
-/* Ghost name overlay inside bar area — in-flow with width:0
-   so text is ink-overflow only (does NOT extend scrollable width). */
+/* Ghost name overlay — absolutely positioned inside the sticky label cell.
+   Since the containing block is the sticky cell (not the scroll container),
+   the overflow does NOT extend the scrollable width. */
 .ub-vc-ghost-name {
-  display: block;
-  width: 0;
-  overflow: visible;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-left: 0.3em;
   font-family: 'Texturina', Georgia, serif;
   font-size: 0.6rem;
-  line-height: 10px;
+  line-height: 1;
   color: rgba(255, 255, 255, 0.12);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  padding-left: 0.3em;
 }
 .ub-vc-table tbody tr:hover .ub-vc-ghost-name {
   color: rgba(0, 240, 194, 0.18);

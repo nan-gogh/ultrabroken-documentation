@@ -166,19 +166,20 @@
       lCode.textContent = g.label;
       a.appendChild(lCode);
       td0.appendChild(a);
+
+      /* Ghost name — inside sticky label cell so overflow
+         never extends the scroll container's scrollable width. */
+      var ghost = document.createElement('span');
+      ghost.className = 'ub-vc-ghost-name';
+      ghost.textContent = g.name;
+      td0.appendChild(ghost);
+
       tr.appendChild(td0);
 
       /* Version cells */
       if (unk) {
         for (var vu = 0; vu < n; vu++) {
-          var utd = document.createElement('td');
-          if (vu === 0) {
-            var ughost = document.createElement('span');
-            ughost.className = 'ub-vc-ghost-name';
-            ughost.textContent = g.name;
-            utd.appendChild(ughost);
-          }
-          tr.appendChild(utd);
+          tr.appendChild(document.createElement('td'));
         }
       } else {
         var covered = coveredSet(g, versionList);
@@ -186,12 +187,6 @@
         for (var vj = 0; vj < n; vj++) {
           var vtd = document.createElement('td');
           if (cls[vj]) vtd.className = cls[vj];
-          if (vj === 0) {
-            var ghost = document.createElement('span');
-            ghost.className = 'ub-vc-ghost-name';
-            ghost.textContent = g.name;
-            vtd.appendChild(ghost);
-          }
           tr.appendChild(vtd);
         }
       }

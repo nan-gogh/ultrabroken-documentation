@@ -193,6 +193,21 @@
 
   window.addEventListener('hashchange', openForHash);
 
+  /* ── TOC click interceptor for tab headings ─────────────── */
+  /* Prevent native scroll-to-anchor (ignores sticky header) and
+     use openForHash() which accounts for header offset + tab reveal. */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a.md-nav__link');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.charAt(0) !== '#') return;
+    var target = document.getElementById(href.slice(1));
+    if (!target || !target.classList.contains('tab-toc-heading')) return;
+    e.preventDefault();
+    history.pushState(null, '', href);
+    openForHash();
+  });
+
   if (typeof document$ !== 'undefined') {
     document$.subscribe(function () { init(); });
   } else if (document.readyState === 'loading') {
