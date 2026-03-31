@@ -31,15 +31,24 @@
 
   /**
    * Walk upward from `target`, activating any inactive Material
-   * tabs along the way.  Collapsible sections are NOT opened —
-   * the collapsed heading is the scroll target and lets the user
-   * decide whether to expand.
+   * tabs and opening parent collapsed sections so child headings
+   * become visible.  The target itself is never expanded if it's
+   * a collapsible heading (leaf) — the user decides.
    * Returns true if anything was actually revealed.
    */
   function revealTarget(target) {
     var revealed = false;
     var el = target;
     while (el) {
+      // Open parent collapsed sections so the target becomes visible.
+      if (el.classList && el.classList.contains('ub-collapse-body') && el.hidden) {
+        el.hidden = false;
+        var hdr = el.previousElementSibling;
+        if (hdr && hdr.classList.contains('ub-collapsible')) {
+          hdr.classList.remove('ub-collapsed');
+        }
+        revealed = true;
+      }
       if (el.classList && el.classList.contains('tabbed-block')) {
         var content = el.parentElement;
         if (content) {
@@ -165,10 +174,10 @@
     // Visible bottom of the header — correctly accounts for sticky tabs,
     // auto-hide, custom banners, and any other sticky/fixed top elements.
     var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-    // For headings, include the computed top margin so the visual
-    // breathing room above the heading is preserved.
+    // For headings, include half the computed top margin so the
+    // breathing room above the heading is proportional but not excessive.
     if (/^H[1-6]$/.test(el.tagName)) {
-      offset += parseFloat(getComputedStyle(el).marginTop) || 0;
+      offset += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.5;
     }
     el.style.scrollMarginTop = offset + 'px';
     el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
