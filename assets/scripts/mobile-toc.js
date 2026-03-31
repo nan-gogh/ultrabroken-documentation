@@ -431,16 +431,16 @@
         var padding = Math.max(8, Math.round(headerHeight * 0.5));
 
         // Tab-toc-headings are zero-height hidden anchors inside tabs.
-        // Scroll to the visible labels bar instead, so the tab row sits
-        // neatly below the sticky header.
-        var scrollEl = target;
-        if (target.classList.contains('tab-toc-heading')) {
+        // Delegate to the same scrollToTarget that permalinks use so the
+        // scroll position is pixel-identical.
+        if (target.classList.contains('tab-toc-heading') && window.__ubScrollToTarget) {
           var set = target.closest('.tabbed-set');
           var labels = set ? set.querySelector('.tabbed-labels') : null;
-          if (labels) scrollEl = labels;
+          window.__ubScrollToTarget(labels || target, true);
+          return;
         }
         
-        var scrollTarget = scrollEl.getBoundingClientRect().top + window.scrollY - headerHeight - padding;
+        var scrollTarget = target.getBoundingClientRect().top + window.scrollY - headerHeight - padding;
         window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
       }, delay);
     }
