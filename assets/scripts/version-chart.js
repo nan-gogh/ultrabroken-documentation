@@ -116,7 +116,6 @@
     var corner = document.createElement('th');
     corner.className   = 'ub-vc-lh';
     corner.scope       = 'col';
-    corner.textContent = 'Label';
     hrow.appendChild(corner);
 
     /* Version header cells — sticky top */

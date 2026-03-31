@@ -141,7 +141,7 @@
       }
     }
 
-    openForHash();
+    openForHash(false);   // instant scroll on init / SPA navigation
   }
 
   /* ── Toggle on heading click ───────────────────────────── */
@@ -167,17 +167,28 @@
   });
 
   /* ── Hash navigation ───────────────────────────────────── */
-  function scrollToTarget(el) {
-    var rect = el.getBoundingClientRect();
+
+  /**
+   * Scroll an element into view, accounting for the sticky header.
+   * Uses scrollIntoView + inline scroll-margin-top so the offset
+   * exactly matches what the browser does for native hash navigation.
+   * @param {Element} el        Element to scroll to.
+   * @param {boolean} [smooth]  true → smooth animation; false → instant.
+   */
+  function scrollToTarget(el, smooth) {
     var header = document.querySelector('.md-header');
-    var offset = header ? header.offsetHeight : 0;
-    window.scrollTo({
-      top: Math.max(0, window.scrollY + rect.top - offset - 8),
-      behavior: 'smooth'
-    });
+    // Visible bottom of the header — correctly accounts for sticky tabs,
+    // auto-hide, custom banners, and any other sticky/fixed top elements.
+    var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+    el.style.scrollMarginTop = (offset + 4) + 'px';
+    el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
   }
 
-  function openForHash() {
+  /**
+   * Reveal the hash target and scroll to it.
+   * @param {boolean} [smooth]  true → smooth (interactive); false → instant (init / refresh).
+   */
+  function openForHash(smooth) {
     var id = location.hash.slice(1);
     if (!id) return;
     var target = document.getElementById(id);
@@ -191,26 +202,33 @@
     // on page refresh.
     if (!revealed && !isTabHeading) return;
 
-    // For tab-toc-headings, scroll to the tabbed-set (labels bar visible).
+    // For tab headings, scroll to the visible tab labels bar.
+    // For revealed headings, scroll to the heading itself.
     var scrollTarget = target;
     if (isTabHeading) {
       var set = target.closest('.tabbed-set');
-      if (set) scrollTarget = set;
+      var labels = set ? set.querySelector('.tabbed-labels') : null;
+      if (labels) scrollTarget = labels;
     }
 
-    // Allow layout to settle after tab activation / collapse reveal.
-    setTimeout(function () { scrollToTarget(scrollTarget); }, 120);
+    if (smooth) {
+      // Interactive navigation — allow layout to settle after tab activation.
+      setTimeout(function () { scrollToTarget(scrollTarget, true); }, 120);
+    } else {
+      // Init / refresh — instant scroll after one paint frame.
+      requestAnimationFrame(function () { scrollToTarget(scrollTarget, false); });
+    }
   }
 
-  // Expose for other scripts (e.g. mobile-toc interceptor).
+  // Expose for other scripts.
   window.__ubOpenForHash = openForHash;
   window.__ubScrollToTarget = scrollToTarget;
 
-  window.addEventListener('hashchange', openForHash);
+  window.addEventListener('hashchange', function () { openForHash(true); });
 
   /* ── TOC click interceptor for tab headings ─────────────── */
-  /* Prevent native scroll-to-anchor (ignores sticky header) and
-     use openForHash() which accounts for header offset + tab reveal. */
+  /* Prevent native scroll-to-anchor (which ignores sticky header
+     for zero-height headings) and use openForHash with smooth scroll. */
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a.md-nav__link');
     if (!link) return;
@@ -220,7 +238,7 @@
     if (!target || !target.classList.contains('tab-toc-heading')) return;
     e.preventDefault();
     history.pushState(null, '', href);
-    openForHash();
+    openForHash(true);
   });
 
   if (typeof document$ !== 'undefined') {
