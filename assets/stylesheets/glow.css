@@ -113,6 +113,25 @@
 [data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="2"] > .tabbed-labels label { font-size: 1.375rem; }
 [data-ub-font="large"] .md-typeset .tabbed-set[data-ub-level="4"] > .tabbed-labels label { font-size: 1.125rem; }
 
+/* Hidden companion heading injected by tab_headings hook.
+   sr-only: invisible, but present in DOM for TOC + scroll spy + deep links. */
+.tab-toc-heading {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Share icon on tab labels — same hover reveal as headings */
+label[data-heading-id]:hover > .ub-heading-share {
+  opacity: 0.4;
+}
+
 /* Fix alignment of tab scroll arrows to match enlarged tab labels.
    Default Material height is 1.9rem for 0.8rem font labels.
    We scale proportionally for our larger font sizes. */

@@ -250,6 +250,9 @@ def _patch_headings(markdown: str) -> str:
     """Second pass: inject range badge into any heading that precedes a sentinel."""
     def _rewrite_heading(m: re.Match) -> str:
         heading = m.group("heading")
+        # Skip hidden companion headings injected by tab_headings hook.
+        if '.tab-toc-heading' in heading:
+            return m.group(0)
         blank = m.group("blank") or ""
         sentinel = m.group("sentinel")
         try:
@@ -646,9 +649,19 @@ def _mark_obsolete_labels(html: str) -> str:
 
     # Apply the class to all identified labels.
     for label_id in labels_to_mark:
-        old = f'<label for="{label_id}">'
-        new = f'<label for="{label_id}" class="ub-obsolete">'
-        html = html.replace(old, new, 1)
+        pattern = rf'<label for="{re.escape(label_id)}"([^>]*)>'
+        lm = re.search(pattern, html)
+        if not lm:
+            continue
+        old_tag = lm.group(0)
+        attrs = lm.group(1)
+        if 'ub-obsolete' in attrs:
+            continue
+        if 'class="' in attrs:
+            new_tag = re.sub(r'class="', 'class="ub-obsolete ', old_tag, count=1)
+        else:
+            new_tag = f'<label for="{label_id}" class="ub-obsolete"{attrs}>'
+        html = html.replace(old_tag, new_tag, 1)
 
     return html
 
