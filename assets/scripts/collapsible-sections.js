@@ -180,7 +180,15 @@
     // Visible bottom of the header — correctly accounts for sticky tabs,
     // auto-hide, custom banners, and any other sticky/fixed top elements.
     var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-    el.style.scrollMarginTop = (offset + 4) + 'px';
+    // For headings that are the current :target, Material's CSS already
+    // provides pixel-perfect scroll-margin-top per heading level.
+    // Clear any stale inline override so the stylesheet rule applies.
+    if (/^H[1-6]$/.test(el.tagName) && el.id &&
+        decodeURIComponent(location.hash.slice(1)) === el.id) {
+      el.style.removeProperty('scroll-margin-top');
+    } else {
+      el.style.scrollMarginTop = (offset + 4) + 'px';
+    }
     el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
   }
 

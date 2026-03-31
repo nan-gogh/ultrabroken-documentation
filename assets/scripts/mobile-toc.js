@@ -422,43 +422,41 @@
     if (target) {
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
-        // For tab-toc-headings, scroll to the visible labels bar.
-        var scrollEl = target;
         if (target.classList.contains('tab-toc-heading')) {
+          // Tab headings: use window.scrollTo (vertical) + labels.scrollTo
+          // (horizontal) on independent scroll containers so they can't
+          // interfere with each other.  scrollIntoView on .tabbed-labels
+          // would also scroll that container horizontally, causing stutter.
           var set = target.closest('.tabbed-set');
           var labels = set ? set.querySelector('.tabbed-labels') : null;
           if (labels) {
-            scrollEl = labels;
-            // Horizontally scroll the activated tab label into view
-            // within the labels container only (no vertical scroll).
-            // Delayed so scrollIntoView (vertical) doesn't cancel it.
+            var header = document.querySelector('.md-header');
+            var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+            var top = labels.getBoundingClientRect().top + window.scrollY - offset - 4;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+
             var activeLabel = labels.querySelector('label[for="' + CSS.escape(
               (set.querySelector('input:checked') || {}).id || ''
             ) + '"');
             if (activeLabel) {
-              (function (lbl, ctr) {
-                setTimeout(function () {
-                  var lr = lbl.getBoundingClientRect();
-                  var cr = ctr.getBoundingClientRect();
-                  var left = ctr.scrollLeft + lr.left - cr.left
-                           - (cr.width - lr.width) / 2;
-                  ctr.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
-                }, 80);
-              })(activeLabel, labels);
+              var lr = activeLabel.getBoundingClientRect();
+              var cr = labels.getBoundingClientRect();
+              var left = labels.scrollLeft + lr.left - cr.left
+                       - (cr.width - lr.width) / 2;
+              labels.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
             }
           }
-        }
-
-        // Use the same scroll logic as permalink navigation so the
-        // position is pixel-identical for every entry type.
-        if (window.__ubScrollToTarget) {
-          window.__ubScrollToTarget(scrollEl, true);
         } else {
-          // Fallback if collapsible-sections hasn't loaded yet.
-          var header = document.querySelector('.md-header');
-          var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-          scrollEl.style.scrollMarginTop = (offset + 4) + 'px';
-          scrollEl.scrollIntoView({ block: 'start', behavior: 'smooth' });
+          // Regular headings: scrollIntoView with Material's :target CSS
+          // (hash was already set via replaceState above).
+          if (window.__ubScrollToTarget) {
+            window.__ubScrollToTarget(target, true);
+          } else {
+            var header = document.querySelector('.md-header');
+            var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+            target.style.scrollMarginTop = (offset + 4) + 'px';
+            target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+          }
         }
       }, delay);
     }
