@@ -180,11 +180,6 @@
     // Visible bottom of the header — correctly accounts for sticky tabs,
     // auto-hide, custom banners, and any other sticky/fixed top elements.
     var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-    // For headings, include the element's top margin so the visual
-    // breathing room above the heading is preserved (matches permalink feel).
-    if (/^H[1-6]$/.test(el.tagName)) {
-      offset += parseFloat(getComputedStyle(el).marginTop) || 0;
-    }
     el.style.scrollMarginTop = (offset + 4) + 'px';
     el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
   }
