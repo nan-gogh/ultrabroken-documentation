@@ -192,6 +192,13 @@
         for (var vj = 0; vj < n; vj++) {
           var vtd = document.createElement('td');
           if (cls[vj]) vtd.className = cls[vj];
+          if (vj === 0) {
+            vtd.classList.add('ub-vc-first-bar');
+            var ghost = document.createElement('span');
+            ghost.className = 'ub-vc-ghost-name';
+            ghost.textContent = g.name;
+            vtd.appendChild(ghost);
+          }
           tr.appendChild(vtd);
         }
       }

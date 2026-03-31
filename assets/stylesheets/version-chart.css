@@ -87,8 +87,7 @@
   white-space: nowrap;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.12),
-    0 4px 0 var(--md-default-bg-color),
-    inset -1px 0 0 rgba(255, 255, 255, 0.1);
+    0 4px 0 var(--md-default-bg-color);
   font-size: 0.72rem;
   color: var(--muted-text);
   text-transform: uppercase;
@@ -142,9 +141,8 @@
   left: 0;
   z-index: 1;
   background: var(--md-default-bg-color);
-  padding: 0 0.4rem 0 0.3rem;
+  padding: 0 0.3rem 0 0.2rem;
   text-align: right;
-  box-shadow: 1px 0 0 1px rgba(255, 255, 255, 0.07);
   width: 1px;
   white-space: nowrap;
   overflow: hidden;
@@ -190,6 +188,27 @@
 /* Bar fill */
 .ub-vc-table tbody td.ub-vc-fill {
   background: rgba(0, 240, 194, 0.55);
+}
+
+/* Ghost name overlay inside bar area */
+.ub-vc-table tbody td.ub-vc-first-bar {
+  position: relative;
+}
+.ub-vc-ghost-name {
+  position: absolute;
+  left: 0.3em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Texturina', Georgia, serif;
+  font-size: 0.6rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.ub-vc-table tbody tr:hover .ub-vc-ghost-name {
+  color: rgba(0, 240, 194, 0.18);
 }
 
 /* Unknown-version rows */
