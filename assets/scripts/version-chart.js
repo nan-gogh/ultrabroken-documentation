@@ -23,7 +23,7 @@
   'use strict';
 
   var CHART_ID = 'ub-version-chart';
-  var COL_W = 28;
+  var COL_W = 20;
 
   /* ── helpers ────────────────────────────────────────────────── */
 
@@ -276,10 +276,17 @@
     requestAnimationFrame(syncLayout);
 
     /* Scroll sync: bscroll drives hscroll (x) and vscroll (y) */
+    var scrollTicking = false;
     bscroll.addEventListener('scroll', function () {
-      hscroll.scrollLeft = bscroll.scrollLeft;
-      vscroll.scrollTop  = bscroll.scrollTop;
-    });
+      if (!scrollTicking) {
+        scrollTicking = true;
+        requestAnimationFrame(function () {
+          hscroll.scrollLeft = bscroll.scrollLeft;
+          vscroll.scrollTop  = bscroll.scrollTop;
+          scrollTicking = false;
+        });
+      }
+    }, { passive: true });
 
     /* ── filter / search logic ──────────────── */
     function applyFilter() {
