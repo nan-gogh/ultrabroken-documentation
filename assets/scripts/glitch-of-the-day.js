@@ -47,7 +47,7 @@
     var heading = document.getElementById(HEADING_ID);
     if (heading) {
       var share = heading.querySelector('.ub-heading-share');
-      heading.textContent = isHistory ? '\uD83D\uDCC5 Glitch of the Day' : '\u2728 Glitch Spotlight';
+      heading.textContent = isHistory ? 'Glitch of the Day' : 'Glitch Spotlight';
       if (share) heading.appendChild(share);
     }
 
