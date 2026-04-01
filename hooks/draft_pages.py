@@ -42,7 +42,7 @@ def _is_unlisted(page) -> bool:
 
 
 _DRAFT_ADMONITION = (
-    '!!! warning "Under Construction"\n'
+    '!!! warning "UNDER CONSTRUCTION"\n'
     '\n'
     '    This page is still being written. It may be used as-is, but some'
     ' sections are incomplete, and others may contain incorrect information.\n'
