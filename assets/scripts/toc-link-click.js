@@ -90,8 +90,5 @@
         }
       }, delay);
     }
-
-    // Update hash without creating a history entry
-    history.replaceState(null, '', hash);
   }, true);  // <-- capture phase on window
 })();
