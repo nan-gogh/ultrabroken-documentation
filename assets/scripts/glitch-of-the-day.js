@@ -86,7 +86,7 @@
 
     html += '</div>';
     root.innerHTML = html;
-    root.style.display = '';
+    root.style.display = 'block';
   }
 
   /* ── Boot ─────────────────────────────────────────────── */
