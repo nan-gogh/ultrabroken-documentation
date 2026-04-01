@@ -234,17 +234,6 @@
     "filename": "banc-storage.md"
   },
   {
-    "name": "Batch Despawn Interrupt",
-    "uid": "PG3",
-    "label": "BDI",
-    "aliases": [
-      "Batch DI",
-      "Batch-DI"
-    ],
-    "path": "wiki/glitchcraft/PG3/",
-    "filename": "batch-despawn-interrupt.md"
-  },
-  {
     "name": "Bomb Skew",
     "uid": "EJ4",
     "label": "BSK",
@@ -1081,18 +1070,6 @@
     ],
     "path": "wiki/glitchcraft/S8G/",
     "filename": "gas-warping.md"
-  },
-  {
-    "name": "Ghost Despawn Interrupt",
-    "uid": "BEW",
-    "label": "GDI",
-    "aliases": [
-      "Ghost DI",
-      "Ghost-DI",
-      "Ghost Frox"
-    ],
-    "path": "wiki/glitchcraft/BEW/",
-    "filename": "ghost-despawn-interrupt.md"
   },
   {
     "name": "Ghost Save Load Object Transfer",

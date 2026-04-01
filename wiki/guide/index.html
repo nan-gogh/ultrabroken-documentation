@@ -4317,11 +4317,16 @@
 <tbody>
 <tr>
 <td>Site search</td>
+<td><strong>Searchable</strong></td>
+<td>Draft is excluded</td>
+</tr>
+<tr>
+<td>AI evidence</td>
 <td>Excluded</td>
 <td>Same</td>
 </tr>
 <tr>
-<td>AI evidence</td>
+<td>Grimoire</td>
 <td>Excluded</td>
 <td>Same</td>
 </tr>
@@ -4382,7 +4387,7 @@
 <li><code>tags</code>: Categorization tags. Auto-indexed into <a href="../../assets/data/tags.json">tags.json</a> - used for filtering and search discovery</li>
 <li><code>aliases</code>: Alternative names for search discovery. Case-insensitive — used for autolinking (see <a href="#glitch-autolinks">Glitch Autolinks</a>)</li>
 <li><code>draft</code>: Set to <code>true</code> to mark a page as a draft — hides it from search, grimoire, and web crawlers while keeping it accessible via direct URL (see <a href="#drafts--previews">Drafts &amp; Previews</a>)</li>
-<li><code>unlisted</code>: Set to <code>true</code> to permanently exclude a page from search and AI evidence without marking it as a draft — no banner, no noindex, social cards still generated. Use for reference pages or meta content that belongs in the wiki but shouldn't appear in discovery results.</li>
+<li><code>unlisted</code>: Set to <code>true</code> to exclude a page from AI evidence and the grimoire without marking it as a draft — no banner, no noindex, social cards still generated, and the page remains findable in site search. Use for reference pages or meta content that belongs in the wiki but shouldn't appear in AI or grimoire results.</li>
 <li><code>uid</code>: Auto-generated unique identifier. <strong>Do not add manually.</strong></li>
 </ul>
 <h4 id="example">Example</h4>

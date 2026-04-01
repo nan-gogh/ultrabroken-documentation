@@ -139,12 +139,6 @@
       "label": "BS"
     },
     {
-      "id": "wiki/glitchcraft/PG3/",
-      "uid": "PG3",
-      "name": "Batch Despawn Interrupt",
-      "label": "BDI"
-    },
-    {
       "id": "wiki/glitchcraft/EJ4/",
       "uid": "EJ4",
       "name": "Bomb Skew",
@@ -641,12 +635,6 @@
       "uid": "S8G",
       "name": "GAS Warping",
       "label": "GASW"
-    },
-    {
-      "id": "wiki/glitchcraft/BEW/",
-      "uid": "BEW",
-      "name": "Ghost Despawn Interrupt",
-      "label": "GDI"
     },
     {
       "id": "wiki/glitchcraft/WLM/",
@@ -2597,38 +2585,6 @@
       "target": "wiki/glitchcraft/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/BEW/",
-      "target": "wiki/glitchcraft/76A/"
-    },
-    {
-      "source": "wiki/glitchcraft/BEW/",
-      "target": "wiki/glitchcraft/7KZ/"
-    },
-    {
-      "source": "wiki/glitchcraft/BEW/",
-      "target": "wiki/glitchcraft/B3B/"
-    },
-    {
-      "source": "wiki/glitchcraft/BEW/",
-      "target": "wiki/glitchcraft/GDL/"
-    },
-    {
-      "source": "wiki/glitchcraft/BEW/",
-      "target": "wiki/glitchcraft/K4F/"
-    },
-    {
-      "source": "wiki/glitchcraft/BEW/",
-      "target": "wiki/glitchcraft/LMB/"
-    },
-    {
-      "source": "wiki/glitchcraft/BEW/",
-      "target": "wiki/glitchcraft/MCM/"
-    },
-    {
-      "source": "wiki/glitchcraft/BEW/",
-      "target": "wiki/glitchcraft/MG1/"
-    },
-    {
       "source": "wiki/glitchcraft/BK4/",
       "target": "wiki/glitchcraft/00I/"
     },
@@ -3803,34 +3759,6 @@
     {
       "source": "wiki/glitchcraft/PAE/",
       "target": "wiki/glitchcraft/SIH/"
-    },
-    {
-      "source": "wiki/glitchcraft/PG3/",
-      "target": "wiki/glitchcraft/76A/"
-    },
-    {
-      "source": "wiki/glitchcraft/PG3/",
-      "target": "wiki/glitchcraft/7KZ/"
-    },
-    {
-      "source": "wiki/glitchcraft/PG3/",
-      "target": "wiki/glitchcraft/8QH/"
-    },
-    {
-      "source": "wiki/glitchcraft/PG3/",
-      "target": "wiki/glitchcraft/GDL/"
-    },
-    {
-      "source": "wiki/glitchcraft/PG3/",
-      "target": "wiki/glitchcraft/K4F/"
-    },
-    {
-      "source": "wiki/glitchcraft/PG3/",
-      "target": "wiki/glitchcraft/MCM/"
-    },
-    {
-      "source": "wiki/glitchcraft/PG3/",
-      "target": "wiki/glitchcraft/MG1/"
     },
     {
       "source": "wiki/glitchcraft/PII/",

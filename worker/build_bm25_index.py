@@ -302,6 +302,8 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
         title = fm.get('title', '')
         if not title:
             continue  # skip pages without a title (index/meta pages)
+        if fm.get('draft') is True or fm.get('unlisted') is True:
+            continue  # skip draft and unlisted pages
         parsed_files.append((p, fm, title))
 
     for p, fm, title in parsed_files:

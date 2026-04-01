@@ -17,9 +17,9 @@ Draft pages are NOT hidden from the navigation or direct URL access —
 editors share the link via Discord to gather feedback.
 
 A separate ``unlisted: true`` frontmatter flag marks pages as permanently
-published but hidden from all discovery systems (search, AI evidence).
-Unlike drafts, unlisted pages get no banner, no noindex, and still receive
-social card / OG tag generation.
+published but hidden from AI evidence and the grimoire.  Unlike drafts,
+unlisted pages are still findable in site search, get no banner, no
+noindex, and still receive social card / OG tag generation.
 """
 
 import re
@@ -42,10 +42,12 @@ def _is_unlisted(page) -> bool:
 
 
 def on_page_markdown(markdown, page, config, **kwargs):
-    """Inject search.exclude into draft and unlisted page metadata so
-    Material's search plugin skips them entirely.  This event fires after
-    frontmatter is parsed but before the search plugin indexes."""
-    if _is_draft(page) or _is_unlisted(page):
+    """Inject search.exclude into draft page metadata so
+    Material's search plugin skips them entirely.  Unlisted pages
+    remain searchable — they are only excluded from AI evidence
+    and the grimoire.  This event fires after frontmatter is parsed
+    but before the search plugin indexes."""
+    if _is_draft(page):
         page.meta.setdefault("search", {})["exclude"] = True
     return markdown
 
