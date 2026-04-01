@@ -1817,24 +1817,16 @@ li.task-list-item a, li.task-list a {
   color: var(--teal-glow);
 }
 .gotd-label {
+  font-family: var(--md-code-font-family);
+  font-size: 0.75em;
   font-weight: 400;
-  font-size: 0.8em;
-  opacity: 0.6;
+  padding: 0.1em 0.35em;
+  border-radius: 0.15rem;
+  background: var(--md-code-bg-color);
+  color: var(--md-code-fg-color);
+  vertical-align: middle;
 }
 .gotd-meta {
   font-size: 0.75rem;
   color: var(--md-default-fg-color--light);
-}
-.gotd-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-top: 0.2rem;
-}
-.gotd-tag {
-  font-size: 0.65rem;
-  padding: 0.1em 0.4em;
-  border-radius: 0.15rem;
-  background: var(--md-code-bg-color);
-  color: var(--md-code-fg-color);
 }

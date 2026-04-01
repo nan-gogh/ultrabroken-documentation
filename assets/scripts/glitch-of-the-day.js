@@ -1,12 +1,10 @@
 /**
- * Glitch of the Day
+ * Glitch Spotlight / Glitch of the Day
  *
- * Shows a "this day in glitch history" card on the homepage.
+ * Shows a spotlight card on the homepage.
  * Reads grimoire-data.json, matches today's month+day against
- * discovery dates, and renders one or more entries.
- * When multiple glitches share the same calendar day, one is
- * picked at random (seeded by the full date so it's stable for
- * the whole day).  If no match exists, the section stays hidden.
+ * discovery dates.  Calendar-day match → "Glitch of the Day";
+ * no match → "Glitch Spotlight" (day-stable random pick).
  */
 (function () {
   'use strict';
@@ -48,12 +46,12 @@
     if (isHistory) {
       html += '<p class="gotd-heading">' +
               '<span class="gotd-icon">📅</span> ' +
-              'On This Day in Glitch History' +
+              'Glitch of the Day' +
               '</p>';
     } else {
       html += '<p class="gotd-heading">' +
               '<span class="gotd-icon">✨</span> ' +
-              'Glitch of the Day' +
+              'Glitch Spotlight' +
               '</p>';
     }
 
@@ -63,7 +61,7 @@
     html += '<div class="gotd-entry">';
     html += '<a class="gotd-name" href="' + link + '">' +
             e.name +
-            (e.label ? ' <span class="gotd-label">' + e.label + '</span>' : '') +
+            (e.label ? ' <code class="gotd-label">' + e.label + '</code>' : '') +
             '</a>';
     html += '<span class="gotd-meta">';
     if (isHistory) {
@@ -75,13 +73,6 @@
       html += ' by ' + e.credits.join(', ');
     }
     html += '</span>';
-    if (e.tags && e.tags.length) {
-      html += '<span class="gotd-tags">';
-      for (var j = 0; j < e.tags.length; j++) {
-        html += '<code class="gotd-tag">' + e.tags[j] + '</code>';
-      }
-      html += '</span>';
-    }
     html += '</div>';
 
     html += '</div>';
@@ -119,10 +110,10 @@
         if (!dated.length) return;
 
         if (matches.length) {
-          // "On This Day" — a glitch discovered on this calendar day
+          // "Glitch of the Day" — discovered on this calendar day
           render(root, matches[seed % matches.length], true);
         } else {
-          // Fallback — random "Glitch of the Day" (stable for the whole day)
+          // "Glitch Spotlight" — random pick (stable for the whole day)
           render(root, dated[seed % dated.length], false);
         }
       })
