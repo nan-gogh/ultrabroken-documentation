@@ -129,7 +129,7 @@
     if (/^H[1-6]$/.test(el.tagName)) {
       var mt = (parseFloat(getComputedStyle(el).marginTop) || 0);
       if (el.classList.contains('tab-toc-heading')) {
-        base -= mt * 0.35;
+        base -= mt * 0.7;
       } else {
         base += mt * 0.35;
       }
