@@ -41,14 +41,35 @@ def _is_unlisted(page) -> bool:
     return (page.meta or {}).get("unlisted") is True
 
 
+_DRAFT_ADMONITION = (
+    '!!! warning "Under Construction"\n'
+    '\n'
+    '    This page is still being written. It may be used as-is, but some'
+    ' sections are incomplete, and others may contain incorrect information.\n'
+)
+
+# Inserted right after the first H1 heading (or at the top if none).
+_H1_RE = re.compile(r'^#\s+.+$', re.MULTILINE)
+
+
 def on_page_markdown(markdown, page, config, **kwargs):
-    """Inject search.exclude into draft page metadata so
-    Material's search plugin skips them entirely.  Unlisted pages
-    remain searchable — they are only excluded from AI evidence
-    and the grimoire.  This event fires after frontmatter is parsed
-    but before the search plugin indexes."""
-    if _is_draft(page):
-        page.meta.setdefault("search", {})["exclude"] = True
+    """Inject search.exclude and an Under Construction admonition into
+    draft pages.  Unlisted pages remain searchable — they are only
+    excluded from AI evidence and the grimoire.  This event fires after
+    frontmatter is parsed but before the search plugin indexes."""
+    if not _is_draft(page):
+        return markdown
+
+    page.meta.setdefault("search", {})["exclude"] = True
+
+    # Inject admonition after the first H1, or at the top.
+    m = _H1_RE.search(markdown)
+    if m:
+        pos = m.end()
+        markdown = markdown[:pos] + '\n\n' + _DRAFT_ADMONITION + markdown[pos:]
+    else:
+        markdown = _DRAFT_ADMONITION + '\n' + markdown
+
     return markdown
 
 
