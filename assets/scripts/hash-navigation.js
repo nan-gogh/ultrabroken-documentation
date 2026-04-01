@@ -184,7 +184,7 @@
    *   applyScrollMargins() already set margins in init().
    *   We reveal tabs/sections if needed.
    */
-  function openForHash() {
+  function openForHash(fromInit) {
     var hash = location.hash;
     var fromSaved = false;
 
@@ -230,6 +230,11 @@
       setTimeout(function () {
         scrollToTarget(target, false);
       }, 120);
+    } else if (fromInit) {
+      // Reload with hash in URL — browser already scrolled using
+      // CSS :target values before applyScrollMargins() ran.
+      // Re-scroll now that inline margins are set.
+      scrollToTarget(target, false);
     }
     // else: hashchange with nothing to reveal — browser's native
     // scroll already used our pre-set inline scroll-margin-top.
@@ -260,7 +265,7 @@
   function init() {
     relocateTabHeadings();
     applyScrollMargins();   // pre-set margins for native hash scroll
-    openForHash();           // scroll on init / SPA navigation
+    openForHash(true);       // fromInit: re-scroll if reload with hash
   }
 
   if (typeof document$ !== 'undefined') {
