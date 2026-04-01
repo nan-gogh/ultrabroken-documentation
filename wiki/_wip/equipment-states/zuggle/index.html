@@ -69,10 +69,12 @@
 
     
     
-  <!-- Strip URL fragment early so the browser never does native
-       scroll-to-anchor for zero-height tab-toc-heading elements.
-       collapsible-sections.js reads __ubSavedHash on init. -->
-  <script>history.scrollRestoration='manual';if(location.hash){window.__ubSavedHash=location.hash;history.replaceState(null,'',location.pathname+location.search)}</script>
+  <!-- On fresh navigation with a #fragment, strip it early so
+       hash-navigation.js controls reveal + scroll instead of
+       the browser's native anchor jump.  Disable scrollRestoration
+       to prevent the browser from racing our JS scroll to 0.
+       On reload, leave the URL alone so the browser handles it. -->
+  <script>(function(){var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];var isReload=n?n.type==='reload':(performance.navigation&&performance.navigation.type===1);if(!isReload&&location.hash){window.__ubSavedHash=location.hash;history.scrollRestoration='manual';history.replaceState(null,'',location.pathname+location.search)}})()</script>
   <!-- Preload critical Latin font files (same-origin, no DNS hops) -->
   <link rel="preload" href="../../../../assets/fonts/texturina-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../../../assets/fonts/new-rocker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -1023,53 +1025,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Description
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Description">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#effects" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Effects
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gameplay-characteristics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Gameplay Characteristics
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1112,25 +1067,7 @@
 <p class="admonition-title">UNDER CONSTRUCTION</p>
 <p>This page is still being written. It may be used as-is, but some sections are incomplete, and others may contain incorrect information.</p>
 </div>
-<h2 id="description">Description</h2>
-<p>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> is a smuggle which finished dropping. </p>
-<p>An <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/A9N/" class="glitch-autolink" title="Equipment Smuggle" target="_blank" rel="noopener noreferrer">equipment smuggle</a> is the state an equipment is put in when it is currently in the action of dropping, i.e. when it is in the drop queue. Smuggles naturally get created for 4 frames when any equipment is dropped from Link's hand. During those frames, the piece of equipment is outside of Link's inventory but is still visibly dropping, as the game is handling the drop.
-This state can be abused and kept for as long as desired using several methods in all versions. </p>
-<h3 id="effects">Effects</h3>
-<ul>
-<li><strong>D-Pad Lock</strong> - An active smuggle causes the D-Pad to lock on 1.1.2+, meaning that it is not possible to use the D-Pad or drop/swap/unequip equipment of the smuggle's type.</li>
-</ul>
-<h3 id="gameplay-characteristics">Gameplay Characteristics</h3>
-<ul>
-<li><strong>Cannot be Recalled</strong> - The Recall ability has no effect</li>
-<li><strong>Cannot be snapped to Autobuild Holograms</strong> - Snapping is disabled</li>
-<li><strong>Cannot be moved directly using Ultrahand</strong> - Standard Ultrahand movement doesn't work (but pulling with attached objects does)</li>
-<li><strong>Cannot be glued to other objects regularly</strong> - Normal gluing is impossible (but Ghost Glue works!)</li>
-<li><strong>Extreme mass or friction</strong> - Most <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/NU6/" class="glitch-autolink" title="Ultrabroken" target="_blank" rel="noopener noreferrer">Ultrabroken</a> Objects appear to have either extremely high mass or friction attributes</li>
-</ul>
-<p>These attributes make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/NU6/" class="glitch-autolink" title="Ultrabroken" target="_blank" rel="noopener noreferrer">Ultrabroken</a> objects unique and are the foundation for the various effects described in the <a href="../effects/index.md">Effects section</a>.</p>
-<hr />
-<p><strong>Next:</strong> Explore <a href="theories.md">Theories</a> about how this works, or jump to <a href="../effects/index.md">Effects</a>.</p>
+<p>Fail-dropped equipment that gets neither fully re-equipped, nor stowed into the inventory. Zuggles also transfer across reloads. See the <a href="../../zuggling">zuggle section</a> for more.</p>
 
 
 

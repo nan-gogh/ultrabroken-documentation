@@ -69,10 +69,12 @@
 
     
     
-  <!-- Strip URL fragment early so the browser never does native
-       scroll-to-anchor for zero-height tab-toc-heading elements.
-       collapsible-sections.js reads __ubSavedHash on init. -->
-  <script>history.scrollRestoration='manual';if(location.hash){window.__ubSavedHash=location.hash;history.replaceState(null,'',location.pathname+location.search)}</script>
+  <!-- On fresh navigation with a #fragment, strip it early so
+       hash-navigation.js controls reveal + scroll instead of
+       the browser's native anchor jump.  Disable scrollRestoration
+       to prevent the browser from racing our JS scroll to 0.
+       On reload, leave the URL alone so the browser handles it. -->
+  <script>(function(){var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];var isReload=n?n.type==='reload':(performance.navigation&&performance.navigation.type===1);if(!isReload&&location.hash){window.__ubSavedHash=location.hash;history.scrollRestoration='manual';history.replaceState(null,'',location.pathname+location.search)}})()</script>
   <!-- Preload critical Latin font files (same-origin, no DNS hops) -->
   <link rel="preload" href="../../../../assets/fonts/texturina-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../../../assets/fonts/new-rocker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -1053,10 +1055,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changing-drop-temperature" class="md-nav__link">
+  <a href="#changing-equipment-drop-temperature" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Changing drop temperature
+        Changing equipment drop temperature
       
     </span>
   </a>
@@ -1132,9 +1134,20 @@ A previously equipped piece of equipment will be warm when dropped, and any othe
 - When attempting to fuse a warm drop to a construct/Mineru, if the game is paused on a specific frame, the pause menu pauses the equipment one frame earlier than the newly created fuse actor. The exact inner workings haven't been figured out.</p>
 <p>This second effect allows for Mineru/Construct <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> simply by pausing on such a frame. Because of the one frame difference in pausing, when the fuse actor expects the equipment to have acknowledged the fuse, it hasn't because it already got paused, effectively causing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="Fuse Entanglement" target="_blank" rel="noopener noreferrer">fuse entanglement</a>. See the Effects section for more detail.</p>
 <p>When hovering over a warm drop with Ultrahand, Recall or Fuse, opening a menu (inventory, D-Pad, L Wheel, etc...) will interrupt the connection with Link for a frame (equipment will turn orange for UH, the visible bond will disappear for Fuse, etc...).</p>
-<h3 id="changing-drop-temperature">Changing drop temperature</h3>
-<p>It is not possible to turn a cold drop into a warm drop.
-However the other way around is possible, simply have an enemy pick up the warm drop and have it drop it again. The enemy will drop it cold.</p>
+<h3 id="changing-equipment-drop-temperature">Changing equipment drop temperature</h3>
+<p>=== Cold to Warm ####</p>
+<ul>
+<li>Pick up the equipment with nothing in that slot equipped.</li>
+<li>Drop, throw, or shock-drop the equipment to make it a warm drop.</li>
+</ul>
+<p>=== Warm to Cold ####</p>
+<ul>
+<li>Convince an enemy to pick up the warm-dropped equipment.<ul>
+<li>If the enemy is near other equipment, you may need to destroy, steal, or otherwise move that equipment to make them pick up your warm drop instead.</li>
+</ul>
+</li>
+<li>Kill or disarm the enemy to make them drop the equipment, which is now a cold drop.</li>
+</ul>
 <h3 id="effects">Effects</h3>
 <p>Drop temperature affects a few glitches:
 - <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/HQF/" class="glitch-autolink" title="FSFE" target="_blank" rel="noopener noreferrer">FSFE</a> requires no memories for warm drops, because of the equipment culling a frame earlier.

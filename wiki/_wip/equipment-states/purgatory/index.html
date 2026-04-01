@@ -69,10 +69,12 @@
 
     
     
-  <!-- Strip URL fragment early so the browser never does native
-       scroll-to-anchor for zero-height tab-toc-heading elements.
-       collapsible-sections.js reads __ubSavedHash on init. -->
-  <script>history.scrollRestoration='manual';if(location.hash){window.__ubSavedHash=location.hash;history.replaceState(null,'',location.pathname+location.search)}</script>
+  <!-- On fresh navigation with a #fragment, strip it early so
+       hash-navigation.js controls reveal + scroll instead of
+       the browser's native anchor jump.  Disable scrollRestoration
+       to prevent the browser from racing our JS scroll to 0.
+       On reload, leave the URL alone so the browser handles it. -->
+  <script>(function(){var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];var isReload=n?n.type==='reload':(performance.navigation&&performance.navigation.type===1);if(!isReload&&location.hash){window.__ubSavedHash=location.hash;history.scrollRestoration='manual';history.replaceState(null,'',location.pathname+location.search)}})()</script>
   <!-- Preload critical Latin font files (same-origin, no DNS hops) -->
   <link rel="preload" href="../../../../assets/fonts/texturina-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../../../assets/fonts/new-rocker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -1192,7 +1194,10 @@
 </ul>
 <h3 id="as-the-fe-child">As the FE child</h3>
 <ul>
-<li>Having the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent equipped will keep the purgatory child equipped or positioned on Link as it was when it first entered purgatory. If you drop the parent, the child will drop from Link.</li>
+<li>Having the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent equipped will keep the purgatory child equipped or positioned on Link as it was when it first entered purgatory. If you drop the parent, the child will drop from Link.<ul>
+<li>This doesn't happen if the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> child was purgatorified due to physically culling Link.</li>
+</ul>
+</li>
 <li>Warping with the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent equipped will undo the purgatory status of the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> child, which will drop at Link's last position before the warp.</li>
 </ul>
 <h2 id="creating-purgatory-equipment">Creating purgatory equipment</h2>
@@ -1206,9 +1211,9 @@
 <li>The second piece of equipment will become drop-equipped, and thus also easy to purgatorify.</li>
 </ul>
 </li>
-<li>Drop some equipment while it's culled, and you have a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> of the same equipment kind. The dropped equipment will be sent to culled purgatory.<!-- TODO: confirm that Link doesn't have to be the cull source, even if that is the most convenient --><ul>
+<li>Drop some equipment while it's culled, and you have a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> of the same equipment kind. The dropped equipment will be sent to culled purgatory.<ul>
 <li>This equipment will lose collision, even if you use an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent to uncull it later.</li>
-<li>Equipment in culled purgatory isn't deleted on reload. If the equipment has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> child that you then uncull with some other method, that item will persist across reloads as a <a href="search:PSLOT">PSLOT</a>.</li>
+<li>Equipment in culled purgatory isn't directly deleted on reload. If the equipment has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> child that you then uncull with some other method, that item will persist across reloads as a <a href="search:PSLOT">PSLOT</a>.</li>
 </ul>
 </li>
 </ul>

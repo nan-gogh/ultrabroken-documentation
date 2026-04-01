@@ -69,10 +69,12 @@
 
     
     
-  <!-- Strip URL fragment early so the browser never does native
-       scroll-to-anchor for zero-height tab-toc-heading elements.
-       collapsible-sections.js reads __ubSavedHash on init. -->
-  <script>history.scrollRestoration='manual';if(location.hash){window.__ubSavedHash=location.hash;history.replaceState(null,'',location.pathname+location.search)}</script>
+  <!-- On fresh navigation with a #fragment, strip it early so
+       hash-navigation.js controls reveal + scroll instead of
+       the browser's native anchor jump.  Disable scrollRestoration
+       to prevent the browser from racing our JS scroll to 0.
+       On reload, leave the URL alone so the browser handles it. -->
+  <script>(function(){var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];var isReload=n?n.type==='reload':(performance.navigation&&performance.navigation.type===1);if(!isReload&&location.hash){window.__ubSavedHash=location.hash;history.scrollRestoration='manual';history.replaceState(null,'',location.pathname+location.search)}})()</script>
   <!-- Preload critical Latin font files (same-origin, no DNS hops) -->
   <link rel="preload" href="../../../../assets/fonts/texturina-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../../../assets/fonts/new-rocker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -1124,28 +1126,24 @@
 <h2 id="effects">Effects</h2>
 <p>The lingering connection to Link makes <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> dropped equipment behave slightly different to normal equipment:</p>
 <ul>
-<li>It still contributes to <a href="search:Zuggle Overload">Zuggle Overload</a>, like zuggles and invizuggles do, but with some benefits:<ul>
+<li>It still contributes to <a href="search:Zuggle Overload">Zuggle Overload</a>, like zuggles and invizuggles do, but with some benefits:</li>
 <li>Unlike zuggles, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drops don't become <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parents of anything newly fused to a weapon or shield.</li>
 <li>Unlike invizuggles, individually detaching <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drops from Link is easy, and doesn't require a game close.</li>
 <li>This trick is sometimes called <em>local overload</em>.</li>
-</ul>
-</li>
 <li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> dropped equipment will continue to have its physics updated during some cutscenes and dialog text.</li>
 <li>Ascending while a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop is being recalled will immediately cancel the recall. This is a way to test if some dropped equipment is a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop or not.</li>
 </ul>
 <h2 id="direct-construction">Direct construction</h2>
 <p>You don't need to go through the whole <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> state to make a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop. You can also make one by slightly modifying a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> method:</p>
-<ul>
-<li><a href="search:Map Zuggle">Map</a> (<code>1.0</code>–<code>1.1.1</code>, or any version with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment): Perform the inputs as described, but not against a wall so that both items can drop. The first item initially equipped will be a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop.</li>
-<li><a href="search:Drop Delay Zuggle">Drop Delay</a> (<code>1.0</code>–<code>1.1.2</code>): Perform the inputs as described, but don't stand facing a wall (or if you, don't Down to make Link turn). The item that was dropped while equipped will be a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop.</li>
-<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> dropping on version <code>1.2.0</code> or later with a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a>:<ul>
-<li>Drop swap your target item, then a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> weapon/shield of the opposite kind</li>
-<li>Pause buffer</li>
-<li>Drop the swapped-to item of the original target kind</li>
-<li>Unpause, and the first dropped item will be a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop</li>
-</ul>
-</li>
-</ul>
+<p>=== Map (<code>1.0</code>–<code>1.1.1</code>, or any version with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment) ###
+- Perform the inputs to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/D55/" class="glitch-autolink" title="Map Zuggling" target="_blank" rel="noopener noreferrer">Map Zuggling</a> as described, but not with your back to a wall, so that both items can drop. The first item initially equipped will be a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop.</p>
+<p>=== Drop Delay (<code>1.0</code>–<code>1.1.2</code>) ###
+- Perform the inputs of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/BX1/" class="glitch-autolink" title="Drop Delay Zuggle" target="_blank" rel="noopener noreferrer">Drop Delay Zuggle</a> as described, but not near a wall, so that everything has room to drop. The first item that was dropped while equipped will be a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop.</p>
+<p>=== <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">Portacull</a> (<code>1.2.0</code>–<code>1.4.3</code>) ###
+- Drop swap your target item, then a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> weapon/shield of the opposite kind.
+- Pause buffer.
+- Drop the swapped-to item of the original target kind.
+- Unpause, and the first dropped item will be a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop.</p>
 <h2 id="undoing">Undoing</h2>
 <p>You can undo <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> drop status by picking the equipment up and dropping it again, or moving it with Ultrahand.</p>
 <hr />

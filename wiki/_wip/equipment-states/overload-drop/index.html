@@ -69,10 +69,12 @@
 
     
     
-  <!-- Strip URL fragment early so the browser never does native
-       scroll-to-anchor for zero-height tab-toc-heading elements.
-       collapsible-sections.js reads __ubSavedHash on init. -->
-  <script>history.scrollRestoration='manual';if(location.hash){window.__ubSavedHash=location.hash;history.replaceState(null,'',location.pathname+location.search)}</script>
+  <!-- On fresh navigation with a #fragment, strip it early so
+       hash-navigation.js controls reveal + scroll instead of
+       the browser's native anchor jump.  Disable scrollRestoration
+       to prevent the browser from racing our JS scroll to 0.
+       On reload, leave the URL alone so the browser handles it. -->
+  <script>(function(){var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];var isReload=n?n.type==='reload':(performance.navigation&&performance.navigation.type===1);if(!isReload&&location.hash){window.__ubSavedHash=location.hash;history.scrollRestoration='manual';history.replaceState(null,'',location.pathname+location.search)}})()</script>
   <!-- Preload critical Latin font files (same-origin, no DNS hops) -->
   <link rel="preload" href="../../../../assets/fonts/texturina-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../../../assets/fonts/new-rocker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -1030,18 +1032,28 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
+  <a href="#terminology" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Description
+        Terminology
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Description">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reloading
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#effects" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1049,11 +1061,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1101,9 +1108,17 @@
 <p class="admonition-title">UNDER CONSTRUCTION</p>
 <p>This page is still being written. It may be used as-is, but some sections are incomplete, and others may contain incorrect information.</p>
 </div>
-<h2 id="description">Description</h2>
-<p>This is the best equipment state for sure!</p>
-<h3 id="effects">Effects</h3>
+<p>When Link is supposed to have some new equipment attached to him, but he is <a href="search:Zuggle Overload">overloaded</a>, so it doesn't form any connection to his actor model. It still connects to the game's inventory system properly.</p>
+<h2 id="terminology">Terminology</h2>
+<p>The 'drop' in 'overload drop' does <em>not</em> refer to the usual act of dropping equipment. It instead refers to the fact that the equipment spawns at about the height of Link's feet, but as it fails to connect to Link, it drops to the ground (or often <em>through</em> the ground).</p>
+<p>The term 'overload equip' refers to the exact same equipment state, but is usually used when the equipment already exists in the world, and is picked up while Link is overloaded.</p>
+<h2 id="reloading">Reloading</h2>
+<p>When you reload straight into a different file, while you have enough zuggles to be close to the overload threshold, Link's new equipment (and even parts of his body) can often overload drop. This happens because the game tries to add the new equipment from the loading file to Link before deleting the old equipment from the file you were just playing. To fix this:
+- Unequip and re-equip your active equipment.
+- Fail-drop the active equipment to reconnect it to Link.
+- For overloaded armour pieces, unequip and re-equip them.</p>
+<h2 id="effects">Effects</h2>
+<p>Equipping items while Link is overloaded opens up the possibility of fuse glitches (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="Fuse Entanglement" target="_blank" rel="noopener noreferrer">Fuse Entanglement</a>, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a>, Pseudo Fuse) without needing to hit any timing windows (beyond those needed for <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggling</a>).</p>
 
 
 
