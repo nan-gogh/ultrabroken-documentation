@@ -13,6 +13,7 @@
  *   • Active heading detection (skips hidden headings)
  *   • .md-nav__link--active on the desktop TOC
  *   • Desktop TOC sidebar auto-scroll  (replaces toc.follow)
+ *   • navigation.tracking hash updates (replaces native feature)
  *   • 'ub:toc-active' CustomEvent for mobile TOC sync
  *   • window.__ubTocSpy.refresh() for external callers
  */
@@ -26,6 +27,7 @@
   var tocLinks     = {};   // id → desktop <a.md-nav__link>
   var lastActiveId = null;
   var scrollRAF    = 0;
+  var trackingTimer = 0;
 
   /* ── Helpers ───────────────────────────────────────────── */
 
@@ -126,6 +128,23 @@
     window.dispatchEvent(
       new CustomEvent('ub:toc-active', { detail: { href: href, id: newId } })
     );
+
+    // navigation.tracking — debounced hash update
+    // H1 maps to the page itself, so clear the hash instead of setting it.
+    if (newId) {
+      var isH1 = activeHeading && activeHeading.el &&
+                 activeHeading.el.tagName === 'H1';
+      clearTimeout(trackingTimer);
+      trackingTimer = setTimeout(function () {
+        if (isH1) {
+          if (location.hash) {
+            history.replaceState(null, '', location.pathname + location.search);
+          }
+        } else if (location.hash !== '#' + newId) {
+          history.replaceState(null, '', '#' + newId);
+        }
+      }, 250);
+    }
   }
 
   /* ── Auto-scroll desktop TOC sidebar (replaces toc.follow) */
@@ -180,6 +199,7 @@
   function cleanup() {
     window.removeEventListener('scroll', onScroll);
     if (scrollRAF) { cancelAnimationFrame(scrollRAF); scrollRAF = 0; }
+    clearTimeout(trackingTimer);
     lastActiveId = null;
   }
 
