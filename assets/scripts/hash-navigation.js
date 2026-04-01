@@ -173,29 +173,41 @@
 
     // Schedule the scroll.  If a tab or collapsed section was just
     // revealed, CSS transitions need ~120 ms to settle before the
-    // heading's final position is reliable.  On a fresh page load
-    // the mobile header may not have laid out yet — a short delay
-    // ensures getBoundingClientRect() returns its final height.
-    // On interactive hashchange with nothing to reveal, one paint
+    // heading's final position is reliable.  Otherwise one paint
     // frame suffices to override the browser's native scroll.
-    var scrollDelay = revealed ? 120 : (fromSaved ? 60 : 0);
+    var scrollDelay = revealed ? 120 : 0;
 
     function doScroll() {
       scrollToTarget(target, false);          // always instant
-      if (fromSaved) {
-        requestAnimationFrame(function () {
-          if (location.hash !== '#' + id) {
-            history.replaceState(null, '', '#' + id);
-          }
-        });
+    }
+
+    function restoreHash() {
+      if (fromSaved && location.hash !== '#' + id) {
+        history.replaceState(null, '', '#' + id);
       }
     }
 
     requestAnimationFrame(function () {
       if (scrollDelay) {
-        setTimeout(doScroll, scrollDelay);
+        setTimeout(function () {
+          doScroll();
+          requestAnimationFrame(restoreHash);
+        }, scrollDelay);
       } else {
         doScroll();
+        requestAnimationFrame(restoreHash);
+      }
+
+      // Self-correct: fonts loading after the initial scroll can
+      // change header/heading dimensions.  Once fonts are ready,
+      // re-scroll to lock the final position.  On fast connections
+      // this is a no-op since fonts are already loaded.
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () {
+          requestAnimationFrame(function () {
+            scrollToTarget(target, false);
+          });
+        });
       }
     });
   }
