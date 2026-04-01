@@ -60,10 +60,15 @@
     var isMobile = drawer && drawer.checked;
     if (isMobile) drawer.checked = false;
 
+    // Set hash FIRST so :target CSS (scroll-margin-top) is active
+    // when scrollIntoView fires.  replaceState avoids history pollution.
+    history.replaceState(null, '', hash);
+
     if (target) {
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
-        // Single scroll call — same function for all heading types.
+        // Reveal may have caused layout shifts — use instant scroll
+        // to avoid smooth-scroll targeting a stale position.
         window.__ubScrollToTarget(target, true);
 
         // Tab headings: also center the active label strip horizontally.
@@ -91,8 +96,5 @@
         }
       }, delay);
     }
-
-    // Update hash without creating a history entry
-    history.replaceState(null, '', hash);
   }, true);  // <-- capture phase on window
 })();

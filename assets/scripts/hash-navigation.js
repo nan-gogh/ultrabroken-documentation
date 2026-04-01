@@ -119,22 +119,22 @@
 
   /**
    * Scroll an element into view, accounting for the sticky header.
-   * Uses scrollIntoView + inline scroll-margin-top so the offset
-   * exactly matches what the browser does for native hash navigation.
+   *
+   * Delegates offset to Material's CSS `:target { scroll-margin-top }`
+   * whenever possible.  The hash must be set BEFORE calling this so
+   * the `:target` pseudo-class is active.  For elements that won't
+   * match `:target` (e.g. tab-toc-headings whose ID differs from
+   * the URL hash, or when no hash is set), the CSS `scroll-margin-top`
+   * already baked into glow.css (4.8rem for .tab-toc-heading) or
+   * Material's base heading styles will be used as-is.
+   *
+   * We never set inline scroll-margin-top — that was the source of
+   * the offset mismatch between TOC clicks and permalink navigation.
+   *
    * @param {Element} el        Element to scroll to.
    * @param {boolean} [smooth]  true → smooth animation; false → instant.
    */
   function scrollToTarget(el, smooth) {
-    var header = document.querySelector('.md-header');
-    // Visible bottom of the header — correctly accounts for sticky tabs,
-    // auto-hide, custom banners, and any other sticky/fixed top elements.
-    var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-    // For headings, include half the computed top margin so the
-    // breathing room above the heading is proportional but not excessive.
-    if (/^H[1-6]$/.test(el.tagName)) {
-      offset += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
-    }
-    el.style.scrollMarginTop = offset + 'px';
     el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
   }
 
@@ -143,15 +143,16 @@
   /**
    * Reveal the hash target and scroll to it.
    *
-   * This is the SINGLE scroll authority for permalink / hash
-   * navigation — both fresh-load and hashchange are handled here
-   * with the same scrollToTarget() call that TOC clicks use.
-   * Permalink scroll is always instant (no smooth animation) to
-   * override the browser's native scroll-to-anchor cleanly.
-   *
    * On a fresh page load the early <head> script has already saved
-   * the hash in window.__ubSavedHash and cleared the URL — we read
-   * it here.
+   * the hash in window.__ubSavedHash and cleared the URL — we
+   * restore it first (activating :target CSS) then scroll.
+   *
+   * On hashchange with no reveal needed, the browser already did
+   * native scroll-to-anchor using :target CSS — we do NOT re-scroll
+   * to avoid fighting it.
+   *
+   * On hashchange that reveals a tab/collapsed section, we scroll
+   * after a short delay for the CSS transition to settle.
    */
   function openForHash() {
     var hash = location.hash;
@@ -169,45 +170,30 @@
     var target = document.getElementById(id);
     if (!target) return;
 
+    // Restore the hash FIRST so :target CSS activates scroll-margin-top
+    // before we call scrollIntoView.
+    if (location.hash !== '#' + id) {
+      history.replaceState(null, '', '#' + id);
+    }
+
     var revealed = revealTarget(target);
 
-    // Schedule the scroll.  If a tab or collapsed section was just
-    // revealed, CSS transitions need ~120 ms to settle before the
-    // heading's final position is reliable.  Otherwise one paint
-    // frame suffices to override the browser's native scroll.
+    // On hashchange where nothing needed revealing, the browser's
+    // native scroll-to-anchor already used :target CSS offset — done.
+    if (!fromSaved && !revealed) return;
+
+    // If we revealed a tab/collapse, the layout is shifting — wait
+    // for CSS transitions to finish, then scroll.
+    // On fresh load (fromSaved), scroll immediately on next frame.
     var scrollDelay = revealed ? 120 : 0;
-
-    function doScroll() {
-      scrollToTarget(target, false);          // always instant
-    }
-
-    function restoreHash() {
-      if (fromSaved && location.hash !== '#' + id) {
-        history.replaceState(null, '', '#' + id);
-      }
-    }
 
     requestAnimationFrame(function () {
       if (scrollDelay) {
         setTimeout(function () {
-          doScroll();
-          requestAnimationFrame(restoreHash);
+          scrollToTarget(target, false);
         }, scrollDelay);
       } else {
-        doScroll();
-        requestAnimationFrame(restoreHash);
-      }
-
-      // Self-correct: fonts loading after the initial scroll can
-      // change header/heading dimensions.  Once fonts are ready,
-      // re-scroll to lock the final position.  On fast connections
-      // this is a no-op since fonts are already loaded.
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(function () {
-          requestAnimationFrame(function () {
-            scrollToTarget(target, false);
-          });
-        });
+        scrollToTarget(target, false);
       }
     });
   }
