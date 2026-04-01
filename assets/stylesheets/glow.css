@@ -1781,26 +1781,15 @@ li.task-list-item a, li.task-list a {
    GLITCH OF THE DAY
    "On this day in glitch history" card shown on the homepage.
    ------------------------------------------------------------------------------- */
-#glitch-of-the-day {
+#gotd-content {
   display: none;    /* hidden until JS populates it */
 }
 .gotd-card {
-  margin: 1rem 0 1.2rem;
+  margin: 0.5rem 0 1.2rem;
   padding: 0.8rem 1rem;
   border-left: 0.2rem solid var(--teal-glow);
   border-radius: 0.2rem;
   background: rgba(0, 240, 194, 0.04);
-}
-.gotd-heading {
-  margin: 0 0 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--teal-glow);
-}
-.gotd-icon {
-  font-style: normal;
 }
 .gotd-entry {
   display: flex;
@@ -1816,6 +1805,9 @@ li.task-list-item a, li.task-list a {
 .gotd-name:hover {
   color: var(--teal-glow);
 }
+.gotd-name:hover .gotd-label {
+  color: var(--md-default-fg-color);
+}
 .gotd-label {
   font-family: var(--md-code-font-family);
   font-size: 0.75em;
@@ -1823,7 +1815,7 @@ li.task-list-item a, li.task-list a {
   padding: 0.1em 0.35em;
   border-radius: 0.15rem;
   background: var(--md-code-bg-color);
-  color: var(--md-code-fg-color);
+  color: var(--md-default-fg-color);
   vertical-align: middle;
 }
 .gotd-meta {

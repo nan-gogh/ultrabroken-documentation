@@ -203,7 +203,6 @@
           var ev = r.evidence || [];
           if (Array.isArray(ev) && ev.length && w.evidence) {
             w.evidence.appendChild(el('h2', { class: 'ub-ai-resources' }, 'Resources'));
-            w.evidence.appendChild(el('hr', { class: 'ub-ai-resources-sep' }));
             var list = el('ul', { class: 'ub-ai-evidence-list' });
             w.evidence.appendChild(list);
             ev.forEach(function (item) {
@@ -226,7 +225,6 @@
           var modelSources = Array.isArray(r.sources) ? r.sources : [];
           if (U.SHOW_MODEL_SOURCES && modelSources.length && w.evidence) {
             w.evidence.appendChild(el('h2', { class: 'ub-ai-related' }, 'Related'));
-            w.evidence.appendChild(el('hr', { class: 'ub-ai-related-sep' }));
             var rlist = el('ul', { class: 'ub-ai-related-list' });
             w.evidence.appendChild(rlist);
             modelSources.forEach(function (s) {

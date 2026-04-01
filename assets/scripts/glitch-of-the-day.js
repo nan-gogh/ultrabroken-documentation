@@ -9,7 +9,8 @@
 (function () {
   'use strict';
 
-  var ROOT_ID = 'glitch-of-the-day';
+  var ROOT_ID = 'gotd-content';
+  var HEADING_ID = 'glitch-of-the-day';
 
   /* ── Helpers ──────────────────────────────────────────── */
 
@@ -42,24 +43,20 @@
   /* ── Render ───────────────────────────────────────────── */
 
   function render(root, entry, isHistory) {
-    var html = '<div class="gotd-card">';
-    if (isHistory) {
-      html += '<p class="gotd-heading">' +
-              '<span class="gotd-icon">📅</span> ' +
-              'Glitch of the Day' +
-              '</p>';
-    } else {
-      html += '<p class="gotd-heading">' +
-              '<span class="gotd-icon">✨</span> ' +
-              'Glitch Spotlight' +
-              '</p>';
+    // Update the section heading text (keep permalink icon intact)
+    var heading = document.getElementById(HEADING_ID);
+    if (heading) {
+      var share = heading.querySelector('.ub-heading-share');
+      heading.textContent = isHistory ? '\uD83D\uDCC5 Glitch of the Day' : '\u2728 Glitch Spotlight';
+      if (share) heading.appendChild(share);
     }
 
     var e = entry;
     var link = resolveHref(e.href);
 
+    var html = '<div class="gotd-card">';
     html += '<div class="gotd-entry">';
-    html += '<a class="gotd-name" href="' + link + '">' +
+    html += '<a class="gotd-name" href="' + link + '" target="_blank" rel="noopener noreferrer">' +
             e.name +
             (e.label ? ' <code class="gotd-label">' + e.label + '</code>' : '') +
             '</a>';
@@ -74,7 +71,6 @@
     }
     html += '</span>';
     html += '</div>';
-
     html += '</div>';
     root.innerHTML = html;
     root.style.display = 'block';
