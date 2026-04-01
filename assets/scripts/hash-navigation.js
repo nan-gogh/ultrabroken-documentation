@@ -173,13 +173,21 @@
 
     var revealed = revealTarget(target);
 
-    // On page reload, reveal tabs/sections but don't scroll —
-    // the browser restores the user's exact scroll position from
-    // history.  Just put the hash back in the URL.
+    // On page reload, reveal tabs/sections but don't navigate —
+    // restore the exact scroll position the user had before reload.
     if (window.__ubIsReload) {
       window.__ubIsReload = false;
       window.__ubReloadHash = null;
       history.replaceState(null, '', '#' + id);
+      // Restore saved scroll position after a paint frame
+      // (layout must be complete first).
+      var savedY = window.__ubReloadScrollY;
+      if (savedY != null) {
+        window.__ubReloadScrollY = null;
+        requestAnimationFrame(function () {
+          window.scrollTo(0, savedY);
+        });
+      }
       return;
     }
 
