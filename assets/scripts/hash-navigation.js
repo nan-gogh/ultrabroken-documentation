@@ -128,8 +128,14 @@
     var base = header ? header.offsetHeight : 0;
     if (/^H[1-6]$/.test(el.tagName)) {
       if (el.classList.contains('tab-toc-heading')) {
-        var tabs = document.querySelector('.md-tabs');
-        if (tabs) base -= tabs.offsetHeight * 0.25;
+        // The tab heading anchor sits right before its .tabbed-set.
+        // Subtract the set's margin-top and padding-top to pull the
+        // scroll position up to the tab labels rather than leaving a gap.
+        var set = el.nextElementSibling;
+        if (set && set.classList.contains('tabbed-set')) {
+          var cs = getComputedStyle(set);
+          base -= (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.paddingTop) || 0);
+        }
       } else {
         base += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
       }
