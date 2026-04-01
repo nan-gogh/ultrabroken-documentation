@@ -173,10 +173,12 @@
 
     // Schedule the scroll.  If a tab or collapsed section was just
     // revealed, CSS transitions need ~120 ms to settle before the
-    // heading's final position is reliable.  Otherwise one paint
-    // frame suffices (also lets us run AFTER the browser's native
-    // scroll-to-anchor on hashchange so we override it cleanly).
-    var scrollDelay = revealed ? 120 : 0;
+    // heading's final position is reliable.  On a fresh page load
+    // the mobile header may not have laid out yet — a short delay
+    // ensures getBoundingClientRect() returns its final height.
+    // On interactive hashchange with nothing to reveal, one paint
+    // frame suffices to override the browser's native scroll.
+    var scrollDelay = revealed ? 120 : (fromSaved ? 60 : 0);
 
     function doScroll() {
       scrollToTarget(target, false);          // always instant
