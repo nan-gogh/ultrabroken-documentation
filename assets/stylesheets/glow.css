@@ -1676,11 +1676,16 @@ li.task-list-item a, li.task-list a {
    Tapping the label opens Material's native slide-in panel (full TOC + back).
    --------------------------------------------------------------------------- */
 
-/* Indent levels for flattened TOC sub-items � matches Material's native values */
+/* Indent levels for flattened TOC sub-items — matches Material's native values */
 .ub-toc-indent-1 > .md-nav__link { padding-left: 1.4rem; }
 .ub-toc-indent-2 > .md-nav__link { padding-left: 2rem; }
 .ub-toc-indent-3 > .md-nav__link { padding-left: 2.6rem; }
 .ub-toc-indent-4 > .md-nav__link { padding-left: 3.2rem; }
+
+/* Hide Material's default separator lines between TOC entries on mobile.
+   Uncomment the rule below to restore them. */
+.ub-toc-header .md-nav__item { border-top: none; }
+/* .ub-toc-header .md-nav__item { border-top: .05rem solid var(--md-default-fg-color--lightest); } */
 
 @media (max-width: 76.1875em) {
   /* Wrapper: non-scrolling flex child between title and list */
