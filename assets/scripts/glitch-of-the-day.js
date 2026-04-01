@@ -43,38 +43,46 @@
 
   /* ── Render ───────────────────────────────────────────── */
 
-  function render(root, entries) {
+  function render(root, entry, isHistory) {
     var html = '<div class="gotd-card">';
-    html += '<p class="gotd-heading">' +
-            '<span class="gotd-icon">📅</span> ' +
-            'On This Day in Glitch History' +
-            '</p>';
+    if (isHistory) {
+      html += '<p class="gotd-heading">' +
+              '<span class="gotd-icon">📅</span> ' +
+              'On This Day in Glitch History' +
+              '</p>';
+    } else {
+      html += '<p class="gotd-heading">' +
+              '<span class="gotd-icon">✨</span> ' +
+              'Glitch of the Day' +
+              '</p>';
+    }
 
-    for (var i = 0; i < entries.length; i++) {
-      var e = entries[i];
-      var link = resolveHref(e.href);
-      var year = e.date.split('-')[0];
+    var e = entry;
+    var link = resolveHref(e.href);
 
-      html += '<div class="gotd-entry">';
-      html += '<a class="gotd-name" href="' + link + '">' +
-              e.name +
-              (e.label ? ' <span class="gotd-label">' + e.label + '</span>' : '') +
-              '</a>';
-      html += '<span class="gotd-meta">';
+    html += '<div class="gotd-entry">';
+    html += '<a class="gotd-name" href="' + link + '">' +
+            e.name +
+            (e.label ? ' <span class="gotd-label">' + e.label + '</span>' : '') +
+            '</a>';
+    html += '<span class="gotd-meta">';
+    if (isHistory) {
       html += 'Discovered ' + formatDate(e.date);
-      if (e.credits && e.credits.length) {
-        html += ' by ' + e.credits.join(', ');
+    } else {
+      html += 'Discovered on ' + formatDate(e.date);
+    }
+    if (e.credits && e.credits.length) {
+      html += ' by ' + e.credits.join(', ');
+    }
+    html += '</span>';
+    if (e.tags && e.tags.length) {
+      html += '<span class="gotd-tags">';
+      for (var j = 0; j < e.tags.length; j++) {
+        html += '<code class="gotd-tag">' + e.tags[j] + '</code>';
       }
       html += '</span>';
-      if (e.tags && e.tags.length) {
-        html += '<span class="gotd-tags">';
-        for (var j = 0; j < e.tags.length; j++) {
-          html += '<code class="gotd-tag">' + e.tags[j] + '</code>';
-        }
-        html += '</span>';
-      }
-      html += '</div>';
     }
+    html += '</div>';
 
     html += '</div>';
     root.innerHTML = html;
@@ -91,6 +99,7 @@
     var mm = String(now.getMonth() + 1).padStart(2, '0');
     var dd = String(now.getDate()).padStart(2, '0');
     var todayKey = mm + '-' + dd;
+    var seed = dayHash(now.getFullYear() + '-' + todayKey);
 
     fetch('../assets/data/grimoire-data.json')
       .then(function (r) {
@@ -98,20 +107,24 @@
         return r.json();
       })
       .then(function (data) {
-        // Collect all entries whose discovery date shares today's month+day
+        // Collect entries with valid dates
+        var dated = [];
         var matches = [];
         for (var i = 0; i < data.length; i++) {
           var d = data[i].date;
           if (!d || d.length < 10) continue;
+          dated.push(data[i]);
           if (d.slice(5) === todayKey) matches.push(data[i]);
         }
-        if (!matches.length) return;   // nothing for today — stay hidden
+        if (!dated.length) return;
 
-        // Pick one random entry, stable for the whole calendar day
-        var seed = dayHash(now.getFullYear() + '-' + todayKey);
-        var pick = matches[seed % matches.length];
-
-        render(root, [pick]);
+        if (matches.length) {
+          // "On This Day" — a glitch discovered on this calendar day
+          render(root, matches[seed % matches.length], true);
+        } else {
+          // Fallback — random "Glitch of the Day" (stable for the whole day)
+          render(root, dated[seed % dated.length], false);
+        }
       })
       .catch(function () { /* silent — just don't show the section */ });
   }
