@@ -66,9 +66,9 @@
      desktop and mobile TOCs get the decoration.           ──── */
 
   // Matches trailing version patterns:
-  //   1.0.0  |  1.0.0+  |  1.0.0-1.1.1  |  All versions
-  // Multiple badges separated by optional whitespace.
-  var VERSION_TAIL_RE = /(?:\s+(?:\d+\.\d+\.\d+(?:[–-]\d+\.\d+\.\d+)?(?:\+)?|All versions))+$/;
+  //   1.0.0  |  1.0.0+  |  1.0.0-1.1.1  |  1.3.0/1.4.0+  |  All versions
+  // Multiple badges separated by whitespace.
+  var VERSION_TAIL_RE = /(?:\s+(?:\d+\.\d+\.\d+(?:\/\d+\.\d+\.\d+)?(?:[–-]\d+\.\d+\.\d+(?:\/\d+\.\d+\.\d+)?)?(?:\+)?|All versions))+$/;
 
   function decorateTocVersionLabels() {
     var tocNav = document.querySelector('.md-sidebar--secondary .md-nav--secondary');
@@ -84,8 +84,8 @@
       var titlePart = text.slice(0, match.index);
       var versionPart = match[0].trim();
 
-      // Split into individual badges (each may be "1.0.0", "1.0.0+", "1.0.0-1.1.1", "All versions")
-      var badges = versionPart.match(/\d+\.\d+\.\d+(?:[–-]\d+\.\d+\.\d+)?(?:\+)?|All versions/g);
+      // Split into individual badges (e.g. "1.0.0", "1.0.0+", "1.0.0-1.1.1", "1.3.0/1.4.0+", "All versions")
+      var badges = versionPart.match(/\d+\.\d+\.\d+(?:\/\d+\.\d+\.\d+)?(?:[–-]\d+\.\d+\.\d+(?:\/\d+\.\d+\.\d+)?)?(?:\+)?|All versions/g);
       if (!badges) continue;
 
       var html = titlePart.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
