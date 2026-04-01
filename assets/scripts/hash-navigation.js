@@ -119,18 +119,13 @@
 
   /**
    * Compute the correct scroll-margin-top for a heading.
-   * Uses offsetHeight (layout-stable, not affected by scroll
-   * position or transforms) so values can be cached ahead of
-   * any scroll-to-anchor event.
+   * .md-tabs is a child of .md-header, so header.offsetHeight
+   * already includes the tabs bar — never sum them.
+   * Use the outermost sticky bar's offsetHeight as the base.
    */
   function computeScrollMargin(el) {
     var header = document.querySelector('.md-header');
-    var tabs   = document.querySelector('.md-tabs');
-    var base   = 0;
-    // Both header and tabs are sticky — total offset is their
-    // combined heights.
-    if (header) base += header.offsetHeight;
-    if (tabs && tabs.offsetHeight > 0) base += tabs.offsetHeight;
+    var base = header ? header.offsetHeight : 0;
     if (/^H[1-6]$/.test(el.tagName) && !el.classList.contains('tab-toc-heading')) {
       base += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
     }
