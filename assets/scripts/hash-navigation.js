@@ -127,11 +127,10 @@
     var header = document.querySelector('.md-header');
     var tabs   = document.querySelector('.md-tabs');
     var base   = 0;
-    if (tabs && tabs.offsetHeight > 0) {
-      base = tabs.offsetHeight;
-    } else if (header) {
-      base = header.offsetHeight;
-    }
+    // Both header and tabs are sticky — total offset is their
+    // combined heights.
+    if (header) base += header.offsetHeight;
+    if (tabs && tabs.offsetHeight > 0) base += tabs.offsetHeight;
     if (/^H[1-6]$/.test(el.tagName) && !el.classList.contains('tab-toc-heading')) {
       base += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
     }
