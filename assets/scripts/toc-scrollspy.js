@@ -37,9 +37,15 @@
     return h + Math.max(8, Math.round(h * 0.5));
   }
 
-  /** Element (or an ancestor) is display:none → offsetParent null */
+  /** Element (or an ancestor) is display:none → offsetParent null.
+      Inactive tab headings (their tab not checked) are treated as hidden. */
   function isVisible(el) {
-    return el.offsetParent !== null;
+    if (el.offsetParent === null) return false;
+    if (el.classList.contains('tab-toc-heading') && el.dataset.ubTabRadio) {
+      var radio = document.getElementById(el.dataset.ubTabRadio);
+      if (radio && !radio.checked) return false;
+    }
+    return true;
   }
 
   /** Accumulated offsetTop through the offsetParent chain */

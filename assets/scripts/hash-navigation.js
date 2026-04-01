@@ -152,8 +152,8 @@
    * the hash in window.__ubSavedHash and cleared the URL — we read
    * it here so we can scroll with the correct header offset.
    *
-   * On hashchange (permalink click, back/forward) we also scroll
-   * with our JS offset for consistency with TOC link clicks.
+   * On hashchange (back/forward) we also scroll with our JS offset
+   * for consistency with TOC link clicks.
    *
    * On reload the browser may have already scrolled natively; we
    * re-scroll to apply the correct offset.
@@ -174,22 +174,35 @@
     var target = document.getElementById(id);
     if (!target) return;
 
-    revealTarget(target);
+    var revealed = revealTarget(target);
 
     // Restore the hash (stripped on fresh navigate) before scrolling.
     if (location.hash !== '#' + id) {
       history.replaceState(null, '', '#' + id);
     }
 
-    // Use rAF to ensure sticky header layout is stable before
-    // measuring its bounding rect.  Also restores scrollRestoration
-    // (set to 'manual' in <head> to block browser race on mobile).
+    // Double-rAF ensures layout is complete (header / sticky tabs
+    // composited) even on mobile.  Add extra time when a tab or
+    // collapsed section was revealed for the CSS transition.
     requestAnimationFrame(function () {
-      scrollToTarget(target, false);
-      if (history.scrollRestoration === 'manual') {
-        history.scrollRestoration = 'auto';
-      }
+      requestAnimationFrame(function () {
+        if (revealed) {
+          setTimeout(function () {
+            scrollToTarget(target, false);
+            restoreScrollRestoration();
+          }, 120);
+        } else {
+          scrollToTarget(target, false);
+          restoreScrollRestoration();
+        }
+      });
     });
+  }
+
+  function restoreScrollRestoration() {
+    if (history.scrollRestoration === 'manual') {
+      history.scrollRestoration = 'auto';
+    }
   }
 
   // Expose for other scripts.
