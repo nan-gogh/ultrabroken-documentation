@@ -131,14 +131,11 @@
 
     // navigation.tracking — debounced hash update
     // H1 maps to the page itself, so clear the hash instead of setting it.
-    // Respect __ubHashGuard: collapsible-sections.js temporarily strips the
-    // hash while scrolling to a tab heading; don't overwrite it.
     if (newId) {
       var isH1 = activeHeading && activeHeading.el &&
                  activeHeading.el.tagName === 'H1';
       clearTimeout(trackingTimer);
       trackingTimer = setTimeout(function () {
-        if (window.__ubHashGuard) return;
         if (isH1) {
           if (location.hash) {
             history.replaceState(null, '', location.pathname + location.search);

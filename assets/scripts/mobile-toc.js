@@ -1,5 +1,5 @@
 /**
- * mobile-toc.js — Table of contents in nav drawer header + smooth-scroll
+ * mobile-toc.js — Table of contents in nav drawer header
  * ──────────────────────────────────────────────────────────────────────
  * Injects a "Table of contents" button into the header area of EVERY
  * nav panel in the primary sidebar — between the panel's title and its
@@ -12,10 +12,7 @@
  * Only injected on mobile (<1220px) and only when the page has headings.
  * Desktop already has the right sidebar TOC.
  *
- * All TOC link clicks (desktop + mobile) are intercepted via event
- * delegation: they smooth-scroll to the heading instead of triggering
- * a native anchor jump, and use replaceState so the browser back
- * button isn't polluted.
+ * TOC link click interception (smooth-scroll) lives in toc-link-click.js.
  *
  * Hooks into Material's document$ observable for SPA navigation support.
  */
@@ -371,99 +368,6 @@
       }
     }, { passive: true });
   })();
-
-  /* ── Smooth-scroll for ALL TOC links (desktop + mobile) ──────
-     Registered on `window` in the capture phase — the EARLIEST
-     possible interception point in the DOM event flow:
-       window (capture) → document → html → … → target → … → bubble
-
-     This fires before any Material handler, even capture-phase
-     ones on `document`.  We stop propagation so no other handler
-     (including the browser default) processes the click.        ── */
-  window.addEventListener('click', function (e) {
-    var link = e.target.closest(
-      '.md-sidebar--secondary .md-nav__link, .ub-toc-header .md-nav__link'
-    );
-    // TOC links have pointer-events:none (to kill sticky hover), so
-    // clicks land on the parent <li> instead.  Find the <a> child.
-    if (!link) {
-      var item = e.target.closest('.ub-toc-header .md-nav__item');
-      if (item) link = item.querySelector('.md-nav__link');
-    }
-    if (!link) return;
-
-    // Material rewrites href="#foo" to full absolute URLs at runtime,
-    // so use the .hash property which always returns just "#fragment".
-    var hash = link.hash;
-    if (!hash) return;
-
-    // Only intercept same-page anchors (pathname must match current page)
-    var linkUrl = new URL(link.href, location.href);
-    if (linkUrl.pathname !== location.pathname) return;
-
-    // Kill the event completely
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-
-    var targetId = decodeURIComponent(hash.slice(1));
-    var target = document.getElementById(targetId);
-
-    // Activate the correct tab if the target is inside one.
-    if (target && window.__ubRevealTarget) {
-      window.__ubRevealTarget(target);
-    }
-
-    // On mobile, close the drawer first
-    var drawer = document.getElementById('__drawer');
-    var isMobile = drawer && drawer.checked;
-    if (isMobile) drawer.checked = false;
-
-    if (target) {
-      var delay = isMobile ? 150 : 0;
-      setTimeout(function () {
-        if (target.classList.contains('tab-toc-heading')) {
-          // Tab headings: use window.scrollTo (vertical) + labels.scrollTo
-          // (horizontal) on independent scroll containers so they can't
-          // interfere with each other.  scrollIntoView on .tabbed-labels
-          // would also scroll that container horizontally, causing stutter.
-          var set = target.closest('.tabbed-set');
-          var labels = set ? set.querySelector('.tabbed-labels') : null;
-          if (labels) {
-            var header = document.querySelector('.md-header');
-            var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-            var top = labels.getBoundingClientRect().top + window.scrollY - offset - 4;
-            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-
-            var activeLabel = labels.querySelector('label[for="' + CSS.escape(
-              (set.querySelector('input:checked') || {}).id || ''
-            ) + '"');
-            if (activeLabel) {
-              var lr = activeLabel.getBoundingClientRect();
-              var cr = labels.getBoundingClientRect();
-              var left = labels.scrollLeft + lr.left - cr.left
-                       - (cr.width - lr.width) / 2;
-              labels.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
-            }
-          }
-        } else {
-          // Regular headings: scrollIntoView with Material's :target CSS
-          // (hash was already set via replaceState above).
-          if (window.__ubScrollToTarget) {
-            window.__ubScrollToTarget(target, true);
-          } else {
-            var header = document.querySelector('.md-header');
-            var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-            target.style.scrollMarginTop = (offset + 4) + 'px';
-            target.scrollIntoView({ block: 'start', behavior: 'smooth' });
-          }
-        }
-      }, delay);
-    }
-
-    // Update hash without creating a history entry
-    history.replaceState(null, '', hash);
-  }, true);  // <-- capture phase on window
 
   /* ── Bootstrap ─────────────────────────────────────────────── */
 
