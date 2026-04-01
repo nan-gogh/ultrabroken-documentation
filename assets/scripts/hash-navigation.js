@@ -127,11 +127,11 @@
     var header = document.querySelector('.md-header');
     var base = header ? header.offsetHeight : 0;
     if (/^H[1-6]$/.test(el.tagName)) {
-      var mt = (parseFloat(getComputedStyle(el).marginTop) || 0);
       if (el.classList.contains('tab-toc-heading')) {
-        base -= mt * 1.0;
+        var tabs = document.querySelector('.md-tabs');
+        if (tabs) base -= tabs.offsetHeight * 0.5;
       } else {
-        base += mt * 0.35;
+        base += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
       }
     }
     return base;
