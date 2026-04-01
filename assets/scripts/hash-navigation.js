@@ -126,8 +126,13 @@
   function computeScrollMargin(el) {
     var header = document.querySelector('.md-header');
     var base = header ? header.offsetHeight : 0;
-    if (/^H[1-6]$/.test(el.tagName) && !el.classList.contains('tab-toc-heading')) {
-      base += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
+    if (/^H[1-6]$/.test(el.tagName)) {
+      var mt = (parseFloat(getComputedStyle(el).marginTop) || 0);
+      if (el.classList.contains('tab-toc-heading')) {
+        base -= mt * 0.35;
+      } else {
+        base += mt * 0.35;
+      }
     }
     return base;
   }
