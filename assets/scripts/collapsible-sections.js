@@ -193,10 +193,32 @@
 
   /**
    * Reveal the hash target and scroll to it.
+   *
+   * For tab headings the scroll target is the visible labels bar, not the
+   * zero-height .tab-toc-heading element that the browser would natively
+   * scroll to.  To prevent the browser's native (and sometimes delayed)
+   * scroll-to-anchor from fighting our controlled scroll, we temporarily
+   * strip the URL hash and set window.__ubHashGuard so the scrollspy
+   * doesn't overwrite it while we're working.
+   *
+   * On a fresh page load the early <head> script has already saved the
+   * hash in window.__ubSavedHash and cleared the URL — we read it here.
+   *
    * @param {boolean} [smooth]  true → smooth (interactive); false → instant (init / refresh).
    */
   function openForHash(smooth) {
-    var id = location.hash.slice(1);
+    /* ── Determine the target ID ───────────────────────────── */
+    var hash = location.hash;
+    var fromSaved = false;
+
+    // On fresh loads the <head> script saved + stripped the hash.
+    if (!hash && window.__ubSavedHash) {
+      hash = window.__ubSavedHash;
+      fromSaved = true;
+    }
+    window.__ubSavedHash = null;
+
+    var id = hash ? hash.replace(/^#/, '') : '';
     if (!id) return;
     var target = document.getElementById(id);
     if (!target) return;
@@ -204,10 +226,11 @@
     var revealed = revealTarget(target);
     var isTabHeading = target.classList.contains('tab-toc-heading');
 
-    // For regular headings that didn't need revealing, the browser's
-    // native scroll-to-anchor is sufficient — skip to avoid double-scroll
-    // on page refresh.
-    if (!revealed && !isTabHeading) return;
+    // On hashchange (not initial load), regular non-revealed headings
+    // get native scroll — skip to avoid double-scroll.
+    // On initial load (hash was saved & stripped), we MUST scroll all
+    // headings because native scroll-to-anchor was prevented.
+    if (!fromSaved && !revealed && !isTabHeading) return;
 
     // For tab headings, scroll to the visible tab labels bar.
     // For revealed headings, scroll to the heading itself.
@@ -218,12 +241,36 @@
       if (labels) scrollTarget = labels;
     }
 
+    /* ── Prevent native scroll interference for tab headings ── */
+    // Strip the hash so the browser's delayed scroll-to-anchor (seen
+    // on iOS and some mobile browsers) can't override our position.
+    // On fresh loads the hash is already stripped by the <head> script.
+    if (isTabHeading && !fromSaved && location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    if (isTabHeading) window.__ubHashGuard = true;
+
+    function restoreHash() {
+      window.__ubHashGuard = false;
+      if (location.hash !== '#' + id) {
+        history.replaceState(null, '', '#' + id);
+      }
+    }
+
     if (smooth) {
       // Interactive navigation — allow layout to settle after tab activation.
-      setTimeout(function () { scrollToTarget(scrollTarget, true); }, 120);
+      setTimeout(function () {
+        scrollToTarget(scrollTarget, true);
+        if (isTabHeading) setTimeout(restoreHash, 600);
+        else if (fromSaved) restoreHash();
+      }, 120);
     } else {
       // Init / refresh — instant scroll after one paint frame.
-      requestAnimationFrame(function () { scrollToTarget(scrollTarget, false); });
+      requestAnimationFrame(function () {
+        scrollToTarget(scrollTarget, false);
+        if (isTabHeading) requestAnimationFrame(restoreHash);
+        else if (fromSaved) restoreHash();
+      });
     }
   }
 
