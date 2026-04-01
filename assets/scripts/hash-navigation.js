@@ -119,22 +119,18 @@
 
   /**
    * Scroll an element into view, accounting for the sticky header.
-   *
-   * Delegates offset to Material's CSS `:target { scroll-margin-top }`
-   * whenever possible.  The hash must be set BEFORE calling this so
-   * the `:target` pseudo-class is active.  For elements that won't
-   * match `:target` (e.g. tab-toc-headings whose ID differs from
-   * the URL hash, or when no hash is set), the CSS `scroll-margin-top`
-   * already baked into glow.css (4.8rem for .tab-toc-heading) or
-   * Material's base heading styles will be used as-is.
-   *
-   * We never set inline scroll-margin-top — that was the source of
-   * the offset mismatch between TOC clicks and permalink navigation.
-   *
+   * Sets inline scroll-margin-top from the header's bounding rect
+   * so the offset is always pixel-accurate for the current layout.
    * @param {Element} el        Element to scroll to.
    * @param {boolean} [smooth]  true → smooth animation; false → instant.
    */
   function scrollToTarget(el, smooth) {
+    var header = document.querySelector('.md-header');
+    var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+    if (/^H[1-6]$/.test(el.tagName)) {
+      offset += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
+    }
+    el.style.scrollMarginTop = offset + 'px';
     el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
   }
 
@@ -144,12 +140,13 @@
    * Reveal the hash target and scroll to it.
    *
    * On a fresh page load the early <head> script has already saved
-   * the hash in window.__ubSavedHash and cleared the URL — we
-   * restore it first (activating :target CSS) then scroll.
+   * the hash in window.__ubSavedHash and cleared the URL — we read
+   * it here.  On page reload the head script sets __ubIsReload and
+   * does NOT strip the hash, so the browser restores scroll position
+   * naturally — we only reveal tabs/sections without scrolling.
    *
    * On hashchange with no reveal needed, the browser already did
-   * native scroll-to-anchor using :target CSS — we do NOT re-scroll
-   * to avoid fighting it.
+   * native scroll-to-anchor — we do NOT re-scroll.
    *
    * On hashchange that reveals a tab/collapsed section, we scroll
    * after a short delay for the CSS transition to settle.
@@ -170,21 +167,26 @@
     var target = document.getElementById(id);
     if (!target) return;
 
-    // Restore the hash FIRST so :target CSS activates scroll-margin-top
-    // before we call scrollIntoView.
+    var revealed = revealTarget(target);
+
+    // On page reload, just reveal tabs/sections but don't scroll —
+    // the browser restores the user's scroll position naturally.
+    if (window.__ubIsReload) {
+      window.__ubIsReload = false;
+      return;
+    }
+
+    // On hashchange where nothing needed revealing, the browser's
+    // native scroll already handled it — don't fight it.
+    if (!fromSaved && !revealed) return;
+
+    // Restore the hash (stripped on fresh navigate) before scrolling.
     if (location.hash !== '#' + id) {
       history.replaceState(null, '', '#' + id);
     }
 
-    var revealed = revealTarget(target);
-
-    // On hashchange where nothing needed revealing, the browser's
-    // native scroll-to-anchor already used :target CSS offset — done.
-    if (!fromSaved && !revealed) return;
-
-    // If we revealed a tab/collapse, the layout is shifting — wait
-    // for CSS transitions to finish, then scroll.
-    // On fresh load (fromSaved), scroll immediately on next frame.
+    // If we revealed a tab/collapse, CSS transitions need ~120 ms
+    // to settle.  Otherwise scroll on the next paint frame.
     var scrollDelay = revealed ? 120 : 0;
 
     requestAnimationFrame(function () {
