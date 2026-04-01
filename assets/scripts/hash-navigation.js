@@ -129,7 +129,7 @@
     if (/^H[1-6]$/.test(el.tagName)) {
       if (el.classList.contains('tab-toc-heading')) {
         var tabs = document.querySelector('.md-tabs');
-        if (tabs) base -= tabs.offsetHeight * 1.25;
+        if (tabs) base -= tabs.offsetHeight * 0.5;
       } else {
         base += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
       }
