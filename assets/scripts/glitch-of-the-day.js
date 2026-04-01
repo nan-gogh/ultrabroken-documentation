@@ -60,7 +60,7 @@
             e.name +
             (e.label ? ' <code class="gotd-label">' + e.label + '</code>' : '') +
             '</a>';
-    html += '<span class="gotd-meta">';
+    html += '<em class="gotd-meta">';
     if (isHistory) {
       html += 'Discovered ' + formatDate(e.date);
     } else {
@@ -69,7 +69,7 @@
     if (e.credits && e.credits.length) {
       html += ' by ' + e.credits.join(', ');
     }
-    html += '</span>';
+    html += '</em>';
     html += '</div>';
     html += '</div>';
     root.innerHTML = html;

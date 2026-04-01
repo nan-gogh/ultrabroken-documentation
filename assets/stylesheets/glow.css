@@ -1806,7 +1806,9 @@ li.task-list-item a, li.task-list a {
   color: var(--teal-glow);
 }
 .gotd-name:hover .gotd-label {
-  color: var(--md-default-fg-color);
+  color: var(--md-code-fg-color) !important;
+  background: var(--md-code-bg-color) !important;
+  text-shadow: none !important;
 }
 .gotd-label {
   font-family: var(--md-code-font-family);
@@ -1814,8 +1816,9 @@ li.task-list-item a, li.task-list a {
   font-weight: 400;
   padding: 0.1em 0.35em;
   border-radius: 0.15rem;
-  background: var(--md-code-bg-color);
-  color: var(--md-default-fg-color);
+  background: var(--md-code-bg-color) !important;
+  color: var(--md-code-fg-color) !important;
+  text-shadow: none !important;
   vertical-align: middle;
 }
 .gotd-meta {
