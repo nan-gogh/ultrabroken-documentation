@@ -152,11 +152,11 @@
    * the hash in window.__ubSavedHash and cleared the URL — we read
    * it here so we can scroll with the correct header offset.
    *
-   * On hashchange with no reveal needed, the browser already did
-   * native scroll-to-anchor — we do NOT re-scroll.
+   * On hashchange (permalink click, back/forward) we also scroll
+   * with our JS offset for consistency with TOC link clicks.
    *
-   * On hashchange that reveals a tab/collapsed section, we scroll
-   * after a short delay for the CSS transition to settle.
+   * On reload the browser may have already scrolled natively; we
+   * re-scroll to apply the correct offset.
    */
   function openForHash() {
     var hash = location.hash;
@@ -174,30 +174,20 @@
     var target = document.getElementById(id);
     if (!target) return;
 
-    var revealed = revealTarget(target);
-
-    // On hashchange where nothing needed revealing, the browser's
-    // native scroll already handled it — don't fight it.
-    if (!fromSaved && !revealed) return;
+    revealTarget(target);
 
     // Restore the hash (stripped on fresh navigate) before scrolling.
     if (location.hash !== '#' + id) {
       history.replaceState(null, '', '#' + id);
     }
 
-    // If we revealed a tab/collapse, CSS transitions need ~120 ms
-    // to settle.  Otherwise scroll on the next paint frame.
-    var scrollDelay = revealed ? 120 : 0;
+    scrollToTarget(target, false);
 
-    requestAnimationFrame(function () {
-      if (scrollDelay) {
-        setTimeout(function () {
-          scrollToTarget(target, false);
-        }, scrollDelay);
-      } else {
-        scrollToTarget(target, false);
-      }
-    });
+    // Prevent scrollspy tracking from immediately overwriting
+    // a tab-heading hash with the nearest regular heading.
+    if (target.classList.contains('tab-toc-heading')) {
+      window.__ubTrackingLockUntil = Date.now() + 1500;
+    }
   }
 
   // Expose for other scripts.

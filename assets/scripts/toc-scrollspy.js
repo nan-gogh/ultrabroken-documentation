@@ -131,11 +131,13 @@
 
     // navigation.tracking — debounced hash update
     // H1 maps to the page itself, so clear the hash instead of setting it.
-    if (newId) {
+    // Skip while tracking is locked (after navigation to a tab heading).
+    if (newId && !(Date.now() < (window.__ubTrackingLockUntil || 0))) {
       var isH1 = activeHeading && activeHeading.el &&
                  activeHeading.el.tagName === 'H1';
       clearTimeout(trackingTimer);
       trackingTimer = setTimeout(function () {
+        if (Date.now() < (window.__ubTrackingLockUntil || 0)) return;
         if (isH1) {
           if (location.hash) {
             history.replaceState(null, '', location.pathname + location.search);

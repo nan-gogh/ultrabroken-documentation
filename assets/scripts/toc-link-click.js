@@ -65,8 +65,11 @@
       setTimeout(function () {
         window.__ubScrollToTarget(target, true);
 
-        // Tab headings: also center the active label strip horizontally.
+        // Tab headings: prevent tracking from overwriting the hash,
+        // and center the active label strip horizontally.
         if (target.classList.contains('tab-toc-heading')) {
+          window.__ubTrackingLockUntil = Date.now() + 1500;
+
           var radioId = target.dataset && target.dataset.ubTabRadio;
           if (radioId) {
             var radio = document.getElementById(radioId);
