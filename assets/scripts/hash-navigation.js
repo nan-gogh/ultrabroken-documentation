@@ -115,31 +115,57 @@
     }
   }
 
+  /* ── Scroll offset computation ────────────────────────── */
+
+  /**
+   * Compute the correct scroll-margin-top for a heading.
+   * Uses offsetHeight (layout-stable, not affected by scroll
+   * position or transforms) so values can be cached ahead of
+   * any scroll-to-anchor event.
+   */
+  function computeScrollMargin(el) {
+    var header = document.querySelector('.md-header');
+    var tabs   = document.querySelector('.md-tabs');
+    var base   = 0;
+    if (tabs && tabs.offsetHeight > 0) {
+      base = tabs.offsetHeight;
+    } else if (header) {
+      base = header.offsetHeight;
+    }
+    if (/^H[1-6]$/.test(el.tagName) && !el.classList.contains('tab-toc-heading')) {
+      base += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
+    }
+    return base;
+  }
+
+  /**
+   * Pre-set inline scroll-margin-top on every heading in the
+   * article.  Called once on init (after relocateTabHeadings)
+   * and on window resize.  This means the browser's own native
+   * scroll-to-anchor (triggered by hashchange) uses our offset
+   * — no JS scroll timing race needed.
+   */
+  function applyScrollMargins() {
+    var article = document.querySelector('.md-content__inner');
+    if (!article) return;
+    var headings = article.querySelectorAll(
+      'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]'
+    );
+    for (var i = 0; i < headings.length; i++) {
+      headings[i].style.scrollMarginTop = computeScrollMargin(headings[i]) + 'px';
+    }
+  }
+
   /* ── Scroll to element with header offset ──────────────── */
 
   /**
    * Scroll an element into view, accounting for the sticky header.
-   * Sets inline scroll-margin-top from the header's bounding rect
-   * so the offset is always pixel-accurate for the current layout.
+   * Refreshes the inline scroll-margin-top before scrolling.
    * @param {Element} el        Element to scroll to.
    * @param {boolean} [smooth]  true → smooth animation; false → instant.
    */
   function scrollToTarget(el, smooth) {
-    var header = document.querySelector('.md-header');
-    // With navigation.tabs.sticky, .md-tabs sticks below .md-header.
-    // Use the lowest sticky bar's bottom edge as the offset.
-    var tabs = document.querySelector('.md-tabs');
-    var stickyBottom = 0;
-    if (tabs && tabs.offsetHeight > 0) {
-      stickyBottom = Math.max(0, tabs.getBoundingClientRect().bottom);
-    } else if (header) {
-      stickyBottom = Math.max(0, header.getBoundingClientRect().bottom);
-    }
-    var offset = stickyBottom;
-    if (/^H[1-6]$/.test(el.tagName) && !el.classList.contains('tab-toc-heading')) {
-      offset += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
-    }
-    el.style.scrollMarginTop = offset + 'px';
+    el.style.scrollMarginTop = computeScrollMargin(el) + 'px';
     el.scrollIntoView({ block: 'start', behavior: smooth ? 'smooth' : 'auto' });
   }
 
@@ -148,15 +174,21 @@
   /**
    * Reveal the hash target and scroll to it.
    *
-   * On a fresh page load the early <head> script has already saved
-   * the hash in window.__ubSavedHash and cleared the URL — we read
-   * it here so we can scroll with the correct header offset.
+   * Fresh page load  — <head> script saved + stripped the hash.
+   *   We must scroll ourselves (browser has no hash to target).
+   *   Double-rAF ensures layout is settled; scrollRestoration
+   *   = 'manual' (set in <head>) prevents the browser from
+   *   racing us back to 0.
    *
-   * On hashchange (back/forward) we also scroll with our JS offset
-   * for consistency with TOC link clicks.
+   * Hashchange (same-page URL paste / back-forward) —
+   *   The browser does native scroll-to-anchor.  Because
+   *   applyScrollMargins() pre-set inline scroll-margin-top on
+   *   every heading, the browser uses our offset.  We only
+   *   intervene if revealTarget() had to open a tab or section.
    *
-   * On reload the browser may have already scrolled natively; we
-   * re-scroll to apply the correct offset.
+   * Reload — hash stays in URL, browser scrolls natively,
+   *   applyScrollMargins() already set margins in init().
+   *   We reveal tabs/sections if needed.
    */
   function openForHash() {
     var hash = location.hash;
@@ -182,10 +214,8 @@
     }
 
     if (fromSaved) {
-      // Fresh page load — layout may not be ready yet.
-      // Double-rAF waits for header / sticky tabs to composite.
-      // scrollRestoration='manual' (set in <head>) blocks browser
-      // from racing us back to 0.
+      // Fresh page load — we must scroll (browser has no hash).
+      // Double-rAF lets layout stabilise.
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
           if (revealed) {
@@ -199,22 +229,16 @@
           }
         });
       });
-    } else {
-      // Hashchange / reload — page is loaded, layout is stable.
-      // Set inline scroll-margin-top immediately so the browser's
-      // own native scroll-to-anchor (if it fires) uses our value.
-      // Then scroll synchronously + a backup to override any
-      // deferred native scroll on mobile.
-      if (revealed) {
-        setTimeout(function () {
-          scrollToTarget(target, false);
-        }, 120);
-      } else {
+    } else if (revealed) {
+      // Hashchange/reload that needed a tab or section revealed.
+      // CSS transition needs time before the target is in its
+      // final position.
+      setTimeout(function () {
         scrollToTarget(target, false);
-        // Backup: override deferred native scroll on mobile.
-        setTimeout(function () { scrollToTarget(target, false); }, 50);
-      }
+      }, 120);
     }
+    // else: hashchange with nothing to reveal — browser's native
+    // scroll already used our pre-set inline scroll-margin-top.
   }
 
   function restoreScrollRestoration() {
@@ -226,14 +250,23 @@
   // Expose for other scripts.
   window.__ubOpenForHash = openForHash;
   window.__ubScrollToTarget = scrollToTarget;
+  window.__ubApplyScrollMargins = applyScrollMargins;
 
   window.addEventListener('hashchange', function () { openForHash(); });
+
+  // Keep margins correct when viewport changes.
+  var resizeTimer = 0;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(applyScrollMargins, 150);
+  });
 
   /* ── Lifecycle ─────────────────────────────────────────── */
 
   function init() {
     relocateTabHeadings();
-    openForHash();   // instant scroll on init / SPA navigation
+    applyScrollMargins();   // pre-set margins for native hash scroll
+    openForHash();           // scroll on init / SPA navigation
   }
 
   if (typeof document$ !== 'undefined') {
