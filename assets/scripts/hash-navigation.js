@@ -128,12 +128,13 @@
     var base = header ? header.offsetHeight : 0;
     if (/^H[1-6]$/.test(el.tagName)) {
       if (el.classList.contains('tab-toc-heading')) {
-        // The tab heading anchor sits right before its .tabbed-set.
-        // Subtract the set's margin-top and padding-top to pull the
-        // scroll position up to the tab labels rather than leaving a gap.
-        var set = el.nextElementSibling;
-        if (set && set.classList.contains('tabbed-set')) {
-          var cs = getComputedStyle(set);
+        // The tab heading anchor sits right before its .tabbed-set,
+        // but multiple tab headings for the same set are stacked —
+        // walk forward to find the actual .tabbed-set.
+        var sib = el.nextElementSibling;
+        while (sib && !sib.classList.contains('tabbed-set')) sib = sib.nextElementSibling;
+        if (sib) {
+          var cs = getComputedStyle(sib);
           base -= (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.paddingTop) || 0);
         }
       } else {
