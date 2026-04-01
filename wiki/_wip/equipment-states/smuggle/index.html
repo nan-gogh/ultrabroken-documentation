@@ -1040,14 +1040,36 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Description">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-smuggles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating smuggles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating smuggles">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#effects" class="md-nav__link">
+  <a href="#culling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Effects
+        Culling ===
       
     </span>
   </a>
@@ -1055,10 +1077,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#gameplay-characteristics" class="md-nav__link">
+  <a href="#overload" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Gameplay Characteristics
+        Overload ===
       
     </span>
   </a>
@@ -1067,6 +1089,28 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-to-zuggles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison to zuggles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effects
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1116,22 +1160,72 @@
 </div>
 <h2 id="description">Description</h2>
 <p>An <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/A9N/" class="glitch-autolink" title="Equipment Smuggle" target="_blank" rel="noopener noreferrer">equipment smuggle</a> is the state an equipment is put in when it is currently in the action of dropping, i.e. when it is in the drop queue. Smuggles naturally get created for 4 frames when any equipment is dropped from Link's hand. During those frames, the piece of equipment is outside of Link's inventory but is still visibly dropping, as the game is handling the drop.
-This state can be abused and kept for as long as desired using several methods in all versions. </p>
-<h3 id="effects">Effects</h3>
+This state can be abused and kept for as long as desired using several methods in all versions.</p>
+<p>The main reason to obtain longer-lasting smuggles is to trivially upgrade them to zuggles.</p>
+<h2 id="variants">Variants</h2>
+<p>Smuggles can come in different variants, depending on their equip position, and if they're culled or not:</p>
+<table>
+    <tr>
+        <th />
+        <th colspan="3">Position</th>
+    </tr>
+    <tr>
+        <th />
+        <th>Static</th>
+        <th>Dynamic</th>
+        <th>Drop</th>
+    </tr>
+    <tr>
+        <th>Name (when unculled)</th>
+        <td>Smuggle (Static Smuggle, if clarifying is important)</td>
+        <td>Dynamic Smuggle</td>
+        <td>Drop Smuggle</td>
+    </tr>
+    <tr>
+        <th>Name (when culled)</th>
+        <td>Invismuggle</td>
+        <td>Dynamic Invismuggle</td>
+        <td>Drop Invismuggle</td>
+    </tr>
+    <tr>
+        <td colspan="2" />
+        <td colspan="2"><small>This distinction is less important for culled smuggles and zuggles.</small></td>
+    </tr>
+    <tr>
+        <th>Unsmuggling it</th>
+        <td>Equip something else of that type, and warm drop it</td>
+        <td>Equip something else of that type, and throw or shock drop it</td>
+        <td>Equip the smuggle, fail drop it, then use any drop method</td>
+    </tr>
+    <tr>
+        <th>Upgrading it to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a></th>
+        <td>Equip something else of that type, and fail drop it</td>
+        <td>Equip something else of that type, and warm drop or fail drop it</td>
+        <td>Equip it, and <a href="zuggle-drop/">zuggle drop</a> it</td>
+    </tr>
+</table>
+
+<h2 id="creating-smuggles">Creating smuggles</h2>
+<div class="admonition warning">
+<p class="admonition-title">D-Pad Lock</p>
+<p>If playing on version 1.1.2 or higher, consider <a href="search: Despawn Interrupt">Despawn Interrupting</a> the equipment first, to avoid problems with D-Pad Lock.</p>
+</div>
+<p>Although a smuggle is technically created whenever you <a href="cold-warm-drop/">warm drop</a> equipment, there are ways to create more persistent smuggles:</p>
+<h3 id="culling">Culling ===</h3>
+<p>Cull the equipment (without culling Link) and drop it. The easiest way to do this is to Fuse Entangle it to some other equipment, which you leave in a culling area.</p>
+<h3 id="overload">Overload ===</h3>
+<p>Overload pickup the equipment, then drop it.</p>
+<h2 id="comparison-to-zuggles">Comparison to zuggles</h2>
+<p>Smuggles and zuggles are very similar in behaviour and nature. From the equipment's perspective, they are <em>exactly</em> the same. The only difference is in how Link treats them; if Link considers the equipment to be what he is actively dropping, it's a smuggle. If not, it's a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>.</p>
+<h2 id="effects">Effects</h2>
 <ul>
-<li><strong>D-Pad Lock</strong> - An active smuggle causes the D-Pad to lock on 1.1.2+, meaning that it is not possible to use the D-Pad or drop/swap/unequip equipment of the smuggle's type.</li>
+<li><strong>D-Pad Lock</strong> - An active smuggle causes the D-Pad to lock on 1.1.2+, meaning that it is not possible to use the D-Pad or drop/swap/unequip equipment of the smuggle's type.<ul>
+<li>On version 1.1.2 specifically, you can bypass d-pad lock by opening the ability wheel, then going straight to the quick menu before the game unpauses.</li>
+<li>Smuggling Despawn Interrupted equipment doesn't cause d-pad lock on any version.</li>
 </ul>
-<h3 id="gameplay-characteristics">Gameplay Characteristics</h3>
-<ul>
-<li><strong>Cannot be Recalled</strong> - The Recall ability has no effect</li>
-<li><strong>Cannot be snapped to Autobuild Holograms</strong> - Snapping is disabled</li>
-<li><strong>Cannot be moved directly using Ultrahand</strong> - Standard Ultrahand movement doesn't work (but pulling with attached objects does)</li>
-<li><strong>Cannot be glued to other objects regularly</strong> - Normal gluing is impossible (but Ghost Glue works!)</li>
-<li><strong>Extreme mass or friction</strong> - Most <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/NU6/" class="glitch-autolink" title="Ultrabroken" target="_blank" rel="noopener noreferrer">Ultrabroken</a> Objects appear to have either extremely high mass or friction attributes</li>
+</li>
+<li><strong>Fuse Entanglement</strong> - Anything fused, fuse entangled, or animated cold fused to intended equipment will also fuse entangle to any unculled smuggle.</li>
 </ul>
-<p>These attributes make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/NU6/" class="glitch-autolink" title="Ultrabroken" target="_blank" rel="noopener noreferrer">Ultrabroken</a> objects unique and are the foundation for the various effects described in the <a href="../effects/index.md">Effects section</a>.</p>
-<hr />
-<p><strong>Next:</strong> Explore <a href="theories.md">Theories</a> about how this works, or jump to <a href="../effects/index.md">Effects</a>.</p>
 
 
 
