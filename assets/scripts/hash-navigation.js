@@ -141,9 +141,7 @@
    *
    * On a fresh page load the early <head> script has already saved
    * the hash in window.__ubSavedHash and cleared the URL — we read
-   * it here.  On page reload the head script sets __ubIsReload and
-   * does NOT strip the hash, so the browser restores scroll position
-   * naturally — we only reveal tabs/sections without scrolling.
+   * it here so we can scroll with the correct header offset.
    *
    * On hashchange with no reveal needed, the browser already did
    * native scroll-to-anchor — we do NOT re-scroll.
@@ -160,10 +158,6 @@
       hash = window.__ubSavedHash;
       fromSaved = true;
     }
-    // On reload the hash was also stripped (to prevent anchor-jump).
-    if (!hash && window.__ubReloadHash) {
-      hash = window.__ubReloadHash;
-    }
     window.__ubSavedHash = null;
 
     var id = hash ? hash.replace(/^#/, '') : '';
@@ -172,24 +166,6 @@
     if (!target) return;
 
     var revealed = revealTarget(target);
-
-    // On page reload, reveal tabs/sections but don't navigate —
-    // restore the exact scroll position the user had before reload.
-    if (window.__ubIsReload) {
-      window.__ubIsReload = false;
-      window.__ubReloadHash = null;
-      history.replaceState(null, '', '#' + id);
-      // Restore saved scroll position after a paint frame
-      // (layout must be complete first).
-      var savedY = window.__ubReloadScrollY;
-      if (savedY != null) {
-        window.__ubReloadScrollY = null;
-        requestAnimationFrame(function () {
-          window.scrollTo(0, savedY);
-        });
-      }
-      return;
-    }
 
     // On hashchange where nothing needed revealing, the browser's
     // native scroll already handled it — don't fight it.
