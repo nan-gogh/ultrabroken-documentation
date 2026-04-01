@@ -56,24 +56,23 @@
    underline / strikethrough from bleeding onto the badge area (CSS Text
    Decoration L4: parent decoration is not painted on atomic inline-blocks
    whose own text-decoration-line differs from the parent's).
-   margin-left replaces the space character that was between heading text and
-   the first badge (no text node ? nothing to decorate).
-   code+code margin replaces the space character between consecutive badges. */
+   A literal space character precedes the span and separates consecutive badges
+   so the toc extension preserves word boundaries in plain-text extraction. */
 .md-typeset .ub-vr {
   display: inline-block;
-  margin-left: 0.3em;
+  margin-left: 0;
   text-decoration-line: none !important;
   white-space: nowrap;
 }
 .md-typeset .ub-vr code + code {
-  margin-left: 0.2em;
+  margin-left: 0;
 }
 
 /* Version badges inside TOC sidebar (outside .md-typeset) */
 .md-nav--secondary .ub-vr,
 .ub-toc-header .ub-vr {
   display: inline;
-  margin-left: 0.35em;
+  margin-left: 0;
   white-space: nowrap;
 }
 .md-nav--secondary .ub-vr code,
@@ -87,7 +86,7 @@
 }
 .md-nav--secondary .ub-vr code + code,
 .ub-toc-header .ub-vr code + code {
-  margin-left: 0.2em;
+  margin-left: 0;
 }
 /* Prevent teal hover/active color from bleeding into version badges */
 .md-nav__link:hover .ub-vr code,

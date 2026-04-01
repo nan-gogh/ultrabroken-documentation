@@ -68,7 +68,7 @@
   // Matches trailing version patterns:
   //   1.0.0  |  1.0.0+  |  1.0.0-1.1.1  |  All versions
   // Multiple badges separated by optional whitespace.
-  var VERSION_TAIL_RE = /(?:\s*(?:\d+\.\d+\.\d+(?:[–-]\d+\.\d+\.\d+)?(?:\+)?|All versions))+$/;
+  var VERSION_TAIL_RE = /(?:\s+(?:\d+\.\d+\.\d+(?:[–-]\d+\.\d+\.\d+)?(?:\+)?|All versions))+$/;
 
   function decorateTocVersionLabels() {
     var tocNav = document.querySelector('.md-sidebar--secondary .md-nav--secondary');
@@ -77,7 +77,7 @@
     var links = tocNav.querySelectorAll('a.md-nav__link');
     for (var i = 0; i < links.length; i++) {
       var span = links[i].querySelector('.md-ellipsis') || links[i];
-      var text = span.textContent;
+      var text = (span.textContent || '').trim();
       var match = text.match(VERSION_TAIL_RE);
       if (!match) continue;
 

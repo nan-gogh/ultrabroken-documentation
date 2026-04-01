@@ -167,9 +167,10 @@ def _range_badge_html(versions: list[str]) -> str:
         return ""
     # Convert backtick inline codes to <code> elements.
     html = re.sub(r"`([^`]+)`", r"<code>\1</code>", md_label)
-    # Remove spaces between adjacent </code><code> pairs so there are no
-    # decorated text nodes between badges (CSS margin provides the gap).
-    html = re.sub(r"</code>\s+<code>", "</code><code>", html)
+    # Keep the space between consecutive badges so that the toc extension's
+    # plain-text extraction preserves word boundaries between version numbers.
+    # The parent <span class='ub-vr'> carries text-decoration-line: none so
+    # the space won't inherit decoration from ancestor elements.
     return f"<span class='ub-vr'>{html}</span>"
 
 
@@ -185,8 +186,9 @@ def _rewrite_tab_label(tab_line: str, versions: list[str]) -> str:
     # Strip any trailing backtick badges (author markup) or prior HTML span.
     content = re.sub(r"(\s*`[^`]+`)+\s*$|\s*<span class='ub-vr'>.*?</span>\s*$", "", content)
     if badge_html:
-        # No explicit space — CSS margin-left on .ub-vr provides the gap.
-        return f"{prefix}{content}{badge_html}{suffix}"
+        # Space before the badge so the toc extension's plain-text
+        # extraction keeps a word boundary (CSS margin-left removed).
+        return f"{prefix}{content} {badge_html}{suffix}"
     return f"{prefix}{content}{suffix}"
 
 
@@ -273,8 +275,9 @@ def _patch_headings(markdown: str) -> str:
         # Strip any existing badges (backtick or prior HTML span format).
         core = re.sub(r"(\s*`[^`]+`)+\s*$|\s*<span class='ub-vr'>.*?</span>\s*$", "", core)
         if badge_html:
-            # No explicit space — CSS margin-left on .ub-vr provides the gap.
-            new_heading = f"{core}{badge_html}{attr_suffix}"
+            # Space before the badge so the toc extension's plain-text
+            # extraction keeps a word boundary (CSS margin-left removed).
+            new_heading = f"{core} {badge_html}{attr_suffix}"
         else:
             new_heading = f"{core}{attr_suffix}"
         return f"{new_heading}\n{blank}{sentinel}"
