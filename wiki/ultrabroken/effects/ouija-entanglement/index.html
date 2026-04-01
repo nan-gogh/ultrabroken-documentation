@@ -73,6 +73,10 @@
 
     
     
+  <!-- Strip URL fragment early so the browser never does native
+       scroll-to-anchor for zero-height tab-toc-heading elements.
+       collapsible-sections.js reads __ubSavedHash on init. -->
+  <script>history.scrollRestoration='manual';if(location.hash){window.__ubSavedHash=location.hash;history.replaceState(null,'',location.pathname+location.search)}</script>
   <!-- Preload critical Latin font files (same-origin, no DNS hops) -->
   <link rel="preload" href="../../../../assets/fonts/texturina-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../../../assets/fonts/new-rocker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -2314,7 +2318,11 @@
       
         <script src="../../../../assets/scripts/collapsible-sections.js"></script>
       
+        <script src="../../../../assets/scripts/hash-navigation.js"></script>
+      
         <script src="../../../../assets/scripts/toc-scrollspy.js"></script>
+      
+        <script src="../../../../assets/scripts/toc-link-click.js"></script>
       
         <script src="../../../../assets/scripts/nav-delegation.js"></script>
       

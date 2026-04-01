@@ -69,6 +69,10 @@
 
     
     
+  <!-- Strip URL fragment early so the browser never does native
+       scroll-to-anchor for zero-height tab-toc-heading elements.
+       collapsible-sections.js reads __ubSavedHash on init. -->
+  <script>history.scrollRestoration='manual';if(location.hash){window.__ubSavedHash=location.hash;history.replaceState(null,'',location.pathname+location.search)}</script>
   <!-- Preload critical Latin font files (same-origin, no DNS hops) -->
   <link rel="preload" href="../../../assets/fonts/texturina-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../../assets/fonts/new-rocker-400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -1142,6 +1146,7 @@
 <p>Remarks:</p>
 <ul>
 <li>After an sdc, you will experience an ability menu lock, fix it by mounting anything</li>
+<li>While in this ability menu lock, you will be immune to gloom</li>
 <li>After an sdc, the stick will be locked, you can unlock it by warping if you prevent the stick from unloading, this can be done for short distances by equipping the base before warping</li>
 <li>To activate sdc culling, put the sdc stick inside a culling area and drop the base to cull.</li>
 <li>Watching memories allows link to uncull for roughly half a second.</li>
@@ -1373,7 +1378,11 @@
       
         <script src="../../../assets/scripts/collapsible-sections.js"></script>
       
+        <script src="../../../assets/scripts/hash-navigation.js"></script>
+      
         <script src="../../../assets/scripts/toc-scrollspy.js"></script>
+      
+        <script src="../../../assets/scripts/toc-link-click.js"></script>
       
         <script src="../../../assets/scripts/nav-delegation.js"></script>
       
