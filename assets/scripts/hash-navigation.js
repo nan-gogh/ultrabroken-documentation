@@ -181,22 +181,40 @@
       history.replaceState(null, '', '#' + id);
     }
 
-    // Double-rAF ensures layout is complete (header / sticky tabs
-    // composited) even on mobile.  Add extra time when a tab or
-    // collapsed section was revealed for the CSS transition.
-    requestAnimationFrame(function () {
+    if (fromSaved) {
+      // Fresh page load — layout may not be ready yet.
+      // Double-rAF waits for header / sticky tabs to composite.
+      // scrollRestoration='manual' (set in <head>) blocks browser
+      // from racing us back to 0.
       requestAnimationFrame(function () {
-        if (revealed) {
-          setTimeout(function () {
+        requestAnimationFrame(function () {
+          if (revealed) {
+            setTimeout(function () {
+              scrollToTarget(target, false);
+              restoreScrollRestoration();
+            }, 120);
+          } else {
             scrollToTarget(target, false);
             restoreScrollRestoration();
-          }, 120);
-        } else {
-          scrollToTarget(target, false);
-          restoreScrollRestoration();
-        }
+          }
+        });
       });
-    });
+    } else {
+      // Hashchange / reload — page is loaded, layout is stable.
+      // Set inline scroll-margin-top immediately so the browser's
+      // own native scroll-to-anchor (if it fires) uses our value.
+      // Then scroll synchronously + a backup to override any
+      // deferred native scroll on mobile.
+      if (revealed) {
+        setTimeout(function () {
+          scrollToTarget(target, false);
+        }, 120);
+      } else {
+        scrollToTarget(target, false);
+        // Backup: override deferred native scroll on mobile.
+        setTimeout(function () { scrollToTarget(target, false); }, 50);
+      }
+    }
   }
 
   function restoreScrollRestoration() {
