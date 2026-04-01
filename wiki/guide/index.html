@@ -5000,17 +5000,18 @@ Another Term
 <p>A single <code>#</code> or no <code>#</code> at all leaves the tab as a plain label with no TOC entry — this is the default behaviour.</p>
 <p>When <code>#</code> marks are specified, the tab label font size is also scaled to match the chosen heading level — so <code>###</code> tabs render at the same size as regular h3 headings, <code>####</code> at h4 size, and so on. When no <code>#</code> marks are specified (plain tabs), all tab labels render at the same default size regardless of where they appear in the document.</p>
 <h3 id="collapsible-sections">Collapsible Sections</h3>
-<p>Any heading can be turned into a clickable toggle that hides or reveals the content beneath it (everything until the next heading of equal or higher level). This uses the Attr List <code>{ .collapse }</code> class, which is processed client-side — no <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> is involved.</p>
+<p>Any heading can be turned into a clickable toggle that hides or reveals the content beneath it (everything until the next heading of equal or higher level). Use simple shorthand markers at the end of the heading — no need to learn the full Attr List syntax.</p>
 <h4 id="syntax_19">Syntax</h4>
+<p>Use <code>?</code> to collapse by default, or <code>!</code> to expand on load. The marker must be preceded by a space:</p>
 <div class="highlight"><pre><span></span><code><span class="gu">#### Section Title { .collapse }</span>
-Content here…
+Content here is hidden by default.
 
-<span class="gu">#### Starts Open { .collapse .open }</span>
-This section is expanded on load.
+<span class="gu">#### Important Section { .collapse .open }</span>
+Content here is visible on page load.
 </code></pre></div>
-<p>The <code>?</code> shorthand expands to <code>{ .collapse }</code> (collapsed by default) and <code>!</code> expands to <code>{ .collapse .open }</code> (expanded on load). The shorthand marker must be preceded by a space. You can also write the full attr_list form directly:</p>
+<p>Alternatively, you can write the full Attr List form if preferred:</p>
 <div class="highlight"><pre><span></span><code><span class="gu">#### Section Title { .collapse }</span>
-<span class="gu">#### Starts Open { .collapse .open }</span>
+<span class="gu">#### Important Section { .collapse .open }</span>
 </code></pre></div>
 <h4 id="behaviour">Behaviour</h4>
 <ul>
