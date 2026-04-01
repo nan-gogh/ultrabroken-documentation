@@ -63,13 +63,11 @@
     if (target) {
       var delay = isMobile ? 150 : 0;
       setTimeout(function () {
+        // Single scroll call — same function for all heading types.
+        window.__ubScrollToTarget(target, true);
+
+        // Tab headings: also center the active label strip horizontally.
         if (target.classList.contains('tab-toc-heading')) {
-          // After relocation, tab headings sit before their tabbed-set
-          // and can be scrolled like regular headings.
-          if (window.__ubScrollToTarget) {
-            window.__ubScrollToTarget(target, true);
-          }
-          // Center the active label horizontally
           var radioId = target.dataset && target.dataset.ubTabRadio;
           if (radioId) {
             var radio = document.getElementById(radioId);
@@ -89,16 +87,6 @@
                 }
               }, 80);
             }
-          }
-        } else {
-          // Regular headings: scrollIntoView with header offset.
-          if (window.__ubScrollToTarget) {
-            window.__ubScrollToTarget(target, true);
-          } else {
-            var header = document.querySelector('.md-header');
-            var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-            target.style.scrollMarginTop = (offset + 4) + 'px';
-            target.scrollIntoView({ block: 'start', behavior: 'smooth' });
           }
         }
       }, delay);

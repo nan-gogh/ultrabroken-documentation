@@ -143,17 +143,17 @@
   /**
    * Reveal the hash target and scroll to it.
    *
-   * After relocateTabHeadings() moves .tab-toc-heading elements
-   * before their .tabbed-set, all headings (regular and tab) can
-   * be scrolled identically — no special scroll-target logic needed.
+   * This is the SINGLE scroll authority for permalink / hash
+   * navigation — both fresh-load and hashchange are handled here
+   * with the same scrollToTarget() call that TOC clicks use.
+   * Permalink scroll is always instant (no smooth animation) to
+   * override the browser's native scroll-to-anchor cleanly.
    *
    * On a fresh page load the early <head> script has already saved
    * the hash in window.__ubSavedHash and cleared the URL — we read
    * it here.
-   *
-   * @param {boolean} [smooth]  true → smooth (interactive); false → instant (init / refresh).
    */
-  function openForHash(smooth) {
+  function openForHash() {
     var hash = location.hash;
     var fromSaved = false;
 
@@ -171,43 +171,44 @@
 
     var revealed = revealTarget(target);
 
-    // On hashchange (not initial load), non-revealed headings get
-    // native scroll — skip to avoid double-scroll.
-    // On initial load (hash was saved & stripped), we MUST scroll
-    // because native scroll-to-anchor was prevented.
-    if (!fromSaved && !revealed) return;
+    // Schedule the scroll.  If a tab or collapsed section was just
+    // revealed, CSS transitions need ~120 ms to settle before the
+    // heading's final position is reliable.  Otherwise one paint
+    // frame suffices (also lets us run AFTER the browser's native
+    // scroll-to-anchor on hashchange so we override it cleanly).
+    var scrollDelay = revealed ? 120 : 0;
 
-    function restoreHash() {
-      if (location.hash !== '#' + id) {
-        history.replaceState(null, '', '#' + id);
+    function doScroll() {
+      scrollToTarget(target, false);          // always instant
+      if (fromSaved) {
+        requestAnimationFrame(function () {
+          if (location.hash !== '#' + id) {
+            history.replaceState(null, '', '#' + id);
+          }
+        });
       }
     }
 
-    if (smooth) {
-      // Interactive navigation — allow layout to settle after tab activation.
-      setTimeout(function () {
-        scrollToTarget(target, true);
-      }, 120);
-    } else {
-      // Init / refresh — instant scroll after one paint frame.
-      requestAnimationFrame(function () {
-        scrollToTarget(target, false);
-        if (fromSaved) requestAnimationFrame(restoreHash);
-      });
-    }
+    requestAnimationFrame(function () {
+      if (scrollDelay) {
+        setTimeout(doScroll, scrollDelay);
+      } else {
+        doScroll();
+      }
+    });
   }
 
   // Expose for other scripts.
   window.__ubOpenForHash = openForHash;
   window.__ubScrollToTarget = scrollToTarget;
 
-  window.addEventListener('hashchange', function () { openForHash(true); });
+  window.addEventListener('hashchange', function () { openForHash(); });
 
   /* ── Lifecycle ─────────────────────────────────────────── */
 
   function init() {
     relocateTabHeadings();
-    openForHash(false);   // instant scroll on init / SPA navigation
+    openForHash();   // instant scroll on init / SPA navigation
   }
 
   if (typeof document$ !== 'undefined') {
