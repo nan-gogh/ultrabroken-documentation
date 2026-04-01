@@ -62,10 +62,6 @@
       'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]'
     );
     for (var i = 0; i < hEls.length; i++) {
-      // Skip zero-height tab-toc-heading placeholders — they are
-      // scroll anchors handled by collapsible-sections.js, not real
-      // visible headings the scrollspy should track.
-      if (hEls[i].classList.contains('tab-toc-heading')) continue;
       headings.push({ id: hEls[i].id, el: hEls[i] });
     }
 
@@ -131,13 +127,11 @@
 
     // navigation.tracking — debounced hash update
     // H1 maps to the page itself, so clear the hash instead of setting it.
-    // Skip while tracking is locked (after navigation to a tab heading).
-    if (newId && !(Date.now() < (window.__ubTrackingLockUntil || 0))) {
+    if (newId) {
       var isH1 = activeHeading && activeHeading.el &&
                  activeHeading.el.tagName === 'H1';
       clearTimeout(trackingTimer);
       trackingTimer = setTimeout(function () {
-        if (Date.now() < (window.__ubTrackingLockUntil || 0)) return;
         if (isH1) {
           if (location.hash) {
             history.replaceState(null, '', location.pathname + location.search);

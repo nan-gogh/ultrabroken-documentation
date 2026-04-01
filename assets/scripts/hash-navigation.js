@@ -181,13 +181,15 @@
       history.replaceState(null, '', '#' + id);
     }
 
-    scrollToTarget(target, false);
-
-    // Prevent scrollspy tracking from immediately overwriting
-    // a tab-heading hash with the nearest regular heading.
-    if (target.classList.contains('tab-toc-heading')) {
-      window.__ubTrackingLockUntil = Date.now() + 1500;
-    }
+    // Use rAF to ensure sticky header layout is stable before
+    // measuring its bounding rect.  Also restores scrollRestoration
+    // (set to 'manual' in <head> to block browser race on mobile).
+    requestAnimationFrame(function () {
+      scrollToTarget(target, false);
+      if (history.scrollRestoration === 'manual') {
+        history.scrollRestoration = 'auto';
+      }
+    });
   }
 
   // Expose for other scripts.
