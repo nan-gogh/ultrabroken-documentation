@@ -160,6 +160,10 @@
       hash = window.__ubSavedHash;
       fromSaved = true;
     }
+    // On reload the hash was also stripped (to prevent anchor-jump).
+    if (!hash && window.__ubReloadHash) {
+      hash = window.__ubReloadHash;
+    }
     window.__ubSavedHash = null;
 
     var id = hash ? hash.replace(/^#/, '') : '';
@@ -169,10 +173,13 @@
 
     var revealed = revealTarget(target);
 
-    // On page reload, just reveal tabs/sections but don't scroll —
-    // the browser restores the user's scroll position naturally.
+    // On page reload, reveal tabs/sections but don't scroll —
+    // the browser restores the user's exact scroll position from
+    // history.  Just put the hash back in the URL.
     if (window.__ubIsReload) {
       window.__ubIsReload = false;
+      window.__ubReloadHash = null;
+      history.replaceState(null, '', '#' + id);
       return;
     }
 
