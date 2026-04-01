@@ -5,7 +5,7 @@
  * single data-driven registry.  One resize listener, one document$
  * subscription, one inject pass — no more drift between toggles.
  *
- * Button order (left → right):  motion · storage · font-size · editor
+ * Button order (left → right):  storage · motion · font-size · editor
  *
  * Relies on storage-manager.js (must load first).
  * Must load BEFORE background-rune.js (motion toggle sets globals it reads).
@@ -201,7 +201,7 @@
   /* ═══════════════════════════════════════════════════════════════
      TOGGLE REGISTRY — order here = left-to-right in header
      ═══════════════════════════════════════════════════════════════ */
-  var TOGGLES = [motionToggle, storageToggle, fontToggle, editorToggle];
+  var TOGGLES = [storageToggle, motionToggle, fontToggle, editorToggle];
 
   /* ── Public API for settings modal ─────────────────────────── */
   window.__ubToolbar = {

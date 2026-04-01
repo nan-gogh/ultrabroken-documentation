@@ -300,7 +300,7 @@
     primary.classList.add('ub-nav-resetting');
 
     primary.querySelectorAll('input.md-toggle').forEach(function (cb) {
-      if (cb.id && cb.id in initialStates) {
+      if (cb.id && cb.id in initialStates && !cb.id.startsWith(TOGGLE_PREFIX)) {
         cb.checked = initialStates[cb.id];
       }
     });

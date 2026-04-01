@@ -69,6 +69,33 @@
   margin-left: 0.2em;
 }
 
+/* Version badges inside TOC sidebar (outside .md-typeset) */
+.md-nav--secondary .ub-vr,
+.ub-toc-header .ub-vr {
+  display: inline;
+  margin-left: 0.35em;
+  white-space: nowrap;
+}
+.md-nav--secondary .ub-vr code,
+.ub-toc-header .ub-vr code {
+  padding: 0.05em 0.35em;
+  border-radius: 0.15rem;
+  font-size: 0.75em;
+  background-color: var(--md-code-bg-color);
+  color: var(--md-code-fg-color) !important;
+  text-shadow: none !important;
+}
+.md-nav--secondary .ub-vr code + code,
+.ub-toc-header .ub-vr code + code {
+  margin-left: 0.2em;
+}
+/* Prevent teal hover/active color from bleeding into version badges */
+.md-nav__link:hover .ub-vr code,
+.md-nav__link--active .ub-vr code {
+  color: var(--md-code-fg-color) !important;
+  text-shadow: none !important;
+}
+
 /* Inline code (version badges) in tab labels: inherit text color and
    scale down to match the heading badge treatment (0.7em). */
 .md-typeset .tabbed-labels label code {
