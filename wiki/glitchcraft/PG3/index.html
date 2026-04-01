@@ -1093,17 +1093,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Method notes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#method-5-chaining-drop-swap-culling120" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1130,17 +1119,6 @@
     <span class="md-ellipsis">
       
         Method 7: Chaining + Mineru FEAll versions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#method-notes_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Method notes
       
     </span>
   </a>
@@ -1272,37 +1250,66 @@
 <p><em>Credits - See individual methods</em></p>
 <h2 id="instructions">Instructions</h2>
 <p>Methods are partitioned based on their resulting structure.</p>
-<p>Due to the absence of "Drop-Swap Culling" on versions prior to <code>1.2.0</code>, all applicable methods will be given with both an all-versions variant and a variant specific to 1.2.0 and up.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Overload methods<span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_2">DI Chaining Methods<span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_3">Turbo Cloning Methods<span class='ub-vr'><code>1.2.0+</code></span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<p>These methods use Overload Pseudo Fuse to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> targets without ever creating normal parents, removing the need to despawn them between targets. It is ideal for creating very large quantities of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts.</p>
+<p>These methods use Overload Pseudo Fuse to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> targets without ever creating normal parents, removing the need to despawn them between targets. They are ideal for creating very large quantities of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts, and are sometimes useful for the resulting structure (a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and a normal parent, each sharing many cold-fused <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> children).</p>
 <h4 class="collapse" id="method-1-overload-pf-drop-swap-culling120">Method 1: <br/>Overload PF + Drop-Swap Culling<span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <p>Prepare:</p>
 <ul>
 <li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
-<li>Two <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost equipment items, A and B</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield (A), ideally a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost (all types can be mirrored)</li>
 </ul>
 <p>Creating the setup:</p>
 <ol>
-<li>Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> normal item (C) to A; must be opposite of B's type</li>
-<li>Leave A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped after completing step 1</li>
-<li>B make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost (D) of C's type; keep the normal parent (E)</li>
-<li>Smuggle D, equip E, and overload pickup C</li>
-<li>glue C to something to elevate it and ensure it cannot accidentally be targeted by Fuse</li>
-<li>Optionally, position a wall behind Link's back which can force E to fail-drop</li>
+<li>Smuggle A and equip Normal Shield B</li>
+<li>Fuse Weapon C to B and <strong>pause</strong> a few frames after (for instance, by buffering the ability wheel at the same time as pressing Fuse, then selecting Map)</li>
+<li>Drop B, swap to another shield, and unequip that shield, then <strong>Unpause</strong></li>
+<li>Smuggle A again</li>
+<li>Overload drop a shield and fuse it to a weapon</li>
+<li>Fuse Weapon D to said shield, FEing it to A</li>
+<li>Swap shield, then drop it to leave A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> dropped</li>
+<li>Unequip weapon</li>
+<li>Pick up and smuggle C, pick up B, and Overload Pickup D</li>
+<li>Glue C to something to elevate it and ensure it cannot accidentally be targeted by Fuse</li>
+<li>Optionally, position a wall behind Link's back which can force B to fail-drop</li>
 </ol>
-<p>Creating <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts</p>
+<p>Creating <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts:</p>
 <ol>
-<li>Fuse target to C (overload fe)</li>
-<li>Fuse target to C again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (D), this time it will Pseudo-fuse to C and begin fading away</li>
-<li>Pause the game before the target fully fades out</li>
-<li>Drop E, swap to another of that type, and unequip it. This will cull E, and thus D, and thus the target, DIing it</li>
-<li>If you fail-dropped E, proceed with the next target. If not, you'll need to pick it up</li>
+<li>Fuse target to D (overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>)</li>
+<li>Fuse target to D again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (C), this time it will Pseudo-fuse to D and begin fading away</li>
+<li>Pause the game before the target fully fades out (buffering wheel and selecting Map will work here too)</li>
+<li>Drop B, equip another shield, and unequip it. This will cull B, and thus C, and thus the target, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>-ing it</li>
+<li>If you fail-dropped B, proceed with the next target. If not, pick it up before proceeding</li>
+<li>After 30 successful uses, destroy C and D, then remake them to continue</li>
 </ol>
+<div class="admonition danger">
+<p class="admonition-title">Fuse-Over(load)</p>
+<p>Detangling a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its parent by "fuse-over" leaves a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> connection behind, and detaching a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its PF parent does the same. Due to this, C and D will each gain one <em>peristent</em> dependency for each <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost produced. After 30 uses, C and D will reach <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a>. If a 31st use is attempted, you will create a "Reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will <strong>crash the game</strong> if you drop either!</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Self-Fusing</p>
+<p>When an overload-pickup (here, C) has a connection back to Link (here, via A), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
+</div>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+
+    A[DI Shield A]
+    B[Normal Shield B]
+    C[DI Weapon C]
+    D[Normal Weapon D]
+    TARGET[Target]
+
+    A --&gt;|DI| C
+    B --&gt;|DI| C
+    A --&gt;|FE| D
+    C --&gt;|FE| TARGET
+    D --&gt;|CF| TARGET</code></pre>
+</details>
 <p><em>Method developed by mulberry - Jan 17, 2026</em></p>
 <h4 class="collapse" id="method-2-overload-pf-aerophasingall-versions">Method 2: <br/>Overload PF + Aerophasing<span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
@@ -1310,26 +1317,51 @@
 <p>Prepare:</p>
 <ul>
 <li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
-<li>Two <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost equipment items, A and B</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield (A), ideally a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost (all types can be mirrored)</li>
 <li>Intangible Aerophasing</li>
 </ul>
 <p>Creating the setup:</p>
 <ol>
-<li>Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> normal item (C) to A; must be opposite of B's type</li>
-<li>Leave A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped after completing step 1</li>
-<li>Smuggle B and equip normal item of B's type (E)</li>
-<li>Stand on the phasing platform
-5  Right after Link unculls, fuse an item (D) of C's type to E; it will <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
-<li>Smuggle D, equip E, and overload pickup C</li>
-<li>glue C to something to elevate it and ensure it cannot accidentally be targeted by Fuse</li>
+<li>Smuggle A and equip Normal Shield B, then stand on the phasing platform</li>
+<li>Just after Link unculls, fuse a weapon C to B; Link will cull and C will <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
+<li>Drop B and leave it aside, but pick up and re-smuggle A</li>
+<li>Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> weapon D to A</li>
+<li>Swap shield, then drop it to leave A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped</li>
+<li>Smuggle C, equip B, and Overload Pickup D</li>
+<li>Glue D to something to elevate it and ensure it cannot accidentally be targeted by Fuse</li>
 </ol>
 <p>Creating <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts</p>
 <ol>
 <li>Stand on the phasing platform</li>
-<li>Just after Link unculls, fuse target to C (overload fe)</li>
-<li>Just after Link unculls, fuse target to C again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (D), this time it will Pseudo-fuse to C and begin fading away</li>
-<li>Link will cull soon enough after to automatically <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> the target (by culling E, which culls D)</li>
+<li>Just after Link unculls, fuse target to D (overload fe)</li>
+<li>Just after Link unculls, fuse target to D again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (C), this time it will Pseudo-fuse to D and begin fading away</li>
+<li>Link will cull soon enough after to automatically <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> the target (by culling B, which culls C)</li>
+<li>After 30 successful uses, destroy C and D, then remake them to continue</li>
 </ol>
+<div class="admonition danger">
+<p class="admonition-title">Fuse-Over(load)</p>
+<p>Detangling a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its parent by "fuse-over" leaves a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> connection behind, and detaching a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its PF parent does the same. Due to this, C and D will each gain one <em>peristent</em> dependency for each <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost produced. After 30 uses, C and D will reach <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a>. If a 31st use is attempted, you will create a "Reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will <strong>crash the game</strong> if you drop either!</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Self-Fusing</p>
+<p>When an overload-pickup (here, C) has a connection back to Link (here, via A), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
+</div>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+
+    A[DI Shield A]
+    B[Normal Shield B]
+    C[DI Weapon C]
+    D[Normal Weapon D]
+    TARGET[Target]
+
+    A --&gt;|DI| C
+    B --&gt;|DI| C
+    A --&gt;|FE| D
+    C --&gt;|FE| TARGET
+    D --&gt;|CF| TARGET</code></pre>
+</details>
 <h4 class="collapse" id="method-3-overload-pf-torch-cullingall-versions">Method 3: <br/>Overload PF + Torch Culling<span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
@@ -1350,17 +1382,29 @@
 <li>Activate the flame emitter and point it at the head of the torch from point-blank</li>
 <li>Overload Drop a shield D and fuse it to a weapon E</li>
 <li>Fuse target to shield twice and pause the game in any way shortly after the second fuse</li>
-<li>After 30 uses, destroy C and D before continuing</li>
+<li>After 30 successful uses, destroy C and D, then remake them to continue</li>
 </ul>
-<p>sorry</p>
+<p>sorry i know this is wrong</p>
+<div class="admonition danger">
+<p class="admonition-title">Fuse-Over(load)</p>
+<p>Detangling a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its parent by "fuse-over" leaves a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> connection behind, and detaching a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its PF parent does the same. Due to this, C and D will each gain one <em>peristent</em> dependency for each <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost produced. After 30 uses, C and D will reach <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a>. If a 31st use is attempted, you will create a "Reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will <strong>crash the game</strong> if you drop either!</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Self-Fusing</p>
+<p>When an overload-pickup (here, D) has a connection back to Link (here, via E), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
+</div>
+<details class="example">
+<summary>Diagram</summary>
+</details>
+<p>Making a diagram of my incorrect steps would be a waste of time, so let's just wait until I find the time to do this one.</p>
 <h4 class="collapse" id="method-4-overload-pf-mineru-limboall-versions">Method 4: <br/>Overload PF + Mineru Limbo<span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<p>(I don't know how to do mineru stake limbo. people make it look so easy but she just does not like me)</p>
+<p>(I don't know how to do mineru stake limbo. people make it look so easy but she just does not like me. Even still, the steps should be functional, though idk about <em>optimal</em>)</p>
 <p>Prepare:</p>
 <ul>
 <li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon (all types can be inverted)</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon (A) (all types can be inverted)</li>
 <li>A normal weapon (B)</li>
 <li>
 <p>A Stake</p>
@@ -1368,30 +1412,39 @@
 <li>
 <p>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> B</p>
 </li>
-<li>A and B make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield (C), keep B</li>
+<li>Smuggle A, equip B, and target shield C with Fuse</li>
+<li>Induce Mineru to cull and fuse shortly before B culls; this will <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> C</li>
 <li>Smuggle C</li>
 <li>Overload drop Shield (D) and fuse to Weapon (E)</li>
 <li>Stand on a stake at the right height so that Mineru goes into "Limbo" (invisible, but B and C are unculled)</li>
-<li>Fuse target twice and jump shortly after the second fuse so that Mineru culls (and the target by extension)</li>
+<li>Fuse target twice and jump shortly after the second fuse so that Mineru culls (and culls the target by extension)</li>
 <li>After 30 uses, destroy C and D before continuing</li>
 </ul>
-<h4 id="method-notes">Method notes</h4>
 <div class="admonition danger">
 <p class="admonition-title">Fuse-Over(load)</p>
-<p>Detangling a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its parent by "fuse-over" leaves a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> connection behind, and detaching a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its PF parent does the same. Due to this, D and E will each gain one <em>peristent</em> dependency for each <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost produced. After 30 uses, D and E will reach <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a>. If a 31st use is attempted, you will create a "Reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will <strong>crash the game</strong> if you drop D!</p>
+<p>Detangling a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its parent by "fuse-over" leaves a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> connection behind, and detaching a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its PF parent does the same. Due to this, C and D will each gain one <em>peristent</em> dependency for each <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost produced. After 30 uses, C and D will reach <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a>. If a 31st use is attempted, you will create a "Reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will <strong>crash the game</strong> if you drop either!</p>
 </div>
 <div class="admonition danger">
 <p class="admonition-title">Self-Fusing</p>
-<p>When an overload-pickup has a connection back to link, it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
+<p>When an overload-pickup (here, D) has a connection back to Link (here, E), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
 </div>
 <details class="example">
 <summary>Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[A] --&gt;|FE| B[C]
-    C[B] --&gt;|DI| D[D]
-    E[E] --&gt;|DI| D
-    D --&gt;|FE| F[Target]
-    B --&gt;|CF| F</code></pre>
+    MINERU[Mineru]
+    A[DI Weapon A]
+    B[Normal Weapon B]
+    C[DI Shield C]
+    D[Normal Shield D]
+    E[Normal Weapon E]
+    TARGET[Target]
+
+    MINERU --&gt;|FE| B
+    A --&gt;|DI| C
+    B --&gt;|DI| C
+    E --&gt;|FUSE| D
+    C --&gt;|FE| TARGET
+    D --&gt;|CF| TARGET</code></pre>
 </details>
 </div>
 <div class="tabbed-block">
@@ -1430,49 +1483,7 @@
 <li>Repeat from step 3 with D as the next target</li>
 <li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance or chasm (which also performs a FarDelete)</li>
 </ol>
-<p><em>Method developed by Squidwest(?) - Jan 23, 2026(?)</em></p>
 </details>
-<h4 class="collapse" id="method-6-chaining-aerophasingall-versions">Method 6: <br/>Chaining + Aerophasing<span class='ub-vr'><code>All versions</code></span></h4>
-<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<p>Prepare:</p>
-<p>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapon or Shield (A)
-Intangible Aerophasing</p>
-<details class="abstract">
-<summary>Safe Method</summary>
-<ol>
-<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (B, C, &amp; D)</li>
-<li>Smuggle A and equip B, then drop C on the ground</li>
-<li>Stand on the phasing platform</li>
-<li>Right after Link unculls, fuse C to B. C will become a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost</li>
-<li>Drop B and swap to D</li>
-<li>C will be attached to B on the ground. Dupe two replacement copies (E and F), then drop D</li>
-<li>Optionally, pick up and drop A to remove its overload</li>
-<li>Pick up C</li>
-<li>Repeat from step 2, with C as the new smuggle, E as the new normal parent, and D as the new target</li>
-<li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance or chasm (which also performs a FarDelete)</li>
-</ol>
-</details>
-<details class="abstract">
-<summary>Fast Method</summary>
-<ol>
-<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (B, C, &amp; D)</li>
-<li>Equip A and drop C on the ground</li>
-<li>Stand on the phasing platform</li>
-<li>Ready fuse targeting C and pause the game</li>
-<li>Drop A and swap to B</li>
-<li>Unpause and press fuse immediately; C will become a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost</li>
-<li>Drop B and swap to D</li>
-<li>C will be attached to B on the ground. Dupe 2 copies of C, then drop D and pick up C</li>
-<li>Repeat from step 3 with D as the next target</li>
-<li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance or chasm (which also performs a FarDelete)</li>
-</ol>
-</details>
-<h4 class="collapse" id="method-7-chaining-mineru-feall-versions">Method 7: <br/>Chaining + Mineru FE<span class='ub-vr'><code>All versions</code></span></h4>
-<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<p>(haven't even decided what this one should look like yet)</p>
-<h4 id="method-notes_1">Method notes</h4>
 <div class="admonition danger">
 <p class="admonition-title">Long Chains</p>
 <p>Extended dependency chains (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a>) can cause instability, such as freezing the game on some cutscenes and loads.</p>
@@ -1491,6 +1502,102 @@ Intangible Aerophasing</p>
     F --&gt;|...| H{Further Generations}
     I[Normal Parent] --&gt;|...| H</code></pre>
 </details>
+<p><em>Method developed by Squidwest(?) - Jan 23, 2026(?)</em></p>
+<h4 class="collapse" id="method-6-chaining-aerophasingall-versions">Method 6: <br/>Chaining + Aerophasing<span class='ub-vr'><code>All versions</code></span></h4>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>Prepare:</p>
+<p>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapon or Shield (A)
+Intangible Aerophasing</p>
+<details class="abstract">
+<summary>Safe Variant</summary>
+<ol>
+<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (B, C, &amp; D)</li>
+<li>Smuggle A and equip B, then drop C on the ground</li>
+<li>Stand on the phasing platform</li>
+<li>Right after Link unculls, fuse C to B. C will become a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost</li>
+<li>Drop B and swap to D</li>
+<li>C will be attached to B on the ground. Dupe two replacement copies (E and F), then drop D</li>
+<li>Optionally, pick up and drop A to remove its overload</li>
+<li>Pick up C</li>
+<li>Repeat from step 2, with C as the new smuggle, E as the new normal parent, and D as the new target</li>
+<li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance or chasm (which also performs a FarDelete)</li>
+</ol>
+</details>
+<details class="abstract">
+<summary>Fast Variant</summary>
+<ol>
+<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (B, C, &amp; D)</li>
+<li>Equip A and drop C on the ground</li>
+<li>Stand on the phasing platform</li>
+<li>Ready fuse targeting C and pause the game</li>
+<li>Drop A and swap to B</li>
+<li>Unpause and press fuse immediately; C will become a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost</li>
+<li>Drop B and swap to D</li>
+<li>C will be attached to B on the ground. Dupe 2 copies of C, then drop D and pick up C</li>
+<li>Repeat from step 3 with D as the next target</li>
+<li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance or chasm (which also performs a FarDelete)</li>
+</ol>
+</details>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[DI Ancestor] --&gt;|DI| B[DI Child]
+    C[Normal Parent] --&gt;|DI| B
+    B --&gt;|DI| D[DI Grandchild]
+    E[Normal Parent] --&gt;|DI| D
+    D --&gt;|DI| F[DI Descendant]
+    G[Normal Parent] --&gt;|DI| F
+    F --&gt;|...| H{Further Generations}
+    I[Normal Parent] --&gt;|...| H</code></pre>
+</details>
+<p>This one probably sucks lol. I genuinely don't know how or why pre-current players do it</p>
+<h4 class="collapse" id="method-7-chaining-mineru-feall-versions">Method 7: <br/>Chaining + Mineru FE<span class='ub-vr'><code>All versions</code></span></h4>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>(haven't even decided what this one should look like yet)
+(I guess you have to open with a type swap? I think that's possible at least)</p>
+<p>di ghost weap A normal weap B
+smuggle A, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> B to Mineru
+Leave B equipped henceforth!
+Use stake to limbo minnie
+fuse <em>shield</em> C to B and jump
+Now you can use the limbo stake to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shields in the chain, because C will keep culling with B the whole time
+For, you know, whatever that's worth?
+Wait, I'm dumb in the head
+B is protected from drop limit because Mineru has it lol, the type swap isn't necessary
+whatever the rest of the page is still more valuable and needs more attention</p>
+<div class="admonition danger">
+<p class="admonition-title">Long Chains</p>
+<p>Extended dependency chains (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a>) can cause instability, such as freezing the game on some cutscenes and loads.</p>
+<p>If this method is performed with shields, simply <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> a handful at once and use a rocket shield to fully detangle each <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>, repeating for all of them.</p>
+<p>If weapons were used, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> every other in the chain (or less frequently if desired), use fuse-over detangle to leave only a cf remnant, then <strong>destroy</strong> the detangled weapons to break the chain apart. (a proper weapon <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is not viable for this use-case)</p>
+</div>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    MINERU[Mineru]
+    A[DI Ancestor]
+    B[Normal Ancestor]
+    C[DI Parent]
+    D[Normal Parent]
+    E[DI Child]
+    F[Normal Parent]
+    G[DI Grandchild]
+    H[Normal Parent]
+    I{Further Generations}
+
+    MINERU --&gt;|FE| B
+    A --&gt;|DI| C
+    B --&gt;|DI| C
+    C --&gt;|DI| E
+    D --&gt;|DI| E
+    E --&gt;|DI| G
+    F --&gt;|DI| G
+    G --&gt;|DI| I
+    H --&gt;|DI| I</code></pre>
+</details>
+<p>Not entirely convinced this one has a reference. Probably better than 6 but I've not gotten around to either yet</p>
 </div>
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
