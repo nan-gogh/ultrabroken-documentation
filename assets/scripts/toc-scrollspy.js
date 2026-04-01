@@ -55,6 +55,47 @@
     return top;
   }
 
+  /* ── Decorate version labels in TOC links ────────────────
+     The toc extension strips HTML from headings, so version
+     badges injected by method_meta.py become plain text glued
+     to the heading title (no space, no <code> tags).  We find
+     those trailing version patterns and wrap them in styled
+     <code> elements with a preceding space.
+
+     Runs before buildHeadingList / mobile-toc clones so both
+     desktop and mobile TOCs get the decoration.           ──── */
+
+  // Matches trailing version patterns:
+  //   1.0.0  |  1.0.0+  |  1.0.0-1.1.1  |  All versions
+  // Multiple badges separated by optional whitespace.
+  var VERSION_TAIL_RE = /(?:\s*(?:\d+\.\d+\.\d+(?:[–-]\d+\.\d+\.\d+)?(?:\+)?|All versions))+$/;
+
+  function decorateTocVersionLabels() {
+    var tocNav = document.querySelector('.md-sidebar--secondary .md-nav--secondary');
+    if (!tocNav) return;
+
+    var links = tocNav.querySelectorAll('a.md-nav__link');
+    for (var i = 0; i < links.length; i++) {
+      var span = links[i].querySelector('.md-ellipsis') || links[i];
+      var text = span.textContent;
+      var match = text.match(VERSION_TAIL_RE);
+      if (!match) continue;
+
+      var titlePart = text.slice(0, match.index);
+      var versionPart = match[0].trim();
+
+      // Split into individual badges (each may be "1.0.0", "1.0.0+", "1.0.0-1.1.1", "All versions")
+      var badges = versionPart.match(/\d+\.\d+\.\d+(?:[–-]\d+\.\d+\.\d+)?(?:\+)?|All versions/g);
+      if (!badges) continue;
+
+      var html = titlePart.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      for (var j = 0; j < badges.length; j++) {
+        html += ' <code class="ub-toc-vr">' + badges[j] + '</code>';
+      }
+      span.innerHTML = html;
+    }
+  }
+
   /* ── Build heading + link maps ─────────────────────────── */
 
   function buildHeadingList() {
@@ -193,6 +234,7 @@
   /* ── Lifecycle ─────────────────────────────────────────── */
 
   function init() {
+    decorateTocVersionLabels();
     buildHeadingList();
     applyActive(computeActive());
     window.addEventListener('scroll', onScroll, { passive: true });

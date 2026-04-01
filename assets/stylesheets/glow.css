@@ -96,6 +96,27 @@
   text-shadow: none !important;
 }
 
+/* Version badges injected by JS into TOC links (.ub-toc-vr) */
+code.ub-toc-vr {
+  padding: 0.05em 0.35em;
+  border-radius: 0.15rem;
+  font-size: 0.75em;
+  font-family: var(--md-code-font-family, SFMono-Regular, Consolas, monospace);
+  background-color: var(--md-code-bg-color);
+  color: var(--md-code-fg-color) !important;
+  text-shadow: none !important;
+  font-weight: normal;
+}
+code.ub-toc-vr + code.ub-toc-vr {
+  margin-left: 0.15em;
+}
+.md-nav__link:hover code.ub-toc-vr,
+.md-nav__link--active code.ub-toc-vr {
+  color: var(--md-code-fg-color) !important;
+  text-shadow: none !important;
+  background-color: var(--md-code-bg-color) !important;
+}
+
 /* Inline code (version badges) in tab labels: inherit text color and
    scale down to match the heading badge treatment (0.7em). */
 .md-typeset .tabbed-labels label code {
