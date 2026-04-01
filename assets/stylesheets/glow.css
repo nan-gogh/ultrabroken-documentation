@@ -120,7 +120,9 @@
 
 /* Hidden companion heading injected by tab_headings hook.
    Zero-height in-flow: stays at the correct scroll anchor position
-   (top of tab content, just below labels bar) while being invisible. */
+   (top of tab content, just below labels bar) while being invisible.
+   scroll-margin-top uses Material's --md-scroll-margin variable so it
+   stays in sync with the header + sticky-tabs height. */
 .tab-toc-heading {
   display: block !important;
   height: 0 !important;
@@ -130,7 +132,6 @@
   overflow: hidden !important;
   line-height: 0 !important;
   font-size: 0 !important;
-  scroll-margin-top: 4.8rem;
 }
 
 /* Share icon on tab labels — same hover reveal as headings */

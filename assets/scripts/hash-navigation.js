@@ -126,8 +126,17 @@
    */
   function scrollToTarget(el, smooth) {
     var header = document.querySelector('.md-header');
-    var offset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-    if (/^H[1-6]$/.test(el.tagName)) {
+    // With navigation.tabs.sticky, .md-tabs sticks below .md-header.
+    // Use the lowest sticky bar's bottom edge as the offset.
+    var tabs = document.querySelector('.md-tabs');
+    var stickyBottom = 0;
+    if (tabs && tabs.offsetHeight > 0) {
+      stickyBottom = Math.max(0, tabs.getBoundingClientRect().bottom);
+    } else if (header) {
+      stickyBottom = Math.max(0, header.getBoundingClientRect().bottom);
+    }
+    var offset = stickyBottom;
+    if (/^H[1-6]$/.test(el.tagName) && !el.classList.contains('tab-toc-heading')) {
       offset += (parseFloat(getComputedStyle(el).marginTop) || 0) * 0.35;
     }
     el.style.scrollMarginTop = offset + 'px';
