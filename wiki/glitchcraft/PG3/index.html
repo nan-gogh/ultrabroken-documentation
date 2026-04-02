@@ -1066,10 +1066,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-2-overload-pf-aerophasing-all-versions" class="md-nav__link">
+  <a href="#method-2-overload-pf-torch-culling-all-versions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 2: Overload PF + Aerophasing All versions
+        Method 2: Overload PF + Torch Culling All versions
       
     </span>
   </a>
@@ -1077,10 +1077,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-3-overload-pf-torch-culling-all-versions" class="md-nav__link">
+  <a href="#method-3-overload-pf-aerophasing-all-versions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 3: Overload PF + Torch Culling All versions
+        Method 3: Overload PF + Aerophasing All versions
       
     </span>
   </a>
@@ -1297,12 +1297,68 @@
     D --&gt;|CF| TARGET</code></pre>
 </details>
 <p><em>Method developed by mulberry - Jan 17, 2026</em></p>
-<h4 class="collapse" id="method-2-overload-pf-aerophasing-all-versions">Method 2: <br/>Overload PF + Aerophasing <span class='ub-vr'><code>All versions</code></span></h4>
+<h4 class="collapse" id="method-2-overload-pf-torch-culling-all-versions">Method 2: <br/>Overload PF + Torch Culling <span class='ub-vr'><code>All versions</code></span></h4>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>Prepare:</p>
+<ul>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon or Shield (A)</li>
+<li>A torch</li>
+<li>A flame emitter</li>
+</ul>
+<p>Creating the setup:</p>
+<ol>
+<li>A and normal item B make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Shield C, keep normal parent</li>
+<li>Smuggle C</li>
+<li>Cold Drop the torch and place it next to a wall in a culling area</li>
+<li>Point the Flame Emitter at the head of the Torch from point-blank, ensuring the fire strikes a solid surface as close to the torch-head as possible.</li>
+<li>Glue B to the Torch and activate the Flame Emitter.</li>
+<li>To cull C, use the ability wheel to select and open Recall or the map, causing a 2-frame pause. The torch should begin culling after cancelling recall/closing the map</li>
+<li>Overload Drop a shield (D) and fuse it to a weapon (E)</li>
+</ol>
+<p>Creating <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts:</p>
+<ol>
+<li>Fuse the target to the shield (Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>)</li>
+<li>Use the ability wheel to open recall, then use it to open fuse and press fuse immediately</li>
+<li>As long as fuse is pressed more than 2 frames before the torch fully culls, the cull will occur within the target's <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> window</li>
+<li>After 30 successful uses, destroy C and D before continuing</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Fuse-Over(load)</p>
+<p>Detangling a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its parent by "fuse-over" leaves a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> connection behind, and detaching a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its PF parent does the same. Due to this, C and D will each gain one <em>peristent</em> dependency for each <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost produced. After 30 uses, C and D will reach <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a>. If a 31st use is attempted, you will create a "Reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will <strong>crash the game</strong> if you drop either!</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Self-Fusing</p>
+<p>When an overload-pickup (here, D) has a connection back to Link (here, via E), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
+</div>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+
+    LINK[Link]
+    A[DI Ghost (A)]
+    B[Normal Item (B)]
+    C[DI Ghost Shield (C)]
+    D[Normal Shield (D)]
+    E[Normal Weapon (E)]
+    F[Target]
+
+    A --&gt;|DI| C
+    B --&gt;|DI| C
+    LINK --&gt;|Smuggle| C
+    LINK --&gt;|Equip| E
+    LINK --&gt;|Overload&lt;br/&gt;Drop| D
+    E --&gt;|Fuse| D
+    C --&gt;|FE| F
+    D --&gt;|CF| F</code></pre>
+</details>
+<h4 class="collapse" id="method-3-overload-pf-aerophasing-all-versions">Method 3: <br/>Overload PF + Aerophasing <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <div class="admonition warning">
 <p class="admonition-title">Construction Zone</p>
-<p>Method 2 is not yet tested for function and optimality.</p>
+<p>Method 3 is not yet tested for function and optimality.</p>
 </div>
 <p>Prepare:</p>
 <ul>
@@ -1351,45 +1407,6 @@
     A --&gt;|FE| D
     C --&gt;|FE| TARGET
     D --&gt;|CF| TARGET</code></pre>
-</details>
-<h4 class="collapse" id="method-3-overload-pf-torch-culling-all-versions">Method 3: <br/>Overload PF + Torch Culling <span class='ub-vr'><code>All versions</code></span></h4>
-<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<div class="admonition warning">
-<p class="admonition-title">Construction Zone</p>
-<p>Method 3 is not yet tested for function and optimality.</p>
-</div>
-<p>Prepare:</p>
-<ul>
-<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon or Shield (A)</li>
-<li>A torch</li>
-<li>A flame emitter</li>
-</ul>
-<p>Creating the setup:</p>
-<ol>
-<li>A and normal weapon B make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Shield C, keep normal parent</li>
-<li>Smuggle C</li>
-<li>Glue B to the torch and place in a culling area</li>
-<li>Activate the flame emitter and point it at the head of the torch from point-blank</li>
-<li>Overload Drop a shield D and fuse it to a weapon E</li>
-</ol>
-<p>Creating <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts:</p>
-<ol>
-<li>Fuse target to shield twice and pause the game in any way shortly after the second fuse</li>
-<li>After 30 successful uses, destroy C and D, then remake them to continue</li>
-</ol>
-<div class="admonition danger">
-<p class="admonition-title">Fuse-Over(load)</p>
-<p>Detangling a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its parent by "fuse-over" leaves a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> connection behind, and detaching a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost from its PF parent does the same. Due to this, C and D will each gain one <em>peristent</em> dependency for each <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost produced. After 30 uses, C and D will reach <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a>. If a 31st use is attempted, you will create a "Reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will <strong>crash the game</strong> if you drop either!</p>
-</div>
-<div class="admonition danger">
-<p class="admonition-title">Self-Fusing</p>
-<p>When an overload-pickup (here, D) has a connection back to Link (here, via E), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
-</div>
-<details class="example">
-<summary>Diagram</summary>
-<p>Making a diagram of an untested method would be a waste of time. Please wait until the method is tested and verified.</p>
 </details>
 <h4 class="collapse" id="method-4-overload-pf-mineru-limbo-all-versions">Method 4: <br/>Overload PF + Mineru Limbo <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
