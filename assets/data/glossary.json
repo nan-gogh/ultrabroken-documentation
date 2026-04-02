@@ -896,6 +896,20 @@
     "filename": "extended-throw-sprinting.md"
   },
   {
+    "name": "Fail Drop Equip",
+    "uid": "D2J",
+    "label": "",
+    "aliases": [
+      "fde",
+      "fds",
+      "fdz",
+      "fail drop smuggle",
+      "fail drop zuggle"
+    ],
+    "path": "wiki/glitchcraft/D2J/",
+    "filename": "fail-drop-equip.md"
+  },
+  {
     "name": "Fall Damage Cancel",
     "uid": "QVO",
     "label": "FDC",

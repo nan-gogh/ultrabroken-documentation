@@ -529,6 +529,12 @@
       "label": "ETSP"
     },
     {
+      "id": "wiki/glitchcraft/D2J/",
+      "uid": "D2J",
+      "name": "Fail Drop Equip",
+      "label": ""
+    },
+    {
       "id": "wiki/glitchcraft/QVO/",
       "uid": "QVO",
       "name": "Fall Damage Cancel",
@@ -2574,6 +2580,10 @@
     },
     {
       "source": "wiki/glitchcraft/AZT/",
+      "target": "wiki/glitchcraft/D2J/"
+    },
+    {
+      "source": "wiki/glitchcraft/AZT/",
       "target": "wiki/glitchcraft/MCM/"
     },
     {
@@ -2675,6 +2685,14 @@
     {
       "source": "wiki/glitchcraft/CO6/",
       "target": "wiki/glitchcraft/056/"
+    },
+    {
+      "source": "wiki/glitchcraft/D2J/",
+      "target": "wiki/glitchcraft/9HN/"
+    },
+    {
+      "source": "wiki/glitchcraft/D2J/",
+      "target": "wiki/glitchcraft/MCM/"
     },
     {
       "source": "wiki/glitchcraft/D55/",
@@ -3263,6 +3281,10 @@
     {
       "source": "wiki/glitchcraft/KID/",
       "target": "wiki/glitchcraft/CNV/"
+    },
+    {
+      "source": "wiki/glitchcraft/KID/",
+      "target": "wiki/glitchcraft/D2J/"
     },
     {
       "source": "wiki/glitchcraft/KID/",
