@@ -1032,18 +1032,17 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#description" class="md-nav__link">
+  <a href="#method" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Description
+        Method
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Description">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#effects" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1051,11 +1050,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1103,9 +1097,20 @@
 <p class="admonition-title">UNDER CONSTRUCTION</p>
 <p>This page is still being written. It may be used as-is, but some sections are incomplete, and others may contain incorrect information.</p>
 </div>
-<h2 id="description">Description</h2>
-<p>This is the best equipment state for sure!</p>
-<h3 id="effects">Effects</h3>
+<p>An equipped item that has lost all physics behaviours, aside from those that come from Link, due to being snapped off from a fuse parent.</p>
+<h2 id="method">Method</h2>
+<ol>
+<li>Overload drop the target item.</li>
+<li>Fuse the overload dropped item to a weapon (for shields and bows) or shield (for weapons and bows).</li>
+<li>Fail drop the item to make it an equipped ghost.</li>
+</ol>
+<h2 id="effects">Effects</h2>
+<ul>
+<li>Equipped ghosts largely behave like normal equipment for as long as they remain equipped.</li>
+<li>Their size is influenced by the previous fuse parent, so they usually appear larger than normal.</li>
+<li>Dropping the equipment will ghost it; it will float in mid-air and never do anything ever again. You can't interact with it in basically any way.</li>
+<li>You can freely drop and re-equip the original fuse parent.</li>
+</ul>
 
 
 

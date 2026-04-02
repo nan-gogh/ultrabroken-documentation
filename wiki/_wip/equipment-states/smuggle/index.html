@@ -1069,7 +1069,7 @@
   <a href="#culling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Culling ===
+        "Culling" ===
       
     </span>
   </a>
@@ -1080,7 +1080,7 @@
   <a href="#overload" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overload ===
+        "Overload" ===
       
     </span>
   </a>
@@ -1161,14 +1161,10 @@
 <h2 id="description">Description</h2>
 <p>An <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/A9N/" class="glitch-autolink" title="Equipment Smuggle" target="_blank" rel="noopener noreferrer">equipment smuggle</a> is the state an equipment is put in when it is currently in the action of dropping, i.e. when it is in the drop queue. Smuggles naturally get created for 4 frames when any equipment is dropped from Link's hand. During those frames, the piece of equipment is outside of Link's inventory but is still visibly dropping, as the game is handling the drop.
 This state can be abused and kept for as long as desired using several methods in all versions.</p>
-<p>The main reason to obtain longer-lasting smuggles is to trivially upgrade them to zuggles.</p>
+<p>The main reason to obtain longer-lasting smuggles is to trivially upgrade them into zuggles.</p>
 <h2 id="variants">Variants</h2>
 <p>Smuggles can come in different variants, depending on their equip position, and if they're culled or not:</p>
 <table>
-    <tr>
-        <th />
-        <th colspan="3">Position</th>
-    </tr>
     <tr>
         <th />
         <th>Static</th>
@@ -1188,33 +1184,39 @@ This state can be abused and kept for as long as desired using several methods i
         <td>Drop Invismuggle</td>
     </tr>
     <tr>
-        <td colspan="2" />
-        <td colspan="2"><small>This distinction is less important for culled smuggles and zuggles.</small></td>
+    <tr>
+        <th>Common abbreviation</th>
+        <td />
+        <td>dsmuggle</td>
+        <td>ds</td>
     </tr>
     <tr>
         <th>Unsmuggling it</th>
         <td>Equip something else of that type, and warm drop it</td>
         <td>Equip something else of that type, and throw or shock drop it</td>
-        <td>Equip the smuggle, fail drop it, then use any drop method</td>
+        <td>Equip the smuggle and fail drop it</td>
     </tr>
     <tr>
         <th>Upgrading it to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a></th>
         <td>Equip something else of that type, and fail drop it</td>
         <td>Equip something else of that type, and warm drop or fail drop it</td>
-        <td>Equip it, and <a href="zuggle-drop/">zuggle drop</a> it</td>
+        <td>Equip it, and <a href="../zuggle-drop/">zuggle drop</a> it</td>
     </tr>
 </table>
 
+<p>The distinction between different equip positions is less important for culled smuggles and zuggles.</p>
 <h2 id="creating-smuggles">Creating smuggles</h2>
 <div class="admonition warning">
 <p class="admonition-title">D-Pad Lock</p>
 <p>If playing on version 1.1.2 or higher, consider <a href="search: Despawn Interrupt">Despawn Interrupting</a> the equipment first, to avoid problems with D-Pad Lock.</p>
 </div>
 <p>Although a smuggle is technically created whenever you <a href="cold-warm-drop/">warm drop</a> equipment, there are ways to create more persistent smuggles:</p>
-<h3 id="culling">Culling ===</h3>
-<p>Cull the equipment (without culling Link) and drop it. The easiest way to do this is to Fuse Entangle it to some other equipment, which you leave in a culling area.</p>
-<h3 id="overload">Overload ===</h3>
-<p>Overload pickup the equipment, then drop it.</p>
+<h3 id="culling">"Culling" ===</h3>
+<div class="highlight"><pre><span></span><code>Cull the equipment (without culling Link) and drop it. The easiest way to do this is to Fuse Entangle it to some other equipment, which you leave in a culling area.
+</code></pre></div>
+<h3 id="overload">"Overload" ===</h3>
+<div class="highlight"><pre><span></span><code>Overload pickup the equipment, then drop it.
+</code></pre></div>
 <h2 id="comparison-to-zuggles">Comparison to zuggles</h2>
 <p>Smuggles and zuggles are very similar in behaviour and nature. From the equipment's perspective, they are <em>exactly</em> the same. The only difference is in how Link treats them; if Link considers the equipment to be what he is actively dropping, it's a smuggle. If not, it's a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>.</p>
 <h2 id="effects">Effects</h2>

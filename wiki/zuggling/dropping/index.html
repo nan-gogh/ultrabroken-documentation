@@ -1081,12 +1081,12 @@
 
 
 
-<p>The mechanics of how Tears of the Kingdom handles equipment dropping are surprisingly complex, and edge cases in these engine mechanics are what make smuggling and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggling</a> possible.</p>
 <h1 id="overview">Overview</h1>
 <div class="admonition warning">
 <p class="admonition-title">UNDER CONSTRUCTION</p>
 <p>This page is still being written. It may be used as-is, but some sections are incomplete, and others may contain incorrect information.</p>
 </div>
+<p>The mechanics of how Tears of the Kingdom handles equipment dropping are surprisingly complex, and edge cases in these engine mechanics are what make smuggling and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggling</a> possible.</p>
 <p>TODO: drop queue (general equipment, incl. cold drops), Link's is-dropping slots</p>
 <h2 id="dropping-equipped-items">Dropping equipped items</h2>
 <p>When you drop something Link has equipped, the game broadcasts a 'start dropping' message to all equipment of that type. Similarly, Link puts a reference to the item he had equipped into his own 'is dropping' slot (he has three of these, one for each equippable type), and the game starts processing all queued drops. When the item in the 'is dropping' slot is free to drop fully, Link removes that reference. If anything in the drop queue fail drops, all items in the 'is dropping' slots are forcibly re-equipped onto Link.</p>
