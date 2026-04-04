@@ -10,7 +10,6 @@ URLs on the first deploy.  Idempotent — files that already have a UID are
 skipped.
 
 Skipped files:
-  - _glitchcraft-grimoire (meta/index page, not a content page)
   - blank.md  (editor template, not a real page)
   - Any file without a title: field
 
@@ -28,7 +27,7 @@ from common import ROOT, extract_frontmatter
 
 
 # Files to skip (by stem) when generating UIDs site-wide
-_SKIP_STEMS = {'_glitchcraft-grimoire', 'blank'}
+_SKIP_STEMS = {'blank'}
 
 
 def generate_uids() -> set[str]:

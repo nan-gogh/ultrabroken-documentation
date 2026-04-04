@@ -37,7 +37,7 @@ _UID_LINK_RE = re.compile(r'\(uid:([^)\s]+)\)')
 _UID_RE = re.compile(r'^[A-Z0-9]{3}$')
 
 # Files to skip (by stem)
-_SKIP_STEMS = {'_glitchcraft-grimoire', 'blank'}
+_SKIP_STEMS = {'blank'}
 
 
 def _read_uid(abs_src_path: str) -> str | None:
@@ -96,6 +96,20 @@ def on_files(files, config, **kwargs):
     config['uid_filename_map'] = filename_map
 
     return files
+
+
+def on_page_context(context, page, config, **kwargs):
+    """Inject the original filename stem as page.meta['page_slug'].
+
+    This is picked up by overrides/partials/content.html to emit a
+    data-slug attribute that cosmetic-urls.js reads on each navigation.
+    For index.md files, uses the parent directory name instead.
+    """
+    src = Path(page.file.src_path)
+    stem = src.stem
+    if stem == 'index':
+        stem = src.parent.name or stem
+    page.meta['page_slug'] = stem
 
 
 def on_page_markdown(markdown, page, config, **kwargs):

@@ -206,7 +206,7 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
             # Mirrors the uid_links.py hook behavior during MkDocs build:
             # any wiki page with a uid: becomes /wiki/{uid}/ regardless of subfolder.
             uid = fm.get('uid', '')
-            _skip_stems = {'_glitchcraft-grimoire', 'blank'}
+            _skip_stems = {'blank'}
             if uid and is_wiki_subtree and rel.stem not in _skip_stems:
                 # Flat UID path: /wiki/{uid}/
                 parts = ['wiki', uid]
