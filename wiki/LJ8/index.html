@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Attaches equipment to Link's back/hand with the pickup prompt still accessible.">
+        <meta name="description" content="Allows weapons with the 'kinematic' motion type to be obtained, which don't react to outside forces (making them movable only by certain techniques).">
       
       
         <meta name="author" content="NaN Gogh & Community">
       
       
-        <link rel="canonical" href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/D2J/">
+        <link rel="canonical" href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LJ8/">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>Fail Drop Equip - Ultrabroken Archives</title>
+        <title>Kinematic Weapons (Collapsible Sections Demo) - Ultrabroken Archives</title>
       
     
     
@@ -89,13 +89,9 @@
     @media(max-width:76.25em){.ub-header-toggles{display:none!important}}
   </style>
 
-      <meta property="og:title" content="Fail Drop Equip [FDE]">
-    <meta property="og:description" content="Attaches equipment to Link&#x27;s back/hand with the pickup prompt still accessible.&#10;&#10;[1.0.0] [1.1.0] [1.1.1] [1.2.0] [1.2.1] [1.3.0/1.4.0] [1.4.1] [1.4.2] [1.4.3] [Switch 2]&#10;&#10;[D2J]">
-    <meta property="og:url" content="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/fail-drop-equip/">
-    <meta property="og:site_name" content="Ultrabroken Archives">
-    <meta name="theme-color" content="#00f0c2">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Fail Drop Equip","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/D2J/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/D2J/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"Attaches equipment to Link's back/hand with the pickup prompt still accessible.","author":{"@type":"Organization","name":"NaN Gogh & Community"},"keywords":"overload"}</script>
-</head>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Kinematic Weapons (Collapsible Sections Demo)","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/LJ8/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/LJ8/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"Allows weapons with the 'kinematic' motion type to be obtained, which don't react to outside forces (making them movable only by certain techniques).","author":[{"@type":"Person","name":"mulberry"},{"@type":"Person","name":"dt13269"},{"@type":"Person","name":"Squidwest"}],"datePublished":"2026-02-25","keywords":"equipment"}</script>
+    <meta name="robots" content="noindex">
+  </head>
   
   
     
@@ -103,7 +99,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal" data-ub-social-card="https://ultrabroken-media.gl1tchcr4vt.workers.dev/social/D2J.png">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal" data-ub-draft="true">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -112,7 +108,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fail-drop-equip-fde" class="md-skip">
+        <a href="#kinematic-weapons-kw" class="md-skip">
           Skip to content
         </a>
       
@@ -148,7 +144,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Fail Drop Equip
+              Kinematic Weapons (Collapsible Sections Demo)
             
           </span>
         </div>
@@ -1055,10 +1051,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#method-1-10" class="md-nav__link">
+  <a href="#pause-cancel-fe-methods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 1 (1.0)
+        Pause-Cancel FE Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pause-Cancel FE Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-pause-cancel-overload-fe-load-null-fuse-all-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Pause-Cancel Overload FE + Load Null Fuse All versions
       
     </span>
   </a>
@@ -1066,10 +1074,165 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-2-overload-based-all-versions" class="md-nav__link">
+  <a href="#method-2-pause-cancel-mineru-fe-load-null-fuse-100" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 2 (Overload-based, all versions)
+        Method 2: Pause-Cancel Mineru FE + Load Null Fuse 1.0.0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-pause-cancel-overload-fe-warp-fuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 3: Pause-Cancel Overload FE + Warp Fuse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pause-cancel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pause-Cancel???
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overload-pickup-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overload Pickup Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overload Pickup Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-4-basic-loadless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 4: Basic Loadless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-5-minimalist-loadless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 5: Minimalist Loadless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-6-temporary-ghosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 6: Temporary Ghosting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#known-ways-to-move-kinematic-weapons-100-111-120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Ways to Move Kinematic Weapons 1.0.0-1.1.1 1.2.0+
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known Ways to Move Kinematic Weapons 1.0.0-1.1.1 1.2.0+">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pickup-related-actions-100-111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pickup-related Actions 1.0.0-1.1.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recall-related-actions-120-121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recall-related Actions 1.2.0-1.2.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-actions-130140" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Actions 1.3.0/1.4.0+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-section-110-112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test section 1.1.0-1.1.2
       
     </span>
   </a>
@@ -1130,10 +1293,10 @@
                   
 
 
-<div class="ub-page-actions" data-slug="fail-drop-equip">
+<div class="ub-page-actions" data-slug="kinematic-weapons-collapse-demo">
   
   
-    <a href="https://github.com/nan-gogh/ultrabroken-documentation/edit/main/docs/wiki/glitchcraft/fail-drop-equip.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/nan-gogh/ultrabroken-documentation/edit/main/docs/wiki/_wip/kinematic-weapons-collapse-demo.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1142,67 +1305,211 @@
     
       
     
-    <a href="https://github.com/nan-gogh/ultrabroken-documentation/raw/main/docs/wiki/glitchcraft/fail-drop-equip.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/nan-gogh/ultrabroken-documentation/raw/main/docs/wiki/_wip/kinematic-weapons-collapse-demo.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
   
-    <code class="ub-page-uid">D2J</code>
+    <code class="ub-page-uid">LJ8</code>
   
 </div>
 
 
 
-<h1 id="fail-drop-equip-fde">Fail Drop Equip <code>FDE</code></h1>
-<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<h1 id="kinematic-weapons-kw">Kinematic Weapons <code>KW</code></h1>
+<div class="admonition warning">
+<p class="admonition-title">UNDER CONSTRUCTION</p>
+<p>This page is still being written. It may be used as-is, but some sections are incomplete, and others may contain incorrect information.</p>
+</div>
+<p><code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
-<p>Lets you equip something that has its pickup prompt still attached. Formerly known as <em>fail drop smuggle</em>.</p>
+<p>Allows weapons with the 'kinematic' motion type to be obtained, which don't react to outside forces (making them movable only by certain techniques).</p>
+<p><em>mulberry, <a href="https://github.com/dt-12345">dt13269</a>; Optimizations by mulberry, Squidwest - 25 February 2026</em></p>
 <h2 id="instructions">Instructions</h2>
-<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1 (<code>1.0</code>) <span class='ub-vr'><code>1.0.0</code></span></label><label for="__tabbed_1_2">Method 2 (Overload-based, all versions) <span class='ub-vr'><code>1.0.0-1.1.1</code> <code>1.2.0+</code></span></label></div>
+<p>All methods require a weapon currently held by a Depths Ghost, which will be referred to as the "target weapon" or "target".</p>
+<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pause-Cancel FE Methods <span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_2">Overload Pickup Methods</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="ub-method-meta" data-versions='["1.0.0"]' data-obsolete="false" hidden></div>
-<h3 class="tab-toc-heading" id="method-1-10">Method 1 (<code>1.0</code>)</h3>
+<div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<h3 class="tab-toc-heading" id="pause-cancel-fe-methods">Pause-Cancel FE Methods</h3>
+<p>These Methods pause the game while performing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> on the target, preventing the ghost from detecting it being tampered with.</p>
+<h4 class="ub-obsolete collapse" id="method-1-pause-cancel-overload-fe-load-null-fuse-all-versions">Method 1: Pause-Cancel Overload FE + Load Null Fuse <span class='ub-vr'><code>All versions</code></span></h4>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="true" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<div class="admonition warning">
+<p class="admonition-title">OBSOLETE CONTENT</p>
+<p>This content is obsolete. Check out alternatives.</p>
+</div>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> any shield</li>
+<li>Overload Drop another shield and fuse it to a weapon</li>
+<li>Highlight the target weapon with Fuse</li>
+<li>Press ZL and <strong>pause</strong> the game on the same frame. This can be done by buffering the ability wheel, or by opening a menu</li>
+<li>When the game unpauses, the target should <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> to the zuggled shield, but remain floating and interactible</li>
+<li>Highlight the target weapon with Fuse again</li>
+<li>Press ZL and +/- on the same frame, then load a save. The target should be where it was, but uninteractible</li>
+<li>Move away from the target weapon and use a Rocket Shield to detangle it from the zuggled shield</li>
+<li>The target weapon should regain interaction and remain floating</li>
+</ol>
+<h4 class="collapse" id="method-2-pause-cancel-mineru-fe-load-null-fuse-100">Method 2: Pause-Cancel Mineru FE + Load Null Fuse <span class='ub-vr'><code>1.0.0</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code></p>
-<p><em>Setup by mulberry, this writeup by Pearfalse (untested)</em></p>
 <ol>
-<li>Put Link's back to a wall with something of the same type as your target equipped</li>
-<li>Pause, swap to your target item, and drop it</li>
-<li>Pause buffer</li>
-<li>Drop the re-equipped item, then equip and unequip something else in the same tab</li>
-<li>Pause buffer</li>
-<li>Drop something unequipped in that tab</li>
-<li>Unpause to fail drop</li>
+<li>Find a large weapon cairn, with 3 ghosts atop it. These are large enough for Mineru to spawn atop them.</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> any shield</li>
+<li><a href="mineru-fuse-entanglement.md">Mineru FE</a> another shield</li>
+<li>Highlight the target weapon with Fuse</li>
+<li>Make Mineru cull, and perform "Animated" <a href="mineru-fuse-entanglement.md">Mineru Cold Fuse</a> on the target weapon (the frame which causes the visual and sound effects to play)</li>
+<li>On the frame you press ZL, <strong>pause</strong> the game. This can be done by opening a menu, or by performing this method on an unobtained weapon (??? prompt)</li>
+<li>When the game unpauses, the target should <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> to the zuggled shield, but remain floating and interactible</li>
+<li>Highlight the target weapon with Fuse again</li>
+<li>Press ZL and +/- on the same frame, then load a save. The target should be where it was, but uninteractible</li>
+<li>Move away from the target weapon and use a Rocket Shield to detangle it from the zuggled shield</li>
+<li>The target weapon should regain interaction and remain floating</li>
+</ol>
+<h4 class="collapse" id="method-3-pause-cancel-overload-fe-warp-fuse">Method 3: Pause-Cancel Overload FE + Warp Fuse</h4>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> any non-<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield</li>
+<li><a href="zuggle-overload.md">Overload Drop</a> another shield and fuse it to a weapon</li>
+<li>Highlight the target weapon with Fuse</li>
+<li>Press ZL and <strong>pause</strong> the game on the same frame. This can be done by buffering the ability wheel, or by opening a menu</li>
+<li>When the game unpauses, the target should <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> to the zuggled shield, but remain floating and interactible</li>
+<li>Highlight the target weapon with Fuse again</li>
+<li>Press ZL and +/- on the same frame, then warp to your destination without unpausing</li>
+<li>Use <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/B3B/" class="glitch-autolink" title="Octo-balloon Detanglement" target="_blank" rel="noopener noreferrer">Octo Detanglement</a> on the <em>equipped</em> shield. This will detangle from the <em>zuggled</em> parent shield without having to time the cancel</li>
+<li>The target weapon should regain interaction and remain floating</li>
+</ol>
+<h4 class="collapse open" id="pause-cancel">Pause-Cancel???</h4>
+<p>Instead of pausing during the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>, any method requiring Pause-Cancel can alternatively be performed with Overload Pickup:</p>
+<ol>
+<li><a href="zuggle-overload.md">Overload Pickup</a> the target weapon</li>
+<li>Move out of the ghost's update range, but stay within its spawn range</li>
+<li>This distance varies between ghosts, but can be made more lenient by facing the camera away from it</li>
+<li><strong>Fail-drop</strong> the target, then <strong>drop</strong> it once it returns to Link</li>
+<li>Proceed with a given Pause-Cancel method; The ghost will not despawn even without performing Pause-Cancel</li>
 </ol>
 </div>
 <div class="tabbed-block">
-<div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<h3 class="tab-toc-heading" id="method-2-overload-based-all-versions">Method 2 (Overload-based, all versions)</h3>
-<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<h3 class="tab-toc-heading" id="overload-pickup-methods">Overload Pickup Methods</h3>
+<p>These Methods use Overload Pickup to move the target to a distance where the ghost can't detect it being tampered with.</p>
+<h4 class="collapse" id="method-4-basic-loadless">Method 4: Basic Loadless</h4>
 <ol>
-<li>Fill the inventory for the type of equipment you want to fail drop equip</li>
-<li>Position Link with his back to a wall</li>
-<li>Overload drop the equipment you want to fail drop equip</li>
+<li><a href="zuggle-overload.md">Overload Pickup</a> the target weapon</li>
+<li>Move out of the ghost's update range, but stay within its spawn range</li>
+<li>This distance varies between ghosts, but can be made more lenient by facing the camera away from it</li>
+<li><strong>Fail-drop</strong> the target, then <strong>drop</strong> it once it returns to Link. It should remain floating and interactible</li>
+<li>Overload Pickup the target again and fuse it to a shield</li>
+<li>Move out of the spawn range of the ghost</li>
+<li><strong>Fail-drop</strong> the target, then <strong>drop</strong> it once it moves from the shield to Link's back</li>
+<li>Move out of update range of the target and use <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/B3B/" class="glitch-autolink" title="Octo-balloon Detanglement" target="_blank" rel="noopener noreferrer">Octo Detanglement</a> on the parent shield</li>
+<li>The target weapon should regain interaction and remain floating</li>
+</ol>
+<p>This method relies on the ability to detach a fully-fused and ghosted weapon from its parent via Overload Pickup, allowing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/B3B/" class="glitch-autolink" title="Octo-balloon Detanglement" target="_blank" rel="noopener noreferrer">Octo Detanglement</a> to be done out of update range.</p>
+<h4 class="collapse" id="method-5-minimalist-loadless">Method 5: Minimalist Loadless</h4>
+<ol>
+<li><a href="zuggle-overload.md">Overload Pickup</a> the target weapon</li>
+<li>Move to the edge of the ghost's spawn range. Face away from the ghost to prevent it from updating</li>
+<li>Fail-drop the target, then drop it once it returns. It should remain floating and interactible</li>
+<li><a href="zuggle-overload.md">Overload Drop</a> a shield and fuse it to a weapon</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> the target to the shield on the frame Link exits the ghost's spawn range</li>
+<li>The target weapon should remain floating and interactible</li>
+</ol>
+<p>This method relies on the fact that an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> causes the target to be considered "Fused" for a single frame.</p>
+<h4 class="collapse" id="method-6-temporary-ghosting">Method 6: Temporary Ghosting</h4>
+<ol>
+<li><a href="zuggle-overload.md">Overload Pickup</a> the target weapon</li>
+<li>Move out of the ghost's update range, but stay within its spawn range</li>
+<li>This distance varies between ghosts, but can be made more lenient by facing the camera away from it</li>
+<li>Fail-drop the target, then drop it once it returns. It should remain floating and interactible</li>
+<li><a href="zuggle-overload.md">Overload Drop</a> a shield (A) and fuse it to a weapon</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> a shield (B) to A</li>
+<li><strong>Fail-drop</strong> A, then and <em>drop</em> it once it returns to Link</li>
+<li>Overload Pickup B, then move it out of Link's update range (max Ultrahand distance is far enough)</li>
+<li>Highlight the target weapon with Fuse</li>
+<li>Press ZL and <strong>pause</strong> the game on the same frame. This can be done by buffering the ability wheel, or by opening a menu</li>
+<li>When the game unpauses, the target weapon should warp to B and become uninteractible, without appearing fused in the inventory</li>
+<li>Exit the ghost's spawn range, then return to the target weapon; it should regain interaction and remain floating</li>
 </ol>
 </div>
 </div>
 </div>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>Cannot be glued "from" (holding it/something attached to it), only "to" (holding something unattached to it)</li>
+<li>Uses an effective mass of 1,000,000 for certain purposes, such as calculating glue strength</li>
+<li>Does not collide with anything, though regular ("Dynamic") objects <em>will still collide with it</em></li>
+<li>As it does not collide, external forces do not affect it, thus only a select few actions can change its velocity</li>
+</ul>
+<h3 class="ub-obsolete collapse" id="known-ways-to-move-kinematic-weapons-100-111-120">Known Ways to Move Kinematic Weapons <span class='ub-vr'><code>1.0.0-1.1.1</code> <code>1.2.0+</code></span></h3>
+<div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="true" hidden></div>
+<h4 class="ub-obsolete" id="pickup-related-actions-100-111">Pickup-related Actions <span class='ub-vr'><code>1.0.0-1.1.1</code></span></h4>
+<div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1"]' data-obsolete="true" hidden></div>
+<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code></p>
+<div class="admonition warning">
+<p class="admonition-title">OBSOLETE CONTENT</p>
+<p>This content is obsolete. Check out alternatives.</p>
+</div>
+<ul>
+<li>Carrying it around; Drop Smuggle-like states retain collision and are notably more forceful than normal</li>
+<li>Dropping it while moving, which directly adds Link's velocity</li>
+<li>Throwing it, which directly adds throw velocity; Boomerangs will follow a return arc</li>
+</ul>
+<h4 class="ub-obsolete" id="recall-related-actions-120-121">Recall-related Actions <span class='ub-vr'><code>1.2.0-1.2.1</code></span></h4>
+<div class="ub-method-meta" data-versions='["1.2.0", "1.2.1"]' data-obsolete="true" hidden></div>
+<p><code>1.2.0</code> <code>1.2.1</code></p>
+<div class="admonition warning">
+<p class="admonition-title">OBSOLETE CONTENT</p>
+<p>This content is obsolete. Check out alternatives.</p>
+</div>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/OO2/" class="glitch-autolink" title="Kinematic Weapons" target="_blank" rel="noopener noreferrer">Kinematic Weapons</a> obey the "position lock" and "velocity reset" of recall, so the following will work to <strong>move</strong>, then <strong>stop</strong> it:</p>
+<ul>
+<li>Recalling an attached object; May break the glue sometimes</li>
+<li>Recalling the Kinematic Weapon along a return path</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/EY8/" class="glitch-autolink" title="Recall Locking" target="_blank" rel="noopener noreferrer">Recall-locking</a> it and dropping it somewhere else</li>
+</ul>
+<h4 class="ub-obsolete" id="other-actions-130140">Other Actions <span class='ub-vr'><code>1.3.0/1.4.0+</code></span></h4>
+<div class="ub-method-meta" data-versions='["1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="true" hidden></div>
+<p><code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<div class="admonition warning">
+<p class="admonition-title">OBSOLETE CONTENT</p>
+<p>This content is obsolete. Check out alternatives.</p>
+</div>
+<ul>
+<li>Attaching an upside-down wing; Seems to directly add velocity to build instead of applying a force</li>
+<li>The "gravitational" force of attaching with Ultrahand can affect the velocity</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Take care!</p>
+<p>Warping causes a "sleep" on equipped items, which will undo this state! You can <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> it to take it with you safely.</p>
+</div>
+<h3 class="ub-obsolete" id="test-section-110-112">Test section <span class='ub-vr'><code>1.1.0-1.1.2</code></span></h3>
+<div class="ub-method-meta" data-versions='["1.1.0", "1.1.1", "1.1.2"]' data-obsolete="true" hidden></div>
+<p><code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code></p>
+<div class="admonition warning">
+<p class="admonition-title">OBSOLETE CONTENT</p>
+<p>This content is obsolete. Check out alternatives.</p>
+</div>
+<p>Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.</p>
 <h2 id="notes">Notes</h2>
-<p>If you <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> FDE equipment, it becomes a Fail <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/9HN/" class="glitch-autolink" title="Drop Zuggle" target="_blank" rel="noopener noreferrer">Drop Zuggle</a>.</p>
-<p>For the overload method:</p>
-<div class="highlight"><pre><span></span><code>- The timing for the X press is very tight, possibly frame-perfect.
-- A success requires the message &quot;You can&#39;t carry any more \[equipment type\].&quot;, and not &quot;You can&#39;t take that out here.&quot; (although there is at last one frame that gives you the correct message, but fail drops normally).
-</code></pre></div>
+<p>Version <code>1.0.0</code> lacks a check for whether the weapon is fused, making it impossible to take the weapon in a way that preserves the motion type.</p>
 <h2 id="resources">Resources</h2>
 <ul>
-<li><a href="https://discord.com/channels/1086729144307564648/1105598687167664239/1251550527175786716">Discord: video of 1.0 method</a></li>
+<li><a href="https://discordapp.com/channels/1086729144307564648/1110956205624532993/1476367185642520639">Original discovery</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1110956205624532993/1476693921533923390">Original Load Null Fuse Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481259601495195739">Pause-Cancel Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481251852237672609">Mineru Pause-Cancel Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481411419093340222">Pause-Cancel Warp Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481190445135691836">Basic Loadless Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481347605215580363">Minimalist Loadless Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1481367458517487877">Temporary Ghosting Method</a></li>
 </ul>
 <h2 id="related">Related</h2>
-<p><a href="../F4E/">Equipment States: Fail Drop Equip</a></p>
+<ul>
+<li><a href="search:Zuggle Overload">Zuggle Overload</a></li>
+<li><a href="search:Mineru Fuse Entanglement">Mineru FE</a></li>
+</ul>
 
 
 

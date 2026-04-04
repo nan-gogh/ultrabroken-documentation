@@ -898,9 +898,8 @@
   {
     "name": "Fail Drop Equip",
     "uid": "D2J",
-    "label": "",
+    "label": "FDE",
     "aliases": [
-      "fde",
       "fds",
       "fdz",
       "fail drop smuggle",
