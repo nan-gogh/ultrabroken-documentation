@@ -268,10 +268,7 @@
 
   function fetchVersions(cb) {
     if (_versionData) { cb(); return; }
-    // Derive site root from an absolute stylesheet URL (works with SPA navigation + sub-path deploys)
-    var link = document.querySelector('link[rel="stylesheet"][href*="assets/stylesheets/"]');
-    var prefix = link ? link.href.split('assets/stylesheets/')[0] : '';
-    fetch(prefix + 'assets/data/versions.json').then(function (r) {
+    fetch(window.__ub_base + 'assets/data/versions.json').then(function (r) {
       if (!r.ok) throw new Error(r.status);
       return r.json();
     }).then(function (data) {

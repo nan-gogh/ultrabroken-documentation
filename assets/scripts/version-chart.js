@@ -156,7 +156,7 @@
       if (unk) td0.title = 'Version compatibility unknown';
 
       var a = document.createElement('a');
-      a.href   = '../' + g.uid + '/';
+      a.href   = window.__ub_base + 'wiki/' + g.uid + '/';
       a.target = '_blank';
       a.rel    = 'noopener noreferrer';
       a.title  = g.name;
@@ -303,7 +303,7 @@
 
     root.innerHTML = '<p class="ub-vc-loading">Loading\u2026</p>';
 
-    var base = '../../';
+    var base = window.__ub_base;
 
     var p1 = fetch(base + 'assets/data/grimoire-data.json').then(function (r) {
       if (!r.ok) throw new Error('grimoire-data.json ' + r.status);

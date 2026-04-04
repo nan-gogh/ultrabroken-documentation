@@ -34,11 +34,9 @@
            parseInt(parts[2], 10) + ', ' + parts[0];
   }
 
-  /** Turn grimoire href (./UID/) into a path relative to the homepage.
-   *  All wiki pages share the flat wiki/{uid}/ structure, so from the
-   *  homepage (also wiki/{uid}/) the relative path is one level up. */
+  /** Turn grimoire href (./UID/) into an absolute path using site base. */
   function resolveHref(href) {
-    return '../' + href.replace(/^\.\//, '');
+    return window.__ub_base + 'wiki/' + href.replace(/^\.\//,  '');
   }
 
   /* ── Render ───────────────────────────────────────────── */
@@ -89,7 +87,7 @@
     var todayKey = mm + '-' + dd;
     var seed = dayHash(now.getFullYear() + '-' + todayKey);
 
-    fetch('../../assets/data/grimoire-data.json')
+    fetch(window.__ub_base + 'assets/data/grimoire-data.json')
       .then(function (r) {
         if (!r.ok) throw new Error(r.status);
         return r.json();

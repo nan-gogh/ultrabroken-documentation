@@ -5,12 +5,7 @@
  * Reads the card URL from body[data-ub-social-card] (injected by social_cards.py).
  */
 (function () {
-  // Resolve assets base from this script's own URL (works at any page depth)
-  var _scriptSrc = document.currentScript && document.currentScript.src;
-  var _assetsBase = _scriptSrc
-    ? _scriptSrc.replace(/scripts\/social-card-copy\.js.*/, '')
-    : 'assets/';
-  var _iconUrl = _assetsBase + 'images/icons/card-icon.svg';
+  var _iconUrl = window.__ub_base + 'assets/images/icons/card-icon.svg';
 
   function init() {
     var row = document.querySelector('.ub-page-actions');

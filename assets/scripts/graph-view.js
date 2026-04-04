@@ -114,10 +114,8 @@
   /* ── data loading ────────────────────────────────────────────── */
 
   function load(cb) {
-    // Resolve graph.json relative to site root
-    var base = (document.querySelector('meta[name="site-url"]') || {}).content
-             || document.baseURI.split('/wiki/')[0] + '/';
-    base = base.replace(/\/$/, '');
+    // Use the global site-root base path
+    var base = window.__ub_base.replace(/\/$/, '');
     var url = base + '/assets/data/graph.json';
 
     var xhr = new XMLHttpRequest();
@@ -617,9 +615,7 @@
 
   function navigate(node) {
     if (!node || !node.id) return;
-    var base = (document.querySelector('meta[name="site-url"]') || {}).content
-             || document.baseURI.split('/wiki/')[0] + '/';
-    base = base.replace(/\/$/, '');
+    var base = window.__ub_base.replace(/\/$/, '');
     window.open(base + '/' + node.id, '_blank');
   }
 
