@@ -181,8 +181,8 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
 
         fm = extract_frontmatter(p)
 
-        # skip draft and unlisted pages
-        if fm.get('draft') is True or fm.get('unlisted') is True:
+        # skip draft and meta pages
+        if fm.get('draft') is True or fm.get('meta') is True:
             continue
 
         # prefer an extracted title (YAML frontmatter, H1/H2, Setext), fall back to filename stem
@@ -307,8 +307,8 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
         title = fm.get('title', '')
         if not title:
             continue  # skip pages without a title (index/meta pages)
-        if fm.get('draft') is True or fm.get('unlisted') is True:
-            continue  # skip draft and unlisted pages
+        if fm.get('draft') is True or fm.get('meta') is True:
+            continue  # skip draft and meta pages
         parsed_files.append((p, fm, title))
 
     for p, fm, title in parsed_files:

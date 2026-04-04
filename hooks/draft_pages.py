@@ -16,9 +16,9 @@ Draft pages are:
 Draft pages are NOT hidden from the navigation or direct URL access —
 editors share the link via Discord to gather feedback.
 
-A separate ``unlisted: true`` frontmatter flag marks pages as permanently
+A separate ``meta: true`` frontmatter flag marks pages as permanently
 published but hidden from AI evidence and the grimoire.  Unlike drafts,
-unlisted pages are still findable in site search, get no banner, no
+meta pages are still findable in site search, get no banner, no
 noindex, and still receive social card / OG tag generation.
 """
 
@@ -36,9 +36,9 @@ def _is_draft(page) -> bool:
     return "/_wip/" in src or src.startswith("_wip/")
 
 
-def _is_unlisted(page) -> bool:
+def _is_meta(page) -> bool:
     """Return True for permanently published pages excluded from discovery."""
-    return (page.meta or {}).get("unlisted") is True
+    return (page.meta or {}).get("meta") is True
 
 
 _DRAFT_ADMONITION = (
@@ -54,7 +54,7 @@ _H1_RE = re.compile(r'^#\s+.+$', re.MULTILINE)
 
 def on_page_markdown(markdown, page, config, **kwargs):
     """Inject search.exclude and an Under Construction admonition into
-    draft pages.  Unlisted pages remain searchable — they are only
+    draft pages.  Meta pages remain searchable — they are only
     excluded from AI evidence and the grimoire.  This event fires after
     frontmatter is parsed but before the search plugin indexes."""
     if not _is_draft(page):

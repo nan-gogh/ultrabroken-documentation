@@ -1092,10 +1092,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-unlisted-true-permanent-reference-pages" class="md-nav__link">
+  <a href="#using-meta-true-permanent-reference-pages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using unlisted: true (permanent reference pages)
+        Using meta: true (permanent reference pages)
       
     </span>
   </a>
@@ -2746,10 +2746,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-unlisted-true-permanent-reference-pages" class="md-nav__link">
+  <a href="#using-meta-true-permanent-reference-pages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using unlisted: true (permanent reference pages)
+        Using meta: true (permanent reference pages)
       
     </span>
   </a>
@@ -4383,10 +4383,10 @@
 <span class="nt">draft</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <p>When ready to publish, simply remove the <code>draft: true</code> line and commit. The page immediately becomes discoverable.</p>
-<h4 id="using-unlisted-true-permanent-reference-pages">Using <code>unlisted: true</code> (permanent reference pages)</h4>
-<p>For pages that are fully published and intentionally permanent — but shouldn't surface in search or AI results (e.g. editor guides, about pages, meta content) — use <code>unlisted: true</code>:</p>
+<h4 id="using-meta-true-permanent-reference-pages">Using <code>meta: true</code> (permanent reference pages)</h4>
+<p>For pages that are fully published and intentionally permanent — but shouldn't surface in AI results or the grimoire (e.g. editor guides, about pages, meta content) — use <code>meta: true</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">Reference</span><span class="nv"> </span><span class="s">Page&quot;</span>
-<span class="nt">unlisted</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">meta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <h4 id="visibility-summary">Visibility summary</h4>
 <table>
@@ -4395,7 +4395,7 @@
 <th>System</th>
 <th><code>_wip/</code> folder</th>
 <th><code>draft: true</code></th>
-<th><code>unlisted: true</code></th>
+<th><code>meta: true</code></th>
 </tr>
 </thead>
 <tbody>
@@ -4486,7 +4486,7 @@
 <li><code>tags</code>: Categorization tags. Auto-indexed into <a href="../../assets/data/tags.json">tags.json</a> - used for filtering and search discovery</li>
 <li><code>aliases</code>: Alternative names for search discovery. Case-insensitive — used for autolinking (see <a href="#glitch-autolinks">Glitch Autolinks</a>)</li>
 <li><code>draft</code>: Set to <code>true</code> to mark a page as a draft — hides it from search, grimoire, and web crawlers while keeping it accessible via direct URL (see <a href="#drafts--previews">Drafts &amp; Previews</a>)</li>
-<li><code>unlisted</code>: Set to <code>true</code> to exclude a page from AI evidence and the grimoire without marking it as a draft — no banner, no noindex, social cards still generated, and the page remains findable in site search. Use for reference pages or meta content that belongs in the wiki but shouldn't appear in AI or grimoire results.</li>
+<li><code>meta</code>: Set to <code>true</code> to exclude a page from AI evidence and the grimoire without marking it as a draft — no banner, no noindex, social cards still generated, and the page remains findable in site search. Use for reference pages or meta content that belongs in the wiki but shouldn't appear in AI or grimoire results.</li>
 <li><code>uid</code>: Auto-generated unique identifier. <strong>Do not add manually.</strong></li>
 </ul>
 <h4 id="example">Example</h4>
