@@ -74,6 +74,13 @@ def on_files(files, config, **kwargs):
         if not uid:
             continue
 
+        # Keep the wiki root at /wiki/ (its natural URL) so external links
+        # to /wiki/ keep working.  Register the UID so uid:RIX still resolves.
+        if src_norm == 'wiki/index.md':
+            uid_map[uid] = file.url.replace('\\', '/')
+            filename_map[stem] = uid
+            continue
+
         # Rewrite output path to flat wiki/{uid}/ for ALL wiki pages
         if use_dir_urls:
             dest_uri = f"wiki/{uid}/index.html"

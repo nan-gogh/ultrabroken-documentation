@@ -208,8 +208,12 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
             uid = fm.get('uid', '')
             _skip_stems = {'blank'}
             if uid and is_wiki_subtree and rel.stem not in _skip_stems:
-                # Flat UID path: /wiki/{uid}/
-                parts = ['wiki', uid]
+                # Keep the wiki root at its natural /wiki/ path
+                if str(rel) == 'wiki/index.md':
+                    pass
+                else:
+                    # Flat UID path: /wiki/{uid}/
+                    parts = ['wiki', uid]
             
             path = '/' + '/'.join(parts) + '/'
 
