@@ -83,9 +83,9 @@
             .replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /** ./UID/ → ../../UID/  (flat wiki/{uid}/ URL structure, grimoire is at wiki/glitchcraft/grimoire/) */
+  /** ./UID/ → ../UID/  (flat wiki/{uid}/ URL structure, grimoire is at wiki/{uid}/) */
   function toHref(md) {
-    return md.replace(/^\.\//, '../../').replace(/\.md$/, '/');
+    return md.replace(/^\.\//, '../').replace(/\.md$/, '/');
   }
 
   function freshState() {
@@ -97,7 +97,7 @@
      Data
      ================================================================ */
   function fetchData(cb) {
-    fetch('../../../assets/data/grimoire-data.json').then(function (r) {
+    fetch('../../assets/data/grimoire-data.json').then(function (r) {
       if (!r.ok) throw new Error(r.status);
       return r.json();
     }).then(cb).catch(function (e) {

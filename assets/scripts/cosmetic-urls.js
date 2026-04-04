@@ -18,7 +18,7 @@
 
     var slugEl = document.querySelector('.ub-page-actions[data-slug]');
     var slug = slugEl ? slugEl.getAttribute('data-slug') : '';
-    if (!slug || slug === 'index') return;
+    if (!slug || slug === 'index' || slug === 'wiki') return;
 
     var niceUrlParam = encodeURIComponent(slug);
 

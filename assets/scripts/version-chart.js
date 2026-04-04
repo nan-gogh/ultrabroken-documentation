@@ -156,7 +156,7 @@
       if (unk) td0.title = 'Version compatibility unknown';
 
       var a = document.createElement('a');
-      a.href   = '../../' + g.uid + '/';
+      a.href   = '../' + g.uid + '/';
       a.target = '_blank';
       a.rel    = 'noopener noreferrer';
       a.title  = g.name;
