@@ -202,13 +202,14 @@ def walk_docs(chunk: bool = True, exclude: list[str] | None = None):
             if is_wiki_subtree and (not parts or parts[0] != 'wiki'):
                 parts = ['wiki'] + parts
             
-            # UID-based permalink remapping for glitchcraft pages
-            # Mirrors the uid_links.py hook behavior during MkDocs build
-            rel_posix = rel.as_posix()
+            # UID-based permalink remapping for all wiki pages.
+            # Mirrors the uid_links.py hook behavior during MkDocs build:
+            # any wiki page with a uid: becomes /wiki/{uid}/ regardless of subfolder.
             uid = fm.get('uid', '')
-            if uid and rel_posix.startswith('glitchcraft/') and '_glitchcraft-grimoire' not in rel_posix:
-                # Replace filename with UID: wiki/glitchcraft/{uid}/
-                parts = ['wiki', 'glitchcraft', uid]
+            _skip_stems = {'_glitchcraft-grimoire', 'blank'}
+            if uid and is_wiki_subtree and rel.stem not in _skip_stems:
+                # Flat UID path: /wiki/{uid}/
+                parts = ['wiki', uid]
             
             path = '/' + '/'.join(parts) + '/'
 
@@ -323,7 +324,7 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
             'versions': fm.get('versions', []),
             'credits':  credits_list,
             'aliases':  fm.get('aliases', []),
-            'href':     f'./{uid}/',
+            'href':     f'./{uid}/' if uid else f'./{p.stem}/',
             'filename': p.name,
         }
         if fm.get('obsolete'):
@@ -511,11 +512,11 @@ def build_glossary(grimoire_entries: list | None = None) -> None:
         filename = entry.get('filename')
         
         if uid:
-            path = f'wiki/glitchcraft/{uid}/'
+            path = f'wiki/{uid}/'
         elif filename:
-            path = f'wiki/glitchcraft/{filename.replace(".md", "")}/'
+            path = f'wiki/{filename.replace(".md", "")}/'
         else:
-            path = f'wiki/glitchcraft/{entry.get("href", "").replace("./", "").replace(".md", "")}/'
+            path = f'wiki/{entry.get("href", "").replace("./", "").replace(".md", "")}/'
 
         aliases = entry.get('aliases', [])
         if isinstance(aliases, str):

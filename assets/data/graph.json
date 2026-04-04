@@ -1,1837 +1,1837 @@
 {
   "nodes": [
     {
-      "id": "wiki/glitchcraft/V2E/",
+      "id": "wiki/V2E/",
       "uid": "V2E",
       "name": "Ability Wheel Loop",
       "label": "AWL"
     },
     {
-      "id": "wiki/glitchcraft/8QL/",
+      "id": "wiki/8QL/",
       "uid": "8QL",
       "name": "Aeroculling",
       "label": "AC"
     },
     {
-      "id": "wiki/glitchcraft/S3L/",
+      "id": "wiki/S3L/",
       "uid": "S3L",
       "name": "Animation Swap",
       "label": "ASWP"
     },
     {
-      "id": "wiki/glitchcraft/9R0/",
+      "id": "wiki/9R0/",
       "uid": "9R0",
       "name": "Anti-Gravity GAS",
       "label": "AG GAS"
     },
     {
-      "id": "wiki/glitchcraft/PEY/",
+      "id": "wiki/PEY/",
       "uid": "PEY",
       "name": "Anti-Gravity Glitch",
       "label": "AGG"
     },
     {
-      "id": "wiki/glitchcraft/9WZ/",
+      "id": "wiki/9WZ/",
       "uid": "9WZ",
       "name": "Anti-Gravity Objects",
       "label": "AGO"
     },
     {
-      "id": "wiki/glitchcraft/0IS/",
+      "id": "wiki/0IS/",
       "uid": "0IS",
       "name": "AntiGrav Weapons",
       "label": "AGW"
     },
     {
-      "id": "wiki/glitchcraft/3ME/",
+      "id": "wiki/3ME/",
       "uid": "3ME",
       "name": "Arrow Prompt Storage",
       "label": "APS"
     },
     {
-      "id": "wiki/glitchcraft/VTO/",
+      "id": "wiki/VTO/",
       "uid": "VTO",
       "name": "Arrow Smuggling",
       "label": "AS"
     },
     {
-      "id": "wiki/glitchcraft/HW8/",
+      "id": "wiki/HW8/",
       "uid": "HW8",
       "name": "Arrow Unlink",
       "label": "AUL"
     },
     {
-      "id": "wiki/glitchcraft/MW4/",
+      "id": "wiki/MW4/",
       "uid": "MW4",
       "name": "Arrow Unloading",
       "label": "AU"
     },
     {
-      "id": "wiki/glitchcraft/5BC/",
+      "id": "wiki/5BC/",
       "uid": "5BC",
       "name": "Ascend Camera Glitch",
       "label": "ACG"
     },
     {
-      "id": "wiki/glitchcraft/JWD/",
+      "id": "wiki/JWD/",
       "uid": "JWD",
       "name": "Ascend Rushing",
       "label": "AR"
     },
     {
-      "id": "wiki/glitchcraft/1TZ/",
+      "id": "wiki/1TZ/",
       "uid": "1TZ",
       "name": "Ascend Storage",
       "label": "ASTR"
     },
     {
-      "id": "wiki/glitchcraft/ZTD/",
+      "id": "wiki/ZTD/",
       "uid": "ZTD",
       "name": "Attached Rangeless Active Zonai",
       "label": "ARAZ"
     },
     {
-      "id": "wiki/glitchcraft/SEO/",
+      "id": "wiki/SEO/",
       "uid": "SEO",
       "name": "Autobuild Cancel Slide",
       "label": "ABCS"
     },
     {
-      "id": "wiki/glitchcraft/BJ0/",
+      "id": "wiki/BJ0/",
       "uid": "BJ0",
       "name": "Autobuild Duplication",
       "label": "ABD"
     },
     {
-      "id": "wiki/glitchcraft/W0E/",
+      "id": "wiki/W0E/",
       "uid": "W0E",
       "name": "Autobuild Storage",
       "label": "ABST"
     },
     {
-      "id": "wiki/glitchcraft/0UY/",
+      "id": "wiki/0UY/",
       "uid": "0UY",
       "name": "Awakened Master Sword",
       "label": "AMS"
     },
     {
-      "id": "wiki/glitchcraft/4O8/",
+      "id": "wiki/4O8/",
       "uid": "4O8",
       "name": "Back-in-Time Art",
       "label": "BIT"
     },
     {
-      "id": "wiki/glitchcraft/DDB/",
+      "id": "wiki/DDB/",
       "uid": "DDB",
       "name": "Back to Back Bloodmoon",
       "label": "BTBB"
     },
     {
-      "id": "wiki/glitchcraft/S6U/",
+      "id": "wiki/S6U/",
       "uid": "S6U",
       "name": "Balloon Overload",
       "label": "BO"
     },
     {
-      "id": "wiki/glitchcraft/FD4/",
+      "id": "wiki/FD4/",
       "uid": "FD4",
       "name": "Banc Storage",
       "label": "BS"
     },
     {
-      "id": "wiki/glitchcraft/EJ4/",
+      "id": "wiki/EJ4/",
       "uid": "EJ4",
       "name": "Bomb Skew",
       "label": "BSK"
     },
     {
-      "id": "wiki/glitchcraft/J5Q/",
+      "id": "wiki/J5Q/",
       "uid": "J5Q",
       "name": "Bow Attachment Desync",
       "label": "BAD"
     },
     {
-      "id": "wiki/glitchcraft/V84/",
+      "id": "wiki/V84/",
       "uid": "V84",
       "name": "Bow Attachment Storage",
       "label": "BAS"
     },
     {
-      "id": "wiki/glitchcraft/SIH/",
+      "id": "wiki/SIH/",
       "uid": "SIH",
       "name": "Bow Sprinting",
       "label": "BSP"
     },
     {
-      "id": "wiki/glitchcraft/NDG/",
+      "id": "wiki/NDG/",
       "uid": "NDG",
       "name": "Breaking Awakened Master Sword",
       "label": "BAMS"
     },
     {
-      "id": "wiki/glitchcraft/WRH/",
+      "id": "wiki/WRH/",
       "uid": "WRH",
       "name": "BThrow Sprinting",
       "label": "BTSP"
     },
     {
-      "id": "wiki/glitchcraft/099/",
+      "id": "wiki/099/",
       "uid": "099",
       "name": "Bundled Item Duplication",
       "label": "BID"
     },
     {
-      "id": "wiki/glitchcraft/XY5/",
+      "id": "wiki/XY5/",
       "uid": "XY5",
       "name": "Buoy Bouncing",
       "label": "BB"
     },
     {
-      "id": "wiki/glitchcraft/4SX/",
+      "id": "wiki/4SX/",
       "uid": "4SX",
       "name": "Camera CFW",
       "label": "CFW"
     },
     {
-      "id": "wiki/glitchcraft/IHC/",
+      "id": "wiki/IHC/",
       "uid": "IHC",
       "name": "Camera Pose Glitch",
       "label": "CPG"
     },
     {
-      "id": "wiki/glitchcraft/GRJ/",
+      "id": "wiki/GRJ/",
       "uid": "GRJ",
       "name": "Capsule Cel Shader Removal",
       "label": "CCSR"
     },
     {
-      "id": "wiki/glitchcraft/YK3/",
+      "id": "wiki/YK3/",
       "uid": "YK3",
       "name": "Cave Flag Culling",
       "label": "CFC"
     },
     {
-      "id": "wiki/glitchcraft/JJB/",
+      "id": "wiki/JJB/",
       "uid": "JJB",
       "name": "Chasm Delay Zuggle",
       "label": "CDZ"
     },
     {
-      "id": "wiki/glitchcraft/0FH/",
+      "id": "wiki/0FH/",
       "uid": "0FH",
       "name": "Chasm Device Dupe",
       "label": "CDD"
     },
     {
-      "id": "wiki/glitchcraft/7DQ/",
+      "id": "wiki/7DQ/",
       "uid": "7DQ",
       "name": "Clear Camera/Scope",
       "label": "CCS"
     },
     {
-      "id": "wiki/glitchcraft/43H/",
+      "id": "wiki/43H/",
       "uid": "43H",
       "name": "Cold Fuse Stick Desync Clip",
       "label": "CSSDC"
     },
     {
-      "id": "wiki/glitchcraft/7KZ/",
+      "id": "wiki/7KZ/",
       "uid": "7KZ",
       "name": "Cold Fuse",
       "label": "CF"
     },
     {
-      "id": "wiki/glitchcraft/TRL/",
+      "id": "wiki/TRL/",
       "uid": "TRL",
       "name": "Construct Fuse Entanglement",
       "label": "CNFE"
     },
     {
-      "id": "wiki/glitchcraft/963/",
+      "id": "wiki/963/",
       "uid": "963",
       "name": "Corrupt Meal",
       "label": "CM"
     },
     {
-      "id": "wiki/glitchcraft/5IP/",
+      "id": "wiki/5IP/",
       "uid": "5IP",
       "name": "Crouch Sprinting",
       "label": "CSP"
     },
     {
-      "id": "wiki/glitchcraft/VKB/",
+      "id": "wiki/VKB/",
       "uid": "VKB",
       "name": "Crouch Throw Tap Sprinting",
       "label": "CTTS"
     },
     {
-      "id": "wiki/glitchcraft/0EL/",
+      "id": "wiki/0EL/",
       "uid": "0EL",
       "name": "Cucco Warping",
       "label": "CW"
     },
     {
-      "id": "wiki/glitchcraft/KXM/",
+      "id": "wiki/KXM/",
       "uid": "KXM",
       "name": "Cull Cold Fuse",
       "label": "CCF"
     },
     {
-      "id": "wiki/glitchcraft/BQL/",
+      "id": "wiki/BQL/",
       "uid": "BQL",
       "name": "Cull Equipment Desync",
       "label": "CED"
     },
     {
-      "id": "wiki/glitchcraft/7VW/",
+      "id": "wiki/7VW/",
       "uid": "7VW",
       "name": "Cull Fuse Entanglement",
       "label": "CFE"
     },
     {
-      "id": "wiki/glitchcraft/BKZ/",
+      "id": "wiki/BKZ/",
       "uid": "BKZ",
       "name": "Cull Launching",
       "label": "CL"
     },
     {
-      "id": "wiki/glitchcraft/KID/",
+      "id": "wiki/KID/",
       "uid": "KID",
       "name": "Cull Pickup Dynamic Zuggle",
       "label": "CPDZ"
     },
     {
-      "id": "wiki/glitchcraft/JAP/",
+      "id": "wiki/JAP/",
       "uid": "JAP",
       "name": "Cull Smuggle",
       "label": "CSMU"
     },
     {
-      "id": "wiki/glitchcraft/8LV/",
+      "id": "wiki/8LV/",
       "uid": "8LV",
       "name": "Cull Storage Zuggle",
       "label": "CSZ"
     },
     {
-      "id": "wiki/glitchcraft/7A4/",
+      "id": "wiki/7A4/",
       "uid": "7A4",
       "name": "Cull Storage",
       "label": "CSTR"
     },
     {
-      "id": "wiki/glitchcraft/RID/",
+      "id": "wiki/RID/",
       "uid": "RID",
       "name": "Cull Zone Culling",
       "label": "CZC"
     },
     {
-      "id": "wiki/glitchcraft/IFQ/",
+      "id": "wiki/IFQ/",
       "uid": "IFQ",
       "name": "Culling Area Fuse Storage Fuse Entanglement",
       "label": "CFSFE"
     },
     {
-      "id": "wiki/glitchcraft/ERN/",
+      "id": "wiki/ERN/",
       "uid": "ERN",
       "name": "Culling Area Fuse Storage",
       "label": "CAFS"
     },
     {
-      "id": "wiki/glitchcraft/M5E/",
+      "id": "wiki/M5E/",
       "uid": "M5E",
       "name": "Cutscene Combo Amplifier",
       "label": "CCA"
     },
     {
-      "id": "wiki/glitchcraft/HNZ/",
+      "id": "wiki/HNZ/",
       "uid": "HNZ",
       "name": "Damage Amnesia",
       "label": "DA"
     },
     {
-      "id": "wiki/glitchcraft/15K/",
+      "id": "wiki/15K/",
       "uid": "15K",
       "name": "Death Persistent Save Load Object Transfer",
       "label": "DPSLOT"
     },
     {
-      "id": "wiki/glitchcraft/MG1/",
+      "id": "wiki/MG1/",
       "uid": "MG1",
       "name": "Despawn Interrupt",
       "label": "DI"
     },
     {
-      "id": "wiki/glitchcraft/YM9/",
+      "id": "wiki/YM9/",
       "uid": "YM9",
       "name": "Detached Rangeless Active Zonai",
       "label": "DRAZ"
     },
     {
-      "id": "wiki/glitchcraft/GDL/",
+      "id": "wiki/GDL/",
       "uid": "GDL",
       "name": "Detanglement",
       "label": "DTG"
     },
     {
-      "id": "wiki/glitchcraft/VLT/",
+      "id": "wiki/VLT/",
       "uid": "VLT",
       "name": "Dialog Permacull",
       "label": "DPC"
     },
     {
-      "id": "wiki/glitchcraft/WBZ/",
+      "id": "wiki/WBZ/",
       "uid": "WBZ",
       "name": "Disabled Enemy",
       "label": "DE"
     },
     {
-      "id": "wiki/glitchcraft/F8J/",
+      "id": "wiki/F8J/",
       "uid": "F8J",
       "name": "Dispenser Storage",
       "label": "DSTR"
     },
     {
-      "id": "wiki/glitchcraft/RQ7/",
+      "id": "wiki/RQ7/",
       "uid": "RQ7",
       "name": "Display Duping",
       "label": "DD"
     },
     {
-      "id": "wiki/glitchcraft/KJR/",
+      "id": "wiki/KJR/",
       "uid": "KJR",
       "name": "Display Master Sword",
       "label": "DMS"
     },
     {
-      "id": "wiki/glitchcraft/80I/",
+      "id": "wiki/80I/",
       "uid": "80I",
       "name": "Dive Cancel Glide Boost",
       "label": "DCGB"
     },
     {
-      "id": "wiki/glitchcraft/QXN/",
+      "id": "wiki/QXN/",
       "uid": "QXN",
       "name": "Double Bypass Zuggle",
       "label": "DBZ"
     },
     {
-      "id": "wiki/glitchcraft/NMY/",
+      "id": "wiki/NMY/",
       "uid": "NMY",
       "name": "Double Shield Desync Clip Fuse Entanglement",
       "label": "DSDCFE"
     },
     {
-      "id": "wiki/glitchcraft/A17/",
+      "id": "wiki/A17/",
       "uid": "A17",
       "name": "Double Tulin Boost",
       "label": "DTB"
     },
     {
-      "id": "wiki/glitchcraft/BSN/",
+      "id": "wiki/BSN/",
       "uid": "BSN",
       "name": "Double Unfuse Duplicashen",
       "label": "DUD"
     },
     {
-      "id": "wiki/glitchcraft/MP9/",
+      "id": "wiki/MP9/",
       "uid": "MP9",
       "name": "Dpadlock-less Invizuggle",
       "label": "DLIZ"
     },
     {
-      "id": "wiki/glitchcraft/BX1/",
+      "id": "wiki/BX1/",
       "uid": "BX1",
       "name": "Drop Delay Zuggle",
       "label": "DDZ"
     },
     {
-      "id": "wiki/glitchcraft/1AH/",
+      "id": "wiki/1AH/",
       "uid": "1AH",
       "name": "Drop Restriction",
       "label": "DR"
     },
     {
-      "id": "wiki/glitchcraft/CVH/",
+      "id": "wiki/CVH/",
       "uid": "CVH",
       "name": "Drop Smuggling",
       "label": "DS"
     },
     {
-      "id": "wiki/glitchcraft/9HN/",
+      "id": "wiki/9HN/",
       "uid": "9HN",
       "name": "Drop Zuggle",
       "label": "DZ"
     },
     {
-      "id": "wiki/glitchcraft/J9U/",
+      "id": "wiki/J9U/",
       "uid": "J9U",
       "name": "Durability-",
       "label": "DURM"
     },
     {
-      "id": "wiki/glitchcraft/DLG/",
+      "id": "wiki/DLG/",
       "uid": "DLG",
       "name": "Dynamic Purgatory Zuggle",
       "label": "DPZ"
     },
     {
-      "id": "wiki/glitchcraft/CNV/",
+      "id": "wiki/CNV/",
       "uid": "CNV",
       "name": "Dynamic Zuggle",
       "label": "DZG"
     },
     {
-      "id": "wiki/glitchcraft/UVT/",
+      "id": "wiki/UVT/",
       "uid": "UVT",
       "name": "Enemy Pickpocketing",
       "label": "EP"
     },
     {
-      "id": "wiki/glitchcraft/8MP/",
+      "id": "wiki/8MP/",
       "uid": "8MP",
       "name": "Entanglement Height Glitch",
       "label": "EHG"
     },
     {
-      "id": "wiki/glitchcraft/8FK/",
+      "id": "wiki/8FK/",
       "uid": "8FK",
       "name": "Equipment Collision Zuggle",
       "label": "ECZ"
     },
     {
-      "id": "wiki/glitchcraft/NZB/",
+      "id": "wiki/NZB/",
       "uid": "NZB",
       "name": "Equipment Mitosis",
       "label": "EM"
     },
     {
-      "id": "wiki/glitchcraft/DBF/",
+      "id": "wiki/DBF/",
       "uid": "DBF",
       "name": "Equipment Shock Duping",
       "label": "ESD"
     },
     {
-      "id": "wiki/glitchcraft/A9N/",
+      "id": "wiki/A9N/",
       "uid": "A9N",
       "name": "Equipment Smuggle",
       "label": "ESMU"
     },
     {
-      "id": "wiki/glitchcraft/6UC/",
+      "id": "wiki/6UC/",
       "uid": "6UC",
       "name": "Equipped Throken",
       "label": "ETHK"
     },
     {
-      "id": "wiki/glitchcraft/F20/",
+      "id": "wiki/F20/",
       "uid": "F20",
       "name": "Extended Throw Sprinting",
       "label": "ETSP"
     },
     {
-      "id": "wiki/glitchcraft/D2J/",
+      "id": "wiki/D2J/",
       "uid": "D2J",
       "name": "Fail Drop Equip",
       "label": ""
     },
     {
-      "id": "wiki/glitchcraft/QVO/",
+      "id": "wiki/QVO/",
       "uid": "QVO",
       "name": "Fall Damage Cancel",
       "label": "FDC"
     },
     {
-      "id": "wiki/glitchcraft/Z63/",
+      "id": "wiki/Z63/",
       "uid": "Z63",
       "name": "Floorping",
       "label": "FLP"
     },
     {
-      "id": "wiki/glitchcraft/U0U/",
+      "id": "wiki/U0U/",
       "uid": "U0U",
       "name": "Food Ability Buff Swap",
       "label": "FABS"
     },
     {
-      "id": "wiki/glitchcraft/3RI/",
+      "id": "wiki/3RI/",
       "uid": "3RI",
       "name": "Force Equip Zuggling",
       "label": "FEZ"
     },
     {
-      "id": "wiki/glitchcraft/73L/",
+      "id": "wiki/73L/",
       "uid": "73L",
       "name": "Forced Blood Moon",
       "label": "FBM"
     },
     {
-      "id": "wiki/glitchcraft/JNU/",
+      "id": "wiki/JNU/",
       "uid": "JNU",
       "name": "Freecall",
       "label": "FC"
     },
     {
-      "id": "wiki/glitchcraft/A4A/",
+      "id": "wiki/A4A/",
       "uid": "A4A",
       "name": "Fuse Entangle Drop Zuggle",
       "label": "FEDZ"
     },
     {
-      "id": "wiki/glitchcraft/L0R/",
+      "id": "wiki/L0R/",
       "uid": "L0R",
       "name": "Fuse Entangle Weapon Zuggle",
       "label": "FEWZ"
     },
     {
-      "id": "wiki/glitchcraft/Z2Z/",
+      "id": "wiki/Z2Z/",
       "uid": "Z2Z",
       "name": "Fuse Entanglement Clipping",
       "label": "FEC"
     },
     {
-      "id": "wiki/glitchcraft/J43/",
+      "id": "wiki/J43/",
       "uid": "J43",
       "name": "Fuse Entanglement Desync",
       "label": "FED"
     },
     {
-      "id": "wiki/glitchcraft/N1T/",
+      "id": "wiki/N1T/",
       "uid": "N1T",
       "name": "Fuse Entanglement Drop Smuggling",
       "label": "FEDS"
     },
     {
-      "id": "wiki/glitchcraft/K4F/",
+      "id": "wiki/K4F/",
       "uid": "K4F",
       "name": "Fuse Entanglement",
       "label": "FE"
     },
     {
-      "id": "wiki/glitchcraft/G8Q/",
+      "id": "wiki/G8Q/",
       "uid": "G8Q",
       "name": "Fuse Overload Fuse Entanglement",
       "label": "FOFE"
     },
     {
-      "id": "wiki/glitchcraft/76A/",
+      "id": "wiki/76A/",
       "uid": "76A",
       "name": "Fuse Overload",
       "label": "FO"
     },
     {
-      "id": "wiki/glitchcraft/HQF/",
+      "id": "wiki/HQF/",
       "uid": "HQF",
       "name": "Fuse Storage Fuse Entanglement",
       "label": "FSFE"
     },
     {
-      "id": "wiki/glitchcraft/JUJ/",
+      "id": "wiki/JUJ/",
       "uid": "JUJ",
       "name": "Fuse Storage",
       "label": "FS"
     },
     {
-      "id": "wiki/glitchcraft/N15/",
+      "id": "wiki/N15/",
       "uid": "N15",
       "name": "GAS Launching",
       "label": "GASL"
     },
     {
-      "id": "wiki/glitchcraft/S8G/",
+      "id": "wiki/S8G/",
       "uid": "S8G",
       "name": "GAS Warping",
       "label": "GASW"
     },
     {
-      "id": "wiki/glitchcraft/WLM/",
+      "id": "wiki/WLM/",
       "uid": "WLM",
       "name": "Ghost Save Load Object Transfer",
       "label": "GSLOT"
     },
     {
-      "id": "wiki/glitchcraft/MZA/",
+      "id": "wiki/MZA/",
       "uid": "MZA",
       "name": "Ghost Stick Clipping",
       "label": "GSC"
     },
     {
-      "id": "wiki/glitchcraft/WJS/",
+      "id": "wiki/WJS/",
       "uid": "WJS",
       "name": "Glue Removal",
       "label": "GR"
     },
     {
-      "id": "wiki/glitchcraft/ZJ2/",
+      "id": "wiki/ZJ2/",
       "uid": "ZJ2",
       "name": "Guard-less Active Shield",
       "label": "GAS"
     },
     {
-      "id": "wiki/glitchcraft/XK9/",
+      "id": "wiki/XK9/",
       "uid": "XK9",
       "name": "Hand Locked Equipment Smuggling",
       "label": "HLES"
     },
     {
-      "id": "wiki/glitchcraft/OE5/",
+      "id": "wiki/OE5/",
       "uid": "OE5",
       "name": "Handy Job",
       "label": "HJ"
     },
     {
-      "id": "wiki/glitchcraft/YIS/",
+      "id": "wiki/YIS/",
       "uid": "YIS",
       "name": "Hero Path Link Storage",
       "label": "HPLS"
     },
     {
-      "id": "wiki/glitchcraft/U1A/",
+      "id": "wiki/U1A/",
       "uid": "U1A",
       "name": "Hestu Scamming",
       "label": "HSCA"
     },
     {
-      "id": "wiki/glitchcraft/DHQ/",
+      "id": "wiki/DHQ/",
       "uid": "DHQ",
       "name": "Hold Smuggling",
       "label": "HSM"
     },
     {
-      "id": "wiki/glitchcraft/WEI/",
+      "id": "wiki/WEI/",
       "uid": "WEI",
       "name": "Hold Storage Duplication",
       "label": "HSD"
     },
     {
-      "id": "wiki/glitchcraft/FQ7/",
+      "id": "wiki/FQ7/",
       "uid": "FQ7",
       "name": "Hold Storage",
       "label": "HS"
     },
     {
-      "id": "wiki/glitchcraft/6H4/",
+      "id": "wiki/6H4/",
       "uid": "6H4",
       "name": "Horse Duping",
       "label": "HD"
     },
     {
-      "id": "wiki/glitchcraft/LYO/",
+      "id": "wiki/LYO/",
       "uid": "LYO",
       "name": "Hydro Clipping",
       "label": "HC"
     },
     {
-      "id": "wiki/glitchcraft/ZBB/",
+      "id": "wiki/ZBB/",
       "uid": "ZBB",
       "name": "Infinite Balloon",
       "label": "IBAL"
     },
     {
-      "id": "wiki/glitchcraft/TN5/",
+      "id": "wiki/TN5/",
       "uid": "TN5",
       "name": "Infinite Bubbul Frog Gems",
       "label": "IBFG"
     },
     {
-      "id": "wiki/glitchcraft/M8L/",
+      "id": "wiki/M8L/",
       "uid": "M8L",
       "name": "Infinite Damage 2.0",
       "label": "ID2"
     },
     {
-      "id": "wiki/glitchcraft/BVJ/",
+      "id": "wiki/BVJ/",
       "uid": "BVJ",
       "name": "Infinite Damage",
       "label": "IDMG"
     },
     {
-      "id": "wiki/glitchcraft/UN7/",
+      "id": "wiki/UN7/",
       "uid": "UN7",
       "name": "Infinite Height",
       "label": "IH"
     },
     {
-      "id": "wiki/glitchcraft/12S/",
+      "id": "wiki/12S/",
       "uid": "12S",
       "name": "Inventory Shift Duplication",
       "label": "ISD"
     },
     {
-      "id": "wiki/glitchcraft/7DA/",
+      "id": "wiki/7DA/",
       "uid": "7DA",
       "name": "Invizuggle",
       "label": "IZ"
     },
     {
-      "id": "wiki/glitchcraft/VDD/",
+      "id": "wiki/VDD/",
       "uid": "VDD",
       "name": "Item Save Load Transfer",
       "label": "ISLT"
     },
     {
-      "id": "wiki/glitchcraft/W10/",
+      "id": "wiki/W10/",
       "uid": "W10",
       "name": "Item Throw Hitbox Disable",
       "label": "ITHD"
     },
     {
-      "id": "wiki/glitchcraft/51R/",
+      "id": "wiki/51R/",
       "uid": "51R",
       "name": "Jumpslash Cancel Clipping",
       "label": "JCC"
     },
     {
-      "id": "wiki/glitchcraft/WMG/",
+      "id": "wiki/WMG/",
       "uid": "WMG",
       "name": "Jumpslash Canceling",
       "label": "JSC"
     },
     {
-      "id": "wiki/glitchcraft/362/",
+      "id": "wiki/362/",
       "uid": "362",
       "name": "Kilovictor's quicksmuggle",
       "label": "KVQS"
     },
     {
-      "id": "wiki/glitchcraft/OO2/",
+      "id": "wiki/OO2/",
       "uid": "OO2",
       "name": "Kinematic Weapons",
       "label": "KW"
     },
     {
-      "id": "wiki/glitchcraft/CB1/",
+      "id": "wiki/CB1/",
       "uid": "CB1",
       "name": "L Sprinting",
       "label": "LSP"
     },
     {
-      "id": "wiki/glitchcraft/93G/",
+      "id": "wiki/93G/",
       "uid": "93G",
       "name": "Lag Machines",
       "label": "LM"
     },
     {
-      "id": "wiki/glitchcraft/RHC/",
+      "id": "wiki/RHC/",
       "uid": "RHC",
       "name": "Laser-OOB",
       "label": "LOOB"
     },
     {
-      "id": "wiki/glitchcraft/TC3/",
+      "id": "wiki/TC3/",
       "uid": "TC3",
       "name": "Lift Fuse Interrupt",
       "label": "LFI"
     },
     {
-      "id": "wiki/glitchcraft/46A/",
+      "id": "wiki/46A/",
       "uid": "46A",
       "name": "Lift Smuggle",
       "label": "LSMU"
     },
     {
-      "id": "wiki/glitchcraft/MUY/",
+      "id": "wiki/MUY/",
       "uid": "MUY",
       "name": "Lift Storage Warping",
       "label": "LSW"
     },
     {
-      "id": "wiki/glitchcraft/2C6/",
+      "id": "wiki/2C6/",
       "uid": "2C6",
       "name": "Lift Warping",
       "label": "LW"
     },
     {
-      "id": "wiki/glitchcraft/M00/",
+      "id": "wiki/M00/",
       "uid": "M00",
       "name": "Like-Like Culling",
       "label": "LLC"
     },
     {
-      "id": "wiki/glitchcraft/6GR/",
+      "id": "wiki/6GR/",
       "uid": "6GR",
       "name": "Like-Like Drop Smuggling",
       "label": "LLDS"
     },
     {
-      "id": "wiki/glitchcraft/HFE/",
+      "id": "wiki/HFE/",
       "uid": "HFE",
       "name": "Like-Like FSFE",
       "label": "LLFSFE"
     },
     {
-      "id": "wiki/glitchcraft/JV6/",
+      "id": "wiki/JV6/",
       "uid": "JV6",
       "name": "Like-Like Fuse Storage",
       "label": "LLFS"
     },
     {
-      "id": "wiki/glitchcraft/8TU/",
+      "id": "wiki/8TU/",
       "uid": "8TU",
       "name": "Like Like New Textbox Softlock",
       "label": "LLTS"
     },
     {
-      "id": "wiki/glitchcraft/F51/",
+      "id": "wiki/F51/",
       "uid": "F51",
       "name": "Like-Like Smuggle Desync",
       "label": "LLSD"
     },
     {
-      "id": "wiki/glitchcraft/GLW/",
+      "id": "wiki/GLW/",
       "uid": "GLW",
       "name": "Like-Like Smuggling",
       "label": "LLS"
     },
     {
-      "id": "wiki/glitchcraft/6KV/",
+      "id": "wiki/6KV/",
       "uid": "6KV",
       "name": "Like-Like Stick Smuggling",
       "label": "LLSS"
     },
     {
-      "id": "wiki/glitchcraft/O04/",
+      "id": "wiki/O04/",
       "uid": "O04",
       "name": "Like-Like Warping",
       "label": "LLW"
     },
     {
-      "id": "wiki/glitchcraft/SQF/",
+      "id": "wiki/SQF/",
       "uid": "SQF",
       "name": "Like-Like Zuggling",
       "label": "LLZ"
     },
     {
-      "id": "wiki/glitchcraft/OII/",
+      "id": "wiki/OII/",
       "uid": "OII",
       "name": "Long Jump",
       "label": "LJ"
     },
     {
-      "id": "wiki/glitchcraft/I91/",
+      "id": "wiki/I91/",
       "uid": "I91",
       "name": "Map Flickering",
       "label": "MF"
     },
     {
-      "id": "wiki/glitchcraft/OT8/",
+      "id": "wiki/OT8/",
       "uid": "OT8",
       "name": "Map Storage",
       "label": "MSTR"
     },
     {
-      "id": "wiki/glitchcraft/D55/",
+      "id": "wiki/D55/",
       "uid": "D55",
       "name": "Map Zuggling",
       "label": "MZ"
     },
     {
-      "id": "wiki/glitchcraft/MLG/",
+      "id": "wiki/MLG/",
       "uid": "MLG",
       "name": "Mass Amnesia",
       "label": "MA"
     },
     {
-      "id": "wiki/glitchcraft/IK1/",
+      "id": "wiki/IK1/",
       "uid": "IK1",
       "name": "Master Sword Liberation",
       "label": "MSL"
     },
     {
-      "id": "wiki/glitchcraft/5RG/",
+      "id": "wiki/5RG/",
       "uid": "5RG",
       "name": "Master Sword Zuggling / Decayed Master Sword Zuggling",
       "label": "MSZ"
     },
     {
-      "id": "wiki/glitchcraft/UWY/",
+      "id": "wiki/UWY/",
       "uid": "UWY",
       "name": "Memory Buffering",
       "label": "MB"
     },
     {
-      "id": "wiki/glitchcraft/BVN/",
+      "id": "wiki/BVN/",
       "uid": "BVN",
       "name": "Memory Interrupt",
       "label": "MI"
     },
     {
-      "id": "wiki/glitchcraft/BK4/",
+      "id": "wiki/BK4/",
       "uid": "BK4",
       "name": "Menu Overload",
       "label": "MO"
     },
     {
-      "id": "wiki/glitchcraft/056/",
+      "id": "wiki/056/",
       "uid": "056",
       "name": "Message Not Found",
       "label": "MNF"
     },
     {
-      "id": "wiki/glitchcraft/7P8/",
+      "id": "wiki/7P8/",
       "uid": "7P8",
       "name": "Midair Item Transmutation",
       "label": "MIT"
     },
     {
-      "id": "wiki/glitchcraft/8MN/",
+      "id": "wiki/8MN/",
       "uid": "8MN",
       "name": "Midair Sort Duplication",
       "label": "MSD"
     },
     {
-      "id": "wiki/glitchcraft/5A5/",
+      "id": "wiki/5A5/",
       "uid": "5A5",
       "name": "Midair Throw Duplication",
       "label": "MTD"
     },
     {
-      "id": "wiki/glitchcraft/74J/",
+      "id": "wiki/74J/",
       "uid": "74J",
       "name": "Minecart Rail Collision Launching",
       "label": "MRCL"
     },
     {
-      "id": "wiki/glitchcraft/X9I/",
+      "id": "wiki/X9I/",
       "uid": "X9I",
       "name": "Mineru Ability Desync",
       "label": "MAD"
     },
     {
-      "id": "wiki/glitchcraft/A4S/",
+      "id": "wiki/A4S/",
       "uid": "A4S",
       "name": "Mineru Aim Permanence",
       "label": "MAIP"
     },
     {
-      "id": "wiki/glitchcraft/7ZD/",
+      "id": "wiki/7ZD/",
       "uid": "7ZD",
       "name": "Mineru Cull Storage",
       "label": "MCS"
     },
     {
-      "id": "wiki/glitchcraft/BY4/",
+      "id": "wiki/BY4/",
       "uid": "BY4",
       "name": "Mineru Culling",
       "label": "MC"
     },
     {
-      "id": "wiki/glitchcraft/IG2/",
+      "id": "wiki/IG2/",
       "uid": "IG2",
       "name": "Mineru Fuse Entanglement",
       "label": "MFE"
     },
     {
-      "id": "wiki/glitchcraft/12A/",
+      "id": "wiki/12A/",
       "uid": "12A",
       "name": "Mineru Hold Smuggle",
       "label": "MHS"
     },
     {
-      "id": "wiki/glitchcraft/KZ4/",
+      "id": "wiki/KZ4/",
       "uid": "KZ4",
       "name": "Mineru Persistent Save Load Object Transfer",
       "label": "MPSLOT"
     },
     {
-      "id": "wiki/glitchcraft/O3G/",
+      "id": "wiki/O3G/",
       "uid": "O3G",
       "name": "Mineru Text Storage",
       "label": "MTS"
     },
     {
-      "id": "wiki/glitchcraft/CO6/",
+      "id": "wiki/CO6/",
       "uid": "CO6",
       "name": "MNF Fusing",
       "label": "MNFF"
     },
     {
-      "id": "wiki/glitchcraft/H2E/",
+      "id": "wiki/H2E/",
       "uid": "H2E",
       "name": "MNF Glow Overload",
       "label": "MGO"
     },
     {
-      "id": "wiki/glitchcraft/JCJ/",
+      "id": "wiki/JCJ/",
       "uid": "JCJ",
       "name": "MNF Zuggle Fuse",
       "label": "MZF"
     },
     {
-      "id": "wiki/glitchcraft/XN2/",
+      "id": "wiki/XN2/",
       "uid": "XN2",
       "name": "Model Teleport Desync",
       "label": "MTPD"
     },
     {
-      "id": "wiki/glitchcraft/ZBS/",
+      "id": "wiki/ZBS/",
       "uid": "ZBS",
       "name": "Modifier Deletion Weapon State Transfer",
       "label": "MDWST"
     },
     {
-      "id": "wiki/glitchcraft/DUS/",
+      "id": "wiki/DUS/",
       "uid": "DUS",
       "name": "Modifier ONLY Transfer",
       "label": "MOT"
     },
     {
-      "id": "wiki/glitchcraft/DNU/",
+      "id": "wiki/DNU/",
       "uid": "DNU",
       "name": "Moe Enlargement",
       "label": "MOE"
     },
     {
-      "id": "wiki/glitchcraft/V9V/",
+      "id": "wiki/V9V/",
       "uid": "V9V",
       "name": "Moobe Warping",
       "label": "MW"
     },
     {
-      "id": "wiki/glitchcraft/540/",
+      "id": "wiki/540/",
       "uid": "540",
       "name": "Mount Lock",
       "label": "ML"
     },
     {
-      "id": "wiki/glitchcraft/EWY/",
+      "id": "wiki/EWY/",
       "uid": "EWY",
       "name": "Mozdor Jumping/Slashing",
       "label": "MJS"
     },
     {
-      "id": "wiki/glitchcraft/D8R/",
+      "id": "wiki/D8R/",
       "uid": "D8R",
       "name": "MSNF glowing",
       "label": "MNFG"
     },
     {
-      "id": "wiki/glitchcraft/00I/",
+      "id": "wiki/00I/",
       "uid": "00I",
       "name": "Mulberry's Out of Body Experience",
       "label": "MOOBE"
     },
     {
-      "id": "wiki/glitchcraft/MRB/",
+      "id": "wiki/MRB/",
       "uid": "MRB",
       "name": "New Item Desync",
       "label": "NID"
     },
     {
-      "id": "wiki/glitchcraft/PAE/",
+      "id": "wiki/PAE/",
       "uid": "PAE",
       "name": "No Bow Sprinting",
       "label": "NBSP"
     },
     {
-      "id": "wiki/glitchcraft/IWQ/",
+      "id": "wiki/IWQ/",
       "uid": "IWQ",
       "name": "Null Dropping",
       "label": "ND"
     },
     {
-      "id": "wiki/glitchcraft/M7L/",
+      "id": "wiki/M7L/",
       "uid": "M7L",
       "name": "Object Culling",
       "label": "OC"
     },
     {
-      "id": "wiki/glitchcraft/E0G/",
+      "id": "wiki/E0G/",
       "uid": "E0G",
       "name": "Ocklusion Hovering",
       "label": "OCKH"
     },
     {
-      "id": "wiki/glitchcraft/KFV/",
+      "id": "wiki/KFV/",
       "uid": "KFV",
       "name": "Ocklusion",
       "label": "OCKL"
     },
     {
-      "id": "wiki/glitchcraft/B3B/",
+      "id": "wiki/B3B/",
       "uid": "B3B",
       "name": "Octo-balloon Detanglement",
       "label": "OBD"
     },
     {
-      "id": "wiki/glitchcraft/4R4/",
+      "id": "wiki/4R4/",
       "uid": "4R4",
       "name": "Octodupe",
       "label": "OD"
     },
     {
-      "id": "wiki/glitchcraft/7S4/",
+      "id": "wiki/7S4/",
       "uid": "7S4",
       "name": "Overload at Home",
       "label": "OAH"
     },
     {
-      "id": "wiki/glitchcraft/O64/",
+      "id": "wiki/O64/",
       "uid": "O64",
       "name": "Overload Cold Fuse",
       "label": "OCF"
     },
     {
-      "id": "wiki/glitchcraft/J9Y/",
+      "id": "wiki/J9Y/",
       "uid": "J9Y",
       "name": "Overload Drop Smuggling",
       "label": "ODS"
     },
     {
-      "id": "wiki/glitchcraft/AZT/",
+      "id": "wiki/AZT/",
       "uid": "AZT",
       "name": "Overload Dynamic Zuggle",
       "label": "ODZGL"
     },
     {
-      "id": "wiki/glitchcraft/0XV/",
+      "id": "wiki/0XV/",
       "uid": "0XV",
       "name": "Overload Fuse Entanglement",
       "label": "OFE"
     },
     {
-      "id": "wiki/glitchcraft/LJH/",
+      "id": "wiki/LJH/",
       "uid": "LJH",
       "name": "Overload Persistent Save Load Object Transfer",
       "label": "OPSLOT"
     },
     {
-      "id": "wiki/glitchcraft/WWV/",
+      "id": "wiki/WWV/",
       "uid": "WWV",
       "name": "Pelison Duping",
       "label": "PD"
     },
     {
-      "id": "wiki/glitchcraft/BOF/",
+      "id": "wiki/BOF/",
       "uid": "BOF",
       "name": "Persistent Save Load Object Transfer",
       "label": "PSLOT"
     },
     {
-      "id": "wiki/glitchcraft/Q7V/",
+      "id": "wiki/Q7V/",
       "uid": "Q7V",
       "name": "Pickup Smuggling",
       "label": "PSMU"
     },
     {
-      "id": "wiki/glitchcraft/1OP/",
+      "id": "wiki/1OP/",
       "uid": "1OP",
       "name": "Pocket Rocket",
       "label": "PR"
     },
     {
-      "id": "wiki/glitchcraft/GFW/",
+      "id": "wiki/GFW/",
       "uid": "GFW",
       "name": "Portable Cull Save Load Dupe",
       "label": "PSLD"
     },
     {
-      "id": "wiki/glitchcraft/LMB/",
+      "id": "wiki/LMB/",
       "uid": "LMB",
       "name": "Portable Culling",
       "label": "PC"
     },
     {
-      "id": "wiki/glitchcraft/OJU/",
+      "id": "wiki/OJU/",
       "uid": "OJU",
       "name": "Portacull Invismuggle",
       "label": "PCIS"
     },
     {
-      "id": "wiki/glitchcraft/NM8/",
+      "id": "wiki/NM8/",
       "uid": "NM8",
       "name": "Weapon Despawn Prevention",
       "label": "WDP"
     },
     {
-      "id": "wiki/glitchcraft/F4G/",
+      "id": "wiki/F4G/",
       "uid": "F4G",
       "name": "Prologue Escape",
       "label": "PE"
     },
     {
-      "id": "wiki/glitchcraft/WWW/",
+      "id": "wiki/WWW/",
       "uid": "WWW",
       "name": "Proxy Glitches",
       "label": "PG"
     },
     {
-      "id": "wiki/glitchcraft/EYH/",
+      "id": "wiki/EYH/",
       "uid": "EYH",
       "name": "Purgatory Save Load Dupe",
       "label": "PGSLD"
     },
     {
-      "id": "wiki/glitchcraft/9R8/",
+      "id": "wiki/9R8/",
       "uid": "9R8",
       "name": "Pyroculling",
       "label": "PYRC"
     },
     {
-      "id": "wiki/glitchcraft/PII/",
+      "id": "wiki/PII/",
       "uid": "PII",
       "name": "Quantum Linking",
       "label": "QL"
     },
     {
-      "id": "wiki/glitchcraft/OTD/",
+      "id": "wiki/OTD/",
       "uid": "OTD",
       "name": "Quick Drop Smuggle",
       "label": "QDS"
     },
     {
-      "id": "wiki/glitchcraft/2D4/",
+      "id": "wiki/2D4/",
       "uid": "2D4",
       "name": "Quick Smuggling",
       "label": "QS"
     },
     {
-      "id": "wiki/glitchcraft/93U/",
+      "id": "wiki/93U/",
       "uid": "93U",
       "name": "Reball",
       "label": "RBL"
     },
     {
-      "id": "wiki/glitchcraft/CC5/",
+      "id": "wiki/CC5/",
       "uid": "CC5",
       "name": "Recall Cancel",
       "label": "RCC"
     },
     {
-      "id": "wiki/glitchcraft/VDU/",
+      "id": "wiki/VDU/",
       "uid": "VDU",
       "name": "Recall Clip",
       "label": "RC"
     },
     {
-      "id": "wiki/glitchcraft/9C0/",
+      "id": "wiki/9C0/",
       "uid": "9C0",
       "name": "Recall Drop Stacking",
       "label": "RDS"
     },
     {
-      "id": "wiki/glitchcraft/J5A/",
+      "id": "wiki/J5A/",
       "uid": "J5A",
       "name": "Recall Launch",
       "label": "RLNCH"
     },
     {
-      "id": "wiki/glitchcraft/EY8/",
+      "id": "wiki/EY8/",
       "uid": "EY8",
       "name": "Recall Locking",
       "label": "RL"
     },
     {
-      "id": "wiki/glitchcraft/WXE/",
+      "id": "wiki/WXE/",
       "uid": "WXE",
       "name": "Recall Sluggle",
       "label": "RSL"
     },
     {
-      "id": "wiki/glitchcraft/1ZI/",
+      "id": "wiki/1ZI/",
       "uid": "1ZI",
       "name": "Recall Telekinesis",
       "label": "RTK"
     },
     {
-      "id": "wiki/glitchcraft/60D/",
+      "id": "wiki/60D/",
       "uid": "60D",
       "name": "Recipe Storage",
       "label": "RS"
     },
     {
-      "id": "wiki/glitchcraft/ZJF/",
+      "id": "wiki/ZJF/",
       "uid": "ZJF",
       "name": "Remote Arrow",
       "label": "RAT"
     },
     {
-      "id": "wiki/glitchcraft/E2K/",
+      "id": "wiki/E2K/",
       "uid": "E2K",
       "name": "Replacement Actor Fuse Entanglement",
       "label": "RAFE"
     },
     {
-      "id": "wiki/glitchcraft/GPN/",
+      "id": "wiki/GPN/",
       "uid": "GPN",
       "name": "Resync Fuse Entanglement",
       "label": "RFE"
     },
     {
-      "id": "wiki/glitchcraft/70D/",
+      "id": "wiki/70D/",
       "uid": "70D",
       "name": "Reverse Ascend Storage",
       "label": "RAS"
     },
     {
-      "id": "wiki/glitchcraft/I6X/",
+      "id": "wiki/I6X/",
       "uid": "I6X",
       "name": "Sage Madness",
       "label": "SM"
     },
     {
-      "id": "wiki/glitchcraft/4BI/",
+      "id": "wiki/4BI/",
       "uid": "4BI",
       "name": "Sage Recycling",
       "label": "SRCY"
     },
     {
-      "id": "wiki/glitchcraft/P2F/",
+      "id": "wiki/P2F/",
       "uid": "P2F",
       "name": "Save Load Dupe",
       "label": "SLD"
     },
     {
-      "id": "wiki/glitchcraft/HV7/",
+      "id": "wiki/HV7/",
       "uid": "HV7",
       "name": "Save Load Zuggling",
       "label": "SLZ"
     },
     {
-      "id": "wiki/glitchcraft/O9Q/",
+      "id": "wiki/O9Q/",
       "uid": "O9Q",
       "name": "Scope Render Cancel",
       "label": "SRC"
     },
     {
-      "id": "wiki/glitchcraft/34T/",
+      "id": "wiki/34T/",
       "uid": "34T",
       "name": "Shadow/Void Icons",
       "label": "SVI"
     },
     {
-      "id": "wiki/glitchcraft/EKY/",
+      "id": "wiki/EKY/",
       "uid": "EKY",
       "name": "Shock Cold Fuse",
       "label": "SCF"
     },
     {
-      "id": "wiki/glitchcraft/X5Y/",
+      "id": "wiki/X5Y/",
       "uid": "X5Y",
       "name": "Shock Effect Overload",
       "label": "SEO"
     },
     {
-      "id": "wiki/glitchcraft/ERF/",
+      "id": "wiki/ERF/",
       "uid": "ERF",
       "name": "Shock Fuse Entanglement",
       "label": "SFE"
     },
     {
-      "id": "wiki/glitchcraft/61Q/",
+      "id": "wiki/61Q/",
       "uid": "61Q",
       "name": "Shock Smuggle",
       "label": "SSMU"
     },
     {
-      "id": "wiki/glitchcraft/DMF/",
+      "id": "wiki/DMF/",
       "uid": "DMF",
       "name": "Shrunken Actors",
       "label": "SA"
     },
     {
-      "id": "wiki/glitchcraft/K7J/",
+      "id": "wiki/K7J/",
       "uid": "K7J",
       "name": "Slate Storage",
       "label": "SLST"
     },
     {
-      "id": "wiki/glitchcraft/0QL/",
+      "id": "wiki/0QL/",
       "uid": "0QL",
       "name": "Slugging",
       "label": "SLG"
     },
     {
-      "id": "wiki/glitchcraft/S3N/",
+      "id": "wiki/S3N/",
       "uid": "S3N",
       "name": "Smuggle Retrieval",
       "label": "SRET"
     },
     {
-      "id": "wiki/glitchcraft/DN4/",
+      "id": "wiki/DN4/",
       "uid": "DN4",
       "name": "Smuggle Stacking Zuggle",
       "label": "SSZ"
     },
     {
-      "id": "wiki/glitchcraft/E75/",
+      "id": "wiki/E75/",
       "uid": "E75",
       "name": "Split Item Duplication",
       "label": "SID"
     },
     {
-      "id": "wiki/glitchcraft/CFX/",
+      "id": "wiki/CFX/",
       "uid": "CFX",
       "name": "Spring Fall Damage Cancel",
       "label": "SFDC"
     },
     {
-      "id": "wiki/glitchcraft/J2D/",
+      "id": "wiki/J2D/",
       "uid": "J2D",
       "name": "Spring Strangeness",
       "label": "STRS"
     },
     {
-      "id": "wiki/glitchcraft/SU2/",
+      "id": "wiki/SU2/",
       "uid": "SU2",
       "name": "Springboard Clipping",
       "label": "SBC"
     },
     {
-      "id": "wiki/glitchcraft/OUX/",
+      "id": "wiki/OUX/",
       "uid": "OUX",
       "name": "Springboarding",
       "label": "SBRD"
     },
     {
-      "id": "wiki/glitchcraft/9OA/",
+      "id": "wiki/9OA/",
       "uid": "9OA",
       "name": "Springdolling",
       "label": "SDOL"
     },
     {
-      "id": "wiki/glitchcraft/WFM/",
+      "id": "wiki/WFM/",
       "uid": "WFM",
       "name": "Stack Splitting",
       "label": "SSPL"
     },
     {
-      "id": "wiki/glitchcraft/XH0/",
+      "id": "wiki/XH0/",
       "uid": "XH0",
       "name": "Stamina Depletion Freeze",
       "label": "SDF"
     },
     {
-      "id": "wiki/glitchcraft/L54/",
+      "id": "wiki/L54/",
       "uid": "L54",
       "name": "Stick Desync Clip",
       "label": "SDC"
     },
     {
-      "id": "wiki/glitchcraft/N2K/",
+      "id": "wiki/N2K/",
       "uid": "N2K",
       "name": "Sticky Dynamic Purgatory",
       "label": "SDP"
     },
     {
-      "id": "wiki/glitchcraft/W2H/",
+      "id": "wiki/W2H/",
       "uid": "W2H",
       "name": "Super Bomb Jump",
       "label": "SBJ"
     },
     {
-      "id": "wiki/glitchcraft/TX4/",
+      "id": "wiki/TX4/",
       "uid": "TX4",
       "name": "Super Fuse Overload",
       "label": "SFO"
     },
     {
-      "id": "wiki/glitchcraft/ARP/",
+      "id": "wiki/ARP/",
       "uid": "ARP",
       "name": "Surf storage",
       "label": "SSTR"
     },
     {
-      "id": "wiki/glitchcraft/XTY/",
+      "id": "wiki/XTY/",
       "uid": "XTY",
       "name": "Swap Resync Zuggle",
       "label": "SRZ"
     },
     {
-      "id": "wiki/glitchcraft/A0R/",
+      "id": "wiki/A0R/",
       "uid": "A0R",
       "name": "Swap Resync",
       "label": "SR"
     },
     {
-      "id": "wiki/glitchcraft/DGS/",
+      "id": "wiki/DGS/",
       "uid": "DGS",
       "name": "Temporary Devices",
       "label": "TD"
     },
     {
-      "id": "wiki/glitchcraft/11M/",
+      "id": "wiki/11M/",
       "uid": "11M",
       "name": "Texture Tearing",
       "label": "TT"
     },
     {
-      "id": "wiki/glitchcraft/M1W/",
+      "id": "wiki/M1W/",
       "uid": "M1W",
       "name": "Throken",
       "label": "THK"
     },
     {
-      "id": "wiki/glitchcraft/TK3/",
+      "id": "wiki/TK3/",
       "uid": "TK3",
       "name": "Throw Cancelling",
       "label": "TC"
     },
     {
-      "id": "wiki/glitchcraft/QME/",
+      "id": "wiki/QME/",
       "uid": "QME",
       "name": "Throw Tap Sprinting",
       "label": "TTS"
     },
     {
-      "id": "wiki/glitchcraft/OL9/",
+      "id": "wiki/OL9/",
       "uid": "OL9",
       "name": "Throwless Storage",
       "label": "THS"
     },
     {
-      "id": "wiki/glitchcraft/7Y9/",
+      "id": "wiki/7Y9/",
       "uid": "7Y9",
       "name": "Time Bomb cancel",
       "label": "TBC"
     },
     {
-      "id": "wiki/glitchcraft/YTR/",
+      "id": "wiki/YTR/",
       "uid": "YTR",
       "name": "Toti Saucery",
       "label": "TOTS"
     },
     {
-      "id": "wiki/glitchcraft/QSY/",
+      "id": "wiki/QSY/",
       "uid": "QSY",
       "name": "Travel Medallion Storage",
       "label": "TMS"
     },
     {
-      "id": "wiki/glitchcraft/75S/",
+      "id": "wiki/75S/",
       "uid": "75S",
       "name": "Tulin Pumping",
       "label": "TUP"
     },
     {
-      "id": "wiki/glitchcraft/GIO/",
+      "id": "wiki/GIO/",
       "uid": "GIO",
       "name": "Two Handed With Shield",
       "label": "THWS"
     },
     {
-      "id": "wiki/glitchcraft/05N/",
+      "id": "wiki/05N/",
       "uid": "05N",
       "name": "Ultimate Pocket Rocket",
       "label": "UPR"
     },
     {
-      "id": "wiki/glitchcraft/OL6/",
+      "id": "wiki/OL6/",
       "uid": "OL6",
       "name": "Ultra Save Load Object Transfer",
       "label": "USLOT"
     },
     {
-      "id": "wiki/glitchcraft/RQB/",
+      "id": "wiki/RQB/",
       "uid": "RQB",
       "name": "Ultrabroken Smuggling",
       "label": "UBS"
     },
     {
-      "id": "wiki/glitchcraft/NU6/",
+      "id": "wiki/NU6/",
       "uid": "NU6",
       "name": "Ultrabroken",
       "label": "UB"
     },
     {
-      "id": "wiki/glitchcraft/3HJ/",
+      "id": "wiki/3HJ/",
       "uid": "3HJ",
       "name": "Unload Duping",
       "label": "UD"
     },
     {
-      "id": "wiki/glitchcraft/YNP/",
+      "id": "wiki/YNP/",
       "uid": "YNP",
       "name": "Unload WST",
       "label": "UWST"
     },
     {
-      "id": "wiki/glitchcraft/36U/",
+      "id": "wiki/36U/",
       "uid": "36U",
       "name": "Unsheathed Mastersword",
       "label": "UMS"
     },
     {
-      "id": "wiki/glitchcraft/94V/",
+      "id": "wiki/94V/",
       "uid": "94V",
       "name": "Vendor Scamming",
       "label": "VS"
     },
     {
-      "id": "wiki/glitchcraft/JDP/",
+      "id": "wiki/JDP/",
       "uid": "JDP",
       "name": "Void Dipping",
       "label": "VD"
     },
     {
-      "id": "wiki/glitchcraft/AGZ/",
+      "id": "wiki/AGZ/",
       "uid": "AGZ",
       "name": "Void Hold Storage",
       "label": "VHS"
     },
     {
-      "id": "wiki/glitchcraft/0FD/",
+      "id": "wiki/0FD/",
       "uid": "0FD",
       "name": "Void Holding",
       "label": "VH"
     },
     {
-      "id": "wiki/glitchcraft/X06/",
+      "id": "wiki/X06/",
       "uid": "X06",
       "name": "Vortaculling",
       "label": "VC"
     },
     {
-      "id": "wiki/glitchcraft/O31/",
+      "id": "wiki/O31/",
       "uid": "O31",
       "name": "Wacko Attacko",
       "label": "WATK"
     },
     {
-      "id": "wiki/glitchcraft/KNR/",
+      "id": "wiki/KNR/",
       "uid": "KNR",
       "name": "Warp Bumping",
       "label": "WB"
     },
     {
-      "id": "wiki/glitchcraft/S9A/",
+      "id": "wiki/S9A/",
       "uid": "S9A",
       "name": "Weapon Dash GAS",
       "label": "WDGAS"
     },
     {
-      "id": "wiki/glitchcraft/5DZ/",
+      "id": "wiki/5DZ/",
       "uid": "5DZ",
       "name": "Weapon Extensions",
       "label": "WEXT"
     },
     {
-      "id": "wiki/glitchcraft/JOY/",
+      "id": "wiki/JOY/",
       "uid": "JOY",
       "name": "Weapon Fuse Entangelemt",
       "label": "WFE"
     },
     {
-      "id": "wiki/glitchcraft/MC8/",
+      "id": "wiki/MC8/",
       "uid": "MC8",
       "name": "Weapon Sheath Offset",
       "label": "WSO"
     },
     {
-      "id": "wiki/glitchcraft/WP6/",
+      "id": "wiki/WP6/",
       "uid": "WP6",
       "name": "Weapon Stacking Duplication",
       "label": "WSD"
     },
     {
-      "id": "wiki/glitchcraft/1PY/",
+      "id": "wiki/1PY/",
       "uid": "1PY",
       "name": "Weapon Stand Dynamic Zuggle",
       "label": "WSDZ"
     },
     {
-      "id": "wiki/glitchcraft/JMU/",
+      "id": "wiki/JMU/",
       "uid": "JMU",
       "name": "Weapon State Transfer",
       "label": "WST"
     },
     {
-      "id": "wiki/glitchcraft/UR8/",
+      "id": "wiki/UR8/",
       "uid": "UR8",
       "name": "Weather Amnesia",
       "label": "WA"
     },
     {
-      "id": "wiki/glitchcraft/QR3/",
+      "id": "wiki/QR3/",
       "uid": "QR3",
       "name": "Wheel Warping",
       "label": "WW"
     },
     {
-      "id": "wiki/glitchcraft/XPW/",
+      "id": "wiki/XPW/",
       "uid": "XPW",
       "name": "Wheel Zoomy",
       "label": "WZ"
     },
     {
-      "id": "wiki/glitchcraft/PQ5/",
+      "id": "wiki/PQ5/",
       "uid": "PQ5",
       "name": "Wireless Energy",
       "label": "WE"
     },
     {
-      "id": "wiki/glitchcraft/GJ2/",
+      "id": "wiki/GJ2/",
       "uid": "GJ2",
       "name": "Wuggle",
       "label": "WGL"
     },
     {
-      "id": "wiki/glitchcraft/PM1/",
+      "id": "wiki/PM1/",
       "uid": "PM1",
       "name": "Yee Fuse Entanglement",
       "label": "YEEFE"
     },
     {
-      "id": "wiki/glitchcraft/7F7/",
+      "id": "wiki/7F7/",
       "uid": "7F7",
       "name": "Zapshield",
       "label": "ZAPSH"
     },
     {
-      "id": "wiki/glitchcraft/0T9/",
+      "id": "wiki/0T9/",
       "uid": "0T9",
       "name": "ZL Animation Reset",
       "label": "ZLAR"
     },
     {
-      "id": "wiki/glitchcraft/9UF/",
+      "id": "wiki/9UF/",
       "uid": "9UF",
       "name": "Zoggle",
       "label": "ZOG"
     },
     {
-      "id": "wiki/glitchcraft/Y29/",
+      "id": "wiki/Y29/",
       "uid": "Y29",
       "name": "Zonai Inventory Shift Dupe",
       "label": "ZISD"
     },
     {
-      "id": "wiki/glitchcraft/KVB/",
+      "id": "wiki/KVB/",
       "uid": "KVB",
       "name": "Zonai Sort Duplication",
       "label": "ZSD"
     },
     {
-      "id": "wiki/glitchcraft/Y81/",
+      "id": "wiki/Y81/",
       "uid": "Y81",
       "name": "Zonai Storage",
       "label": "ZS"
     },
     {
-      "id": "wiki/glitchcraft/GM7/",
+      "id": "wiki/GM7/",
       "uid": "GM7",
       "name": "Zuggle Load Object Transfering",
       "label": "ZLOT"
     },
     {
-      "id": "wiki/glitchcraft/GTJ/",
+      "id": "wiki/GTJ/",
       "uid": "GTJ",
       "name": "Zuggle Overload Desync",
       "label": "ZOD"
     },
     {
-      "id": "wiki/glitchcraft/7DH/",
+      "id": "wiki/7DH/",
       "uid": "7DH",
       "name": "Zuggle Overload Out Of Bounds",
       "label": "ZOOB"
     },
     {
-      "id": "wiki/glitchcraft/8QH/",
+      "id": "wiki/8QH/",
       "uid": "8QH",
       "name": "Zuggle Overload",
       "label": "ZO"
     },
     {
-      "id": "wiki/glitchcraft/MCM/",
+      "id": "wiki/MCM/",
       "uid": "MCM",
       "name": "Zuggle",
       "label": "ZGL"
@@ -1839,2428 +1839,2428 @@
   ],
   "edges": [
     {
-      "source": "wiki/glitchcraft/00I/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/00I/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/056/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/056/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/056/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/056/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/056/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/056/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/056/",
-      "target": "wiki/glitchcraft/P2F/"
+      "source": "wiki/056/",
+      "target": "wiki/P2F/"
     },
     {
-      "source": "wiki/glitchcraft/056/",
-      "target": "wiki/glitchcraft/YNP/"
+      "source": "wiki/056/",
+      "target": "wiki/YNP/"
     },
     {
-      "source": "wiki/glitchcraft/05N/",
-      "target": "wiki/glitchcraft/1OP/"
+      "source": "wiki/05N/",
+      "target": "wiki/1OP/"
     },
     {
-      "source": "wiki/glitchcraft/05N/",
-      "target": "wiki/glitchcraft/6UC/"
+      "source": "wiki/05N/",
+      "target": "wiki/6UC/"
     },
     {
-      "source": "wiki/glitchcraft/05N/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/05N/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/05N/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/05N/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/05N/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/05N/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/05N/",
-      "target": "wiki/glitchcraft/M1W/"
+      "source": "wiki/05N/",
+      "target": "wiki/M1W/"
     },
     {
-      "source": "wiki/glitchcraft/05N/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/05N/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/05N/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/05N/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/099/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/099/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/099/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/099/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/099/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/099/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/0FH/",
-      "target": "wiki/glitchcraft/KFV/"
+      "source": "wiki/0FH/",
+      "target": "wiki/KFV/"
     },
     {
-      "source": "wiki/glitchcraft/0FH/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/0FH/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/0IS/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/0IS/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/0IS/",
-      "target": "wiki/glitchcraft/PEY/"
+      "source": "wiki/0IS/",
+      "target": "wiki/PEY/"
     },
     {
-      "source": "wiki/glitchcraft/0IS/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/0IS/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/0IS/",
-      "target": "wiki/glitchcraft/ZTD/"
+      "source": "wiki/0IS/",
+      "target": "wiki/ZTD/"
     },
     {
-      "source": "wiki/glitchcraft/0QL/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/0QL/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/0QL/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/0QL/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/0QL/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/0QL/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/0T9/",
-      "target": "wiki/glitchcraft/GIO/"
+      "source": "wiki/0T9/",
+      "target": "wiki/GIO/"
     },
     {
-      "source": "wiki/glitchcraft/0UY/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/0UY/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/0XV/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/0XV/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/0XV/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/0XV/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/0XV/",
-      "target": "wiki/glitchcraft/9HN/"
+      "source": "wiki/0XV/",
+      "target": "wiki/9HN/"
     },
     {
-      "source": "wiki/glitchcraft/0XV/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/0XV/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/0XV/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/0XV/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/0XV/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/0XV/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/0XV/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/0XV/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/0XV/",
-      "target": "wiki/glitchcraft/O64/"
+      "source": "wiki/0XV/",
+      "target": "wiki/O64/"
     },
     {
-      "source": "wiki/glitchcraft/0XV/",
-      "target": "wiki/glitchcraft/P2F/"
+      "source": "wiki/0XV/",
+      "target": "wiki/P2F/"
     },
     {
-      "source": "wiki/glitchcraft/11M/",
-      "target": "wiki/glitchcraft/00I/"
+      "source": "wiki/11M/",
+      "target": "wiki/00I/"
     },
     {
-      "source": "wiki/glitchcraft/11M/",
-      "target": "wiki/glitchcraft/BK4/"
+      "source": "wiki/11M/",
+      "target": "wiki/BK4/"
     },
     {
-      "source": "wiki/glitchcraft/12A/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/12A/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/12A/",
-      "target": "wiki/glitchcraft/VDD/"
+      "source": "wiki/12A/",
+      "target": "wiki/VDD/"
     },
     {
-      "source": "wiki/glitchcraft/15K/",
-      "target": "wiki/glitchcraft/BOF/"
+      "source": "wiki/15K/",
+      "target": "wiki/BOF/"
     },
     {
-      "source": "wiki/glitchcraft/15K/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/15K/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/1OP/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/1OP/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/1PY/",
-      "target": "wiki/glitchcraft/CNV/"
+      "source": "wiki/1PY/",
+      "target": "wiki/CNV/"
     },
     {
-      "source": "wiki/glitchcraft/1PY/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/1PY/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/1ZI/",
-      "target": "wiki/glitchcraft/JNU/"
+      "source": "wiki/1ZI/",
+      "target": "wiki/JNU/"
     },
     {
-      "source": "wiki/glitchcraft/2C6/",
-      "target": "wiki/glitchcraft/0EL/"
+      "source": "wiki/2C6/",
+      "target": "wiki/0EL/"
     },
     {
-      "source": "wiki/glitchcraft/2C6/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/2C6/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/2C6/",
-      "target": "wiki/glitchcraft/O04/"
+      "source": "wiki/2C6/",
+      "target": "wiki/O04/"
     },
     {
-      "source": "wiki/glitchcraft/2D4/",
-      "target": "wiki/glitchcraft/OUX/"
+      "source": "wiki/2D4/",
+      "target": "wiki/OUX/"
     },
     {
-      "source": "wiki/glitchcraft/362/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/362/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/362/",
-      "target": "wiki/glitchcraft/JAP/"
+      "source": "wiki/362/",
+      "target": "wiki/JAP/"
     },
     {
-      "source": "wiki/glitchcraft/362/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/362/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/362/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/362/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/36U/",
-      "target": "wiki/glitchcraft/DHQ/"
+      "source": "wiki/36U/",
+      "target": "wiki/DHQ/"
     },
     {
-      "source": "wiki/glitchcraft/3ME/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/3ME/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/3RI/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/3RI/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/3RI/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/3RI/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/43H/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/43H/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/43H/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/43H/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/46A/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/46A/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/4BI/",
-      "target": "wiki/glitchcraft/O9Q/"
+      "source": "wiki/4BI/",
+      "target": "wiki/O9Q/"
     },
     {
-      "source": "wiki/glitchcraft/51R/",
-      "target": "wiki/glitchcraft/UN7/"
+      "source": "wiki/51R/",
+      "target": "wiki/UN7/"
     },
     {
-      "source": "wiki/glitchcraft/51R/",
-      "target": "wiki/glitchcraft/WMG/"
+      "source": "wiki/51R/",
+      "target": "wiki/WMG/"
     },
     {
-      "source": "wiki/glitchcraft/5DZ/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/5DZ/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/5RG/",
-      "target": "wiki/glitchcraft/BY4/"
+      "source": "wiki/5RG/",
+      "target": "wiki/BY4/"
     },
     {
-      "source": "wiki/glitchcraft/5RG/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/5RG/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/5RG/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/5RG/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/5RG/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/5RG/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/60D/",
-      "target": "wiki/glitchcraft/FQ7/"
+      "source": "wiki/60D/",
+      "target": "wiki/FQ7/"
     },
     {
-      "source": "wiki/glitchcraft/60D/",
-      "target": "wiki/glitchcraft/KFV/"
+      "source": "wiki/60D/",
+      "target": "wiki/KFV/"
     },
     {
-      "source": "wiki/glitchcraft/61Q/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/61Q/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/6GR/",
-      "target": "wiki/glitchcraft/0QL/"
+      "source": "wiki/6GR/",
+      "target": "wiki/0QL/"
     },
     {
-      "source": "wiki/glitchcraft/6GR/",
-      "target": "wiki/glitchcraft/CVH/"
+      "source": "wiki/6GR/",
+      "target": "wiki/CVH/"
     },
     {
-      "source": "wiki/glitchcraft/6GR/",
-      "target": "wiki/glitchcraft/L0R/"
+      "source": "wiki/6GR/",
+      "target": "wiki/L0R/"
     },
     {
-      "source": "wiki/glitchcraft/6KV/",
-      "target": "wiki/glitchcraft/7VW/"
+      "source": "wiki/6KV/",
+      "target": "wiki/7VW/"
     },
     {
-      "source": "wiki/glitchcraft/6KV/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/6KV/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/6KV/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/6KV/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/6UC/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/6UC/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/6UC/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/6UC/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/6UC/",
-      "target": "wiki/glitchcraft/M1W/"
+      "source": "wiki/6UC/",
+      "target": "wiki/M1W/"
     },
     {
-      "source": "wiki/glitchcraft/6UC/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/6UC/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/6UC/",
-      "target": "wiki/glitchcraft/WMG/"
+      "source": "wiki/6UC/",
+      "target": "wiki/WMG/"
     },
     {
-      "source": "wiki/glitchcraft/70D/",
-      "target": "wiki/glitchcraft/1TZ/"
+      "source": "wiki/70D/",
+      "target": "wiki/1TZ/"
     },
     {
-      "source": "wiki/glitchcraft/73L/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/73L/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/73L/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/73L/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/73L/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/73L/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/76A/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/76A/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/76A/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/76A/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/7A4/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/7A4/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/7A4/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/7A4/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/7A4/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/7A4/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/7DA/",
-      "target": "wiki/glitchcraft/61Q/"
+      "source": "wiki/7DA/",
+      "target": "wiki/61Q/"
     },
     {
-      "source": "wiki/glitchcraft/7DA/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/7DA/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/7DA/",
-      "target": "wiki/glitchcraft/GM7/"
+      "source": "wiki/7DA/",
+      "target": "wiki/GM7/"
     },
     {
-      "source": "wiki/glitchcraft/7DA/",
-      "target": "wiki/glitchcraft/JAP/"
+      "source": "wiki/7DA/",
+      "target": "wiki/JAP/"
     },
     {
-      "source": "wiki/glitchcraft/7DA/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/7DA/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/7DA/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/7DA/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/7DA/",
-      "target": "wiki/glitchcraft/MP9/"
+      "source": "wiki/7DA/",
+      "target": "wiki/MP9/"
     },
     {
-      "source": "wiki/glitchcraft/7DH/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/7DH/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/7DH/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/7DH/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/7DH/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/7DH/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/7DQ/",
-      "target": "wiki/glitchcraft/DHQ/"
+      "source": "wiki/7DQ/",
+      "target": "wiki/DHQ/"
     },
     {
-      "source": "wiki/glitchcraft/7F7/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/7F7/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/7F7/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/7F7/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/7F7/",
-      "target": "wiki/glitchcraft/EKY/"
+      "source": "wiki/7F7/",
+      "target": "wiki/EKY/"
     },
     {
-      "source": "wiki/glitchcraft/7F7/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/7F7/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/7F7/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/7F7/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/7F7/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/7F7/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/7KZ/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/7KZ/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/7KZ/",
-      "target": "wiki/glitchcraft/CVH/"
+      "source": "wiki/7KZ/",
+      "target": "wiki/CVH/"
     },
     {
-      "source": "wiki/glitchcraft/7KZ/",
-      "target": "wiki/glitchcraft/EKY/"
+      "source": "wiki/7KZ/",
+      "target": "wiki/EKY/"
     },
     {
-      "source": "wiki/glitchcraft/7KZ/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/7KZ/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/7KZ/",
-      "target": "wiki/glitchcraft/KXM/"
+      "source": "wiki/7KZ/",
+      "target": "wiki/KXM/"
     },
     {
-      "source": "wiki/glitchcraft/7KZ/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/7KZ/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/7KZ/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/7KZ/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/7KZ/",
-      "target": "wiki/glitchcraft/O64/"
+      "source": "wiki/7KZ/",
+      "target": "wiki/O64/"
     },
     {
-      "source": "wiki/glitchcraft/7KZ/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/7KZ/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/7P8/",
-      "target": "wiki/glitchcraft/8MN/"
+      "source": "wiki/7P8/",
+      "target": "wiki/8MN/"
     },
     {
-      "source": "wiki/glitchcraft/7S4/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/7S4/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/7S4/",
-      "target": "wiki/glitchcraft/CVH/"
+      "source": "wiki/7S4/",
+      "target": "wiki/CVH/"
     },
     {
-      "source": "wiki/glitchcraft/7S4/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/7S4/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/7S4/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/7S4/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/7S4/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/7S4/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/7VW/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/7VW/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/7VW/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/7VW/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/7ZD/",
-      "target": "wiki/glitchcraft/7A4/"
+      "source": "wiki/7ZD/",
+      "target": "wiki/7A4/"
     },
     {
-      "source": "wiki/glitchcraft/7ZD/",
-      "target": "wiki/glitchcraft/A0R/"
+      "source": "wiki/7ZD/",
+      "target": "wiki/A0R/"
     },
     {
-      "source": "wiki/glitchcraft/7ZD/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/7ZD/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/7ZD/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/7ZD/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/7ZD/",
-      "target": "wiki/glitchcraft/X06/"
+      "source": "wiki/7ZD/",
+      "target": "wiki/X06/"
     },
     {
-      "source": "wiki/glitchcraft/7ZD/",
-      "target": "wiki/glitchcraft/XTY/"
+      "source": "wiki/7ZD/",
+      "target": "wiki/XTY/"
     },
     {
-      "source": "wiki/glitchcraft/80I/",
-      "target": "wiki/glitchcraft/UN7/"
+      "source": "wiki/80I/",
+      "target": "wiki/UN7/"
     },
     {
-      "source": "wiki/glitchcraft/8FK/",
-      "target": "wiki/glitchcraft/3RI/"
+      "source": "wiki/8FK/",
+      "target": "wiki/3RI/"
     },
     {
-      "source": "wiki/glitchcraft/8FK/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/8FK/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/8FK/",
-      "target": "wiki/glitchcraft/L0R/"
+      "source": "wiki/8FK/",
+      "target": "wiki/L0R/"
     },
     {
-      "source": "wiki/glitchcraft/8FK/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/8FK/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/8LV/",
-      "target": "wiki/glitchcraft/7A4/"
+      "source": "wiki/8LV/",
+      "target": "wiki/7A4/"
     },
     {
-      "source": "wiki/glitchcraft/8LV/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/8LV/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/8LV/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/8LV/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/8LV/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/8LV/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/8LV/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/8LV/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/8LV/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/8LV/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/8MN/",
-      "target": "wiki/glitchcraft/KVB/"
+      "source": "wiki/8MN/",
+      "target": "wiki/KVB/"
     },
     {
-      "source": "wiki/glitchcraft/8MP/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/8MP/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/8QH/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/8QH/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/8QH/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/8QH/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/8QH/",
-      "target": "wiki/glitchcraft/VTO/"
+      "source": "wiki/8QH/",
+      "target": "wiki/VTO/"
     },
     {
-      "source": "wiki/glitchcraft/8QL/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/8QL/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/8QL/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/8QL/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/8QL/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/8QL/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/8QL/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/8QL/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/8QL/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/8QL/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/8QL/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/8QL/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/8QL/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/8QL/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/93G/",
-      "target": "wiki/glitchcraft/MW4/"
+      "source": "wiki/93G/",
+      "target": "wiki/MW4/"
     },
     {
-      "source": "wiki/glitchcraft/94V/",
-      "target": "wiki/glitchcraft/FQ7/"
+      "source": "wiki/94V/",
+      "target": "wiki/FQ7/"
     },
     {
-      "source": "wiki/glitchcraft/9HN/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/9HN/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/9R0/",
-      "target": "wiki/glitchcraft/0IS/"
+      "source": "wiki/9R0/",
+      "target": "wiki/0IS/"
     },
     {
-      "source": "wiki/glitchcraft/9R0/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/9R0/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/9R0/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/9R0/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/9R0/",
-      "target": "wiki/glitchcraft/ZTD/"
+      "source": "wiki/9R0/",
+      "target": "wiki/ZTD/"
     },
     {
-      "source": "wiki/glitchcraft/9R8/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/9R8/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/9UF/",
-      "target": "wiki/glitchcraft/GJ2/"
+      "source": "wiki/9UF/",
+      "target": "wiki/GJ2/"
     },
     {
-      "source": "wiki/glitchcraft/9UF/",
-      "target": "wiki/glitchcraft/IG2/"
+      "source": "wiki/9UF/",
+      "target": "wiki/IG2/"
     },
     {
-      "source": "wiki/glitchcraft/9UF/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/9UF/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/9UF/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/9UF/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/A0R/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/A0R/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/A0R/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/A0R/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/A0R/",
-      "target": "wiki/glitchcraft/P2F/"
+      "source": "wiki/A0R/",
+      "target": "wiki/P2F/"
     },
     {
-      "source": "wiki/glitchcraft/A0R/",
-      "target": "wiki/glitchcraft/XTY/"
+      "source": "wiki/A0R/",
+      "target": "wiki/XTY/"
     },
     {
-      "source": "wiki/glitchcraft/A17/",
-      "target": "wiki/glitchcraft/75S/"
+      "source": "wiki/A17/",
+      "target": "wiki/75S/"
     },
     {
-      "source": "wiki/glitchcraft/A4A/",
-      "target": "wiki/glitchcraft/0QL/"
+      "source": "wiki/A4A/",
+      "target": "wiki/0QL/"
     },
     {
-      "source": "wiki/glitchcraft/A4A/",
-      "target": "wiki/glitchcraft/9HN/"
+      "source": "wiki/A4A/",
+      "target": "wiki/9HN/"
     },
     {
-      "source": "wiki/glitchcraft/A4A/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/A4A/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/A4A/",
-      "target": "wiki/glitchcraft/L0R/"
+      "source": "wiki/A4A/",
+      "target": "wiki/L0R/"
     },
     {
-      "source": "wiki/glitchcraft/A4A/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/A4A/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/A9N/",
-      "target": "wiki/glitchcraft/61Q/"
+      "source": "wiki/A9N/",
+      "target": "wiki/61Q/"
     },
     {
-      "source": "wiki/glitchcraft/A9N/",
-      "target": "wiki/glitchcraft/JAP/"
+      "source": "wiki/A9N/",
+      "target": "wiki/JAP/"
     },
     {
-      "source": "wiki/glitchcraft/A9N/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/A9N/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/AGZ/",
-      "target": "wiki/glitchcraft/0FD/"
+      "source": "wiki/AGZ/",
+      "target": "wiki/0FD/"
     },
     {
-      "source": "wiki/glitchcraft/AGZ/",
-      "target": "wiki/glitchcraft/FQ7/"
+      "source": "wiki/AGZ/",
+      "target": "wiki/FQ7/"
     },
     {
-      "source": "wiki/glitchcraft/AZT/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/AZT/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/AZT/",
-      "target": "wiki/glitchcraft/CNV/"
+      "source": "wiki/AZT/",
+      "target": "wiki/CNV/"
     },
     {
-      "source": "wiki/glitchcraft/AZT/",
-      "target": "wiki/glitchcraft/D2J/"
+      "source": "wiki/AZT/",
+      "target": "wiki/D2J/"
     },
     {
-      "source": "wiki/glitchcraft/AZT/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/AZT/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/B3B/",
-      "target": "wiki/glitchcraft/GDL/"
+      "source": "wiki/B3B/",
+      "target": "wiki/GDL/"
     },
     {
-      "source": "wiki/glitchcraft/B3B/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/B3B/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/BK4/",
-      "target": "wiki/glitchcraft/00I/"
+      "source": "wiki/BK4/",
+      "target": "wiki/00I/"
     },
     {
-      "source": "wiki/glitchcraft/BK4/",
-      "target": "wiki/glitchcraft/11M/"
+      "source": "wiki/BK4/",
+      "target": "wiki/11M/"
     },
     {
-      "source": "wiki/glitchcraft/BK4/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/BK4/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/BKZ/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/BKZ/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/BOF/",
-      "target": "wiki/glitchcraft/GM7/"
+      "source": "wiki/BOF/",
+      "target": "wiki/GM7/"
     },
     {
-      "source": "wiki/glitchcraft/BOF/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/BOF/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/BOF/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/BOF/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/BOF/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/BOF/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/BQL/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/BQL/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/BSN/",
-      "target": "wiki/glitchcraft/9HN/"
+      "source": "wiki/BSN/",
+      "target": "wiki/9HN/"
     },
     {
-      "source": "wiki/glitchcraft/BSN/",
-      "target": "wiki/glitchcraft/JDP/"
+      "source": "wiki/BSN/",
+      "target": "wiki/JDP/"
     },
     {
-      "source": "wiki/glitchcraft/BSN/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/BSN/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/BSN/",
-      "target": "wiki/glitchcraft/MG1/"
+      "source": "wiki/BSN/",
+      "target": "wiki/MG1/"
     },
     {
-      "source": "wiki/glitchcraft/BVN/",
-      "target": "wiki/glitchcraft/FD4/"
+      "source": "wiki/BVN/",
+      "target": "wiki/FD4/"
     },
     {
-      "source": "wiki/glitchcraft/BX1/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/BX1/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/BY4/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/BY4/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/BY4/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/BY4/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/CC5/",
-      "target": "wiki/glitchcraft/WMG/"
+      "source": "wiki/CC5/",
+      "target": "wiki/WMG/"
     },
     {
-      "source": "wiki/glitchcraft/CFX/",
-      "target": "wiki/glitchcraft/QVO/"
+      "source": "wiki/CFX/",
+      "target": "wiki/QVO/"
     },
     {
-      "source": "wiki/glitchcraft/CNV/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/CNV/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/CNV/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/CNV/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/CNV/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/CNV/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/CO6/",
-      "target": "wiki/glitchcraft/056/"
+      "source": "wiki/CO6/",
+      "target": "wiki/056/"
     },
     {
-      "source": "wiki/glitchcraft/D2J/",
-      "target": "wiki/glitchcraft/9HN/"
+      "source": "wiki/D2J/",
+      "target": "wiki/9HN/"
     },
     {
-      "source": "wiki/glitchcraft/D2J/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/D2J/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/D55/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/D55/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/DBF/",
-      "target": "wiki/glitchcraft/RQ7/"
+      "source": "wiki/DBF/",
+      "target": "wiki/RQ7/"
     },
     {
-      "source": "wiki/glitchcraft/DGS/",
-      "target": "wiki/glitchcraft/QVO/"
+      "source": "wiki/DGS/",
+      "target": "wiki/QVO/"
     },
     {
-      "source": "wiki/glitchcraft/DHQ/",
-      "target": "wiki/glitchcraft/FQ7/"
+      "source": "wiki/DHQ/",
+      "target": "wiki/FQ7/"
     },
     {
-      "source": "wiki/glitchcraft/DLG/",
-      "target": "wiki/glitchcraft/0QL/"
+      "source": "wiki/DLG/",
+      "target": "wiki/0QL/"
     },
     {
-      "source": "wiki/glitchcraft/DLG/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/DLG/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/DLG/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/DLG/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/DLG/",
-      "target": "wiki/glitchcraft/CNV/"
+      "source": "wiki/DLG/",
+      "target": "wiki/CNV/"
     },
     {
-      "source": "wiki/glitchcraft/DLG/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/DLG/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/DLG/",
-      "target": "wiki/glitchcraft/L0R/"
+      "source": "wiki/DLG/",
+      "target": "wiki/L0R/"
     },
     {
-      "source": "wiki/glitchcraft/DLG/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/DLG/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/DLG/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/DLG/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/DLG/",
-      "target": "wiki/glitchcraft/MP9/"
+      "source": "wiki/DLG/",
+      "target": "wiki/MP9/"
     },
     {
-      "source": "wiki/glitchcraft/DMF/",
-      "target": "wiki/glitchcraft/76A/"
+      "source": "wiki/DMF/",
+      "target": "wiki/76A/"
     },
     {
-      "source": "wiki/glitchcraft/DMF/",
-      "target": "wiki/glitchcraft/HQF/"
+      "source": "wiki/DMF/",
+      "target": "wiki/HQF/"
     },
     {
-      "source": "wiki/glitchcraft/DMF/",
-      "target": "wiki/glitchcraft/JUJ/"
+      "source": "wiki/DMF/",
+      "target": "wiki/JUJ/"
     },
     {
-      "source": "wiki/glitchcraft/DMF/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/DMF/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/DMF/",
-      "target": "wiki/glitchcraft/NU6/"
+      "source": "wiki/DMF/",
+      "target": "wiki/NU6/"
     },
     {
-      "source": "wiki/glitchcraft/DN4/",
-      "target": "wiki/glitchcraft/3RI/"
+      "source": "wiki/DN4/",
+      "target": "wiki/3RI/"
     },
     {
-      "source": "wiki/glitchcraft/DN4/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/DN4/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/DN4/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/DN4/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/DNU/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/DNU/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/DNU/",
-      "target": "wiki/glitchcraft/BOF/"
+      "source": "wiki/DNU/",
+      "target": "wiki/BOF/"
     },
     {
-      "source": "wiki/glitchcraft/DNU/",
-      "target": "wiki/glitchcraft/HQF/"
+      "source": "wiki/DNU/",
+      "target": "wiki/HQF/"
     },
     {
-      "source": "wiki/glitchcraft/DNU/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/DNU/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/DNU/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/DNU/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/DNU/",
-      "target": "wiki/glitchcraft/PM1/"
+      "source": "wiki/DNU/",
+      "target": "wiki/PM1/"
     },
     {
-      "source": "wiki/glitchcraft/DNU/",
-      "target": "wiki/glitchcraft/ZTD/"
+      "source": "wiki/DNU/",
+      "target": "wiki/ZTD/"
     },
     {
-      "source": "wiki/glitchcraft/DUS/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/DUS/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/DUS/",
-      "target": "wiki/glitchcraft/YNP/"
+      "source": "wiki/DUS/",
+      "target": "wiki/YNP/"
     },
     {
-      "source": "wiki/glitchcraft/E0G/",
-      "target": "wiki/glitchcraft/KFV/"
+      "source": "wiki/E0G/",
+      "target": "wiki/KFV/"
     },
     {
-      "source": "wiki/glitchcraft/E0G/",
-      "target": "wiki/glitchcraft/Q7V/"
+      "source": "wiki/E0G/",
+      "target": "wiki/Q7V/"
     },
     {
-      "source": "wiki/glitchcraft/E2K/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/E2K/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/E2K/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/E2K/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/E2K/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/E2K/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/E75/",
-      "target": "wiki/glitchcraft/WFM/"
+      "source": "wiki/E75/",
+      "target": "wiki/WFM/"
     },
     {
-      "source": "wiki/glitchcraft/EKY/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/EKY/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/ERF/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/ERF/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/ERF/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/ERF/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/ERN/",
-      "target": "wiki/glitchcraft/JUJ/"
+      "source": "wiki/ERN/",
+      "target": "wiki/JUJ/"
     },
     {
-      "source": "wiki/glitchcraft/ERN/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/ERN/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/EY8/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/EY8/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/EYH/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/EYH/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/EYH/",
-      "target": "wiki/glitchcraft/BOF/"
+      "source": "wiki/EYH/",
+      "target": "wiki/BOF/"
     },
     {
-      "source": "wiki/glitchcraft/EYH/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/EYH/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/EYH/",
-      "target": "wiki/glitchcraft/OL6/"
+      "source": "wiki/EYH/",
+      "target": "wiki/OL6/"
     },
     {
-      "source": "wiki/glitchcraft/EYH/",
-      "target": "wiki/glitchcraft/P2F/"
+      "source": "wiki/EYH/",
+      "target": "wiki/P2F/"
     },
     {
-      "source": "wiki/glitchcraft/F4G/",
-      "target": "wiki/glitchcraft/0UY/"
+      "source": "wiki/F4G/",
+      "target": "wiki/0UY/"
     },
     {
-      "source": "wiki/glitchcraft/F4G/",
-      "target": "wiki/glitchcraft/FD4/"
+      "source": "wiki/F4G/",
+      "target": "wiki/FD4/"
     },
     {
-      "source": "wiki/glitchcraft/F51/",
-      "target": "wiki/glitchcraft/0QL/"
+      "source": "wiki/F51/",
+      "target": "wiki/0QL/"
     },
     {
-      "source": "wiki/glitchcraft/F51/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/F51/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/F8J/",
-      "target": "wiki/glitchcraft/12S/"
+      "source": "wiki/F8J/",
+      "target": "wiki/12S/"
     },
     {
-      "source": "wiki/glitchcraft/F8J/",
-      "target": "wiki/glitchcraft/5A5/"
+      "source": "wiki/F8J/",
+      "target": "wiki/5A5/"
     },
     {
-      "source": "wiki/glitchcraft/FD4/",
-      "target": "wiki/glitchcraft/BVN/"
+      "source": "wiki/FD4/",
+      "target": "wiki/BVN/"
     },
     {
-      "source": "wiki/glitchcraft/FD4/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/FD4/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/FD4/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/FD4/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/FD4/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/FD4/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/FQ7/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/FQ7/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/G8Q/",
-      "target": "wiki/glitchcraft/0XV/"
+      "source": "wiki/G8Q/",
+      "target": "wiki/0XV/"
     },
     {
-      "source": "wiki/glitchcraft/G8Q/",
-      "target": "wiki/glitchcraft/76A/"
+      "source": "wiki/G8Q/",
+      "target": "wiki/76A/"
     },
     {
-      "source": "wiki/glitchcraft/G8Q/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/G8Q/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/G8Q/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/G8Q/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/G8Q/",
-      "target": "wiki/glitchcraft/O64/"
+      "source": "wiki/G8Q/",
+      "target": "wiki/O64/"
     },
     {
-      "source": "wiki/glitchcraft/GDL/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/GDL/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/GDL/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/GDL/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/GFW/",
-      "target": "wiki/glitchcraft/BOF/"
+      "source": "wiki/GFW/",
+      "target": "wiki/BOF/"
     },
     {
-      "source": "wiki/glitchcraft/GFW/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/GFW/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/GFW/",
-      "target": "wiki/glitchcraft/P2F/"
+      "source": "wiki/GFW/",
+      "target": "wiki/P2F/"
     },
     {
-      "source": "wiki/glitchcraft/GJ2/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/GJ2/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/GJ2/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/GJ2/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/GJ2/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/GJ2/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/GLW/",
-      "target": "wiki/glitchcraft/0QL/"
+      "source": "wiki/GLW/",
+      "target": "wiki/0QL/"
     },
     {
-      "source": "wiki/glitchcraft/GM7/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/GM7/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/GM7/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/GM7/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/GM7/",
-      "target": "wiki/glitchcraft/P2F/"
+      "source": "wiki/GM7/",
+      "target": "wiki/P2F/"
     },
     {
-      "source": "wiki/glitchcraft/GPN/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/GPN/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/GTJ/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/GTJ/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/GTJ/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/GTJ/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/GTJ/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/GTJ/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/GTJ/",
-      "target": "wiki/glitchcraft/YNP/"
+      "source": "wiki/GTJ/",
+      "target": "wiki/YNP/"
     },
     {
-      "source": "wiki/glitchcraft/H2E/",
-      "target": "wiki/glitchcraft/056/"
+      "source": "wiki/H2E/",
+      "target": "wiki/056/"
     },
     {
-      "source": "wiki/glitchcraft/H2E/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/H2E/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/HFE/",
-      "target": "wiki/glitchcraft/HQF/"
+      "source": "wiki/HFE/",
+      "target": "wiki/HQF/"
     },
     {
-      "source": "wiki/glitchcraft/HFE/",
-      "target": "wiki/glitchcraft/JUJ/"
+      "source": "wiki/HFE/",
+      "target": "wiki/JUJ/"
     },
     {
-      "source": "wiki/glitchcraft/HFE/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/HFE/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/HNZ/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/HNZ/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/HQF/",
-      "target": "wiki/glitchcraft/ERN/"
+      "source": "wiki/HQF/",
+      "target": "wiki/ERN/"
     },
     {
-      "source": "wiki/glitchcraft/HQF/",
-      "target": "wiki/glitchcraft/HFE/"
+      "source": "wiki/HQF/",
+      "target": "wiki/HFE/"
     },
     {
-      "source": "wiki/glitchcraft/HQF/",
-      "target": "wiki/glitchcraft/IFQ/"
+      "source": "wiki/HQF/",
+      "target": "wiki/IFQ/"
     },
     {
-      "source": "wiki/glitchcraft/HQF/",
-      "target": "wiki/glitchcraft/JUJ/"
+      "source": "wiki/HQF/",
+      "target": "wiki/JUJ/"
     },
     {
-      "source": "wiki/glitchcraft/HQF/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/HQF/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/HV7/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/HV7/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/HV7/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/HV7/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/HW8/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/HW8/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/HW8/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/HW8/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/IFQ/",
-      "target": "wiki/glitchcraft/ERN/"
+      "source": "wiki/IFQ/",
+      "target": "wiki/ERN/"
     },
     {
-      "source": "wiki/glitchcraft/IFQ/",
-      "target": "wiki/glitchcraft/HQF/"
+      "source": "wiki/IFQ/",
+      "target": "wiki/HQF/"
     },
     {
-      "source": "wiki/glitchcraft/IFQ/",
-      "target": "wiki/glitchcraft/JUJ/"
+      "source": "wiki/IFQ/",
+      "target": "wiki/JUJ/"
     },
     {
-      "source": "wiki/glitchcraft/IFQ/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/IFQ/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/IFQ/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/IFQ/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/IG2/",
-      "target": "wiki/glitchcraft/GDL/"
+      "source": "wiki/IG2/",
+      "target": "wiki/GDL/"
     },
     {
-      "source": "wiki/glitchcraft/IG2/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/IG2/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/IG2/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/IG2/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/IG2/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/IG2/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/IG2/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/IG2/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/IG2/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/IG2/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/IK1/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/IK1/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/IK1/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/IK1/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/J43/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/J43/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/J43/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/J43/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/J9Y/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/J9Y/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/J9Y/",
-      "target": "wiki/glitchcraft/CVH/"
+      "source": "wiki/J9Y/",
+      "target": "wiki/CVH/"
     },
     {
-      "source": "wiki/glitchcraft/J9Y/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/J9Y/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/JAP/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/JAP/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/JAP/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/JAP/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/JCJ/",
-      "target": "wiki/glitchcraft/056/"
+      "source": "wiki/JCJ/",
+      "target": "wiki/056/"
     },
     {
-      "source": "wiki/glitchcraft/JCJ/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/JCJ/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/76A/"
+      "source": "wiki/JDP/",
+      "target": "wiki/76A/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/JDP/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/8QL/"
+      "source": "wiki/JDP/",
+      "target": "wiki/8QL/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/B3B/"
+      "source": "wiki/JDP/",
+      "target": "wiki/B3B/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/JDP/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/GDL/"
+      "source": "wiki/JDP/",
+      "target": "wiki/GDL/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/IG2/"
+      "source": "wiki/JDP/",
+      "target": "wiki/IG2/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/JDP/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/JDP/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/JDP/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/JDP/",
-      "target": "wiki/glitchcraft/TX4/"
+      "source": "wiki/JDP/",
+      "target": "wiki/TX4/"
     },
     {
-      "source": "wiki/glitchcraft/JJB/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/JJB/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/JJB/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/JJB/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/JNU/",
-      "target": "wiki/glitchcraft/EY8/"
+      "source": "wiki/JNU/",
+      "target": "wiki/EY8/"
     },
     {
-      "source": "wiki/glitchcraft/JOY/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/JOY/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/JOY/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/JOY/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/JUJ/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/JUJ/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/JUJ/",
-      "target": "wiki/glitchcraft/ERN/"
+      "source": "wiki/JUJ/",
+      "target": "wiki/ERN/"
     },
     {
-      "source": "wiki/glitchcraft/JUJ/",
-      "target": "wiki/glitchcraft/JOY/"
+      "source": "wiki/JUJ/",
+      "target": "wiki/JOY/"
     },
     {
-      "source": "wiki/glitchcraft/JUJ/",
-      "target": "wiki/glitchcraft/JV6/"
+      "source": "wiki/JUJ/",
+      "target": "wiki/JV6/"
     },
     {
-      "source": "wiki/glitchcraft/JUJ/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/JUJ/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/JV6/",
-      "target": "wiki/glitchcraft/JUJ/"
+      "source": "wiki/JV6/",
+      "target": "wiki/JUJ/"
     },
     {
-      "source": "wiki/glitchcraft/K4F/",
-      "target": "wiki/glitchcraft/8MP/"
+      "source": "wiki/K4F/",
+      "target": "wiki/8MP/"
     },
     {
-      "source": "wiki/glitchcraft/K4F/",
-      "target": "wiki/glitchcraft/J43/"
+      "source": "wiki/K4F/",
+      "target": "wiki/J43/"
     },
     {
-      "source": "wiki/glitchcraft/K4F/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/K4F/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/K4F/",
-      "target": "wiki/glitchcraft/OUX/"
+      "source": "wiki/K4F/",
+      "target": "wiki/OUX/"
     },
     {
-      "source": "wiki/glitchcraft/K4F/",
-      "target": "wiki/glitchcraft/WWV/"
+      "source": "wiki/K4F/",
+      "target": "wiki/WWV/"
     },
     {
-      "source": "wiki/glitchcraft/K7J/",
-      "target": "wiki/glitchcraft/QVO/"
+      "source": "wiki/K7J/",
+      "target": "wiki/QVO/"
     },
     {
-      "source": "wiki/glitchcraft/KFV/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/KFV/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/KID/",
-      "target": "wiki/glitchcraft/CNV/"
+      "source": "wiki/KID/",
+      "target": "wiki/CNV/"
     },
     {
-      "source": "wiki/glitchcraft/KID/",
-      "target": "wiki/glitchcraft/D2J/"
+      "source": "wiki/KID/",
+      "target": "wiki/D2J/"
     },
     {
-      "source": "wiki/glitchcraft/KID/",
-      "target": "wiki/glitchcraft/GDL/"
+      "source": "wiki/KID/",
+      "target": "wiki/GDL/"
     },
     {
-      "source": "wiki/glitchcraft/KID/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/KID/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/KID/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/KID/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/KID/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/KID/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/KJR/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/KJR/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/KJR/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/KJR/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/KNR/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/KNR/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/KVB/",
-      "target": "wiki/glitchcraft/8MN/"
+      "source": "wiki/KVB/",
+      "target": "wiki/8MN/"
     },
     {
-      "source": "wiki/glitchcraft/KXM/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/KXM/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/KXM/",
-      "target": "wiki/glitchcraft/JUJ/"
+      "source": "wiki/KXM/",
+      "target": "wiki/JUJ/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/BOF/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/BOF/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/BX1/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/BX1/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/BY4/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/BY4/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/OJU/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/OJU/"
     },
     {
-      "source": "wiki/glitchcraft/KZ4/",
-      "target": "wiki/glitchcraft/PM1/"
+      "source": "wiki/KZ4/",
+      "target": "wiki/PM1/"
     },
     {
-      "source": "wiki/glitchcraft/L0R/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/L0R/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/L0R/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/L0R/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/L54/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/L54/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/LJH/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/LJH/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/LJH/",
-      "target": "wiki/glitchcraft/9HN/"
+      "source": "wiki/LJH/",
+      "target": "wiki/9HN/"
     },
     {
-      "source": "wiki/glitchcraft/LJH/",
-      "target": "wiki/glitchcraft/BOF/"
+      "source": "wiki/LJH/",
+      "target": "wiki/BOF/"
     },
     {
-      "source": "wiki/glitchcraft/LJH/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/LJH/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/LJH/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/LJH/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/LJH/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/LJH/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/LJH/",
-      "target": "wiki/glitchcraft/O64/"
+      "source": "wiki/LJH/",
+      "target": "wiki/O64/"
     },
     {
-      "source": "wiki/glitchcraft/LJH/",
-      "target": "wiki/glitchcraft/OJU/"
+      "source": "wiki/LJH/",
+      "target": "wiki/OJU/"
     },
     {
-      "source": "wiki/glitchcraft/LMB/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/LMB/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/LMB/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/LMB/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/LMB/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/LMB/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/LYO/",
-      "target": "wiki/glitchcraft/J43/"
+      "source": "wiki/LYO/",
+      "target": "wiki/J43/"
     },
     {
-      "source": "wiki/glitchcraft/LYO/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/LYO/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/LYO/",
-      "target": "wiki/glitchcraft/OL9/"
+      "source": "wiki/LYO/",
+      "target": "wiki/OL9/"
     },
     {
-      "source": "wiki/glitchcraft/M00/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/M00/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/M5E/",
-      "target": "wiki/glitchcraft/BVJ/"
+      "source": "wiki/M5E/",
+      "target": "wiki/BVJ/"
     },
     {
-      "source": "wiki/glitchcraft/M5E/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/M5E/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/M5E/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/M5E/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/M7L/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/M7L/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/M7L/",
-      "target": "wiki/glitchcraft/M00/"
+      "source": "wiki/M7L/",
+      "target": "wiki/M00/"
     },
     {
-      "source": "wiki/glitchcraft/M7L/",
-      "target": "wiki/glitchcraft/RID/"
+      "source": "wiki/M7L/",
+      "target": "wiki/RID/"
     },
     {
-      "source": "wiki/glitchcraft/M8L/",
-      "target": "wiki/glitchcraft/BVJ/"
+      "source": "wiki/M8L/",
+      "target": "wiki/BVJ/"
     },
     {
-      "source": "wiki/glitchcraft/M8L/",
-      "target": "wiki/glitchcraft/O31/"
+      "source": "wiki/M8L/",
+      "target": "wiki/O31/"
     },
     {
-      "source": "wiki/glitchcraft/MC8/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/MC8/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/MC8/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/MC8/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/3RI/"
+      "source": "wiki/MCM/",
+      "target": "wiki/3RI/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/7A4/"
+      "source": "wiki/MCM/",
+      "target": "wiki/7A4/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/8FK/"
+      "source": "wiki/MCM/",
+      "target": "wiki/8FK/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/8LV/"
+      "source": "wiki/MCM/",
+      "target": "wiki/8LV/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/BX1/"
+      "source": "wiki/MCM/",
+      "target": "wiki/BX1/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/MCM/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/DN4/"
+      "source": "wiki/MCM/",
+      "target": "wiki/DN4/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/HV7/"
+      "source": "wiki/MCM/",
+      "target": "wiki/HV7/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/JJB/"
+      "source": "wiki/MCM/",
+      "target": "wiki/JJB/"
     },
     {
-      "source": "wiki/glitchcraft/MCM/",
-      "target": "wiki/glitchcraft/SQF/"
+      "source": "wiki/MCM/",
+      "target": "wiki/SQF/"
     },
     {
-      "source": "wiki/glitchcraft/MG1/",
-      "target": "wiki/glitchcraft/B3B/"
+      "source": "wiki/MG1/",
+      "target": "wiki/B3B/"
     },
     {
-      "source": "wiki/glitchcraft/MG1/",
-      "target": "wiki/glitchcraft/GDL/"
+      "source": "wiki/MG1/",
+      "target": "wiki/GDL/"
     },
     {
-      "source": "wiki/glitchcraft/MG1/",
-      "target": "wiki/glitchcraft/JDP/"
+      "source": "wiki/MG1/",
+      "target": "wiki/JDP/"
     },
     {
-      "source": "wiki/glitchcraft/MG1/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/MG1/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/MLG/",
-      "target": "wiki/glitchcraft/EY8/"
+      "source": "wiki/MLG/",
+      "target": "wiki/EY8/"
     },
     {
-      "source": "wiki/glitchcraft/MLG/",
-      "target": "wiki/glitchcraft/GM7/"
+      "source": "wiki/MLG/",
+      "target": "wiki/GM7/"
     },
     {
-      "source": "wiki/glitchcraft/MLG/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/MLG/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/MLG/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/MLG/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/MP9/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/MP9/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/MP9/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/MP9/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/MUY/",
-      "target": "wiki/glitchcraft/GDL/"
+      "source": "wiki/MUY/",
+      "target": "wiki/GDL/"
     },
     {
-      "source": "wiki/glitchcraft/MUY/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/MUY/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/MUY/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/MUY/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/MW4/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/MW4/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/MW4/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/MW4/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/MZA/",
-      "target": "wiki/glitchcraft/SEO/"
+      "source": "wiki/MZA/",
+      "target": "wiki/SEO/"
     },
     {
-      "source": "wiki/glitchcraft/N15/",
-      "target": "wiki/glitchcraft/LYO/"
+      "source": "wiki/N15/",
+      "target": "wiki/LYO/"
     },
     {
-      "source": "wiki/glitchcraft/N15/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/N15/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/N1T/",
-      "target": "wiki/glitchcraft/CVH/"
+      "source": "wiki/N1T/",
+      "target": "wiki/CVH/"
     },
     {
-      "source": "wiki/glitchcraft/N1T/",
-      "target": "wiki/glitchcraft/JUJ/"
+      "source": "wiki/N1T/",
+      "target": "wiki/JUJ/"
     },
     {
-      "source": "wiki/glitchcraft/N1T/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/N1T/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/N1T/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/N1T/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/N2K/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/N2K/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/N2K/",
-      "target": "wiki/glitchcraft/DLG/"
+      "source": "wiki/N2K/",
+      "target": "wiki/DLG/"
     },
     {
-      "source": "wiki/glitchcraft/N2K/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/N2K/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/N2K/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/N2K/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/NDG/",
-      "target": "wiki/glitchcraft/0UY/"
+      "source": "wiki/NDG/",
+      "target": "wiki/0UY/"
     },
     {
-      "source": "wiki/glitchcraft/NDG/",
-      "target": "wiki/glitchcraft/WMG/"
+      "source": "wiki/NDG/",
+      "target": "wiki/WMG/"
     },
     {
-      "source": "wiki/glitchcraft/NM8/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/NM8/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/NMY/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/NMY/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/NMY/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/NMY/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/NU6/",
-      "target": "wiki/glitchcraft/GM7/"
+      "source": "wiki/NU6/",
+      "target": "wiki/GM7/"
     },
     {
-      "source": "wiki/glitchcraft/NU6/",
-      "target": "wiki/glitchcraft/UR8/"
+      "source": "wiki/NU6/",
+      "target": "wiki/UR8/"
     },
     {
-      "source": "wiki/glitchcraft/NZB/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/NZB/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/NZB/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/NZB/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/O64/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/O64/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/O64/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/O64/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/O64/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/O64/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/OII/",
-      "target": "wiki/glitchcraft/WMG/"
+      "source": "wiki/OII/",
+      "target": "wiki/WMG/"
     },
     {
-      "source": "wiki/glitchcraft/OJU/",
-      "target": "wiki/glitchcraft/BOF/"
+      "source": "wiki/OJU/",
+      "target": "wiki/BOF/"
     },
     {
-      "source": "wiki/glitchcraft/OJU/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/OJU/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/OJU/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/OJU/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/OJU/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/OJU/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/OL6/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/OL6/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/OL9/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/OL9/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/OO2/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/OO2/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/B3B/"
+      "source": "wiki/OO2/",
+      "target": "wiki/B3B/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/EY8/"
+      "source": "wiki/OO2/",
+      "target": "wiki/EY8/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/GDL/"
+      "source": "wiki/OO2/",
+      "target": "wiki/GDL/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/IG2/"
+      "source": "wiki/OO2/",
+      "target": "wiki/IG2/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/OO2/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/OO2/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/MG1/"
+      "source": "wiki/OO2/",
+      "target": "wiki/MG1/"
     },
     {
-      "source": "wiki/glitchcraft/OO2/",
-      "target": "wiki/glitchcraft/O64/"
+      "source": "wiki/OO2/",
+      "target": "wiki/O64/"
     },
     {
-      "source": "wiki/glitchcraft/OTD/",
-      "target": "wiki/glitchcraft/9HN/"
+      "source": "wiki/OTD/",
+      "target": "wiki/9HN/"
     },
     {
-      "source": "wiki/glitchcraft/OTD/",
-      "target": "wiki/glitchcraft/CNV/"
+      "source": "wiki/OTD/",
+      "target": "wiki/CNV/"
     },
     {
-      "source": "wiki/glitchcraft/OTD/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/OTD/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/OTD/",
-      "target": "wiki/glitchcraft/XK9/"
+      "source": "wiki/OTD/",
+      "target": "wiki/XK9/"
     },
     {
-      "source": "wiki/glitchcraft/OUX/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/OUX/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/OUX/",
-      "target": "wiki/glitchcraft/SU2/"
+      "source": "wiki/OUX/",
+      "target": "wiki/SU2/"
     },
     {
-      "source": "wiki/glitchcraft/P2F/",
-      "target": "wiki/glitchcraft/BOF/"
+      "source": "wiki/P2F/",
+      "target": "wiki/BOF/"
     },
     {
-      "source": "wiki/glitchcraft/P2F/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/P2F/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/PAE/",
-      "target": "wiki/glitchcraft/SIH/"
+      "source": "wiki/PAE/",
+      "target": "wiki/SIH/"
     },
     {
-      "source": "wiki/glitchcraft/PII/",
-      "target": "wiki/glitchcraft/EY8/"
+      "source": "wiki/PII/",
+      "target": "wiki/EY8/"
     },
     {
-      "source": "wiki/glitchcraft/PII/",
-      "target": "wiki/glitchcraft/GM7/"
+      "source": "wiki/PII/",
+      "target": "wiki/GM7/"
     },
     {
-      "source": "wiki/glitchcraft/PII/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/PII/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/PII/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/PII/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/PII/",
-      "target": "wiki/glitchcraft/PQ5/"
+      "source": "wiki/PII/",
+      "target": "wiki/PQ5/"
     },
     {
-      "source": "wiki/glitchcraft/PM1/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/PM1/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/PM1/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/PM1/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/PM1/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/PM1/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/PM1/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/PM1/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/PQ5/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/PQ5/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/Q7V/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/Q7V/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/QR3/",
-      "target": "wiki/glitchcraft/MW4/"
+      "source": "wiki/QR3/",
+      "target": "wiki/MW4/"
     },
     {
-      "source": "wiki/glitchcraft/QVO/",
-      "target": "wiki/glitchcraft/WMG/"
+      "source": "wiki/QVO/",
+      "target": "wiki/WMG/"
     },
     {
-      "source": "wiki/glitchcraft/QXN/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/QXN/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/QXN/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/QXN/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/QXN/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/QXN/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/QXN/",
-      "target": "wiki/glitchcraft/X06/"
+      "source": "wiki/QXN/",
+      "target": "wiki/X06/"
     },
     {
-      "source": "wiki/glitchcraft/RID/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/RID/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/RQB/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/RQB/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/RQB/",
-      "target": "wiki/glitchcraft/NU6/"
+      "source": "wiki/RQB/",
+      "target": "wiki/NU6/"
     },
     {
-      "source": "wiki/glitchcraft/S3L/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/S3L/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/S3L/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/S3L/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/S3N/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/S3N/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/S3N/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/S3N/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/S6U/",
-      "target": "wiki/glitchcraft/ZBB/"
+      "source": "wiki/S6U/",
+      "target": "wiki/ZBB/"
     },
     {
-      "source": "wiki/glitchcraft/S8G/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/S8G/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/S9A/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/S9A/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/S9A/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/S9A/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/SEO/",
-      "target": "wiki/glitchcraft/MZA/"
+      "source": "wiki/SEO/",
+      "target": "wiki/MZA/"
     },
     {
-      "source": "wiki/glitchcraft/SQF/",
-      "target": "wiki/glitchcraft/0QL/"
+      "source": "wiki/SQF/",
+      "target": "wiki/0QL/"
     },
     {
-      "source": "wiki/glitchcraft/SQF/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/SQF/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/SQF/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/SQF/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/SQF/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/SQF/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/SQF/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/SQF/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/SU2/",
-      "target": "wiki/glitchcraft/OUX/"
+      "source": "wiki/SU2/",
+      "target": "wiki/OUX/"
     },
     {
-      "source": "wiki/glitchcraft/TC3/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/TC3/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/TRL/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/TRL/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/TX4/",
-      "target": "wiki/glitchcraft/056/"
+      "source": "wiki/TX4/",
+      "target": "wiki/056/"
     },
     {
-      "source": "wiki/glitchcraft/TX4/",
-      "target": "wiki/glitchcraft/76A/"
+      "source": "wiki/TX4/",
+      "target": "wiki/76A/"
     },
     {
-      "source": "wiki/glitchcraft/TX4/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/TX4/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/TX4/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/TX4/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/TX4/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/TX4/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/TX4/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/TX4/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/TX4/",
-      "target": "wiki/glitchcraft/MG1/"
+      "source": "wiki/TX4/",
+      "target": "wiki/MG1/"
     },
     {
-      "source": "wiki/glitchcraft/TX4/",
-      "target": "wiki/glitchcraft/MP9/"
+      "source": "wiki/TX4/",
+      "target": "wiki/MP9/"
     },
     {
-      "source": "wiki/glitchcraft/TX4/",
-      "target": "wiki/glitchcraft/XTY/"
+      "source": "wiki/TX4/",
+      "target": "wiki/XTY/"
     },
     {
-      "source": "wiki/glitchcraft/U1A/",
-      "target": "wiki/glitchcraft/NZB/"
+      "source": "wiki/U1A/",
+      "target": "wiki/NZB/"
     },
     {
-      "source": "wiki/glitchcraft/UN7/",
-      "target": "wiki/glitchcraft/WMG/"
+      "source": "wiki/UN7/",
+      "target": "wiki/WMG/"
     },
     {
-      "source": "wiki/glitchcraft/UR8/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/UR8/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/V84/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/V84/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/V84/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/V84/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/V84/",
-      "target": "wiki/glitchcraft/WMG/"
+      "source": "wiki/V84/",
+      "target": "wiki/WMG/"
     },
     {
-      "source": "wiki/glitchcraft/V9V/",
-      "target": "wiki/glitchcraft/00I/"
+      "source": "wiki/V9V/",
+      "target": "wiki/00I/"
     },
     {
-      "source": "wiki/glitchcraft/VDD/",
-      "target": "wiki/glitchcraft/12A/"
+      "source": "wiki/VDD/",
+      "target": "wiki/12A/"
     },
     {
-      "source": "wiki/glitchcraft/VKB/",
-      "target": "wiki/glitchcraft/QME/"
+      "source": "wiki/VKB/",
+      "target": "wiki/QME/"
     },
     {
-      "source": "wiki/glitchcraft/VLT/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/VLT/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/VTO/",
-      "target": "wiki/glitchcraft/A9N/"
+      "source": "wiki/VTO/",
+      "target": "wiki/A9N/"
     },
     {
-      "source": "wiki/glitchcraft/VTO/",
-      "target": "wiki/glitchcraft/QVO/"
+      "source": "wiki/VTO/",
+      "target": "wiki/QVO/"
     },
     {
-      "source": "wiki/glitchcraft/VTO/",
-      "target": "wiki/glitchcraft/UN7/"
+      "source": "wiki/VTO/",
+      "target": "wiki/UN7/"
     },
     {
-      "source": "wiki/glitchcraft/VTO/",
-      "target": "wiki/glitchcraft/WMG/"
+      "source": "wiki/VTO/",
+      "target": "wiki/WMG/"
     },
     {
-      "source": "wiki/glitchcraft/W2H/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/W2H/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/W2H/",
-      "target": "wiki/glitchcraft/ZBS/"
+      "source": "wiki/W2H/",
+      "target": "wiki/ZBS/"
     },
     {
-      "source": "wiki/glitchcraft/WBZ/",
-      "target": "wiki/glitchcraft/J5Q/"
+      "source": "wiki/WBZ/",
+      "target": "wiki/J5Q/"
     },
     {
-      "source": "wiki/glitchcraft/WEI/",
-      "target": "wiki/glitchcraft/FQ7/"
+      "source": "wiki/WEI/",
+      "target": "wiki/FQ7/"
     },
     {
-      "source": "wiki/glitchcraft/WFM/",
-      "target": "wiki/glitchcraft/E75/"
+      "source": "wiki/WFM/",
+      "target": "wiki/E75/"
     },
     {
-      "source": "wiki/glitchcraft/WLM/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/WLM/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/WLM/",
-      "target": "wiki/glitchcraft/8QH/"
+      "source": "wiki/WLM/",
+      "target": "wiki/8QH/"
     },
     {
-      "source": "wiki/glitchcraft/WLM/",
-      "target": "wiki/glitchcraft/GDL/"
+      "source": "wiki/WLM/",
+      "target": "wiki/GDL/"
     },
     {
-      "source": "wiki/glitchcraft/WLM/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/WLM/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/WLM/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/WLM/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/WMG/",
-      "target": "wiki/glitchcraft/51R/"
+      "source": "wiki/WMG/",
+      "target": "wiki/51R/"
     },
     {
-      "source": "wiki/glitchcraft/WMG/",
-      "target": "wiki/glitchcraft/UN7/"
+      "source": "wiki/WMG/",
+      "target": "wiki/UN7/"
     },
     {
-      "source": "wiki/glitchcraft/WP6/",
-      "target": "wiki/glitchcraft/D55/"
+      "source": "wiki/WP6/",
+      "target": "wiki/D55/"
     },
     {
-      "source": "wiki/glitchcraft/WP6/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/WP6/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/WWV/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/WWV/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/WXE/",
-      "target": "wiki/glitchcraft/0QL/"
+      "source": "wiki/WXE/",
+      "target": "wiki/0QL/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/7A4/"
+      "source": "wiki/X06/",
+      "target": "wiki/7A4/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/X06/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/7KZ/"
+      "source": "wiki/X06/",
+      "target": "wiki/7KZ/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/7ZD/"
+      "source": "wiki/X06/",
+      "target": "wiki/7ZD/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/8QL/"
+      "source": "wiki/X06/",
+      "target": "wiki/8QL/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/BOF/"
+      "source": "wiki/X06/",
+      "target": "wiki/BOF/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/X06/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/X06/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/X06/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/X06/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/X06/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/X5Y/",
-      "target": "wiki/glitchcraft/5A5/"
+      "source": "wiki/X5Y/",
+      "target": "wiki/5A5/"
     },
     {
-      "source": "wiki/glitchcraft/X5Y/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/X5Y/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/X9I/",
-      "target": "wiki/glitchcraft/ZTD/"
+      "source": "wiki/X9I/",
+      "target": "wiki/ZTD/"
     },
     {
-      "source": "wiki/glitchcraft/XN2/",
-      "target": "wiki/glitchcraft/L54/"
+      "source": "wiki/XN2/",
+      "target": "wiki/L54/"
     },
     {
-      "source": "wiki/glitchcraft/XN2/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/XN2/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/XTY/",
-      "target": "wiki/glitchcraft/A0R/"
+      "source": "wiki/XTY/",
+      "target": "wiki/A0R/"
     },
     {
-      "source": "wiki/glitchcraft/XTY/",
-      "target": "wiki/glitchcraft/LMB/"
+      "source": "wiki/XTY/",
+      "target": "wiki/LMB/"
     },
     {
-      "source": "wiki/glitchcraft/XTY/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/XTY/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/Y29/",
-      "target": "wiki/glitchcraft/5A5/"
+      "source": "wiki/Y29/",
+      "target": "wiki/5A5/"
     },
     {
-      "source": "wiki/glitchcraft/Y29/",
-      "target": "wiki/glitchcraft/UWY/"
+      "source": "wiki/Y29/",
+      "target": "wiki/UWY/"
     },
     {
-      "source": "wiki/glitchcraft/YIS/",
-      "target": "wiki/glitchcraft/OT8/"
+      "source": "wiki/YIS/",
+      "target": "wiki/OT8/"
     },
     {
-      "source": "wiki/glitchcraft/YK3/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/YK3/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/YK3/",
-      "target": "wiki/glitchcraft/M7L/"
+      "source": "wiki/YK3/",
+      "target": "wiki/M7L/"
     },
     {
-      "source": "wiki/glitchcraft/YM9/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/YM9/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/YM9/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/YM9/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/YM9/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/YM9/",
+      "target": "wiki/ZJ2/"
     },
     {
-      "source": "wiki/glitchcraft/YNP/",
-      "target": "wiki/glitchcraft/7DA/"
+      "source": "wiki/YNP/",
+      "target": "wiki/7DA/"
     },
     {
-      "source": "wiki/glitchcraft/YNP/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/YNP/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/YNP/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/YNP/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/YTR/",
-      "target": "wiki/glitchcraft/HQF/"
+      "source": "wiki/YTR/",
+      "target": "wiki/HQF/"
     },
     {
-      "source": "wiki/glitchcraft/YTR/",
-      "target": "wiki/glitchcraft/JUJ/"
+      "source": "wiki/YTR/",
+      "target": "wiki/JUJ/"
     },
     {
-      "source": "wiki/glitchcraft/YTR/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/YTR/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/Z2Z/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/Z2Z/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/ZBS/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/ZBS/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/ZJ2/",
-      "target": "wiki/glitchcraft/CVH/"
+      "source": "wiki/ZJ2/",
+      "target": "wiki/CVH/"
     },
     {
-      "source": "wiki/glitchcraft/ZJ2/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/ZJ2/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/ZJ2/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/ZJ2/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/ZJ2/",
-      "target": "wiki/glitchcraft/N1T/"
+      "source": "wiki/ZJ2/",
+      "target": "wiki/N1T/"
     },
     {
-      "source": "wiki/glitchcraft/ZJF/",
-      "target": "wiki/glitchcraft/JMU/"
+      "source": "wiki/ZJF/",
+      "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/glitchcraft/ZTD/",
-      "target": "wiki/glitchcraft/GM7/"
+      "source": "wiki/ZTD/",
+      "target": "wiki/GM7/"
     },
     {
-      "source": "wiki/glitchcraft/ZTD/",
-      "target": "wiki/glitchcraft/K4F/"
+      "source": "wiki/ZTD/",
+      "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/glitchcraft/ZTD/",
-      "target": "wiki/glitchcraft/MCM/"
+      "source": "wiki/ZTD/",
+      "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/glitchcraft/ZTD/",
-      "target": "wiki/glitchcraft/YM9/"
+      "source": "wiki/ZTD/",
+      "target": "wiki/YM9/"
     },
     {
-      "source": "wiki/glitchcraft/ZTD/",
-      "target": "wiki/glitchcraft/ZJ2/"
+      "source": "wiki/ZTD/",
+      "target": "wiki/ZJ2/"
     }
   ]
 }

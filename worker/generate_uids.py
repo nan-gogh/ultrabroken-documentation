@@ -1,13 +1,18 @@
 """
-Generate unique 3-character alphanumeric UIDs for new glitchcraft pages.
+Generate unique 3-character alphanumeric UIDs for all wiki pages.
 
-Scans docs/wiki/glitchcraft/ for markdown files missing a ``uid:`` frontmatter
+Scans docs/wiki/**/*.md for markdown files missing a ``uid:`` frontmatter
 field, generates a random UID (A-Z0-9, 46 656 possible values), and writes it
 into the source file immediately after the ``title:`` field.
 
 Designed to run in CI before ``mkdocs build`` so that uid_links.py can rewrite
 URLs on the first deploy.  Idempotent — files that already have a UID are
 skipped.
+
+Skipped files:
+  - _glitchcraft-grimoire (meta/index page, not a content page)
+  - blank.md  (editor template, not a real page)
+  - Any file without a title: field
 
 Usage:
   python docs/worker/generate_uids.py
@@ -22,27 +27,37 @@ from pathlib import Path
 from common import ROOT, extract_frontmatter
 
 
+# Files to skip (by stem) when generating UIDs site-wide
+_SKIP_STEMS = {'_glitchcraft-grimoire', 'blank'}
+
+
 def generate_uids() -> set[str]:
-    """Scan glitchcraft pages and generate UIDs for any files missing one.
+    """Scan all wiki pages and generate UIDs for any files missing one.
 
     Returns the set of all UIDs (existing + newly generated).
     """
-    _SKIP = {'_glitchcraft-grimoire'}
-    glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
+    wiki_dir = ROOT / 'docs' / 'wiki'
 
     parsed_files = []
     existing_uids: set[str] = set()
 
-    for p in sorted(glitchcraft_dir.glob('*.md')):
-        if p.stem in _SKIP:
+    # First pass: collect all existing UIDs across the entire wiki
+    for p in sorted(wiki_dir.rglob('*.md')):
+        if p.stem in _SKIP_STEMS:
+            continue
+        fm = extract_frontmatter(p)
+        uid = fm.get('uid')
+        if uid:
+            existing_uids.add(uid)
+
+    # Second pass: collect files that need UIDs
+    for p in sorted(wiki_dir.rglob('*.md')):
+        if p.stem in _SKIP_STEMS:
             continue
         fm = extract_frontmatter(p)
         title = fm.get('title', '')
         if not title:
             continue
-        uid = fm.get('uid')
-        if uid:
-            existing_uids.add(uid)
         parsed_files.append((p, fm, title))
 
     charset = string.ascii_uppercase + string.digits
@@ -52,7 +67,7 @@ def generate_uids() -> set[str]:
         if uid:
             continue
 
-        # Generate a random 3-char alphanumeric UID
+        # Generate a random 3-char alphanumeric UID, unique site-wide
         seed_str = str(time.time_ns())
         hash_hex = hashlib.md5(seed_str.encode()).hexdigest()
         uid = ''.join(charset[int(hash_hex[i:i+2], 16) % 36] for i in range(0, 6, 2))
@@ -83,7 +98,7 @@ def generate_uids() -> set[str]:
                         f'---\n{new_frontmatter}\n---'
                     )
                     p.write_text(new_content, encoding='utf-8-sig')
-                    print(f"Generated new UID {uid} for {p.name}")
+                    print(f"Generated new UID {uid} for {p.relative_to(ROOT / 'docs')}")
         except Exception as e:
             print(f"Warning: failed to write UID {uid} to {p.name}: {e}")
 

@@ -34,10 +34,11 @@
            parseInt(parts[2], 10) + ', ' + parts[0];
   }
 
-  /** Turn grimoire href (./UID/) into a path relative to the homepage. */
+  /** Turn grimoire href (./UID/) into a path relative to the homepage.
+   *  All wiki pages share the flat wiki/{uid}/ structure, so from the
+   *  homepage (also wiki/{uid}/) the relative path is one level up. */
   function resolveHref(href) {
-    // grimoire hrefs are relative to the grimoire page (glitchcraft/)
-    return 'glitchcraft/' + href.replace(/^\.\//, '');
+    return '../' + href.replace(/^\.\//, '');
   }
 
   /* ── Render ───────────────────────────────────────────── */
@@ -88,7 +89,7 @@
     var todayKey = mm + '-' + dd;
     var seed = dayHash(now.getFullYear() + '-' + todayKey);
 
-    fetch('../assets/data/grimoire-data.json')
+    fetch('../../assets/data/grimoire-data.json')
       .then(function (r) {
         if (!r.ok) throw new Error(r.status);
         return r.json();

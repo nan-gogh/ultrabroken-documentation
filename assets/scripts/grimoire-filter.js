@@ -83,9 +83,9 @@
             .replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /** ./file.md → ../file/  (MkDocs use_directory_urls) */
+  /** ./UID/ → ../../UID/  (flat wiki/{uid}/ URL structure, grimoire is at wiki/glitchcraft/grimoire/) */
   function toHref(md) {
-    return md.replace(/^\.\//, '../').replace(/\.md$/, '/');
+    return md.replace(/^\.\//, '../../').replace(/\.md$/, '/');
   }
 
   function freshState() {
