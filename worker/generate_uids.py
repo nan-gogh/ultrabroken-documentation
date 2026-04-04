@@ -87,8 +87,8 @@ def generate_uids() -> set[str]:
             if fm_match:
                 frontmatter = fm_match.group(1)
                 new_frontmatter = re.sub(
-                    r'(title:.*?\n)',
-                    f'\\1uid: "{uid}"\n',
+                    r'(title:[^\n]*)',
+                    f'\\1\nuid: "{uid}"',
                     frontmatter,
                     count=1
                 )

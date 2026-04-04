@@ -228,7 +228,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../L11/" class="md-tabs__link">
         
   
   
@@ -287,7 +287,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../ultrabroken/" class="md-tabs__link">
+        <a href="../WFI/" class="md-tabs__link">
           
   
   
@@ -309,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../fuse-entanglement/" class="md-tabs__link">
+        <a href="../KWG/" class="md-tabs__link">
           
   
   
@@ -331,7 +331,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../zuggling/" class="md-tabs__link">
+        <a href="../RCS/" class="md-tabs__link">
           
   
   
@@ -351,7 +351,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../duplication/" class="md-tabs__link">
+      <a href="../T85/" class="md-tabs__link">
         
   
   
@@ -370,7 +370,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../despawn-interrupt/" class="md-tabs__link">
+      <a href="../7YD/" class="md-tabs__link">
         
   
   
@@ -389,7 +389,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../culling/" class="md-tabs__link">
+      <a href="../800/" class="md-tabs__link">
         
   
   
@@ -408,7 +408,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../overload/" class="md-tabs__link">
+      <a href="../Y0X/" class="md-tabs__link">
         
   
   
@@ -427,7 +427,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../memorandum/" class="md-tabs__link">
+      <a href="../3KV/" class="md-tabs__link">
         
   
   
@@ -465,7 +465,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../media/" class="md-tabs__link">
+      <a href="../BAQ/" class="md-tabs__link">
         
   
   
@@ -559,7 +559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../L11/" class="md-nav__link">
         
   
   
@@ -643,8 +643,6 @@
     
       
         
-          
-        
       
         
       
@@ -676,7 +674,7 @@
   
   
   
-    <a href="../ultrabroken/" class="md-nav__link">
+    <a href="../WFI/" class="md-nav__link">
       
   
   
@@ -712,8 +710,6 @@
     
       
         
-          
-        
       
     
     
@@ -733,7 +729,7 @@
   
   
   
-    <a href="../fuse-entanglement/" class="md-nav__link">
+    <a href="../KWG/" class="md-nav__link">
       
   
   
@@ -769,8 +765,6 @@
     
       
         
-          
-        
       
     
     
@@ -790,7 +784,7 @@
   
   
   
-    <a href="../zuggling/" class="md-nav__link">
+    <a href="../RCS/" class="md-nav__link">
       
   
   
@@ -823,7 +817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../duplication/" class="md-nav__link">
+      <a href="../T85/" class="md-nav__link">
         
   
   
@@ -850,7 +844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../despawn-interrupt/" class="md-nav__link">
+      <a href="../7YD/" class="md-nav__link">
         
   
   
@@ -877,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../culling/" class="md-nav__link">
+      <a href="../800/" class="md-nav__link">
         
   
   
@@ -904,7 +898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overload/" class="md-nav__link">
+      <a href="../Y0X/" class="md-nav__link">
         
   
   
@@ -931,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../memorandum/" class="md-nav__link">
+      <a href="../3KV/" class="md-nav__link">
         
   
   
@@ -985,7 +979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../media/" class="md-nav__link">
+      <a href="../BAQ/" class="md-nav__link">
         
   
   
@@ -1088,14 +1082,14 @@
 <p class="admonition-title">UNDER CONSTRUCTION</p>
 <p>This page is still being written. It may be used as-is, but some sections are incomplete, and others may contain incorrect information.</p>
 </div>
-<p>The mechanics of how Tears of the Kingdom handles equipment dropping are surprisingly complex, and edge cases in these engine mechanics are what make smuggling and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggling</a> possible.</p>
+<p>The mechanics of how Tears of the Kingdom handles equipment dropping are surprisingly complex, and edge cases in these engine mechanics are what make smuggling and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggling</a> possible.</p>
 <p>TODO: drop queue (general equipment, incl. cold drops), Link's is-dropping slots</p>
 <h2 id="dropping-equipped-items">Dropping equipped items</h2>
 <p>When you drop something Link has equipped, the game broadcasts a 'start dropping' message to all equipment of that type. Similarly, Link puts a reference to the item he had equipped into his own 'is dropping' slot (he has three of these, one for each equippable type), and the game starts processing all queued drops. When the item in the 'is dropping' slot is free to drop fully, Link removes that reference. If anything in the drop queue fail drops, all items in the 'is dropping' slots are forcibly re-equipped onto Link.</p>
 <p>If a second item of the same type is supposed to go into that slot, Link overwrites the old reference with a new one. The former smuggle then does one of two things:</p>
 <ul>
 <li>If it still responds to the original 'start dropping' message, it drops as normal. But because it's not the current smuggle anymore, Link fails to detach it from himself. This turns it into a <a href="zuggle-drop/">Zuggle Drop</a>.</li>
-<li>If it doesn't respond to the original 'start dropping' message, it stays attached to Link and becomes a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>. This usually happens with:</li>
+<li>If it doesn't respond to the original 'start dropping' message, it stays attached to Link and becomes a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>. This usually happens with:</li>
 <li>Invismuggles. As culled smuggles, they don't change their own state, but Link no longer considering them an active smuggle means they get promoted to invizuggles.</li>
 <li>Dynamic smuggles. They don't consider themselves to be dropping, so they ignore the 'start dropping' message. They just get passively promoted to dynamic zuggles.</li>
 </ul>
