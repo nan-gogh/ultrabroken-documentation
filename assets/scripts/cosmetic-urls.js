@@ -1,9 +1,10 @@
 /**
  * Cosmetic URLs
- * Automatically appends the page's title as a URL parameter to the address bar
- * without breaking history or reloading the page.
- * E.g. /wiki/OO2/ becomes /wiki/OO2/?Kinematic-Weapons
+ * Automatically appends the page's source filename as a URL parameter to the
+ * address bar without breaking history or reloading the page.
+ * E.g. /wiki/OO2/ becomes /wiki/OO2/?kinematic-weapons
  * Works for all UID-routed wiki pages (flat /wiki/{uid}/ structure).
+ * The slug is injected at build time via <meta name="page-slug"> in main.html.
  */
 (function() {
   'use strict';
@@ -15,20 +16,11 @@
     var uidSegment = path.match(/\/wiki\/([A-Z0-9]{3})\/?$/);
     if (!uidSegment) return;
 
-    var h1 = document.querySelector('.md-content h1');
-    if (!h1) return;
+    var slugMeta = document.querySelector('meta[name="page-slug"]');
+    var slug = slugMeta ? slugMeta.getAttribute('content') : '';
+    if (!slug) return;
 
-    // Extract only direct text nodes, ignoring <code> tags (which contain the label and UID)
-    var titleText = Array.from(h1.childNodes)
-      .filter(function(n) { return n.nodeType === Node.TEXT_NODE; })
-      .map(function(n) { return n.textContent; })
-      .join('')
-      .replace(/¶/g, '')
-      .trim();
-
-    if (!titleText) return;
-
-    var niceUrlParam = encodeURIComponent(titleText.replace(/\s+/g, '-'));
+    var niceUrlParam = encodeURIComponent(slug);
 
     // Keep MkDocs built-in parameters like 'h' (search highlight) or 'q' (search query) if present
     var params = new URLSearchParams(window.location.search);
