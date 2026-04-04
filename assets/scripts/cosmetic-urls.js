@@ -16,9 +16,9 @@
     var uidSegment = path.match(/\/wiki\/([A-Z0-9]{3})\/?$/);
     if (!uidSegment) return;
 
-    var slugMeta = document.querySelector('meta[name="page-slug"]');
-    var slug = slugMeta ? slugMeta.getAttribute('content') : '';
-    if (!slug) return;
+    var slugEl = document.querySelector('.ub-page-actions[data-slug]');
+    var slug = slugEl ? slugEl.getAttribute('data-slug') : '';
+    if (!slug || slug === 'index') return;
 
     var niceUrlParam = encodeURIComponent(slug);
 
