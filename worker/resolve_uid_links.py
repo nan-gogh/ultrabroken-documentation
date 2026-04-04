@@ -70,7 +70,14 @@ def resolve_file(path: Path, filename_map: dict[str, str]) -> int:
 
     def replace_match(m: re.Match) -> str:
         nonlocal changes
-        ref = m.group(1)
+        raw = m.group(1)
+        # Split off any #fragment before resolving
+        if '#' in raw:
+            ref, fragment = raw.split('#', 1)
+            fragment = '#' + fragment
+        else:
+            ref = raw
+            fragment = ''
         # Already a 3-char UID — leave untouched
         if _UID_RE.match(ref):
             return m.group(0)
@@ -78,9 +85,9 @@ def resolve_file(path: Path, filename_map: dict[str, str]) -> int:
         uid = filename_map.get(ref)
         if uid:
             changes += 1
-            return f'(uid:{uid})'
+            return f'(uid:{uid}{fragment})'
         else:
-            warnings.append(ref)
+            warnings.append(raw)
             return m.group(0)
 
     new_content = _LINK_RE.sub(replace_match, content)

@@ -122,7 +122,15 @@ def on_page_markdown(markdown, page, config, **kwargs):
     current_url = page.file.url  # e.g. "wiki/XYZ/" or "wiki/culling/index/"
 
     def resolve(m: re.Match) -> str:
-        ref = m.group(1)
+        raw = m.group(1)
+
+        # Split off any #fragment
+        if '#' in raw:
+            ref, fragment = raw.split('#', 1)
+            fragment = '#' + fragment
+        else:
+            ref = raw
+            fragment = ''
 
         # Resolve filename stems that weren't back-committed (e.g. local serve)
         if not _UID_RE.match(ref):
@@ -146,7 +154,7 @@ def on_page_markdown(markdown, page, config, **kwargs):
         if not rel.endswith('/'):
             rel += '/'
 
-        return f'({rel})'
+        return f'({rel}{fragment})'
 
     return _UID_LINK_RE.sub(resolve, markdown)
 
