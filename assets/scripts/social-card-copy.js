@@ -2,10 +2,12 @@
  * Social Card Copy
  * Appends a copy-card button to the .ub-page-actions row
  * (created by the content.html template override).
- * Reads the card URL from body[data-ub-social-card] (injected by social_cards.py).
+ * Derives the card URL from the .ub-page-uid element (inside <main>,
+ * refreshed on every instant-navigation page switch).
  */
 (function () {
   var _iconUrl = window.__ub_base + 'assets/images/icons/card-icon.svg';
+  var _mediaBase = 'https://ultrabroken-media.gl1tchcr4vt.workers.dev/social/';
 
   function init() {
     var row = document.querySelector('.ub-page-actions');
@@ -14,8 +16,11 @@
     // Don't double-inject
     if (row.querySelector('.ub-card-copy')) return;
 
-    var url = document.body.getAttribute('data-ub-social-card');
-    if (!url) return;
+    var uidEl = row.querySelector('.ub-page-uid');
+    if (!uidEl) return;
+    var uid = uidEl.textContent.trim();
+    if (!uid) return;
+    var url = _mediaBase + encodeURIComponent(uid) + '.png';
 
     var btn = document.createElement('button');
     btn.className = 'md-content__button md-icon ub-card-copy';
