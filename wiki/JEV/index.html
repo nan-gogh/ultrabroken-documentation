@@ -73,6 +73,8 @@
 
     
     
+  <!-- Site-root base path — available to all scripts, no relative ../  guessing -->
+  <script>window.__ub_base="https://nan-gogh.github.io/ultrabroken-documentation/";</script>
   <!-- On fresh navigation with a #fragment, strip it early so
        hash-navigation.js controls reveal + scroll instead of
        the browser's native anchor jump.  Disable scrollRestoration
@@ -1396,6 +1398,8 @@ This is just an example, other differences emerge depending on which despawn rea
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/scripts/ub-base.js"></script>
       
         <script src="../../assets/scripts/mermaid-config.js"></script>
       
