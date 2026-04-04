@@ -1192,601 +1192,592 @@
 </div>
 <h2 id="instructions">Instructions</h2>
 <p>There are three main use cases for <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>: obtaining Mineru's Arm, obtaining Zelda's Torch, and duplicating anything you can throw. For the sake of providing clear instructions, a variant of each method is given for each valid use case.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1: Hand Purgatory + Overload Batch DI <span class='ub-vr'><code>All versions</code></span></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1: Hand Purgatory + Overload Batch DI <span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_2">Method 2: Hand Purgatory + DI <span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_3">Method 3: Overload Cold Fuse <span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_4">Method 4: Overload Cold Fuse + Permacull <span class='ub-vr'><code>All versions</code></span></label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
+<div class="tabbed-block">
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<ul>
+<li>This is a <strong>Persistent</strong> method that makes use of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment to maximize adjustability, ease of use, and framerate. It can be used for anything, but is best-suited for Mineru's Arm and Zelda's Torch.</li>
+<li>While it is technically possible on <code>1.1.2</code> and earlier, the absence of "Drop-Swap Culling" makes it significantly more difficult. Methods 3 and 4 will be faster and easier on those versions (for local and persistent needs, respectively).</li>
+</ul>
+<details class="abstract">
+<summary>For Mineru's Arm (Persistent <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> variant)</summary>
+<p>Prepare:</p>
+<ul>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
+<li>If on <code>1.1.2</code> or earlier, Intangible Aerophasing</li>
+<li>A bow to manage overload with</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapon, dubbed "A1"</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Shield, dubbed "B1"</li>
+<li>Ideally, a second of each to simplify duplication</li>
+<li>Optionally, a fused equipment item</li>
+</ul>
+<p>Part 1: Creating the base setup</p>
+<ol>
+<li>Ensure Mineru is summoned. This will save some headache later</li>
+<li>Enter Rasitakiwak Shrine, defeat all the constructs, and dispose of their weapons (for example by leaving/reentering)</li>
+<li>B1 <a href="../0XV/">Overload FE</a> Weapon B2</li>
+<li>Recall-Lock B2</li>
+<li>A1 and normal weapon A2 <a href="../BEW/">Clone</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield A3</li>
+<li>A1 Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> normal Shield A4</li>
+<li>Equip A2, Smuggle A3, and <a href="UID:8QH">Overload Pickup</a> A4</li>
+<li>A2-A4 <a href="UID:PG3">Overload Batch DI</a> 19 Weapons C1-C19</li>
+<li><strong>Fail-Drop</strong> A4</li>
+<li>A3 &amp; A4 Clone <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon C20</li>
+<li><strong>Drop</strong> A4</li>
+<li>Re-smuggle A3, equip a random shield, and fuse something disposable to it. This will leave A4 as the sole <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent of C20</li>
+<li>Throw purgatory all C: smuggle <em>one</em> C, equip and throw any random weapon, and unequip that weapon, then repeat</li>
+<li>Recall-Lock A4, discarding A2 and A3 through the load</li>
+</ol>
+<p>Part 2: Performing and undoing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Drop B1, equip A4, and Overload Pickup B2</li>
+<li>B1, B2, &amp; A4 Overload Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> 30 Shields D1-D30</li>
+<li>There will be a substantial lag on the second fuse of each shield after D1, so using the D-pad to drop-swap (if on <code>1.2.0+</code>) is advised</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="Super Fuse Overload" target="_blank" rel="noopener noreferrer">Super Fuse Overload</a> should occur on the 30th shield. If confirmation is needed, drop the fused equipment item. If the fuse is deleted, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> is active</li>
+<li>To undo <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>: pick up each D[n], unequip it, and drop it. Each removed shield will remove 20 dependencies from the global limit</li>
+</ol>
+<p>Part 3: Obtaining Mineru's Arm</p>
+<ol>
+<li>Equip a weapon and ensure there is space in your weapon pouch</li>
+<li>Warp to Mogisari Shrine at the Lomei Sky Labyrinth. Other low-grav zones may work but are untested</li>
+<li>As soon as you gain control, walk in a small clockwise circle while spamming A (see video below)</li>
+<li>Execution permitting, you will pick up a new 2-handed weapon, dealing 38 damage, which has no icon, description, model, or collision, and is called MsgNotFound</li>
+<li>If unsuccessful, warp to the shrine again to make another attempt. Otherwise, subsequent Panic Blood Moons will occur too frequently to reach the arm in time</li>
+<li>If Mineru was not summoned, simply summon her after the warp and treat it as a failed attempt</li>
+<li>About 3 seconds after control is gained, a panic blood moon will occur, which will give an autosave</li>
+<li>Either return to Rasitakiwak Shrine to clear <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>, or simply close the game after receiving the above autosave</li>
+</ol>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+
+    B1[B1]
+    B2[B2]
+    A1[A1]
+    A2[A2]
+    A3[A3]
+    A4[A4]
+    PARENTS["Purgatory Parents&lt;br/&gt;(C1-C20)"]
+    CHILDREN["DI Children&lt;br/&gt;(D1-D30"]
+
+    B1 --&gt;|FE| B2
+    A2 --&gt;|DI| A3
+    A1 --&gt;|DI| A3
+    A1 --&gt;|FE| A4
+    A3 --&gt;|Batch DI| PARENTS
+    A4 --&gt;|Batch DI| PARENTS
+    PARENTS --&gt;|Batch DI| CHILDREN
+    B2 --&gt;|Batch DI| CHILDREN</code></pre>
+</details>
+</details>
+<details class="abstract">
+<summary>For Zelda's Torch</summary>
+<p>Prepare:</p>
+<ul>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
+<li>If on <code>1.1.2</code> or earlier, Intangible Aerophasing</li>
+<li>A bow to manage overload with</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapon, dubbed "A1"</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Shield, dubbed "B1"</li>
+<li>Ideally, a second of each to simplify duplication</li>
+<li>Optionally, a fused equipment item</li>
+<li>The <em>second</em> prologue autosave</li>
+</ul>
+<p>Part 1: Creating the base setup</p>
+<ol>
+<li>Enter Rasitakiwak Shrine, defeat all the constructs, and dispose of their weapons (for example by leaving/reentering)</li>
+<li>B1 <a href="../0XV/">Overload FE</a> Weapon B2</li>
+<li>Recall-Lock B2</li>
+<li>A1 and normal weapon A2 <a href="../BEW/">Clone</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield A3</li>
+<li>A1 Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> normal Shield A4</li>
+<li>Equip A2, Smuggle A3, and <a href="UID:8QH">Overload Pickup</a> A4</li>
+<li>A2-A4 <a href="UID:PG3">Overload Batch DI</a> 19 Weapons C1-C19</li>
+<li><strong>Fail-Drop</strong> A4</li>
+<li>A3 &amp; A4 Clone <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon C20</li>
+<li><strong>Drop</strong> A4</li>
+<li>Re-smuggle A3, equip a random shield, and fuse something disposable to it. This will leave A4 as the sole <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent of C20</li>
+<li>Throw purgatory all C: smuggle <em>one</em> C, equip and throw any random weapon, and unequip that weapon, then repeat</li>
+<li>Recall-Lock A4, discarding A2 and A3 through the load</li>
+</ol>
+<p>Part 2: Performing and undoing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Drop B1, equip A4, and Overload Pickup B2</li>
+<li>B1, B2, &amp; A4 Overload Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> 30 Shields D1-D30</li>
+<li>There will be a substantial lag on the second fuse of each shield after D1, so using the D-pad to drop-swap (if on <code>1.2.0+</code>) is advised</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="Super Fuse Overload" target="_blank" rel="noopener noreferrer">Super Fuse Overload</a> should occur on the 30th shield. If confirmation is needed, drop the fused equipment item. If the fuse is deleted, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> is active</li>
+<li>To undo <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>: pick up each D[n], unequip it, and drop it. Each removed shield will remove 20 dependencies from the global limit</li>
+</ol>
+<p>Part 3: Obtaining Zelda's Torch</p>
+<ol>
+<li>Load your prologue save. Zelda will drop her torch, so pick it up</li>
+<li>If she does not, try loading again; It may take a few tries for her torch to be one of the dependencies that fails</li>
+<li>Get another prologue autosave with the torch in your inventory, then either load back to Rasitakiwak to clear your <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>, or simply close the game</li>
+<li>Follow your preferred method to obtain <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/056/" class="glitch-autolink" title="MNF" target="_blank" rel="noopener noreferrer">MNF</a>, but <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> Zelda's Torch instead</li>
+<li>Save the game or get an autosave</li>
+</ol>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[B1] --&gt;|FE| B[B2]
+    C[A2] --&gt;|DI| D[A3]
+    E[A1] --&gt;|DI| D
+    E --&gt; |FE| F[A4]
+    D --&gt; |Batch DI| G["C1-20"]
+    F --&gt; |Batch DI| G
+    G --&gt; |Batch DI| H["D1-30"]
+    B --&gt; |Batch DI| H</code></pre>
+</details>
+</details>
+<details class="abstract">
+<summary>For duplication</summary>
+<p>Prepare:
+- 13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a>
+- If on <code>1.1.2</code> or earlier, Intangible Aerophasing
+- A bow to manage overload with
+- A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapon, dubbed "A1"
+- A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Shield, dubbed "B1"
+- Ideally, a second of each to simplify duplication
+- Optionally, a fused equipment item
+- 1 or more of the duplication target</p>
+<p>Part 1: Creating the base setup</p>
+<ol>
+<li>If duplicating Zonai Devices, enter a minigame with no timer, such as Bayge/Heehl's minigames at Mine-Cart Land. If duplicating other materials, enter a minigame <em>or</em> a shrine</li>
+<li>B1 <a href="../0XV/">Overload FE</a> Weapon B2</li>
+<li>Recall-Lock B2</li>
+<li>A1 and normal weapon A2 <a href="../BEW/">Clone</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield A3</li>
+<li>A1 Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> normal Shield A4</li>
+<li>Equip A2, Smuggle A3, and <a href="UID:8QH">Overload Pickup</a> A4</li>
+<li>A2-A4 <a href="UID:PG3">Overload Batch DI</a> 19 Weapons C1-C19</li>
+<li><strong>Fail-Drop</strong> A4</li>
+<li>A3 &amp; A4 Clone <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon C20</li>
+<li><strong>Drop</strong> A4</li>
+<li>Re-smuggle A3, equip a random shield, and fuse something disposable to it. This will leave A4 as the sole <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent of C20</li>
+<li>Throw purgatory all C: smuggle <em>one</em> C, equip and throw any random weapon, and unequip that weapon, then repeat</li>
+<li>Recall-Lock A4, discarding A2 and A3 through the load</li>
+</ol>
+<p>Part 2: Performing and undoing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<ol>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Drop B1, equip A4, and Overload Pickup B2</li>
+<li>B1, B2, &amp; A4 Overload Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> 30 Shields D1-D30</li>
+<li>There will be a substantial lag on the second fuse of each shield after D1, so using the D-pad to drop-swap (if on <code>1.2.0+</code>) is advised</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="Super Fuse Overload" target="_blank" rel="noopener noreferrer">Super Fuse Overload</a> should occur on the 30th shield. If confirmation is needed, drop the fused equipment item. If the fuse is deleted, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> is active</li>
+<li>To undo <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>: pick up each D[n], unequip it, and drop it. Each removed shield will remove 20 dependencies from the global limit</li>
+</ol>
+<p>Part 3: Duplicating with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<details class="abstract">
+<summary>Throw Hold Duplication (devices or materials)</summary>
+</details>
+<ol>
+<li>Ready a throw of the duplication target. It should fall to the ground</li>
+<li>Collect it</li>
+<li>Press cancel (B/X). This will "put away" the target Link "still had held", returning it to the pouch</li>
+<li>Ready throw again. Each cycle will increase the quantity of your target by 1</li>
+<li>Destroy all D[n] to end <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> before ending the minigame/exiting the shrine</li>
+<li>Save the game/get an autosave</li>
+</ol>
+<details class="abstract">
+<summary><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/099/" class="glitch-autolink" title="BID" target="_blank" rel="noopener noreferrer">BID</a> (materials only)</summary>
+</details>
+<ol>
+<li><strong>Pause</strong>, hold 1 random material and <strong>unpause</strong>. It will fall from Link's hands</li>
+<li>Press A to drop the material</li>
+<li>Hold 1 of the same material(?) and 4 of the duplication target. These will not appear in the world</li>
+<li>Ready throw with the same material(???). This will make the duplication targets appear on the ground as well</li>
+<li>Throw will need to stay readied from here out. It can be cancelled with B if necessary, so long as it is re-readied before continuing</li>
+<li>Pick up the 5 materials on the ground</li>
+<li><strong>Pause</strong>, un-hold the 4 duplication targets, and re-hold 4 duplication targets (they can be different)</li>
+<li><strong>Unpause</strong> and pick up the 4 materials on the ground</li>
+<li>Repeat steps 7 and 8 to satisfaction</li>
+</ol>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[B1] --&gt;|FE| B[B2]
+    C[A2] --&gt;|DI| D[A3]
+    E[A1] --&gt;|DI| D
+    E --&gt; |FE| F[A4]
+    D --&gt; |Batch DI| G["C1-20"]
+    F --&gt; |Batch DI| G
+    G --&gt; |Batch DI| H["D1-30"]
+    B --&gt; |Batch DI| H</code></pre>
+</details>
+</details>
+<p><em>Method by MandelbrotChaylay and Squidwest</em></p>
+</div>
+<div class="tabbed-block">
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<ul>
+<li>This is a <strong>Local</strong> method that makes use of a specially-prepared <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment "multitool". to maximize portability and in-the-moment speed. It is ideal for duplication, and can be used for Mineru's Arm by an older route, but cannot be used for Zelda's Torch.</li>
+<li>While it is technically possible on <code>1.1.2</code> and earlier, the absence of "Drop-Swap Culling" makes it significantly more difficult. Methods 3 and 4 will be faster and easier on those versions (for local and persistent needs, respectively).</li>
+</ul>
+<details class="abstract">
+<summary>For Duplication</summary>
+<p>Prepare:</p>
+<ul>
+<li>The "Multitool Loadout" (see discord link below (for now))</li>
+<li>Up to 21 materials</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon to dupe with</li>
+</ul>
+<p>Part 1: Setting up and destroying <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<ol>
+<li>Enter a minigame with no timer. If only materials (and not Zonai Devices) are to be duped, a shrine will also work</li>
+<li>Dupe a weapon (A1) and equip it</li>
+<li>A1 <a href="UID:BEW">Clone</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Material/equipment (B1); Do not detangle</li>
+<li>Repeat until attempting to fuse B[n] fails (20-21 repetitions are expected); Menu Link should be overloaded at this point</li>
+<li>To destroy <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>, simply inventory pickup each A[n], or exit shrine if in one. Distance despawn <em>will not fully work</em> due to the properties of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
+</ol>
+<p>Part 2: Duplicating with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<details class="abstract">
+<summary>Throw Hold Duplication (devices or materials)</summary>
+</details>
+<ol>
+<li>Ready a throw of the duplication target. It should fall to the ground</li>
+<li>Collect it</li>
+<li>Press cancel (B/X). This will "put away" the target Link "still had held", returning it to the pouch</li>
+<li>Ready throw again. Each cycle will increase the quantity of your target by 1</li>
+<li>End <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> before ending the minigame/exiting the shrine</li>
+<li>Save the game/get an autosave</li>
+</ol>
+<details class="abstract">
+<summary><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/099/" class="glitch-autolink" title="BID" target="_blank" rel="noopener noreferrer">BID</a> (materials only)</summary>
+</details>
+<ol>
+<li><strong>Pause</strong>, hold 1 random material and <strong>unpause</strong>. It will fall from Link's hands</li>
+<li>Press A to drop the material</li>
+<li>Hold 1 of the same material(?) and 4 of the duplication target. These will not appear in the world</li>
+<li>Ready throw with the same material(???). This will make the duplication targets appear on the ground as well</li>
+<li>Throw will need to stay readied from here out. It can be cancelled with B if necessary, so long as it is re-readied before continuing</li>
+<li>Pick up the 5 materials on the ground</li>
+<li><strong>Pause</strong>, un-hold the 4 duplication targets, and re-hold 4 duplication targets (they can be different)</li>
+<li><strong>Unpause</strong> and pick up the 4 materials on the ground</li>
+<li>Repeat steps 7 and 8 to satisfaction</li>
+<li>End <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> before ending the minigame/exiting the shrine</li>
+<li>Save the game/get an autosave</li>
+</ol>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    MULTITOOL["Multitool's 31&lt;br/&gt;Purgatory Weapons"]
+    PARENTS["Normal Parents&lt;br/&gt;(A1-A21)"]
+    CHILDREN["DI Children"&lt;br/&gt;(B1-B21)"]
+
+    MULTITOOL --&gt;|"Fuse&lt;br/&gt;(becomes cf)"| CHILDREN
+    PARENTS --&gt;|"Fuse&lt;br/&gt;(stays attached)"| CHILDREN</code></pre>
+</details>
+</details>
+<details class="abstract">
+<summary>For Mineru's Arm (Local <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> variant)</summary>
+<p>Prepare:</p>
+<ul>
+<li>The "Multitool Loadout" (see discord link below (for now))</li>
+<li>Up to 21 materials</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Weapon to dupe with</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">Portacull</a> Shield or the means to make one portably</li>
+</ul>
+<p>Part 1: Setting up <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<ol>
+<li>Defeat Army and enter the tunnel before Ganondorf</li>
+<li>Dupe a weapon (A1) and equip it</li>
+<li>A1 <a href="UID:BEW">Clone</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Material (B1); Do not detangle</li>
+<li>Repeat until attempting to fuse B[n] fails (20-21 repetitions are expected); Menu Link should be overloaded at this point</li>
+<li>Glue all A[n] together and ultrahand them into Ganon's Room, holding them far aside to keep them out of the way</li>
+</ol>
+<p>Part 2: Obtaining Mineru's Arm</p>
+<ol>
+<li>Progress the fight to Phase 2 (2nd form), and drop a fused equipment. The fuse should delete. If not, drop more one at a time until it does</li>
+<li>Progress to Phase 3 (sages blown away), and find Mineru</li>
+<li>Pick up her arm, which is invisible, collisionless, and repeatedly drops from either visible arm. It cannot be collected with an empty hand. Take several to be safe</li>
+<li>Inventory pickup all A[n] to undo <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> and UNDOCK THE CONSOLE</li>
+<li>Fuse something to Mineru's Arm. <em>If the console is docked, this will crash the game</em></li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Mineru's Arm. It will always fail-drop while on the ground, so either version can be done without a wall</li>
+<li>If on <code>1.1.2</code> or earlier, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/D55/" class="glitch-autolink" title="Map Zuggling" target="_blank" rel="noopener noreferrer">Map Zuggle</a> Mineru's Arm</li>
+<li>If on <code>1.2.0</code> or later, use the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/XTY/" class="glitch-autolink" title="SRZ" target="_blank" rel="noopener noreferrer">SRZ</a> Mineru's Arm</li>
+<li>Load a save. If you undid <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>, there will be no crash risk</li>
+<li>Go somewhere you can see a long way down and prepare recall</li>
+<li>Drop an equipped weapon and immediately recall the item fused to Mineru's Arm (which still has no collision)</li>
+<li>Equip a weapon and pick up Mineru's Arm (it still cannot be collected with an empty hand)</li>
+<li>Destroy the fuse on Mineru's Arm, this will prevent it from crashing the game when used as a faildrop wall while docked</li>
+<li>Save the game/Get an autosave</li>
+</ol>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    MULTITOOL["Multitool's&lt;br/&gt;Purgatory Weapons"]
+    PARENTS["Normal Parents&lt;br/&gt;(A1-A21)"]
+    CHILDREN["DI Children"&lt;br/&gt;(B1-B21)"]
+
+    MULTITOOL --&gt;|"Fuse (becomes cf)"| CHILDREN
+    PARENTS --&gt;|"Fuse (stays attached)"| CHILDREN</code></pre>
+</details>
+</details>
+<details class="failure">
+<summary>No, it really can't</summary>
+<p>This method relies on a specialized piece of equipment that takes time to create and has many uses. While it is technically possible to make the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> permanent by permaculling all A[n], it completely nullifies the speed and portability of this method. If a pcull-based permanent method is desired, Method 4 will almost unquestionably be easier, faster, and simpler.</p>
+</details>
+<p><em>Method by mulberry</em></p>
+</div>
+<div class="tabbed-block">
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<ul>
+<li>This is a <strong>Local</strong> method with minimal additional glitches required. It is perfectly acceptable for duplicating throwables on all versions, and can obtain Mineru's Arm by an older route. It can also be made permanent; This is provided as Method 4 for clarity.</li>
+</ul>
+<details class="abstract">
+<summary>For Duplication</summary>
+<p>Prepare:</p>
+<ul>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">zuggle overload</a> (or 9 on 1.0.0)</li>
+<li>A bow</li>
+<li>A weapon</li>
+<li>2+ unfused shields</li>
+<li>A handful of fused equipment items</li>
+<li>31+ materials</li>
+<li>1+ of the duplication target</li>
+</ul>
+<p>Part 1: Performing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<ol>
+<li>If duplicating Zonai Devices, enter a minigame with no timer. If duplicating materials, enter a minigame or a shrine</li>
+<li><a href="UID:8QH">Overload Drop</a> a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare</li>
+<li><em>Overload Drop</em> a weapon (A) and fuse it to a shield (B)</li>
+<li><a href="UID:O64">Overload Cold Fuse</a> 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)</li>
+<li><strong>Fail-drop</strong> A and <strong>drop</strong> B</li>
+<li><em>Overload Pickup</em> C1 and cf 30 materials (D1-D30) to it</li>
+<li><strong>Fail-drop</strong> C1 and <strong>drop</strong> it aside</li>
+<li>Repeat 7 for C2-C19 with the <strong>same</strong> D1-D30</li>
+<li>For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, <em>proceed to step 11</em></li>
+<li><em><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a></em> an unrelated material to C(n). If it works, <strong>collect it</strong> and cf the next D, then repeat. If it fails, <em>proceed to step 12</em></li>
+<li><strong>Fail-drop</strong> C(n) and <strong>drop</strong> it. You may have to <strong>unequip your bow</strong> for it to return. <strong>Be sure it does so before dropping it</strong></li>
+</ol>
+<p>Part 2: Duplicating with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<details class="abstract">
+<summary>Throw Hold Duplication (devices or materials)</summary>
+</details>
+<ol>
+<li>Ready a throw of the duplication target. It should fall to the ground</li>
+<li>Collect it</li>
+<li>Press cancel (B/X). This will "put away" the target Link "still had held", returning it to the pouch</li>
+<li>Ready throw again. Each cycle will increase the quantity of your target by 1</li>
+<li>Collect the cold-fused materials to end <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> before ending the minigame/exiting the shrine</li>
+<li>Save the game/get an autosave</li>
+</ol>
+<details class="abstract">
+<summary><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/099/" class="glitch-autolink" title="BID" target="_blank" rel="noopener noreferrer">BID</a> (materials only)</summary>
+</details>
+<ol>
+<li><strong>Pause</strong>, hold 1 random material and <strong>unpause</strong>. It will fall from Link's hands</li>
+<li>Press A to drop the material</li>
+<li>Hold 1 of the same material(?) and 4 of the duplication target. These will not appear in the world</li>
+<li>Ready throw with the same material(???). This will make the duplication targets appear on the ground as well</li>
+<li>Throw will need to stay readied from here out. It can be cancelled with B if necessary, so long as it is re-readied before continuing</li>
+<li>Collect the 5 materials on the ground</li>
+<li><strong>Pause</strong>, un-hold the 4 duplication targets, and re-hold 4 duplication targets (they can be different)</li>
+<li><strong>Unpause</strong> and collect the 4 materials on the ground</li>
+<li>Repeat steps 7 and 8 to satisfaction</li>
+<li>Collect the cold-fused materials to end <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> before ending the minigame/exiting the shrine</li>
+<li>Save the game/get an autosave</li>
+</ol>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A{Enter Minigame} --&gt;|Equip| B[Shield B]
+    A --&gt;|Overload Drop| C[Weapon A]
+    B --&gt;|Fuse| C
+    C --&gt;|cf| D[Shields C1-C21]
+    D --&gt;|cf| E[Materials D1-D30]</code></pre>
+</details>
+</details>
+<details class="abstract">
+<summary>For mineru's Arm (Local <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> variant)</summary>
+<p>Prepare:</p>
+<ul>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">zuggle overload</a> (or 10 on 1.0.0)</li>
+<li>A bow</li>
+<li>A weapon</li>
+<li>2+ unfused shields</li>
+<li>Several fused equipment items</li>
+<li>31+ materials</li>
+<li>If on 1.2.0+, a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">Portacull</a> Shield (or the materials to make one via <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a>)</li>
+<li>A bucket-shaped autobuild with enough Hover Stones to float (and optionally 1-2 Big Batteries)</li>
+</ul>
+<p>Part 1: Performing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<ol>
+<li>Defeat Army and enter the tunnel before Ganondorf</li>
+<li>Drop the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> aside. Be sure not to go too far from any of your working objects</li>
+<li><a href="UID:8QH">Overload Drop</a> a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare</li>
+<li><em>Overload Drop</em> a weapon (A) and fuse it to a shield (B)</li>
+<li><a href="UID:O64">Overload Cold Fuse</a> 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)</li>
+<li><strong>Fail-drop</strong> A and <strong>drop</strong> B</li>
+<li><em>Overload Pickup</em> C1 and cf 30 materials (D1-D30) to it</li>
+<li><strong>Fail-drop</strong> C1 and <strong>drop</strong> it aside</li>
+<li>Repeat 7 for C2-C19 with the <strong>same</strong> D1-D30</li>
+<li>For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, <em>proceed to step 11</em></li>
+<li><em><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a></em> an unrelated material to C(n). If it works, <strong>collect it</strong> and cf the next D, then repeat. If it fails, <em>proceed to step 12</em></li>
+<li><strong>Fail-drop</strong> C(n) and <strong>drop it</strong>. You may have to <strong>unequip your bow</strong> for it to return. <strong>Be sure it does so before dropping it.</strong></li>
+<li><strong>Drop</strong> A, not too close to where the barrier will spawn (it cannot be moved after dropping it!)</li>
+<li>Move B, all of C, and all of D into the bucket build</li>
+<li>Carry the bucket into Ganondorf's room, holding it high and far aside to keep it out of the way of the fight</li>
+</ol>
+<p>Part 2: Obtaining Mineru's Arm</p>
+<ol>
+<li>Progress the fight to Phase 2 (2nd form), and <strong>drop</strong> a fused equipment. The fuse should delete. If not, drop more one at a time until it does</li>
+<li>Progress to Phase 3 (sages blown away), and find Mineru</li>
+<li>Pick up her arm, which is invisible, collisionless, and repeatedly drops from either visible arm. It cannot be collected with an empty hand. Take several to be safe</li>
+<li>Collect the materials in the bucket to undo <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> and UNDOCK THE CONSOLE</li>
+<li>Fuse something to Mineru's Arm. <em>If the console is docked, this will crash the game</em></li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Mineru's Arm. It will always fail-drop while on the ground, so either version can be done without a wall</li>
+<li>If on <code>1.1.2</code> or earlier, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/D55/" class="glitch-autolink" title="Map Zuggling" target="_blank" rel="noopener noreferrer">Map Zuggle</a> Mineru's Arm</li>
+<li>If on <code>1.2.0</code> or later, use the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/XTY/" class="glitch-autolink" title="SRZ" target="_blank" rel="noopener noreferrer">SRZ</a> Mineru's Arm</li>
+<li>Load a save. If you undid <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>, there will be no crash risk</li>
+<li>Go somewhere you can see a long way down and prepare recall</li>
+<li><strong>Drop</strong> an equipped weapon and immediately <strong>recall</strong> the item fused to Mineru's Arm (which still has no collision)</li>
+<li><strong>Equip</strong> a weapon and <strong>pick up</strong> Mineru's Arm (it still cannot be collected with an empty hand)</li>
+<li><strong>Destroy</strong> the fuse on Mineru's Arm, this will prevent it from <strong>crashing the game</strong> when used as a faildrop wall while docked</li>
+<li>Save the game/Get an autosave</li>
+</ol>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[Shield B] --&gt;|Fuse| B[Weapon A]
+    B --&gt;|cf| C[Shields C1-C21]
+    C --&gt;|cf| D[Materials D1-D30]
+    A --&gt;|Take in| E{Ganon Room}
+    C --&gt;|Take in| E
+    D --&gt;|Take in| E</code></pre>
+</details>
+</details>
+<p><em>Method by Aergyl and mulberry</em> (needs double-checked; this was a little before my time)</p>
+</div>
+<div class="tabbed-block">
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This is a <strong>Permacull</strong> method with minimal additional glitches required. It is acceptable for Zelda's Torch and Mineru's Arm. It <em>can</em> be used for duplication, but is needlessly complex for this usage; Use Method 3 instead.</p>
+<details class="abstract">
+<summary>For Zelda's Torch</summary>
+<p>Prepare:</p>
+<ul>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle overload</a> (or 10 on 1.0.0) (need to be taught how to perform overload on early patches, since afaik iz isn't an option, or at least not a good one)</li>
+<li>Intangible Aerophasing (guide assumes this is set up at Akkala Citadel Ruins)</li>
+<li>A bow</li>
+<li>2+ unfused weapons</li>
+<li>2+ unfused shields</li>
+<li>Several fused equipment items</li>
+<li>A material</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield (E)</li>
+<li>The <em>second</em> prologue autosave</li>
+</ul>
+<p>Part 1: Performing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<ol>
+<li>Use the Aerophasing setup to ensure it has a cull stored; this will allow the culling area to remain loaded through <em>a</em> banc change</li>
+<li>Walk up to the nearby shrine ('Domizuin') and enter it. <strong>Do not warp there.</strong></li>
+<li><a href="UID:8QH">Overload Drop</a> a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare</li>
+<li><em>Overload Drop</em> a weapon (A) and fuse it to a shield (B)</li>
+<li><a href="UID:O64">Overload Cold Fuse</a> 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)</li>
+<li><strong>Fail-drop</strong> A and <strong>drop</strong> B</li>
+<li><strong>Overload Pickup</strong> C1</li>
+<li>Duplicate 30 shields (D1-D30) off the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield, dropping each on the ground and <em>Overload Cold Fusing</em> them to C1 as you go</li>
+<li><strong>Fail-drop</strong> C1 and <strong>drop</strong> it aside</li>
+<li>Repeat 7-9 for C2-C19 with the <strong>same</strong> D1-D30</li>
+<li>For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, <em>proceed to step 11</em></li>
+<li><em><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a></em> an unrelated material to C(n). If it works, <strong>Collect it</strong> and cf the next D, then repeat. If it fails, <em>proceed to step 12</em></li>
+<li><strong>Fail-drop</strong> C(n) and <strong>drop</strong> it. You may have to <strong>unequip your bow</strong> for it to return. <strong>Be sure it does so before you drop it.</strong></li>
+<li><strong>Drop</strong> A</li>
+</ol>
+<p>Part 2: Permaculling the setup</p>
+<ol>
+<li>Smuggle E. If E was not prepared, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> any other unrelated shield by your preferred method</li>
+<li>Equip one of B, C, or D and step onto the phasing platform</li>
+<li><strong>Pause</strong> the game while Link is <strong>culled</strong>. This will cause Link to consistently be <strong>unculled</strong> when the game is unpaused</li>
+<li><strong>Unpause</strong> the game and immediately <strong>open</strong> the Shield Quick Menu (D-pad Left). If Link is <strong>unculled</strong> behind the menu, <strong>drop</strong> the equipped shield. If not, repeat step 3.</li>
+<li>Repeat steps 2-4 for <em>all</em> B, C, and D, ultimately resulting in the entire setup being permaculled</li>
+</ol>
+<p>Part 3: Obtaining Zelda's Torch</p>
+<ol>
+<li>Load your prologue save. Zelda will drop her torch, so pick it up</li>
+<li>If she does not, try loading again; It may take a few tries for her torch to be one of the dependencies that fails</li>
+<li>Get another autosave and close the game to clear <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></li>
+<li>Follow your preferred method to obtain <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/056/" class="glitch-autolink" title="MNF" target="_blank" rel="noopener noreferrer">MNF</a>, but <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> Zelda's Torch back to your progressed save instead</li>
+<li>Save the game or get an autosave</li>
+</ol>
+<details class="example">
+<summary>Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[Shield B] --&gt;|Fuse| B[Weapon A]
+    B --&gt;|cf| C[Shields C1-C21]
+    C --&gt;|cf| D[Shields D1-D30]
+    A --&gt;|Permacull| E{Persists}
+    C --&gt;|Permacull| E
+    D --&gt;|Permacull| E
+    B --&gt;|Indirect Permacull| E</code></pre>
+</details>
+</details>
+<details class="abstract">
+<summary>For Mineru's Arm (persistent <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> variant)</summary>
+<p>Prepare:</p>
+<ul>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle overload</a> (or 10 on 1.0.0) (need to be taught how to perform overload on early patches, since afaik iz isn't an option, or at least not a good one)</li>
+<li>Intangible Aerophasing (guide assumes this is set up at Akkala Citadel Ruins)</li>
+<li>A bow</li>
+<li>2+ unfused weapons</li>
+<li>2+ unfused shields</li>
+<li>Several fused equipment items</li>
+<li>A material</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield (E)</li>
+</ul>
+<p>Part 1: Performing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></p>
+<ol>
+<li>Ensure Mineru is summoned. This will save some headache later</li>
+<li>Use the Aerophasing setup to ensure it has a cull stored; this will allow the culling area to remain loaded through <em>a</em> banc change</li>
+<li>Walk up to the nearby shrine ('Domizuin') and enter it. <strong>Do not warp there.</strong></li>
+<li><a href="UID:8QH">Overload Drop</a> a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare</li>
+<li><em>Overload Drop</em> a weapon (A) and fuse it to a shield (B)</li>
+<li><a href="UID:O64">Overload Cold Fuse</a> 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)</li>
+<li><strong>Fail-drop</strong> A and <strong>drop</strong> B</li>
+<li><em>Overload Pickup</em> C1</li>
+<li>Duplicate 30 shields (D1-D30) off the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield, dropping each on the ground and <em>Overload Cold Fusing</em> them to C1 as you go</li>
+<li><strong>Fail-drop</strong> C1 and <strong>drop</strong> it aside</li>
+<li>Repeat 8-10 for C2-C19 with the same D1-D30</li>
+<li>For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, proceed to step 12</li>
+<li>cf an unrelated material to C(n). If it works, pick it back up and cf the next D, then repeat. If it fails, proceed to step 13</li>
+<li>Fail-drop C(n) and drop it. You may have to unequip your bow for it to return. <strong>Be sure it does so before you drop it.</strong></li>
+<li>Drop A</li>
+</ol>
+<p>Part 2: Permaculling the setup</p>
+<ol>
+<li>Smuggle E. If E was not prepared, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> any other unrelated shield by your preferred method</li>
+<li>Equip one of B, C, or D and step onto the phasing platform</li>
+<li><strong>Pause</strong> the game while Link is <strong>culled</strong>. This will cause Link to consistently be <strong>unculled</strong> when the game is unpaused</li>
+<li><strong>Unpause</strong> the game and immediately <strong>open</strong> the Shield Quick Menu (D-pad Left). If Link is <strong>unculled</strong> behind the menu, <strong>drop</strong> the equipped shield. If not, repeat step 3.</li>
+<li>Repeat steps 2-4 for <em>all</em> B, C, and D, ultimately resulting in the entire setup being permaculled</li>
+</ol>
+<p>Part 3: Obtaining Mineru's Arm</p>
+<ol>
+<li>Equip a weapon and ensure there is space in your weapon pouch</li>
+<li>Warp to Mogisari Shrine at the Lomei Sky Labyrinth. Other low-grav zones may work but are untested</li>
+<li>As soon as you gain control, walk in a small clockwise circle while spamming A (see video below)</li>
+<li>Execution permitting, you will pick up a new 2-handed weapon, dealing 38 damage, which has no icon, description, model, or collision, and is called MsgNotFound</li>
+<li>If unsuccessful, warp to the shrine again to make another attempt. Otherwise, subsequent Panic Blood Moons will occur too frequently to reach the arm in time</li>
+<li>If Mineru was not summoned, simply do so after the first warp and treat it as a failed attempt</li>
+<li>About 3 seconds after control is gained, a panic blood moon will occur, which will give an autosave</li>
+<li>Hard save the game if desired, then close it to clear <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></li>
+</ol>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[Shield B] --&gt;|Fuse| B[Weapon A]
+    B --&gt;|cf| C[Shields C1-C21]
+    C --&gt;|cf| D[Shields D1-D30]
+    A --&gt;|Permacull| E{Permanent}
+    C --&gt;|Permacull| E
+    D --&gt;|Permacull| E
+    B --&gt;|Indirect Permacull| E</code></pre>
+</details>
+</details>
 </div>
 </div>
-<div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<div class="highlight"><pre><span></span><code>- This is a **Persistent** method that makes use of DI equipment to maximize adjustability, ease of use, and framerate. It can be used for anything, but is best-suited for Mineru&#39;s Arm and Zelda&#39;s Torch.
-- While it is technically possible on `1.1.2` and earlier, the absence of &quot;Drop-Swap Culling&quot; makes it significantly more difficult. Methods 3 and 4 will be faster and easier on those versions (for local and persistent needs, respectively).
-
-??? abstract &quot;For Mineru&#39;s Arm (Persistent SFO variant)&quot;
-
-    Prepare:
-
-    - 13 Zuggle Overload
-    - If on `1.1.2` or earlier, Intangible Aerophasing
-    - A bow to manage overload with
-    - A DI Ghost Weapon, dubbed &quot;A1&quot;
-    - A DI Ghost Shield, dubbed &quot;B1&quot;
-    - Ideally, a second of each to simplify duplication
-    - Optionally, a fused equipment item
-
-    Part 1: Creating the base setup
-
-    1. Ensure Mineru is summoned. This will save some headache later
-    2. Enter Rasitakiwak Shrine, defeat all the constructs, and dispose of their weapons (for example by leaving/reentering)
-    3. B1 [Overload FE](../0XV/) Weapon B2
-    4. Recall-Lock B2
-    5. A1 and normal weapon A2 [Clone](../BEW/) DI Shield A3
-    6. A1 Overload FE normal Shield A4
-    7. Equip A2, Smuggle A3, and [Overload Pickup](UID:8QH) A4
-    8. A2-A4 [Overload Batch DI](UID:PG3) 19 Weapons C1-C19
-    9. **Fail-Drop** A4
-    10. A3 &amp; A4 Clone DI Weapon C20
-    11. **Drop** A4
-    12. Re-smuggle A3, equip a random shield, and fuse something disposable to it. This will leave A4 as the sole FE parent of C20
-    13. Throw purgatory all C: smuggle _one_ C, equip and throw any random weapon, and unequip that weapon, then repeat
-    14. Recall-Lock A4, discarding A2 and A3 through the load
-
-    Part 2: Performing and undoing SFO
-
-    1. Zuggle Drop B1, equip A4, and Overload Pickup B2
-    2. B1, B2, &amp; A4 Overload Batch DI 30 Shields D1-D30
-    3. There will be a substantial lag on the second fuse of each shield after D1, so using the D-pad to drop-swap (if on `1.2.0+`) is advised
-    4. Super Fuse Overload should occur on the 30th shield. If confirmation is needed, drop the fused equipment item. If the fuse is deleted, SFO is active
-    5. To undo SFO: pick up each D[n], unequip it, and drop it. Each removed shield will remove 20 dependencies from the global limit
-
-    Part 3: Obtaining Mineru&#39;s Arm
-
-    1. Equip a weapon and ensure there is space in your weapon pouch
-    2. Warp to Mogisari Shrine at the Lomei Sky Labyrinth. Other low-grav zones may work but are untested
-    3. As soon as you gain control, walk in a small clockwise circle while spamming A (see video below)
-    4. Execution permitting, you will pick up a new 2-handed weapon, dealing 38 damage, which has no icon, description, model, or collision, and is called MsgNotFound
-    5. If unsuccessful, warp to the shrine again to make another attempt. Otherwise, subsequent Panic Blood Moons will occur too frequently to reach the arm in time
-    6. If Mineru was not summoned, simply summon her after the warp and treat it as a failed attempt
-    6. About 3 seconds after control is gained, a panic blood moon will occur, which will give an autosave
-    7. Either return to Rasitakiwak Shrine to clear SFO, or simply close the game after receiving the above autosave
-
-    ??? example &quot;Method Structure Diagram&quot;
-
-        ```mermaid
-        graph TD
-
-            B1[B1]
-            B2[B2]
-            A1[A1]
-            A2[A2]
-            A3[A3]
-            A4[A4]
-            PARENTS[&quot;Purgatory Parents&lt;br/&gt;(C1-C20)&quot;]
-            CHILDREN[&quot;DI Children&lt;br/&gt;(D1-D30&quot;]
-
-            B1 --&gt;|FE| B2
-            A2 --&gt;|DI| A3
-            A1 --&gt;|DI| A3
-            A1 --&gt;|FE| A4
-            A3 --&gt;|Batch DI| PARENTS
-            A4 --&gt;|Batch DI| PARENTS
-            PARENTS --&gt;|Batch DI| CHILDREN
-            B2 --&gt;|Batch DI| CHILDREN
-        ```
-
-??? abstract &quot;For Zelda&#39;s Torch&quot;
-
-    Prepare:
-
-    - 13 Zuggle Overload
-    - If on `1.1.2` or earlier, Intangible Aerophasing
-    - A bow to manage overload with
-    - A DI Ghost Weapon, dubbed &quot;A1&quot;
-    - A DI Ghost Shield, dubbed &quot;B1&quot;
-    - Ideally, a second of each to simplify duplication
-    - Optionally, a fused equipment item
-    - The _second_ prologue autosave
-
-    Part 1: Creating the base setup
-
-    1. Enter Rasitakiwak Shrine, defeat all the constructs, and dispose of their weapons (for example by leaving/reentering)
-    2. B1 [Overload FE](../0XV/) Weapon B2
-    3. Recall-Lock B2
-    4. A1 and normal weapon A2 [Clone](../BEW/) DI Shield A3
-    5. A1 Overload FE normal Shield A4
-    6. Equip A2, Smuggle A3, and [Overload Pickup](UID:8QH) A4
-    7. A2-A4 [Overload Batch DI](UID:PG3) 19 Weapons C1-C19
-    8. **Fail-Drop** A4
-    9. A3 &amp; A4 Clone DI Weapon C20
-    10. **Drop** A4
-    11. Re-smuggle A3, equip a random shield, and fuse something disposable to it. This will leave A4 as the sole FE parent of C20
-    12. Throw purgatory all C: smuggle _one_ C, equip and throw any random weapon, and unequip that weapon, then repeat
-    13. Recall-Lock A4, discarding A2 and A3 through the load
-
-    Part 2: Performing and undoing SFO
-
-    1. Zuggle Drop B1, equip A4, and Overload Pickup B2
-    2. B1, B2, &amp; A4 Overload Batch DI 30 Shields D1-D30
-    3. There will be a substantial lag on the second fuse of each shield after D1, so using the D-pad to drop-swap (if on `1.2.0+`) is advised
-    4. Super Fuse Overload should occur on the 30th shield. If confirmation is needed, drop the fused equipment item. If the fuse is deleted, SFO is active
-    5. To undo SFO: pick up each D[n], unequip it, and drop it. Each removed shield will remove 20 dependencies from the global limit
-
-    Part 3: Obtaining Zelda&#39;s Torch
-
-    1. Load your prologue save. Zelda will drop her torch, so pick it up
-    2. If she does not, try loading again; It may take a few tries for her torch to be one of the dependencies that fails
-    3. Get another prologue autosave with the torch in your inventory, then either load back to Rasitakiwak to clear your SFO, or simply close the game
-    4. Follow your preferred method to obtain MNF, but zuggle Zelda&#39;s Torch instead
-    5. Save the game or get an autosave
-
-    ??? example &quot;Method Structure Diagram&quot;
-
-        ```mermaid
-        graph TD
-            A[B1] --&gt;|FE| B[B2]
-            C[A2] --&gt;|DI| D[A3]
-            E[A1] --&gt;|DI| D
-            E --&gt; |FE| F[A4]
-            D --&gt; |Batch DI| G[&quot;C1-20&quot;]
-            F --&gt; |Batch DI| G
-            G --&gt; |Batch DI| H[&quot;D1-30&quot;]
-            B --&gt; |Batch DI| H
-        ```
-
-??? abstract &quot;For duplication&quot;
-
-    Prepare:
-    - 13 Zuggle Overload
-    - If on `1.1.2` or earlier, Intangible Aerophasing
-    - A bow to manage overload with
-    - A DI Ghost Weapon, dubbed &quot;A1&quot;
-    - A DI Ghost Shield, dubbed &quot;B1&quot;
-    - Ideally, a second of each to simplify duplication
-    - Optionally, a fused equipment item
-    - 1 or more of the duplication target
-
-    Part 1: Creating the base setup
-
-    1. If duplicating Zonai Devices, enter a minigame with no timer, such as Bayge/Heehl&#39;s minigames at Mine-Cart Land. If duplicating other materials, enter a minigame _or_ a shrine
-    2. B1 [Overload FE](../0XV/) Weapon B2
-    3. Recall-Lock B2
-    4. A1 and normal weapon A2 [Clone](../BEW/) DI Shield A3
-    5. A1 Overload FE normal Shield A4
-    6. Equip A2, Smuggle A3, and [Overload Pickup](UID:8QH) A4
-    7. A2-A4 [Overload Batch DI](UID:PG3) 19 Weapons C1-C19
-    8. **Fail-Drop** A4
-    9. A3 &amp; A4 Clone DI Weapon C20
-    10. **Drop** A4
-    11. Re-smuggle A3, equip a random shield, and fuse something disposable to it. This will leave A4 as the sole FE parent of C20
-    12. Throw purgatory all C: smuggle _one_ C, equip and throw any random weapon, and unequip that weapon, then repeat
-    13. Recall-Lock A4, discarding A2 and A3 through the load
-
-    Part 2: Performing and undoing SFO
-
-    1. Zuggle Drop B1, equip A4, and Overload Pickup B2
-    2. B1, B2, &amp; A4 Overload Batch DI 30 Shields D1-D30
-    3. There will be a substantial lag on the second fuse of each shield after D1, so using the D-pad to drop-swap (if on `1.2.0+`) is advised
-    4. Super Fuse Overload should occur on the 30th shield. If confirmation is needed, drop the fused equipment item. If the fuse is deleted, SFO is active
-    5. To undo SFO: pick up each D[n], unequip it, and drop it. Each removed shield will remove 20 dependencies from the global limit
-
-    Part 3: Duplicating with SFO
-
-    ??? abstract &quot;Throw Hold Duplication (devices or materials)&quot;
-
-    1. Ready a throw of the duplication target. It should fall to the ground
-    2. Collect it
-    3. Press cancel (B/X). This will &quot;put away&quot; the target Link &quot;still had held&quot;, returning it to the pouch
-    4. Ready throw again. Each cycle will increase the quantity of your target by 1
-    5. Destroy all D[n] to end SFO before ending the minigame/exiting the shrine
-    6. Save the game/get an autosave
-
-    ??? abstract &quot;SFO BID (materials only)&quot;
-
-    1. **Pause**, hold 1 random material and **unpause**. It will fall from Link&#39;s hands
-    2. Press A to drop the material
-    3. Hold 1 of the same material(?) and 4 of the duplication target. These will not appear in the world
-    4. Ready throw with the same material(???). This will make the duplication targets appear on the ground as well
-    5. Throw will need to stay readied from here out. It can be cancelled with B if necessary, so long as it is re-readied before continuing
-    6. Pick up the 5 materials on the ground
-    7. **Pause**, un-hold the 4 duplication targets, and re-hold 4 duplication targets (they can be different)
-    8. **Unpause** and pick up the 4 materials on the ground
-    9. Repeat steps 7 and 8 to satisfaction
-
-    ??? example &quot;Method Structure Diagram&quot;
-
-        ```mermaid
-        graph TD
-            A[B1] --&gt;|FE| B[B2]
-            C[A2] --&gt;|DI| D[A3]
-            E[A1] --&gt;|DI| D
-            E --&gt; |FE| F[A4]
-            D --&gt; |Batch DI| G[&quot;C1-20&quot;]
-            F --&gt; |Batch DI| G
-            G --&gt; |Batch DI| H[&quot;D1-30&quot;]
-            B --&gt; |Batch DI| H
-        ```
-
-_Method by MandelbrotChaylay and Squidwest_
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Method 2: Hand Purgatory + DI <span class='ub-vr'><code>All versions</code></span></label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
 </div>
-</div>
-<div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<div class="highlight"><pre><span></span><code>- This is a **Local** method that makes use of a specially-prepared DI equipment &quot;multitool&quot;. to maximize portability and in-the-moment speed. It is ideal for duplication, and can be used for Mineru&#39;s Arm by an older route, but cannot be used for Zelda&#39;s Torch.
-- While it is technically possible on `1.1.2` and earlier, the absence of &quot;Drop-Swap Culling&quot; makes it significantly more difficult. Methods 3 and 4 will be faster and easier on those versions (for local and persistent needs, respectively).
-
-??? abstract &quot;For Duplication&quot;
-
-    Prepare:
-
-    - The &quot;Multitool Loadout&quot; (see discord link below (for now))
-    - Up to 21 materials
-    - A DI Weapon to dupe with
-
-    Part 1: Setting up and destroying SFO
-
-    1. Enter a minigame with no timer. If only materials (and not Zonai Devices) are to be duped, a shrine will also work
-    2. Dupe a weapon (A1) and equip it
-    3. A1 [Clone](UID:BEW) DI Material/equipment (B1); Do not detangle
-    4. Repeat until attempting to fuse B[n] fails (20-21 repetitions are expected); Menu Link should be overloaded at this point
-    5. To destroy SFO, simply inventory pickup each A[n], or exit shrine if in one. Distance despawn _will not fully work_ due to the properties of DI
-
-    Part 2: Duplicating with SFO
-
-    ??? abstract &quot;Throw Hold Duplication (devices or materials)&quot;
-
-    1. Ready a throw of the duplication target. It should fall to the ground
-    2. Collect it
-    3. Press cancel (B/X). This will &quot;put away&quot; the target Link &quot;still had held&quot;, returning it to the pouch
-    4. Ready throw again. Each cycle will increase the quantity of your target by 1
-    5. End SFO before ending the minigame/exiting the shrine
-    6. Save the game/get an autosave
-
-    ??? abstract &quot;SFO BID (materials only)&quot;
-
-    1. **Pause**, hold 1 random material and **unpause**. It will fall from Link&#39;s hands
-    2. Press A to drop the material
-    3. Hold 1 of the same material(?) and 4 of the duplication target. These will not appear in the world
-    4. Ready throw with the same material(???). This will make the duplication targets appear on the ground as well
-    5. Throw will need to stay readied from here out. It can be cancelled with B if necessary, so long as it is re-readied before continuing
-    6. Pick up the 5 materials on the ground
-    7. **Pause**, un-hold the 4 duplication targets, and re-hold 4 duplication targets (they can be different)
-    8. **Unpause** and pick up the 4 materials on the ground
-    9. Repeat steps 7 and 8 to satisfaction
-    10. End SFO before ending the minigame/exiting the shrine
-    11. Save the game/get an autosave
-
-    ??? example &quot;Method Structure Diagram&quot;
-
-        ```mermaid
-        graph TD
-            MULTITOOL[&quot;Multitool&#39;s 31&lt;br/&gt;Purgatory Weapons&quot;]
-            PARENTS[&quot;Normal Parents&lt;br/&gt;(A1-A21)&quot;]
-            CHILDREN[&quot;DI Children&quot;&lt;br/&gt;(B1-B21)&quot;]
-
-            MULTITOOL --&gt;|&quot;Fuse&lt;br/&gt;(becomes cf)&quot;| CHILDREN
-            PARENTS --&gt;|&quot;Fuse&lt;br/&gt;(stays attached)&quot;| CHILDREN
-        ```
-
-??? abstract &quot;For Mineru&#39;s Arm (Local SFO variant)&quot;
-
-    Prepare:
-
-    - The &quot;Multitool Loadout&quot; (see discord link below (for now))
-    - Up to 21 materials
-    - A DI Weapon to dupe with
-    - A Portacull Shield or the means to make one portably
-
-    Part 1: Setting up SFO
-
-    1. Defeat Army and enter the tunnel before Ganondorf
-    2. Dupe a weapon (A1) and equip it
-    3. A1 [Clone](UID:BEW) DI Material (B1); Do not detangle
-    4. Repeat until attempting to fuse B[n] fails (20-21 repetitions are expected); Menu Link should be overloaded at this point
-    5. Glue all A[n] together and ultrahand them into Ganon&#39;s Room, holding them far aside to keep them out of the way
-
-    Part 2: Obtaining Mineru&#39;s Arm
-
-    1. Progress the fight to Phase 2 (2nd form), and drop a fused equipment. The fuse should delete. If not, drop more one at a time until it does
-    2. Progress to Phase 3 (sages blown away), and find Mineru
-    3. Pick up her arm, which is invisible, collisionless, and repeatedly drops from either visible arm. It cannot be collected with an empty hand. Take several to be safe
-    4. Inventory pickup all A[n] to undo SFO and UNDOCK THE CONSOLE
-    5. Fuse something to Mineru&#39;s Arm. _If the console is docked, this will crash the game_
-    6. Zuggle Mineru&#39;s Arm. It will always fail-drop while on the ground, so either version can be done without a wall
-    7. If on `1.1.2` or earlier, Map Zuggle Mineru&#39;s Arm
-    8. If on `1.2.0` or later, use the portacull to SRZ Mineru&#39;s Arm
-    9. Load a save. If you undid SFO, there will be no crash risk
-    10. Go somewhere you can see a long way down and prepare recall
-    11. Drop an equipped weapon and immediately recall the item fused to Mineru&#39;s Arm (which still has no collision)
-    12. Equip a weapon and pick up Mineru&#39;s Arm (it still cannot be collected with an empty hand)
-    13. Destroy the fuse on Mineru&#39;s Arm, this will prevent it from crashing the game when used as a faildrop wall while docked
-    14. Save the game/Get an autosave
-
-    ??? example &quot;Method Structure Diagram&quot;
-
-        ```mermaid
-        graph TD
-            MULTITOOL[&quot;Multitool&#39;s&lt;br/&gt;Purgatory Weapons&quot;]
-            PARENTS[&quot;Normal Parents&lt;br/&gt;(A1-A21)&quot;]
-            CHILDREN[&quot;DI Children&quot;&lt;br/&gt;(B1-B21)&quot;]
-
-            MULTITOOL --&gt;|&quot;Fuse (becomes cf)&quot;| CHILDREN
-            PARENTS --&gt;|&quot;Fuse (stays attached)&quot;| CHILDREN
-        ```
-
-??? failure &quot;No, it really can&#39;t&quot;
-    This method relies on a specialized piece of equipment that takes time to create and has many uses. While it is technically possible to make the SFO permanent by permaculling all A[n], it completely nullifies the speed and portability of this method. If a pcull-based permanent method is desired, Method 4 will almost unquestionably be easier, faster, and simpler.
-
-_Method by mulberry_
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Method 3: Overload Cold Fuse <span class='ub-vr'><code>All versions</code></span></label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<div class="highlight"><pre><span></span><code>- This is a **Local** method with minimal additional glitches required. It is perfectly acceptable for duplicating throwables on all versions, and can obtain Mineru&#39;s Arm by an older route. It can also be made permanent; This is provided as Method 4 for clarity.
-
-??? abstract &quot;For Duplication&quot;
-
-    Prepare:
-
-    - 13 zuggle overload (or 9 on 1.0.0)
-    - A bow
-    - A weapon
-    - 2+ unfused shields
-    - A handful of fused equipment items
-    - 31+ materials
-    - 1+ of the duplication target
-
-    Part 1: Performing SFO
-
-    1. If duplicating Zonai Devices, enter a minigame with no timer. If duplicating materials, enter a minigame or a shrine
-    2. [Overload Drop](UID:8QH) a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare
-    3. _Overload Drop_ a weapon (A) and fuse it to a shield (B)
-    4. [Overload Cold Fuse](UID:O64) 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)
-    5. **Fail-drop** A and **drop** B
-    6. _Overload Pickup_ C1 and cf 30 materials (D1-D30) to it
-    7. **Fail-drop** C1 and **drop** it aside
-    8. Repeat 7 for C2-C19 with the **same** D1-D30
-    9. For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, _proceed to step 11_
-    10. _Overload Cold Fuse_ an unrelated material to C(n). If it works, **collect it** and cf the next D, then repeat. If it fails, _proceed to step 12_
-    11. **Fail-drop** C(n) and **drop** it. You may have to **unequip your bow** for it to return. **Be sure it does so before dropping it**
-
-    Part 2: Duplicating with SFO
-
-    ??? abstract &quot;Throw Hold Duplication (devices or materials)&quot;
-
-    1. Ready a throw of the duplication target. It should fall to the ground
-    2. Collect it
-    3. Press cancel (B/X). This will &quot;put away&quot; the target Link &quot;still had held&quot;, returning it to the pouch
-    4. Ready throw again. Each cycle will increase the quantity of your target by 1
-    5. Collect the cold-fused materials to end SFO before ending the minigame/exiting the shrine
-    6. Save the game/get an autosave
-
-    ??? abstract &quot;SFO BID (materials only)&quot;
-
-    1. **Pause**, hold 1 random material and **unpause**. It will fall from Link&#39;s hands
-    2. Press A to drop the material
-    3. Hold 1 of the same material(?) and 4 of the duplication target. These will not appear in the world
-    4. Ready throw with the same material(???). This will make the duplication targets appear on the ground as well
-    5. Throw will need to stay readied from here out. It can be cancelled with B if necessary, so long as it is re-readied before continuing
-    6. Collect the 5 materials on the ground
-    7. **Pause**, un-hold the 4 duplication targets, and re-hold 4 duplication targets (they can be different)
-    8. **Unpause** and collect the 4 materials on the ground
-    9. Repeat steps 7 and 8 to satisfaction
-    10. Collect the cold-fused materials to end SFO before ending the minigame/exiting the shrine
-    11. Save the game/get an autosave
-
-    ??? example &quot;Method Structure Diagram&quot;
-
-        ```mermaid
-        graph TD
-            A{Enter Minigame} --&gt;|Equip| B[Shield B]
-            A --&gt;|Overload Drop| C[Weapon A]
-            B --&gt;|Fuse| C
-            C --&gt;|cf| D[Shields C1-C21]
-            D --&gt;|cf| E[Materials D1-D30]
-        ```
-
-??? abstract &quot;For mineru&#39;s Arm (Local SFO variant)&quot;
-
-    Prepare:
-
-    - 13 zuggle overload (or 10 on 1.0.0)
-    - A bow
-    - A weapon
-    - 2+ unfused shields
-    - Several fused equipment items
-    - 31+ materials
-    - If on 1.2.0+, a Portacull Shield (or the materials to make one via Overload Cold Fuse)
-    - A bucket-shaped autobuild with enough Hover Stones to float (and optionally 1-2 Big Batteries)
-
-    Part 1: Performing SFO
-
-    1. Defeat Army and enter the tunnel before Ganondorf
-    2. Drop the portacull aside. Be sure not to go too far from any of your working objects
-    3. [Overload Drop](UID:8QH) a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare
-    4. _Overload Drop_ a weapon (A) and fuse it to a shield (B)
-    5. [Overload Cold Fuse](UID:O64) 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)
-    6. **Fail-drop** A and **drop** B
-    7. _Overload Pickup_ C1 and cf 30 materials (D1-D30) to it
-    8. **Fail-drop** C1 and **drop** it aside
-    9. Repeat 7 for C2-C19 with the **same** D1-D30
-    10. For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, _proceed to step 11_
-    11. _Overload Cold Fuse_ an unrelated material to C(n). If it works, **collect it** and cf the next D, then repeat. If it fails, _proceed to step 12_
-    12. **Fail-drop** C(n) and **drop it**. You may have to **unequip your bow** for it to return. **Be sure it does so before dropping it.**
-    13. **Drop** A, not too close to where the barrier will spawn (it cannot be moved after dropping it!)
-    14. Move B, all of C, and all of D into the bucket build
-    15. Carry the bucket into Ganondorf&#39;s room, holding it high and far aside to keep it out of the way of the fight
-
-    Part 2: Obtaining Mineru&#39;s Arm
-
-    16. Progress the fight to Phase 2 (2nd form), and **drop** a fused equipment. The fuse should delete. If not, drop more one at a time until it does
-    17. Progress to Phase 3 (sages blown away), and find Mineru
-    18. Pick up her arm, which is invisible, collisionless, and repeatedly drops from either visible arm. It cannot be collected with an empty hand. Take several to be safe
-    19. Collect the materials in the bucket to undo SFO and UNDOCK THE CONSOLE
-    20. Fuse something to Mineru&#39;s Arm. _If the console is docked, this will crash the game_
-    21. Zuggle Mineru&#39;s Arm. It will always fail-drop while on the ground, so either version can be done without a wall
-    22. If on `1.1.2` or earlier, Map Zuggle Mineru&#39;s Arm
-    23. If on `1.2.0` or later, use the portacull to SRZ Mineru&#39;s Arm
-    24. Load a save. If you undid SFO, there will be no crash risk
-    25. Go somewhere you can see a long way down and prepare recall
-    26. **Drop** an equipped weapon and immediately **recall** the item fused to Mineru&#39;s Arm (which still has no collision)
-    27. **Equip** a weapon and **pick up** Mineru&#39;s Arm (it still cannot be collected with an empty hand)
-    28. **Destroy** the fuse on Mineru&#39;s Arm, this will prevent it from **crashing the game** when used as a faildrop wall while docked
-    29. Save the game/Get an autosave
-
-    ??? example &quot;Method Structure Diagram&quot;
-
-        ```mermaid
-        graph TD
-            A[Shield B] --&gt;|Fuse| B[Weapon A]
-            B --&gt;|cf| C[Shields C1-C21]
-            C --&gt;|cf| D[Materials D1-D30]
-            A --&gt;|Take in| E{Ganon Room}
-            C --&gt;|Take in| E
-            D --&gt;|Take in| E
-        ```
-
-_Method by Aergyl and mulberry_ (needs double-checked; this was a little before my time)
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Method 4: Overload Cold Fuse + Permacull <span class='ub-vr'><code>All versions</code></span></label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<div class="highlight"><pre><span></span><code>This is a **Permacull** method with minimal additional glitches required. It is acceptable for Zelda&#39;s Torch and Mineru&#39;s Arm. It _can_ be used for duplication, but is needlessly complex for this usage; Use Method 3 instead.
-
-??? abstract &quot;For Zelda&#39;s Torch&quot;
-
-    Prepare:
-
-    - 13 Zuggle overload (or 10 on 1.0.0) (need to be taught how to perform overload on early patches, since afaik iz isn&#39;t an option, or at least not a good one)
-    - Intangible Aerophasing (guide assumes this is set up at Akkala Citadel Ruins)
-    - A bow
-    - 2+ unfused weapons
-    - 2+ unfused shields
-    - Several fused equipment items
-    - A material
-    - A DI Shield (E)
-    - The _second_ prologue autosave
-
-    Part 1: Performing SFO
-
-    1. Use the Aerophasing setup to ensure it has a cull stored; this will allow the culling area to remain loaded through _a_ banc change
-    2. Walk up to the nearby shrine (&#39;Domizuin&#39;) and enter it. **Do not warp there.**
-    3. [Overload Drop](UID:8QH) a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare
-    4. _Overload Drop_ a weapon (A) and fuse it to a shield (B)
-    5. [Overload Cold Fuse](UID:O64) 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)
-    6. **Fail-drop** A and **drop** B
-    7. **Overload Pickup** C1
-    8. Duplicate 30 shields (D1-D30) off the DI shield, dropping each on the ground and _Overload Cold Fusing_ them to C1 as you go
-    9. **Fail-drop** C1 and **drop** it aside
-    10. Repeat 7-9 for C2-C19 with the **same** D1-D30
-    11. For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, _proceed to step 11_
-    12. _Overload Cold Fuse_ an unrelated material to C(n). If it works, **Collect it** and cf the next D, then repeat. If it fails, _proceed to step 12_
-    13. **Fail-drop** C(n) and **drop** it. You may have to **unequip your bow** for it to return. **Be sure it does so before you drop it.**
-    14. **Drop** A
-
-    Part 2: Permaculling the setup
-
-    1. Smuggle E. If E was not prepared, Zuggle any other unrelated shield by your preferred method
-    2. Equip one of B, C, or D and step onto the phasing platform
-    3. **Pause** the game while Link is **culled**. This will cause Link to consistently be **unculled** when the game is unpaused
-    4. **Unpause** the game and immediately **open** the Shield Quick Menu (D-pad Left). If Link is **unculled** behind the menu, **drop** the equipped shield. If not, repeat step 3.
-    5. Repeat steps 2-4 for _all_ B, C, and D, ultimately resulting in the entire setup being permaculled
-
-    Part 3: Obtaining Zelda&#39;s Torch
-
-    1. Load your prologue save. Zelda will drop her torch, so pick it up
-    2. If she does not, try loading again; It may take a few tries for her torch to be one of the dependencies that fails
-    3. Get another autosave and close the game to clear SFO
-    4. Follow your preferred method to obtain MNF, but zuggle Zelda&#39;s Torch back to your progressed save instead
-    5. Save the game or get an autosave
-
-    ??? example &quot;Diagram&quot;
-
-        ```mermaid
-        graph TD
-            A[Shield B] --&gt;|Fuse| B[Weapon A]
-            B --&gt;|cf| C[Shields C1-C21]
-            C --&gt;|cf| D[Shields D1-D30]
-            A --&gt;|Permacull| E{Persists}
-            C --&gt;|Permacull| E
-            D --&gt;|Permacull| E
-            B --&gt;|Indirect Permacull| E
-        ```
-
-??? abstract &quot;For Mineru&#39;s Arm (persistent SFO variant)&quot;
-
-    Prepare:
-
-    - 13 Zuggle overload (or 10 on 1.0.0) (need to be taught how to perform overload on early patches, since afaik iz isn&#39;t an option, or at least not a good one)
-    - Intangible Aerophasing (guide assumes this is set up at Akkala Citadel Ruins)
-    - A bow
-    - 2+ unfused weapons
-    - 2+ unfused shields
-    - Several fused equipment items
-    - A material
-    - A DI shield (E)
-
-    Part 1: Performing SFO
-
-    1. Ensure Mineru is summoned. This will save some headache later
-    2. Use the Aerophasing setup to ensure it has a cull stored; this will allow the culling area to remain loaded through _a_ banc change
-    3. Walk up to the nearby shrine (&#39;Domizuin&#39;) and enter it. **Do not warp there.**
-    4. [Overload Drop](UID:8QH) a shield and pick it up to duplicate shields until you have 19 dropped and 3+ spare
-    5. _Overload Drop_ a weapon (A) and fuse it to a shield (B)
-    6. [Overload Cold Fuse](UID:O64) 21 shields (C1-C21) to A (the 19 dropped &amp; 2 from inventory)
-    7. **Fail-drop** A and **drop** B
-    8. _Overload Pickup_ C1
-    9. Duplicate 30 shields (D1-D30) off the DI shield, dropping each on the ground and _Overload Cold Fusing_ them to C1 as you go
-    10. **Fail-drop** C1 and **drop** it aside
-    11. Repeat 8-10 for C2-C19 with the same D1-D30
-    12. For C20 and C21, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, proceed to step 12
-    13. cf an unrelated material to C(n). If it works, pick it back up and cf the next D, then repeat. If it fails, proceed to step 13
-    14. Fail-drop C(n) and drop it. You may have to unequip your bow for it to return. **Be sure it does so before you drop it.**
-    15. Drop A
-
-    Part 2: Permaculling the setup
-
-    1. Smuggle E. If E was not prepared, Zuggle any other unrelated shield by your preferred method
-    2. Equip one of B, C, or D and step onto the phasing platform
-    3. **Pause** the game while Link is **culled**. This will cause Link to consistently be **unculled** when the game is unpaused
-    4. **Unpause** the game and immediately **open** the Shield Quick Menu (D-pad Left). If Link is **unculled** behind the menu, **drop** the equipped shield. If not, repeat step 3.
-    5. Repeat steps 2-4 for _all_ B, C, and D, ultimately resulting in the entire setup being permaculled
-
-    Part 3: Obtaining Mineru&#39;s Arm
-
-    1. Equip a weapon and ensure there is space in your weapon pouch
-    2. Warp to Mogisari Shrine at the Lomei Sky Labyrinth. Other low-grav zones may work but are untested
-    3. As soon as you gain control, walk in a small clockwise circle while spamming A (see video below)
-    4. Execution permitting, you will pick up a new 2-handed weapon, dealing 38 damage, which has no icon, description, model, or collision, and is called MsgNotFound
-    5. If unsuccessful, warp to the shrine again to make another attempt. Otherwise, subsequent Panic Blood Moons will occur too frequently to reach the arm in time
-    6. If Mineru was not summoned, simply do so after the first warp and treat it as a failed attempt
-    7. About 3 seconds after control is gained, a panic blood moon will occur, which will give an autosave
-    8. Hard save the game if desired, then close it to clear SFO
-
-    ??? example &quot;Method Structure Diagram&quot;
-
-        ```mermaid
-        graph TD
-            A[Shield B] --&gt;|Fuse| B[Weapon A]
-            B --&gt;|cf| C[Shields C1-C21]
-            C --&gt;|cf| D[Shields D1-D30]
-            A --&gt;|Permacull| E{Permanent}
-            C --&gt;|Permacull| E
-            D --&gt;|Permacull| E
-            B --&gt;|Indirect Permacull| E
-        ```
-</code></pre></div>
 <h2 id="notes">Notes</h2>
 <h3 id="extensions">Extensions</h3>
 <p>do suppose SFOFE could be provided here, along with other more niche techniques</p>
