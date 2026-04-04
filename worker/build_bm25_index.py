@@ -291,7 +291,7 @@ def build_grimoire_data(output: str) -> tuple[list, Counter]:
       tallied across all glitch files. Passed directly to build_leaderboard()
       to avoid scanning the same files a second time.
     """
-    _SKIP = {'_glitchcraft-grimoire'}  # non-entry pages to exclude
+    _SKIP = {'glitchcraft-grimoire'}  # non-entry pages to exclude
 
     glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
     entries = []
@@ -697,7 +697,7 @@ def build_leaderboard(json_path: str, discovered_credits: Counter | None = None)
     if discovered_credits is not None:
         counts: Counter = discovered_credits
     else:
-        _SKIP = {'_glitchcraft-grimoire'}
+        _SKIP = {'glitchcraft-grimoire'}
         glitchcraft_dir = ROOT / 'docs' / 'wiki' / 'glitchcraft'
         counts = Counter()
         for p in glitchcraft_dir.glob('*.md'):
