@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Background rune
  * â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
  * Displays the Ultrabroken rune as a centred, pulsing SVG watermark behind
@@ -28,10 +28,7 @@
   'use strict';
 
   /* â”€â”€ Site-root detection (for asset URL) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-  var scriptEl = document.currentScript;
-  var siteRoot = (scriptEl && scriptEl.src)
-    ? scriptEl.src.replace(/assets\/scripts\/[^/]+$/, '')
-    : location.href.replace(/\/[^/]*$/, '/');
+  var siteRoot = window.__ub_base || '/';
 
   /* â”€â”€ Create DOM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   var wrapper = document.createElement('div');

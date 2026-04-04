@@ -22,10 +22,7 @@
   'use strict';
 
   /* ── Site root for chevron SVG ─────────────────────────── */
-  var scriptEl = document.currentScript || document.querySelector('script[src*="collapsible-sections"]');
-  var SITE_ROOT = (scriptEl && scriptEl.src)
-    ? scriptEl.src.replace(/assets\/scripts\/[^/]+$/, '')
-    : location.href.replace(/\/[^/]*$/, '/');
+  var SITE_ROOT = window.__ub_base || '/';
 
   /* ── Collapsible section setup ─────────────────────────── */
 

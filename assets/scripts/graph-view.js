@@ -115,8 +115,7 @@
 
   function load(cb) {
     // Use the global site-root base path
-    var base = window.__ub_base.replace(/\/$/, '');
-    var url = base + '/assets/data/graph.json';
+    var url = window.__ub_base + 'assets/data/graph.json';
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -615,8 +614,7 @@
 
   function navigate(node) {
     if (!node || !node.id) return;
-    var base = window.__ub_base.replace(/\/$/, '');
-    window.open(base + '/' + node.id, '_blank');
+    window.open(window.__ub_base + node.id, '_blank');
   }
 
   /* ── touch support ───────────────────────────────────────────── */

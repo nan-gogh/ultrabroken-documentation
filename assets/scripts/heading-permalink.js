@@ -13,10 +13,7 @@
   'use strict';
 
   /* ── Site root for asset URLs ─────────────────────────── */
-  var scriptEl = document.currentScript || document.querySelector('script[src*="heading-permalink"]');
-  var SITE_ROOT = (scriptEl && scriptEl.src)
-    ? scriptEl.src.replace(/assets\/scripts\/[^/]+$/, '')
-    : location.href.replace(/\/[^/]*$/, '/');
+  var SITE_ROOT = window.__ub_base || '/';
 
   /* ── Share icons on all headings with IDs ───────────────── */
   function initShareIcons(article) {

@@ -13,12 +13,8 @@
   // Hard cap on query length sent to the worker.
   U.MAX_QUERY_CHARS = 50;
 
-  // Site root derived from this script's own path.
-  var _scriptEl = document.currentScript || document.querySelector('script[src*="ai-worker-config"]');
-  var _root = (_scriptEl && _scriptEl.src)
-    ? _scriptEl.src.replace(/\/assets\/scripts\/[^/]+$/, '')
-    : window.location.origin;
-  if (_root.endsWith('/')) _root = _root.slice(0, -1);
+  // Site root — reuse global __ub_base (always ends with '/').
+  var _root = (window.__ub_base || '/').replace(/\/$/, '');
   U.SITE_ROOT = _root;
   U.WIKI_SEARCH_BASE = _root + '/wiki/';
 

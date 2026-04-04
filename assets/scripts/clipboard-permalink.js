@@ -30,10 +30,7 @@
           check.setAttribute('aria-hidden', 'true');
           
           // Site-root detection for URL
-          var scriptEl = document.currentScript || document.querySelector('script[src*="clipboard-permalink.js"]');
-          var siteRoot = (scriptEl && scriptEl.src)
-            ? scriptEl.src.replace(/assets\/scripts\/[^/]+$/, '')
-            : location.href.replace(/\/[^/]*$/, '/');
+          var siteRoot = window.__ub_base || '/';
 
           // Use the local share SVG instead of a plain checkmark character
             // Insert the SVG inline so it inherits `color` and scales with the
