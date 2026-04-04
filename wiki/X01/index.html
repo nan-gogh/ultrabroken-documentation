@@ -1102,6 +1102,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#visibility-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visibility summary
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2745,6 +2756,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#visibility-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visibility summary
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4366,49 +4388,58 @@
 <div class="highlight"><pre><span></span><code><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">Reference</span><span class="nv"> </span><span class="s">Page&quot;</span>
 <span class="nt">unlisted</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
+<h4 id="visibility-summary">Visibility summary</h4>
 <table>
 <thead>
 <tr>
 <th>System</th>
-<th>Unlisted?</th>
-<th>vs Draft</th>
+<th><code>_wip/</code> folder</th>
+<th><code>draft: true</code></th>
+<th><code>unlisted: true</code></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Site search</td>
+<td>Excluded</td>
+<td>Excluded</td>
 <td><strong>Searchable</strong></td>
-<td>Draft is excluded</td>
 </tr>
 <tr>
-<td>AI evidence</td>
+<td>Grimoire / AI evidence</td>
 <td>Excluded</td>
-<td>Same</td>
-</tr>
-<tr>
-<td>Grimoire</td>
 <td>Excluded</td>
-<td>Same</td>
+<td>Excluded</td>
 </tr>
 <tr>
 <td>Web crawlers</td>
+<td><code>noindex</code></td>
+<td><code>noindex</code></td>
 <td><strong>Crawlable</strong></td>
-<td>Draft is noindex</td>
 </tr>
 <tr>
 <td>Draft banner</td>
+<td>Shown</td>
+<td>Shown</td>
 <td><strong>None</strong></td>
-<td>Draft shows banner</td>
 </tr>
 <tr>
-<td>Social cards / OG</td>
+<td>Social cards</td>
+<td>Skipped</td>
+<td>Skipped</td>
 <td><strong>Generated</strong></td>
-<td>Draft skips</td>
 </tr>
 <tr>
 <td>Direct URL access</td>
 <td>Accessible</td>
-<td>Same</td>
+<td>Accessible</td>
+<td>Accessible</td>
+</tr>
+<tr>
+<td>Intended lifespan</td>
+<td>Temporary</td>
+<td>Temporary</td>
+<td>Permanent</td>
 </tr>
 </tbody>
 </table>
