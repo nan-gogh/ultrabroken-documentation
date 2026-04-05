@@ -2438,7 +2438,10 @@
     "name": "Slugging",
     "uid": "0QL",
     "label": "SLG",
-    "aliases": [],
+    "aliases": [
+      "sluggling",
+      "sluggle"
+    ],
     "path": "wiki/0QL/",
     "filename": "slugging.md"
   },
