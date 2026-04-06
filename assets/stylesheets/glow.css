@@ -779,6 +779,12 @@ button.search-link:focus,
   z-index: 1;
 }
 
+/* Allow social icon row to wrap instead of overflowing the viewport */
+.md-social {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 /* Back-to-top button styling (navigation.top) */
 /* Back-to-top button styling (custom script) */
 .ub-back-to-top {
