@@ -1235,7 +1235,7 @@
 </div>
 <p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
-<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Eaten DI</a> equipment passes an Eaten death down to newly-fused children (<em>if</em> the main parent is <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>), which can itself be interrupted. This causes the "Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>" state, which has additional properties over the standard <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Eaten DI</a> state.</p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Eaten DI</a> equipment passes an Eaten death down to newly-fused children (<em>if</em> the main parent is DI), which can itself be interrupted. This causes the "Ghost DI" state, which has additional properties over the standard Eaten DI state.</p>
 <p><em>Discovered by mulberry; methods, optimizations, and properties found by Aergyl, mulberry, Squidwest - Jan 16, 2026</em></p>
 <h2 id="instructions">Instructions</h2>
 <p>All methods follow the same general pattern:</p>
@@ -1255,16 +1255,16 @@
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <p>This is the simplest method, and the easiest to understand. It uses drop-swap culling as the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> method, making it exclusive to newer patches.</p>
 <ol>
-<li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield</li>
+<li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a DI weapon or shield</li>
 <li>Equip a normal item of the same type</li>
 <li>Fuse the target to the normal item; It will immediately begin despawning</li>
 <li><strong>Pause</strong> a few frames after fusing. One way is to hold L at the same time as the fuse button, then selecting the Map Rune</li>
 <li><strong>Drop</strong> the normal parent and <strong>swap</strong> to another item of the same type</li>
 <li>Optionally, <strong>unequip</strong> the item that was swapped to</li>
-<li><strong>Unpause</strong> the game; The target will be <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>'d and remain attached to the normal parent</li>
+<li><strong>Unpause</strong> the game; The target will be DI'd and remain attached to the normal parent</li>
 <li><strong>Pick up</strong> the target off of the normal parent and set it aside</li>
 <li>Delete the normal parent by "FarDelete"; this can be done by sending it away with a rocket, dropping it down a chasm, or simply moving about 60m away</li>
-<li>Detangle the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; The fastest way to do this is to just use it again (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> objects with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parents are protected from "Fuse-over" deletion)</li>
+<li>Detangle the DI parent; The fastest way to do this is to just use it again (DI objects with DI parents are protected from "Fuse-over" deletion)</li>
 </ol>
 <h4 class="collapse" id="method-2-turbo-replication-120">Method 2: <br/>Turbo Replication <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
@@ -1278,7 +1278,7 @@
 <li><strong>Hold</strong> ZL to fuse the target and pause a few frames later; One way is to also hold L at the same time, and select the Map Rune</li>
 <li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to the Octo Balloon Shield</li>
 <li><strong>Unpause</strong> the game and press B within a couple frames of the game actually unpausing</li>
-<li>Done correctly, the target will detangle from both the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and the normal parent, and its pickup prompt will be displaced from its visual model</li>
+<li>Done correctly, the target will detangle from both the DI parent and the normal parent, and its pickup prompt will be displaced from its visual model</li>
 </ol>
 <h4 class="collapse" id="method-3-mineru-fe-target-fuse-all-versions">Method 3: <br/>Mineru FE Target + Fuse <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
@@ -1286,14 +1286,14 @@
 <p>This method entangles the target to Mineru, allowing her to be used as the culling source to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> that single target. The target will continue culling with Mineru afterwards.</p>
 <ol>
 <li>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the target; This will cause it to cull with Mineru</li>
-<li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield</li>
+<li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a DI weapon or shield</li>
 <li>Equip a normal item of the same type</li>
 <li>Induce Mineru to cull and <strong>fuse</strong> the target a few frames before it culls with her; It will immediately begin despawning</li>
-<li>When Mineru culls the target, it will <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> and remain attached to the normal parent</li>
+<li>When Mineru culls the target, it will DI and remain attached to the normal parent</li>
 <li><strong>Pick up</strong> the target off of the normal parent and set it aside</li>
 <li>If desired, detangle the target from Mineru by fusing something else to the slot the target is on</li>
 <li>Delete the normal parent by "FarDelete"; this can be done by sending it away with a rocket, dropping it down a chasm, or simply moving about 60m away</li>
-<li>Detangle the target from the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; The fastest way to do this is to just use it again (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> objects with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parents are protected from "Fuse-over" deletion)</li>
+<li>Detangle the target from the DI parent; The fastest way to do this is to just use it again (DI objects with DI parents are protected from "Fuse-over" deletion)</li>
 </ol>
 <h4 class="collapse" id="method-4-mineru-fe-parent-fuse-all-versions">Method 4: <br/>Mineru FE Parent + Fuse <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
@@ -1301,25 +1301,25 @@
 <p>This method entangles the "normal parent" to Mineru, allowing her to be used as the culling source to make one <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost.</p>
 <ol>
 <li>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> a normal weapon or shield</li>
-<li>Smuggle a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> item of the same type</li>
+<li>Smuggle a DI item of the same type</li>
 <li>Induce Mineru to cull and <strong>fuse</strong> the target a few frames before she culls</li>
-<li>The target will immediately begin despawning, then be culled with the normal parent, resulting in <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
+<li>The target will immediately begin despawning, then be culled with the normal parent, resulting in DI</li>
 <li><strong>Pick up</strong> the target off of the normal parent and set it aside</li>
 <li>Delete the normal parent by "FarDelete"; this can be done by sending it away with a rocket, dropping it down a chasm, or simply moving about 60m away</li>
-<li>Detangle the target from the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; The fastest way to do this is to just use it again (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> objects with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parents are protected from "fuse-over" deletion)</li>
+<li>Detangle the target from the DI parent; The fastest way to do this is to just use it again (DI objects with DI parents are protected from "fuse-over" deletion)</li>
 </ol>
 <h4 class="collapse" id="method-5-mineru-di-fuse-all-versions">Method 5: <br/>Mineru DI + Fuse <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <p>This method entangles the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent to Mineru, allowing her to be used as the culling source to make many ghosts.</p>
 <ol>
-<li>Prepare a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield (A) which is entangled to Mineru (for example, with Method 3)</li>
+<li>Prepare a DI weapon or shield (A) which is entangled to Mineru (for example, with Method 3)</li>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> A and equip a normal item over it</li>
 <li>Induce Mineru to cull and <strong>fuse</strong> the target a few frames before she culls</li>
-<li>The target will immediately begin despawning, then be culled with the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent, resulting in <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
+<li>The target will immediately begin despawning, then be culled with the DI parent, resulting in DI</li>
 <li><strong>Pick up</strong> the target off the normal parent and set it aside</li>
 <li>Delete the normal parent by "FarDelete"; this can be done by sending it away with a rocket, dropping it down a chasm, or simply moving about 60m away</li>
-<li>Detangle the target from the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent; the fastest way to do this is to just use it again (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> objects with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parents are protected from "fuse-over" deletion)</li>
+<li>Detangle the target from the DI parent; the fastest way to do this is to just use it again (DI objects with DI parents are protected from "fuse-over" deletion)</li>
 </ol>
 </div>
 <div class="tabbed-block">
@@ -1339,15 +1339,15 @@
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <p>This method uses a culling area to Pseudo-Fuse the target, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to perform the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>.</p>
-<p>Prepare a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield, another item of that type, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> of the opposite type</p>
+<p>Prepare a DI weapon or shield, another item of that type, and a portacull of the opposite type</p>
 <ol>
 <li>Use a small culling area to store fuse on the target with a normal parent</li>
 <li>Move into and quickly back out of the culling margin to uncull the target for 1 frame</li>
 <li>Drop the normal parent and move it out of update range (the far end of the platform at Akkala Citadel Ruins' small culling area is enough)</li>
-<li>Pick up the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> item and move into the culling margin</li>
+<li>Pick up the DI item and move into the culling margin</li>
 <li>A few frames after the target unculls, pause the game</li>
-<li>Use the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to cull the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and the target</li>
-<li>The target, now <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>'d, will be attached to the normal parent, but not fused</li>
+<li>Use the portacull to cull the DI parent and the target</li>
+<li>The target, now DI'd, will be attached to the normal parent, but not fused</li>
 </ol>
 <h4 class="ub-obsolete collapse" id="method-8-culling-area-recull-pseudo-fuse-120">Method 8: <br/>Culling Area Recull Pseudo Fuse <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="true" hidden></div>
@@ -1357,16 +1357,16 @@
 <p>This content is obsolete. Check out alternatives.</p>
 </div>
 <p>This method uses a culling area to Pseudo-Fuse the target, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to perform the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>. Included here mainly for posterity; Method 7 is a strict optimization.</p>
-<p>Prepare a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield, another item of that type, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> of the opposite type</p>
+<p>Prepare a DI weapon or shield, another item of that type, and a portacull of the opposite type</p>
 <ol>
 <li>Use a small culling area to store fuse on the target with a normal parent</li>
 <li>Move into and quickly back out of the culling margin to uncull the target for 1 frame</li>
 <li>Drop the normal parent</li>
-<li>Pick up the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> item</li>
+<li>Pick up the DI item</li>
 <li>Move into and quickly back out of the culling margin again to uncull the target for 1 frame, again</li>
 <li>Shortly after the target unculls, pause the game (timing is frame perfect)</li>
-<li>Use the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to cull the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and the target</li>
-<li>The target, now <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>'d, will be attached to the normal parent, but not fused</li>
+<li>Use the portacull to cull the DI parent and the target</li>
+<li>The target, now DI'd, will be attached to the normal parent, but not fused</li>
 </ol>
 </div>
 </div>
@@ -1376,9 +1376,9 @@
 <li>Retains all(?) properties of non-ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
 <li>Can be picked up off its "model-bind" parent, permanently detaching it (and turning the connection into plain <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>/<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a>)</li>
 <li>Has no collision, gravity, or ability to move on its own once detached from its "model-bind" parent</li>
-<li>Its <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> connection to its <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent can be "fused over", reducing it to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> connection</li>
+<li>Its FE connection to its DI parent can be "fused over", reducing it to a CF connection</li>
 <li>So long as it does not have non-persistent parents, it is "Auto-slotted" and will travel through warps and loads when dropped in the world</li>
-<li>Passes this persistence down to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> children</li>
+<li>Passes this persistence down to FE children</li>
 <li>Can be made persistently invisible with certain processes and passes this invisibility down to anything that attempts to fuse to it</li>
 </ul>
 <div class="admonition warning">
@@ -1392,12 +1392,12 @@
 </ul>
 <div class="admonition failure">
 <p class="admonition-title">Pre-fused Ghosts</p>
-<p>If a non-ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment is created with a fuse already attached, the fuse (if it survives at all) will <em>seem</em> to be in the Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> state, but is in fact missing any form of intrinsic persistence. Sometimes, they will even be deleted when warping with the parent zuggled.</p>
-<p>This is due to a property of the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> state: it stops updating various flags and variables, including whether it is a "resident" (aka persistent) actor. <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts which are attached to Link on creation (like fusing to a zuggled equipment) keep their resident state even when dropped, and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts created while unattached (such as being fused to a detached piece of equipment) fail to gain the resident state even when attached.</p>
+<p>If a non-ghost DI equipment is created with a fuse already attached, the fuse (if it survives at all) will <em>seem</em> to be in the Ghost DI state, but is in fact missing any form of intrinsic persistence. Sometimes, they will even be deleted when warping with the parent zuggled.</p>
+<p>This is due to a property of the DI state: it stops updating various flags and variables, including whether it is a "resident" (aka persistent) actor. DI Ghosts which are attached to Link on creation (like fusing to a zuggled equipment) keep their resident state even when dropped, and DI Ghosts created while unattached (such as being fused to a detached piece of equipment) fail to gain the resident state even when attached.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title"><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a></p>
-<p>If a piece of equipment has 30 direct child dependencies, it will become "Fuse Overloaded". Further fuse attempts will fail, producing a "reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will usually <strong>crash the game</strong> if the "failed parent" is dropped. Because "fusing over" a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghost leaves a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> connection to that parent, a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent can only be used 30 times unless full <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is used or some children are destroyed.</p>
+<p>If a piece of equipment has 30 direct child dependencies, it will become "Fuse Overloaded". Further fuse attempts will fail, producing a "reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will usually <strong>crash the game</strong> if the "failed parent" is dropped. Because "fusing over" a DI ghost leaves a CF connection to that parent, a DI parent can only be used 30 times unless full <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is used or some children are destroyed.</p>
 </div>
 <h2 id="resources">Resources</h2>
 <div class="admonition warning">

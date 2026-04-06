@@ -1284,6 +1284,133 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#autolink-throttle-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autolink Throttle Demo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autolink Throttle Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#section-throttling-headings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section Throttling (headings)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section Reset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escape-prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escape Prefix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#existing-link-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Existing Link Awareness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabs-as-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabs as Sections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab A
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tab B
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collapsibles-as-sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collapsibles as Sections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-collapsible-inside-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested: Collapsible Inside Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outer-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outer Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1470,6 +1597,76 @@
 <li>Use the infinite mount glitch</li>
 <li>Repeat until defeated</li>
 </ol>
+</div>
+</div>
+</div>
+<h2 id="autolink-throttle-demo">Autolink Throttle Demo</h2>
+<p>This section tests section-based throttling, the <code>!</code> escape prefix, and
+existing-link deduplication.</p>
+<h3 id="section-throttling-headings">Section Throttling (headings)</h3>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a> is mentioned here — this first occurrence should be
+autolinked. Anti-Gravity Glitch appears again in the same section and
+should <strong>not</strong> be linked a second time. AGG (the label) should also be
+suppressed since the UID is already covered.</p>
+<h3 id="section-reset">Section Reset</h3>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a> in a new section — should get a fresh autolink
+because each heading resets the per-section budget.</p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BJ0/" class="glitch-autolink" title="Autobuild Duplication" target="_blank" rel="noopener noreferrer">Autobuild Duplication</a> also appears here (first link) and then
+Autobuild Duplication again (no link).</p>
+<h3 id="escape-prefix">Escape Prefix</h3>
+<p>Anti-Gravity Glitch is prefixed with <code>!</code> — it should render as plain
+"<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a>" with no link and no <code>!</code> marker visible. Because
+the escaped mention consumed the only occurrence so far, the next
+Anti-Gravity Glitch in this section should still get autolinked.</p>
+<p>Conversely, AGG suppresses the label, and AGG after it should link.</p>
+<h3 id="existing-link-awareness">Existing Link Awareness</h3>
+<p>This section contains a manual link to <a href="../PEY/">Anti-Gravity Glitch</a>.
+Because that UID is already linked, the autolinker should skip all
+subsequent mentions of Anti-Gravity Glitch, AGG, anti gravity, and
+any other alias for that page within this section.</p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/VTO/" class="glitch-autolink" title="Arrow Smuggling" target="_blank" rel="noopener noreferrer">Arrow Smuggling</a> is not manually linked so it should still autolink once.
+Arrow Smuggling again — no second link.</p>
+<h3 id="tabs-as-sections">Tabs as Sections</h3>
+<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Tab A</label><label for="__tabbed_7_2">Tab B</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h3 class="tab-toc-heading" id="tab-a">Tab A</h3>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a> in Tab A — own section, should get one autolink.</p>
+<p>Anti-Gravity Glitch again in the same tab — should NOT be linked.</p>
+</div>
+<div class="tabbed-block">
+<h3 class="tab-toc-heading" id="tab-b">Tab B</h3>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a> in Tab B — separate tab, separate section,
+so this should also get its own autolink.</p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/VTO/" class="glitch-autolink" title="Arrow Smuggling" target="_blank" rel="noopener noreferrer">Arrow Smuggling</a> also gets linked independently per tab.</p>
+</div>
+</div>
+</div>
+<h3 id="collapsibles-as-sections">Collapsibles as Sections</h3>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a> appears above the collapsible — autolinked here.</p>
+<details class="example">
+<summary>Collapsible Test</summary>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a> inside a collapsible block. This is an
+independent section, so it should get its own autolink.</p>
+<p>Anti-Gravity Glitch again inside the same collapsible — no link.</p>
+</details>
+<p>After the collapsible, we are back in the parent section.
+Anti-Gravity Glitch here should NOT be linked (already linked before
+the collapsible in this same section fragment).</p>
+<h3 id="nested-collapsible-inside-tab">Nested: Collapsible Inside Tab</h3>
+<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Outer Tab</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h3 class="tab-toc-heading" id="outer-tab">Outer Tab</h3>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/3ME/" class="glitch-autolink" title="Arrow Prompt Storage" target="_blank" rel="noopener noreferrer">Arrow Prompt Storage</a> in the tab body — autolinked.</p>
+<details class="tip">
+<summary>Nested Collapsible</summary>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/3ME/" class="glitch-autolink" title="Arrow Prompt Storage" target="_blank" rel="noopener noreferrer">Arrow Prompt Storage</a> inside the collapsible — separate section,
+gets its own link.</p>
+<p>Arrow Prompt Storage again — no second link.</p>
+</details>
+<p>Arrow Prompt Storage after the collapsible — same tab section as
+above, already linked, so no second link.</p>
 </div>
 </div>
 </div>
