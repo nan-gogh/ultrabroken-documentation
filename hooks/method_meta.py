@@ -293,12 +293,32 @@ _COLLAPSE_SHORT_RE = re.compile(
     re.MULTILINE,
 )
 
+# Fenced code block pattern (``` or ~~~) for protecting code from transformations.
+_FENCED_CODE_RE = re.compile(
+    r"^(?P<fence>`{3,}|~{3,})[^\n]*\n[\s\S]*?^(?P=fence)[ \t]*$",
+    re.MULTILINE,
+)
+
 def _expand_collapse_shorthand(markdown: str) -> str:
+    """Expand ? and ! shorthand on headings, skipping fenced code blocks."""
+    # Protect fenced code blocks by replacing them with placeholders.
+    placeholders: list[str] = []
+    def _protect(m: re.Match) -> str:
+        placeholders.append(m.group(0))
+        return f"\x00CODE_BLOCK_{len(placeholders) - 1}\x00"
+    protected = _FENCED_CODE_RE.sub(_protect, markdown)
+
+    # Apply shorthand expansion.
     def _repl(m: re.Match) -> str:
         marker = m.group("marker")
         attr = "{ .collapse .open }" if marker == "!" else "{ .collapse }"
         return f"{m.group('heading')} {attr}"
-    return _COLLAPSE_SHORT_RE.sub(_repl, markdown)
+    expanded = _COLLAPSE_SHORT_RE.sub(_repl, protected)
+
+    # Restore code blocks.
+    for i, block in enumerate(placeholders):
+        expanded = expanded.replace(f"\x00CODE_BLOCK_{i}\x00", block)
+    return expanded
 
 
 # Matches a tab header line that was NOT immediately followed by a metadata
