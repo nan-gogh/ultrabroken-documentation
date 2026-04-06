@@ -4785,14 +4785,16 @@
 <h4 id="syntax_4">Syntax</h4>
 <p>Prefix a glitch mention with <code>!</code> to suppress autolinking for that specific occurrence. The <code>!</code> marker is stripped from the rendered output — only the glitch name appears. Because the escaped mention doesn't consume the section budget, the next unescaped mention of the same glitch can still be autolinked.</p>
 <div class="highlight"><pre><span></span><code>!Anti-Gravity Glitch is escaped (no link).
-Anti-Gravity Glitch appears again — this one gets the autolink.
+[<span class="nt">Anti-Gravity Glitch</span>](<span class="na">../PEY/</span>) is linked manually — this one gets the autolink.
+Anti-Gravity Glitch appears again — no autolink.
 </code></pre></div>
 <p>Alternatively, wrap the text in a code span (<code>`ETS`</code>) or an empty link (<code>[Anti-Gravity Glitch]()</code>) to suppress autolinking.</p>
 <h4 id="example_4">Example</h4>
 <p>The markdown above renders as:</p>
 <blockquote>
 <p>Anti-Gravity Glitch is escaped (no link).
-<a href="../PEY/">Anti-Gravity Glitch</a> appears again — this one gets the autolink.</p>
+<a href="../PEY/">Anti-Gravity Glitch</a> is linked manually — this one gets the autolink.
+Anti-Gravity Glitch appears again — no autolink.</p>
 </blockquote>
 <p>The first mention has no <code>!</code> visible (it was stripped) and no link. The second mention becomes a hyperlink.</p>
 <h2 id="markdown-reference">Markdown Reference</h2>
