@@ -14,9 +14,14 @@ Each glossary entry has:
   uid     – unique page ID      (e.g. "D2J")
 
 Throttling:
-  - The page is split into *sections* at <h2>–<h6>, <div class="tabbed-block">,
-    and <details> boundaries.  Each glitch is autolinked AT MOST ONCE per
-    section so readers always have a nearby link without carpet-bombing.
+  - The page is split into *sections* at <h2>–<h6> headings and
+    <div class="tabbed-block"> tab panels.  Each glitch is autolinked
+    AT MOST ONCE per section so readers always have a nearby link
+    without carpet-bombing.
+  - Custom collapsible headings (``{ .collapse }``) are regular <h2>–<h6>
+    tags and therefore already act as section boundaries.
+  - Admonition-style collapsibles (<details> / ``???``) are NOT section
+    boundaries — they are inline supplementary content within a section.
   - If a section already contains an <a> whose href points to a glitch's
     UID (e.g. a uid: link or manual href), all autolink patterns for that
     glitch are suppressed in that section.
@@ -74,9 +79,12 @@ _PROTECTED_RE = re.compile(
     re.IGNORECASE,
 )
 
-# Section boundaries: headings, Material tab panels, collapsible blocks.
+# Section boundaries: headings and Material tab panels.
+# Admonition collapsibles (<details>) are NOT boundaries — they are
+# inline supplementary content.  Custom { .collapse } headings are
+# regular <h2>–<h6> and are already covered.
 _SECTION_RE = re.compile(
-    r'<(?:h[2-6][\s>]|div\s+class="tabbed-block"|details[\s>])',
+    r'<(?:h[2-6][\s>]|div\s+class="tabbed-block")',
     re.IGNORECASE,
 )
 
