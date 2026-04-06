@@ -72,7 +72,6 @@
       var sib = h.nextElementSibling;
       while (sib) {
         if (/^H[1-6]$/i.test(sib.tagName) && parseInt(sib.tagName[1], 10) <= level) break;
-        if (sib.classList.contains('ub-collapse-body')) break;
         var next = sib.nextElementSibling;
         body.appendChild(sib);
         sib = next;
