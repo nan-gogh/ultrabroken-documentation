@@ -1515,6 +1515,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#escape-prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escape Prefix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-suppression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative Suppression
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3169,6 +3191,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#escape-prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escape Prefix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-suppression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative Suppression
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4731,12 +4775,32 @@
 <p>The first mention of any glitch's name, label, or alias in paragraph text is automatically hyperlinked to that glitch's page. This is powered by a glossary built from all published frontmatter.</p>
 <h4 id="rules">Rules</h4>
 <ul>
-<li>Only the <strong>first</strong> occurrence of each glitch name per page is linked.</li>
+<li>Only the <strong>first</strong> occurrence of each glitch <strong>per section</strong> is linked — subsequent mentions in the same section stay as plain text.</li>
+<li><strong>Section boundaries</strong> are <code>&lt;h2&gt;</code>–<code>&lt;h6&gt;</code> headings and tab panels (<code>&lt;div class="tabbed-block"&gt;</code>). Each heading or tab resets the per-glitch budget.</li>
 <li>A page is never auto-linked to itself — self-mentions stay as plain text.</li>
 <li>Text inside code spans, code blocks, headings, and existing links is never touched.</li>
+<li><strong>Existing link awareness</strong>: If you manually link to a glitch (e.g. <code>[Anti-Gravity Glitch](../PEY/)</code>), the autolinker skips all subsequent mentions of that glitch within the same section — the UID is already covered.</li>
 <li>Names and aliases match <strong>case-insensitively</strong>. Labels (abbreviations) are <strong>case-sensitive</strong> to avoid false positives on common words.</li>
 </ul>
-<p>To mention a glitch without triggering a link, wrap it in a code span (<code>`ETS`</code>) or an explicit link. To suppress a link entirely, check that the <code>label</code> or <code>aliases</code> values are not accidentally matching unrelated text.</p>
+<h4 id="escape-prefix">Escape Prefix</h4>
+<p>Prefix a glitch mention with <code>!</code> to suppress autolinking for that specific occurrence. The <code>!</code> marker is stripped from the rendered output — only the glitch name appears.</p>
+<div class="highlight"><pre><span></span><code>!Anti-Gravity Glitch will NOT be autolinked here.
+</code></pre></div>
+<p>Renders as:</p>
+<blockquote>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a> will NOT be autolinked here.</p>
+</blockquote>
+<p>Because the escaped mention doesn't consume the section budget, the next unescaped mention of the same glitch can still be autolinked:</p>
+<div class="highlight"><pre><span></span><code>!Anti-Gravity Glitch is mentioned first (no link).
+Anti-Gravity Glitch appears again — this one gets the autolink.
+</code></pre></div>
+<h4 id="alternative-suppression">Alternative Suppression</h4>
+<p>To suppress autolinking without using the escape prefix, wrap the text in a code span or an explicit link:</p>
+<ul>
+<li>Code span: <code>`ETS`</code> — renders as monospace, no link</li>
+<li>Empty link: <code>[Anti-Gravity Glitch]()</code> — renders as plain text</li>
+</ul>
+<p>If a <code>label</code> or <code>aliases</code> value is accidentally matching unrelated words, update the frontmatter to remove the false-positive trigger.</p>
 <h2 id="markdown-reference">Markdown Reference</h2>
 <h3 id="headings">Headings</h3>
 <h4 id="syntax_4">Syntax</h4>
