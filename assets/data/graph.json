@@ -2640,6 +2640,10 @@
     },
     {
       "source": "wiki/BSN/",
+      "target": "wiki/K4F/"
+    },
+    {
+      "source": "wiki/BSN/",
       "target": "wiki/MCM/"
     },
     {
