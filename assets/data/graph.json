@@ -1027,6 +1027,12 @@
       "label": "MHS"
     },
     {
+      "id": "wiki/4LL/",
+      "uid": "4LL",
+      "name": "Mineru Parented Zuggle",
+      "label": "MPZ"
+    },
+    {
       "id": "wiki/KZ4/",
       "uid": "KZ4",
       "name": "Mineru Persistent Save Load Object Transfer",
@@ -1859,10 +1865,6 @@
       "target": "wiki/P2F/"
     },
     {
-      "source": "wiki/056/",
-      "target": "wiki/YNP/"
-    },
-    {
       "source": "wiki/05N/",
       "target": "wiki/1OP/"
     },
@@ -2089,6 +2091,26 @@
     {
       "source": "wiki/4BI/",
       "target": "wiki/O9Q/"
+    },
+    {
+      "source": "wiki/4LL/",
+      "target": "wiki/7DA/"
+    },
+    {
+      "source": "wiki/4LL/",
+      "target": "wiki/7KZ/"
+    },
+    {
+      "source": "wiki/4LL/",
+      "target": "wiki/IG2/"
+    },
+    {
+      "source": "wiki/4LL/",
+      "target": "wiki/K4F/"
+    },
+    {
+      "source": "wiki/4LL/",
+      "target": "wiki/MCM/"
     },
     {
       "source": "wiki/51R/",
@@ -2440,6 +2462,10 @@
     },
     {
       "source": "wiki/8QL/",
+      "target": "wiki/IG2/"
+    },
+    {
+      "source": "wiki/8QL/",
       "target": "wiki/K4F/"
     },
     {
@@ -2691,6 +2717,30 @@
       "target": "wiki/056/"
     },
     {
+      "source": "wiki/CO6/",
+      "target": "wiki/8QH/"
+    },
+    {
+      "source": "wiki/CO6/",
+      "target": "wiki/JCJ/"
+    },
+    {
+      "source": "wiki/CO6/",
+      "target": "wiki/JMU/"
+    },
+    {
+      "source": "wiki/CO6/",
+      "target": "wiki/JUJ/"
+    },
+    {
+      "source": "wiki/CO6/",
+      "target": "wiki/K4F/"
+    },
+    {
+      "source": "wiki/CO6/",
+      "target": "wiki/MCM/"
+    },
+    {
       "source": "wiki/D2J/",
       "target": "wiki/9HN/"
     },
@@ -2701,6 +2751,10 @@
     {
       "source": "wiki/D55/",
       "target": "wiki/MCM/"
+    },
+    {
+      "source": "wiki/D8R/",
+      "target": "wiki/056/"
     },
     {
       "source": "wiki/DBF/",
@@ -3000,6 +3054,10 @@
     },
     {
       "source": "wiki/GPN/",
+      "target": "wiki/056/"
+    },
+    {
+      "source": "wiki/GPN/",
       "target": "wiki/K4F/"
     },
     {
@@ -3184,6 +3242,10 @@
     },
     {
       "source": "wiki/JDP/",
+      "target": "wiki/IG2/"
+    },
+    {
+      "source": "wiki/JDP/",
       "target": "wiki/K4F/"
     },
     {
@@ -3201,6 +3263,18 @@
     {
       "source": "wiki/JJB/",
       "target": "wiki/MCM/"
+    },
+    {
+      "source": "wiki/JMU/",
+      "target": "wiki/0QL/"
+    },
+    {
+      "source": "wiki/JMU/",
+      "target": "wiki/IG2/"
+    },
+    {
+      "source": "wiki/JMU/",
+      "target": "wiki/K4F/"
     },
     {
       "source": "wiki/JNU/",
@@ -3337,6 +3411,10 @@
     {
       "source": "wiki/KZ4/",
       "target": "wiki/D55/"
+    },
+    {
+      "source": "wiki/KZ4/",
+      "target": "wiki/IG2/"
     },
     {
       "source": "wiki/KZ4/",
@@ -3793,6 +3871,10 @@
     {
       "source": "wiki/PM1/",
       "target": "wiki/7KZ/"
+    },
+    {
+      "source": "wiki/PM1/",
+      "target": "wiki/IG2/"
     },
     {
       "source": "wiki/PM1/",

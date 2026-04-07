@@ -1632,7 +1632,8 @@
     "aliases": [
       "message not found",
       "message not found error",
-      "message-not-found"
+      "message-not-found",
+      "mnf"
     ],
     "path": "wiki/056/",
     "filename": "message-not-found.md"
@@ -1730,7 +1731,8 @@
     "uid": "IG2",
     "label": "MFE",
     "aliases": [
-      "mineru-fuse-entanglement"
+      "mineru-fuse-entanglement",
+      "Mineru FE"
     ],
     "path": "wiki/IG2/",
     "filename": "mineru-fuse-entanglement.md"
@@ -1744,6 +1746,16 @@
     ],
     "path": "wiki/12A/",
     "filename": "mineru-hold-smuggle.md"
+  },
+  {
+    "name": "Mineru Parented Zuggle",
+    "uid": "4LL",
+    "label": "MPZ",
+    "aliases": [
+      "mineru zuggle"
+    ],
+    "path": "wiki/4LL/",
+    "filename": "mineru-parented-zuggle.md"
   },
   {
     "name": "Mineru Persistent Save Load Object Transfer",
