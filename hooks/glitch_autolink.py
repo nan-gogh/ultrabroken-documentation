@@ -132,8 +132,17 @@ def _build_lookup(glossary: list[dict]) -> list[tuple[re.Pattern, str, str, str]
     result: list[tuple[re.Pattern, str, str, str]] = []
     for text, path, display, case_sensitive, uid in raw:
         flags = 0 if case_sensitive else re.IGNORECASE
-        # Word-boundary anchored pattern with optional ! escape prefix
-        pattern = r'(?<!\w)(!?)' + re.escape(text) + r'(?!\w)'
+        # Word-boundary anchored pattern with optional ! escape prefix.
+        # For multi-word phrases, use \s+ between words for flexible
+        # whitespace matching (handles &nbsp;, newlines, multiple spaces).
+        words = text.split()
+        if len(words) > 1:
+            # Multi-word: escape each word, join with flexible whitespace
+            pattern_text = r'\s+'.join(re.escape(w) for w in words)
+        else:
+            # Single word: simple escape
+            pattern_text = re.escape(text)
+        pattern = r'(?<!\w)(!?)' + pattern_text + r'(?!\w)'
         result.append((re.compile(pattern, flags), path, display, uid))
 
     return result
