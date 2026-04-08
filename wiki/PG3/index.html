@@ -1295,41 +1295,45 @@
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <h3 class="tab-toc-heading" id="overload-methods">Overload methods</h3>
-<p>These methods use Overload Pseudo Fuse to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> targets without ever creating normal parents, removing the need to despawn them between targets. They are ideal for creating very large quantities of DI Ghosts, and are sometimes useful for the resulting structure (a DI parent and a normal parent, each sharing many cold-fused DI children).</p>
+<ul>
+<li>These methods use Overload Pseudo Fuse to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> targets without ever creating normal parents, removing the need to despawn them between targets.</li>
+<li>They are ideal for creating very large quantities of DI Ghosts, and are sometimes useful for the resulting structure (a DI parent and a normal parent, each sharing many cold-fused DI children).</li>
+</ul>
 <h4 class="collapse" id="method-1-overload-pf-drop-swap-culling-120">Method 1: <br/>Overload PF + Drop-Swap Culling <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This is the most basic overload method, requiring only the absolute minimum prerequisites. As such, it can be done nearly anywhere at nearly any time.</p>
 <div class="admonition success">
 <p class="admonition-title">Verified</p>
 <p>Method 1 is tested and verified to be functional and optimal.</p>
 </div>
 <p>Prepare:</p>
 <ul>
-<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield (A), ideally a <a href="../BEW/">DI Ghost</a> (all types can be mirrored)</li>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Overload</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield <code>A</code>, ideally a <a href="../BEW/">DI Ghost</a> (all types can be mirrored)</li>
 </ul>
 <p>Creating the setup:</p>
 <ol>
-<li><a href="../TGY/">Smuggle</a> A and equip Normal Shield B</li>
-<li>Fuse Weapon C to B and <strong>pause</strong> a few frames after (for instance, by buffering the ability wheel at the same time as pressing Fuse, then selecting Map)</li>
-<li>Drop B, swap to another shield, and unequip that shield, then <strong>Unpause</strong></li>
-<li>Smuggle A again</li>
-<li>Overload drop a shield and fuse it to a weapon</li>
-<li>Fuse Weapon D to said shield, FEing it to A</li>
-<li>Swap shield, then drop it to leave A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> dropped</li>
-<li>Unequip weapon</li>
-<li>Pick up and smuggle C, pick up B, and Overload Pickup D</li>
+<li><a href="../TGY/">Smuggle</a> A and equip Normal Shield <code>B</code></li>
+<li><strong>Fuse</strong> Weapon <code>C</code> to B and <strong>pause</strong> a few frames after (for instance, by buffering the ability wheel at the same time as pressing Fuse, then selecting Map)</li>
+<li><strong>Drop</strong> B, <strong>swap</strong> to another shield, and <strong>unequip</strong> that shield, then <strong>Unpause</strong></li>
+<li><em>Smuggle</em> A again</li>
+<li><a href="../8QH/">Overload drop</a> a shield and <strong>Fuse</strong> it to a weapon</li>
+<li><strong>Fuse</strong> Weapon <code>D</code> to said shield, FEing it to A</li>
+<li><strong>Swap</strong> shield, then <strong>drop</strong> it to leave A <a href="../L84/">Zuggle Dropped</a></li>
+<li><strong>Unequip</strong> weapon</li>
+<li><em>Smuggle</em> C, pick up B, and <a href="../8QH/">Overload Pickup</a> D</li>
 <li>Glue C to something to elevate it and ensure it cannot accidentally be targeted by Fuse</li>
-<li>Optionally, position a wall behind Link's back which can force B to fail-drop</li>
+<li>Optionally, position a wall behind Link's back which can force B to <strong>fail-drop</strong></li>
 </ol>
 <p>Creating DI Ghosts:</p>
 <ol>
-<li>Fuse target to D (overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>)</li>
-<li>Fuse target to D again. As it already has an FE parent (C), this time it will Pseudo-fuse to D and begin fading away</li>
-<li>Pause the game before the target fully fades out (buffering wheel and selecting Map will work here too)</li>
-<li>Drop B, equip another shield, and unequip it. This will cull B, and thus C, and thus the target, DI-ing it</li>
+<li><strong>Fuse</strong> target to D (<a href="../0XV/">overload FE</a> to C)</li>
+<li><strong>Fuse</strong> target to D again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (C), this time it will Pseudo-fuse to D and begin fading away</li>
+<li><strong>Pause</strong> the game before the target fully fades out (buffering wheel and selecting Map will work here too)</li>
+<li><strong>Drop</strong> B, <strong>equip</strong> another shield, and <strong>unequip</strong> it. This will cull B, and thus C, and thus the target, DI-ing it</li>
 <li>If you fail-dropped B, proceed with the next target. If not, pick it up before proceeding</li>
-<li>After 30 successful uses, destroy C and D, then remake them to continue</li>
+<li>After 30 successful uses, <strong>destroy</strong> C and D, then remake them to continue</li>
 </ol>
 <div class="admonition danger">
 <p class="admonition-title">Fuse-Over(load)</p>
@@ -1340,7 +1344,7 @@
 <p>When an overload-pickup (here, C) has a connection back to Link (here, via A), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
 </div>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
 
     A[DI Shield A]
@@ -1359,6 +1363,7 @@
 <h4 class="collapse" id="method-2-overload-pf-torch-culling-all-versions">Method 2: <br/>Overload PF + Torch Culling <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This method builds on Method 1 with a new culling method, increasing the speed and reducing the setup time and complexity. However, it can only be performed at a culling area.</p>
 <p>Prepare:</p>
 <ul>
 <li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
@@ -1392,10 +1397,12 @@
 <p>When an overload-pickup (here, D) has a connection back to Link (here, via E), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
 </div>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
 
     LINK[Link]
+    TORCH[Torch]
+    FLAME[Flame Emitter]
     A[DI Ghost (A)]
     B[Normal Item (B)]
     C[DI Ghost Shield (C)]
@@ -1403,11 +1410,17 @@
     E[Normal Weapon (E)]
     F[Target]
 
+    subgraph CULL [Culling Area]
+    B &lt;--&gt;|Glue| TORCH
+    end
+
+    FLAME --&gt; |Point at| TORCH
     A --&gt;|DI| C
     B --&gt;|DI| C
+
     LINK --&gt;|Smuggle| C
     LINK --&gt;|Equip| E
-    LINK --&gt;|Overload&lt;br/&gt;Drop| D
+    LINK --&gt;|"Overload&lt;br/&gt;Drop"| D
     E --&gt;|Fuse| D
     C --&gt;|FE| F
     D --&gt;|CF| F</code></pre>
@@ -1416,6 +1429,7 @@
 <h4 class="collapse" id="method-3-overload-pf-mineru-limbo-all-versions">Method 3: <br/>Overload PF + Mineru Limbo <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>This method uses Mineru as a culling source, placing her in limbo to maximize control over her culling. It is the fastest overload method, but can only be done when &amp; where Mineru can be summoned.</p>
 <div class="admonition warning">
 <p class="admonition-title">Construction Zone</p>
 <p>Method 3 <em>should</em> be fully functional, but is not yet tested for optimality and step correctness.</p>
@@ -1451,7 +1465,7 @@
 <p>When an overload-pickup (here, D) has a connection back to Link (here, E), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
 </div>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
     MINERU[Mineru]
     A[DI Weapon A]
@@ -1472,9 +1486,10 @@
 <h4 class="collapse" id="method-4-overload-pf-aerophasing-all-versions">Method 4: <br/>Overload PF + Aerophasing <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>Method 4 uses Aerophasing as a culling source, allowing for a use-anywhere method on all patches. I've never tried it and it probably sucks to use. But maybe it's peam???</p>
 <div class="admonition warning">
 <p class="admonition-title">Construction Zone</p>
-<p>Method 4 is not yet tested for function and optimality.</p>
+<p>Method 4 is not yet tested for function and optimality. I promise I'll get to it.</p>
 </div>
 <p>Prepare:</p>
 <ul>
@@ -1509,7 +1524,7 @@
 <p>When an overload-pickup (here, C) has a connection back to Link (here, via A), it is possible to target it to be fused to itself. Under most circumstances, this will immediately <strong>crash the game</strong> if attempted.</p>
 </div>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
 
     A[DI Shield A]
@@ -1529,10 +1544,14 @@
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <h3 class="tab-toc-heading" id="di-chaining-methods">DI Chaining Methods</h3>
-<p>These methods create a chain of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghosts, allowing the normal-parent despawning to be saved until the end of the process (as each target retains a DI parent as long as desired). They are ideal for medium batches and minimal replication, but can <em>only</em> be used for weapons and shields.</p>
+<ul>
+<li>These methods create a chain of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> ghosts, allowing the normal-parent despawning to be saved until the end of the process (as each target retains a DI parent as long as desired).</li>
+<li>They are ideal for medium batches and minimalist replication, but can <em>only</em> be used for weapons and shields.</li>
+</ul>
 <h4 class="collapse" id="method-5-chaining-drop-swap-culling-120">Method 5: <br/>Chaining + Drop-Swap Culling <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<p>Method 5 is the most basic chaining method, and the most minimal batch method in general. Unlike with overload methods, the remaining methods in this section are generally downgrades, only serving to make the method possible on <code>1.1.2</code> and earlier.</p>
 <div class="admonition success">
 <p class="admonition-title">Verified</p>
 <p>Method 5 is tested and verified to be functional and optimal.</p>
