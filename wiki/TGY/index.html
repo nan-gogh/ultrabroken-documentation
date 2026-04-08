@@ -1225,9 +1225,13 @@ This state can be abused and kept for as long as desired using several methods i
 <p>Smuggles and zuggles are very similar in behaviour and nature. From the equipment's perspective, they are <em>exactly</em> the same. The only difference is in how Link treats them; if Link considers the equipment to be what he is actively dropping, it's a smuggle. If not, it's a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>.</p>
 <h2 id="effects">Effects</h2>
 <ul>
-<li><strong>D-Pad Lock</strong> - An active smuggle causes the D-Pad to lock on 1.1.2+, meaning that it is not possible to use the D-Pad or drop/swap/unequip equipment of the smuggle's type.<ul>
-<li>On version 1.1.2 specifically, you can bypass d-pad lock by opening the ability wheel, then going straight to the quick menu before the game unpauses.</li>
-<li>Smuggling Despawn Interrupted equipment doesn't cause d-pad lock on any version.</li>
+<li><strong>Culling</strong> on version <code>1.2.0</code> and up - On newer versions of the game, a smuggle is culled if something else of that type is equipped, and unculled when the smuggle fully drops. This is what makes <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portable culling</a> work (and why it takes a drop–swap, not just a drop).<ul>
+<li>Fail drops didn't forcibly uncull until version <code>1.2.1</code>, so version <code>1.2.0</code> specifically can quick smuggle with no effort.</li>
+</ul>
+</li>
+<li><strong>D-Pad Lock</strong> - An active smuggle causes the D-Pad to lock on <code>1.1.2</code> and up, meaning that it is not possible to use the D-Pad or drop/swap/unequip equipment of the smuggle's type.<ul>
+<li>On version <code>1.1.2</code> specifically, you can bypass d-pad lock by opening the ability wheel, then going straight to the quick menu before the game unpauses.</li>
+<li>Smuggling <a href="../JEV/">Despawn Interrupted</a> equipment doesn't cause d-pad lock on any version.</li>
 </ul>
 </li>
 <li><strong><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="Fuse Entanglement" target="_blank" rel="noopener noreferrer">Fuse Entanglement</a></strong> - Anything fused, fuse entangled, or animated cold fused to intended equipment will also fuse entangle to any unculled smuggle.</li>

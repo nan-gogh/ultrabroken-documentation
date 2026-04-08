@@ -1110,6 +1110,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#other-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other effects
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1180,14 +1191,17 @@
 <p>But it has the following differences:</p>
 <ul>
 <li>It can't be picked up. If you try to pick it up with nothing of that kind equipped, nothing happens. If you try to pick it up when it would go straight into the inventory, the game will <strong>crash</strong>.</li>
-<li>You can't fuse it to Mineru. If you try, the existing fuse on that attachment point is deleted and nothing else happens.</li>
+<li>You can't fuse it to anything. If you try, Fuse is just automatically cancelled.<ul>
+<li>If you try fusing purgatory equipment to Mineru, the existing fuse on that attachment point is deleted and Fuse is cancelled. Nothing else happens.</li>
+</ul>
+</li>
 <li>It ignores cull instructions from culling areas.</li>
 </ul>
 <h2 id="fuse-entanglement">Fuse Entanglement</h2>
 <p>Purgatory weapons and shields have some additional features when on one side of a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="Fuse Entanglement" target="_blank" rel="noopener noreferrer">fuse entanglement</a>:</p>
 <h3 id="as-the-fe-parent">As the FE parent</h3>
 <ul>
-<li>Ultrahanding the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> child will temporarily reconnect the purgatory equipment to Link, and keep it at the same position it was at when first sent to purgatory. It re-releases when you let go of Ultrahand.<!-- I have a clip of doing this with a drop-purg shield and steering stick FE; should add it here. PF--></li>
+<li>Ultrahanding the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> child will temporarily reconnect the purgatory equipment to Link, and keep it at the same relative position it was at when first sent to purgatory. It re-releases when you let go of Ultrahand.<!-- I have a clip of doing this with a drop-purg shield and steering stick FE; should add it here. PF--></li>
 <li>Ultrahanding the FE child while loading a different file will <a href="search:UltraSLOT">UltraSLOT</a> the equipment.</li>
 </ul>
 <h3 id="as-the-fe-child">As the FE child</h3>
@@ -1206,7 +1220,7 @@
 </ul>
 </li>
 <li>Smuggle a weapon or shield, then equip and shock-drop another. (If you smuggled a weapon, you can also throw the second instead.) The smuggle will lose collision and be purgatorified.<ul>
-<li>The second piece of equipment will be moved to the drop equip position, and thus also easy to purgatorify. It's not a true drop equip though, and will move back if you change Link's animation state enough.</li>
+<li>The second piece of equipment will be moved to the drop equip position, and thus also easy to purgatorify. It's a <a href="../HY9/">weak drop equip</a> though, and will move back if you change Link's animation state enough.</li>
 </ul>
 </li>
 <li>Drop some equipment while it's culled, and you have a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> of the same equipment kind. The dropped equipment will be sent to culled purgatory.<ul>
@@ -1218,18 +1232,19 @@
 <h2 id="culled-purgatory">Culled purgatory</h2>
 <p>If equipment is in purgatory and culled, it will not be deleted on reload. If you fuse entangle something to that equipment, with some other way to uncull the object afterwards, that object will also persist as a <a href="label:PSLOT">PSLOT</a>.</p>
 <h2 id="crash-risks">Crash risks</h2>
-<p>The following ways of deleting purgatory equipment will <strong>crash</strong> the game:</p>
-<ul>
-<li>Picking it up and sending it straight to the inventory.</li>
-<li>Burning it.</li>
-</ul>
-<!--TODO: there's more for sure -->
-
+<p>The following ways of deleting unculled purgatory equipment will <strong>crash</strong> the game:</p>
+<p>!!!danger (Incomplete) list of purgatory equipment crash methods
+    - Picking it up and sending it straight to the inventory
+    - Burning it</p>
 <p>But the following are always safe to do:</p>
 <ul>
 <li>Reloading/warping, and letting purgatory equipment be deleted in the loading screen.</li>
 <li>Pausing and unequipping its <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent.</li>
 <li>Any normally crash-prone method while the equipment's FE/<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> child has a proper two-way connection to Link. This can include ultrahanding it, or having it equipped. (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggling</a> it won't work here.)</li>
+</ul>
+<h2 id="other-effects">Other effects</h2>
+<ul>
+<li>Enemies will never pick up purgatory equipment.</li>
 </ul>
 
 
