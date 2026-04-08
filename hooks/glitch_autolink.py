@@ -221,40 +221,60 @@ def on_page_content(html: str, page, config, files) -> str:
         # UIDs already linked in this section (uid: links, manual hrefs, etc.)
         already_linked: set[str] = _extract_linked_uids(section, valid_uids)
 
+        # Protected regions (existing tags, code blocks, etc.)
+        protected = [(m.start(), m.end())
+                     for m in _PROTECTED_RE.finditer(section)]
+
+        # Collect ALL matches from ALL patterns, then sort by position.
+        # This ensures "Mineru FE" at pos 10 beats "Mineru Fuse Entanglement"
+        # at pos 50, even though the latter is longer.
+        all_matches: list[tuple[int, int, int, str, str, str, re.Match]] = []
+        #                      start, end, -len, path, display, uid, match
+
         for pattern, path, display, uid in lookup:
             # Skip self-links
             if path == current_path:
                 continue
 
-            # Rebuild protected regions after each pattern pass — newly
-            # inserted <a> tags become protected for subsequent patterns.
-            protected = [(m.start(), m.end())
-                         for m in _PROTECTED_RE.finditer(section)]
-
-            href = f'{base}/{path}'.rstrip('/') + '/'
-            uid_linked = uid in already_linked
-
-            replacements: list[tuple[int, int, str]] = []
             for m in pattern.finditer(section):
                 if _in_protected(m.start(), m.end(), protected):
                     continue
+                # Negative length for descending sort (longest first at same pos)
+                all_matches.append((
+                    m.start(), m.end(), -(m.end() - m.start()),
+                    path, display, uid, m
+                ))
 
-                if m.group(1) == '!':
-                    # Escaped — strip the ! prefix, emit plain text.
-                    replacements.append((m.start(), m.end(), m.group(0)[1:]))
-                elif not uid_linked:
-                    # First linkable match in this section → autolink.
-                    matched = m.group(0)
-                    link = (f'<a href="{href}" class="glitch-autolink" '
-                            f'title="{display}" target="_blank" '
-                            f'rel="noopener noreferrer">{matched}</a>')
-                    replacements.append((m.start(), m.end(), link))
-                    uid_linked = True
-                    already_linked.add(uid)
+        # Sort by start position (earliest first), then by length desc (longest)
+        all_matches.sort(key=lambda x: (x[0], x[2]))
 
-            # Apply right-to-left to preserve earlier offsets.
-            for start, end, repl in reversed(replacements):
-                section = section[:start] + repl + section[end:]
+        replacements: list[tuple[int, int, str]] = []
+        last_end = -1  # Track end of last replacement to skip overlaps
+
+        for start, end, _neg_len, path, display, uid, m in all_matches:
+            # Skip if this match overlaps with a previous replacement
+            if start < last_end:
+                continue
+
+            href = f'{base}/{path}'.rstrip('/') + '/'
+
+            if m.group(1) == '!':
+                # Escaped — strip the ! prefix, emit plain text.
+                replacements.append((start, end, m.group(0)[1:]))
+                last_end = end
+            elif uid not in already_linked:
+                # First linkable match for this UID in this section → autolink.
+                matched = m.group(0)
+                link = (f'<a href="{href}" class="glitch-autolink" '
+                        f'title="{display}" target="_blank" '
+                        f'rel="noopener noreferrer">{matched}</a>')
+                replacements.append((start, end, link))
+                already_linked.add(uid)
+                last_end = end
+
+        # Apply right-to-left to preserve earlier offsets.
+        for start, end, repl in reversed(replacements):
+            section = section[:start] + repl + section[end:]
 
         sections[idx] = section
 

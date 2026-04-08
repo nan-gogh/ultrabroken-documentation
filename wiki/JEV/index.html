@@ -1234,10 +1234,10 @@ For example, death reasons include:</p>
 Each reason corresponds to a number in an internal enumeration.</li>
 </ul>
 <p>The two kinds of despawn we are able to interrupt are <code>FallIntoAbyss</code> and <code>Eaten</code>.
-This splits DI into two sub-glitches: <code>FallIntoAbyss</code> DI, aka <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JDP/" class="glitch-autolink" title="Void Dipping" target="_blank" rel="noopener noreferrer">Void Dipping</a>, and <code>Eaten</code> DI.
+This splits <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> into two sub-glitches: <code>FallIntoAbyss</code> DI, aka <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JDP/" class="glitch-autolink" title="Void Dipping" target="_blank" rel="noopener noreferrer">Void Dipping</a>, and <code>Eaten</code> DI.
 The behavioural changes stem from the way the game handles killing an already dead actor: the death will only go through if the newer death reason number is smaller than the older death reason number.
 For example, <code>PickedUp</code> has a reason number of 7.
-<code>FallIntoAbyss</code>'s number is 13, so picking up a void dipped item will properly delete it (7 &lt; 13, death goes through). However, <code>Eaten</code>'s reason number is 6, and 6 &lt; 7, so picking up a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">eaten DI</a>'d piece of equipment will not delete it, putting a copy in the inventory but staying alive.
+<code>FallIntoAbyss</code>'s number is 13, so picking up a void dipped item will properly delete it (7 &lt; 13, death goes through). However, <code>Eaten</code>'s reason number is 6, and 6 &lt; 7, so picking up a eaten DI'd piece of equipment will not delete it, putting a copy in the inventory but staying alive.
 This is just an example, other differences emerge depending on which despawn reason was interrupted.</p>
 <p>Note that to make writing setups quicker, FallIntoAbyss DI will be referred to as Void Dipping (VD) and Eaten DI simply as DI.</p>
 <h2 id="what-to-expect-in-each-writeup">What to expect in each writeup</h2>

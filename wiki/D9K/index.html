@@ -1278,23 +1278,24 @@ Autobuild Duplication mentioned again — same section, no second link.</p>
 <p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MW4/" class="glitch-autolink" title="Arrow Unloading" target="_blank" rel="noopener noreferrer">Arrow Unloading</a> also shows up (first mention in this section, autolinked).
 Arrow Unloading repeated — no second link in this section.</p>
 <h2 id="multi-word-aliases">Multi-Word Aliases</h2>
-<p>This section tests that multi-word aliases link correctly, prioritizing
-the longer match over shorter overlapping patterns.</p>
-<p><strong>Mineru FE</strong> should link to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IG2/" class="glitch-autolink" title="Mineru Fuse Entanglement" target="_blank" rel="noopener noreferrer">Mineru Fuse Entanglement</a> (not just "FE" to
-the general <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="Fuse Entanglement" target="_blank" rel="noopener noreferrer">Fuse Entanglement</a> page). Mineru FE again should not link.</p>
+<p>This section tests that multi-word aliases link correctly and that
+position-based matching links the <strong>earliest</strong> occurrence in the text.</p>
+<p><strong>Mineru FE</strong> (the alias) should link here — the first occurrence in the
+sentence. The full name <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IG2/" class="glitch-autolink" title="Mineru Fuse Entanglement" target="_blank" rel="noopener noreferrer">Mineru Fuse Entanglement</a> appears later but should
+NOT be linked because the budget is already spent on the earlier alias.</p>
 <p><strong>anti gravity</strong> (lowercase alias) should link to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a>.
 The alias anti gravity again should not link in this section.</p>
 <p><strong>crouch sprint</strong> should link to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/5IP/" class="glitch-autolink" title="Crouch Sprinting" target="_blank" rel="noopener noreferrer">Crouch Sprinting</a>. Another mention of
 crouch sprint stays plain text.</p>
-<p><strong>Batch DI</strong> should link to Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Despawn Interrupt</a> (mixed case alias).
-Writing Batch DI again should not produce a second link.</p>
+<p><strong>Batch DI</strong> should link here — the alias appears first. Then
+Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Despawn Interrupt</a> later stays plain (budget spent).</p>
 <p><strong>dive cancel</strong> should link to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/80I/" class="glitch-autolink" title="Dive Cancel Glide Boost" target="_blank" rel="noopener noreferrer">Dive Cancel Glide Boost</a>. And dive cancel
 again is plain text due to section throttling.</p>
 <h2 id="single-word-aliases-still-work">Single-Word Aliases Still Work</h2>
-<p>FE (the label) should still independently link to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="Fuse Entanglement" target="_blank" rel="noopener noreferrer">Fuse Entanglement</a> when
-there's no "<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IG2/" class="glitch-autolink" title="Mineru Fuse Entanglement" target="_blank" rel="noopener noreferrer">Mineru FE</a>" competing for the match.</p>
-<p>DI should link to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Despawn Interrupt</a>.</p>
-<p>AGG should link to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="Anti-Gravity Glitch" target="_blank" rel="noopener noreferrer">Anti-Gravity Glitch</a>.</p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> should link to Fuse Entanglement — a different UID than "<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IG2/" class="glitch-autolink" title="Mineru Fuse Entanglement" target="_blank" rel="noopener noreferrer">Mineru FE</a>"
+so it gets its own budget. Then Mineru FE links to its page too.</p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> should link to Despawn Interrupt.</p>
+<p><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PEY/" class="glitch-autolink" title="AGG" target="_blank" rel="noopener noreferrer">AGG</a> should link to Anti-Gravity Glitch.</p>
 
 
 
