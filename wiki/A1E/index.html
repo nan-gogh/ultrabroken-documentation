@@ -1028,6 +1028,17 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#undoing" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1095,8 +1106,31 @@
 <p class="admonition-title">UNDER CONSTRUCTION</p>
 <p>This page is still being written. It may be used as-is, but some sections are incomplete, and others may contain incorrect information.</p>
 </div>
-<p>Zuggled equipment is equipment that was supposed to drop, but neither completed the process, nor got re-equipped properly. Zuggled equipment persists across reloads, making it an extremely useful equipment state. See the <a href="../ESW/">zuggle section</a> for more.</p>
+<p>Zuggled equipment is equipment that was supposed to drop, but neither completed the dropping process, nor got re-equipped properly. Zuggled equipment persists across reloads, making it an extremely useful equipment state. See the <a href="../ESW/">zuggle section</a> for more.</p>
 <p>Most zuggles are in the static <a href="../S8I/">equip position</a>, as this is the easiest to execute, and very often good enough.</p>
+<p>From the equipment's perspective, a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> is the same as a smuggle of the same equip position. The difference is that Link has forgotten he had this equipment as a smuggle.</p>
+<h2 id="effects">Effects</h2>
+<ul>
+<li>Zuggled equipment is not deleted on reload, due to its unexpected attachment to Link.<ul>
+<li>This doesn't override transitive actor dependencies. For example, if you <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> child, but do nothing to keep the FE parent loaded, the zuggle will still be deleted during the next loading screen.</li>
+</ul>
+</li>
+<li>
+<p>Zuggled weapons and shields also become fuse entangle parents of any new fusions made to equipment of these types. This is a way to have a fusion (or fuse entangle) have additional fuse entangle parents.</p>
+<ul>
+<li>If an item is fuse entangled to one or more zuggles, and has no other fusion parents, that item is a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GM7/" class="glitch-autolink" title="ZLOT" target="_blank" rel="noopener noreferrer">ZLOT</a>, allowing it to also persist across reloads, but with its typical physics retained.</li>
+<li>This doesn't spread across equipment types. All fuse/FE parents with this method are either all weapons, or all shields.</li>
+<li>This doesn't happen to <a href="../M0U/">culled zuggles</a>.</li>
+</ul>
+<div class="admonition danger replacement actors">
+<p class="admonition-title">Danger</p>
+<p>Fusing or fuse entangling replacement actor items while you have active [unculled] zuggles will cause the game to <strong>crash</strong>.</p>
+</div>
+<ul>
+<li>Link can only tolerate so many zuggles before <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">zuggle overload</a> happens. This state is very useful, if you want it, but is better obtained with <a href="../M0U/">invizuggles</a>.</li>
+</ul>
+</li>
+</ul>
 <h2 id="undoing">Undoing</h2>
 <p>To undo a static <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>, equip and warm drop some other equipment of the same type. Throwing or shock-dropping active equipment won't affect static zuggles.</p>
 <h2 id="see-also">See Also</h2>
