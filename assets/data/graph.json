@@ -1645,12 +1645,6 @@
       "label": "UD"
     },
     {
-      "id": "wiki/YNP/",
-      "uid": "YNP",
-      "name": "Unload WST",
-      "label": "UWST"
-    },
-    {
       "id": "wiki/36U/",
       "uid": "36U",
       "name": "Unsheathed Mastersword",
@@ -2869,10 +2863,6 @@
       "target": "wiki/JMU/"
     },
     {
-      "source": "wiki/DUS/",
-      "target": "wiki/YNP/"
-    },
-    {
       "source": "wiki/E0G/",
       "target": "wiki/KFV/"
     },
@@ -3073,10 +3063,6 @@
       "target": "wiki/MCM/"
     },
     {
-      "source": "wiki/GTJ/",
-      "target": "wiki/YNP/"
-    },
-    {
       "source": "wiki/H2E/",
       "target": "wiki/056/"
     },
@@ -3270,11 +3256,23 @@
     },
     {
       "source": "wiki/JMU/",
+      "target": "wiki/8QH/"
+    },
+    {
+      "source": "wiki/JMU/",
       "target": "wiki/IG2/"
     },
     {
       "source": "wiki/JMU/",
       "target": "wiki/K4F/"
+    },
+    {
+      "source": "wiki/JMU/",
+      "target": "wiki/MCM/"
+    },
+    {
+      "source": "wiki/JMU/",
+      "target": "wiki/NZB/"
     },
     {
       "source": "wiki/JNU/",
@@ -4259,18 +4257,6 @@
     {
       "source": "wiki/YM9/",
       "target": "wiki/ZJ2/"
-    },
-    {
-      "source": "wiki/YNP/",
-      "target": "wiki/7DA/"
-    },
-    {
-      "source": "wiki/YNP/",
-      "target": "wiki/JMU/"
-    },
-    {
-      "source": "wiki/YNP/",
-      "target": "wiki/MCM/"
     },
     {
       "source": "wiki/YTR/",
