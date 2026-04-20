@@ -3628,6 +3628,10 @@
     },
     {
       "source": "wiki/MG1/",
+      "target": "wiki/BOF/"
+    },
+    {
+      "source": "wiki/MG1/",
       "target": "wiki/GDL/"
     },
     {
