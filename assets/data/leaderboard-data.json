@@ -6,7 +6,7 @@
       "rank": 1,
       "name": "mulberry",
       "url": null,
-      "count": 63
+      "count": 62
     },
     {
       "rank": 2,
@@ -36,7 +36,7 @@
       "rank": 6,
       "name": "Aergyl",
       "url": null,
-      "count": 15
+      "count": 14
     },
     {
       "rank": 7,
@@ -136,12 +136,6 @@
     },
     {
       "rank": 14,
-      "name": "Squidwest",
-      "url": null,
-      "count": 5
-    },
-    {
-      "rank": 14,
       "name": "Toti Sauce",
       "url": null,
       "count": 5
@@ -174,6 +168,12 @@
       "rank": 15,
       "name": "ofstrings2",
       "url": "https://www.youtube.com/@ofstrings2",
+      "count": 4
+    },
+    {
+      "rank": 15,
+      "name": "Squidwest",
+      "url": null,
       "count": 4
     },
     {

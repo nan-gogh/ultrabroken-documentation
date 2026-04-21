@@ -643,12 +643,6 @@
       "label": "GASW"
     },
     {
-      "id": "wiki/BEW/",
-      "uid": "BEW",
-      "name": "Ghost Despawn Interrupt",
-      "label": "GDI"
-    },
-    {
       "id": "wiki/WLM/",
       "uid": "WLM",
       "name": "Ghost Save Load Object Transfer",
@@ -2645,46 +2639,6 @@
       "target": "wiki/K4F/"
     },
     {
-      "source": "wiki/BEW/",
-      "target": "wiki/76A/"
-    },
-    {
-      "source": "wiki/BEW/",
-      "target": "wiki/7KZ/"
-    },
-    {
-      "source": "wiki/BEW/",
-      "target": "wiki/8QH/"
-    },
-    {
-      "source": "wiki/BEW/",
-      "target": "wiki/B3B/"
-    },
-    {
-      "source": "wiki/BEW/",
-      "target": "wiki/GDL/"
-    },
-    {
-      "source": "wiki/BEW/",
-      "target": "wiki/IG2/"
-    },
-    {
-      "source": "wiki/BEW/",
-      "target": "wiki/K4F/"
-    },
-    {
-      "source": "wiki/BEW/",
-      "target": "wiki/LMB/"
-    },
-    {
-      "source": "wiki/BEW/",
-      "target": "wiki/MCM/"
-    },
-    {
-      "source": "wiki/BEW/",
-      "target": "wiki/MG1/"
-    },
-    {
       "source": "wiki/BK4/",
       "target": "wiki/00I/"
     },
@@ -3671,10 +3625,6 @@
     {
       "source": "wiki/MG1/",
       "target": "wiki/B3B/"
-    },
-    {
-      "source": "wiki/MG1/",
-      "target": "wiki/BEW/"
     },
     {
       "source": "wiki/MG1/",
