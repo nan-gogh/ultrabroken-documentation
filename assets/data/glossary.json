@@ -1085,6 +1085,18 @@
     "filename": "gas-warping.md"
   },
   {
+    "name": "Ghost Despawn Interrupt",
+    "uid": "BEW",
+    "label": "GDI",
+    "aliases": [
+      "Ghost DI",
+      "Ghost-DI",
+      "Ghost Frox\" \"DI Ghost\" \"Frox Ghost"
+    ],
+    "path": "wiki/BEW/",
+    "filename": "ghost-despawn-interrupt.md"
+  },
+  {
     "name": "Ghost Save Load Object Transfer",
     "uid": "WLM",
     "label": "GSLOT",

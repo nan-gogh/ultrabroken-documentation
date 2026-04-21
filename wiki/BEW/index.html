@@ -1110,10 +1110,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-6-overload-pseudo-fuse-all-versions" class="md-nav__link">
+  <a href="#method-6-mineru-fe-overload-pseudo-fuse-all-versions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 6: Overload Pseudo Fuse All versions
+        Method 6: Mineru FE + Overload Pseudo Fuse All versions
       
     </span>
   </a>
@@ -1121,10 +1121,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-7-culling-area-distant-pseudo-fuse-120" class="md-nav__link">
+  <a href="#method-7-culling-area-distance-pseudo-fuse-120" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 7: Culling Area Distant Pseudo Fuse 1.2.0+
+        Method 7: Culling Area Distance Pseudo Fuse 1.2.0+
       
     </span>
   </a>
@@ -1233,7 +1233,6 @@
 <hr />
 <p>title: "Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Despawn Interrupt</a>"
 uid: "BEW"
-draft: true
 label: "GDI"
 versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
 credits: ["Aergyl", "mulberry", "Squidwest"]
@@ -1262,7 +1261,7 @@ tags: ["item", "despawn", "fuse", "culling"]</p>
 <h4 class="collapse" id="method-1-fuse-drop-swap-120">Method 1: <br/>Fuse + Drop-Swap <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<p>This is the simplest method, and the easiest to understand. It uses drop-swap culling as the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> method, making it exclusive to newer patches.</p>
+<p>This is the simplest method, and the easiest to understand. It uses Drop-Swap Culling as the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> method, making it exclusive to <code>1.2.0</code> and up.</p>
 <ol>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> a DI weapon or shield</li>
 <li>Equip a normal item of the same type</li>
@@ -1275,6 +1274,7 @@ tags: ["item", "despawn", "fuse", "culling"]</p>
 <li>Delete the normal parent by "FarDelete"; this can be done by sending it away with a rocket, dropping it down a chasm, or simply moving about 60m away</li>
 <li>Detangle the DI parent; The fastest way to do this is to just use it again (DI objects with DI parents are protected from "Fuse-over" deletion)</li>
 </ol>
+<p><em>Original method; Discovered by mulberry - Jan 16th, 2026</em></p>
 <h4 class="collapse" id="method-2-turbo-replication-120">Method 2: <br/>Turbo Replication <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
@@ -1289,6 +1289,7 @@ tags: ["item", "despawn", "fuse", "culling"]</p>
 <li><strong>Unpause</strong> the game and press B within a couple frames of the game actually unpausing</li>
 <li>Done correctly, the target will detangle from both the DI parent and the normal parent, and its pickup prompt will be displaced from its visual model</li>
 </ol>
+<p><em>Discovered by aergyl - Jan 31st, 2026</em></p>
 <h4 class="collapse" id="method-3-mineru-fe-target-fuse-all-versions">Method 3: <br/>Mineru FE Target + Fuse <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
@@ -1322,7 +1323,7 @@ tags: ["item", "despawn", "fuse", "culling"]</p>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <p>This method entangles the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent to Mineru, allowing her to be used as the culling source to make many ghosts.</p>
 <ol>
-<li>Prepare a DI weapon or shield (A) which is entangled to Mineru (for example, with Method 3)</li>
+<li>Prepare a DI weapon or shield (A) which is entangled to Mineru (for example, with Method 3, Method 6, or with any non-ghost DI method that uses <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IG2/" class="glitch-autolink" title="Mineru Fuse Entanglement" target="_blank" rel="noopener noreferrer">Mineru FE</a>)</li>
 <li>Smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> A and equip a normal item over it</li>
 <li>Induce Mineru to cull and <strong>fuse</strong> the target a few frames before she culls</li>
 <li>The target will immediately begin despawning, then be culled with the DI parent, resulting in DI</li>
@@ -1334,29 +1335,47 @@ tags: ["item", "despawn", "fuse", "culling"]</p>
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <p>These methods <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> the target to a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> the target to a normal parent, resulting in PF; this removes the need to detangle it from the normal parent.</p>
-<h4 class="collapse" id="method-6-overload-pseudo-fuse-all-versions">Method 6: <br/>Overload Pseudo Fuse <span class='ub-vr'><code>All versions</code></span></h4>
+<h4 class="collapse" id="method-6-mineru-fe-overload-pseudo-fuse-all-versions">Method 6: <br/>Mineru FE + Overload Pseudo Fuse <span class='ub-vr'><code>All versions</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
-<div class="admonition warning">
-<p class="admonition-title">Construction Zone</p>
-<p>This method is not yet written.</p>
-</div>
-<p>This method uses overload to Pseudo-Fuse the target, and then literally idk how it culls the target</p>
-<p>(normal overload pfdi without any batching considerations)
-(I don't actually know what's minimal, so I'm coming back to this one later)</p>
-<h4 class="collapse" id="method-7-culling-area-distant-pseudo-fuse-120">Method 7: <br/>Culling Area Distant Pseudo Fuse <span class='ub-vr'><code>1.2.0+</code></span></h4>
+<ul>
+<li>This method uses <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IG2/" class="glitch-autolink" title="Mineru Fuse Entanglement" target="_blank" rel="noopener noreferrer">Mineru FE</a> to cause the target to cull with her, then uses overload to Pseudo-Fuse the target shortly before Mineru culls.</li>
+<li>The steps provided entangle the <em>target</em> to Mineru, but the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> parent may be entangled to her instead (as is the result of several DI and Ghost DI methods, including this one).</li>
+<li>Instead of normal culling, Mineru Limbo can be used. A method to produce large numbers of DI Ghosts based on this is provided on the <a href="../PG3/">Batch DI</a> page.</li>
+</ul>
+<p>Prepare:</p>
+<ul>
+<li>Mineru</li>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Overload (9 on 1.0.0)</li>
+<li>A DI weapon or shield (A)</li>
+<li>A normal item of A's type (B), as well as one of the other type (C)</li>
+<li>The target</li>
+</ul>
+<p>Steps:</p>
+<ol>
+<li><strong>Mineru <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a></strong> the target</li>
+<li><a href="../TGY/">Smuggle</a> A</li>
+<li><a href="../8QH/">Overload Drop</a> B and <strong>fuse</strong> it to C</li>
+<li>Induce Mineru to cull, and just before her orb returns, <strong>fuse</strong> the target to B</li>
+<li>The target will cull with Mineru during its fadeout, thus causing DI</li>
+<li>If desired, <strong>detangle</strong> the target from Mineru by fusing something else to the target's slot</li>
+<li>If desired, <strong>detangle</strong> the target from A by fusing something else to anything of A's type while it is still smuggled</li>
+</ol>
+<h4 class="collapse" id="method-7-culling-area-distance-pseudo-fuse-120">Method 7: <br/>Culling Area Distance Pseudo Fuse <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <p>This method uses a culling area to Pseudo-Fuse the target, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to perform the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>.</p>
 <p>Prepare a DI weapon or shield, another item of that type, and a portacull of the opposite type</p>
 <ol>
-<li>Use a small culling area to store fuse on the target with a normal parent</li>
-<li>Move into and quickly back out of the culling margin to uncull the target for 1 frame</li>
-<li>Drop the normal parent and move it out of update range (the far end of the platform at Akkala Citadel Ruins' small culling area is enough)</li>
-<li>Pick up the DI item and move into the culling margin</li>
-<li>A few frames after the target unculls, pause the game</li>
+<li>Use a small culling area to <strong>store fuse</strong> on the target with a normal parent</li>
+<li><strong>Move</strong> into and quickly back out of the culling margin to <strong>uncull</strong> the target for <strong>1 frame</strong></li>
+<li><strong>Drop</strong> the normal parent and move it out of update range (for example, the far end of the platform at Akkala Citadel Ruins' small culling area is enough)</li>
+<li><strong>Pick up</strong> the DI item and move into the culling margin</li>
+<li>A few frames after the target unculls, <strong>pause</strong> the game</li>
 <li>Use the portacull to cull the DI parent and the target</li>
-<li>The target, now DI'd, will be attached to the normal parent, but not fused</li>
+<li>The target, now DI'd, will be attached to the normal parent, but not fused to it</li>
+<li>If desired, <strong>dispose</strong> of the normal parent however desired</li>
+<li>If desired, <strong>detangle</strong> the target from the DI parent by <a href="../TGY/">smuggling</a> it and fusing something else to anything of the same type</li>
 </ol>
 <h4 class="ub-obsolete collapse" id="method-8-culling-area-recull-pseudo-fuse-120">Method 8: <br/>Culling Area Recull Pseudo Fuse <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="true" hidden></div>
@@ -1368,21 +1387,23 @@ tags: ["item", "despawn", "fuse", "culling"]</p>
 <p>This method uses a culling area to Pseudo-Fuse the target, and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to perform the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>. Included here mainly for posterity; Method 7 is a strict optimization.</p>
 <p>Prepare a DI weapon or shield, another item of that type, and a portacull of the opposite type</p>
 <ol>
-<li>Use a small culling area to store fuse on the target with a normal parent</li>
-<li>Move into and quickly back out of the culling margin to uncull the target for 1 frame</li>
-<li>Drop the normal parent</li>
-<li>Pick up the DI item</li>
-<li>Move into and quickly back out of the culling margin again to uncull the target for 1 frame, again</li>
-<li>Shortly after the target unculls, pause the game (timing is frame perfect)</li>
+<li>Use a small culling area to <strong>store fuse</strong> on the target with a normal parent</li>
+<li><strong>Move</strong> into and quickly back out of the culling margin to <strong>uncull</strong> the target for <strong>1 frame</strong></li>
+<li><strong>Drop</strong> the normal parent</li>
+<li><strong>Pick up</strong> the DI item</li>
+<li><strong>Move</strong> into and quickly back out of the culling margin again to <strong>uncull</strong> the target for <strong>1 frame</strong> a second time</li>
+<li>Shortly after the target unculls, <strong>pause</strong> the game (timing is frame perfect)</li>
 <li>Use the portacull to cull the DI parent and the target</li>
-<li>The target, now DI'd, will be attached to the normal parent, but not fused</li>
+<li>The target, now DI'd, will be attached to the normal parent, but not fused to it</li>
+<li>If desired, <strong>dispose</strong> of the normal parent however desired</li>
+<li>If desired, <strong>detangle</strong> the target from the DI parent by <a href="../TGY/">smuggling</a> it and fusing something else to anything of the same type</li>
 </ol>
 </div>
 </div>
 </div>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Retains all(?) properties of non-ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
+<li>Retains all(?) special properties of non-ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></li>
 <li>Can be picked up off its "model-bind" parent, permanently detaching it (and turning the connection into plain <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>/<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a>)</li>
 <li>Has no collision, gravity, or ability to move on its own once detached from its "model-bind" parent</li>
 <li>Its FE connection to its DI parent can be "fused over", reducing it to a CF connection</li>
@@ -1409,10 +1430,19 @@ tags: ["item", "despawn", "fuse", "culling"]</p>
 <p>If a piece of equipment has 30 direct child dependencies, it will become "Fuse Overloaded". Further fuse attempts will fail, producing a "reference <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>" connection, which will usually <strong>crash the game</strong> if the "failed parent" is dropped. Because "fusing over" a DI ghost leaves a CF connection to that parent, a DI parent can only be used 30 times unless full <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is used or some children are destroyed.</p>
 </div>
 <h2 id="resources">Resources</h2>
-<div class="admonition warning">
-<p class="admonition-title">Construction Zone</p>
-<p>References will be added later in the page-creation process. Thank you for your patience.</p>
-</div>
+<details class="quote">
+<summary>Discord Resources</summary>
+<ul>
+<li><a href="https://discord.com/channels/1086729144307564648/1110956205624532993/1461920313418842175">Original Discovery</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1110956205624532993/1461923301491212420">Pickup Prompt Returns</a></li>
+<li><a href="https://discord.com/channels/1111875355758837830/1128775917376897145/1467145185975730281">Turbo Replication</a></li>
+<li>Unfortunately, not sure I have a reference for using Mineru as the culling source? I'll ask around</li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1464591635231932467">FS2 Distance PF Discovery</a></li>
+<li>(Mostly keeping the above resource here until the PF page gets written so I don't have to track it down again) </li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1464908083389137063">FS2 Distance PF Method</a></li>
+<li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1464203334536925329">Culling Area Recull PF</a></li>
+</ul>
+</details>
 <h2 id="related">Related</h2>
 <ul>
 <li><a href="search:Despawn Interrupt">Despawn Interrupt</a></li>
