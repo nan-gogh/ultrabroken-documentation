@@ -1100,7 +1100,7 @@
 <li>Some fusible objects ("actors") replace themselves with another actor (sometimes of the same type) when fused. Without special considerations, attempting to Fuse Entangle these actors will <em>crash the game</em>.</li>
 <li>This page contains an easily-digestible table of such "Replacement Actors", with both the actor ID and a plain translation of which object this ID corresponds to, along with the equivalents for what the actor is replaced with.</li>
 </ul>
-<h2 id="table">Table</h2>
+<h2 class="collapse" id="table">Table</h2>
 <table>
 <thead>
 <tr>
@@ -1120,10 +1120,1550 @@
 <td>AsbObj_Icicle_A_01</td>
 <td>Icicle</td>
 <td>Normal Icicle</td>
-<td></td>
+<td>➡️</td>
 <td>AsbObj_Icicle_A_01</td>
 <td>Icicle</td>
 <td>Normal Icicle</td>
+</tr>
+<tr>
+<td>2</td>
+<td>AsbObj_Icicle_A_02</td>
+<td>Icicle</td>
+<td>Large Icicle</td>
+<td>➡️</td>
+<td>AsbObj_Icicle_A_01</td>
+<td>Icicle</td>
+<td>Normal Icicle</td>
+</tr>
+<tr>
+<td>3</td>
+<td>AsbObj_WoodSail_A_01</td>
+<td>Tattered Sail</td>
+<td>Pivots</td>
+<td>➡️</td>
+<td>AsbObj_WoodSail_A_01_ForAttachment</td>
+<td>Tattered Sail (Replacement)</td>
+<td>Does not pivot</td>
+</tr>
+<tr>
+<td>4</td>
+<td>AsbObj_WoodSail_A_02</td>
+<td>Pristine Sail</td>
+<td>Pivots</td>
+<td>➡️</td>
+<td>AsbObj_WoodSail_A_02_ForAttachment</td>
+<td>Pristine Sail (Replacement)</td>
+<td>Does not pivot</td>
+</tr>
+<tr>
+<td>5</td>
+<td>BombFruit</td>
+<td>Bomb Flower</td>
+<td>x</td>
+<td>➡️</td>
+<td>BombFruit</td>
+<td>Bomb Flower</td>
+<td>x</td>
+</tr>
+<tr>
+<td>6</td>
+<td>BrokenSnowBall</td>
+<td>Snowball</td>
+<td>Can Drop Items</td>
+<td>➡️</td>
+<td>BrokenSnowBallForAttachmentSmall</td>
+<td>Snowball</td>
+<td>Cannot Drop Items?</td>
+</tr>
+<tr>
+<td>7</td>
+<td>BrokenSnowBallForDrake</td>
+<td>Gleeok Snowball</td>
+<td>Cannot Drop Items?</td>
+<td>➡️</td>
+<td>BrokenSnowBallForAttachmentSmall</td>
+<td>Snowball</td>
+<td>Cannot Drop Items?</td>
+</tr>
+<tr>
+<td>8</td>
+<td>ConfusionFruit_Static</td>
+<td>Muddle Bud (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>ConfusionFruit</td>
+<td>Muddle Bud</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>9</td>
+<td>DgnObj_BoardIron_E_Cart_02</td>
+<td>8x4m Shrine Metal Plate</td>
+<td>Only in Marakuguc - <em>Wheeled Wonders</em></td>
+<td>➡️</td>
+<td>DgnObj_BoardIron_E</td>
+<td>8x4m Shrine Metal Plate</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>DgnObj_FloatingWater_A_01</td>
+<td>Small Water Globule</td>
+<td>Real</td>
+<td>➡️</td>
+<td>DgnObj_FloatingWater_A_01_ForAttachment</td>
+<td>Small Water Globule (Replacement)</td>
+<td>Water is fake</td>
+</tr>
+<tr>
+<td>11</td>
+<td>DgnObj_FloatingWater_A_02</td>
+<td>Large Water Globule</td>
+<td>Real</td>
+<td>➡️</td>
+<td>DgnObj_FloatingWater_A_02_ForAttachment</td>
+<td>Large Water Globule (Replacement)</td>
+<td>Water is fake</td>
+</tr>
+<tr>
+<td>12</td>
+<td>DgnObj_IceBlock</td>
+<td>Shrine Ice Block</td>
+<td>x</td>
+<td>➡️</td>
+<td>DgnObj_IceBlock</td>
+<td>Shrine Ice Block</td>
+<td>x</td>
+</tr>
+<tr>
+<td>13</td>
+<td>DgnObj_Small_BoardStone_A_03</td>
+<td>12x12m Shrine Stone Board</td>
+<td>Only in Kimayat - <em>Proving Grounds: Smash</em></td>
+<td>➡️</td>
+<td>Dgn_Obj_BoardStone_A_04</td>
+<td>8x8m Shrine Stone Board</td>
+<td>x</td>
+</tr>
+<tr>
+<td>14</td>
+<td>DgnObj_Small_BoxIron_B_06</td>
+<td>2x2x2m Shrine Iron Box (Heavy)</td>
+<td>Only in Wao-os - <em>Lever Power</em></td>
+<td>➡️</td>
+<td>Obj_BoxIron_B_2x2x2_01</td>
+<td>2x2x2m Shrine Iron Box (Normal)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>15</td>
+<td>DgnObj_Small_StonePole_A_02</td>
+<td>Stone Pole (?)</td>
+<td>Only in Mayachin - <em>A Fixed Device</em></td>
+<td>➡️</td>
+<td>DgnObj_Small_StonePole_A_01</td>
+<td>Stone Pole (Normal)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>16</td>
+<td>DgnObj_Small_StonePole_A_03</td>
+<td>Stone Pole (Heavy)</td>
+<td>Only in Riogok - <em>Force Transfer</em></td>
+<td>➡️</td>
+<td>DgnObj_Small_StonePole_A_01</td>
+<td>Stone Pole (Normal)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>17</td>
+<td>DgnObj_StoneBall_Fire</td>
+<td>Flame Ball</td>
+<td>Only In Lightning Temple</td>
+<td>➡️</td>
+<td>DgnObj_StoneBall_NoFire</td>
+<td>Flame Ball (Extinguished)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>18</td>
+<td>DgnObj_WoodPole_A</td>
+<td>Shrine Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>DgnObj_WoodPole_A_02</td>
+<td>Shrine Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Drake_Icicle</td>
+<td>Gleeok Icicle</td>
+<td>?</td>
+<td>➡️</td>
+<td>Drake_IcicleForAttachment</td>
+<td>Gleeok Icicle (Replacement)</td>
+<td>?</td>
+</tr>
+<tr>
+<td>20</td>
+<td>DungeonBoss_Goron_Rock_Weapon</td>
+<td>Small Gloom Rock</td>
+<td>x</td>
+<td>➡️</td>
+<td>DungeonBoss_Goron_Rock_Weapon</td>
+<td>Small Gloom Rock</td>
+<td>x</td>
+</tr>
+<tr>
+<td>21</td>
+<td>DungeonBoss_Goron_Rock_Weapon_Large</td>
+<td>Large Gloom Rock</td>
+<td>x</td>
+<td>➡️</td>
+<td>DungeonBoss_Goron_Rock_Weapon_Large</td>
+<td>Large Gloom Rock</td>
+<td>x</td>
+</tr>
+<tr>
+<td>22</td>
+<td>ElectricalFruit</td>
+<td>Shock Fruit</td>
+<td>x</td>
+<td>➡️</td>
+<td>ElectricalFruit</td>
+<td>Shock Fruit</td>
+<td>x</td>
+</tr>
+<tr>
+<td>23</td>
+<td>FireFruit</td>
+<td>Fire Fruit</td>
+<td>x</td>
+<td>➡️</td>
+<td>FireFruit</td>
+<td>Fire Fruit</td>
+<td>x</td>
+</tr>
+<tr>
+<td>24</td>
+<td>FldObj_EnemyLookoutBanana_A_01_Trunk</td>
+<td>Faron Enemy Lookout Tower Trunk</td>
+<td>From Faron camps</td>
+<td>➡️</td>
+<td>Obj_EnemyLookoutBanana_A_01_ForAttachment</td>
+<td>Faron Enemy Lookout Tower Trunk (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>25</td>
+<td>FldObj_ScaffoldWood_A_03_Trunk</td>
+<td>Enemy Lookout Tower Trunk</td>
+<td>From most camps</td>
+<td>➡️</td>
+<td>Obj_ScaffoldWood_A_03_ForAttachment</td>
+<td>Enemy Lookout Tower Trunk (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>26</td>
+<td>IceFruit</td>
+<td>Ice Fruit</td>
+<td>x</td>
+<td>➡️</td>
+<td>IceFruit</td>
+<td>Ice Fruit</td>
+<td>x</td>
+</tr>
+<tr>
+<td>27</td>
+<td>IceWall_Piece</td>
+<td>Ice Shard</td>
+<td>From frozen water &amp; ice chunks</td>
+<td>➡️</td>
+<td>IceWall_Piece</td>
+<td>Ice Shard</td>
+<td>x</td>
+</tr>
+<tr>
+<td>28</td>
+<td>IronBall_Light</td>
+<td>Small Iron Ball (Light)</td>
+<td>Only in Wao-os - <em>Lever Power</em></td>
+<td>➡️</td>
+<td>DgnObj_Small_IronBall_02</td>
+<td>Small Iron Ball (Normal)</td>
+<td></td>
+</tr>
+<tr>
+<td>29</td>
+<td>Item_CatchInAir</td>
+<td>Star Fragment (Falling)</td>
+<td>Only for skydiving spawn</td>
+<td>➡️</td>
+<td>Item_Ore_J</td>
+<td>Star Fragment</td>
+<td>x</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Item_Enemy_15</td>
+<td>Red Chuchu Jelly</td>
+<td>x</td>
+<td>➡️</td>
+<td>Item_Enemy_15</td>
+<td>Red Chuchu Jelly</td>
+<td>x</td>
+</tr>
+<tr>
+<td>31</td>
+<td>Item_Enemy_16</td>
+<td>Yellow Chuchu Jelly</td>
+<td>x</td>
+<td>➡️</td>
+<td>Item_Enemy_16</td>
+<td>Yellow Chuchu Jelly</td>
+<td>x</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Item_Enemy_17</td>
+<td>White Chuchu Jelly</td>
+<td>x</td>
+<td>➡️</td>
+<td>Item_Enemy_17</td>
+<td>White Chuchu Jelly</td>
+<td>x</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Item_Material_04</td>
+<td>Bird Egg</td>
+<td>x</td>
+<td>➡️</td>
+<td>Item_Material_04</td>
+<td>Bird Egg</td>
+<td>x</td>
+</tr>
+<tr>
+<td>34</td>
+<td>Item_Mushroom_D</td>
+<td>Rushroom (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_MushroomGet_D</td>
+<td>Rushroom</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>35</td>
+<td>Item_Mushroom_K</td>
+<td>Brightcap (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_MushroomGet_K</td>
+<td>Brightcap</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>36</td>
+<td>Item_Plant_A</td>
+<td>Hyrule Herb (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Hyrule Herb</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Item_Plant_B</td>
+<td>Hearty Radish (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_B</td>
+<td>Hearty Radish</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Item_Plant_B_TemporaryOwnedByNpc</td>
+<td>Hearty Radish (Garden Tutorial)?</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Hearty Radish</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>39</td>
+<td>Item_Plant_C</td>
+<td>Big Hearty Radish (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Big Hearty Radish</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Item_Plant_C_TemporaryOwnedByNpc</td>
+<td>Big Heary Radish (Garden Tutorial)?</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Big Hearty Radish</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Item_Plant_E</td>
+<td>Cool Safflina (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Cool Safflina</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Item_Plant_F</td>
+<td>Warm Safflina (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Warm Safflina</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>43</td>
+<td>Item_Plant_G</td>
+<td>Mighty Thistle (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Mighty Thistle</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Item_Plant_H</td>
+<td>Armoranth (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Armoranth</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Item_Plant_I</td>
+<td>Blue Nightshade (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Blue Nightshade</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>46</td>
+<td>Item_Plant_I_OwnedByNpc</td>
+<td>Blue Nightshade (Oaki's)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Blue Nightshade</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Item_Plant_J</td>
+<td>Silent Princess (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Silent Princess</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>48</td>
+<td>Item_Plant_J_OwnedByNpc</td>
+<td>Silent Princess (Oaki's)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Silent Princess</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>49</td>
+<td>Item_Plant_L</td>
+<td>Electric Safflina (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Electric Safflina</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Item_Plant_M</td>
+<td>Swift Carrot (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Swift Carrot</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Item_Plant_M_OwnedByNpc</td>
+<td>Swift Carrot (Kakariko)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Swift Carrot</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>52</td>
+<td>Item_Plant_M_TemporaryOwnedByNpc</td>
+<td>Swift Carrot (Garden Tutorial)?</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Swift Carrot</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>53</td>
+<td>Item_Plant_O</td>
+<td>Swift Violet (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Swift Violet</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Item_Plant_Q</td>
+<td>Endura Carrot (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Endura Carrot</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>55</td>
+<td>Item_Plant_Q_TemporaryOwnedByNpc</td>
+<td>Endura Carrot (Garden Tutorial)?</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Endura Carrot</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>56</td>
+<td>Item_Plant_R</td>
+<td>Sundelion (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Sundelion</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>57</td>
+<td>Item_Plant_R_Kakariko_008</td>
+<td>Sundelion (Mellie's)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Sundelion</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Item_Plant_S</td>
+<td>Stambulb (Static)</td>
+<td>Doesn't Move</td>
+<td>➡️</td>
+<td>Item_PlantGet_A</td>
+<td>Stambulb</td>
+<td>Moves</td>
+</tr>
+<tr>
+<td>59</td>
+<td>Kibako_Contain_01_NoRespawn</td>
+<td>Wooden Box (Gerudo Canyon Stable)</td>
+<td>Doesn't Respawn</td>
+<td>➡️</td>
+<td>Kibako_Contain_01</td>
+<td>Wooden Box (ordinary)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>60</td>
+<td>LikeLikeRock</td>
+<td>Rock Like Projectile</td>
+<td>x</td>
+<td>➡️</td>
+<td>LikeLikeRock_ForAttachment</td>
+<td>Rock Like Projectile (replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>61</td>
+<td>MinusObj_TreeGeneralleaf_A_01_Trent_Trunk</td>
+<td>Depths Evermean Log</td>
+<td><em>sic</em></td>
+<td>➡️</td>
+<td>MinusObj_TreeGeneralleaf_A_01_Treant_ForAttachment</td>
+<td>Depths Evermean Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>62</td>
+<td>MinusObj_TreeGeneralleaf_A_01_Trunk</td>
+<td>Short Depths Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeGeneralleaf_C_01_ForAttachment</td>
+<td>Depths Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>63</td>
+<td>MinusObj_TreeGeneralleaf_A_01_Trunk_Aligned</td>
+<td>Short Depths Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeGeneralleaf_C_01_ForAttachment</td>
+<td>Depths Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>64</td>
+<td>MinusObj_TreeGeneralleaf_B_01_Trunk</td>
+<td>Medium Depths Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeGeneralleaf_C_01_ForAttachment</td>
+<td>Depths Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>65</td>
+<td>MinusObj_TreeGeneralleaf_B_01_Trunk_Aligned</td>
+<td>Medium Depths Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeGeneralleaf_C_01_ForAttachment</td>
+<td>Depths Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>66</td>
+<td>MinusObj_TreeGeneralleaf_C_01_Trunk</td>
+<td>Long Depths Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeGeneralleaf_C_01_ForAttachment</td>
+<td>Depths Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>67</td>
+<td>MinusObj_TreeGeneralleaf_C_01_Trunk_Aligned</td>
+<td>Long Depths Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeGeneralleaf_C_01_ForAttachment</td>
+<td>Depths Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>68</td>
+<td>MinusObj_TreeGeneralleaf_D_01_Trunk</td>
+<td>Long Blue Depths Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeGeneralleaf_D_01_ForAttachment</td>
+<td>Blue Depths Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>69</td>
+<td>MinusObj_TreeGeneralleaf_D_01_Trunk_Aligned</td>
+<td>Long Blue Depths Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeGeneralleaf_D_01_ForAttachment</td>
+<td>Blue Depths Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>70</td>
+<td>Obj_FreezeBoard_A_01</td>
+<td>4x4m? Ice Board</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_FreezeBoard_A_01</td>
+<td>4x4m? Ice Board</td>
+<td>x</td>
+</tr>
+<tr>
+<td>71</td>
+<td>Obj_FreezeBoard_A_02</td>
+<td>4x8m? Ice Board</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_FreezeBoard_A_02</td>
+<td>4x8m? Ice Board</td>
+<td>x</td>
+</tr>
+<tr>
+<td>72</td>
+<td>Obj_TreeApple_A_L_01_Trunk</td>
+<td>Apple Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeApple_A_M_01_Trunk</td>
+<td>Apple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>73</td>
+<td>Obj_TreeApple_A_L_01_Trunk_Aligned</td>
+<td>Apple Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeApple_A_M_01_Trunk</td>
+<td>Apple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>74</td>
+<td>Obj_TreeBroadleafDead_B_L_01_Trunk</td>
+<td>Oak Log Stump</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWood_A_01_ForAttachment</td>
+<td>Oak Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>75</td>
+<td>Obj_TreeBroadleaf_A_L_Treant_Trunk</td>
+<td>Evermean Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWood_A_L_Treant_ForAttachment</td>
+<td>Evermean Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>76</td>
+<td>Obj_TreeBroadleaf_A_L_Trunk</td>
+<td>Oak Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWood_A_01_ForAttachment</td>
+<td>Oak Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>77</td>
+<td>Obj_TreeBroadleaf_A_L_Trunk_Aligned</td>
+<td>Oak Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWood_A_01_ForAttachment</td>
+<td>Oak Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>78</td>
+<td>Obj_TreeBurned_B_01_Trunk</td>
+<td>Short Burned Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeBurned_A_01_Trunk</td>
+<td>Short Burned Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>79</td>
+<td>Obj_TreeBurned_B_02_Trunk</td>
+<td>Long Burned Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeBurned_A_01_Trunk</td>
+<td>Short Burned Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>80</td>
+<td>Obj_TreeConiferousDead_A_01_Trunk</td>
+<td>Long Dead Spruce Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>81</td>
+<td>Obj_TreeConiferousDead_A_01_Trunk_Aligned</td>
+<td>Long Dead Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>82</td>
+<td>Obj_TreeConiferousDead_A_02_Trunk</td>
+<td>Short Dead Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>83</td>
+<td>Obj_TreeConiferousDead_A_Snow_01_Trunk</td>
+<td>Long Dead Snowy Spruce Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>84</td>
+<td>Obj_TreeConiferousDead_A_Snow_01_Trunk_Aligned</td>
+<td>Long Dead Snowy Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>85</td>
+<td>Obj_TreeConiferous_A_01_Trunk</td>
+<td>Short Spruce Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>86</td>
+<td>Obj_TreeConiferous_A_01_Trunk_Aligned</td>
+<td>Short Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>87</td>
+<td>Obj_TreeConiferous_A_02_Trunk</td>
+<td>Long Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>88</td>
+<td>Obj_TreeConiferous_A_03_Trunk</td>
+<td>Large Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>89</td>
+<td>Obj_TreeConiferous_A_Snow_01_Trunk</td>
+<td>Short Snowy Spruce Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>90</td>
+<td>Obj_TreeConiferous_A_Snow_01_Trunk_Aligned</td>
+<td>Short Snowy Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>91</td>
+<td>Obj_TreeConiferous_A_Snow_02_Trunk</td>
+<td>Long Snowy Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>92</td>
+<td>Obj_TreeConiferous_A_Snow_03_Trunk</td>
+<td>Large Snowy Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>93</td>
+<td>Obj_TreeConiferous_C_01_Trunk</td>
+<td>Short Pale Spruce Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>94</td>
+<td>Obj_TreeConiferous_C_01_Trunk_Aligned</td>
+<td>Short Pale Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>95</td>
+<td>Obj_TreeConiferous_C_02_Trunk</td>
+<td>Long Pale Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>96</td>
+<td>Obj_TreeConiferous_C_03_Trunk</td>
+<td>Large Pale Spruce Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeConiferous_A_01_ForAttachment</td>
+<td>Spruce Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>97</td>
+<td>Obj_TreeDeadLeaf_A_01_Trunk</td>
+<td>Apple Log Stump</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeDead_A_01_Trunk</td>
+<td>Apple Log Stump (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>98</td>
+<td>Obj_TreeDragonBlood_A_03_Trunk</td>
+<td>Seres Scablands Tree Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteBirch_ForAttachment</td>
+<td>Birch Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>99</td>
+<td>Obj_TreeGhost_A_03_Trunk</td>
+<td>Lost Woods Tree Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWood_A_01_ForAttachment</td>
+<td>Oak Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>100</td>
+<td>Obj_TreeMaple_A_01_Trunk</td>
+<td>Long Maple Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeMaple_A_01_ForAttachment</td>
+<td>Maple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Obj_TreeMaple_A_01_Trunk_Aligned</td>
+<td>Long Maple Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeMaple_A_01_ForAttachment</td>
+<td>Maple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Obj_TreeMaple_A_02_Trunk</td>
+<td>Short Maple Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeMaple_A_01_ForAttachment</td>
+<td>Maple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Obj_TreeMaple_B_01_Trunk</td>
+<td>Long Maple Log 2?</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeMaple_A_01_ForAttachment</td>
+<td>Maple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Obj_TreeMaple_B_02_Trunk</td>
+<td>Short Maple Log 2?</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeMaple_A_01_ForAttachment</td>
+<td>Maple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>105</td>
+<td>Obj_TreeMaple_C_01_Trunk</td>
+<td>Long Maple Log 3?</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeMaple_A_01_ForAttachment</td>
+<td>Maple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>106</td>
+<td>Obj_TreeMaple_C_02_Trunk</td>
+<td>Short Maple Log 3?</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeMaple_A_01_ForAttachment</td>
+<td>Maple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>107</td>
+<td>Obj_TreePalmBeach_A_01_Trunk</td>
+<td>Straight Beach Palm Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreePalmBeach_A_01_ForAttachment</td>
+<td>Straight Beach Palm Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>108</td>
+<td>Obj_TreePalmBeach_A_01_Trunk_Aligned</td>
+<td>Straight Beach Palm Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreePalmBeach_A_01_ForAttachment</td>
+<td>Straight Beach Palm Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>109</td>
+<td>Obj_TreePalmBeach_A_02_Trunk</td>
+<td>Curved Beach Palm Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreePalmBeach_A_01_ForAttachment</td>
+<td>Straight Beach Palm Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>110</td>
+<td>Obj_TreePalm_A_01_Trunk</td>
+<td>Long(?) Palm Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreePalmBeach_A_01_ForAttachment</td>
+<td>Straight Beach Palm Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>111</td>
+<td>Obj_TreePalm_A_02_Trunk</td>
+<td>Short(?) Palm Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreePalmBeach_A_01_ForAttachment</td>
+<td>Straight Beach Palm Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>112</td>
+<td>Obj_TreeSkyApple_A_L_01_Trunk</td>
+<td>Sky Apple Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeSkyApple_A_M_01_Trunk</td>
+<td>Sky Apple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>113</td>
+<td>Obj_TreeSkyApple_A_L_01_Trunk_Aligned</td>
+<td>Sky Apple Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeSkyApple_A_M_01_Trunk</td>
+<td>Sky Apple Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>114</td>
+<td>Obj_TreeSkyBroadleaf_A_L_Trunk</td>
+<td>Sky Oak Log (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteWood_A_01_ForAttachment</td>
+<td>Sky Oak Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>115</td>
+<td>Obj_TreeSkyBroadleaf_A_L_Trunk_Aligned</td>
+<td>Sky Oak Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteWood_A_01_ForAttachment</td>
+<td>Sky Oak Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>116</td>
+<td>Obj_TreeSkyBroadleaf_A_L_Trunk_NoDamage</td>
+<td>Sky Oak Log (Raft Construct)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteWood_A_01_ForAttachment</td>
+<td>Sky Oak Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>117</td>
+<td>Obj_TreeSkyDead_A_Snow_01_Trunk</td>
+<td>Dead Snowy Sky Oak Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteWood_A_01_ForAttachment</td>
+<td>Sky Oak Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>118</td>
+<td>Obj_TreeWhiteBirch_A_01_Trunk</td>
+<td>Birch Log 1? (From Tree)</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteBirch_A_01_ForAttachment</td>
+<td>Birch Log 1? (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>119</td>
+<td>Obj_TreeWhiteBirch_A_01_Trunk_Aligned</td>
+<td>Birch Log 1?</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteBirch_A_01_ForAttachment</td>
+<td>Birch Log 1? (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>120</td>
+<td>Obj_TreeWhiteBirch_A_02_Trunk</td>
+<td>Birch Log 2?</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteBirch_A_01_ForAttachment</td>
+<td>Birch Log 1? (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>121</td>
+<td>Obj_TreeWhiteBirch_A_03_Trunk</td>
+<td>Birch Log 3?</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteBirch_A_01_ForAttachment</td>
+<td>Birch Log 1? (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>122</td>
+<td>Obj_TreeWhiteBirch_A_04_Trunk</td>
+<td>Birch Log 4?</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWhiteBirch_A_01_ForAttachment</td>
+<td>Birch Log 1? (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>123</td>
+<td>Obj_TreeWillow_A_01_Trunk</td>
+<td>Willow Log</td>
+<td>x</td>
+<td>➡️</td>
+<td>Obj_TreeWillow_A_01_ForAttachment</td>
+<td>Willow Log (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>124</td>
+<td>SmokeFuit_Static</td>
+<td>Puffshroom (Static)</td>
+<td><em>sic</em></td>
+<td>➡️</td>
+<td>SmokeFruit</td>
+<td>Puffshroom</td>
+<td>x</td>
+</tr>
+<tr>
+<td>125</td>
+<td>SpObj_BalloonEnvelope_Capsule_A_01</td>
+<td>Balloon (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_BalloonEnvelope_A_01</td>
+<td>Balloon</td>
+<td>x</td>
+</tr>
+<tr>
+<td>126</td>
+<td>SpObj_Beamos_Capsule_A_01</td>
+<td>Beam Emitter (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_Beamos_A_01</td>
+<td>Beam Emitter</td>
+<td>x</td>
+</tr>
+<tr>
+<td>127</td>
+<td>SpObj_Cannon_Capsule_A_01</td>
+<td>Cannon (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_Cannon_A_01</td>
+<td>Cannon</td>
+<td>x</td>
+</tr>
+<tr>
+<td>128</td>
+<td>SpObj_Cart_Capsule_A_01</td>
+<td>Cart (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_Cart_A_01</td>
+<td>Cart</td>
+<td>x</td>
+</tr>
+<tr>
+<td>129</td>
+<td>SpObj_Chaser_Capsule_A_01</td>
+<td>Homing Cart (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_Chaser_A_01</td>
+<td>Homing Cart</td>
+<td>x</td>
+</tr>
+<tr>
+<td>130</td>
+<td>SpObj_ControlStick_Capsule_A_01</td>
+<td>Steering Stick (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_ControlStick_A_01</td>
+<td>Steering Stick</td>
+<td>x</td>
+</tr>
+<tr>
+<td>131</td>
+<td>SpObj_CookSet_Capsule_A_01</td>
+<td>Portable Pot (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_CookSet_A_01</td>
+<td>Portable Pot</td>
+<td>x</td>
+</tr>
+<tr>
+<td>132</td>
+<td>SpObj_ElectricBoxGenerator_Capsule_A_01</td>
+<td>Shock Emitter (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_ElectricBoxGenerator</td>
+<td>Shock Emitter</td>
+<td>x</td>
+</tr>
+<tr>
+<td>133</td>
+<td>SpObj_EnergyBank_Capsule_A_01</td>
+<td>Battery (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_EnergyBank_A_01</td>
+<td>Battery</td>
+<td>x</td>
+</tr>
+<tr>
+<td>134</td>
+<td>SpObj_EnergyBank_Capsule_A_02</td>
+<td>Big Battery (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_EnergyBank_A_02</td>
+<td>Big Battery</td>
+<td>x</td>
+</tr>
+<tr>
+<td>135</td>
+<td>SpObj_FastWheel_Capsule_A_01</td>
+<td>Small Wheel (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_FastWheel_A_01</td>
+<td>Small Wheel</td>
+<td>x</td>
+</tr>
+<tr>
+<td>136</td>
+<td>SpObj_FastWheel_Capsule_A_02</td>
+<td>Big Wheel (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_SwitchWheel_A_01</td>
+<td>Big Wheel</td>
+<td>x</td>
+</tr>
+<tr>
+<td>137</td>
+<td>SpObj_FlameThrower_Capsule_A_01</td>
+<td>Flame Emitter (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_FlameThrower_A_01</td>
+<td>Flame Emitter</td>
+<td>x</td>
+</tr>
+<tr>
+<td>138</td>
+<td>SpObj_FlashLight_Capsule_A_01</td>
+<td>Light (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_FlashLight_A_01</td>
+<td>Light</td>
+<td>x</td>
+</tr>
+<tr>
+<td>139</td>
+<td>SpObj_FloatingStone_Capsule_A_01</td>
+<td>Hover Stone (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_FloatingStone_A_01</td>
+<td>Hover Stone</td>
+<td>x</td>
+</tr>
+<tr>
+<td>140</td>
+<td>SpObj_GolemHead_Capsule_A_01</td>
+<td>Construct Head (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_GolemHead_A_01</td>
+<td>Construct Head</td>
+<td>x</td>
+</tr>
+<tr>
+<td>141</td>
+<td>SpObj_LiftableWaterPump_Capsule_A_01</td>
+<td>Hydrant (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_WaterPump_A_01</td>
+<td>Hydrant</td>
+<td>x</td>
+</tr>
+<tr>
+<td>142</td>
+<td>SpObj_LiftGeneratorWing_Capsule_A_01</td>
+<td>Wing (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_LiftGeneratorWing_A_01</td>
+<td>Wing</td>
+<td>x</td>
+</tr>
+<tr>
+<td>143</td>
+<td>SpObj_LightMirror_Capsule_A_01</td>
+<td>Mirror (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_LightMirror_A_01</td>
+<td>Mirror</td>
+<td>x</td>
+</tr>
+<tr>
+<td>144</td>
+<td>SpObj_Pile_Capsule_A_01</td>
+<td>Stake (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_Pile_A_01</td>
+<td>Stake</td>
+<td>x</td>
+</tr>
+<tr>
+<td>145</td>
+<td>SpObj_Rocket_Capsule_A_01</td>
+<td>Rocket (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_Rocket_A_01</td>
+<td>Rocket</td>
+<td>x</td>
+</tr>
+<tr>
+<td>146</td>
+<td>SpObj_SlipBoard_Capsule_A_01</td>
+<td>Sled (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj__A_01</td>
+<td>Sled</td>
+<td>x</td>
+</tr>
+<tr>
+<td>147</td>
+<td>SpObj_SnowMachine_Capsule_A_01</td>
+<td>Frost Emitter (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_SlipBoard_A_01</td>
+<td>Frost Emitter</td>
+<td>x</td>
+</tr>
+<tr>
+<td>148</td>
+<td>SpObj_SpringPiston_Capsule_A_01</td>
+<td>Spring (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_SnowMachine_A_01</td>
+<td>Spring</td>
+<td>x</td>
+</tr>
+<tr>
+<td>149</td>
+<td>SpObj_TiltingDoll_Capsule_A_01</td>
+<td>Stabilizer (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_TiltingDoll_A_01</td>
+<td>Stabilizer</td>
+<td>x</td>
+</tr>
+<tr>
+<td>150</td>
+<td>SpObj_TimerBomb_Capsule_A_01</td>
+<td>Time Bomb (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_TimerBomb_A_01</td>
+<td>Time Bomb</td>
+<td>x</td>
+</tr>
+<tr>
+<td>151</td>
+<td>SpObj_WindGenerator_Capsule_A_01</td>
+<td>Fan (Capsule)</td>
+<td>x</td>
+<td>➡️</td>
+<td>SpObj_WindGenerator_A_01</td>
+<td>Fan</td>
+<td>x</td>
+</tr>
+<tr>
+<td>152</td>
+<td>TwnObj_Village_Fishing_Boat_A_02</td>
+<td>Tenoko Island Boat</td>
+<td>x</td>
+<td>➡️</td>
+<td>TwnObj_Village_Fishing_Boat_A_02_ForAttachment</td>
+<td>Tenoko Island Boat (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>153</td>
+<td>Zonau_BlockMaster_Block</td>
+<td>Flux Construct I Block</td>
+<td>x</td>
+<td>➡️</td>
+<td>Zonau_BlockMaster_Block_ForAttachment</td>
+<td>Flux Construct I Block (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>154</td>
+<td>Zonau_BlockMaster_Block_Middle</td>
+<td>Flux Construct II Block</td>
+<td>x</td>
+<td>➡️</td>
+<td>Zonau_BlockMaster_Block_Middle_ForAttachment</td>
+<td>Flux Construct II Block (Replacement)</td>
+<td>x</td>
+</tr>
+<tr>
+<td>155</td>
+<td>Zonau_BlockMaster_Block_Senior</td>
+<td>Flux Construct III Block</td>
+<td>x</td>
+<td>➡️</td>
+<td>Zonau_BlockMaster_Block_Senior_ForAttachment</td>
+<td>Flux Construct III Block (Replacement)</td>
+<td>x</td>
 </tr>
 </tbody>
 </table>
