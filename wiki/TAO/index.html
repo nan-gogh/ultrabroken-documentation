@@ -1183,10 +1183,12 @@
 <ul>
 <li>You can't select it with Ultrahand, Fuse or Recall.</li>
 <li>It's always visible during Ascend animations.</li>
-<li>If Link catches fire (or starts glowing red as a fire warning), so will all wooden purgatory equipment.<!-- TODO: is the same true when Link freezes? --><ul>
-<li>It won't have any visible fire effects, but will still burn up after 60 seconds (5 for shields) — this will <strong>crash</strong> the game if you don't extinguish the fire first!</li>
+<li>If Link is subject to any fire or ice effects, all purgatory equipment will have the same appearance.<ul>
+<li>It won't have any visible fire effects, but wooden pugatory equipment will still burn up after 60 seconds (5 seconds for shields) — this will <strong>crash</strong> the game if you don't extinguish the fire first!</li>
 </ul>
 </li>
+<li>It can be a viable lightning target when Link is exposed to the sky during a thunderstorm.</li>
+<li>It participates in Link's warp animation.</li>
 </ul>
 <p>But it has the following differences:</p>
 <ul>
@@ -1195,14 +1197,15 @@
 <li>If you try fusing purgatory equipment to Mineru, the existing fuse on that attachment point is deleted and Fuse is cancelled. Nothing else happens.</li>
 </ul>
 </li>
-<li>It ignores cull instructions from culling areas.</li>
+<li>It never culls from being left in a culling area, or because Link culls.</li>
 </ul>
 <h2 id="fuse-entanglement">Fuse Entanglement</h2>
-<p>Purgatory weapons and shields have some additional features when on one side of a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="Fuse Entanglement" target="_blank" rel="noopener noreferrer">fuse entanglement</a>:</p>
+<p>Purgatory equipment has some additional features when on one side of a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="Fuse Entanglement" target="_blank" rel="noopener noreferrer">fuse entanglement</a>:</p>
 <h3 id="as-the-fe-parent">As the FE parent</h3>
 <ul>
 <li>Ultrahanding the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> child will temporarily reconnect the purgatory equipment to Link, and keep it at the same relative position it was at when first sent to purgatory. It re-releases when you let go of Ultrahand.<!-- I have a clip of doing this with a drop-purg shield and steering stick FE; should add it here. PF--></li>
-<li>Ultrahanding the FE child while loading a different file will <a href="search:UltraSLOT">UltraSLOT</a> the equipment.</li>
+<li>Ultrahanding the FE child while loading a different file will <a href="search:UltraSLOT">UltraSLOT</a> the equipment.
+    = <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/OL6/" class="glitch-autolink" title="Ultra Save Load Object Transfer" target="_blank" rel="noopener noreferrer">UltraSLOT</a> also works with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">cold fuse</a> connections, although the child will typically be deleted during the first load.</li>
 </ul>
 <h3 id="as-the-fe-child">As the FE child</h3>
 <ul>
@@ -1224,13 +1227,18 @@
 </ul>
 </li>
 <li>Drop some equipment while it's culled, and you have a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> of the same equipment kind. The dropped equipment will be sent to culled purgatory.<ul>
-<li>This equipment will lose collision, even if you use an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent to uncull it later.</li>
-<li>Equipment in culled purgatory isn't directly deleted on reload. If the equipment has an FE child that you then uncull with some other method, that item will persist across reloads as a <a href="search:PSLOT">PSLOT</a>.</li>
+<li>This equipment will permanently lose collision.</li>
+<li>If the purgatory equipment has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent, and you purgatorified it with an intangible cull, you can equip the parent to bring the child back into its last equip state.</li>
 </ul>
 </li>
 </ul>
 <h2 id="culled-purgatory">Culled purgatory</h2>
-<p>If equipment is in purgatory and culled, it will not be deleted on reload. If you fuse entangle something to that equipment, with some other way to uncull the object afterwards, that object will also persist as a <a href="label:PSLOT">PSLOT</a>.</p>
+<p>If equipment is in purgatory and culled, it will not be deleted on reload. If you fuse entangle something to that equipment, with some other way to uncull the object afterwards, that object will also persist as a <a href="search:PSLOT">PSLOT</a>.</p>
+<p>Culled purgatory and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BOF/" class="glitch-autolink" title="PSLOT" target="_blank" rel="noopener noreferrer">PSLOT</a> are similar to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7DA/" class="glitch-autolink" title="Invizuggle" target="_blank" rel="noopener noreferrer">invizuggle</a> and invizlot respectively, but with some differences:</p>
+<ul>
+<li>Culled purgatory equipment does not contribute to <a href="../8QH/">zuggle overload</a>, which can be convenient if you're already close to the threshold and don't want to push it further.</li>
+<li>PSLOTs cannot text dive unless you <a href="../L84/">zuggle drop</a> them first.</li>
+</ul>
 <h2 id="crash-risks">Crash risks</h2>
 <p>The following ways of deleting unculled purgatory equipment will <strong>crash</strong> the game:</p>
 <div class="admonition danger">
@@ -1245,6 +1253,7 @@
 <ul>
 <li>Reloading/warping, and letting purgatory equipment be deleted in the loading screen.</li>
 <li>Pausing and unequipping its <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent.</li>
+<li>Distance despawning it (going too far away) or its FE parent.</li>
 <li>Any normally crash-prone method while the equipment's non-purgatory FE/<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> counterpart has a proper two-way connection to Link. This can include ultrahanding it, or having it equipped. (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggling</a> it isn't strong enough a connection.)</li>
 </ul>
 <h2 id="other-effects">Other effects</h2>
