@@ -1185,6 +1185,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#the-setup-120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Setup 1.2.0+
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#method-9-for-shields-120" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1207,10 +1218,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-11-for-non-equipment" class="md-nav__link">
+  <a href="#method-11-for-non-equipment-120" class="md-nav__link">
     <span class="md-ellipsis">
       
-        "Method 11: For Non-equipment"
+        "Method 11: For Non-equipment" 1.2.0+
       
     </span>
   </a>
@@ -1427,17 +1438,17 @@
     LINK[Link]
     TORCH[Torch]
     FLAME[Flame Emitter]
-    A[DI Ghost (A)]
-    B[Normal Item (B)]
-    C[DI Ghost Shield (C)]
-    D[Normal Shield (D)]
-    E[Normal Weapon (E)]
+    A["DI Ghost (A)"]
+    B["Normal Item (B)"]
+    C["DI Ghost Shield (C)"]
+    D["Normal Shield (D)"]
+    E["Normal Weapon (E)"]
     F[Target]
 
     A --&gt;|DI| C
     B --&gt;|DI| C
     B --&gt;|Glue| TORCH
-    FLAME --&gt;|Point at| TORCH
+    FLAME --&gt;|"Point at"| TORCH
     LINK --&gt;|Smuggle| C
     LINK --&gt;|Equip| E
     LINK --&gt;|"Overload&lt;br/&gt;Drop"| D
@@ -1450,8 +1461,8 @@
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <ul>
-<li>This method uses Mineru as a culling source, placing her in limbo to maximize control over her culling.</li>
-<li>It is the fastest overload method, but can only be done when &amp; where Mineru's Sage Avatar can be summoned.</li>
+<li>This method uses Mineru as a culling source, placing her in Limbo to maximize control over her culling.</li>
+<li>It is the fastest overload method, but can only be done when &amp; where Mineru's Sage Avatar can be summoned and put into Limbo.</li>
 </ul>
 <p>Prepare:</p>
 <ul>
@@ -1465,7 +1476,7 @@
 <ol>
 <li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IG2/" class="glitch-autolink" title="Mineru Fuse Entanglement" target="_blank" rel="noopener noreferrer">Mineru FE</a> B</li>
 <li><a href="../TGY/">Smuggle</a> A, equip B, and target Shield <code>C</code> with Fuse</li>
-<li>Induce Mineru to <strong>cull</strong> and fuse shortly before B culls; this will DI C</li>
+<li>Induce Mineru to <strong>cull</strong> and fuse C to B shortly before B culls; this will DI C</li>
 <li>Place B aside and <em>smuggle</em> C</li>
 <li><a href="../8QH/">Overload Drop</a> Shield <code>D</code> and fuse to Weapon <code>E</code></li>
 </ol>
@@ -1509,30 +1520,34 @@
 <ul>
 <li>Method 4 uses Aerophasing as a culling source, allowing for a use-anywhere method on all patches.</li>
 <li>However: It's not very good</li>
+<li>(I should figure out the ghosted torch culling method and add it instead, huh...)</li>
+<li>(Ugh I could recommend it for sfo too)</li>
 </ul>
 <p>Prepare:</p>
 <ul>
-<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield (A), ideally a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> (all types can be mirrored)</li>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Overload</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield <code>A</code>, ideally a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> (all types can be mirrored)</li>
 <li>Intangible Aerophasing</li>
 </ul>
 <p>Creating the setup:</p>
 <ol>
-<li>Smuggle A and equip Normal Shield B, then stand on the phasing platform</li>
-<li>Just after Link unculls, fuse a weapon C to B; Link will cull and C will DI</li>
-<li>Drop B and leave it aside, but pick up and re-smuggle A</li>
-<li>Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> weapon D to A</li>
-<li>Swap shield, then drop it to leave A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped</li>
-<li>Smuggle C, equip B, and Overload Pickup D</li>
-<li>Glue D to something to elevate it and ensure it cannot accidentally be targeted by Fuse</li>
+<li><a href="../TGY/">Smuggle</a> A and equip Normal Shield <code>B</code>, then stand on the phasing platform</li>
+<li>Optionally, <strong>Pause</strong> the game while Link is culled. This causes him to always be unculled right after unpausing, making fuse timing easier throughout the method</li>
+<li>Just after Link uncullls, <strong>fuse</strong> a weapon <code>C</code> to B; Link will cull soon enough to Ghost DI C</li>
+<li>Drop B and leave it aside, but <strong>pick up</strong> and re-<strong>smuggle</strong> A</li>
+<li><a href="../0XV/">Overload FE</a> weapon <code>D</code> to A</li>
+<li>Swap shield, then drop it to leave A <a href="../L84/">Zuggle Dropped</a></li>
+<li><strong>Smuggle</strong> C, <strong>equip</strong> B, and <a href="../8QH/">Overload Pickup</a> D</li>
+<li><strong>Glue</strong> D to something to elevate it and ensure it cannot accidentally be targeted by Fuse. Face the blade <em>away</em> from the other object to keep fuse targets from colliding with it.</li>
 </ol>
 <p>Creating DI Ghosts</p>
 <ol>
 <li>Stand on the phasing platform</li>
-<li>Just after Link unculls, fuse target to D (overload fe)</li>
-<li>Just after Link unculls, fuse target to D again. As it already has an FE parent (C), this time it will Pseudo-fuse to D and begin fading away</li>
+<li>Just after Link unculls, <strong>fuse</strong> target to D (overload fe)</li>
+<li>Just after Link unculls, <strong>fuse</strong> target to D again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (C), this time it will Pseudo-Fuse to D and begin fading away</li>
 <li>Link will cull soon enough after to automatically DI the target (by culling B, which culls C)</li>
-<li>After 30 successful uses, destroy C and D, then remake them to continue</li>
+<li>Repeat from step 2 with the next target. The previous targets can stay attached to D without issue </li>
+<li>To continue beyond 30 successful uses, first <strong>destroy</strong> and <strong>remake</strong> C and D</li>
 </ol>
 <div class="admonition danger">
 <p class="admonition-title">Fuse-Over(load)</p>
@@ -1558,7 +1573,7 @@
     C --&gt;|FE| TARGET
     D --&gt;|CF| TARGET</code></pre>
 </details>
-<p><em>"Method" developed by Squidwest - no date or reference because it's not good enough</em></p>
+<p><em>"Method" developed by Squidwest - no date or reference because it's not good enough lol</em></p>
 </div>
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
@@ -1616,16 +1631,26 @@
 <p>If weapons were used, zuggle every other in the chain (or less frequently if desired), use fuse-over detangle to leave only a cf remnant, then <strong>destroy</strong> the detangled weapons to break the chain apart. (a proper weapon <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is not viable for this use-case)</p>
 </div>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[DI Ancestor] --&gt;|DI| B[DI Child]
-    C[Normal Parent] --&gt;|DI| B
-    B --&gt;|DI| D[DI Grandchild]
-    E[Normal Parent] --&gt;|DI| D
-    D --&gt;|DI| F[DI Descendant]
-    G[Normal Parent] --&gt;|DI| F
-    F --&gt;|...| H{Further Generations}
-    I[Normal Parent] --&gt;|...| H</code></pre>
+    A[DI Ancestor]
+    B[Normal Ancestor]
+    C[DI Parent]
+    D[Normal Parent]
+    E[DI Child]
+    F[Normal Parent]
+    G[DI Grandchild]
+    H[Normal Parent]
+    I{Further Generations}
+
+    A --&gt;|DI| C
+    B --&gt;|DI| C
+    C --&gt;|DI| E
+    D --&gt;|DI| E
+    E --&gt;|DI| G
+    F --&gt;|DI| G
+    G --&gt;|DI| I
+    H --&gt;|DI| I</code></pre>
 </details>
 <p><em>Method developed by Squidwest(?) - Jan 23, 2026(?)</em></p>
 <h4 class="collapse" id="method-6-chaining-mineru-fe-all-versions">Method 6: <br/>Chaining + Mineru FE <span class='ub-vr'><code>All versions</code></span></h4>
@@ -1660,7 +1685,7 @@
 <p>If weapons were used, zuggle every other in the chain (or less frequently if desired), use fuse-over detangle to leave only a cf remnant, then <strong>destroy</strong> the detangled weapons to break the chain apart. (a proper weapon <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is not viable for this use-case)</p>
 </div>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
     MINERU[Mineru]
     A[DI Ancestor]
@@ -1780,16 +1805,26 @@ Intangible Aerophasing</p>
 </ol>
 </details>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[DI Ancestor] --&gt;|DI| B[DI Child]
-    C[Normal Parent] --&gt;|DI| B
-    B --&gt;|DI| D[DI Grandchild]
-    E[Normal Parent] --&gt;|DI| D
-    D --&gt;|DI| F[DI Descendant]
-    G[Normal Parent] --&gt;|DI| F
-    F --&gt;|...| H{Further Generations}
-    I[Normal Parent] --&gt;|...| H</code></pre>
+    A[DI Ancestor]
+    B[Normal Ancestor]
+    C[DI Parent]
+    D[Normal Parent]
+    E[DI Child]
+    F[Normal Parent]
+    G[DI Grandchild]
+    H[Normal Parent]
+    I{Further Generations}
+
+    A --&gt;|DI| C
+    B --&gt;|DI| C
+    C --&gt;|DI| E
+    D --&gt;|DI| E
+    E --&gt;|DI| G
+    F --&gt;|DI| G
+    G --&gt;|DI| I
+    H --&gt;|DI| I</code></pre>
 </details>
 <p><em>Method developed by ??? - I don't know who did it first or when so I'm not prepared to claim authorship</em></p>
 </div>
@@ -1797,32 +1832,46 @@ Intangible Aerophasing</p>
 <div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <h3 class="tab-toc-heading" id="turbo-cloning-methods">Turbo Cloning Methods</h3>
 <ul>
-<li>These methods use a purgatorized <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield to repeatedly fuse, then Octo Detangle, each target in turn.</li>
+<li>These methods use a purgatorized <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield to repeatedly [Turbo Clone] each target in turn, without inadvertently dropping the DI shield.</li>
 <li>The setup will persist in place indefinitely until the game is closed.</li>
 <li>They are optimal for batch production without <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a>.</li>
 <li>They are also ideal for both shield batches of any size, and for repeatedly creating small batches of any target type.</li>
 <li>The only difference between the methods lies in the conisderations made for the target type.</li>
 </ul>
-<h4 class="collapse" id="method-9-for-shields-120">Method 9: <br/>For Shields <span class='ub-vr'><code>1.2.0+</code></span></h4>
+<h4 class="collapse" id="the-setup-120">The Setup <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<ul>
+<li>This is the base part of the setup, which only needs to be created once, and can be used for all the below methods.</li>
+<li>Thus, the below methods will assume this portion was already performed, and will use the established names for the components.</li>
+</ul>
 <p>Prepare:</p>
 <ul>
 <li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield <code>A</code></li>
 <li>An Octo Balloon</li>
-<li>A Shock Fruit</li>
+<li>A Shock Fruit (or other shock source)</li>
 </ul>
-<p>Creating the setup:</p>
+<p>Steps:</p>
 <ol>
-<li>Dupe 3 copies of A</li>
-<li>Use A to <a href="../BEW/">Clone</a> DI shield B, then dispose of the normal parent</li>
-<li>Use A and normal parent C to DI an Octo Balloon</li>
-<li><a href="../TGY/">Smuggle</a> B and equip C</li>
+<li><strong>Dupe</strong> 3 copies of A</li>
+<li>Use A to <a href="../BEW/#method-1-fuse-drop-swap-120">Ghost DI</a> DI shield <code>B</code>, then dispose of the normal parent</li>
+<li>Use A and normal parent <code>C</code> to Ghost DI an Octo Balloon</li>
+<li><a href="../TGY/">Smuggle</a> B and <strong>equip</strong> C</li>
 <li>Get shocked with shield unsheathed; this will purgatorize B and cause it to only attach when it has a dependency chain back to Link via A</li>
 <li>Use C so that the Octo Ballon detangles from it; C can then be disposed of or reused in the DI process</li>
 </ol>
+<h4 class="collapse" id="method-9-for-shields-120">Method 9: <br/>For Shields <span class='ub-vr'><code>1.2.0+</code></span></h4>
+<p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<ul>
+<li>This method is the simplest and fastest of the Turbo Cloning methods, making it ideal for quickly producing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts to, for example, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BOF/" class="glitch-autolink" title="PSLOT" target="_blank" rel="noopener noreferrer">PSLOT</a> objects.</li>
+</ul>
+<p>Prepare:</p>
+<ul>
+<li>The base setup</li>
+</ul>
 <details class="abstract">
-<summary>Creating DI Ghost Shields (Steady Variant)</summary>
+<summary>Creating <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Shields (Steady Variant)</summary>
 <ul>
 <li>This variant is slower, but follows a steady rhythm that makes it easier.</li>
 </ul>
@@ -1842,11 +1891,13 @@ Intangible Aerophasing</p>
 <p>Done correctly, each new target will drop on the opposite side of Link as the previous one, and none will block A from being duped from. The only necessary movement will be a single 180 degree turn per DI.</p>
 <div class="admonition tip">
 <p class="admonition-title">Mistake recovery</p>
-<p>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is failed, disregard the still-attached target. Recover by additionally duping a new target from one of the prior targets and dropping it.</p>
-<p>If a DI is failed, continue as though it was never attempted.</p>
+<ul>
+<li>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is failed, disregard the still-attached target and continue as normal. Don't detangle it later, as it will remain persistently Cold Fused to A (which can eventually make it unusable). A new target will need to be duped from one of the prior targets.</li>
+<li>If a DI is failed, continue as though it was never attempted.</li>
+</ul>
 </div>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
     A[A] --&gt;|DI| B[B]
     A --&gt;|DI| C[Octo Balloon]
@@ -1880,42 +1931,33 @@ Intangible Aerophasing</p>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Mistake recovery</p>
-<p>If a detanglement is failed, disregard the still-attached target. The large number of potential targets prevents this from disrupting continuation.</p>
-<p>If a DI is failed, continue as though it was never attempted.</p>
+<ul>
+<li>If a detanglement is failed, disregard the still-attached target and continue as normal. Don't detangle it later, as it will remain persistently Cold Fused to A (which can eventually make it unusable). The large pool of potential targets generally prevents this from affecting the process.</li>
+<li>If a DI is failed, continue as though it was never attempted.</li>
+</ul>
 </div>
-</details>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
     A[A] --&gt;|DI| B[B]
     A --&gt;|DI| C[Octo Balloon]
-    B --&gt;|DI| D[Target 1]
+    B --&gt;|DI| D[Target From Pool 1]
     E[Normal Parent 1] --&gt;|DI| D
     F[Dupe of A] --&gt;|Detangles| D
-    E --&gt;|Becomes| G[Target 2]
+    E --&gt;|Enters| G[Target Pool 2]
     F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
+</details>
 </details>
 <h4 class="collapse" id="method-10-for-weaponsbows-120">"Method 10: <br/>For Weapons/Bows" <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <p>Prepare:</p>
 <ul>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield <code>A</code></li>
-<li>At least one of the target type, ideally a DI Ghost</li>
-<li>An Octo Balloon</li>
-<li>A Shock Fruit</li>
+<li>The base setup</li>
+<li>At least one of the target type, ideally a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a></li>
 </ul>
-<p>Creating the setup:</p>
-<ol>
-<li>Dupe 3 copies of A</li>
-<li>Use A to <a href="../BEW/">Clone</a> DI shield B, then dispose of the normal parent</li>
-<li>Use A and normal parent C to DI an Octo Balloon</li>
-<li><a href="../TGY/">Smuggle</a> B and equip C</li>
-<li>Get shocked with shield unsheathed; this will purgatorize B and cause it to only attach when it has a dependency chain back to Link via A</li>
-<li>Use C so that the Octo Ballon detangles from it; C can then be disposed of or reused in the DI process</li>
-</ol>
 <details class="abstract">
-<summary>Making DI Ghost Weapons/Bows (Steady Variant)</summary>
+<summary>Creating <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapons/Bows (Steady Variant)</summary>
 <ul>
 <li>This variant is slower, but follows a steady rhythm that makes it easier.</li>
 </ul>
@@ -1937,9 +1979,20 @@ Intangible Aerophasing</p>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Mistake recovery</p>
-<p>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is failed, disregard the still-attached target and continue as normal. It can technically be detangled later, but the timing is stricter and it's slower than just running the process again.</p>
+<p>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is failed, disregard the still-attached target and continue as normal. Don't detangle it later, as it will remain persistently Cold Fused to A (which can eventually make it unusable).</p>
 <p>If a DI is failed, continue as though it was never attempted.</p>
 </div>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[A] --&gt;|DI| B[B]
+    A --&gt;|DI| C[Octo Balloon]
+    B --&gt;|DI| D[Target 1]
+    E[Normal Parent 1] --&gt;|DI| D
+    F[Dupe of A] --&gt;|Detangles| D
+    E --&gt;|Becomes| G[Discarded]
+    F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
+</details>
 </details>
 <details class="abstract">
 <summary>Creating DI Ghost Weapons/Bows (Fast Variant)</summary>
@@ -1964,38 +2017,33 @@ Intangible Aerophasing</p>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Mistake recovery</p>
-<p>If a detanglement is failed, disregard the still-attached target and continue as normal. It can technically be detangled later, but the timing is stricter and it's slower than just running the process again.</p>
+<p>If a detanglement is failed, disregard the still-attached target and continue as normal. Don't detangle it later, as it will remain persistently Cold Fused to A (which can eventually make it unusable).</p>
 <p>If a DI is failed, continue as though it was never attempted.</p>
 </div>
-</details>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
     A[A] --&gt;|DI| B[B]
     A --&gt;|DI| C[Octo Balloon]
-    B --&gt;|DI| D[Target 1]
+    B --&gt;|DI| D[Target From Pool]
     E[Normal Parent 1] --&gt;|DI| D
     F[Dupe of A] --&gt;|Detangles| D
     E --&gt;|Becomes| G[Discarded]
     F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
 </details>
-<h4 id="method-11-for-non-equipment">"Method 11: <br/>For Non-equipment"</h4>
+</details>
+<h4 id="method-11-for-non-equipment-120">"Method 11: <br/>For Non-equipment" <span class='ub-vr'><code>1.2.0+</code></span></h4>
+<p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<ul>
+<li>Unlike equipment, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> objects (even materials from the pouch) cannot be used as a cloning source, or interacted with in general, so they are typically less useful to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>.</li>
+<li>This method is provided mostly for posterity, but there are occasional uses for DI Ghost objects, so who knows what may come.</li>
+</ul>
 <p>Prepare:</p>
 <ul>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Shield <code>A</code></li>
-<li>An Octo Balloon</li>
-<li>A Shock Fruit</li>
+<li>The base setup (with named components)</li>
 <li>One of the target for <em>each</em> DI Ghost to be made</li>
 </ul>
-<p>Creating the setup:</p>
-<ol>
-<li>Dupe 3 copies of A</li>
-<li>Use A to <a href="../BEW/">Clone</a> DI shield B, then dispose of the normal parent</li>
-<li>Use A and normal parent C to DI an Octo Balloon</li>
-<li><a href="../TGY/">Smuggle</a> B and equip C</li>
-<li>Get shocked with shield unsheathed; this will purgatorize B and cause it to only attach when it has a dependency chain back to Link via A</li>
-<li>Use C so that the Octo Ballon detangles from it; C can then be disposed of or reused in the DI process</li>
-</ol>
 <details class="abstract">
 <summary>Creating DI Objects (Steady Variant)</summary>
 <ul>
@@ -2015,12 +2063,20 @@ Intangible Aerophasing</p>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Mistake recovery</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Mistake recovery</p>
-<p>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is failed, disregard the still-attached target and continue as normal. It can technically be detangled later, but the timing is stricter and it's slower than just running the process again.</p>
+<p>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">detanglement</a> is failed, disregard the still-attached target and continue as normal. Don't detangle it later, as it will remain persistently Cold Fused to A (which can eventually make it unusable).</p>
 <p>If a DI is failed, continue as though it was never attempted.</p>
 </div>
+<details class="example">
+<summary>Method Structure Diagram</summary>
+<pre class="mermaid"><code>graph TD
+    A[A] --&gt;|DI| B[B]
+    A --&gt;|DI| C[Octo Balloon]
+    B --&gt;|DI| D[Target 1]
+    E[Normal Parent 1] --&gt;|DI| D
+    F[Dupe of A] --&gt;|Detangles| D
+    E --&gt;|Becomes| G[Discarded]
+    F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
+</details>
 </details>
 <details class="abstract">
 <summary>Creating DI Objects (Fast Variant)</summary>
@@ -2037,22 +2093,22 @@ Intangible Aerophasing</p>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Mistake recovery</p>
-<p>If a detanglement is failed, disregard the still-attached target and continue as normal. It can technically be detangled later, but the timing is stricter and it's slower than just running the process again.</p>
+<p>If a detanglement is failed, disregard the still-attached target and continue as normal. Don't detangle it later, as it will remain persistently Cold Fused to A (which can eventually make it unusable).</p>
 <p>If a DI is failed, continue as though it was never attempted.</p>
 </div>
 <details class="example">
-<summary>Diagram</summary>
+<summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
     A[A] --&gt;|DI| B[B]
     A --&gt;|DI| C[Octo Balloon]
-    B --&gt;|DI| D[Target 1]
+    B --&gt;|DI| D[Target From Pool]
     E[Normal Parent 1] --&gt;|DI| D
     F[Dupe of A] --&gt;|Detangles| D
     E --&gt;|Becomes| G[Discarded]
     F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
 </details>
 </details>
-<p><em>Turbo Replication developed by Aergyl - Jan 31, 2026</em></p>
+<p><em>Turbo Replication discovered by Aergyl - Jan 31, 2026</em></p>
 <p><em>Batch methods developed by Squidwest - Mar 05, 2026</em></p>
 </div>
 </div>
@@ -2060,7 +2116,6 @@ Intangible Aerophasing</p>
 <h2 id="notes">Notes</h2>
 <ul>
 <li>Due to the difference in resulting structure, these methods are usually <em>not</em> interchangeable when called for by another tutorial. They have been grouped by structure for this reason.</li>
-<li>Additional line added to allow changes to be committed</li>
 </ul>
 <h2 id="references-and-resources">References and Resources</h2>
 <details class="quote">
