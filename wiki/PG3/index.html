@@ -1932,13 +1932,22 @@ Intangible Aerophasing</p>
 <details class="example">
 <summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[A] --&gt;|DI| B[B]
-    A --&gt;|DI| C[Octo Balloon]
-    B --&gt;|DI| D[Target 1]
-    E[Normal Parent 1] --&gt;|DI| D
-    F[Dupe of A] --&gt;|Detangles| D
-    E --&gt;|Becomes| G[Target 2]
-    F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
+    A["DI Ghost (A)"]
+    B["Purgatorized&lt;br/&gt;DI Ghost (B)"]
+    OCTO["DI Ghost&lt;br/&gt; Octo Balloon"]
+    C[Target 1]
+    D[Normal Parent 1]
+    E[Dupe of A]
+    F[Target 2]
+    G[Normal Parent 2]
+
+    A --&gt;|DI| B
+    A --&gt;|DI| OCTO
+    B --&gt;|DI| C
+    D --&gt;|DI| C
+    E --&gt;|Detangles| D
+    D --&gt;|Becomes| F
+    E --&gt;|Becomes| G</code></pre>
 </details>
 </details>
 <details class="abstract">
@@ -1972,13 +1981,22 @@ Intangible Aerophasing</p>
 <details class="example">
 <summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[A] --&gt;|DI| B[B]
-    A --&gt;|DI| C[Octo Balloon]
-    B --&gt;|DI| D[Target From Pool 1]
-    E[Normal Parent 1] --&gt;|DI| D
-    F[Dupe of A] --&gt;|Detangles| D
-    E --&gt;|Enters| G[Target Pool 2]
-    F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
+    A["DI Ghost (A)"]
+    B["Purgatorized&lt;br/&gt;DI Ghost (B)"]
+    OCTO["DI Ghost&lt;br/&gt; Octo Balloon"]
+    C[Target From Pool 1]
+    D[Normal Parent 1]
+    E[Dupe of A]
+    F[Target Pool 2]
+    G[Normal Parent 2]
+
+    A --&gt;|DI| B
+    A --&gt;|DI| OCTO
+    B --&gt;|DI| C
+    D --&gt;|DI| C
+    E --&gt;|Detangles| D
+    D --&gt;|Enters| F
+    E --&gt;|Becomes| G</code></pre>
 </details>
 </details>
 <h4 class="collapse" id="method-10-for-weaponsbows-120">Method 10: <br/>For Weapons/Bows <span class='ub-vr'><code>1.2.0+</code></span></h4>
@@ -2023,13 +2041,22 @@ Intangible Aerophasing</p>
 <details class="example">
 <summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[A] --&gt;|DI| B[B]
-    A --&gt;|DI| C[Octo Balloon]
-    B --&gt;|DI| D[Target 1]
-    E[Normal Parent 1] --&gt;|DI| D
-    F[Dupe of A] --&gt;|Detangles| D
-    E --&gt;|Becomes| G[Discarded]
-    F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
+    A["DI Ghost (A)"]
+    B["Purgatorized&lt;br/&gt;DI Ghost (B)"]
+    OCTO["DI Ghost&lt;br/&gt; Octo Balloon"]
+    C[Target 1]
+    D[Normal Parent 1]
+    E[Dupe of A]
+    F[Discarded]
+    G[Normal Parent 2]
+
+    A --&gt;|DI| B
+    A --&gt;|DI| OCTO
+    B --&gt;|DI| C
+    D --&gt;|DI| C
+    E --&gt;|Detangles| D
+    D --&gt;|Becomes| F
+    E --&gt;|Becomes| G</code></pre>
 </details>
 </details>
 <details class="abstract">
@@ -2061,13 +2088,22 @@ Intangible Aerophasing</p>
 <details class="example">
 <summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[A] --&gt;|DI| B[B]
-    A --&gt;|DI| C[Octo Balloon]
-    B --&gt;|DI| D[Target From Pool]
-    E[Normal Parent 1] --&gt;|DI| D
-    F[Dupe of A] --&gt;|Detangles| D
-    E --&gt;|Becomes| G[Discarded]
-    F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
+    A["DI Ghost (A)"]
+    B["Purgatorized&lt;br/&gt;DI Ghost (B)"]
+    OCTO["DI Ghost&lt;br/&gt; Octo Balloon"]
+    C[Target From Pool]
+    D[Normal Parent 1]
+    E[Dupe of A]
+    F[Discarded]
+    G[Normal Parent 2]
+
+    A --&gt;|DI| B
+    A --&gt;|DI| OCTO
+    B --&gt;|DI| C
+    D --&gt;|DI| C
+    E --&gt;|Detangles| D
+    D --&gt;|Becomes| F
+    E --&gt;|Becomes| G</code></pre>
 </details>
 </details>
 <h4 class="collapse" id="method-11-for-non-equipment-120">Method 11: <br/>For Non-equipment <span class='ub-vr'><code>1.2.0+</code></span></h4>
@@ -2108,13 +2144,22 @@ Intangible Aerophasing</p>
 <details class="example">
 <summary>Method Structure Diagram</summary>
 <pre class="mermaid"><code>graph TD
-    A[A] --&gt;|DI| B[B]
-    A --&gt;|DI| C[Octo Balloon]
-    B --&gt;|DI| D[Target 1]
-    E[Normal Parent 1] --&gt;|DI| D
-    F[Dupe of A] --&gt;|Detangles| D
-    E --&gt;|Becomes| G[Discarded]
-    F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
+    A["DI Ghost (A)"]
+    B["Purgatorized&lt;br/&gt;DI Ghost (B)"]
+    OCTO["DI Ghost&lt;br/&gt; Octo Balloon"]
+    C[Target 1]
+    D[Normal Parent 1]
+    E[Dupe of A]
+    F[Discarded]
+    G[Normal Parent 2]
+
+    A --&gt;|DI| B
+    A --&gt;|DI| OCTO
+    B --&gt;|DI| C
+    D --&gt;|DI| C
+    E --&gt;|Detangles| D
+    D --&gt;|Becomes| F
+    E --&gt;|Becomes| G</code></pre>
 </details>
 </details>
 <details class="abstract">
@@ -2142,28 +2187,18 @@ Intangible Aerophasing</p>
     B["Purgatorized&lt;br/&gt;DI Ghost (B)"]
     OCTO["DI Ghost&lt;br/&gt; Octo Balloon"]
     C[Target From Pool]
-    D[Normal Parent]
+    D[Normal Parent 1]
     E[Dupe of A]
     F[Discarded]
+    G[Normal Parent 2]
 
     A --&gt;|DI| B
     A --&gt;|DI| OCTO
     B --&gt;|DI| C
-    D --&gt;|DI| D
+    D --&gt;|DI| C
     E --&gt;|Detangles| D
     D --&gt;|Becomes| F
-    E --&gt;|Becomes| D</code></pre>
-</details>
-<details class="example">
-<summary>Method Structure Diagram</summary>
-<pre class="mermaid"><code>graph TD
-    A[A] --&gt;|DI| B[B]
-    A --&gt;|DI| C[Octo Balloon]
-    B --&gt;|DI| D[Target From Pool]
-    E[Normal Parent 1] --&gt;|DI| D
-    F[Dupe of A] --&gt;|Detangles| D
-    E --&gt;|Becomes| G[Discarded]
-    F --&gt;|Becomes| H[Normal Parent 2]</code></pre>
+    E --&gt;|Becomes| G</code></pre>
 </details>
 </details>
 <p><em>Turbo Replication discovered by Aergyl - Jan 31, 2026</em></p>
