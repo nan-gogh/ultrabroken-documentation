@@ -67,7 +67,7 @@ _BLOCK_RE = re.compile(
     r"(?P<indent>[ \t]*)---[ \t]*\n"
     # First body line MUST start with a known key so standalone --- (thematic
     # breaks used as section dividers) are never mistaken for block openers.
-    r"(?P<body>(?P=indent)(?:versions:|obsolete:)[^\n]*\n(?:(?P=indent)(?!---).*\n)*)"
+    r"(?P<body>(?P=indent)(?:versions:|obsolete:|notoc:)[^\n]*\n(?:(?P=indent)(?!---).*\n)*)"
     r"(?P=indent)---[ \t]*\n",
     re.MULTILINE,
 )
