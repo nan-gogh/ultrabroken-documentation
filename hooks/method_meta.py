@@ -629,13 +629,14 @@ def on_page_content(html: str, page, config, **kwargs) -> str:
 
     # Collect heading IDs marked data-notoc and prune the TOC tree.
     # The TOC is rendered AFTER on_page_content, so mutations here are visible.
-    notoc_id_re = re.compile(r'<h[1-6][^>]*\bdata-notoc="true"[^>]*\bid="([^"]+)"')
+    # Use a lookahead so data-notoc and id can appear in any order in the tag.
+    notoc_id_re = re.compile(r'<h[1-6](?=[^>]*\bdata-notoc="true")[^>]*\bid="([^"]+)"')
     notoc_ids = set(notoc_id_re.findall(html))
     if notoc_ids:
-        try:
-            _prune_toc(page.toc.items, notoc_ids)
-        except AttributeError:
-            pass  # Graceful fallback if MkDocs TOC structure differs
+        # MkDocs TableOfContents wraps a list in ._items (Sequence protocol).
+        toc_list = getattr(page.toc, '_items', getattr(page.toc, 'items', None))
+        if toc_list is not None:
+            _prune_toc(toc_list, notoc_ids)
 
     return html
 
