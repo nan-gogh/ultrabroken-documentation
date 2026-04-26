@@ -1280,6 +1280,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#hiding-sections-from-the-toc-with-notoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hiding sections from the TOC with notoc
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2956,6 +2967,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#hiding-sections-from-the-toc-with-notoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hiding sections from the TOC with notoc
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4572,6 +4594,11 @@
 <td>bool</td>
 <td><code>true</code> marks this method as obsolete. Renders a warning admonition and dims the tab label.</td>
 </tr>
+<tr>
+<td><code>notoc</code></td>
+<td>bool</td>
+<td><code>true</code> removes this heading — and all headings nested inside it — from the sidebar TOC and scroll spy.</td>
+</tr>
 </tbody>
 </table>
 <h4 id="syntax-tabbed-pages-multi-method">Syntax — Tabbed pages (multi-method)</h4>
@@ -4632,6 +4659,33 @@
 </tbody>
 </table>
 <p>Platform tags like <code>"Switch 2"</code> are excluded from range computation entirely — they are appended as separate badges after the version range badges.</p>
+<h4 id="hiding-sections-from-the-toc-with-notoc">Hiding sections from the TOC with <code>notoc</code></h4>
+<p>Sometimes a section exists for content organisation but adds noise to the sidebar — for example, a long appendix, internal notes, or a resource dump. Adding <code>notoc: true</code> to a metadata block removes that heading from the sidebar TOC and from the scroll spy (so the URL hash never updates to it).</p>
+<p>The scope is <strong>level-based</strong>: when a heading is marked <code>notoc</code>, every heading of strictly greater level that follows it is also suppressed, until a heading of equal or higher level resets the scope. You only need to mark the root — children are excluded automatically.</p>
+<div class="highlight"><pre><span></span><code><span class="gu">## Properties</span>
+&lt;!-- <span class="ni">@method</span>-meta versions=[] obsolete=false notoc=true --&gt;
+
+This section and everything nested inside it will not appear in the TOC.
+
+<span class="gu">### Sub-property A</span>
+
+Also hidden — level 3 is inside the level-2 notoc scope.
+
+<span class="gu">### Sub-property B</span>
+
+Also hidden.
+
+<span class="gu">## Next Section</span>
+
+Visible again — the notoc scope ended at this level-2 boundary.
+</code></pre></div>
+<p>The same field works on collapsible headings and tab headings:</p>
+<div class="highlight"><pre><span></span><code><span class="gu">## Appendix ?</span>
+&lt;!-- <span class="ni">@method</span>-meta versions=[] obsolete=false notoc=true --&gt;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>=== &quot;Internal Notes&quot; ###
+    &lt;!-- <span class="ni">@method</span>-meta versions=[] obsolete=false notoc=true --&gt;
+</code></pre></div>
 <h2 id="site-specific-features">Site-Specific Features</h2>
 <p>These are site-specific enhancements beyond standard Markdown.</p>
 <h3 id="search-links">Search Links</h3>
