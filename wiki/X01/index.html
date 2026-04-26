@@ -4603,10 +4603,11 @@
 </table>
 <h4 id="syntax-tabbed-pages-multi-method">Syntax — Tabbed pages (multi-method)</h4>
 <p>Place the block <strong>inside the tab</strong> at the same 4-space indentation as the tab content, immediately after the tab header:</p>
-<div class="highlight"><pre><span></span><code>=== &quot;Method 1 &lt;span class=&#39;ub-vr&#39;&gt;&lt;code&gt;1.2.0+&lt;/code&gt;&lt;/span&gt;&quot;
-    &lt;!-- <span class="ni">@method</span>-meta versions=[&quot;1.2.0&quot;, &quot;1.2.1&quot;, &quot;1.3.0/1.4.0&quot;, &quot;1.4.1&quot;, &quot;1.4.2&quot;, &quot;1.4.3&quot;, &quot;Switch 2&quot;] obsolete=false --&gt;
-    <span class="sb">`1.2.0`</span> <span class="sb">`1.2.1`</span> <span class="sb">`1.3.0/1.4.0`</span> <span class="sb">`1.4.1`</span> <span class="sb">`1.4.2`</span> <span class="sb">`1.4.3`</span> <span class="sb">`Switch 2`</span>
-
+<div class="highlight"><pre><span></span><code>=== &quot;Method 1&quot;
+    ---
+    versions: [&quot;1.2.0&quot;, &quot;1.2.1&quot;, &quot;1.3.0/1.4.0&quot;, &quot;1.4.1&quot;, &quot;1.4.2&quot;, &quot;1.4.3&quot;, &quot;Switch 2&quot;]
+    obsolete: false
+    ---
 <span class="w">    </span><span class="k">1.</span> Step one…
 </code></pre></div>
 <p>The tab label (and any enclosing collapsible heading) is rewritten automatically:</p>
@@ -4617,13 +4618,11 @@
 </code></pre></div>
 <h4 id="syntax-single-method-pages">Syntax — Single-method pages</h4>
 <p>On pages with no tabs, place the block at the top of the <code>## Instructions</code> section (no indentation needed):</p>
-<div class="highlight"><pre><span></span><code><span class="gu">## Instructions &lt;span class=&#39;ub-vr&#39;&gt;&lt;code&gt;1.0.0-1.1.1&lt;/code&gt;&lt;/span&gt;</span>
-&lt;!-- <span class="ni">@method</span>-meta versions=[&quot;1.0.0&quot;, &quot;1.1.0&quot;, &quot;1.1.1&quot;] obsolete=true --&gt;
-<span class="sb">`1.0.0`</span> <span class="sb">`1.1.0`</span> <span class="sb">`1.1.1`</span>
-
-!!! warning &quot;OBSOLETE CONTENT&quot;
-    This content is obsolete. Check out alternatives.
-
+<div class="highlight"><pre><span></span><code><span class="gu">## Instructions</span>
+---
+versions: [&quot;1.0.0&quot;, &quot;1.1.0&quot;, &quot;1.1.1&quot;]
+<span class="gu">obsolete: true</span>
+<span class="gu">---</span>
 <span class="k">1.</span> Step one…
 </code></pre></div>
 <h4 id="version-range-badge-logic">Version range badge logic</h4>
@@ -4663,7 +4662,9 @@
 <p>Sometimes a section exists for content organisation but adds noise to the sidebar — for example, a long appendix, internal notes, or a resource dump. Adding <code>notoc: true</code> to a metadata block removes that heading from the sidebar TOC and from the scroll spy (so the URL hash never updates to it).</p>
 <p>The scope is <strong>level-based</strong>: when a heading is marked <code>notoc</code>, every heading of strictly greater level that follows it is also suppressed, until a heading of equal or higher level resets the scope. You only need to mark the root — children are excluded automatically.</p>
 <div class="highlight"><pre><span></span><code><span class="gu">## Properties</span>
-&lt;!-- <span class="ni">@method</span>-meta versions=[] obsolete=false notoc=true --&gt;
+---
+<span class="gu">notoc: true</span>
+<span class="gu">---</span>
 
 This section and everything nested inside it will not appear in the TOC.
 
@@ -4681,10 +4682,14 @@ Visible again — the notoc scope ended at this level-2 boundary.
 </code></pre></div>
 <p>The same field works on collapsible headings and tab headings:</p>
 <div class="highlight"><pre><span></span><code><span class="gu">## Appendix ?</span>
-&lt;!-- <span class="ni">@method</span>-meta versions=[] obsolete=false notoc=true --&gt;
+---
+<span class="gu">notoc: true</span>
+<span class="gu">---</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>=== &quot;Internal Notes&quot; ###
-    &lt;!-- <span class="ni">@method</span>-meta versions=[] obsolete=false notoc=true --&gt;
+    ---
+    notoc: true
+    ---
 </code></pre></div>
 <h2 id="site-specific-features">Site-Specific Features</h2>
 <p>These are site-specific enhancements beyond standard Markdown.</p>

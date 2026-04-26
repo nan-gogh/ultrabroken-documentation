@@ -537,6 +537,16 @@ def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
     markdown = _expand_collapse_shorthand(markdown)
     if "---" not in markdown and '===' not in markdown and '{ .collapse' not in markdown:
         return markdown
+
+    # Protect fenced code blocks from all subsequent substitutions.
+    # (Same placeholder technique used in _expand_collapse_shorthand, but
+    # applied here to cover _BLOCK_RE, _patch_headings, and aggregation passes.)
+    placeholders: list[str] = []
+    def _protect_fence(m: re.Match) -> str:
+        placeholders.append(m.group(0))
+        return f"\x00CODE_BLOCK_{len(placeholders) - 1}\x00"
+    markdown = _FENCED_CODE_RE.sub(_protect_fence, markdown)
+
     # Skip the page-level YAML frontmatter (first --- ... --- at column 0).
     # We locate it and protect it from replacement.
     fm_match = re.match(r"^---\n[\s\S]*?\n---\n?", markdown)
@@ -553,7 +563,12 @@ def on_page_markdown(markdown: str, page, config, **kwargs) -> str:
     # (runs after tabs so tab-level sentinels are already available).
     after_agg = _auto_aggregate_collapsible_headings(after_agg)
     after_headings = _patch_headings(after_agg)
-    return frontmatter + after_headings
+    result = frontmatter + after_headings
+
+    # Restore protected code blocks.
+    for i, block in enumerate(placeholders):
+        result = result.replace(f"\x00CODE_BLOCK_{i}\x00", block)
+    return result
 
 
 # ── HTML phase ───────────────────────────────────────────────────────────────
