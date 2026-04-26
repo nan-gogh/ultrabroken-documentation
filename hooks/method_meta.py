@@ -75,10 +75,13 @@ _BLOCK_RE = re.compile(
 # Known keys inside the method block.
 _VERSIONS_RE = re.compile(r'^versions:\s*(.+)$', re.MULTILINE)
 _OBSOLETE_RE = re.compile(r'^obsolete:\s*(.+)$', re.MULTILINE)
+_NOTOC_RE    = re.compile(r'^notoc:\s*(true|yes|1)\s*$', re.MULTILINE | re.IGNORECASE)
 
 # Sentinel comment written into markdown so the HTML phase can locate the spot.
+# notoc= is optional (omitted when false) for backward compatibility with
+# sentinels written by older builds.
 _SENTINEL_RE = re.compile(
-    r"<!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?P<obsolete>true|false) -->"
+    r"<!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?P<obsolete>true|false)(?: notoc=(?P<notoc>true|false))? -->"
 )
 
 # Second-pass: heading immediately before a sentinel (blank line optional).
@@ -219,11 +222,16 @@ def _replace_block(match: re.Match) -> str:
     om = _OBSOLETE_RE.search(dedented)
     obsolete = om.group(1).strip().lower() in ("true", "yes", "1") if om else False
 
+    nm = _NOTOC_RE.search(dedented)
+    notoc = nm is not None
+
     # Build sentinel comment for the HTML phase.
+    notoc_part = " notoc=true" if notoc else ""
     sentinel = (
         f"{indent}<!-- @method-meta "
         f"versions={json.dumps(versions)} "
-        f"obsolete={'true' if obsolete else 'false'} -->\n"
+        f"obsolete={'true' if obsolete else 'false'}"
+        f"{notoc_part} -->\n"
     )
 
     # Build version badges (inline code spans).
@@ -597,11 +605,14 @@ def on_page_content(html: str, page, config, **kwargs) -> str:
         except Exception:
             versions = []
         obsolete = m.group("obsolete")
+        notoc = m.group("notoc") or "false"
         versions_attr = json.dumps(versions).replace("'", "&#39;")
+        notoc_attr = f' data-notoc="{notoc}"' if notoc == "true" else ""
         return (
             f'<div class="ub-method-meta" '
             f"data-versions='{versions_attr}' "
-            f'data-obsolete="{obsolete}" '
+            f'data-obsolete="{obsolete}"'
+            f"{notoc_attr} "
             f"hidden></div>"
         )
 
@@ -612,6 +623,19 @@ def on_page_content(html: str, page, config, **kwargs) -> str:
 
     # Mark headings (e.g. collapsible sections) of obsolete methods.
     html = _mark_obsolete_headings(html)
+
+    # Mark notoc headings and prune them from page.toc.
+    html = _mark_notoc_headings(html)
+
+    # Collect heading IDs marked data-notoc and prune the TOC tree.
+    # The TOC is rendered AFTER on_page_content, so mutations here are visible.
+    notoc_id_re = re.compile(r'<h[1-6][^>]*\bdata-notoc="true"[^>]*\bid="([^"]+)"')
+    notoc_ids = set(notoc_id_re.findall(html))
+    if notoc_ids:
+        try:
+            _prune_toc(page.toc.items, notoc_ids)
+        except AttributeError:
+            pass  # Graceful fallback if MkDocs TOC structure differs
 
     return html
 
@@ -696,6 +720,51 @@ def _mark_obsolete_labels(html: str) -> str:
         html = html.replace(old_tag, new_tag, 1)
 
     return html
+
+
+def _mark_notoc_headings(html: str) -> str:
+    """Add data-notoc="true" to headings directly before a ub-method-meta div
+    with data-notoc="true".  Uses the same backward-scan strategy as
+    _mark_obsolete_headings."""
+    META_RE = re.compile(
+        r'<div class="ub-method-meta"[^>]*\bdata-notoc="true"[^>]*>',
+    )
+    CLOSE_BEFORE = re.compile(r'</h([1-6])>[\s]*(?:<p>[\s]*)?$')
+
+    edits = []  # (start, end, new_attrs)
+    for meta_m in META_RE.finditer(html):
+        before = html[:meta_m.start()]
+        close_m = CLOSE_BEFORE.search(before)
+        if not close_m:
+            continue
+        level = close_m.group(1)
+        open_pat = re.compile(rf'<h{level}(\s[^>]*)>')
+        last_open = None
+        for om in open_pat.finditer(before[:close_m.start() + 1]):
+            last_open = om
+        if not last_open:
+            continue
+        attrs = last_open.group(1)
+        if 'data-notoc' in attrs:
+            continue
+        new_attrs = attrs + ' data-notoc="true"'
+        edits.append((last_open.start(1), last_open.end(1), new_attrs))
+
+    for start, end, new_attrs in reversed(edits):
+        html = html[:start] + new_attrs + html[end:]
+    return html
+
+
+def _prune_toc(items: list, excluded_ids: set) -> None:
+    """Remove TOC items (and all their descendants) whose id is in excluded_ids.
+    Operates in-place on the items list."""
+    i = 0
+    while i < len(items):
+        if items[i].id in excluded_ids:
+            del items[i]
+        else:
+            _prune_toc(items[i].children, excluded_ids)
+            i += 1
 
 
 def _mark_obsolete_headings(html: str) -> str:
