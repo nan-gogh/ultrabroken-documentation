@@ -108,8 +108,26 @@
     var hEls = article.querySelectorAll(
       'h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]'
     );
+
+    // Track notoc scope: when we enter a data-notoc heading, skip it and all
+    // subsequent headings of strictly greater level (the whole subtree).
+    var notocLevel = 0; // 0 = not in scope; N = suppress headings with level > N
     for (var i = 0; i < hEls.length; i++) {
-      headings.push({ id: hEls[i].id, el: hEls[i] });
+      var el = hEls[i];
+      var level = parseInt(el.tagName[1], 10);
+
+      // A heading at equal-or-higher priority exits any active notoc scope.
+      if (notocLevel > 0 && level <= notocLevel) {
+        notocLevel = 0;
+      }
+
+      // Skip headings inside an active notoc scope, or that are themselves notoc roots.
+      if (notocLevel > 0 || el.dataset.notoc === 'true') {
+        if (el.dataset.notoc === 'true') notocLevel = level;
+        continue;
+      }
+
+      headings.push({ id: el.id, el: el });
     }
 
     var tocNav = document.querySelector(
