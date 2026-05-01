@@ -464,18 +464,32 @@ def _aggregate_collapsible_heading(markdown: str, m: re.Match) -> tuple[list[str
     """Collect all child sentinels within the scope of a collapsible heading.
 
     Scope: from after the heading line to (but not including) the next heading
-    whose level is <= this heading's level.
+    whose level is <= this heading's level, OR the next tab line (=== "…") that
+    is shallower than this heading's own indent (which signals a sibling or
+    parent tab — content from another tab must not bleed into this scope).
     Returns (union_versions, all_obsolete) or None if no sentinels found.
     """
     level = len(m.group('hashes'))
+    heading_indent = len(m.group('indent'))
     scope_start = m.end()
 
-    # A heading boundary is any heading at the same or higher level.
-    # #{1,level}(?!#) matches exactly 1..level hashes not followed by another #.
-    boundary_re = re.compile(
-        r'^[ \t]*#{1,' + str(level) + r'}(?!#) ',
-        re.MULTILINE,
-    )
+    # Primary boundary: heading at the same or higher level.
+    # Secondary boundary: a tab line (=== "…") at indent strictly less than
+    # this heading's indent, meaning it belongs to a sibling or parent tab.
+    if heading_indent > 0:
+        boundary_re = re.compile(
+            r'^(?:'
+            r'[ \t]*#{1,' + str(level) + r'}(?!#) '
+            r'|[ \t]{0,' + str(heading_indent - 1) + r'}===[ \t]+"'
+            r')',
+            re.MULTILINE,
+        )
+    else:
+        # Heading is at column 0 — not inside any tab, so no tab boundary needed.
+        boundary_re = re.compile(
+            r'^[ \t]*#{1,' + str(level) + r'}(?!#) ',
+            re.MULTILINE,
+        )
     boundary = boundary_re.search(markdown, scope_start)
     scope_end = boundary.start() if boundary else len(markdown)
     scope_text = markdown[scope_start:scope_end]
