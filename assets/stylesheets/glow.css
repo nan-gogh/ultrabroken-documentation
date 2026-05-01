@@ -718,6 +718,12 @@ button.search-link:focus,
   color: var(--teal-glow) !important;
 }
 
+/* Material sets h5/h6 to bold by default — override to match h3/h4 weight */
+.md-typeset h5,
+.md-typeset h6 {
+  font-weight: 400;
+}
+
 /* Auto section separators � thin line below H2-H4 headings */
 .md-typeset :is(h2, h3, h4) {
   border-bottom: 1px solid var(--hr-sep);
