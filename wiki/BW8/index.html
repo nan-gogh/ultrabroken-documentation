@@ -1039,10 +1039,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#forewarnings-and-tips" class="md-nav__link">
+  <a href="#information" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Forewarnings and Tips
+        Information
       
     </span>
   </a>
@@ -1062,15 +1062,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#method-1attached-purgatory-overload-batch-di" class="md-nav__link">
+  <a href="#method-1-persistentpurgatory-overload-batch-di" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 1:Attached Purgatory + Overload Batch DI
+        Method 1 (Persistent):Purgatory + Overload Batch DI
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Method 1:Attached Purgatory + Overload Batch DI">
+    <nav class="md-nav" aria-label="Method 1 (Persistent):Purgatory + Overload Batch DI">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1123,15 +1123,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-2-attached-purgatory-di" class="md-nav__link">
+  <a href="#method-2-localpurgatory-di" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 2: Attached Purgatory + DI
+        Method 2 (Local):Purgatory + DI
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Method 2: Attached Purgatory + DI">
+    <nav class="md-nav" aria-label="Method 2 (Local):Purgatory + DI">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1184,15 +1184,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-3-overload-cold-fuse" class="md-nav__link">
+  <a href="#method-3-localoverload-cold-fuse" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 3: Overload Cold Fuse
+        Method 3 (Local):Overload Cold Fuse
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Method 3: Overload Cold Fuse">
+    <nav class="md-nav" aria-label="Method 3 (Local):Overload Cold Fuse">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1234,15 +1234,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#method-4-overload-cold-fuse-permacull" class="md-nav__link">
+  <a href="#method-4-permanentoverload-cold-fuse-permacull" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method 4: Overload Cold Fuse + Permacull
+        Method 4 (Permanent):Overload Cold Fuse + Permacull
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Method 4: Overload Cold Fuse + Permacull">
+    <nav class="md-nav" aria-label="Method 4 (Permanent):Overload Cold Fuse + Permacull">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1334,6 +1334,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#page-todos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Todos:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#resources_12" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1408,49 +1419,47 @@
 </div>
 <p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
-<p>By creating 600-700 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> connections, the game will be overloaded and unable to form any new dependencies. This causes every actor to act <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Overloaded, and every equipment to act Fuse Overloaded.</p>
+<p>By creating 600-700 dependencies via Fuse, the game will be overloaded and unable to form any new dependencies. This causes every actor to act <a href="../8QH/">Zuggle Overloaded</a>, and every equipment to act <a href="../76A/">Fuse Overloaded</a>.</p>
 <p><em>Discovered by mulberry; Optimizations by Aergyl, Jordan, MandelbrotChaylay, mulberry, Squidwest</em></p>
-<p>Page Todos:</p>
-<ul>
-<li>Find better minigames to recommend</li>
-<li>Re-recheck duplication method(s)</li>
-<li>Actually obtain Zelda's Torch at some point to provide better directions and warn of the pitfalls</li>
-<li>Get some illustrative images, screenshots, and videos going</li>
-<li>Run the pre-<code>1.2.0</code> aerophasing setup by someone who actually plays an old patch</li>
-<li>Update/Publish the permalinked pages to include missing modern methods &amp; tech</li>
-<li>Additionally, update the permalinked pages to include <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> tech wherever needed/practical</li>
-</ul>
-<h2 id="forewarnings-and-tips">Forewarnings and Tips</h2>
+<h2 id="information">Information</h2>
+<p>Every time the game needs to relate one actor to another, it creates a "dependency". This includes things like equipment&lt;-&gt;user, fuse&lt;-&gt;equipment, mountable&lt;-&gt;rider, liftable&lt;-&gt;lifter, and so on.</p>
+<p>Any given actor stores every dependency it's involved in within its own array, with a maximum of 33 entries per actor (29 on <code>1.0.0</code>). If a dependency tries to be created, but one of the actors involved has a full array, the dependency will simply not be created. What we call the result depends on the actor in question. For Link, it's <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a>. For a Fuse parent, it's <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/76A/" class="glitch-autolink" title="Fuse Overload" target="_blank" rel="noopener noreferrer">Fuse Overload</a>. For a Fuse child, it's Object Overload.</p>
+<p>However, the game also stores any extant dependencies in a <em>global</em> array with a maximum of 750 entries. If this array is filled, dependencies will <em>always</em> fail to be created, even if there is room in the involved actors' own arrays.</p>
+<p>The global array is typically nearly empty, so a very large number of connections need to be made to fill it. In practice, only one kind of dependency is suitable: <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a>, which can be used to create arbitrary networks of dependencies between fusible objects. On top of this, only two methods of creating CF connections are up to the task: <a href="../O64/">Overload Cold Fuse</a> and <a href="../MG1/">Despawn Interrupt</a> (the latter of which typically requires the former as a supplement).</p>
+<p>Like many arrays, if the global dependency array becomes nearly full, the game will attempt to free up space by performing a Panic Blood Moon. Many game states prevent these from occuring, so <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> will usually (but not always) be performed in one of these states.</p>
 <div class="admonition danger">
-<p class="admonition-title">Panic!</p>
-<p>While <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> is active, Panic Blood Moons will constantly occur if they are able (ie on the main map and not in a minigame or cutscene). Additionally, some dependencies will <strong>crash the game</strong> if they fail to form!</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Buckle up!</p>
-<p>Due to the massive number of connections required, every method is relatively complex. Before you begin, be sure to read the steps carefully, and be sure you understand the glitches that go into your chosen method.</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Method Types</p>
-<p>There are three types of SFO method:</p>
+<p class="admonition-title">Crash risk</p>
+<p>Finally, some dependencies will <strong>crash the game</strong> if they fail to form. Suspected examples include:</p>
 <ul>
-<li>Local methods are usually simpler and easier, but cannot be used for some cases (eg Zelda's Torch) because they will be destroyed on warp (including Panic Blood Moons), load, or excessive distance.</li>
-<li>Persistent methods are usually more complex, but can be used for all cases due to being protected from unintentional destruction (but still able to be destroyed on purpose).</li>
-<li>Permacull methods are local methods with all the components permanently culled. This balances usefulness and simplicity, at the cost of needing to close the game to be undone.</li>
+<li>Gorons and their "Goron Knuckle" weapon</li>
+<li>Monster-Control Crew leaders and their battle standard</li>
 </ul>
 </div>
 <h2 id="instructions">Instructions</h2>
-<p>The precise instructions for <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> sometimes change depending on the intended usage. To account for this, several variants of each method are provided: One basic variant, plus one for each valid use case.</p>
-<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1:<br/>Attached Purgatory + Overload Batch DI <span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_2">Method 2: Attached Purgatory + DI <span class='ub-vr'><code>1.2.0+</code></span></label><label for="__tabbed_1_3">Method 3: Overload Cold Fuse <span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_4">Method 4: Overload Cold Fuse + Permacull <span class='ub-vr'><code>All versions</code></span></label></div>
+<ul>
+<li>Expected execution time (from a clean launch of the game) is typically 20-40 minutes, depending on method and skill level. Before proceeding with a method, please read the instructions carefully, and be sure you understand the component glitches and techniques.</li>
+<li>The precise instructions for <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> sometimes change depending on the intended usage. To account for this, several variants of each method are provided: One basic variant, plus one for each valid use case (excluding niche uses).</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Method Types</p>
+<p>This page categorizes SFO methods into three types:</p>
+<ul>
+<li>"Local" methods are usually simpler and easier, but cannot be used for some cases (eg Zelda's Torch) because they will be destroyed on warp (including Panic Blood Moons), load, or excessive distance.</li>
+<li>"Persistent" methods are usually more complex, but can be used for all cases due to being protected from unintentional destruction (but are still able to be destroyed on purpose).</li>
+<li>"Permanent" methods are local methods with all the components permanently culled. This balances usefulness and simplicity, at the cost of needing to close the game to be undone.</li>
+</ul>
+</div>
+<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Method 1 (Persistent):<br/>Purgatory + Overload Batch DI <span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_2">Method 2 (Local):<br/>Purgatory + DI <span class='ub-vr'><code>1.2.0+</code></span></label><label for="__tabbed_1_3">Method 3 (Local):<br/>Overload Cold Fuse <span class='ub-vr'><code>All versions</code></span></label><label for="__tabbed_1_4">Method 4 (Permanent):<br/>Overload Cold Fuse + Permacull <span class='ub-vr'><code>All versions</code></span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<h3 class="tab-toc-heading" id="method-1attached-purgatory-overload-batch-di">Method 1:<br/>Attached Purgatory + Overload Batch DI</h3>
+<h3 class="tab-toc-heading" id="method-1-persistentpurgatory-overload-batch-di">Method 1 (Persistent):<br/>Purgatory + Overload Batch DI</h3>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h4 class="collapse" id="basic-info" data-notoc="true">Basic info</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
-<li>This is a <strong>Persistent</strong> method that makes use of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment to maximize adjustability, ease of use, and framerate. </li>
+<li>This is a <a href="#Instructions">Persistent</a> method that makes use of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> equipment to maximize adjustability, ease of use, and framerate. </li>
 <li>It can be used for anything, but is best-suited for Mineru's Arm and Zelda's Torch.</li>
 <li>While it is technically possible on <code>1.1.2</code> and earlier, the absence of "Drop-Swap Culling" makes it significantly more difficult.</li>
 <li>Methods 3 and 4 will be faster and easier on those versions (for local and persistent needs, respectively).</li>
@@ -1724,13 +1733,13 @@
 </div>
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<h3 class="tab-toc-heading" id="method-2-attached-purgatory-di">Method 2: Attached Purgatory + DI</h3>
+<h3 class="tab-toc-heading" id="method-2-localpurgatory-di">Method 2 (Local):<br/>Purgatory + DI</h3>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h4 class="collapse" id="basic-info_1" data-notoc="true">Basic info</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
-<li>This is a <strong>Local</strong> method that makes use of a specially-prepared equipment item to maximize portability and in-the-moment speed.</li>
+<li>This is a <a href="#Instructions">Local</a> method that makes use of a specially-prepared equipment item to maximize portability and in-the-moment speed.</li>
 <li>It is ideal for duplication, and can be used for Mineru's Arm by an older route, but cannot be used for Zelda's Torch (...yet).</li>
 <li>While it is technically possible on <code>1.1.2</code> and earlier, the absence of "Drop-Swap Culling" makes it significantly more difficult.</li>
 <li>Methods 3 and 4 will be faster and easier on those versions (for local and persistent needs, respectively).</li>
@@ -1924,13 +1933,13 @@
 </div>
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<h3 class="tab-toc-heading" id="method-3-overload-cold-fuse">Method 3: Overload Cold Fuse</h3>
+<h3 class="tab-toc-heading" id="method-3-localoverload-cold-fuse">Method 3 (Local):<br/>Overload Cold Fuse</h3>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h4 class="collapse" id="basic-info_2" data-notoc="true">Basic info</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
-<li>This is a <strong>Local</strong> method with minimal additional glitches required. </li>
+<li>This is a <a href="#Instructions">Local</a> method with minimal additional glitches required. </li>
 <li>It is perfectly acceptable for duplicating throwables and holdables on all versions, and can obtain Mineru's Arm by an older route.</li>
 <li>It can also be made permanent via permacull; This is provided as Method 4 for clarity.</li>
 </ul>
@@ -2110,13 +2119,13 @@
 </div>
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<h3 class="tab-toc-heading" id="method-4-overload-cold-fuse-permacull">Method 4: Overload Cold Fuse + Permacull</h3>
+<h3 class="tab-toc-heading" id="method-4-permanentoverload-cold-fuse-permacull">Method 4 (Permanent):<br/>Overload Cold Fuse + Permacull</h3>
 <p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h4 class="collapse" id="basic-info_3" data-notoc="true">Basic info</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
-<li>This is a <strong>Permacull</strong> method with minimal additional glitches required. It is acceptable for Zelda's Torch and Mineru's Arm.</li>
+<li>This is a <a href="#Instructions">Permanent</a> method with minimal additional glitches required. It is acceptable for Zelda's Torch and Mineru's Arm.</li>
 <li>It <em>can</em> be used for duplication, but is needlessly complex and hazardous for this usage; Use Method 3 instead.</li>
 <li>The steps given are specialized for <code>1.1.2</code> and below. They will work on <code>1.2.0+</code>, but are inefficient.</li>
 </ul>
@@ -2359,6 +2368,16 @@
 <li>Hand Purg + non-batch DI SFO by mulberry - Feb 24th, 2026</li>
 <li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> SFO by Aergyl, mulberry - Dec 05th, 2026</li>
 <li>(Method 4 is really only an extension of Method 3, so I don't think it even <em>has</em> seperate credits? I ought to try this "reading" thing sometime idk)</li>
+</ul>
+<h3 class="collapse" id="page-todos">Page Todos:</h3>
+<ul>
+<li>Find better minigames to recommend</li>
+<li>Re-recheck duplication method(s)</li>
+<li>Actually obtain Zelda's Torch at some point to provide better directions and warn of the pitfalls</li>
+<li>Get some illustrative images, screenshots, and videos going</li>
+<li>Run the pre-<code>1.2.0</code> aerophasing setup by someone who actually plays an old patch</li>
+<li>Update/Publish the permalinked pages to include missing modern methods &amp; tech</li>
+<li>Additionally, update the permalinked pages to include <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> tech wherever needed/practical</li>
 </ul>
 <h3 id="resources_12">Resources</h3>
 <details class="quote">
