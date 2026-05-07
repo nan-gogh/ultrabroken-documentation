@@ -139,6 +139,12 @@
       "label": "BS"
     },
     {
+      "id": "wiki/PG3/",
+      "uid": "PG3",
+      "name": "Batch Despawn Interrupt",
+      "label": "BDI"
+    },
+    {
       "id": "wiki/EJ4/",
       "uid": "EJ4",
       "name": "Bomb Skew",
@@ -2685,6 +2691,10 @@
       "target": "wiki/MG1/"
     },
     {
+      "source": "wiki/BEW/",
+      "target": "wiki/PG3/"
+    },
+    {
       "source": "wiki/BK4/",
       "target": "wiki/00I/"
     },
@@ -3709,6 +3719,10 @@
       "target": "wiki/NU6/"
     },
     {
+      "source": "wiki/MG1/",
+      "target": "wiki/PG3/"
+    },
+    {
       "source": "wiki/MLG/",
       "target": "wiki/EY8/"
     },
@@ -3947,6 +3961,62 @@
     {
       "source": "wiki/PAE/",
       "target": "wiki/SIH/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/76A/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/7KZ/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/8QH/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/9R8/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/BEW/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/BOF/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/BY4/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/CVH/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/GDL/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/IG2/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/K4F/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/MCM/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/MG1/"
+    },
+    {
+      "source": "wiki/PG3/",
+      "target": "wiki/O64/"
     },
     {
       "source": "wiki/PII/",

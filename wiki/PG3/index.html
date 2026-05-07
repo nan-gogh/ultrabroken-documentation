@@ -89,9 +89,13 @@
     @media(max-width:76.25em){.ub-header-toggles{display:none!important}}
   </style>
 
+      <meta property="og:title" content="Batch Despawn Interrupt [BDI]">
+    <meta property="og:description" content="A collection of methods to produce large numbers of DI Ghosts quickly.&#10;&#10;[1.0.0] [1.1.0] [1.1.1] [1.1.2] [1.2.0] [1.2.1] [1.3.0/1.4.0] [1.4.1] [1.4.2] [1.4.3] [Switch 2]&#10;&#10;[PG3]">
+    <meta property="og:url" content="https://nan-gogh.github.io/ultrabroken-documentation/wiki/glitchcraft/batch-despawn-interrupt/">
+    <meta property="og:site_name" content="Ultrabroken Archives">
+    <meta name="theme-color" content="#00f0c2">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Batch Despawn Interrupt","url":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/","mainEntityOfPage":{"@type":"WebPage","@id":"https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/"},"publisher":{"@type":"Organization","name":"Ultrabroken Archives"},"description":"A collection of methods to produce large numbers of DI Ghosts quickly.","author":[{"@type":"Person","name":"Aergyl"},{"@type":"Person","name":"mulberry"},{"@type":"Person","name":"Squidwest"}],"datePublished":"2026-01-17","keywords":"despawn-interrupt, culling"}</script>
-    <meta name="robots" content="noindex">
-  </head>
+</head>
   
   
     
@@ -99,7 +103,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal" data-ub-draft="true">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -1154,23 +1158,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Method 5: Chaining + Drop-Swap Culling 1.2.0+">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#requirements_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Requirements
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1192,23 +1179,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Method 7: Chaining + Aerophasing All versions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#requirements_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Requirements
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1397,10 +1367,6 @@
 
 
 <h1 id="batch-despawn-interrupt-bdi">Batch Despawn Interrupt <code>BDI</code></h1>
-<div class="admonition warning">
-<p class="admonition-title">UNDER CONSTRUCTION</p>
-<p>This page is still being written. It may be used as-is, but some sections are incomplete, and others may contain incorrect information.</p>
-</div>
 <p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
 <p>Some of the properties of <a href="../BEW/">DI Ghosts</a> (typically equipment, sometimes otherwise) are best exploited with large numbers of them. This page provides various convenient ways to produce large numbers of them.</p>
@@ -1442,32 +1408,32 @@
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
 <li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield <code class="highlight"><span class="n">A</span></code>, ideally a <a href="../BEW/">DI Ghost</a> (all types can be mirrored)</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield <code>A</code>, ideally a <a href="../BEW/">DI Ghost</a> (all types can be mirrored)</li>
 </ul>
 <h5 id="creating-the-setup" data-notoc="true">Creating the setup</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li><a href="../TGY/">Smuggle</a> <code class="highlight"><span class="n">A</span></code> and equip normal shield <code class="highlight"><span class="n">B</span></code></li>
-<li><strong>Fuse</strong> weapon <code class="highlight"><span class="n">C</span></code> to <code class="highlight"><span class="n">B</span></code> and <strong>pause</strong> a few frames after (for instance, by buffering the ability wheel at the same time as pressing Fuse, then selecting Map)</li>
-<li><strong>Drop</strong> <code class="highlight"><span class="n">B</span></code>, <strong>swap</strong> to another shield, and <strong>unequip</strong> that shield, then <strong>unpause</strong></li>
-<li><em>Smuggle</em> <code class="highlight"><span class="n">A</span></code> again</li>
+<li><a href="../TGY/">Smuggle</a> <code>A</code> and equip normal shield <code>B</code></li>
+<li><strong>Fuse</strong> weapon <code>C</code> to <code>B</code> and <strong>pause</strong> a few frames after (for instance, by buffering the ability wheel at the same time as pressing Fuse, then selecting Map)</li>
+<li><strong>Drop</strong> <code>B</code>, <strong>swap</strong> to another shield, and <strong>unequip</strong> that shield, then <strong>unpause</strong></li>
+<li><em>Smuggle</em> <code>A</code> again</li>
 <li><a href="../8QH/">Overload drop</a> a shield and <strong>Fuse</strong> it to a weapon</li>
-<li><strong>Fuse</strong> weapon <code class="highlight"><span class="n">D</span></code> to said shield, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>-ing it to <code class="highlight"><span class="n">A</span></code></li>
-<li><strong>Swap</strong> shield, then <a href="../C6H/">Warm Drop</a> it to leave <code class="highlight"><span class="n">A</span></code> <a href="../L84/">Zuggle Dropped</a></li>
+<li><strong>Fuse</strong> weapon <code>D</code> to said shield, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>-ing it to <code>A</code></li>
+<li><strong>Swap</strong> shield, then <a href="../C6H/">Warm Drop</a> it to leave <code>A</code> <a href="../L84/">Zuggle Dropped</a></li>
 <li><strong>Unequip</strong> weapon</li>
-<li><em>Smuggle</em> <code class="highlight"><span class="n">C</span></code>, pick up <code class="highlight"><span class="n">B</span></code>, and <a href="../8QH/">Overload Pickup</a> <code class="highlight"><span class="n">D</span></code></li>
-<li>Glue <code class="highlight"><span class="n">D</span></code> to something to elevate it and ensure it cannot accidentally be targeted by Fuse. Face the blade <em>away</em> from the other object to keep fuse targets from colliding with it</li>
-<li>Optionally, position a wall behind Link's back which can force <code class="highlight"><span class="n">B</span></code> to <strong>fail-drop</strong></li>
+<li><em>Smuggle</em> <code>C</code>, pick up <code>B</code>, and <a href="../8QH/">Overload Pickup</a> <code>D</code></li>
+<li>Glue <code>D</code> to something to elevate it and ensure it cannot accidentally be targeted by Fuse. Face the blade <em>away</em> from the other object to keep fuse targets from colliding with it</li>
+<li>Optionally, position a wall behind Link's back which can force <code>B</code> to <strong>fail-drop</strong></li>
 </ol>
 <h5 id="creating-di-ghosts" data-notoc="true">Creating DI Ghosts</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li><strong>Fuse</strong> target to <code class="highlight"><span class="n">D</span></code> (<a href="../0XV/">Overload FE</a> to <code class="highlight"><span class="n">C</span></code>)</li>
-<li><strong>Fuse</strong> target to <code class="highlight"><span class="n">D</span></code> again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (<code class="highlight"><span class="n">C</span></code>), this time it will Pseudo-Fuse to <code class="highlight"><span class="n">D</span></code> and begin fading away</li>
+<li><strong>Fuse</strong> target to <code>D</code> (<a href="../0XV/">Overload FE</a> to <code>C</code>)</li>
+<li><strong>Fuse</strong> target to <code>D</code> again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (<code>C</code>), this time it will Pseudo-Fuse to <code>D</code> and begin fading away</li>
 <li><strong>Pause</strong> the game before the target fully fades out (buffering wheel and selecting Map will work here too)</li>
-<li><strong>Drop</strong> <code class="highlight"><span class="n">B</span></code>, <strong>equip</strong> another shield, and <strong>unequip</strong> it. This will cull <code class="highlight"><span class="n">B</span></code>, and thus <code class="highlight"><span class="n">C</span></code>, and thus the target, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a>-ing it</li>
-<li>If you fail-dropped <code class="highlight"><span class="n">B</span></code>, proceed with the next target. If not, pick it up before proceeding</li>
-<li>To continue beyond 30 successful uses, first <strong>destroy</strong> and <strong>remake</strong> <code class="highlight"><span class="n">C</span></code> and <code class="highlight"><span class="n">D</span></code></li>
+<li><strong>Drop</strong> <code>B</code>, <strong>equip</strong> another shield, and <strong>unequip</strong> it. This will cull <code>B</code>, and thus <code>C</code>, and thus the target, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a>-ing it</li>
+<li>If you fail-dropped <code>B</code>, proceed with the next target. If not, pick it up before proceeding</li>
+<li>To continue beyond 30 successful uses, first <strong>destroy</strong> and <strong>remake</strong> <code>C</code> and <code>D</code></li>
 </ol>
 <h5 class="collapse" id="resources" data-notoc="true">Resources</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
@@ -1501,20 +1467,20 @@
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
 <li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield <code class="highlight"><span class="n">A</span></code></li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon or shield <code>A</code></li>
 <li>A torch</li>
 <li>A flame emitter</li>
 </ul>
 <h5 id="creating-the-setup_1" data-notoc="true">Creating the setup</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li>A and normal item <code class="highlight"><span class="n">B</span></code> <a href="../BEW/">Ghost DI</a> Shield <code class="highlight"><span class="n">C</span></code>, keep normal parent</li>
+<li>A and normal item <code>B</code> <a href="../BEW/">Ghost DI</a> Shield <code>C</code>, keep normal parent</li>
 <li><a href="../TGY/">Smuggle</a> <code>C</code></li>
 <li><a href="../C6H/">Cold Drop</a> the torch and place it next to a wall in a culling area</li>
 <li>Point the Flame Emitter at the head of the torch from point-blank, ensuring the fire strikes a solid surface as close to the torch-head as possible.</li>
 <li>Glue <code>B</code> to the torch and <strong>activate</strong> the Flame Emitter.</li>
 <li>To cull <code>C</code>, use the ability wheel to select and open Recall, causing a 2-frame pause. The torch should begin culling after cancelling Recall</li>
-<li><a href="../8QH/">Overload Drop</a> a shield <code class="highlight"><span class="n">D</span></code> and <strong>Fuse</strong> it to a weapon <code class="highlight"><span class="n">E</span></code></li>
+<li><a href="../8QH/">Overload Drop</a> a shield <code>D</code> and <strong>Fuse</strong> it to a weapon <code>E</code></li>
 </ol>
 <h5 id="creating-di-ghosts_1" data-notoc="true">Creating DI Ghosts</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
@@ -1627,26 +1593,26 @@
 <h5 id="creating-the-setup_3" data-notoc="true">Creating the setup</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li><a href="../TGY/">Smuggle</a> A and equip normal shield <code>B</code>, then stand on the phasing platform</li>
+<li><a href="../TGY/">Smuggle</a> <code>A</code> and equip normal shield <code>B</code>, then stand on the phasing platform</li>
 <li>Optionally, <strong>Pause</strong> the game while Link is culled. This causes him to always be unculled right after unpausing, making fuse timing easier throughout the method</li>
-<li>Just after Link unculls, <strong>Fuse</strong> a weapon <code>C</code> to B; Link will cull soon enough to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a> C</li>
-<li>Drop B and leave it aside, but <strong>pick up</strong> and <em>re-smuggle</em> A</li>
+<li>Just after Link unculls, <strong>Fuse</strong> a weapon <code>C</code> to <code>B</code>; Link will cull soon enough to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a> <code>C</code></li>
+<li>Drop <code>B</code> and leave it aside, but <strong>pick up</strong> and <em>re-smuggle</em> <code>A</code></li>
 <li><a href="../8QH/">Overload Drop</a> a shield and <strong>Fuse</strong> it to a weapon</li>
-<li><strong>Fuse</strong> weapon <code>D</code> to said shield, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>-ing it to A</li>
-<li><strong>Swap</strong> shield, then <a href="../C6H/">Warm Drop</a> it to leave A <a href="../L84/">Zuggle Dropped</a></li>
+<li><strong>Fuse</strong> weapon <code>D</code> to said shield, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>-ing it to <code>A</code></li>
+<li><strong>Swap</strong> shield, then <a href="../C6H/">Warm Drop</a> it to leave <code>A</code> <a href="../L84/">Zuggle Dropped</a></li>
 <li><strong>Unequip</strong> weapon</li>
-<li><em>Smuggle</em> C, <strong>equip</strong> B, and <a href="../8QH/">Overload Pickup</a> D</li>
-<li><strong>Glue</strong> D to something to elevate it and ensure it cannot accidentally be targeted by Fuse. Face the blade <em>away</em> from the other object to keep fuse targets from colliding with it</li>
+<li><em>Smuggle</em> <code>C</code>, <strong>equip</strong> <code>B</code>, and <a href="../8QH/">Overload Pickup</a> <code>D</code></li>
+<li><strong>Glue</strong> <code>D</code> to something to elevate it and ensure it cannot accidentally be targeted by Fuse. Face the blade <em>away</em> from the other object to keep fuse targets from colliding with it</li>
 </ol>
 <h5 id="creating-di-ghosts_3" data-notoc="true">Creating DI Ghosts</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
 <li>Stand on the phasing platform</li>
-<li>Just after Link unculls, <strong>fuse</strong> target to D (<a href="../0XV/">Overload FE</a> to C)</li>
-<li>Just after Link unculls, <strong>fuse</strong> target to D again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (C), this time it will Pseudo-Fuse to D and begin fading away</li>
-<li>Link will cull soon enough after to automatically <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a> the target (by culling B, which culls C)</li>
-<li>Repeat from step 2 with the next target. The previous targets can stay attached to D without issue </li>
-<li>To continue beyond 30 successful uses, first <strong>destroy</strong> and <strong>remake</strong> C and D</li>
+<li>Just after Link unculls, <strong>fuse</strong> target to <code>D</code> (<a href="../0XV/">Overload FE</a> to <code>C</code>)</li>
+<li>Just after Link unculls, <strong>fuse</strong> target to <code>D</code> again. As it already has an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent (<code>C</code>), this time it will Pseudo-Fuse to <code>D</code> and begin fading away</li>
+<li>Link will cull soon enough after to automatically <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a> the target (by culling <code>B</code>, which culls <code>C</code>)</li>
+<li>Repeat from step 2 with the next target. The previous targets can stay attached to <code>D</code> without issue </li>
+<li>To continue beyond 30 successful uses, first <strong>destroy</strong> and <strong>remake</strong> <code>C</code> and <code>D</code></li>
 </ol>
 <h5 class="collapse" id="resources_3" data-notoc="true">Resources</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
@@ -1686,7 +1652,7 @@
 <li>To avoid this risk, it is necessary to <strong>detangle</strong> the DI parents used in any of these methods.</li>
 <li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/GDL/" class="glitch-autolink" title="Detanglement" target="_blank" rel="noopener noreferrer">Detanglement</a> should not be performed until <em>after</em> the normal parents have been destroyed.</li>
 <li>For shields, simply <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> a handful of DI parents at once and use a rocket shield to fully detangle each zuggle, repeating for all the DI parents.</li>
-<li>For weapons, zuggle every second DI parent in the chain (or every third etc if desired), use fuse-over detangle to leave only a cf remnant, then <strong>destroy</strong> the detangled weapons to break the chain apart. (full weapon detanglement is not possible here)</li>
+<li>For weapons, zuggle every second DI parent in the chain (or every third etc if desired), use fuse-over detangle to leave only a CF remnant, then <strong>destroy</strong> the detangled weapons to break the chain apart. (full weapon detanglement is not possible here)</li>
 </ul>
 </div>
 <h4 class="collapse" id="method-5-chaining-drop-swap-culling-120">Method 5: <br/>Chaining + Drop-Swap Culling <span class='ub-vr'><code>1.2.0+</code></span></h4>
@@ -1698,34 +1664,35 @@
 <li>Method 5 is the most basic chaining method, and the most minimal batch method in general.</li>
 </ul>
 <p><em>Method developed by Squidwest(?) - Jan 23, 2026(?)</em></p>
-<h5 id="requirements_4">Requirements</h5>
+<h5 id="requirements_4" data-notoc="true">Requirements</h5>
+<div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
 <li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> shield <code>A</code></li>
 </ul>
 <h5 class="collapse" id="safe-variant" data-notoc="true">Safe Variant</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, &amp; <code>D</code>)</li>
-<li><a href="../TGY/">Smuggle</a> A and <strong>equip</strong> B, then <strong>drop</strong> C on the ground</li>
-<li>Start to <strong>fuse</strong> C to B, then <strong>pause</strong> the game a few frames later (For example, by buffering the ability wheel at the same time as pressing fuse, then selecting Map)</li>
-<li><strong>Drop</strong> B and <strong>swap</strong> to D</li>
-<li>C will be attached to B on the ground. Dupe two replacement copies (E and F), then <strong>drop</strong> D</li>
-<li>Optionally, <strong>pick up</strong> and <strong>drop</strong> A to remove its overload</li>
-<li><strong>Pick up</strong> C</li>
-<li><strong>Repeat</strong> from step 2, with C as the new smuggle, E as the new normal parent, and D as the new target</li>
+<li>Duplicate three normal copies of <code>A</code> by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, &amp; <code>D</code>)</li>
+<li><a href="../TGY/">Smuggle</a> <code>A</code> and <strong>equip</strong> <code>B</code>, then <strong>drop</strong> <code>C</code> on the ground</li>
+<li>Start to <strong>fuse</strong> <code>C</code> to <code>B</code>, then <strong>pause</strong> the game a few frames later (For example, by buffering the ability wheel at the same time as pressing fuse, then selecting Map)</li>
+<li><strong>Drop</strong> <code>B</code> and <strong>swap</strong> to <code>D</code></li>
+<li><code>C</code> will be attached to B on the ground. Dupe two replacement copies (<code>E</code> and <code>F</code>), then <strong>drop</strong> <code>D</code></li>
+<li>Optionally, <strong>pick up</strong> and <strong>drop</strong> <code>A</code> to remove its overload</li>
+<li><strong>Pick up</strong> <code>C</code></li>
+<li><strong>Repeat</strong> from step 2, with <code>C</code> as the new smuggle, <code>E</code> as the new normal parent, and <code>D</code> as the new target</li>
 <li>After the process has been repeated to satisfaction, <strong>despawn</strong> all the normal parents of the chain by distance, drop limit, or chasm (which all perform a FarDelete)</li>
 </ol>
 <h5 class="collapse" id="fast-variant" data-notoc="true">Fast Variant</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, &amp; <code>D</code>)</li>
-<li><strong>Equip</strong> A and <strong>drop</strong> C on the ground</li>
-<li>Highlight C with Fuse and <strong>pause</strong> the game</li>
-<li><strong>Drop</strong> A and <strong>swap</strong> to B</li>
-<li><strong>Unpause</strong> and <strong>fuse</strong> C to B immediately, then <strong>pause</strong> a few frames later (For example, by pausing on the <strong>same</strong> frame as fusing, then performing a <strong>pause-buffer</strong>)</li>
-<li><strong>Drop</strong> B and <strong>swap</strong> to D</li>
-<li>Dupe 2 copies of C, then <strong>drop</strong> D and <strong>pick up</strong> C</li>
-<li><strong>Repeat</strong> from step 3 with D as the next target</li>
+<li>Duplicate three normal copies of <code>A</code> by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, &amp; <code>D</code>)</li>
+<li><strong>Equip</strong> <code>A</code> and <strong>drop</strong> <code>C</code> on the ground</li>
+<li>Highlight <code>C</code> with Fuse and <strong>pause</strong> the game</li>
+<li><strong>Drop</strong> <code>A</code> and <strong>swap</strong> to <code>B</code></li>
+<li><strong>Unpause</strong> and <strong>fuse</strong> <code>C</code> to <code>B</code> immediately, then <strong>pause</strong> a few frames later (For example, by pausing on the <strong>same</strong> frame as fusing, then performing a <strong>pause-buffer</strong>)</li>
+<li><strong>Drop</strong> <code>B</code> and <strong>swap</strong> to <code>D</code></li>
+<li>Dupe 2 copies of <code>C</code>, then <strong>drop</strong> <code>D</code> and <strong>pick up</strong> <code>C</code></li>
+<li><strong>Repeat</strong> from step 3 with <code>D</code> as the next target</li>
 <li>After the process has been repeated to satisfaction, <strong>despawn</strong> all the normal parents of the chain by distance, drop limit, or chasm (which all perform a FarDelete)</li>
 </ol>
 <h5 class="collapse" id="resources_4" data-notoc="true">Resources</h5>
@@ -1773,18 +1740,18 @@
 <h5 id="steps" data-notoc="true">Steps</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IG2/" class="glitch-autolink" title="Mineru Fuse Entanglement" target="_blank" rel="noopener noreferrer">Mineru FE</a> B</li>
-<li><a href="../TGY/">Smuggle</a> A and equip B</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IG2/" class="glitch-autolink" title="Mineru Fuse Entanglement" target="_blank" rel="noopener noreferrer">Mineru FE</a> <code>B</code></li>
+<li><a href="../TGY/">Smuggle</a> <code>A</code> and equip <code>B</code></li>
 <li>Target shield <code>C</code> with Fuse</li>
-<li>Induce Mineru to cull, and <strong>fuse</strong> C to B shortly before B culls via her</li>
-<li><strong>Drop</strong> B and <strong>swap</strong> to another shield <code>D</code></li>
-<li>Dupe 2 new shields off C by trying to pick it up (be careful B is not picked up)</li>
-<li><strong>Drop</strong> D, and optionally <strong>pick up</strong> and <strong>drop</strong> A to remove its dependency (which contributes to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a>)</li>
-<li><strong>Pick up</strong> and <em>smuggle</em> C, then <strong>equip</strong> duped shield E</li>
-<li>Induce Mineru to cull, and <strong>fuse</strong> D to E shortly before C culls (via B, via her)</li>
+<li>Induce Mineru to cull, and <strong>fuse</strong> <code>C</code> to <code>B</code> shortly before <code>B</code> culls via her</li>
+<li><strong>Drop</strong> <code>B</code> and <strong>swap</strong> to another shield <code>D</code></li>
+<li>Dupe 2 new shields off <code>C</code> by trying to pick it up (be careful <code>B</code> is not picked up)</li>
+<li><strong>Drop</strong> <code>D</code>, and optionally <strong>pick up</strong> and <strong>drop</strong> <code>A</code> to remove its dependency (which contributes to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a>)</li>
+<li><strong>Pick up</strong> and <em>smuggle</em> <code>C</code>, then <strong>equip</strong> duped shield <code>E</code></li>
+<li>Induce Mineru to cull, and <strong>fuse</strong> <code>D</code> to <code>E</code> shortly before <code>C</code> culls (via <code>B</code>, via her)</li>
 <li><strong>Repeat</strong> steps 5-9 with repeated new shields</li>
 <li>Once process has been repeated to satisfaction, <strong>destroy</strong> all remaining normal parents in any order via distance, drop limit, or chasm (which all perform a FarDelete)</li>
-<li>Finally, <strong>detangle</strong> B from Mineru before warping or dismissing her, to prevent her from destroying all your hard work</li>
+<li>Finally, <strong>detangle</strong> <code>B</code> from Mineru before warping or dismissing her, to prevent her from destroying all your hard work</li>
 </ol>
 <h5 class="collapse" id="resources_5" data-notoc="true">Resources</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
@@ -1826,7 +1793,8 @@
 <p>Method 7 is decent.</p>
 </div>
 <p><em>Method developed by ??? - I don't know who did it first or when so I'm not prepared to claim authorship</em></p>
-<h5 id="requirements_6">Requirements</h5>
+<h5 id="requirements_6" data-notoc="true">Requirements</h5>
+<div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
 <li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> shield <code>A</code></li>
 <li>Intangible Aerophasing</li>
@@ -1834,30 +1802,30 @@
 <h5 class="collapse" id="safe-variant_1" data-notoc="true">Safe Variant</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, &amp; <code>D</code>)</li>
-<li><a href="../TGY/">Smuggle</a> A and <strong>equip</strong> B, then <strong>drop</strong> C on the ground</li>
+<li>Duplicate three normal copies of <code>A</code> by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, &amp; <code>D</code>)</li>
+<li><a href="../TGY/">Smuggle</a> <code>A</code> and <strong>equip</strong> <code>B</code>, then <strong>drop</strong> <code>C</code> on the ground</li>
 <li>Stand on the phasing platform</li>
-<li>Highlight C with Fuse, then <strong>pause</strong> the game while Link is <strong>culled</strong></li>
-<li><strong>Unpause</strong> and immediately fuse C to B; C will become a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a></li>
-<li><strong>Drop</strong> B and <strong>swap</strong> to D</li>
-<li>C will be attached to B on the ground. <strong>Dupe</strong> two replacement copies (<code>E</code> and <code>F</code>), then <strong>drop</strong> D</li>
-<li>Optionally, <strong>pick up</strong> and <strong>drop</strong> A to remove its overload</li>
-<li><strong>Pick up</strong> C</li>
-<li><strong>Repeat</strong> from step 2, with C as the new smuggle, E as the new normal parent, and D as the new target</li>
+<li>Highlight <code>C</code> with Fuse, then <strong>pause</strong> the game while Link is <strong>culled</strong></li>
+<li><strong>Unpause</strong> and immediately fuse <code>C</code> to <code>B</code>; <code>C</code> will become a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a></li>
+<li><strong>Drop</strong> <code>B</code> and <strong>swap</strong> to <code>D</code></li>
+<li><code>C</code> will be attached to <code>B</code> on the ground. <strong>Dupe</strong> two replacement copies (<code>E</code> and <code>F</code>), then <strong>drop</strong> <code>D</code></li>
+<li>Optionally, <strong>pick up</strong> and <strong>drop</strong> <code>A</code> to remove its overload</li>
+<li><strong>Pick up</strong> <code>C</code></li>
+<li><strong>Repeat</strong> from step 2, with <code>C</code> as the new smuggle, <code>E</code> as the new normal parent, and <code>D</code> as the new target</li>
 <li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance, drop limit, or chasm (which all perform a FarDelete)</li>
 </ol>
 <h5 class="collapse" id="fast-variant_1" data-notoc="true">Fast Variant</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li>Duplicate three normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, &amp; <code>D</code>)</li>
-<li><strong>Equip</strong> A and <strong>drop</strong> C on the ground</li>
+<li>Duplicate three normal copies of <code>A</code> by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, &amp; <code>D</code>)</li>
+<li><strong>Equip</strong> <code>A</code> and <strong>drop</strong> <code>C</code> on the ground</li>
 <li>Stand on the phasing platform</li>
-<li>Highlight C with Fuse, then <strong>pause</strong> the game while Link is <strong>culled</strong></li>
-<li><strong>Drop</strong> A and <strong>swap</strong> to B</li>
-<li>Unpause and immediately fuse C to B; C will become a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a></li>
-<li><strong>Drop</strong> B and <strong>swap</strong> to D</li>
-<li>C will be attached to B on the ground. <strong>Dupe</strong> 2 copies of C, then <strong>drop</strong> D and <strong>pick up</strong> C</li>
-<li><strong>Repeat</strong> from step 3, replacing A, B, and C with the next equivalents in the chain</li>
+<li>Highlight <code>C</code> with Fuse, then <strong>pause</strong> the game while Link is <strong>culled</strong></li>
+<li><strong>Drop</strong> <code>A</code> and <strong>swap</strong> to <code>B</code></li>
+<li>Unpause and immediately fuse <code>C</code> to <code>B</code>; <code>C</code> will become a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a></li>
+<li><strong>Drop</strong> <code>B</code> and <strong>swap</strong> to <code>D</code></li>
+<li><code>C</code> will be attached to <code>B</code> on the ground. <strong>Dupe</strong> 2 copies of <code>C</code>, then <strong>drop</strong> <code>D</code> and <strong>pick up</strong> <code>C</code></li>
+<li><strong>Repeat</strong> from step 3, replacing <code>A</code>, <code>B</code>, and <code>C</code> with the next equivalents in the chain</li>
 <li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance, drop limit, or chasm (which all perform a FarDelete)</li>
 </ol>
 <h5 class="collapse" id="resources_6" data-notoc="true">Resources</h5>
@@ -1907,20 +1875,20 @@
 <h5 id="steps_1" data-notoc="true">Steps</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li>Duplicate five normal copies of A by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, <code>D</code>, <code>E</code>, and <code>F</code>)</li>
-<li>Optionally, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> B to protect it from the drop limit. This will streamline the process when used with very long chains (&gt;10 shields long)</li>
-<li>Use A and B to <a href="../BEW/#full-fuse-methods">Ghost DI</a> shield <code>C</code>, keep B</li>
-<li>Place B inside a culling area so that C can be culled by walking back and forth over the culling margin</li>
-<li><a href="../TGY/">Smuggle</a> C and <strong>equip</strong> normal shield <code>D</code></li>
+<li>Duplicate five normal copies of <code>A</code> by <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Duping (<code>B</code>, <code>C</code>, <code>D</code>, <code>E</code>, and <code>F</code>)</li>
+<li>Optionally, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> <code>B</code> to protect it from the drop limit. This will streamline the process when used with very long chains (&gt;10 shields long)</li>
+<li>Use <code>A</code> and <code>B</code> to <a href="../BEW/#full-fuse-methods">Ghost DI</a> shield <code>C</code>, keep <code>B</code></li>
+<li>Place <code>B</code> inside a culling area so that <code>C</code> can be culled by walking back and forth over the culling margin</li>
+<li><a href="../TGY/">Smuggle</a> <code>C</code> and <strong>equip</strong> normal shield <code>D</code></li>
 <li>Drop target shield <code>E</code> on the ground on the outside of the culling margin and highlight it with Fuse</li>
-<li>Walk over the margin and <strong>Fuse</strong> E to D at the same time, erring on the side of crossing the margin first</li>
-<li>As long as B began culling 0-2 frames after Fuse was pressed, E will successfully Ghost DI</li>
-<li>Re-enter the culling margin, then <strong>Drop</strong> D and swap to F</li>
-<li>E will be attached to D on the ground. Dupe two copies of E (<code>G</code> and <code>H</code>) to replace the shields spent, then <strong>drop</strong> F</li>
-<li>Optionally, <strong>pick up</strong> and <strong>drop</strong> C to remove its overload</li>
-<li><strong>Pick up</strong> E</li>
-<li>Repeat from step 5, with E as the new smuggle, G as the new normal parent, and F as the new target</li>
-<li>After 10 or so uses, if step 2 was skipped, B will despawn due to the drop limit. Replace it in the culling area with the <em>newest</em> normal parent in the chain before continuing</li>
+<li>Walk over the margin and <strong>Fuse</strong> <code>E</code> to <code>D</code> at the same time, erring on the side of crossing the margin first</li>
+<li>As long as <code>B</code> began culling 0-2 frames after Fuse was pressed, <code>E</code> will successfully Ghost DI</li>
+<li>Re-enter the culling margin, then <strong>Drop</strong> <code>D</code> and swap to <code>F</code></li>
+<li><code>E</code> will be attached to <code>D</code> on the ground. Dupe two copies of <code>E</code> (<code>G</code> and <code>H</code>) to replace the shields spent, then <strong>drop</strong> <code>F</code></li>
+<li>Optionally, <strong>pick up</strong> and <strong>drop</strong> <code>C</code> to remove its overload</li>
+<li><strong>Pick up</strong> <code>E</code></li>
+<li>Repeat from step 5, with <code>E</code> as the new smuggle, <code>G</code> as the new normal parent, and <code>F</code> as the new target</li>
+<li>After 10 or so uses, if step 2 was skipped, <code>B</code> will despawn due to the drop limit. Replace it in the culling area with the <em>newest</em> normal parent in the chain before continuing</li>
 <li>After the process has been repeated to satisfaction, <strong>despawn</strong> all the remaining normal parents by distance, chasm, or drop limit (which all perform a FarDelete)</li>
 </ol>
 <h5 class="collapse" id="resources_7" data-notoc="true">Resources</h5>
@@ -1976,28 +1944,28 @@
 <h5 id="making-the-setup" data-notoc="true">Making the setup</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li>Duplicate 2 normal copies of A (<code>C</code> and <code>D</code>)</li>
-<li><a href="../C6H/">Cold Drop</a> B and drop C</li>
-<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> B and C to protect them from the drop limit</li>
-<li>Use A and C to <a href="../BEW/">Ghost DI</a> D    </li>
-<li>Ultrahand B and place it next to a wall in a culling area</li>
-<li>Point the Flame Emitter at the head of B from point-blank, ensuring the fire strikes a solid surface as close to the torch-head as possible</li>
-<li>Glue C to B (also within the culling area) and activate the Flame Emitter</li>
-<li>To cull D, use the ability wheel to select and open Recall, causing a 2-frame pause. The torch should begin culling after cancelling Recall, allowing C to cull with it</li>
+<li>Duplicate 2 normal copies of <code>A</code> (<code>C</code> and <code>D</code>)</li>
+<li><a href="../C6H/">Cold Drop</a> <code>B</code> and drop <code>C</code></li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> <code>B</code> and <code>C</code> to protect them from the drop limit</li>
+<li>Use <code>A</code> and <code>C</code> to <a href="../BEW/">Ghost DI</a> <code>D</code>    </li>
+<li>Ultrahand <code>B</code> and place it next to a wall in a culling area</li>
+<li>Point the Flame Emitter at the head of <code>B</code> from point-blank, ensuring the fire strikes a solid surface as close to the torch-head as possible</li>
+<li>Glue <code>C</code> to <code>B</code> (also within the culling area) and activate the Flame Emitter</li>
+<li>To cull <code>D</code>, use the ability wheel to select and open Recall, causing a 2-frame pause. The torch should begin culling after cancelling Recall, allowing <code>C</code> to cull with it</li>
 </ol>
 <h5 id="making-di-ghosts" data-notoc="true">Making DI Ghosts</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li><a href="../TGY/">Smuggle</a> D, <strong>equip</strong> Normal Shield <code>E</code>, and <strong>drop</strong> target Shield <code>F</code> on the ground</li>
+<li><a href="../TGY/">Smuggle</a> <code>D</code>, <strong>equip</strong> Normal Shield <code>E</code>, and <strong>drop</strong> target Shield <code>F</code> on the ground</li>
 <li>Hold L to open the ability wheel, select Recall, and release L</li>
 <li>With the Recall view open, Hold L to open the ability wheel, and select Fuse</li>
-<li>Release L and <strong>Fuse</strong> F to E shortly after fuse opens</li>
-<li><strong>Drop</strong> E and <strong>swap</strong> to Normal Shield <code>G</code></li>
-<li>F will be attached to B on the ground. Dupe two replacement copies (<code>H</code> and <code>I</code>), then <strong>drop</strong> G</li>
-<li>Optionally, <strong>pick up</strong> and <strong>drop</strong> D to remove its overload</li>
-<li><strong>Pick up</strong> F</li>
-<li><strong>Repeat</strong> from step 2, with F as the new smuggle, G as the new target, and H as the new normal parent</li>
-<li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance, drop limit (except C), or chasm (which all perform a FarDelete)</li>
+<li>Release L and <strong>Fuse</strong> <code>F</code> to <code>E</code> shortly after fuse opens</li>
+<li><strong>Drop</strong> <code>E</code> and <strong>swap</strong> to Normal Shield <code>G</code></li>
+<li><code>F</code> will be attached to <code>B</code> on the ground. Dupe two replacement copies (<code>H</code> and <code>I</code>), then <strong>drop</strong> <code>G</code></li>
+<li>Optionally, <strong>pick up</strong> and <strong>drop</strong> <code>D</code> to remove its overload</li>
+<li><strong>Pick up</strong> <code>F</code></li>
+<li><strong>Repeat</strong> from step 2, with <code>F</code> as the new smuggle, <code>G</code> as the new target, and <code>H</code> as the new normal parent</li>
+<li>After the process has been repeated to satisfaction, despawn all the normal parents of the chain by distance, drop limit (except <code>C</code>), or chasm (which all perform a FarDelete)</li>
 </ol>
 <h5 class="collapse" id="resources_8" data-notoc="true">Resources</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
@@ -2069,12 +2037,12 @@
 <h5 id="steps_2" data-notoc="true">Steps:</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li><strong>Dupe</strong> 3 copies of A</li>
-<li>Use A to <a href="../BEW/#method-1-fuse-drop-swap-120">Ghost DI</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield <code>B</code>, then dispose of the normal parent</li>
-<li>Use A and normal parent <code>C</code> to Ghost DI an Octo Balloon</li>
-<li><a href="../TGY/">Smuggle</a> B and <strong>equip</strong> C</li>
-<li>Get shocked with shield unsheathed; this will purgatorize B and cause it to only attach when it has a dependency chain back to Link via A</li>
-<li>Use C so that the Octo Ballon detangles from it; C can then be disposed of or reused in the DI process</li>
+<li><strong>Dupe</strong> 3 copies of <code>A</code></li>
+<li>Use <code>A</code> to <a href="../BEW/#method-1-fuse-drop-swap-120">Ghost DI</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> shield <code>B</code>, then dispose of the normal parent</li>
+<li>Use <code>A</code> and normal parent <code>C</code> to Ghost DI an Octo Balloon</li>
+<li><a href="../TGY/">Smuggle</a> <code>B</code> and <strong>equip</strong> <code>C</code></li>
+<li>Get shocked with shield unsheathed; this will purgatorize <code>B</code> and cause it to only attach when it has a dependency chain back to Link via <code>A</code></li>
+<li>Use <code>C</code> so that the Octo Ballon detangles from it; <code>C</code> can then be disposed of or reused in the DI process</li>
 </ol>
 <h4 class="collapse" id="method-10-for-shields-120">Method 10: <br/>For Shields <span class='ub-vr'><code>1.2.0+</code></span></h4>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
@@ -2088,14 +2056,14 @@
 <ol>
 <li><a href="../L84/">Zuggle Drop</a> <code>A</code> to attach <code>B</code></li>
 <li><strong>Equip</strong> another shield and a random 1-handed weapon, then <strong>unsheathe</strong> them</li>
-<li>Face A and <strong>pick up</strong> a dupe of it, then <strong>drop</strong> a target shield on the ground (if not already present) and turn to face the target</li>
-<li>Every other repetition, instead turn to the target <strong>first</strong>, <em>then</em> dupe (as the target will be past A)</li>
+<li>Face <code>A</code> and <strong>pick up</strong> a dupe of it, then <strong>drop</strong> a target shield on the ground (if not already present) and turn to face the target</li>
+<li>Every other repetition, instead turn to the target <strong>first</strong>, <em>then</em> dupe (as the target will be past <code>A</code>)</li>
 <li>Highlight the target with Fuse</li>
 <li>Start holding ZL and <strong>pause</strong> the game a few frames later; one way to do this is to also start holding L at the same time, and select the Map Rune</li>
-<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to the dupe of A</li>
+<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to the dupe of <code>A</code></li>
 <li><strong>Unpause</strong> the game and mash <strong>Cancel</strong> (<code>B/X</code>) to Octo Detangle the target from both parents (if successful, it will be stuck in midair with a displaced pickup prompt)</li>
 <li><strong>Repeat</strong> from step 3/4, depending on cycle parity, until satisfied</li>
-<li><strong>Pick up</strong> and <strong>drop</strong> A to detach B; the setup will remain ready until needed again</li>
+<li><strong>Pick up</strong> and <strong>drop</strong> <code>A</code> to detach <code>B</code>; the setup will remain ready until needed again</li>
 </ol>
 <p>Done correctly, each new target will drop on the opposite side of Link as the previous one, and none will block A from being duped from. The only necessary movement will be a single 180 degree turn per <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a>.</p>
 <h6 class="collapse" id="resources_9">Resources</h6>
@@ -2129,18 +2097,18 @@
 <h5 class="collapse" id="shields-fast-variant" data-notoc="true">Shields - Fast Variant</h5>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li><a href="../L84/">Zuggle Drop</a> A to attach B.</li>
+<li><a href="../L84/">Zuggle Drop</a> <code>A</code> to attach <code>B</code>.</li>
 <li><strong>Equip</strong> another shield and a random 1-handed weapon, then <strong>unsheathe</strong> them</li>
-<li><strong>Drop</strong> many targets (up to 21) in a pile on one side of A</li>
-<li><strong>Fill</strong> the shield inventory with dupes of A</li>
+<li><strong>Drop</strong> many targets (up to 21) in a pile on one side of <code>A</code></li>
+<li><strong>Fill</strong> the shield inventory with dupes of <code>A</code></li>
 <li>Highlight <em>any</em> target in the pile with Fuse</li>
 <li>Start holding ZL and <strong>pause</strong> the game a few frames later; one way to do this is to also start holding L at the same time, and select the Map Rune</li>
-<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to a dupe of A</li>
+<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to a dupe of <code>A</code></li>
 <li><strong>Unpause</strong> the game and mash <strong>Cancel</strong> (<code>B/X</code>) to Octo Detangle the target from both parents (if successful, it will be stuck in midair with a displaced pickup prompt)</li>
 <li><strong>Repeat</strong> from step 5 until either the dupes of A run out, or the target pile runs out</li>
-<li>Either dupe more copies of A, or turn to face the pile of detangled parents, respectively</li>
+<li>Either dupe more copies of <code>A</code>, or turn to face the pile of detangled parents, respectively</li>
 <li>Continue until satisfied</li>
-<li><strong>Pick up</strong> and <strong>drop</strong> A to detach B; the setup will remain ready until needed again</li>
+<li><strong>Pick up</strong> and <strong>drop</strong> <code>A</code> to detach <code>B</code>; the setup will remain ready until needed again</li>
 </ol>
 <h6 class="collapse" id="resources_10">Resources</h6>
 <div class="admonition tip">
@@ -2182,8 +2150,8 @@
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
 <li>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI ghost</a> of the target is already prepared, place it next to <code>A</code></li>
-<li>Leave only one empty space in the Shield pouch and the target type's pouch. This will allow both A and the target to be consistently duplicated (versus duping 2 of one and none of the other)</li>
-<li><a href="../L84/">Zuggle Drop</a> A to attach <code>B</code></li>
+<li>Leave only one empty space in the Shield pouch and the target type's pouch. This will allow both <code>A</code> and the target to be consistently duplicated (versus duping 2 of one and none of the other)</li>
+<li><a href="../L84/">Zuggle Drop</a> <code>A</code> to attach <code>B</code></li>
 <li><strong>Equip</strong> another shield and a random weapon, then <strong>unsheathe</strong> them</li>
 <li>Face A and <strong>pick up</strong> a dupe of it (and the target, if possible)</li>
 <li><strong>Drop</strong> the (dupe of the) target and turn around, then highlight it with Fuse</li>
@@ -2191,9 +2159,9 @@
 <li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to the Octo Balloon Shield</li>
 <li><strong>Unpause</strong> the game and mash <strong>Cancel</strong> (<code>B/X</code>) to Octo Detangle the target from both parents (if successful, it will be stuck in midair with a displaced pickup prompt)</li>
 <li>If a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost of the target was not yet prepared, there is now one to be used for duping</li>
-<li>The DI'd targets will build up on the opposite side of Link as A, while the spent dupes of A will build up behind it, neither obstructing duplication</li>
+<li>The DI'd targets will build up on the opposite side of Link as <code>A</code>, while the spent dupes of <code>A</code> will build up behind it, neither obstructing duplication</li>
 <li><strong>Repeat</strong> from step 5 until satisfied</li>
-<li><strong>Pick up</strong> and <strong>drop</strong> A to detach B</li>
+<li><strong>Pick up</strong> and <strong>drop</strong> <code>A</code> to detach <code>B</code></li>
 </ol>
 <h6 class="collapse" id="resources_11">Resources</h6>
 <div class="admonition tip">
@@ -2226,16 +2194,16 @@
 <ol>
 <li><a href="../L84/">Zuggle Drop</a> <code>A</code> to attach <code>B</code></li>
 <li><strong>Equip</strong> another shield and a random 1-handed weapon, then <strong>unsheathe</strong> them.</li>
-<li><strong>Drop</strong> many targets (up to 21) in a pile on one side of A</li>
-<li>Stand on the other side of A and <strong>fill</strong> the shield inventory with dupes of A</li>
+<li><strong>Drop</strong> many targets (up to 21) in a pile on one side of <code>A</code></li>
+<li>Stand on the other side of <code>A</code> and <strong>fill</strong> the shield inventory with dupes of <code>A</code></li>
 <li>Highlight <em>any</em> target in the pile with Fuse</li>
 <li>Start holding ZL and <strong>pause</strong> the game a few frames later; one way to do this is to also start holding L at the same time, and select the Map Rune</li>
-<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to a dupe of A</li>
+<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to a dupe of <code>A</code></li>
 <li><strong>Unpause</strong> the game and mash <strong>Cancel</strong> (<code>B/X</code>) to Octo Detangle the target from both parents (if successful, it will be stuck in midair with a displaced pickup prompt)</li>
-<li><strong>Repeat</strong> from step 5 until either the dupes of A run out, or the target pile runs out</li>
+<li><strong>Repeat</strong> from step 5 until either the dupes of <code>A</code> run out, or the target pile runs out</li>
 <li><strong>Dupe</strong> more of whatever was depleted before continuing.</li>
 <li>Continue until satisfied</li>
-<li><strong>Pick up</strong> and <strong>drop</strong> A to detach B; the setup will remain ready until needed again</li>
+<li><strong>Pick up</strong> and <strong>drop</strong> <code>A</code> to detach <code>B</code>; the setup will remain ready until needed again</li>
 </ol>
 <h6 class="collapse" id="resources_12">Resources</h6>
 <div class="admonition tip">
@@ -2276,13 +2244,13 @@
 <ol>
 <li><a href="../L84/">Zuggle Drop</a> <code>A</code> to attach <code>B</code></li>
 <li><strong>Equip</strong> another shield and a random weapon, then <strong>unsheathe</strong> them</li>
-<li>Face A and <strong>pick up</strong> a dupe of it</li>
+<li>Face <code>A</code> and <strong>pick up</strong> a dupe of it</li>
 <li><strong>Drop/Deploy</strong> a target material/device and highlight it with Fuse</li>
 <li>Start holding ZL and <strong>pause</strong> the game a few frames later; one way to do this is to also start holding L at the same time, and select the Map Rune</li>
-<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to the dupe of A</li>
+<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to the dupe of <code>A</code></li>
 <li><strong>Unpause</strong> the game and mash <strong>Cancel</strong> (<code>B/X</code>) to Octo Detangle the target from both parents (if successful, it will be floating in the air, not attached to the normal parent)</li>
 <li><strong>Repeat</strong> from Step 3 until satisfied</li>
-<li><strong>Pick up</strong> and drop A to detach B</li>
+<li><strong>Pick up</strong> and drop <code>A</code> to detach <code>B</code></li>
 </ol>
 <h6 class="collapse" id="resources_13">Resources</h6>
 <div class="admonition tip">
@@ -2315,13 +2283,13 @@
 <ol>
 <li><a href="../L84/">Zuggle Drop</a> <code>A</code> to attach <code>B</code></li>
 <li><strong>Equip</strong> another shield and a random weapon, then <strong>unsheathe</strong> them</li>
-<li>Face A and <strong>fill</strong> the inventory with dupes of it</li>
+<li>Face <code>A</code> and <strong>fill</strong> the inventory with dupes of it</li>
 <li><strong>Drop/Deploy</strong> many target materials/devices and highlight one with Fuse</li>
 <li>Start holding ZL and <strong>pause</strong> the game a few frames later; one way to do this is to also start holding L at the same time, and select the Map Rune</li>
-<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to a dupe of A</li>
+<li><strong>Drop</strong> the equipped shield and <strong>swap</strong> to a dupe of <code>A</code></li>
 <li><strong>Unpause</strong> the game and mash <strong>Cancel</strong> (<code>B/X</code>) to Octo Detangle the target from both parents (if successful, it will be floating in the air, not attached to the normal parent)</li>
 <li><strong>Repeat</strong> from Step 3 until satisfied</li>
-<li><strong>Pick up</strong> and <strong>drop</strong> A to detach B</li>
+<li><strong>Pick up</strong> and <strong>drop</strong> <code>A</code> to detach <code>B</code></li>
 </ol>
 <h6 class="collapse" id="resources_14">Resources</h6>
 <div class="admonition tip">

@@ -234,6 +234,17 @@
     "filename": "banc-storage.md"
   },
   {
+    "name": "Batch Despawn Interrupt",
+    "uid": "PG3",
+    "label": "BDI",
+    "aliases": [
+      "Batch DI",
+      "Batch-DI"
+    ],
+    "path": "wiki/PG3/",
+    "filename": "batch-despawn-interrupt.md"
+  },
+  {
     "name": "Bomb Skew",
     "uid": "EJ4",
     "label": "BSK",
