@@ -1230,6 +1230,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Known ways to move Kinematic Weapons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ability-related-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ability-related Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1460,7 +1477,7 @@
 <li>With every dependency slot filled, enter the depths ghost's spawn area. The depths ghost will despawn without affecting its weapon.</li>
 <li>Remove some of the dependencies created with SFO so that the weapon can be picked up.</li>
 <li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> the weapon and load a save.</li>
-<li>Stand still <a href="../C6H/">Warm Drop</a> a weapon to drop the KW for retrieval without giving it velocity.</li>
+<li>Stand still and <a href="../C6H/">Warm Drop</a> a weapon to drop the KW for retrieval without giving it velocity.</li>
 </ol>
 <p>Theorized mechanism: The depths ghost, having overload-dropped the weapon, will immediately consider it to be "taken", and thus will follow the usual order of events: It will change the weapon's motion type from "Kinematic" to "Dynamic", then despawn itself without despawning the weapon. However, because the Depths Ghost-&gt;Weapon dependency is missing, the attempt to change the weapon's motion type will <strong>fail</strong>.</p>
 <p><em>Method discovered by Squidwest - Apr 24th, 2026</em></p>
@@ -1480,29 +1497,21 @@
 <h4 class="collapse" id="pickup-related-actions" data-notoc="true">Pickup-related Actions</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 
-<p>Kinematic Weapons can still be picked up and moved around, and will also accept velocity from some related actions:</p>
+<p>Kinematic Weapons can still be picked up, and will also accept velocity from some related actions:</p>
 <ul>
 <li>Carrying it around; Drop Smuggle-like states retain collision and are notably more forceful than normal</li>
 <li>Dropping it while moving, which directly adds Link's velocity</li>
 <li>Throwing it, which directly adds throw velocity; Boomerangs will follow a return arc</li>
 </ul>
-<h4 class="collapse" id="recall-related-actions" data-notoc="true">Recall-related Actions</h4>
-<div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
-
-<p>Kinematic Weapons obey the "position lock" and "velocity reset" of recall, so the following will work to <strong>move</strong>, then <strong>stop</strong> it:</p>
+<h4 class="collapse" id="ability-related-actions">Ability-related Actions</h4>
+<hr />
+<p>notoc: true</p>
 <ul>
-<li>Recalling an attached object; This may sometimes break the glue</li>
-<li>Recalling the Kinematic Weapon along a return path</li>
-<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/EY8/" class="glitch-autolink" title="Recall Locking" target="_blank" rel="noopener noreferrer">Recall-locking</a> it and dropping it somewhere else</li>
-</ul>
-<h4 class="collapse" id="other-actions" data-notoc="true">Other Actions</h4>
-<div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
-
-<p>Other ways of changing the position/velocity of the Kinematic Weapon, bypassing the act of applying a force entirely:</p>
-<ul>
-<li>Attaching an upside-down wing; Seems to directly add velocity to build instead of applying a force</li>
-<li>The "gravitational" force of attaching with Ultrahand can affect the velocity</li>
-<li>Fusing the Kinematic Weapon to another item causes it to follow; Ordinary fuse will not allow retrieval, but Pseudo-Fuse will</li>
+<li>Autobuild can select, snap, and move Kinematic Weapons freely, making it one of the best ways to position one</li>
+<li>Recall (and Recall Lock) can both <strong>move</strong> and <strong>stop</strong> a Kinematic Weapon in all the expected ways</li>
+<li>Ultrahand can slightly reduce the velocity of a Kinematic Weapon by attaching something; this can stop the KW completely if it is already slow enough</li>
+<li>Additionally, attaching an upside-down Wing can cause the Kinematic Weapon to anomalously surge upwards</li>
+<li>Fusing the Kinematic Weapon to another item causes it to follow; ordinary Fuse will not allow retrieval, but Pseudo Fuse will</li>
 </ul>
 <h3 id="other-notes">Other Notes</h3>
 <div class="admonition warning">
