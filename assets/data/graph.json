@@ -2651,6 +2651,10 @@
       "target": "wiki/K4F/"
     },
     {
+      "source": "wiki/B3B/",
+      "target": "wiki/MCM/"
+    },
+    {
       "source": "wiki/BEW/",
       "target": "wiki/76A/"
     },
@@ -3073,6 +3077,10 @@
     {
       "source": "wiki/G8Q/",
       "target": "wiki/O64/"
+    },
+    {
+      "source": "wiki/GDL/",
+      "target": "wiki/B3B/"
     },
     {
       "source": "wiki/GDL/",

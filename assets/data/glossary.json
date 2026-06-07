@@ -637,7 +637,9 @@
     "name": "Detanglement",
     "uid": "GDL",
     "label": "DTG",
-    "aliases": [],
+    "aliases": [
+      "detangling"
+    ],
     "path": "wiki/GDL/",
     "filename": "detanglement.md"
   },
@@ -1992,6 +1994,7 @@
     "label": "OBD",
     "aliases": [
       "Octo Detanglement",
+      "Octo Detangling",
       "octo-balloon-detanglement"
     ],
     "path": "wiki/B3B/",

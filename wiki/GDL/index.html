@@ -1138,9 +1138,16 @@
 <li>Use a rocket shield</li>
 </ol>
 <h2 id="notes">Notes</h2>
-<p>Can be used to detangle wuggled equipment, turning it into a true <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>.</p>
-<p>Fuse entangling a detangled object and dropping the shield will delete it.</p>
-<p>Objects fuse entangled to Mineru can be detangled by fusing another object over the same slot as the target object.</p>
+<ul>
+<li>Fuse entangling / fusing a previously detangled object and dropping (or fail dropping) the new parent will usually delete the fused object. This happens because detangling sets a <em>deletion flag</em> on the object.<ul>
+<li>To prevent this, detangle the object while standing far enough away from it (i.e. be out of its <em>activation range</em>. The distance required varies between objects, but 20 units is usually more than enough.</li>
+<li>If playing on version <code>1.2.0</code> or higher, and not detangling from a Despawn Interrupted shield, Octo Detangling never sets the deletion flag due to the drop–swap cull.</li>
+<li>Recall Locked objects have infinite activation range.</li>
+</ul>
+</li>
+<li>Can be used to detangle wuggled equipment, turning it into a true <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>.</li>
+<li>Objects fuse entangled to Mineru can be detangled by fusing another object over the same slot as the target object.</li>
+</ul>
 <h2 id="resources">Resources</h2>
 <ul>
 <li><a href="https://vxtwitter.com/zasbotw/status/1700578075816403202">Twitter</a></li>
@@ -1149,6 +1156,7 @@
 <h2 id="related">Related</h2>
 <ul>
 <li><a href="search:Zuggling">Zuggling</a></li>
+<li><a href="search:Octo Detanglement">Octo Detanglement</a></li>
 <li><a href="search:Fuse Entanglement">Fuse Entanglement</a></li>
 </ul>
 
