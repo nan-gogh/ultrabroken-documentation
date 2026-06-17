@@ -1211,8 +1211,9 @@
 </ul>
 <h3 id="purgatorified-child">Purgatorified Child</h3>
 <ul>
-<li>Having the parent equipped will keep the purgatory child equipped or positioned on Link as it was when it first entered purgatory. If you drop the parent, the child will drop from Link.<ul>
+<li>Having the parent equipped will keep the purgatory child equipped or positioned on Link as it was when it first entered purgatory. If that position was in one of Link's hands, this is known as <em>equipped purgatory</em>; you can use that equipment for combat, where it will function just like a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>. If you drop the parent, the child will drop from Link.<ul>
 <li>This doesn't happen if the child was purgatorified through a physical cull; such equipment will stay culled.</li>
+<li>Instead of equipping the parent, you can also Zuggle Drop it. To release the child, equip and drop the parent, or move it with Ultrahand.</li>
 </ul>
 </li>
 <li>Warping with the parent equipped will undo the purgatory status of the child, which will drop at Link's last position before the warp.</li>
@@ -1228,7 +1229,7 @@
 <li>The second piece of equipment will be moved to the drop equip position, and thus also easy to purgatorify. It's a <a href="../HY9/">weak drop equip</a> though, and will move back if you change Link's animation state enough.</li>
 </ul>
 </li>
-<li>Drop some equipment while it's culled, and you have a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> of the same equipment kind. The dropped equipment will be sent to culled purgatory.<ul>
+<li>Drop some equipment while it's culled, and you have a [static, unculled] smuggle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> of the same equipment kind. The dropped equipment will be sent to culled purgatory.<ul>
 <li>This equipment will permanently lose collision with the world.</li>
 <li>If the purgatory equipment has a fuse entangled parent, and you purgatorified it with an intangible cull, you can cull and uncull the parent to uncull the child. If you then equip (or zuggle drop) any fuse entangle or <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">cold fuse</a> parent, you can bring the child back into its last equip state. If it was in Link's hand and you equip something else of that type, you can use it in combat.</li>
 <li><strong>Do not</strong> do this after purgatorifying a shield while Link is guarding with it! Unculling this shield will <strong>crash</strong> the game.</li>
@@ -1248,17 +1249,30 @@
 <p class="admonition-title">Danger</p>
 <p>This list of purgatory equipment crash methods is incomplete — there are more than are listed here!</p>
 </div>
+<p>These will <strong>always</strong> crash the game without exception:</p>
 <ul>
-<li>Picking it up and sending it straight to the inventory</li>
+<li>Unculling a shield that was purgatorified while culled, and while Link was guarding with it<ul>
+<li>'Guarding' means 'Link holds it out in front of him'. You can still purgatorify shields in Link's left hand if he has it down by his side.</li>
+</ul>
+</li>
+</ul>
+<p>These will <strong>typically</strong> crash the game:</p>
+<ul>
+<li>Picking it up with something else equipped</li>
 <li>Burning it</li>
+</ul>
+<p>You can avoid these typical purgatory crashes with some preparation:</p>
+<ul>
+<li>On purgatory equipment that has a partial fusion parent (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">cold fuse</a> or fuse entangle), if the parent is either equipped, or being moved with Ultrahand. (Having it zuggled does <em>not</em> work for this.) The equipment will be deleted as normal.</li>
+<li>If the equipment was also Despawn Interrupted with a death reason of a high enough priority (<em>Eaten</em> meets that requirement for all crash methods listed above). The equipment won't be deleted.</li>
 </ul>
 <p>But the following are always safe to do:</p>
 <ul>
 <li>Reloading/warping, and letting purgatory equipment be deleted in the loading screen.</li>
 <li>Pausing and unequipping its <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> parent.</li>
 <li>Distance despawning it (going too far away) or its FE parent.</li>
-<li>Re-equipping / <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> dropping its FE parent, and breaking it due to durability loss.</li>
-<li>Any normally crash-prone method while the equipment's non-purgatory FE/<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="CF" target="_blank" rel="noopener noreferrer">CF</a> counterpart has a proper two-way connection to Link. This can include ultrahanding it, or having it equipped. (Zuggling it isn't strong enough a connection for this purpose.)</li>
+<li>Despawning it or its FE parent by exceeding the dropped equipment limit of 20.</li>
+<li>Re-equipping / <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> dropping its parent, and then breaking it due to durability loss.</li>
 </ul>
 <h2 id="other-effects">Other effects</h2>
 <ul>

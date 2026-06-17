@@ -421,7 +421,8 @@
     "uid": "TRL",
     "label": "CNFE",
     "aliases": [
-      "construct-fuse-entanglement"
+      "construct-fuse-entanglement",
+      "Construct FE"
     ],
     "path": "wiki/TRL/",
     "filename": "construct-fuse-entanglement.md"
@@ -785,7 +786,8 @@
     "uid": "CVH",
     "label": "DS",
     "aliases": [
-      "drop-smuggling"
+      "drop-smuggling",
+      "Drop Smuggle"
     ],
     "path": "wiki/CVH/",
     "filename": "drop-smuggling.md"
