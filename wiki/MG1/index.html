@@ -1272,10 +1272,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#equipment" class="md-nav__link">
+  <a href="#equipment-100-112" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Equipment
+        Equipment (1.0.0-1.1.2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1.2.0+)
       
     </span>
   </a>
@@ -1872,13 +1883,13 @@
 <li>Then, as Link travels away from the ground, Mineru will exit Limbo into the culled state, culling the target during the DI window.</li>
 <li>The most likely failure state is for Mineru to not exit Limbo soon enough, causing the target to fully despawn and be destroyed.</li>
 </ol>
-<p><em>Discovered by <a href="https://www.youtube.com/@KlericYT">Kleric</a> - Feb 4th, 2026</em></p>
+<p><em>Methods discovered by <a href="https://www.youtube.com/@KlericYT">Kleric</a> - Feb 4th, 2026</em></p>
 </div>
 <div class="tabbed-block">
 <h5 class="tab-toc-heading" id="wall-only">Wall Only</h5>
 <ul>
 <li>Using only terrain to force Mineru into the Limbo state makes this method completely waste-free, while still being almost completely reliable.</li>
-<li>However, the specific terrain required is both very rare, and can occasionally fail to work. In the latter case, the attempt will need to be aborted (lest the target be destroyed).</li>
+<li>However, the specific terrain required is both very rare, and can occasionally fail to induce Limbo. In the latter case, the attempt will need to be aborted (lest the target be destroyed).</li>
 </ul>
 <p>Prepare:</p>
 <ul>
@@ -1909,7 +1920,7 @@
 </li>
 </ul>
 </details>
-<p><em>Discovered by Squidwest - Mar 13th, 2026</em></p>
+<p><em>Method and locations developed by Squidwest - Mar 13th, 2026</em></p>
 </div>
 </div>
 </div>
@@ -1950,16 +1961,42 @@
 </ul>
 <p>Unique to DI:</p>
 <ul>
-<li>idk</li>
+<li>Protected against the "Deletion Flag" under most circumstances</li>
+<li>Protected against the "FarDelete" deletion type as long as it has a DI <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a>/Fuse parent</li>
 </ul>
-<h3 id="equipment">Equipment</h3>
+<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Equipment (1.0.0-1.1.2)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h3 class="tab-toc-heading" id="equipment-100-112">Equipment (1.0.0-1.1.2)</h3>
+</div>
+</div>
+</div>
+<p>Shared with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JDP/" class="glitch-autolink" title="Void Dipping" target="_blank" rel="noopener noreferrer">Void Dipping</a>:</p>
+<ul>
+<li>Some single-use fuses become infinite (eg Ancient Blades)</li>
+<li>Faildrop and Faildrop-Swap cause unequipped smuggle</li>
+<li>Drop-Swap-Unequip and Drop-Swap-Drop drop normally</li>
+<li>Does not induce D-Pad Lock when smuggled on <code>1.1.2</code> (except if there is no dependency to Link)</li>
+</ul>
+<p>Unique to DI:</p>
+<ul>
+<li>Due to the lower death reason number, it is immune to being destroyed by inventory pickup. Therefore, it can be used to duplicate that equipment en masse simply by picking it up with something else equipped</li>
+<li>Propagates the Eaten death reason to anything fused to it (slightly conditional). This can in turn be interrupted to create a <a href="../BEW/">DI Ghost</a> (see linked page for details and methods)</li>
+</ul>
+<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">(1.2.0+)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h3 class="tab-toc-heading" id="120">(1.2.0+)</h3>
+</div>
+</div>
+</div>
 <p>Shared with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JDP/" class="glitch-autolink" title="Void Dipping" target="_blank" rel="noopener noreferrer">Void Dipping</a>:</p>
 <ul>
 <li>Some single-use fuses become infinite (eg Ancient Blades)</li>
 <li>Does not directly cull from Drop-Swap Culling</li>
 <li>Faildrop causes Equipped Smuggle</li>
 <li>Faildrop-Swap, Drop-Swap-Unequip, and Drop-Swap-Drop cause unequipped smuggle</li>
-<li>Does not induce D-Pad Lock when smuggled on <code>1.1.2+</code> (except if there is no dependency to Link)</li>
+<li>Does not induce D-Pad Lock when smuggled (except if there is no dependency to Link)</li>
 </ul>
 <p>Unique to DI:</p>
 <ul>
@@ -1969,7 +2006,7 @@
 <h2 id="notes">Notes</h2>
 <ul>
 <li>Sometimes known as "Eaten DI". "Frox Dipping" and "Frox Licking" are disused and discouraged monikers.</li>
-<li>Although <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JDP/" class="glitch-autolink" title="Void Dipping" target="_blank" rel="noopener noreferrer">void dipping</a> is also technically a form of Despawn Interrupt, DI and Despawn Interrupt refers <em>only</em> to the eaten variation by convention.</li>
+<li>Although <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JDP/" class="glitch-autolink" title="Void Dipping" target="_blank" rel="noopener noreferrer">void dipping</a> is also technically a form of Despawn Interrupt, "DI" and "Despawn Interrupt" refer <em>only</em> to the Eaten variation by convention.</li>
 </ul>
 <h2 id="resources">Resources</h2>
 <ul>
