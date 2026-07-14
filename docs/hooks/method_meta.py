@@ -90,7 +90,7 @@ _SENTINEL_RE = re.compile(
 _HEADING_SENTINEL_RE = re.compile(
     r"^(?P<heading>[ \t]*#{1,6} [^\n]+)\n"
     r"(?P<blank>\n)?"
-    r"(?P<sentinel>[ \t]*<!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?:true|false) -->)",
+    r"(?P<sentinel>[ \t]*<!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?:true|false)(?: notoc=(?:true|false))? -->)",
     re.MULTILINE,
 )
 
@@ -345,7 +345,7 @@ _TAB_LINE_RE = re.compile(
 
 # Sentinel produced by _replace_block, used to scan child methods.
 _CHILD_SENTINEL_RE = re.compile(
-    r'<!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?P<obsolete>true|false) -->'
+    r'<!-- @method-meta versions=(?P<versions>\[.*?\]) obsolete=(?P<obsolete>true|false)(?: notoc=(?:true|false))? -->'
 )
 
 
