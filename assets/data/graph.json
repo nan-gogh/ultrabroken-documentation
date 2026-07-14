@@ -1039,6 +1039,12 @@
       "label": "MHS"
     },
     {
+      "id": "wiki/0AW/",
+      "uid": "0AW",
+      "name": "Mineru Parented GAS",
+      "label": "MGAS"
+    },
+    {
       "id": "wiki/4LL/",
       "uid": "4LL",
       "name": "Mineru Parented Zuggle",
@@ -1915,6 +1921,26 @@
       "target": "wiki/UWY/"
     },
     {
+      "source": "wiki/0AW/",
+      "target": "wiki/IG2/"
+    },
+    {
+      "source": "wiki/0AW/",
+      "target": "wiki/K4F/"
+    },
+    {
+      "source": "wiki/0AW/",
+      "target": "wiki/LMB/"
+    },
+    {
+      "source": "wiki/0AW/",
+      "target": "wiki/MCM/"
+    },
+    {
+      "source": "wiki/0AW/",
+      "target": "wiki/ZJ2/"
+    },
+    {
       "source": "wiki/0FH/",
       "target": "wiki/KFV/"
     },
@@ -2505,6 +2531,10 @@
     {
       "source": "wiki/8QH/",
       "target": "wiki/VTO/"
+    },
+    {
+      "source": "wiki/8QL/",
+      "target": "wiki/0AW/"
     },
     {
       "source": "wiki/8QL/",
