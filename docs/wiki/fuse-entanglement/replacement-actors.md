@@ -134,7 +134,6 @@ Living plants, excluding logs. When taken out from the inventory, these are alwa
 | 29 | Sundelion (Mellie's)<br/>`Item_Plant_R_Kakariko_008` | Sundelion<br/>`Item_PlantGet_R` | ❌ | ? |
 | 30 | Stambulb (Planted)<br/>`Item_Plant_S` | Stambulb<br/>`Item_PlantGet_S` | ❌ | ? |
 | 31 | Puffshroom (Planted)<br/>`SmokeFuit_Static` | Puffshroom<br/>`SmokeFruit` | ❌ | _sic_ |
-|  | ──────────────────────── | ───────────────── |  |  |
 
 ### Logs ?
 
@@ -274,7 +273,6 @@ Anything which can enter the inventory. All such actors brought out from the inv
 | 61 | Stabilizer<br/>`SpObj_TiltingDoll_Capsule_A_01` | Stabilizer<br/>`SpObj_TiltingDoll_A_01` | ❌ |  |
 | 62 | Time Bomb (Capsule)<br/>`SpObj_TimerBomb_Capsule_A_01` | Time Bomb<br/>`SpObj_TimerBomb_A_01` | ❌ |  |
 | 63 | Fan (Capsule)<br/>`SpObj_WindGenerator_Capsule_A_01` | Fan<br/>`SpObj_WindGenerator_A_01` | ❌ |  |
-|  | ───────────────────────────── | ───────────────────── |  |  |
 
 ### Zonai Device Capsules ?
 
@@ -309,7 +307,6 @@ Capsules. Strictly a subset of the items category, but a little extra emphasis o
 | 25 | Mirror (Capsule)<br/>`SpObj_LightMirror_Capsule_A_01` | Mirror<br/>`SpObj_LightMirror_A_01` |  |
 | 26 | Homing Cart (Capsule)<br/>`SpObj_Chaser_Capsule_A_01` | Homing Cart<br/>`SpObj_Chaser_A_01` |  |
 | 27 | Construct Head (Capsule)<br/>`SpObj_GolemHead_Capsule_A_01` | Construct Head<br/>`SpObj_GolemHead_A_01` |  |
-|  | ───────────────────────────── | ───────────────────── |  |
 
 ### Master List ?
 
