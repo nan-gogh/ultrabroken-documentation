@@ -1917,3 +1917,14 @@ li.task-list-item a, li.task-list a {
   font-size: 0.75rem;
   color: var(--md-default-fg-color--light);
 }
+
+/* 
+   TABLE TEXT WRAPPING
+   Prevent unwanted line breaks in table cells. Soft wraps only occur when
+   explicitly specified with <br> tags. The :not([class]) guard ensures
+   this applies only to standard markdown tables, not custom styled ones.
+ */
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  white-space: nowrap;
+}

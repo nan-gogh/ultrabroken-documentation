@@ -47,7 +47,6 @@ Natural inorganic objects, along with objects which are spawned by/are part of e
 | 20 | Flux Construct I Block<br/>`Zonau_BlockMaster_Block` | Fused Flux Construct I Block<br/>`Zonau_BlockMaster_Block_ForAttachment` | ❌ | ❌ |  |
 | 21 | Flux Construct II Block<br/>`Zonau_BlockMaster_Block_Middle` | Fused Flux Construct II Block<br/>`Zonau_BlockMaster_Block_Middle_ForAttachment` | ❌ | ❌ |  |
 | 22 | Flux Construct III Block<br/>`Zonau_BlockMaster_Block_Senior` | Fused Flux Construct III Block<br/>`Zonau_BlockMaster_Block_Senior_ForAttachment` | ❌ | ❌ |  |
-|  | ──────────────────────────────── | ───────────────────────────────────── |  | ──────────────────────────────── |  |
 
 ### Manufactured Objects ?
 
@@ -97,7 +96,6 @@ Objects which are not natural, but are also not from an enemy.
 | 40 | Time Bomb (Capsule)<br/>`SpObj_TimerBomb_Capsule_A_01` | Time Bomb<br/>`SpObj_TimerBomb_A_01` | ❌ | ❌ |  |
 | 41 | Fan (Capsule)<br/>`SpObj_WindGenerator_Capsule_A_01` | Fan<br/>`SpObj_WindGenerator_A_01` | ❌ | ❌ |  |
 | 42 | Tenoko Island Boat<br/>`TwnObj_Village_Fishing_Boat_A_02` | Fused Tenoko Island Boat<br/>`TwnObj_Village_Fishing_Boat_A_02_ForAttachment` | ❌ | Tenoko Island Boat<br/>`TwnObj_Village_Fishing_Boat_A_02` |  |
-|  | ───────────────────────────── | ────────────────────────────────── |  | ─────────────────────────── | ───────────── |
 
 ### Plants (except logs) ?
 
@@ -206,7 +204,6 @@ Logs. Includes anything considered logs by the game.
 | 60 | Birch Log 3 (From Tree)<br/>`Obj_TreeWhiteBirch_A_03_Trunk` | Fused Birch Log<br/>`Obj_TreeWhiteBirch_A_01_ForAttachment` | Birch Log 1<br/>`Obj_TreeWhiteBirch_A_01_Trunk` | ? |
 | 61 | Birch Log 4 (From Tree)<br/>`Obj_TreeWhiteBirch_A_04_Trunk` | Fused Birch Log<br/>`Obj_TreeWhiteBirch_A_01_ForAttachment` | Birch Log 1<br/>`Obj_TreeWhiteBirch_A_01_Trunk` | ? |
 | 62 | Willow Log<br/>`Obj_TreeWillow_A_01_Trunk` | Fused Willow Log<br/>`Obj_TreeWillow_A_01_ForAttachment` | Willow Log<br/>`Obj_TreeWillow_A_01_Trunk` |  |
-|  | ────────────────────────────────── | ───────────────────────────────────── | ──────────────────────────────── |  |
 
 ### Items and Materials ?
 
@@ -477,4 +474,3 @@ Rather long, and rather wide. Feel free to peruse the sorted tables above.
 | 155 | Flux Construct I Block<br/>`Zonau_BlockMaster_Block` | Fused Flux Construct I Block<br/>`Zonau_BlockMaster_Block_ForAttachment` | ❌ | ❌ |  |
 | 156 | Flux Construct II Block<br/>`Zonau_BlockMaster_Block_Middle` | Fused Flux Construct II Block<br/>`Zonau_BlockMaster_Block_Middle_ForAttachment` | ❌ | ❌ |  |
 | 157 | Flux Construct III Block<br/>`Zonau_BlockMaster_Block_Senior` | Fused Flux Construct III Block<br/>`Zonau_BlockMaster_Block_Senior_ForAttachment` | ❌ | ❌ |  |
-|  | ────────────────────────────────── | ───────────────────────────────────── |  | ──────────────────────────────── | ───────────── |
