@@ -554,8 +554,9 @@ Some text
 > This is a quote block.
 
 ### Tables
+By default, text in table cells does not wrap at spaces — only at explicit line breaks. This preserves table column alignment across different screen sizes. To force a line break within a table cell, use an HTML `<br/>` tag.
 
-#### Syntax
+#### Syntax A
 
 ```markdown
 | Column A | Column B |
@@ -563,11 +564,25 @@ Some text
 | Value 1  | Value 2  |
 ```
 
-#### Example
+#### Example A
 
 | Column A | Column B |
 |-|-|
 | Value 1  | Value 2  |
+
+#### Syntax B
+
+```markdown
+| Base Actor<br/>`Base Actor ID` | Replacement Actor<br/>`Replacement Actor ID` |
+|-|-|
+| Small Icicle<br/>`AsbObj_Icicle_A_01` | Small Icicle<br/>`AsbObj_Icicle_A_01` |
+```
+
+#### Example B
+
+| Base Actor<br/>`Base Actor ID` | Replacement Actor<br/>`Replacement Actor ID` |
+|-|-|
+| Small Icicle<br/>`AsbObj_Icicle_A_01` | Small Icicle<br/>`AsbObj_Icicle_A_01` |
 
 ### Admonition
 
