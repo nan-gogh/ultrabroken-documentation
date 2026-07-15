@@ -1920,11 +1920,19 @@ li.task-list-item a, li.task-list a {
 
 /* 
    TABLE TEXT WRAPPING
-   Prevent unwanted line breaks in table cells. Soft wraps only occur when
-   explicitly specified with <br> tags. The :not([class]) guard ensures
-   this applies only to standard markdown tables, not custom styled ones.
+   Prevent unwanted soft-wraps in table cells. Explicit <br> tags still
+   create line breaks. word-break: normal overrides Material's break-all
+   on <code> elements so actor IDs don't split mid-character.
+   Custom tables (leaderboard etc.) override these via their own scoped rules.
  */
-.md-typeset table:not([class]) td,
-.md-typeset table:not([class]) th {
+.md-typeset table td,
+.md-typeset table th {
   white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+.md-typeset table td code,
+.md-typeset table th code {
+  word-break: normal;
+  overflow-wrap: normal;
 }
