@@ -1777,6 +1777,17 @@
     "filename": "mineru-hold-smuggle.md"
   },
   {
+    "name": "Mineru Parented GAS",
+    "uid": "0AW",
+    "label": "MGAS",
+    "aliases": [
+      "Mineru GAS",
+      "Mineru Parented GAS"
+    ],
+    "path": "wiki/0AW/",
+    "filename": "mineru-parented-gas.md"
+  },
+  {
     "name": "Mineru Parented Zuggle",
     "uid": "4LL",
     "label": "MPZ",
