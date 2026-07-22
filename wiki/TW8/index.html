@@ -1062,38 +1062,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sfo-method-4-lsw-csz" class="md-nav__link">
+  <a href="#sfo-method-4-cull-detachment-zuggle-112-type" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SFO Method 4 + LSW + CSZ
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SFO Method 4 + LSW + CSZ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#part-4-cull-storage-zuggle" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Part 4: Cull Storage Zuggle
+        SFO Method 4 + Cull Detachment Zuggle (1.1.2 type)
       
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
-  <a href="#sfo-method-1-lsw-lock-srz" class="md-nav__link">
+  <a href="#nested-batch-di-cull-detachment-zuggle-120-type" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SFO Method 1 + LSW Lock + SRZ
+        Nested Batch DI + Cull Detachment Zuggle (1.2.0+ type)
       
     </span>
   </a>
@@ -1243,9 +1226,8 @@
 <p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
 <p>By completely filling the game's global dependency array with persistent dependencies, Prologue Zelda can be forced to Overload Drop her torch, which has unique properties. Once obtained in the prologue, it can be transferred to a progressed file in the same way as the Prologue Master Sword.</p>
-<p>I'm sorry if you see this page like this. It's in a transitional state. Originally I wanted it to be like the Mineru's Arm page: a series of modular steps that are easy to mix and match to suit your particular tastes and needs. But Zelda's Torch is just a different beast. It needs special attention to autosave management, a half-dozen save loads, and is complex enough that adding a Mineru's Arm get into the middle is basically free.</p>
-<p>So I'm converting the drafted modular format to a trio of specific guides, and I'm not done. Partly it's because 1.1.2 is a beast of beasts that I don't even know anything about to boot, but also I have a lot of location research to do (I want to find the absolute best prologue-overlapping shrines for each version, absolutely maximizing ease of item placement and transfer).</p>
-<p>But like, there's a reason I haven't published the page. How did you get here?</p>
+<p>I'm... less sorry than I was before if you see the page like this. It's still not done, but it finally has a (nearly) complete set of steps for every version. Feels good.</p>
+<p>Still though, there's a reason it's not published. Follow these guides at your own risk.</p>
 <p><em>First obtained by mulberry - Dec 07th, 2025</em></p>
 <h2 id="instructions">Instructions</h2>
 <ul>
@@ -1253,7 +1235,7 @@
 <li>There are other combinations of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> Methods and transfer methods that will work on each version, but something had to go to make this page readable and I chose variations.</li>
 <li>The provided combinations are the most efficient on the listed version ranges.</li>
 </ul>
-<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">SFO Method 4 + SLD <span class='ub-vr'><code>1.0.0-1.1.1</code></span></label><label for="__tabbed_1_2">SFO Method 4 + LSW + CSZ <span class='ub-vr'><code>1.1.2</code></span></label><label for="__tabbed_1_3">SFO Method 1 + LSW Lock + SRZ <span class='ub-vr'><code>1.2.0+</code></span></label></div>
+<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">SFO Method 4 + SLD <span class='ub-vr'><code>1.0.0-1.1.1</code></span></label><label for="__tabbed_1_2">SFO Method 4 + Cull Detachment Zuggle (1.1.2 type)</label><label for="__tabbed_1_3">Nested Batch DI + Cull Detachment Zuggle (1.2.0+ type) <span class='ub-vr'><code>1.2.0+</code></span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1"]' data-obsolete="false" hidden></div>
@@ -1268,7 +1250,7 @@
 <h4 id="part-1-prep" data-notoc="true">Part 1: Prep</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
-<li>By whichever means desired, get the "canonical minimum" <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a> (9 on <code>1.0.0</code>, 13 on <code>1.1.0+</code>)</li>
+<li>By whichever means desired, get 13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a> (9 on <code>1.0.0</code>)</li>
 <li>Prepare a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Shield (<code>E</code>). This is technically optional, but it saves time and complexity and the steps assume you have it. Get it.</li>
 <li>Create an Intangible Aerophasing setup at (location).</li>
 <li>You will also need several unfused weapons and shields, a bow, at least one arrow, and a material.</li>
@@ -1343,21 +1325,18 @@
 </ol>
 </div>
 <div class="tabbed-block">
-<div class="ub-method-meta" data-versions='["1.1.2"]' data-obsolete="false" hidden></div>
-<h3 class="tab-toc-heading" id="sfo-method-4-lsw-csz">SFO Method 4 + LSW + CSZ</h3>
+<h3 class="tab-toc-heading" id="sfo-method-4-cull-detachment-zuggle-112-type">SFO Method 4 + Cull Detachment Zuggle (1.1.2 type)</h3>
 <p><div class="ub-method-meta" data-versions='["1.1.2"]' data-obsolete="false" hidden></div>
 <code>1.1.2</code></p>
 <ul>
 <li><code>1.1.2</code> is in a particularly awkward position, postdating D-Pad Lock but predating Drop-Swap Culling.</li>
-<li>Thus, it is required to cull Link to be able to transfer Zelda's Torch, but has no easy way to achieve this cull in the prologue.</li>
-<li>It also cannot perform <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BOF/" class="glitch-autolink" title="Persistent Save Load Object Transfer" target="_blank" rel="noopener noreferrer">Save Load Dupe</a>, because the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MUY/" class="glitch-autolink" title="LSW" target="_blank" rel="noopener noreferrer">LSW</a> required to avoid the "Callback" prevents the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/P2F/" class="glitch-autolink" title="SLD" target="_blank" rel="noopener noreferrer">SLD</a> from transferring the torch to a controlled location.</li>
-<li>Furthermore, it cannot perform <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/XTY/" class="glitch-autolink" title="Swap Resync Zuggle" target="_blank" rel="noopener noreferrer">Swap Resync Zuggle</a> <em>or</em> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> Method 1.</li>
-<li>Thus, it must first perform SFO Method 4, then use a combination of LSW Lock and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8LV/" class="glitch-autolink" title="Cull Storage Zuggle" target="_blank" rel="noopener noreferrer">Cull Storage Zuggle</a>.</li>
-<li>Unless ☝️ someone figures out how to do long <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7A4/" class="glitch-autolink" title="Cull Storage" target="_blank" rel="noopener noreferrer">cull storage</a> consistently</li>
+<li>However, through the combined efforts of many excellent glitch hunters, a consistent, prologue-friendly weapon <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> has been developed.</li>
+<li>Rejoice, and learn.</li>
 </ul>
 <h4 id="part-1-prep_1" data-notoc="true">Part 1: Prep</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
+<li>Having Mineru unlocked will be needed for the steps as written. There are workarounds but they're beyond the scope of this article.</li>
 <li>By whichever means desired, get 13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a>.</li>
 <li>Prepare a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Shield (<code>E</code>). This is technically optional, but it saves time and complexity and the steps assume you have it. Get it.</li>
 <li>Create an Intangible Aerophasing setup at (location).</li>
@@ -1392,186 +1371,191 @@
 </ol>
 <h5 id="2c-collecting-zeldas-torch-in-the-prologue_1">2c: Collecting Zelda's Torch in the prologue</h5>
 <ol>
-<li>Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 4), so don't fret about your progressed file.</li>
+<li>Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5, but typically 4), so don't fret about your progressed file.</li>
 <li>Progress to the <em>second</em> autosave (give timing cue but it's just after the first dialogue cutscene thing), then return to (shrine name).</li>
 <li>Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there).</li>
 <li>Load the second prologue autosave. Zelda will drop her torch, so pick it up.</li>
 <li>If she does not, try loading back to (shrine) and repeating steps 3-4; It may take a few tries for her torch to be one of the dependencies that fails.</li>
-<li>Proceed until receiving the _third prologue autosave.</li>
+<li>Proceed until receiving the <em>third</em> prologue autosave.</li>
 <li><strong>Close the game</strong> to end <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></li>
 </ol>
-<h4 id="part-3-csz-prep-and-performing-lsw-lock" data-notoc="true">Part 3: CSZ Prep and Performing LSW Lock</h4>
+<p>As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. Please. I don't want to be responsible for someone losing their file.</p>
+<h4 id="part-3-cull-detachment-zuggle-and-retrieval" data-notoc="true">Part 3: Cull Detachment Zuggle and Retrieval</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
+<h5 id="3a-cdz-prep">3a: CDZ prep</h5>
 <ol>
-<li>I do not know how to do this. I will be asking for help. thumbs up emoji</li>
-<li>But the idea of holding off on getting autosave 4 until autosave 3 is about to expire is sound I think</li>
+<li>Use Mineru Limbo to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="Despawn Interrupt" target="_blank" rel="noopener noreferrer">Duga Dip</a> a weapon <code>W1</code></li>
+<li>Use Mineru's culling to DI a chain: <code>W1</code>-&gt;<code>S1</code>-&gt;<code>W2</code>-&gt;<code>S2</code></li>
+<li>Detangle <code>W1</code> from Mineru and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> all 4 items to Domizuin Shrine at Akkala Citadel Ruins</li>
+<li><code>S1</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> Hover Stone <code>H</code></li>
+<li><code>W1</code> FS2FE Steering Stick <code>A1</code>; place <code>A1</code> atop <code>H</code> in a culling area, check to make sure it's culling, and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/L54/" class="glitch-autolink" title="SDC" target="_blank" rel="noopener noreferrer">SDC</a> it with the cf parent</li>
+<li>Glue <code>A1</code>-&gt;<code>H</code> to prevent <code>A1</code> from culling</li>
+<li>Smuggle <code>S1</code>, then equip <code>S2</code> and a random weapon. Shock thing placeholder. DSU <code>S2</code>, throw-&gt;drop <code>W2</code>, fd random shield</li>
+<li>Ensure <code>W1</code> is not Zuggle Dropped (so that <code>S1</code> is not attached to Link)</li>
+<li>Place Steering Stick <code>A2</code> in the culling area, recall it, and L-Cancel Null FE it to <code>S2</code> from outside the culling margin</li>
+<li>Glue an Apple (or something else that readily culls) to <code>A2</code>, place both in the culling area, and check that only the Apple culls when leaving the culling margin</li>
+<li>Glue <code>A2</code> to <code>A1</code> with both still atop <code>H</code>, and shake <code>H</code> free. Then, exit and quickly re-enter the culling margin to see that <code>A1</code> can cull again (if you get stuck, use memories to uncull)</li>
+<li>Zuggle <code>W1</code>, then recall <code>H</code> and load the save that has Zelda's Torch</li>
 </ol>
-<h4 id="part-4-cull-storage-zuggle">Part 4: Cull Storage Zuggle</h4>
+<h5 id="3b-cdz">3b: CDZ</h5>
 <ol>
-<li>Dunno how to do this either.</li>
-<li>Like I can read. I see the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8LV/" class="glitch-autolink" title="Cull Storage Zuggle" target="_blank" rel="noopener noreferrer">Cull Storage Zuggle</a> page and I can read it. Could probably execute a CSZ in a controlled trial.</li>
-<li>But I don't know how to store a cull through a load. And I definitely don't know the <em>easiest</em> way to do it.</li>
-<li>Also Mandelbrot did an sld I'm pretty sure, so maybe 1.1.2 doesn't need to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MUY/" class="glitch-autolink" title="LSW" target="_blank" rel="noopener noreferrer">LSW</a> at all? I didn't consider the physical cull possibility...</li>
-<li>If I figure out <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7A4/" class="glitch-autolink" title="Cull Storage" target="_blank" rel="noopener noreferrer">cull storage</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/P2F/" class="glitch-autolink" title="SLD" target="_blank" rel="noopener noreferrer">SLD</a> well enough I guess it might be good for 1.2.0+ as well???</li>
+<li>Press A repeatedly to pick up <code>W2</code> and <code>S2</code> until the weapon and shield inventories are both full and <code>S2</code> is equipped</li>
+<li>Swap off Zelda's Torch (unpausing to ensure the swapped-to weapon is Warm Equipped), then drop-swap <em>to</em> Zelda's Torch</li>
+<li>After a moment, Link should cull and stay culled. <strong>Pause</strong>.</li>
+<li>Drop every unequipped shield and weapon except for one spare weapon besides Zelda's Torch (this can be the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/056/" class="glitch-autolink" title="Message Not Found" target="_blank" rel="noopener noreferrer">mnf</a> or a copy of <code>W2</code>)</li>
+<li>Finally, drop Zelda's Torch and swap to the last remaining weapon</li>
+<li><strong>Pause Buffer</strong>, but with lenient timing. Specifically, assuming 3 shields and 6 weapons were dropped before dropping Zelda's Torch, you have <strong>12 frames</strong> to pause again after unpausing (=0.4 seconds).</li>
+<li>Unequip and re-equip <code>S2</code>. The unequip will destroy <code>A2</code>, forcing <code>A1</code> to uncull (and thus instantly unculling Link while still paused), and the equip will thus resync the swapped-to weapon.</li>
+<li>Drop the equipped weapon, and without unpausing, load a progressed save.</li>
 </ol>
-<h4 id="part-5-bonuses" data-notoc="true">Part 5: Bonuses</h4>
+<h5 id="3c-retrieval">3c: Retrieval</h5>
+<ol>
+<li>Upon arriving at the progressed file, Zelda's Torch should be visibly zuggled on Link's back</li>
+<li>Simply stand somewhere safe and Warm Drop any weapon to drop the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a>.</li>
+<li>However, it still has a dependency to Link, and is undiscovered. This prevents it from being picked up with an empty hand.</li>
+<li>To overcome this, either equip another weapon, or else Ultrahand the torch. The former sends it straight to the inventory, while the latter removes the lingering dependency.</li>
+<li>Save the game.</li>
+</ol>
+<h4 id="part-4-bonuses_1" data-notoc="true">Part 4: Bonuses</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
-<li>This is a lot of work for a torch, even if it's really cool. But if you're careful, you can also obtain Mineru's Arm and the Prologue Master Sword during this setup, for much less total work than obtaining all three one-by-one.</li>
+<li>This is a lot of work for a torch, even if it's a really cool torch. But if you're careful, you can also obtain Mineru's Arm during this setup, for very little extra effort.</li>
+<li>The <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JJB/" class="glitch-autolink" title="CDZ" target="_blank" rel="noopener noreferrer">CDZ</a> setup can also be repeated to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> the Prologue Master Sword (aka "<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/056/" class="glitch-autolink" title="Message Not Found" target="_blank" rel="noopener noreferrer">mnf</a>"), though it doesn't particularly save any labor.</li>
 </ul>
 <h5 id="adjustments-for-minerus-arm_1">Adjustments for Mineru's Arm</h5>
 <ol>
 <li>Before beginning Part 2a, summon Mineru's Sage Avatar.</li>
-<li>After completing Part 2b, before returning to the title screen, warp to Mogisari Shrine, at Lomei Sky Labyrinth in the northeastern sky.</li>
+<li>After completing Part 2b, before returning to the title screen, warp to any of the three Sky Labyrinths. The Northeast one ("Lomei Sky Labyrinth") is the most-tested.</li>
 <li>Follow <a href="../J7X/#collecting-minerus-arm_1">These steps</a> to collect Mineru's Arm.</li>
-<li>Warp back to (shrine) and get a new autosave inside it with Mineru's Arm collected.</li>
+<li>Make a hard save if not planning to hard save in the prologue, and simply get an autosave otherwise.</li>
 <li>Proceed as normal from the start of Part 2c.</li>
+<li>When it comes time to reopen the game in Part 3, ensure you load a save that has Mineru's Arm.</li>
 </ol>
 <h5 id="adjustments-for-the-prologue-master-sword_1">Adjustments for the Prologue Master Sword</h5>
-<ul>
-<li>need to figure out if the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8LV/" class="glitch-autolink" title="CSZ" target="_blank" rel="noopener noreferrer">CSZ</a> is even reusable. If not it's fine, just need to do the setup twice. but that's not "very little extra work" anymore.</li>
-</ul>
+<ol>
+<li>After the final step of Part 3 ("Save the game"), perform all of part 3 again. But this time, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> the Prologue Master Sword instead of Zelda's Torch.</li>
+<li>If all your prologue autosaves have expired by the end of Part 3a, simply return to the title screen and start a new file. The <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JJB/" class="glitch-autolink" title="CDZ" target="_blank" rel="noopener noreferrer">CDZ</a> setup survives this just fine.</li>
+</ol>
 </div>
 <div class="tabbed-block">
 <div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
-<h3 class="tab-toc-heading" id="sfo-method-1-lsw-lock-srz">SFO Method 1 + LSW Lock + SRZ</h3>
+<h3 class="tab-toc-heading" id="nested-batch-di-cull-detachment-zuggle-120-type">Nested Batch DI + Cull Detachment Zuggle (1.2.0+ type)</h3>
 <p><div class="ub-method-meta" data-versions='["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
 <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <ul>
 <li>These versions postdate both D-Pad Lock and Drop-Swap Culling.</li>
 <li>Thus, they must cull Link to be able to transfer Zelda's Torch, but have access to an easy way to do so.</li>
-<li>They also must use <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MUY/" class="glitch-autolink" title="LSW" target="_blank" rel="noopener noreferrer">LSW</a> Lock to avoid the "Callback", and so cannot Save-Load Dupe, but have access to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/XTY/" class="glitch-autolink" title="Swap Resync Zuggle" target="_blank" rel="noopener noreferrer">Swap Resync Zuggle</a> instead.</li>
-<li>Finally, they may make efficient use of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> Method 1, making the act of collecting Zelda's Torch within the prologue easier than other versions.</li>
+<li>Recent developments have allowed for a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> method which is nearly timing-free, and doesn't require <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MUY/" class="glitch-autolink" title="LSW" target="_blank" rel="noopener noreferrer">LSW</a>.</li>
+<li>This reduces the execution difficulty of the zuggle and simplifies the retrieval, so it will be recommended here despite being somewhat more complicated to set up than previous methods.</li>
+<li>With access to Drop-Swap Culling, they also have a much easier time performing <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>.</li>
 </ul>
 <h4 id="part-1-prep_2" data-notoc="true">Part 1: Prep</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ol>
 <li>By whichever means desired, prepare 13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a> (such that having all equipment equipped acts normal, but drawing bow causes swaps to overload drop).</li>
-<li>Prepare 7 "Gen 2" <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts: 5 shields, 2 weapons, and a bow, with none of them sharing any dependencies (direct or indirect).</li>
-<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> 2 of the shields and the bow, then travel to Mayatat Shrine (<em>A Sliding Device</em>) at Kara Kara Bazaar.</li>
-<li>Drop said DI Ghosts at the location pictured below, being sure to undo the resulting Zuggle Drops. Here, they will be able to be collected within the prologue at a specific desired time.</li>
-<li>Leave the third <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Shield at Akkala Citadel Ruins (or another preferred culling area).</li>
-<li>Zuggle the remaining 2 shields and 2 weapons and travel to (shrine).</li>
+<li>Prepare 4 "Gen 2" <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts: 2 shields and 2 weapons. One of each will be used in the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> process, with the others just for easy duping.</li>
+<li>It's possibly important that the working shield and weapon don't share any dependency relations to each other.</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> the 4 items (you will need to unequip bow) and travel to [shrine].</li>
 </ol>
-<details class="info">
-<summary>Where to drop the Ghosts</summary>
-<p>placeholder</p>
-</details>
 <h4 id="part-2-sfo-and-torch-collection_2" data-notoc="true">Part 2: SFO and Torch Collection</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
+<h5 id="2a-nested-batch-di-sfo">2a: Nested Batch DI SFO</h5>
 <ul>
-<li>Parts 2a and 2b here are lifted from Method 1 on the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="Super Fuse Overload" target="_blank" rel="noopener noreferrer">Super Fuse Overload</a> page. The only difference here is that it is performed in a specific location.</li>
-<li>One of the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> weapons is <code>A1</code>, and one of the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost shields is <code>B1</code>. The other two are only for duping and are unnamed.</li>
+<li>The working weapon mentioned above is <code>A1</code>, and the working shield is <code>A2</code>
+(select a shrine, doofus, so you know just where you are. Don't you know that I might be... your wishing well?)</li>
 </ul>
-<h5 id="2a-creating-the-base-setup">2a: Creating the base setup</h5>
+<div data-ub-level="6" class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Condensed</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h6 class="tab-toc-heading" id="condensed">Condensed</h6>
+</div>
+</div>
+</div>
 <ol>
-<li>Enter (shrine), defeat any constructs present, and dispose of their weapons (for example by leaving/reentering)</li>
-<li>(Need a little more testing to decide best shrine)</li>
-<li><code>B1</code> <a href="../0XV/#method-3-vddi-smugglezuggle">Overload FE</a> weapon <code>B2</code></li>
-<li><a href="../EY8/">Recall Lock</a> <code>B2</code></li>
-<li><code>A1</code> and normal weapon <code>A2</code> <a href="../BEW/#method-1-fuse-drop-swap-120">Ghost DI</a> shield <code>A3</code></li>
-<li><code>A1</code> <strong>Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a></strong> normal shield <code>A4</code>; Leave <code>A1</code> <a href="../L84/">Zuggle Dropped</a> </li>
-<li>Equip <code>A2</code>, <a href="../TGY/">Smuggle</a> <code>A3</code>, and <a href="../8QH/">Overload Pickup</a> <code>A4</code></li>
-<li><code>A2-A4</code> <a href="../PG3/#method-1-overload-pf-drop-swap-culling-120">Overload Batch DI</a> 19 weapons <code>C1-C19</code>:<ol>
-<li>Place Link's back to a wall so that <code>A2</code> can be fail-dropped</li>
-<li>Drop a weapon <code>C1</code> on the ground and <strong>fuse</strong> it to <code>A4</code></li>
-<li><strong>Fuse</strong> <code>C1</code> to <code>A4</code> again and <strong>pause</strong> a few frames later</li>
-<li><strong>Drop</strong> <code>A2</code>, <strong>swap</strong> to another weapon, <strong>unequip</strong> that weapon, and finally <strong>unpause</strong></li>
-<li>Repeat Steps 8b-8d 18 more times, creating 19 total weapons <code>C1-C19</code></li>
+<li><code>A1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> shield <code>B</code> and Recall Lock it</li>
+<li><code>A2</code> and <code>B</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a> weapon <code>C</code></li>
+<li><code>A2</code> Overload FE weapon <code>D1</code>; leave <code>A2</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped</li>
+<li>Equip <code>B</code>, Smuggle <code>C</code>, and Overload Pickup <code>D1</code></li>
+<li><code>B</code>, <code>C</code>, and <code>D1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a> 25 weapons <code>E1-E25</code></li>
+<li>Drop <code>D1</code> (don't bother faildropping), then pick up and drop <code>C</code> to undo its Zuggle Drop</li>
+<li><code>A2</code> Overload FE weapon <code>D2</code>; leave <code>A2</code> Zuggle Dropped</li>
+<li>Throw purgatorize <code>E1-E25</code></li>
+<li>Equip <code>B</code> and Overload Pickup <code>D2</code></li>
+<li><code>B</code>, <code>E1-E25</code>, and <code>D2</code> Overload Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> 24 shields <code>F1-F24</code></li>
+<li>Leave <code>B</code> dropped, then faildrop <code>D2</code> and drop it once it returns, and finally pick up and drop <code>A2</code> to undo its Zuggle Drop</li>
+<li>If desired, check for "full" <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached</li>
 </ol>
-</li>
-<li>Confirm <code>C1-C19</code> all exist, then <strong>Fail-Drop</strong> <code>A4</code> to move it to Link's hand</li>
-<li><code>A3</code> &amp; <code>A4</code> <strong>Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a></strong> weapon <code>C20</code></li>
-<li><strong>Drop</strong> <code>A4</code></li>
-<li>Re-smuggle <code>A3</code>, equip a random shield, and <strong>Fuse</strong> something disposable to it. This will leave <code>A4</code> as the sole FE parent of <code>C20</code></li>
-<li>Smuggle any <em>one</em> <code>C</code>, then <strong>equip</strong> another and <strong>throw it</strong>. Finally, unsheathe weapon to return the thrown one to Link's hand. The smuggled weapon is now in Purgatory</li>
-<li>Repeat step 11 to Purgatorize <em>all</em> <code>C</code>, using a random weapon for the final throw (it can be unequipped after)</li>
-<li><strong>Recall Lock</strong> <code>A4</code>, discarding <code>A2</code> and <code>A3</code> through the load</li>
-</ol>
-<h5 id="2b-performing-sfo">2b: Performing SFO</h5>
+<h5 id="2b-collecting-zeldas-torch-in-the-prologue">2b: Collecting Zelda's Torch in the Prologue</h5>
 <ol>
-<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Drop <code>B1</code>, equip <code>A4</code>, and <strong>Overload Pickup</strong> <code>B2</code></li>
-<li><code>C1-20</code>, <code>B2</code>, &amp; <code>A4</code> <strong>Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a></strong> 30 Shields <code>D1-D30</code>:<ol>
-<li><em>Do not</em> place Link's back to a wall; it is likely you will badly mess up if you do.</li>
-<li>Drop a shield <code>D1</code> on the ground and <strong>fuse</strong> it to <code>B2</code></li>
-<li><strong>Fuse</strong> <code>D1</code> to <code>B2</code> again and <strong>open</strong> the Shield Quick Menu a few frames later</li>
-<li>Without letting the game unpause, <strong>drop</strong> <code>A4</code>, <strong>swap</strong> to another shield, and <strong>unequip</strong> that shield</li>
-<li>If <code>B2</code> is a Zonaite-series weapon, check if the blade is present; if not, this <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> was successful.</li>
-<li>Repeat Steps 2b-2d 29 more times, creating 30 total shields <code>D1-D30</code></li>
-<li>There will be a substantial lag on Step 2b for each shield after <code>D1</code>, hence the recommendation to use the D-Pad (and thus to not fail-drop).</li>
-<li>This lag makes it likely to pause <em>too early</em>, which can be detected by checking if the twice-fused <code>D[n]</code> is still "Fuse-Target Blue".</li>
+<li>Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5), so don't fret about your progressed file</li>
+<li>Progress to the <em>second</em> autosave (give timing cue but it's just after the first dialogue cutscene thing), then return to (shrine name)</li>
+<li>Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there)</li>
+<li>Load the second prologue autosave. Zelda will drop her torch, so pick it up</li>
+<li>If she does not, try loading back to (shrine) and repeating steps 3-4; It may take a few tries for her torch to be one of the dependencies that fails</li>
+<li>After collecting the torch, proceed until receiving the <em>third</em> prologue autosave (timing cue), then load the (shrine) autosave</li>
+<li>One by one, <strong>pick up</strong> and <strong>unequip</strong> all <code>F[n]</code> to destroy them, deleting all the dependencies and ending <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a></li>
 </ol>
-</li>
-<li><em><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="Super Fuse Overload" target="_blank" rel="noopener noreferrer">Super Fuse Overload</a></em> should occur on the 30th shield. If confirmation is needed, pick <code>A4</code> back up, then attempt to nock an arrow. If it fails to attach to the bow, and hangs in midair, SFO is fully active</li>
-<li>Leaving <code>A4</code> dropped, <strong>fail-drop</strong> <code>B2</code> and <strong>drop</strong> it <em>after</em> it returns to Link's hand. Finally, un-Zuggle Drop <code>B1</code></li>
-<li>The entire setup will now persist, and SFO will be fully active as long as Link equips each type of equipment (with exactly <em>one</em> being fused)</li>
-</ol>
-<h5 id="2c-collecting-zeldas-torch-in-the-prologue_2">2c: Collecting Zelda's Torch in the prologue</h5>
-<ol>
-<li>Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5), so don't fret about your progressed file.</li>
-<li>Progress to the <em>second</em> autosave (give timing cue but it's just after the first dialogue cutscene thing), then return to (shrine name).</li>
-<li>Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there).</li>
-<li>Load the second prologue autosave. Zelda will drop her torch, so pick it up.</li>
-<li>If she does not, try loading back to (shrine) and repeating steps 3-4; It may take a few tries for her torch to be one of the dependencies that fails.</li>
-<li>After collecting the torch, use overload duping to obtain additional torches/swords for buffer drop purposes. Additionally, collect 3 shields and a bow from the pre-placed <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts.</li>
-<li>Proceed until receiving the <em>third</em> prologue autosave (timing cue), then load the (shrine) autosave.</li>
-<li>One by one, <strong>pick up</strong> and <strong>unequip</strong> all <code>D[n]</code> to destroy them, deleting all the dependencies and ending <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>.</li>
-</ol>
-<h4 id="part-3-performing-drop-zuggle-and-lsw-lock" data-notoc="true">Part 3: Performing Drop Zuggle and LSW Lock</h4>
+<p>As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. Please. I don't want to be responsible for someone losing their file.</p>
+<h4 id="part-3-cull-detachment-zuggle-and-retrieval_1" data-notoc="true">Part 3: Cull Detachment Zuggle and Retrieval</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
+<h5 id="3a-cdz-prep_1">3a: CDZ Prep</h5>
+<div data-ub-level="6" class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Condensed</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h6 class="tab-toc-heading" id="condensed_1">Condensed</h6>
+</div>
+</div>
+</div>
 <ol>
-<li>Warp to Domizuin Shrine and go to the small culling area there; dispose of the Scary Grabber if needed</li>
-<li>Prepare two portaculls, at least one being a shield </li>
-<li><a href="../0XV/#method-3-vddi-smugglezuggle">Overload FE</a> a Battery or other liftable to the pre-placed <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> (<code>E</code>)</li>
-<li>Unequip shield, leaving <code>E</code> smuggled/zuggled</li>
-<li>Overload pickup a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> shield and drop it; <code>E</code> will drop and prevent D-Pad lock. Pick up and drop it to undo the resulting <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Drop.</li>
-<li>Pick the portacull shield back up; it should "equip" to Link's feet.</li>
-<li><strong>Pause</strong> the game, <strong>drop</strong> the portacull, and <strong>swap</strong> to another shield</li>
-<li><strong>Pause buffer</strong>, <strong>swap</strong> any non-shield piece of equipment, and <strong>drop</strong> the portacull</li>
-<li>The portacull should become drop zuggled. If the pause buffer was too slow, however, it might become purgatorized. If so, ignore it, make another, and try again from step 4.</li>
-<li>Stand within the culling margin. Place the other portacull in the culling area, lift the child of E, and walk outside the margin. Link and the liftable should cull.</li>
-<li>Load the <em>third</em> prologue autosave. Link should be deep within the gray void around the prologue, and a <em>single</em> fadeout should occur shortly after loading.</li>
+<li>Create a "Gen 1" <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapon, <code>W1</code>, and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> it to the Akkala Citadel Ruins</li>
+<li>Create a DI chain <code>W1</code>-&gt;<code>S1</code>-&gt;<code>W2</code>-&gt;<code>S2</code>, then undo <code>W2</code>'s Zuggle Drop and delete the remaining normal parents of the chain</li>
+<li><code>S1</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> Hover Stone <code>H</code></li>
+<li><code>W1</code> FE <code>S3</code> fuse <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/L54/" class="glitch-autolink" title="SDC" target="_blank" rel="noopener noreferrer">SDC</a></li>
+<li>Place Steering Stick <code>A</code> in a culling area, then recall it and FE it to <code>S2</code> from outside the margin</li>
+<li>Place <code>A</code> atop <code>H</code> in a culling area, then check that <code>A</code> has a cull stored: Glue an Apple (or other object that readily culls) to <code>A</code>; the Apple should still cull upon leaving the culling margin</li>
+<li>Glue <code>S3</code> to <code>A</code> and check that Link culls when exiting the margin (either quickly re-enter, or else watch a memory to uncull)</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/CVH/" class="glitch-autolink" title="Drop Smuggling" target="_blank" rel="noopener noreferrer">Drop Smuggle</a> <code>S2</code>, Drop Purgatorify <code>W2</code>, and Smuggle <code>W1</code>, then equip a random weapon and shield</li>
+<li>Recall <code>H</code>, then pause, drop the weapon and shield, and load the save that has Zelda's Torch collected</li>
 </ol>
-<h4 id="part-4-performing-swap-resync-zuggle" data-notoc="true">Part 4: Performing Swap Resync Zuggle</h4>
-<div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
+<h5 id="3b-cdz_1">3b: CDZ</h5>
 <ol>
-<li>Link is not actually falling, due to the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MUY/" class="glitch-autolink" title="LSW" target="_blank" rel="noopener noreferrer">LSW</a> Lock's anti-movement powers. There is no rush. Do not rush.</li>
-<li>Ensure a shield is not currently equipped, then <strong>pick up</strong> the Drop Zuggled <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">Portacull</a>.</li>
-<li>For overload-management reasons, <strong>unequip</strong> Link's bow if it is equipped.</li>
-<li><strong>Unequip</strong> whichever weapon is currently equipped, then <strong>equip</strong> Zelda's Torch; this ensures it is not overload dropped</li>
-<li><strong>Pause</strong> the game</li>
-<li><strong>Drop</strong> a buffer equipment item</li>
-<li><strong>Drop</strong> the Portacull Shield and <strong>swap</strong> to another shield</li>
-<li><strong>Drop</strong> 2 more buffer items (NOT the swapped-to shield)</li>
-<li><strong>Drop</strong> Zelda's Torch and <strong>swap</strong> to another weapon</li>
-<li><strong>Pause Buffer</strong> (unpause and pause again 3-4 frames later; any faster will eat the input and any slower is... too slow)</li>
-<li><strong>Equip</strong>, then <strong>unequip</strong> the bow to resync</li>
-<li><strong>Drop</strong> the swapped-to weapon</li>
-<li><strong>Load</strong> a progressed save. This interrupts the dropping process, removing the need for a wall to fail-drop with</li>
-<li>If the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/XTY/" class="glitch-autolink" title="SRZ" target="_blank" rel="noopener noreferrer">SRZ</a> was successful, Zelda's Torch will be on Link's back in the progressed save. However, Link will still be under the effects of LSW Lock, and is likely high in the air.</li>
-<li>Get some ground beneath Link; the easiest way is to fire a Hover Stone straight down and land on it (...slowly).</li>
-<li>Prepare Recall, then <strong>Drop</strong> an equipped weapon and use Recall on Zelda's Torch to make it easy to catch.</li>
-<li>Grab it and save the game.</li>
-<li>Likely, returning to Domizuin to destroy the LSW base is more trouble than it's worth. A game close will get rid of it, if you're ready (see below).</li>
+<li>Press A repeatedly to pick up <code>W2</code> and <code>S2</code> until the weapon and shield inventories are both full and <code>S2</code> is equipped</li>
+<li>Swap off Zelda's Torch (unpausing to ensure the swapped-to weapon is Warm Equipped), then drop-swap <em>to</em> Zelda's Torch</li>
+<li>After a moment, Link should cull and stay culled. <strong>Pause</strong>.</li>
+<li>Drop every unequipped shield and weapon except for one spare weapon besides Zelda's Torch (this can be the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/056/" class="glitch-autolink" title="Message Not Found" target="_blank" rel="noopener noreferrer">mnf</a> or a copy of <code>W2</code>)</li>
+<li>Finally, drop Zelda's Torch and swap to the last remaining weapon</li>
+<li><strong>Pause Buffer</strong>, but with lenient timing. Specifically, assuming 3 shields and 6 weapons were dropped before dropping Zelda's Torch, you have <strong>12 frames</strong> to pause again after unpausing (=0.4 seconds)</li>
+<li>Unequip and re-equip <code>S2</code>. The unequip will destroy <code>A</code>, forcing <code>S3</code> to uncull (and thus instantly unculling Link while still paused), and the equip will thus resync the swapped-to weapon</li>
+<li>Drop the equipped weapon, and without unpausing, load a progressed save</li>
 </ol>
-<h4 id="part-5-bonuses_1" data-notoc="true">Part 5: Bonuses</h4>
+<h5 id="3c-retrieval_1">3c: Retrieval</h5>
+<ol>
+<li>Upon arriving at the progressed file, Zelda's Torch should be visibly zuggled on Link's back</li>
+<li>Simply stand somewhere safe and Warm Drop any weapon to drop the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a></li>
+<li>However, it still has a dependency to Link, and is undiscovered. This prevents it from being picked up with an empty hand</li>
+<li>To overcome this, either equip another weapon, or else Ultrahand the torch. The former sends it straight to the inventory, while the latter removes the lingering dependency</li>
+<li>Save the game</li>
+</ol>
+<h4 id="part-4-bonuses_2" data-notoc="true">Part 4: Bonuses</h4>
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <ul>
-<li>This is a lot of work for a torch, even if it's really cool. But if you're careful, you can also obtain Mineru's Arm and the Prologue Master Sword during this setup, for much less total work than obtaining all three one-by-one.</li>
+<li>This is a lot of work for a torch, even if it's really cool. But if you're careful, you can also obtain Mineru's Arm during this setup, for very little extra work.</li>
+<li>The <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JJB/" class="glitch-autolink" title="CDZ" target="_blank" rel="noopener noreferrer">CDZ</a> setup can also be repeated to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> the Prologue Master Sword (aka "<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/056/" class="glitch-autolink" title="Message Not Found" target="_blank" rel="noopener noreferrer">mnf</a>"), though it doesn't particularly save any labor.</li>
 </ul>
 <h5 id="adjustments-for-minerus-arm_2">Adjustments for Mineru's Arm</h5>
 <ol>
 <li>Before beginning Part 2a, summon Mineru's Sage Avatar.</li>
-<li>After completing Part 2b, before returning to the title screen, warp to Mogisari Shrine, at Lomei Sky Labyrinth in the northeastern sky.</li>
+<li>After Part 2a, before returning to the title screen, warp to any of the three Sky Labyrinths. The Northeast one ("Lomei Sky Labyrinth") is the most-tested.</li>
 <li>Follow <a href="../J7X/#collecting-minerus-arm_1">These steps</a> to collect Mineru's Arm.</li>
-<li>Warp back to (shrine) and get a new autosave inside it with Mineru's Arm collected.</li>
-<li>Proceed as normal from the start of Part 2c.</li>
+<li>Warp back to [shrine] and get a new autosave inside it with Mineru's Arm collected.</li>
+<li>Proceed as normal from the start of Part 2b.</li>
+<li>When it comes time to reopen the game in Part 3, ensure you load a save that has Mineru's Arm.</li>
 </ol>
 <h5 id="adjustments-for-the-prologue-master-sword_2">Adjustments for the Prologue Master Sword</h5>
 <ol>
-<li>On Part 4, Step 12 ("<strong>Drop</strong> the swapped-to weapon"), additionally <strong>drop</strong> the swapped-to <em>shield</em>. This will return the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> to the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/9HN/" class="glitch-autolink" title="Drop Zuggle" target="_blank" rel="noopener noreferrer">drop zuggle</a> position, allowing it to be reused.</li>
-<li>Then, after finishing Part 4 (including saving the game), load <em>back</em> to the prologue and perform <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/XTY/" class="glitch-autolink" title="SRZ" target="_blank" rel="noopener noreferrer">SRZ</a> again, but <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> the Prologue Master Sword instead.</li>
-<li>Continue through the rest of Part 4 as before, collecting the Prologue Master Sword and saving the game.</li>
+<li>After the final step of Part 3 ("Save the game"), perform all of part 3 again. But this time, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> the Prologue Master Sword instead of Zelda's Torch.</li>
+<li>If all your prologue autosaves have expired by the end of Part 3a, simply return to the title screen and start a new file. The <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/JJB/" class="glitch-autolink" title="CDZ" target="_blank" rel="noopener noreferrer">CDZ</a> setup survives this just fine.</li>
+<li>And eh, technically I think it's possible to make a ~50% reusable CDZ setup (where all you need to remake is W1, S2, and their children), but I can't wrap my head around that right now.</li>
 </ol>
 </div>
 </div>
@@ -1600,8 +1584,13 @@
 </ul>
 <h4 id="as-a-tool">As a tool:</h4>
 <ul>
-<li>Fused with a Pine Cone, it can be overload dropped to instantly boost any nearby fire, then unequipped to preserve the Pine Cone.</li>
-<li>Fused with an explosive, it can be overload dropped to almost instantly blow Link up. I don't... know why you would do this. But you can.</li>
+<li>Overload Dropping a fused Zelda's Torch can burn the fuse without the torch in the inventory becoming unfused. This makes it infinitely reusable. Some possibilities:<ul>
+<li>A Pine Cone will instantly boost any nearby fire.</li>
+<li>A burnable explosive will instantly blow Link up. I don't... know why you would do this. But you can.</li>
+<li>A Pepper or Sunshroom will instantly create a weak updraft, as long as the torch is on the ground.</li>
+<li>A roastable material can be roasted for a free portable snack! It's slow</li>
+</ul>
+</li>
 <li>You can overload or cold drop it with a bow unsheathed but not drawn and it'll light your arrow. Neat.</li>
 <li>Ought to play with it more and find fun tool uses...</li>
 </ul>
@@ -1626,8 +1615,13 @@
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 
 <ul>
-<li>Find better shrines to use for each version (I want grounded overlap with somewhere <em>before</em> the 4th autosave)</li>
-<li>Research physical <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7A4/" class="glitch-autolink" title="Cull Storage" target="_blank" rel="noopener noreferrer">cull storage</a> sld and find out if it's better for 1.2.0+ than <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MUY/" class="glitch-autolink" title="LSW" target="_blank" rel="noopener noreferrer">LSW</a>+<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/XTY/" class="glitch-autolink" title="SRZ" target="_blank" rel="noopener noreferrer">SRZ</a> (I dunno that part was pretty easy)</li>
+<li>Update 1.0.0-1.1.1 steps to use Marakuguc instead of a placeholder</li>
+<li>Add verbosity meter to anywhere it's good to have</li>
+<li>Finish 1.1.2 steps after getting answers to the question of reality</li>
+<li>Double check all steps for all patches, and then triple check</li>
+<li>Fix tabbage to use actual tabs (thank u blackmars for indoctrinating me these work so much better)</li>
+<li>Add resources and credits for the new <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> methods</li>
+<li>Try the new</li>
 </ul>
 
 
