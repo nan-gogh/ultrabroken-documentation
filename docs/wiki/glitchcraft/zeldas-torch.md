@@ -17,11 +17,9 @@ tags: ["Equipment", "Zelda"]
 
 By completely filling the game's global dependency array with persistent dependencies, Prologue Zelda can be forced to Overload Drop her torch, which has unique properties. Once obtained in the prologue, it can be transferred to a progressed file in the same way as the Prologue Master Sword.
 
-I'm sorry if you see this page like this. It's in a transitional state. Originally I wanted it to be like the Mineru's Arm page: a series of modular steps that are easy to mix and match to suit your particular tastes and needs. But Zelda's Torch is just a different beast. It needs special attention to autosave management, a half-dozen save loads, and is complex enough that adding a Mineru's Arm get into the middle is basically free.
+I'm... less sorry than I was before if you see the page like this. It's still not done, but it finally has a (nearly) complete set of steps for every version. Feels good.
 
-So I'm converting the drafted modular format to a trio of specific guides, and I'm not done. Partly it's because 1.1.2 is a beast of beasts that I don't even know anything about to boot, but also I have a lot of location research to do (I want to find the absolute best prologue-overlapping shrines for each version, absolutely maximizing ease of item placement and transfer).
-
-But like, there's a reason I haven't published the page. How did you get here?
+Still though, there's a reason it's not published. Follow these guides at your own risk.
 
 _First obtained by mulberry - Dec 07th, 2025_
 
@@ -45,7 +43,7 @@ _First obtained by mulberry - Dec 07th, 2025_
     notoc: true
     ---
 
-    1. By whichever means desired, get the "canonical minimum" Zuggle Overload (9 on `1.0.0`, 13 on `1.1.0+`)
+    1. By whichever means desired, get 13 Zuggle Overload (9 on `1.0.0`)
     2. Prepare a DI Ghost Shield (`E`). This is technically optional, but it saves time and complexity and the steps assume you have it. Get it.
     3. Create an Intangible Aerophasing setup at (location).
     4. You will also need several unfused weapons and shields, a bow, at least one arrow, and a material.
@@ -125,248 +123,247 @@ _First obtained by mulberry - Dec 07th, 2025_
     2. Repeat the SLD, but start with the Prologue Master Sword equipped, SLDing it instead.
     3. Yeah this is basically a free addon for `1.0.0-1.1.1`.
 
-=== "SFO Method 4 + LSW + CSZ" ###
-    ---
-    versions: ["1.1.2"]
-    ---
+=== "SFO Method 4 + Cull Detachment Zuggle (1.1.2 type)" ###
+	---
+	versions: ["1.1.2"]
+	---
 
-    - `1.1.2` is in a particularly awkward position, postdating D-Pad Lock but predating Drop-Swap Culling.
-    - Thus, it is required to cull Link to be able to transfer Zelda's Torch, but has no easy way to achieve this cull in the prologue.
-    - It also cannot perform Save Load Dupe, because the LSW required to avoid the "Callback" prevents the SLD from transferring the torch to a controlled location.
-    - Furthermore, it cannot perform Swap Resync Zuggle _or_ SFO Method 1.
-    - Thus, it must first perform SFO Method 4, then use a combination of LSW Lock and Cull Storage Zuggle.
-    - Unless ☝️ someone figures out how to do long cull storage consistently
+	- `1.1.2` is in a particularly awkward position, postdating D-Pad Lock but predating Drop-Swap Culling.
+	- However, through the combined efforts of many excellent glitch hunters, a consistent, prologue-friendly weapon Zuggle has been developed.
+	- Rejoice, and learn.
 
-    #### Part 1: Prep
-    ---
-    notoc: true
-    ---
+	#### Part 1: Prep
+	---
+	notoc: true
+	---
 
-    1. By whichever means desired, get 13 Zuggle Overload.
-    2. Prepare a DI Ghost Shield (`E`). This is technically optional, but it saves time and complexity and the steps assume you have it. Get it.
-    3. Create an Intangible Aerophasing setup at (location).
-    4. You will also need several unfused weapons and shields, a bow, at least one arrow, and a material.
+	1. Having Mineru unlocked will be needed for the steps as written. There are workarounds but they're beyond the scope of this article.
+	2. By whichever means desired, get 13 Zuggle Overload.
+	3. Prepare a DI Ghost Shield (`E`). This is technically optional, but it saves time and complexity and the steps assume you have it. Get it.
+	4. Create an Intangible Aerophasing setup at (location).
+	5. You will also need several unfused weapons and shields, a bow, at least one arrow, and a material.
     
-    #### Part 2: SFO and Torch Collection
+	#### Part 2: SFO and Torch Collection
+	---
+	notoc: true
+	---
+
+	##### 2a: Performing SFO
+
+	1. Use the Aerophasing setup to ensure it has a cull stored; this will allow the culling area to remain loaded through a banc change
+	2. Travel to (shrine) and enter it. **Do not warp there.**
+	3. [Overload Drop](uid:8QH) a shield and pick it up to duplicate shields until there are 19 dropped and 3+ spare in the inventory
+	4. **Overload Drop** a weapon `A` and fuse it to a shield `B`
+	5. [Overload Cold Fuse](uid:O64) 21 shields `C1-C21` to A (the 19 dropped & 2 from inventory)
+	6. **Fail-drop** `A` and **drop** `B`
+	7. [Overload Pickup](uid:8QH) `C1`
+	8. Duplicate 30 shields `D1-D30` off `E`, dropping each on the ground and **Overload Cold Fusing** them to `C1` as you go
+	9. **Fail-drop** `C1` and **drop** it aside
+	10. Repeat 7-9 for `C2-C19` with the **same** `D1-D30`
+	11. For `C20` and `C21`, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, _proceed to step 11_
+	12. **Overload Cold Fuse** an unrelated material to `C[n]`. If it works, **Collect it** and **Overload Cold Fuse** the next `D[n]`, then repeat. If it fails, _proceed to step 12_
+	13. **Fail-drop** `C[n]` and **drop** it. You may have to **unequip your bow** for it to return. **Be sure it returns before dropping it.**
+	14. **Drop** `A`
+
+	##### 2b: Permaculling the shields
+
+	1. [Drop Zuggle](uid:0YL) a shield. If `E` was prepared, it can be used.
+	2. Equip one of `B`, `C[n]`, or `D[n]` and step onto the phasing platform
+	3. **Pause** the game while Link is **culled**. This will cause Link to consistently be **unculled** when the game is unpaused
+	4. **Unpause** the game and immediately **open** the Shield Quick Menu (D-pad Left). If Link is **unculled** behind the menu, **drop** the equipped shield. If not, repeat step 3.
+	5. Repeat steps 2-4 for _all_ `B`, `C[n]`, and `D[n]`, ultimately resulting in the entire setup being permaculled
+
+	##### 2c: Collecting Zelda's Torch in the prologue
+
+	1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5, but typically 4), so don't fret about your progressed file.
+	2. Progress to the _second_ autosave (give timing cue but it's just after the first dialogue cutscene thing), then return to (shrine name).
+	3. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there).
+	4. Load the second prologue autosave. Zelda will drop her torch, so pick it up.
+	5. If she does not, try loading back to (shrine) and repeating steps 3-4; It may take a few tries for her torch to be one of the dependencies that fails.
+	6. Proceed until receiving the _third_ prologue autosave.
+	7. **Close the game** to end SFO
+
+	As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. Please. I don't want to be responsible for someone losing their file.
+
+	#### Part 3: Cull Detachment Zuggle and Retrieval
+	---
+	notoc: true
+	---
+
+	##### 3a: CDZ prep
+
+	1. Use Mineru Limbo to Duga Dip a weapon `W1`
+	2. Use Mineru's culling to DI a chain: `W1`->`S1`->`W2`->`S2`
+	3. Detangle `W1` from Mineru and zuggle all 4 items to Domizuin Shrine at Akkala Citadel Ruins
+	4. `S1` FE Hover Stone `H`
+	5. `W1` FS2FE Steering Stick `A1`; place `A1` atop `H` in a culling area, check to make sure it's culling, and SDC it with the cf parent
+	6. Glue `A1`->`H` to prevent `A1` from culling
+	7. Smuggle `S1`, then equip `S2` and a random weapon. Shock thing placeholder. DSU `S2`, throw->drop `W2`, fd random shield
+	8. Ensure `W1` is not Zuggle Dropped (so that `S1` is not attached to Link)
+	9. Place Steering Stick `A2` in the culling area, recall it, and L-Cancel Null FE it to `S2` from outside the culling margin
+	10. Glue an Apple (or something else that readily culls) to `A2`, place both in the culling area, and check that only the Apple culls when leaving the culling margin
+	11. Glue `A2` to `A1` with both still atop `H`, and shake `H` free. Then, exit and quickly re-enter the culling margin to see that `A1` can cull again (if you get stuck, use memories to uncull)
+	12. Zuggle `W1`, then recall `H` and load the save that has Zelda's Torch
+
+	##### 3b: CDZ
+
+	1. Press A repeatedly to pick up `W2` and `S2` until the weapon and shield inventories are both full and `S2` is equipped
+	2. Swap off Zelda's Torch (unpausing to ensure the swapped-to weapon is Warm Equipped), then drop-swap _to_ Zelda's Torch
+	3. After a moment, Link should cull and stay culled. **Pause**.
+	4. Drop every unequipped shield and weapon except for one spare weapon besides Zelda's Torch (this can be the mnf or a copy of `W2`)
+	5. Finally, drop Zelda's Torch and swap to the last remaining weapon
+	6. **Pause Buffer**, but with lenient timing. Specifically, assuming 3 shields and 6 weapons were dropped before dropping Zelda's Torch, you have **12 frames** to pause again after unpausing (=0.4 seconds).
+	7. Unequip and re-equip `S2`. The unequip will destroy `A2`, forcing `A1` to uncull (and thus instantly unculling Link while still paused), and the equip will thus resync the swapped-to weapon.
+	8. Drop the equipped weapon, and without unpausing, load a progressed save.
+
+	##### 3c: Retrieval
+
+	1. Upon arriving at the progressed file, Zelda's Torch should be visibly zuggled on Link's back
+	2. Simply stand somewhere safe and Warm Drop any weapon to drop the zuggle.
+	3. However, it still has a dependency to Link, and is undiscovered. This prevents it from being picked up with an empty hand.
+	4. To overcome this, either equip another weapon, or else Ultrahand the torch. The former sends it straight to the inventory, while the latter removes the lingering dependency.
+	5. Save the game.
+
+    #### Part 4: Bonuses
     ---
     notoc: true
     ---
-    
-    ##### 2a: Performing SFO
 
-    1. Use the Aerophasing setup to ensure it has a cull stored; this will allow the culling area to remain loaded through a banc change
-    2. Travel to (shrine) and enter it. **Do not warp there.**
-    3. [Overload Drop](uid:8QH) a shield and pick it up to duplicate shields until there are 19 dropped and 3+ spare in the inventory
-    4. **Overload Drop** a weapon `A` and fuse it to a shield `B`
-    5. [Overload Cold Fuse](uid:O64) 21 shields `C1-C21` to A (the 19 dropped & 2 from inventory)
-    6. **Fail-drop** `A` and **drop** `B`
-    7. [Overload Pickup](uid:8QH) `C1`
-    8. Duplicate 30 shields `D1-D30` off `E`, dropping each on the ground and **Overload Cold Fusing** them to `C1` as you go
-    9. **Fail-drop** `C1` and **drop** it aside
-    10. Repeat 7-9 for `C2-C19` with the **same** `D1-D30`
-    11. For `C20` and `C21`, check periodically in the menu to see if Menu Link starts overload dropping things. Once he does, _proceed to step 11_
-    12. **Overload Cold Fuse** an unrelated material to `C[n]`. If it works, **Collect it** and **Overload Cold Fuse** the next `D[n]`, then repeat. If it fails, _proceed to step 12_
-    13. **Fail-drop** `C[n]` and **drop** it. You may have to **unequip your bow** for it to return. **Be sure it returns before dropping it.**
-    14. **Drop** `A`
-
-    ##### 2b: Permaculling the shields
-
-    1. [Drop Zuggle](uid:0YL) a shield. If `E` was prepared, it can be used.
-    2. Equip one of `B`, `C[n]`, or `D[n]` and step onto the phasing platform
-    3. **Pause** the game while Link is **culled**. This will cause Link to consistently be **unculled** when the game is unpaused
-    4. **Unpause** the game and immediately **open** the Shield Quick Menu (D-pad Left). If Link is **unculled** behind the menu, **drop** the equipped shield. If not, repeat step 3.
-    5. Repeat steps 2-4 for _all_ `B`, `C[n]`, and `D[n]`, ultimately resulting in the entire setup being permaculled
-
-    ##### 2c: Collecting Zelda's Torch in the prologue
-
-    1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 4), so don't fret about your progressed file.
-    2. Progress to the _second_ autosave (give timing cue but it's just after the first dialogue cutscene thing), then return to (shrine name).
-    3. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there).
-    4. Load the second prologue autosave. Zelda will drop her torch, so pick it up.
-    5. If she does not, try loading back to (shrine) and repeating steps 3-4; It may take a few tries for her torch to be one of the dependencies that fails.
-    6. Proceed until receiving the _third prologue autosave.
-    7. **Close the game** to end SFO
-
-    #### Part 3: CSZ Prep and Performing LSW Lock
-    ---
-    notoc: true
-    ---
-
-    1. I do not know how to do this. I will be asking for help. thumbs up emoji
-    2. But the idea of holding off on getting autosave 4 until autosave 3 is about to expire is sound I think
-
-    #### Part 4: Cull Storage Zuggle
-
-    1. Dunno how to do this either.
-    2. Like I can read. I see the Cull Storage Zuggle page and I can read it. Could probably execute a CSZ in a controlled trial.
-    3. But I don't know how to store a cull through a load. And I definitely don't know the *easiest* way to do it.
-    4. Also Mandelbrot did an sld I'm pretty sure, so maybe 1.1.2 doesn't need to LSW at all? I didn't consider the physical cull possibility...
-    5. If I figure out cull storage SLD well enough I guess it might be good for 1.2.0+ as well???
-
-    #### Part 5: Bonuses
-    ---
-    notoc: true
-    ---
-
-    - This is a lot of work for a torch, even if it's really cool. But if you're careful, you can also obtain Mineru's Arm and the Prologue Master Sword during this setup, for much less total work than obtaining all three one-by-one.
+    - This is a lot of work for a torch, even if it's a really cool torch. But if you're careful, you can also obtain Mineru's Arm during this setup, for very little extra effort.
+	- The CDZ setup can also be repeated to zuggle the Prologue Master Sword (aka "mnf"), though it doesn't particularly save any labor.
 
     ##### Adjustments for Mineru's Arm
 
     1. Before beginning Part 2a, summon Mineru's Sage Avatar.
-    2. After completing Part 2b, before returning to the title screen, warp to Mogisari Shrine, at Lomei Sky Labyrinth in the northeastern sky.
+    2. After completing Part 2b, before returning to the title screen, warp to any of the three Sky Labyrinths. The Northeast one ("Lomei Sky Labyrinth") is the most-tested.
     3. Follow [These steps](uid:J7X#collecting-minerus-arm_1) to collect Mineru's Arm.
-    4. Warp back to (shrine) and get a new autosave inside it with Mineru's Arm collected.
+	4. Make a hard save if not planning to hard save in the prologue, and simply get an autosave otherwise.
     5. Proceed as normal from the start of Part 2c.
+	6. When it comes time to reopen the game in Part 3, ensure you load a save that has Mineru's Arm.
 
     ##### Adjustments for the Prologue Master Sword
 
-    - need to figure out if the CSZ is even reusable. If not it's fine, just need to do the setup twice. but that's not "very little extra work" anymore.
+	1. After the final step of Part 3 ("Save the game"), perform all of part 3 again. But this time, zuggle the Prologue Master Sword instead of Zelda's Torch.
+	2. If all your prologue autosaves have expired by the end of Part 3a, simply return to the title screen and start a new file. The CDZ setup survives this just fine.
 
-=== "SFO Method 1 + LSW Lock + SRZ" ###
+=== "Nested Batch DI + Cull Detachment Zuggle (1.2.0+ type)" ###
     ---
     versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
     ---
 
     - These versions postdate both D-Pad Lock and Drop-Swap Culling.
     - Thus, they must cull Link to be able to transfer Zelda's Torch, but have access to an easy way to do so.
-    - They also must use LSW Lock to avoid the "Callback", and so cannot Save-Load Dupe, but have access to Swap Resync Zuggle instead.
-    - Finally, they may make efficient use of SFO Method 1, making the act of collecting Zelda's Torch within the prologue easier than other versions.
-    
-    #### Part 1: Prep
-    ---
-    notoc: true
-    ---
+	- Recent developments have allowed for a zuggle method which is nearly timing-free, and doesn't require LSW.
+	- This reduces the execution difficulty of the zuggle and simplifies the retrieval, so it will be recommended here despite being somewhat more complicated to set up than previous methods.
+	- With access to Drop-Swap Culling, they also have a much easier time performing SFO.
+
+	#### Part 1: Prep
+	---
+	notoc: true
+	---
 
     1. By whichever means desired, prepare 13 Zuggle Overload (such that having all equipment equipped acts normal, but drawing bow causes swaps to overload drop).
-    2. Prepare 7 "Gen 2" DI Ghosts: 5 shields, 2 weapons, and a bow, with none of them sharing any dependencies (direct or indirect).
-    3. Zuggle 2 of the shields and the bow, then travel to Mayatat Shrine (_A Sliding Device_) at Kara Kara Bazaar.
-    4. Drop said DI Ghosts at the location pictured below, being sure to undo the resulting Zuggle Drops. Here, they will be able to be collected within the prologue at a specific desired time.
-    5. Leave the third DI Ghost Shield at Akkala Citadel Ruins (or another preferred culling area).
-    6. Zuggle the remaining 2 shields and 2 weapons and travel to (shrine).
+    2. Prepare 4 "Gen 2" DI Ghosts: 2 shields and 2 weapons. One of each will be used in the SFO process, with the others just for easy duping.
+	3. It's possibly important that the working shield and weapon don't share any dependency relations to each other.
+	4. Zuggle the 4 items (you will need to unequip bow) and travel to [shrine].
 
-    ??? info "Where to drop the Ghosts"
+	#### Part 2: SFO and Torch Collection
+	---
+	notoc: true
+	---
 
-        placeholder
+	##### 2a: Nested Batch DI SFO
 
-    #### Part 2: SFO and Torch Collection
-    ---
-    notoc: true
-    ---
+	- The working weapon mentioned above is `A1`, and the working shield is `A2`
+	(select a shrine, doofus, so you know just where you are. Don't you know that I might be... your wishing well?)
 
-    - Parts 2a and 2b here are lifted from Method 1 on the Super Fuse Overload page. The only difference here is that it is performed in a specific location.
-    - One of the DI Ghost weapons is `A1`, and one of the DI Ghost shields is `B1`. The other two are only for duping and are unnamed.
-    
-    ##### 2a: Creating the base setup
+	=== "Condensed" ######
 
-    1. Enter (shrine), defeat any constructs present, and dispose of their weapons (for example by leaving/reentering)
-    2. (Need a little more testing to decide best shrine)
-    3. `B1` [Overload FE](uid:0XV#method-3-vddi-smugglezuggle) weapon `B2`
-    4. [Recall Lock](uid:EY8) `B2`
-    5. `A1` and normal weapon `A2` [Ghost DI](uid:BEW#method-1-fuse-drop-swap-120) shield `A3`
-    6. `A1` **Overload FE** normal shield `A4`; Leave `A1` [Zuggle Dropped](uid:L84) 
-    7. Equip `A2`, [Smuggle](uid:TGY) `A3`, and [Overload Pickup](uid:8QH) `A4`
-    8. `A2-A4` [Overload Batch DI](uid:PG3#method-1-overload-pf-drop-swap-culling-120) 19 weapons `C1-C19`:
-        1. Place Link's back to a wall so that `A2` can be fail-dropped
-        2. Drop a weapon `C1` on the ground and **fuse** it to `A4`
-        3. **Fuse** `C1` to `A4` again and **pause** a few frames later
-        4. **Drop** `A2`, **swap** to another weapon, **unequip** that weapon, and finally **unpause**
-        5. Repeat Steps 8b-8d 18 more times, creating 19 total weapons `C1-C19`
-    9. Confirm `C1-C19` all exist, then **Fail-Drop** `A4` to move it to Link's hand
-    10. `A3` & `A4` **Ghost DI** weapon `C20`
-    11. **Drop** `A4`
-    12. Re-smuggle `A3`, equip a random shield, and **Fuse** something disposable to it. This will leave `A4` as the sole FE parent of `C20`
-    14. Smuggle any _one_ `C`, then **equip** another and **throw it**. Finally, unsheathe weapon to return the thrown one to Link's hand. The smuggled weapon is now in Purgatory
-    15. Repeat step 11 to Purgatorize _all_ `C`, using a random weapon for the final throw (it can be unequipped after)
-    16. **Recall Lock** `A4`, discarding `A2` and `A3` through the load
+	1. `A1` Overload FE shield `B` and Recall Lock it
+	3. `A2` and `B` Ghost DI weapon `C`
+	4. `A2` Overload FE weapon `D1`; leave `A2` Zuggle Dropped
+	5. Equip `B`, Smuggle `C`, and Overload Pickup `D1`
+	6. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`
+	7. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop
+	8. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped
+	9. Throw purgatorize `E1-E25`
+	10. Equip `B` and Overload Pickup `D2`
+	11. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`
+	12. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop
+	13. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached
 
-    ##### 2b: Performing SFO
+	##### 2b: Collecting Zelda's Torch in the Prologue
 
-    1. Zuggle Drop `B1`, equip `A4`, and **Overload Pickup** `B2`
-    2. `C1-20`, `B2`, & `A4` **Overload Batch DI** 30 Shields `D1-D30`:
-        1. _Do not_ place Link's back to a wall; it is likely you will badly mess up if you do.
-        2. Drop a shield `D1` on the ground and **fuse** it to `B2`
-        3. **Fuse** `D1` to `B2` again and **open** the Shield Quick Menu a few frames later
-        4. Without letting the game unpause, **drop** `A4`, **swap** to another shield, and **unequip** that shield
-        5. If `B2` is a Zonaite-series weapon, check if the blade is present; if not, this DI was successful.
-        6. Repeat Steps 2b-2d 29 more times, creating 30 total shields `D1-D30`
-        7. There will be a substantial lag on Step 2b for each shield after `D1`, hence the recommendation to use the D-Pad (and thus to not fail-drop).
-        8. This lag makes it likely to pause _too early_, which can be detected by checking if the twice-fused `D[n]` is still "Fuse-Target Blue".
-    4. _Super Fuse Overload_ should occur on the 30th shield. If confirmation is needed, pick `A4` back up, then attempt to nock an arrow. If it fails to attach to the bow, and hangs in midair, SFO is fully active
-    5. Leaving `A4` dropped, **fail-drop** `B2` and **drop** it _after_ it returns to Link's hand. Finally, un-Zuggle Drop `B1`
-    6. The entire setup will now persist, and SFO will be fully active as long as Link equips each type of equipment (with exactly _one_ being fused)
+    1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5), so don't fret about your progressed file
+    2. Progress to the _second_ autosave (give timing cue but it's just after the first dialogue cutscene thing), then return to (shrine name)
+    3. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there)
+    4. Load the second prologue autosave. Zelda will drop her torch, so pick it up
+    5. If she does not, try loading back to (shrine) and repeating steps 3-4; It may take a few tries for her torch to be one of the dependencies that fails
+    6. After collecting the torch, proceed until receiving the _third_ prologue autosave (timing cue), then load the (shrine) autosave
+    7. One by one, **pick up** and **unequip** all `F[n]` to destroy them, deleting all the dependencies and ending SFO
 
-    ##### 2c: Collecting Zelda's Torch in the prologue
+	As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. Please. I don't want to be responsible for someone losing their file.
 
-    1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5), so don't fret about your progressed file.
-    2. Progress to the _second_ autosave (give timing cue but it's just after the first dialogue cutscene thing), then return to (shrine name).
-    3. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there).
-    4. Load the second prologue autosave. Zelda will drop her torch, so pick it up.
-    5. If she does not, try loading back to (shrine) and repeating steps 3-4; It may take a few tries for her torch to be one of the dependencies that fails.
-    6. After collecting the torch, use overload duping to obtain additional torches/swords for buffer drop purposes. Additionally, collect 3 shields and a bow from the pre-placed DI Ghosts.
-    7. Proceed until receiving the _third_ prologue autosave (timing cue), then load the (shrine) autosave.
-    8. One by one, **pick up** and **unequip** all `D[n]` to destroy them, deleting all the dependencies and ending SFO.
+	#### Part 3: Cull Detachment Zuggle and Retrieval
+	---
+	notoc: true
+	---
 
-    #### Part 3: Performing Drop Zuggle and LSW Lock
-    ---
-    notoc: true
-    ---
+	##### 3a: CDZ Prep
 
-    1. Warp to Domizuin Shrine and go to the small culling area there; dispose of the Scary Grabber if needed
-    2. Prepare two portaculls, at least one being a shield 
-    3. [Overload FE](uid:0XV#method-3-vddi-smugglezuggle) a Battery or other liftable to the pre-placed DI Ghost (`E`)
-    4. Unequip shield, leaving `E` smuggled/zuggled
-    5. Overload pickup a portacull shield and drop it; `E` will drop and prevent D-Pad lock. Pick up and drop it to undo the resulting Zuggle Drop.
-    6. Pick the portacull shield back up; it should "equip" to Link's feet.
-    7. **Pause** the game, **drop** the portacull, and **swap** to another shield
-    8. **Pause buffer**, **swap** any non-shield piece of equipment, and **drop** the portacull
-    9. The portacull should become drop zuggled. If the pause buffer was too slow, however, it might become purgatorized. If so, ignore it, make another, and try again from step 4.
-    10. Stand within the culling margin. Place the other portacull in the culling area, lift the child of E, and walk outside the margin. Link and the liftable should cull.
-    11. Load the _third_ prologue autosave. Link should be deep within the gray void around the prologue, and a _single_ fadeout should occur shortly after loading.
+	=== "Condensed" ######
+	
+	1. Create a "Gen 1" DI weapon, `W1`, and zuggle it to the Akkala Citadel Ruins
+	2. Create a DI chain `W1`->`S1`->`W2`->`S2`, then undo `W2`'s Zuggle Drop and delete the remaining normal parents of the chain
+	3. `S1` FE Hover Stone `H`
+	4. `W1` FE `S3` fuse SDC
+	5. Place Steering Stick `A` in a culling area, then recall it and FE it to `S2` from outside the margin
+	6. Place `A` atop `H` in a culling area, then check that `A` has a cull stored: Glue an Apple (or other object that readily culls) to `A`; the Apple should still cull upon leaving the culling margin
+	7. Glue `S3` to `A` and check that Link culls when exiting the margin (either quickly re-enter, or else watch a memory to uncull)
+	8. Drop Smuggle `S2`, Drop Purgatorify `W2`, and Smuggle `W1`, then equip a random weapon and shield
+	9. Recall `H`, then pause, drop the weapon and shield, and load the save that has Zelda's Torch collected
 
-    #### Part 4: Performing Swap Resync Zuggle
-    ---
-    notoc: true
-    ---
+	##### 3b: CDZ
 
-    1. Link is not actually falling, due to the LSW Lock's anti-movement powers. There is no rush. Do not rush.
-    2. Ensure a shield is not currently equipped, then **pick up** the Drop Zuggled Portacull.
-    3. For overload-management reasons, **unequip** Link's bow if it is equipped.
-    4. **Unequip** whichever weapon is currently equipped, then **equip** Zelda's Torch; this ensures it is not overload dropped
-    5. **Pause** the game
-    6. **Drop** a buffer equipment item
-    7. **Drop** the Portacull Shield and **swap** to another shield
-    8. **Drop** 2 more buffer items (NOT the swapped-to shield)
-    9. **Drop** Zelda's Torch and **swap** to another weapon
-    10. **Pause Buffer** (unpause and pause again 3-4 frames later; any faster will eat the input and any slower is... too slow)
-    11. **Equip**, then **unequip** the bow to resync
-    12. **Drop** the swapped-to weapon
-    13. **Load** a progressed save. This interrupts the dropping process, removing the need for a wall to fail-drop with
-    14. If the SRZ was successful, Zelda's Torch will be on Link's back in the progressed save. However, Link will still be under the effects of LSW Lock, and is likely high in the air.
-    15. Get some ground beneath Link; the easiest way is to fire a Hover Stone straight down and land on it (...slowly).
-    16. Prepare Recall, then **Drop** an equipped weapon and use Recall on Zelda's Torch to make it easy to catch.
-    17. Grab it and save the game.
-    18. Likely, returning to Domizuin to destroy the LSW base is more trouble than it's worth. A game close will get rid of it, if you're ready (see below).
+	1. Press A repeatedly to pick up `W2` and `S2` until the weapon and shield inventories are both full and `S2` is equipped
+	2. Swap off Zelda's Torch (unpausing to ensure the swapped-to weapon is Warm Equipped), then drop-swap _to_ Zelda's Torch
+	3. After a moment, Link should cull and stay culled. **Pause**.
+	4. Drop every unequipped shield and weapon except for one spare weapon besides Zelda's Torch (this can be the mnf or a copy of `W2`)
+	5. Finally, drop Zelda's Torch and swap to the last remaining weapon
+	6. **Pause Buffer**, but with lenient timing. Specifically, assuming 3 shields and 6 weapons were dropped before dropping Zelda's Torch, you have **12 frames** to pause again after unpausing (=0.4 seconds)
+	7. Unequip and re-equip `S2`. The unequip will destroy `A`, forcing `S3` to uncull (and thus instantly unculling Link while still paused), and the equip will thus resync the swapped-to weapon
+	8. Drop the equipped weapon, and without unpausing, load a progressed save
 
-    #### Part 5: Bonuses
-    ---
-    notoc: true
-    ---
+	##### 3c: Retrieval
 
-    - This is a lot of work for a torch, even if it's really cool. But if you're careful, you can also obtain Mineru's Arm and the Prologue Master Sword during this setup, for much less total work than obtaining all three one-by-one.
+	1. Upon arriving at the progressed file, Zelda's Torch should be visibly zuggled on Link's back
+	2. Simply stand somewhere safe and Warm Drop any weapon to drop the zuggle
+	3. However, it still has a dependency to Link, and is undiscovered. This prevents it from being picked up with an empty hand
+	4. To overcome this, either equip another weapon, or else Ultrahand the torch. The former sends it straight to the inventory, while the latter removes the lingering dependency
+	5. Save the game
+
+	#### Part 4: Bonuses
+	---
+	notoc: true
+	---
+
+    - This is a lot of work for a torch, even if it's really cool. But if you're careful, you can also obtain Mineru's Arm during this setup, for very little extra work.
+	- The CDZ setup can also be repeated to zuggle the Prologue Master Sword (aka "mnf"), though it doesn't particularly save any labor.
 
     ##### Adjustments for Mineru's Arm
 
     1. Before beginning Part 2a, summon Mineru's Sage Avatar.
-    2. After completing Part 2b, before returning to the title screen, warp to Mogisari Shrine, at Lomei Sky Labyrinth in the northeastern sky.
+	2. After Part 2a, before returning to the title screen, warp to any of the three Sky Labyrinths. The Northeast one ("Lomei Sky Labyrinth") is the most-tested.
     3. Follow [These steps](uid:J7X#collecting-minerus-arm_1) to collect Mineru's Arm.
-    4. Warp back to (shrine) and get a new autosave inside it with Mineru's Arm collected.
-    5. Proceed as normal from the start of Part 2c.
+    4. Warp back to [shrine] and get a new autosave inside it with Mineru's Arm collected.
+    5. Proceed as normal from the start of Part 2b.
+	6. When it comes time to reopen the game in Part 3, ensure you load a save that has Mineru's Arm.
 
     ##### Adjustments for the Prologue Master Sword
 
-    1. On Part 4, Step 12 ("**Drop** the swapped-to weapon"), additionally **drop** the swapped-to _shield_. This will return the portacull to the drop zuggle position, allowing it to be reused.
-    2. Then, after finishing Part 4 (including saving the game), load _back_ to the prologue and perform SRZ again, but zuggle the Prologue Master Sword instead.
-    3. Continue through the rest of Part 4 as before, collecting the Prologue Master Sword and saving the game.
+	1. After the final step of Part 3 ("Save the game"), perform all of part 3 again. But this time, zuggle the Prologue Master Sword instead of Zelda's Torch.
+	2. If all your prologue autosaves have expired by the end of Part 3a, simply return to the title screen and start a new file. The CDZ setup survives this just fine.
+	3. And eh, technically I think it's possible to make a ~50% reusable CDZ setup (where all you need to remake is W1, S2, and their children), but I can't wrap my head around that right now.
 
 ## Notes
 
@@ -395,8 +392,11 @@ notoc: true
 
 #### As a tool:
 
-- Fused with a Pine Cone, it can be overload dropped to instantly boost any nearby fire, then unequipped to preserve the Pine Cone.
-- Fused with an explosive, it can be overload dropped to almost instantly blow Link up. I don't... know why you would do this. But you can.
+- Overload Dropping a fused Zelda's Torch can burn the fuse without the torch in the inventory becoming unfused. This makes it infinitely reusable. Some possibilities:
+	- A Pine Cone will instantly boost any nearby fire.
+	- A burnable explosive will instantly blow Link up. I don't... know why you would do this. But you can.
+	- A Pepper or Sunshroom will instantly create a weak updraft, as long as the torch is on the ground.
+	- A roastable material can be roasted for a free portable snack! It's slow
 - You can overload or cold drop it with a bow unsheathed but not drawn and it'll light your arrow. Neat.
 - Ought to play with it more and find fun tool uses...
 
@@ -420,5 +420,10 @@ notoc: true
 notoc: true
 ---
 
-- Find better shrines to use for each version (I want grounded overlap with somewhere _before_ the 4th autosave)
-- Research physical cull storage sld and find out if it's better for 1.2.0+ than LSW+SRZ (I dunno that part was pretty easy)
+- Update 1.0.0-1.1.1 steps to use Marakuguc instead of a placeholder
+- Add verbosity meter to anywhere it's good to have
+- Finish 1.1.2 steps after getting answers to the question of reality
+- Double check all steps for all patches, and then triple check
+- Fix tabbage to use actual tabs (thank u blackmars for indoctrinating me these work so much better)
+- Add resources and credits for the new zuggle methods
+- Try the new
