@@ -25,6 +25,10 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 - The former is best performed with a "Local" SFO method, while the latter only works with a "Persistent" or "Permanent" SFO method.
 - This page offers specific instructions per route, per version range. It is very possible to mix-and-match strategies, but the ones provided will usually be the fastest and easiest for the given version/route.
 
+!!! warning "The pouch during SFO"
+
+	Whenever SFO is active, swapping equipment via the full pouch menu is likely to produce additional persistent dependencies, which can badly interfere with some setups. To avoid this, always use the D-Pad to swap equipment during SFO.
+
 === "Ganon Route" ###
 
 	=== "Overload Cold Fuse -> Map Zuggle" ####
@@ -40,7 +44,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		- Mineru
 		- 13 Zuggle Overload (9 on `1.0.0`)
 		- At least 3 shields, 2 weapons, and a bow
-		- A bucket-shaped Autobuild schematic, ideally with a Hover Stone and one or more Big Batteries
+		- A bucket-shaped Autobuild schematic, ideally with a Hover Stone and one or more Big Batteries (this can be made on-site)
 		- The Autobuild ability
 
 		##### Performing Super Fuse Overload
@@ -51,19 +55,19 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		1. Defeat Ganondorf's Army (and any dungeon bosses present in the boss rush; no promises you won't crash if you don't)
 		2. Enter the tunnel before Ganondorf's Room
 		3. Overload Drop a weapon (`A`) and fuse it to a shield (`B`)
-		4. Drop `B`, then duplicate 21 shields (`C1-C21`) using Overload (up to 20 of these may be dropped on the ground during this step, just be careful not to despawn `B`)
-		5. Pick up B and Overload Cold Fuse `C1-C21` to `A`
+		4. Drop `B`, then duplicate 26 shields (`C1-C26`) using Overload (up to 20 of these may be dropped on the ground during this step, just be careful not to despawn `B`)
+		5. Pick up B and Overload Cold Fuse `C1-C26` to `A`
 		6. Faildrop `A` and drop `B`
 		7. Overload Pickup `C1`
-		8. Hold and drop 5 materials (`D1-D5`), Cold Fuse them to `C1`, then repeat until there are 30 materials (`D1-D30`) on the ground
+		8. Hold and drop 5 materials (`D1-D5`), Cold Fuse them to `C1`, then repeat until there are 25 materials (`D1-D25`) on the ground
 		9. Faildrop `C1` and drop it aside
-		10. Repeat steps 7-9 with each `C[n]`, using the same `D1-D30`
+		10. Repeat steps 7-9 with each `C[n]`, using the same `D1-D25`
 		11. After every other repetition, fuse pairs of `C[n]` together to keep under the drop limit
-		12. Around halfway through `C20`, Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 13._
+		12. Sometime during `C25` or `C26`, Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 13._
 		13. Cold Fuse a random material to the current `C`. If it works correctly, collect the material and Cold Fuse the next `D[n]`, then repeat step 13. _If it fails, move to step 14._
 		14. Unequip bow to free a dependency slot, then faildrop `C[n]` and drop it aside
 		15. Drop `A` to prevent it from being deleted during the coming cutscene, then equip a shield and a weapon (the Master Sword, if it is owned)
-		16. Create the bucket autobuild, activate it, and Ultrahand `B`, `C1-C21`, and `D1-D30` into the bucket
+		16. Create the bucket autobuild, activate it, and Ultrahand `B`, `C1-C26`, and `D1-D25` into the bucket
 		17. Carry the bucket into Ganon's Room, keeping it plenty ahead of Link and out of the way of the upcoming battle
 
 		##### Collecting Mineru's Arm
@@ -102,7 +106,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		versions: ["1.1.2"]
 		---
 
-		This zuggle method also works on `1.0.0-1.1.1`, but is needlessly complex.
+		This zuggle method also works on `1.0.0-1.1.1`, but is needlessly complex. On `1.2.0+`, it will instead result in an Invizuggle, which is not just useless but actively harmful to the cause.
 
 		##### Requirements
 		---
@@ -161,7 +165,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		Mineru's Arm will naturally fail-drop, so a wall is not needed to Zuggle it.
 
 		1. Use Ultrahand and Autobuild to create a build of a real, collectible material attached to a "goo" Steering Stick, with the Steering Stick able to sit flat on the ground
-		2. Drop the `E` and stand on the Steering Stick
+		2. Drop `E` and stand on the center of the Steering Stick, with the material pickup prompt active
 		3. Press `A` and a D-Pad direction at the same time, so that the material is collected and a Quick Menu is opened
 		4. Allow the Quick Menu to close while holding `L`, so that the Ability Wheel opens at the earliest possible moment, and select the Map Rune
 		5. Release `L`. While the Ability Wheel is closing, press (or mash) `D-Pad Right` to open the weapon Quick Menu
@@ -201,7 +205,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		1. Defeat Ganondorf's Army (and any dungeon bosses present in the boss rush; no promises you won't crash if you don't)
 		2. Enter the tunnel before Ganondorf's Room
 		3. Overload Drop a weapon (`A`) and fuse it to a shield (`B`)
-		4. Drop `B`, then duplicate 21 shields (`C1-C21`) using Overload (up to 19 of these may be dropped on the ground during this step, just be careful not to despawn `B` or `E`)
+		4. Drop `B`, then duplicate 21 shields (`C1-C21`) using Overload (up to 19 of these may be dropped on the ground during this step, just be careful not to despawn `B` or the Portacull)
 		5. Pick up B and Overload Cold Fuse `C1-C21` to `A`
 		6. Faildrop `A` and drop `B`
 		7. Overload Pickup `C1`
@@ -209,10 +213,10 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		9. Faildrop `C1` and drop it aside
 		10. Repeat steps 7-9 with each `C[n]`, using the same `D1-D30`
 		11. After every other repetition, fuse pairs of `C[n]` together to keep under the drop limit
-		12. Around halfway through `C20`, Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 13._
+		12. Partway into `C21`, Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 13._
 		13. Cold Fuse a random material to the current `C`. If it works correctly, collect the material and Cold Fuse the next `D[n]`, then repeat step 13. _If it fails, move to step 14._
 		14. Unequip bow to free a dependency slot, then faildrop `C[n]` and drop it aside
-		15. Drop `A` to prevent it from being deleted during the coming cutscene, then pick up `E` and equip a weapon (the Master Sword, if it is owned)
+		15. Drop `A` to prevent it from being deleted during the coming cutscene, then equip a shield (the Portacull, if it exists) and a weapon (the Master Sword, if it is owned)
 		16. Create the bucket autobuild, activate it, and Ultrahand `B`, `C1-C21`, and `D1-D30` into the bucket
 		16. Carry the bucket into Ganon's Room, keeping it plenty ahead of Link and out of the way of the upcoming battle
 
@@ -222,7 +226,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		---
 
 		1. Ganondorf should Overload Drop his Gloom Sword during the cutscene, though not seeing this isn't necessarily a failure
-		2. Check for "full" SFO by nocking an arrow. It should appear at Link's quiver, but not attach to his hand
+		2. Check for "full" SFO by nocking an arrow. It should appear at Link's quiver, but not attach to his hand.
 		3. Without getting too far from the bucket (everything inside can still despawn from distance and must not), progress the fight to Phase 3 (sages blown away)
 		4. Still without allowing SFO to lapse, find Mineru along the outer wall. From each of her arms, an undiscovered equipment should be repeatedly dropping
 		5. With another weapon equipped and a free weapon pouch slot, pick up this equipment. It will immediately respawn, so there's no reason not to take a bunch
@@ -241,8 +245,8 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		2. **Drop** a buffer equipment item
 		3. **Drop** the Portacull Shield and **swap** to another shield
 		4. **Drop** 2 more buffer items (not the swapped-to shield)
-		5. **Drop** Mineru's Arm and **swap** to another droppable weapon (ie not the master Sword)
-		6. **Pause Buffer** (unpause and pause again 3 frames later; any faster will eat the input)
+		5. **Drop** Mineru's Arm and **swap** to another droppable weapon (ie not the Master Sword)
+		6. **Pause Buffer** (unpause and pause again 3-4 frames later; any faster will eat the input and any slower is too slow)
 		7. **Swap**, **equip**, or **unequip** any armor or bow
 		8. **Drop** the swapped-to weapon and **unpause**
 		9. Check that Mineru's Arm has been zuggled, then load a save
@@ -250,6 +254,17 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		11. Drop an equipped weapon and use Recall to catch Mineru's Arm
 		12. Equip a weapon and collect Mineru's Arm, then save the game
 		13. Before using Mineru's Arm as a portable faildrop wall, destroy the fuse
+
+	#### Faildrop Zuggle
+
+	Instead of fusing something to Mineru's Arm and recalling the fuse during retrieval, it is also possible to maintain the pickup prompt while it is zuggled. This requires additional timed inputs, but it allows for much safer retrieval. These steps start from having already collected one or more Arms and ending SFO:
+
+	1. Fill the weapon pouch
+	2. Swap from a random weapon to Mineru's Arm so that the latter will Overload Drop
+	3. Faildrop Mineru's Arm so that it returns to Link, and on the last frame before it returns, press A to attempt to pick it up
+	4. If timed correctly, Mineru's Arm will still have a pickup prompt despite being equipped. _This will end if it is sheathed/unsheathed, so leave it where it is_
+	5. Proceed with whichever Zuggle method is being used; the pickup prompt will stay through the zuggle and through loading a save
+	6. After loading to a progressed save, simply equip a weapon and collect Mineru's Arm (if it was zuggled to Link's back, this may require some finagling)
 
 === "Mainfield Route" ###
 
@@ -328,9 +343,9 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 			6. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`
 			7. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop
 			8. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped
-			9. Throw purgatorize `E1-E25`:
+			9. Throw purgatorize `E1-E25`
 			10. Equip `B` and Overload Pickup `D2`
-			11. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`:
+			11. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`
 			12. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop
 			13. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached
 
@@ -425,6 +440,10 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		7. About 3 seconds after control is gained, a panic blood moon will occur, which will _usually_ give an autosave. Further PBMs will occur much sooner than the first, and are unlikely to provide an autosave
 		8. Make a hard save if desired, then close the game to clear SFO if desired
 
+	#### Other SFO Methods
+
+	Due to the simple (yet arduous) criteria of Super Fuse Overload, there are several ways to perform it that either lend themselves well to being made persistent, or are themselves naturally persistent. The methods selected here are generally regarded to be the most efficient, but this can and will change. Ultimately, the best method is the one you are willing to do.
+
 ## Notes
 
 ### Properties
@@ -495,6 +514,7 @@ notoc: true
 ---
 
 - embed important clips instead of just linking to them
-- do that crazy Mineru SDC Pcull idea and see if it's peak
+- do that crazy Mineru SDC Pcull idea and see if it's peak (Update: It's... okay. In theory it could even be used for Zelda's Torch. But it's just a lot to wrap your head around.)
+- Do the new DI hover stone SFO and see if it's peak enough to supersede nested batch DI
 - double-check steps and formatting
 - see about adding the verbosity meter to other step lists if pertinent
