@@ -27,7 +27,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 
 !!! warning "The pouch during SFO"
 
-	Whenever SFO is active, swapping equipment via the full pouch menu is likely to produce additional persistent dependencies, which can badly interfere with some setups. To avoid this, always use the D-Pad to swap equipment during SFO.
+	Whenever SFO is active, swapping equipment via the pause menu is likely to produce additional persistent dependencies, which can badly interfere with some setups. To avoid this, _always_ use the D-Pad to swap equipment during SFO.
 
 === "Ganon Route" ###
 
@@ -106,7 +106,8 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		versions: ["1.1.2"]
 		---
 
-		This zuggle method also works on `1.0.0-1.1.1`, but is needlessly complex. On `1.2.0+`, it will instead result in an Invizuggle, which is not just useless but actively harmful to the cause.
+		- This zuggle method also works on `1.0.0-1.1.1`, but is needlessly complex. On `1.2.0+`, it will instead result in an Invizuggle, which is not just useless but actively harmful to the cause.
+		- Played around with a CDZ/CDDZ setup but this one is retryable anyway
 
 		##### Requirements
 		---
@@ -183,7 +184,8 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
 		---
 
-		"Purgatory + Ghost DI" will probably be faster as an SFO method, but it's more complex. Go learn that if you like.
+		- "Purgatory + Ghost DI" will probably be faster as an SFO method, but it's more complex. Go learn that if you like.
+		- Again, a CDDZ setup is very possible, and timing-free. But compared to FDZ, it's far too much prep for something that can't even be retried.
 
 		##### Requirements
 		---
@@ -273,7 +275,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2"]
 		---
 
-		Ooh I have to test an absurd idea. Or maybe I _get_ to test it? Well for now I'm gonna write the aerophasing steps as a placeholder.
+		- Devised a crazy Mineru SDC permacull thing, but I'm not sure it's worth it over slotting the culling area into Rasi (even if all the timing is free).
 
 		##### Requirements
 		---
@@ -281,20 +283,24 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		---
 
 		- Mineru
-		- An Intangible Aeroculling setup
+		- An Intangible Aeroculling setup with a recall-locked platform to hold it
+		- For efficient duping, get a DI Ghost weapon/shield (`A`) with a fuse
 
 		##### Performing SFO
 		---
 		notoc: true
 		---
 
-		1. Enter a shrine/Ganon's Tunnel or, whatever. Sorry I'm still thinking this through
-		2. Drop the Aeroculling base and make an unglued platform
-		3. Get a weapon and/or shield Drop Smuggle/Zuggle and duplicate fused items of the same type
-		4. Stand on the platform so that Link begins phasing
-		5. Do... whatever the thing you're supposed to is... to pcull the fused items. I have migraine approaching
-		6. Keep going. Continue. You need to do MORE. 600 at LEAST.
-		7. And then, when the equipped items stop attaching correctly and/or lose their fuses in-world, you're done.
+		1. Use the Aeroculling setup to store a cull. This will allow it to continue working inside a shrine.
+		2. Zuggle the AC base and go to a shrine that has unglued objects. Kill any constructs present and destroy their equipment
+		3. Drop the AC base and ready an unglued platform to phase with
+		4. Drop Smuggle `A`, then equip something of its type and spam A to fill the inventory with duplicates of A
+		5. Stand on the phasing platform so that Link begins culling and unculling
+		6. Equip a duplicate of A, then pause while Link is culled
+		7. Wait a moment, then pause buffer so that Link is unculled behind the menu, and promptly drop the duplicate of A
+		8. Repeat Steps 6-7 until the duplicates of A are exhausted, then repeat Step 4
+		9. After around 650 pculls, it will stop being possible to fully equip the fused items. This is your sign that SFO is complete
+		10. Pick up the AC base and attempt to nock an arrow into Link's Bow. The arrow should appear, but remain floating where it spawned.
 
 		##### Collecting Mineru's Arm
 		---
@@ -310,12 +316,21 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		7. About 3 seconds after control is gained, a panic blood moon will occur, which will _usually_ give an autosave. Further PBMs will occur much sooner than the first, and are unlikely to provide an autosave
 		8. Make a hard save if desired, then close the game to clear SFO if desired
 
+		##### Alternatives
+		---
+		notoc: true
+		---
+
+		- Overload can be used to dupe fused equipment, but it is slower.
+		- The sfo check in Step 10 of "Performing SFO" can be done by attempting to throw or hold a material; it should drop to the ground. Just don't actually throw/drop the material.
+
 	=== "Nested Overload Batch DI" ####
 		---
 		versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
 		---
 
-		You get a better and more streamlined setup because you're on current. Yay!
+		- You get a better and more streamlined setup because you're on current. Yay!
+		- Well... some new stuff is coming down the pipeline, so even this might be obsolete. Like so many things, I need to do more testing to find the truth.
 
 		##### Requirements
 		---
@@ -487,15 +502,19 @@ notoc: true
 
 	??? tip "Retrieving Fused+Zuggled Mineru's Arm"
 
-		placeholder
+		[Arm](media:video/Syl-MinArm-GanonRoute-Retrieval.mp4)
 
 	??? tip "Mainfield Route Primary Strat"
 
-		placeholder
+		[](media:video/Syl-MinArm-MainfieldRoute-Primary.mp4)
 
 	??? tip "Mainfield Route Backup Strat"
 
-		placeholder
+		[](media:video/Syl-MinArm-MainfieldRoute-Backup.mp4)
+
+	??? tip "Mainfield Route (Normal Gravity)
+
+		[Not Recommended](media:video/Syl-MinArm-MainfieldRoute-NormalGravity.mp4)
 
 ??? quote "Discord Resources"
 
@@ -513,7 +532,6 @@ notoc: true
 notoc: true
 ---
 
-- embed important clips instead of just linking to them
 - do that crazy Mineru SDC Pcull idea and see if it's peak (Update: It's... okay. In theory it could even be used for Zelda's Torch. But it's just a lot to wrap your head around.)
 - Do the new DI hover stone SFO and see if it's peak enough to supersede nested batch DI
 - double-check steps and formatting
