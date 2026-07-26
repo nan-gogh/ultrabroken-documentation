@@ -1795,6 +1795,12 @@
       "label": "ZAPSH"
     },
     {
+      "id": "wiki/TW8/",
+      "uid": "TW8",
+      "name": "Zelda's Torch",
+      "label": "ZTorch"
+    },
+    {
       "id": "wiki/0T9/",
       "uid": "0T9",
       "name": "ZL Animation Reset",
@@ -4293,6 +4299,86 @@
       "target": "wiki/K4F/"
     },
     {
+      "source": "wiki/TW8/",
+      "target": "wiki/056/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/76A/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/7KZ/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/8QH/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/8QL/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/9HN/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/BEW/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/BOF/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/CVH/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/JJB/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/K4F/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/L54/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/MCM/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/MG1/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/MUY/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/O64/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/P2F/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/PG3/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/TX4/"
+    },
+    {
+      "source": "wiki/TW8/",
+      "target": "wiki/XTY/"
+    },
+    {
       "source": "wiki/TX4/",
       "target": "wiki/056/"
     },
@@ -4323,6 +4409,10 @@
     {
       "source": "wiki/TX4/",
       "target": "wiki/MP9/"
+    },
+    {
+      "source": "wiki/TX4/",
+      "target": "wiki/TW8/"
     },
     {
       "source": "wiki/TX4/",
