@@ -3061,6 +3061,16 @@
     "filename": "zapshield.md"
   },
   {
+    "name": "Zelda's Torch",
+    "uid": "TW8",
+    "label": "ZTorch",
+    "aliases": [
+      ""
+    ],
+    "path": "wiki/TW8/",
+    "filename": "zeldas-torch.md"
+  },
+  {
     "name": "ZL Animation Reset",
     "uid": "0T9",
     "label": "ZLAR",
