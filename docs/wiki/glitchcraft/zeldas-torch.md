@@ -3,7 +3,7 @@ title: "Zelda's Torch"
 uid: "TW8"
 label: "ZTorch"
 versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
-credits: ["Aergyl", "ArmindoEmiya", "Blackmars", "Jordan", "KiloVictor". "MandelbrotChaylay", "mulberry", "Pearfalse", "Squidwest", "Toti Sauce"]
+credits: ["Aergyl", "ArmindoEmiya", "Blackmars", "Jordan", "KiloVictor", "MandelbrotChaylay", "mulberry", "Pearfalse", "Squidwest", "Toti Sauce"]
 date: "2025-12-06"
 description: "Using Super Fuse Overload, the unique torch Zelda carries in the prologue can be obtained."
 aliases: [""]
@@ -30,7 +30,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 - There are other combinations of SFO Methods and transfer methods that will work on each version, but something had to go to make this page readable and I chose variations.
 - The provided combinations are the most efficient on the listed version ranges.
 
-=== "Overload Cold Fuse/Permacull + SLD" ###
+=== "Overload CF->Pcull + SLD" ###
 	---
 	versions: ["1.0.0", "1.1.0", "1.1.1"]
 	---
@@ -83,10 +83,10 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 	##### 2c: Collecting Zelda's Torch in the prologue
 
-	1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5, but usually 4), so don't fret about your progressed file
+	1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5, but typically 4), so don't fret about your progressed file
 	2. As soon as the prologue is entered and an autosave received, reload to Marakuguc Shrine
 	3. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there)
-	4. Load back to the prologue. Zelda will drop her torch, so pick it up. Provided you were at absolute maximum SFO before loading, she will always drop it
+	4. Load back to the prologue. Zelda will drop her torch, so pick it up. Provided you were at absolute maximum SFO before loading, she should always drop it
 	5. ...But if not, any SFO strong enough to generate menu effects will do, given enough tries. Thus, spam-reloading the first prologue autosave is also a viable (if random) option
 	6. Once the torch has been obtained, continue until another prologue autosave is received
 	7. **Close the game** to end SFO
@@ -129,7 +129,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 	2. Repeat the SLD, but start with the Prologue Master Sword equipped, SLDing it instead.
 	3. Yeah this is basically a free addon for `1.0.0-1.1.1`.
 
-=== "SFO Method 4 + Cull Detachment Zuggle (1.1.2 type)" ###
+=== "Overload CF->Pcull + CDZ (1.1.2 type)" ###
 	---
 	versions: ["1.1.2"]
 	---
@@ -183,12 +183,12 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 	##### 2c: Collecting Zelda's Torch in the prologue
 
-	1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5, but typically 4), so don't fret about your progressed file.
-	2. Progress to the _second_ autosave (give timing cue but it's just after the first dialogue cutscene thing), then return to (shrine name).
-	3. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there).
-	4. Load the second prologue autosave. Zelda will drop her torch, so pick it up.
-	5. If she does not, try loading back to (shrine) and repeating steps 3-4; It may take a few tries for her torch to be one of the dependencies that fails.
-	6. Proceed until receiving the _third_ prologue autosave.
+	1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5, but typically 4), so don't fret about your progressed file
+	2. As soon as the prologue is entered and an autosave received, reload to Marakuguc Shrine
+	3. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there)
+	4. Load back to the prologue. Zelda will drop her torch, so pick it up. Provided you were at absolute maximum SFO before loading, she should always drop it
+	5. ...But if not, any SFO strong enough to generate menu effects will do, given enough tries. Thus, spam-reloading the first prologue autosave is also a viable (if random) option
+	6. Once the torch has been obtained, continue until another prologue autosave is received
 	7. **Close the game** to end SFO
 
 	As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. Please. I don't want to be responsible for someone losing their file.
@@ -295,7 +295,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 	1. After the final step of Part 3 ("Save the game"), perform all of part 3 again. But this time, zuggle the Prologue Master Sword instead of Zelda's Torch.
 	2. If all your prologue autosaves have expired by the end of Part 3a, simply return to the title screen and start a new file. The CDZ setup survives this just fine.
 
-=== "Nested Batch DI + Cull Detachment Zuggle (1.2.0+ type)" ###
+=== "Nested Batch DI + CDZ (1.2.0+ type)" ###
 	---
 	versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
 	---
@@ -383,12 +383,12 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 	##### 2b: Collecting Zelda's Torch in the Prologue
 
-	1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5), so don't fret about your progressed file
-	2. Progress to the _second_ autosave (give timing cue but it's just after the first dialogue cutscene thing), then return to (shrine name)
+	1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5, but typically 4), so don't fret about your progressed file
+	2. As soon as the prologue is entered and an autosave received, reload to Marakuguc Shrine
 	3. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there)
-	4. Load the second prologue autosave. Zelda will drop her torch, so pick it up
-	5. If she does not, try loading back to (shrine) and repeating steps 3-4; It may take a few tries for her torch to be one of the dependencies that fails
-	6. After collecting the torch, proceed until receiving the _third_ prologue autosave (timing cue), then load the (shrine) autosave
+	4. Load back to the prologue. Zelda will drop her torch, so pick it up. Provided you were at absolute maximum SFO before loading, she should always drop it
+	5. ...But if not, any SFO strong enough to generate menu effects will do, given enough tries. Thus, spam-reloading the first prologue autosave is also a viable (if random) option
+	6. Once the torch has been obtained, continue until another prologue autosave is received, then load the Marakuguc autosave
 	7. One by one, **pick up** and **unequip** all `F[n]` to destroy them, deleting all the dependencies and ending SFO
 
 	As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. Please. I don't want to be responsible for someone losing their file.
