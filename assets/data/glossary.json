@@ -1818,6 +1818,14 @@
     "filename": "mineru-text-storage.md"
   },
   {
+    "name": "Mineru's Arm",
+    "uid": "J7X",
+    "label": "MinArm",
+    "aliases": [],
+    "path": "wiki/J7X/",
+    "filename": "minerus-arm.md"
+  },
+  {
     "name": "MNF Fusing",
     "uid": "CO6",
     "label": "MNFF",

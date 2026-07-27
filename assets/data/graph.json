@@ -1063,6 +1063,12 @@
       "label": "MTS"
     },
     {
+      "id": "wiki/J7X/",
+      "uid": "J7X",
+      "name": "Mineru's Arm",
+      "label": "MinArm"
+    },
+    {
       "id": "wiki/CO6/",
       "uid": "CO6",
       "name": "MNF Fusing",
@@ -3351,6 +3357,94 @@
       "target": "wiki/K4F/"
     },
     {
+      "source": "wiki/J7X/",
+      "target": "wiki/76A/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/7DA/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/7KZ/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/8QH/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/8QL/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/A0R/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/BEW/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/CVH/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/D2J/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/D55/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/GDL/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/JJB/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/K4F/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/L54/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/LMB/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/MCM/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/MG1/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/O64/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/PG3/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/TW8/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/TX4/"
+    },
+    {
+      "source": "wiki/J7X/",
+      "target": "wiki/XTY/"
+    },
+    {
       "source": "wiki/J9Y/",
       "target": "wiki/8QH/"
     },
@@ -3397,6 +3491,10 @@
     {
       "source": "wiki/JDP/",
       "target": "wiki/IG2/"
+    },
+    {
+      "source": "wiki/JDP/",
+      "target": "wiki/J7X/"
     },
     {
       "source": "wiki/JDP/",
@@ -4336,6 +4434,10 @@
     },
     {
       "source": "wiki/TW8/",
+      "target": "wiki/J7X/"
+    },
+    {
+      "source": "wiki/TW8/",
       "target": "wiki/JJB/"
     },
     {
@@ -4389,6 +4491,10 @@
     {
       "source": "wiki/TX4/",
       "target": "wiki/7DA/"
+    },
+    {
+      "source": "wiki/TX4/",
+      "target": "wiki/J7X/"
     },
     {
       "source": "wiki/TX4/",

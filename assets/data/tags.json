@@ -9,6 +9,7 @@
   "camera": "",
   "clipping": "",
   "cooking": "",
+  "Crash": "",
   "culling": "",
   "damage": "",
   "despawn": "",
@@ -29,6 +30,7 @@
   "map": "",
   "menu": "",
   "mineru": "",
+  "Mineru": "",
   "mnf": "",
   "movement": "",
   "oob": "",
@@ -48,5 +50,6 @@
   "Zelda": "",
   "zonai": "",
   "zuggle": "",
+  "Zuggle": "",
   "zuggling": ""
 }
