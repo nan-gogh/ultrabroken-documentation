@@ -1,7 +1,6 @@
 ﻿---
 title: "Mineru's Arm"
 uid: "J7X"
-draft: true
 label: "MinArm"
 versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
 credits: ["mulberry", "Squidwest"]
@@ -31,16 +30,18 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 
 === "Ganon Route" ###
 
-	=== "Overload Cold Fuse -> Map Zuggle" ####
+	=== "Overload CF->Map Zuggle" ####
 		---
 		versions: ["1.0.0", "1.1.0", "1.1.1"]
 		---
-	
+
+		- Possibly the easiest method on this page, depending on one's knowledge base and inclinations.
+
 		##### Requirements
 		---
 		notoc: true
 		---
-	
+
 		- Mineru
 		- 13 Zuggle Overload (9 on `1.0.0`)
 		- At least 3 shields, 2 weapons, and a bow
@@ -80,7 +81,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		3. Without getting too far from the bucket (everything inside can still despawn from distance and must not), progress the fight to Phase 3 (sages blown away)
 		4. Still without allowing SFO to lapse, find Mineru along the outer wall. From each of her arms, an undiscovered equipment should be repeatedly dropping
 		5. With another weapon equipped and a free weapon pouch slot, pick up this equipment. It will immediately respawn, so there's no reason not to take a bunch
-		6. Collect `D1-D30` to end SFO, then _undock the console_. Fusing to Mineru's Arm while docked crashes the game, which you assuredly do not want
+		6. Collect `D1-D25` to end SFO, then _undock the console_. Fusing to Mineru's Arm while docked crashes the game, which you assuredly do not want
 		7. Fuse something to Mineru's Arm, it cannot be targeted with Recall otherwise, which will be needed later
 		8. Equip the fused Arm, this is necessary to Zuggle it
 
@@ -101,19 +102,18 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		8. Equip a weapon and collect Mineru's Arm, then save the game
 		9. Before using Mineru's Arm as a portable faildrop wall, destroy the fuse
 
-	=== "Overload Cold Fuse -> Simulated Portacull Zuggle" ####
+	=== "Overload CF->Simulated Portacull Zuggle" ####
 		---
 		versions: ["1.1.2"]
 		---
 
 		- This zuggle method also works on `1.0.0-1.1.1`, but is needlessly complex. On `1.2.0+`, it will instead result in an Invizuggle, which is not just useless but actively harmful to the cause.
-		- Played around with a CDZ/CDDZ setup but this one is retryable anyway
 
 		##### Requirements
 		---
 		notoc: true
 		---
-	
+
 		- Mineru
 		- 13 Zuggle Overload
 		- At least 3 shields, 2 weapons, and a bow
@@ -179,19 +179,19 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		11. Equip a weapon and collect Mineru's Arm, then save the game
 		12. Before using Mineru's Arm as a portable faildrop wall, destroy the fuse
 
-	=== "Overload Cold Fuse -> Swap Resync Zuggle" ####
+	=== "Overload CF -> Swap Resync Zuggle" ####
 		---
 		versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
 		---
 
-		- "Purgatory + Ghost DI" will probably be faster as an SFO method, but it's more complex. Go learn that if you like.
+		- "Purgatory + Ghost DI" will almost definitely be faster as an SFO method, but it's more complex. Go learn that if you like.
 		- Again, a CDDZ setup is very possible, and timing-free. But compared to FDZ, it's far too much prep for something that can't even be retried.
 
 		##### Requirements
 		---
 		notoc: true
 		---
-	
+
 		- Mineru
 		- 13 Zuggle Overload
 		- At least 3 shields, 2 weapons, and a bow
@@ -257,25 +257,25 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		12. Equip a weapon and collect Mineru's Arm, then save the game
 		13. Before using Mineru's Arm as a portable faildrop wall, destroy the fuse
 
-	#### Faildrop Zuggle
+	#### About Faildrop Zuggle
 
 	Instead of fusing something to Mineru's Arm and recalling the fuse during retrieval, it is also possible to maintain the pickup prompt while it is zuggled. This requires additional timed inputs, but it allows for much safer retrieval. These steps start from having already collected one or more Arms and ending SFO:
 
 	1. Fill the weapon pouch
 	2. Swap from a random weapon to Mineru's Arm so that the latter will Overload Drop
-	3. Faildrop Mineru's Arm so that it returns to Link, and on the last frame before it returns, press A to attempt to pick it up
+	3. Faildrop Mineru's Arm so that it returns to Link, and on the last frame before it returns, press A to attempt to pick it up (You will have to be quick due to the clipping)
 	4. If timed correctly, Mineru's Arm will still have a pickup prompt despite being equipped. _This will end if it is sheathed/unsheathed, so leave it where it is_
 	5. Proceed with whichever Zuggle method is being used; the pickup prompt will stay through the zuggle and through loading a save
 	6. After loading to a progressed save, simply equip a weapon and collect Mineru's Arm (if it was zuggled to Link's back, this may require some finagling)
 
 === "Mainfield Route" ###
 
-	=== "Aerophasing Permacull" ####
+	=== "Aeroculling Permacull" ####
 		---
 		versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2"]
 		---
 
-		- Devised a crazy Mineru SDC permacull thing, but I'm not sure it's worth it over slotting the culling area into Rasi (even if all the timing is free).
+		- There is likely a more efficient option for permanent SFO on this version range, but it needs closer consideration.
 
 		##### Requirements
 		---
@@ -329,8 +329,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
 		---
 
-		- You get a better and more streamlined setup because you're on current. Yay!
-		- Well... some new stuff is coming down the pipeline, so even this might be obsolete. Like so many things, I need to do more testing to find the truth.
+		- More efficient DI SFO options are under development, but this one is sufficient until the new options are settled.
 
 		##### Requirements
 		---
@@ -349,7 +348,7 @@ _Discovered by mulberry; Mainfield route theorized by mulberry, found by Squidwe
 		---
 
 		=== "Condensed" ######
-		
+
 			1. Enter a shrine (Rasitakiwak is the most tested choice), defeat any constructs which are present, and delete their weapons
 			2. `A1` Overload FE shield `B` and Recall Lock it
 			3. `A2` and `B` Ghost DI weapon `C`
@@ -502,19 +501,19 @@ notoc: true
 
 	??? tip "Retrieving Fused+Zuggled Mineru's Arm"
 
-		[Arm](media:video/Syl-MinArm-GanonRoute-Retrieval.mp4)
+		![Note the pre-selection of Recall](media:video/Syl-MinArm-GanonRoute-Retrieval.mp4)
 
 	??? tip "Mainfield Route Primary Strat"
 
-		[](media:video/Syl-MinArm-MainfieldRoute-Primary.mp4)
+		![](media:video/Syl-MinArm-MainfieldRoute-Primary.mp4)
 
 	??? tip "Mainfield Route Backup Strat"
 
-		[](media:video/Syl-MinArm-MainfieldRoute-Backup.mp4)
+		![](media:video/Syl-MinArm-MainfieldRoute-Backup.mp4)
 
-	??? tip "Mainfield Route (Normal Gravity)
+	??? tip "Mainfield Route (Normal Gravity)"
 
-		[Not Recommended](media:video/Syl-MinArm-MainfieldRoute-NormalGravity.mp4)
+		![Not Recommended](media:video/Syl-MinArm-MainfieldRoute-NormalGravity.mp4)
 
 ??? quote "Discord Resources"
 
@@ -532,7 +531,28 @@ notoc: true
 notoc: true
 ---
 
+Before publishing:
+
+Soon after publishing:
+
 - do that crazy Mineru SDC Pcull idea and see if it's peak (Update: It's... okay. In theory it could even be used for Zelda's Torch. But it's just a lot to wrap your head around.)
 - Do the new DI hover stone SFO and see if it's peak enough to supersede nested batch DI
-- double-check steps and formatting
-- see about adding the verbosity meter to other step lists if pertinent
+- After the above, revisit chosen methods and give all steps a very close read (with the aid of fresh eyes) to check for errors.
+
+Eventually:
+
+-idk
+
+#### Meta: method selection ?
+
+Declined variations:
+
+- Anything but a map zuggle for Ganon 1.0.0-1.1.1 (why bother)
+- CDZ/CDDZ for Ganon 1.1.2 or 1.2.0+ (The ease is not worth it when the alternatives are retryable)
+- Anything DI for Ganon 1.2.0+ (blatantly faster, but if you're gonna learn DI just do Mainfield)
+- Mineru SDC Pcull for Mainfield 1.0.0-1.1.2 (Theoretically intriguing but just too technical, and you gotta go through 80% of the final boss just to save some pause buffers???)
+
+Still considering:
+
+- Local->permanent SFO (via AC Pcull) for Mainfield 1.0.0-1.1.2 (I've heard the AC pcull is 100% consistent on those patches, but given the time diff isn't *that* big, may as well go for the more resilient option... right?)
+- Standard Detanglement/Break Detanglement-based permanent DI SFO (I don't like to do permanent SFO ever if I can help it, but it's hard to deny the efficiency here. I'll have to do more tests...)
