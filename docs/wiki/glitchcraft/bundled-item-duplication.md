@@ -5,7 +5,7 @@ label: "BID"
 versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
 credits: ["Ock", "KiloVictor", "mulberry", "Blackmars", "Yee", "Squidwest"]
 date: "2023-12-12"
-description: "Holding and then destroying a material a couple of frames before Link culls causes it to get put into a state of constantly respawning when holding another item, allowing for massive duping. It is widely known to be the fastest material duplication glitch in the game."
+description: "Holding and then destroying a material a couple of frames before Link culls causes it to get put into a state of constantly respawning when holding another item, allowing for massive duping."
 aliases: ["bundled-item-duplication", "bundled-item-dupe", "bid"]
 tags: ["duplication", "item", "culling"]
 ---
