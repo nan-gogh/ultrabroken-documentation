@@ -1523,3 +1523,167 @@ notoc: true
             5. Fail-drop the target using either the wall or Mineru's Arm. It may be wise to unequip bow/desync
             6. Perform a slow pause buffer or 2 perfect ones, so that the target no longer appears in the inventory, but has not yet fully despawned
             7. Use the portacull
+
+
+
+## instructions rewrite hole ?
+
+new philosophy: This page, once ported to the live page, will contain only the "basic" instructions, plus a section on use-cases. Any use-case involved enough to have its own special instructions is involved enough to have its own page on accomplishing it.
+
+=== "Local" ###
+
+	- These methods will be destroyed by warping, loading a save, or traveling too far away. Thus, they cannot be used for some things, but are often faster than persistent methods.
+
+	=== "Batch->Normal DI" ####
+
+		- Likely the fastest method on this page for versions `1.2.0+`.
+
+		##### Gist ?
+
+		1. Use overload and a DI Ghost (`A`) to create a batch of DI Ghost Weapons (`D`) that all share the same parent (`C`)
+		2. Place all `D` in purgatory so that they can be "equipped" all at once via `C`
+		3. Use `D` and a set of normal weapons (`E`) to create a set of DI Ghosts (`F`)
+
+		##### Requirements
+
+		- Overload
+		- A DI Ghost Shield `A`
+		- Ideally, a DI Ghost Weapon to dupe with
+
+		##### Steps
+
+		[placeholder]
+
+	=== "Overload CF" ####
+
+		- The only method on this page that can be performed without significant preparation on `1.0.0-1.1.2`, and thus the fastest method on those versions as well.
+
+		##### Gist ?
+
+		1. Use overload to to create a set of shields, each cold-fused to the same weapon
+		2. Cold Fuse a set of materials to every shield one-by-one
+
+		##### Requirements
+
+		- Overload
+		- Some of each equipment type
+		- 25+ materials
+
+		##### Steps
+
+		[placeholder]
+
+=== "Persistent" ###
+
+	- Persistent methods stay active even through warping, loading saves, or traveling far away. This makes them the only way to perform certain things that SFO can achieve.
+
+	=== "Nested Batch DI" ####
+
+		- The only persistent method on this page that can be reversed without closing the game.
+
+		##### Gist ?
+
+		1. Use overload and a DI Ghost (`A`) to create a batch of DI Ghost items (`D`) that all share the same parent (`C`)
+		2. Place all `D` in purgatory so that they can be "equipped" all at once via `C`
+		3. Use overload and `D` to create a second batch of DI Ghost items (`E`), so that each `E` has a dependency to each `D`
+		4. Recall Lock any non-DI items used in the setup
+
+		##### Requirements
+
+		- 13 Zuggle Overload
+		- A DI Ghost Weapon `A1`
+		- A DI Ghost Shield `A2`
+		- A second DI Ghost Weapon and Shield (for duping)
+		- Ideally, a bow and an arrow (to manipulate overload and check for SFO)
+		
+		##### Steps
+
+		[placeholder (don't forget MinArm/ZTorch has a mistake!)]
+
+	=== "Batch->Normal DI->Detangle" ####
+
+		- Most likely the fastest persistent method on this page.
+
+		##### Gist ?
+
+		1. Use overload and a DI Ghost (`A`) to create a batch of DI Ghost Weapons (`D`) that all share the same parent (`C`)
+		2. Place all `D` in purgatory so that they can be "equipped" all at once via `C`
+		3. Use `D` and a set of normal weapons (`E`) to create DI Ghost Hover Stones (`F`) in Ihen-A
+		4. Throw each `E` to detangle each `F`, leaving only the dependencies between each `D` and each `F`
+		5. Create & detangle a couple more `F` to make up for the dependencies lost in step 4
+
+		##### Requirements
+
+		- Overload
+		- A DI Ghost Shield (`A`)
+		- Ideally, a DI Ghost Weapon to dupe with
+		- At least 21 Hover Stones
+
+		##### Steps
+
+		[placeholder]
+
+	=== "DI Break Detanglement" ####
+
+		- More versatile than the preceding method, but typically slightly slower as well.
+
+		##### Gist ?
+
+		1. Use overload and a DI Ghost (`A`) to create a batch of DI Ghosts (`D`) that all share the same parent (`C`)
+		2. Place all `D` in purgatory so that they can be "equipped" all at once via `C`
+		3. Use `D` and a set of normal items (`E`) to create DI Ghosts of fragile fuses (`F`)
+		4. Break each `E` to detangle each `F`, leaving only the dependencies between each `D` and each `F`
+		5. Create & detangle a couple more `F` to make up for the dependencies lost in step 4
+
+		##### Requirements
+
+		- Overload
+		- A DI Ghost Shield (`A`)
+		- Ideally, a DI Ghost Weapon to dupe with
+		- At least 21 "fragile fuses" (Must not be replacement actors(link it))
+
+		##### Steps
+
+		[placeholder]
+
+	=== "Overload CF->Pcull" ####
+
+		- I don't know if this method has any unique merit left now that culling has been unlocked on early patches? But it has historical strengths, so idk...
+
+		##### Gist ?
+
+		1. Use overload to to create a set of shields (`C`), each cold-fused to the same weapon (`B`), which itself is fused to a shield (`A`)
+		2. Cold Fuse a second set of shields (`D`) to every (`C`), one-by-one
+		3. Use some kind of culling tech to permacull `A`, every `C`, and every `D`, so that nothing can unload
+		4. Ensure the culling tech does not unload
+
+		##### Requirements
+
+		- Overload
+		- A culling tech (advised: Mulberry's Flickering Flame (Fused SDC Type))
+
+		##### Steps
+
+		[placeholder]
+		
+	=== "Pcull Only" ####
+
+		- Don't... do this one. It's extremely simple and easy to understand, but that's because it's extremely inefficient.
+		- I don't think MFF helps, because it improves every other method too.
+		- If you're on 1.2.0+ don't even read the instructions. Go learn a DI method, I'm actually begging you.
+
+		##### Gist ?
+
+		1. Use some kind of duplication to repeatedly duplicate fused equipment items
+		2. Use some kind of culling tech to permacull these duped items, preventing them from unloading
+		3. Ensure the culling tech does not unload
+
+		##### Requirements
+
+		- A way to Drop Zuggle (advised: Overload)
+		- A duplication method (advised: a DI Ghost)
+		- A culling tech (advised: Mulberry's Flickering Flame (Fused SDC Type))
+
+		##### Steps
+
+		[placeholder]
