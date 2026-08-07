@@ -311,7 +311,9 @@
     "uid": "099",
     "label": "BID",
     "aliases": [
-      "bundled-item-duplication"
+      "bundled-item-duplication",
+      "bundled-item-dupe",
+      "bid"
     ],
     "path": "wiki/099/",
     "filename": "bundled-item-duplication.md"
