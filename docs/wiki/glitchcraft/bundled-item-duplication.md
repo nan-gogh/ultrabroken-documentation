@@ -47,15 +47,15 @@ Culling Link right after holding a material detaches the material (until Link un
 	1. Fuse entangle a steering stick to a weapon/shield
 	2. Perform stick desync clip on the entangled steering stick, then fuse it to another weapon/shield
 	3. Place the original equipment that the stick is entangled to inside a culling area
-		While not necessary, it is recommended to also attach an extra material to the equipment inside the culling area to make cull/uncull behavior consistent.
+		- While not necessary, it is recommended to also attach an extra material to the equipment inside the culling area to make cull/uncull behavior consistent.
 	4. Pick up the steering-stick-fused item to equip it and exit the culling area
 	5. Drop the stick-fused item to uncull
 	6. Pause and hold any item which bursts from heavy impact (bird eggs are recommended)
 	7. Watch a memory and unpause, the item which you just held should fall onto the ground and break
 	8. Drop the stick-fused item to uncull once again, then drop the unloaded item onto the ground
-		Step 8 relies on a drop mechanic unique to v1.2.0+. To uncull Link from the SDC cull on v1.1.2 and older:
-		1. Unequip or swap off of the stick-fused item
-		2. Watch a memory and then unpause
+		- Step 8 relies on a drop mechanic unique to v1.2.0+. To uncull Link from the SDC cull on v1.1.2 and older:
+		- Unequip or swap off of the stick-fused item
+		- Watch a memory and then unpause
 	10. (optional) Prepare to throw an item to pickup both the stick-fused item and the stick-entangled item
 
 === "Mineru Cull BID" ###
