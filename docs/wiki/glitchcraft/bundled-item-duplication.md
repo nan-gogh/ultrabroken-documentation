@@ -27,7 +27,7 @@ Culling Link right after holding a material detaches the material (until Link un
 
 	_Ock - 12 December 2023_
 	
- 	1. Setup like like stick culling (some locations are more consistent than others(look-out landing like likes are terrible))
+ 	1. Setup like like stick culling (some locations are more consistent than others (look-out landing like likes are terrible))
 	2. Hold any item which bursts from heavy impact (bird eggs are recommended) 2 frames before Link culls. If done correctly the item will fall onto the ground and break
 	3. Drop the unloaded item onto the ground, you may have to watch multiple memories to uncull Link enough for him to drop the item
 	4. Watch another memory to uncull Link, then immediately mount a horse, mineru, a steering stick, or lift an object to stop the culling
@@ -114,7 +114,7 @@ Culling Link right after holding a material detaches the material (until Link un
 	1. Create portacull shield/weapon and drop a bird egg on the ground to collect later
 	2. Perform Mineru Hold Smuggle with another bird egg
 	3. Using the materials quick menu, throw the remaining quantity of the item Link is currently holding onto the ground until it no longer appears in the quick menu
-		If the previous two steps have been done correctly, Link in the inventory should appear to be holding the breakable item in his hand despite the inventory showing 0/5 items held.
+		- If the previous two steps have been done correctly, Link in the inventory should appear to be holding the breakable item in his hand despite the inventory showing 0/5 items held.
 	4. Jump and pause midair, then add an item to the currently held stack and remove it
 	5. Press - to enter the map and watch a memory
 	6. Go back into the inventory and unhold the breakable item by pressing X
@@ -142,11 +142,11 @@ Culling Link right after holding a material detaches the material (until Link un
 	2. Open recall and then pause
 	3. Hold a bird egg
 	4. Unpause, and time a d-pad press to open the quick menu on the first possible frame
-		1. Spamming can work, but timing the press is more consistent with practice
-		2. Either way, when successful, Link's right hand will still be nearly fully held out, with the Recall glow clearly visible
+		- Spamming can work, but timing the press is more consistent with practice
+		- Either way, when successful, Link's right hand will still be nearly fully held out, with the Recall glow clearly visible
 	5. Drop the portacull shield and spam the dpad again to swap to a different shield without unpausing the game
 	6. Close the shield quick menu, then open it again as soon as Link culls and switch shields
-		If done correctly, Link will remain culled upon unpausing, and the egg should fall onto the ground and break. If not, try again from step 2.
+		- If done correctly, Link will remain culled upon unpausing, and the egg should fall onto the ground and break. If not, try again from step 2.
 	7. Drop the currently equipped shield to uncull Link, then drop the unloaded item on the ground
 
 	!!! tip "Tips"
