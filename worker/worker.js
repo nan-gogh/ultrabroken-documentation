@@ -485,6 +485,12 @@ export default {
     let openrouter_error = null;
     let openrouter_debug = null;
     const has_openrouter_key = !!(env && env.OPENROUTER_API_KEY);
+    if (!has_openrouter_key) {
+      return new Response(JSON.stringify({ error: 'AI search is unavailable: OpenRouter API key not configured' }), {
+        status: 503,
+        headers: Object.assign({'Content-Type':'application/json'}, CORS_HEADERS)
+      });
+    }
     if (has_openrouter_key) {
       try {
         // Prefer a cleaned `excerpt` and include `title` separately so the model sees the canonical title
@@ -505,7 +511,8 @@ export default {
           temperature: 0.0,
           max_tokens: 800
         };
-        if (env.OPENROUTER_MODEL) payloadBody.model = env.OPENROUTER_MODEL;
+        // Use explicit model if configured, otherwise fall back to OpenRouter auto-router
+        payloadBody.model = env.OPENROUTER_MODEL || 'openrouter/auto';
         // Call OpenRouter and capture detailed debug info (timing, status, headers, truncated body)
         let or_debug = { request_payload_excerpt: null, status: null, duration_ms: null, response_excerpt: null, response_json_keys: null, headers: null };
         try {
@@ -613,7 +620,8 @@ export default {
               return entries;
             };
 
-            // If the model response lacks the required Sources block, attempt one immediate re-query.
+            // If the model response lacks the preferred Sources block, attempt one immediate re-query.
+            // Keep the original answer if the retry also omits it; retrieval evidence remains authoritative.
             if (!hasSources(modelText)){
               try{
                 // Re-run the exact same request once (quick retry) to attempt a complete reply.
@@ -634,15 +642,11 @@ export default {
                   retryModelText = retryText;
                 }
                 retryModelText = String(retryModelText || '').trim();
-                if (!hasSources(retryModelText)){
-                  // Second attempt failed to produce Sources — return canonical silence to caller
-                  return makeSilence();
+                if (hasSources(retryModelText)){
+                  modelText = retryModelText;
                 }
-                // Use the retryModelText as the final modelText if it contains Sources
-                modelText = retryModelText;
               }catch(retryErr){
-                // On any retry error, fall back to silence
-                return makeSilence();
+                console.warn('OpenRouter Sources retry failed', retryErr);
               }
             }
 
