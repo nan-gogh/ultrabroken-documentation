@@ -60,9 +60,6 @@ jobs:
           if [ -n "${{ secrets.OPENROUTER_API_KEY }}" ]; then
             printf "%s" "${{ secrets.OPENROUTER_API_KEY }}" | npx --yes wrangler@4 secret put OPENROUTER_API_KEY
           fi
-          if [ -n "${{ secrets.OPENROUTER_MODEL }}" ]; then
-            printf "%s" "${{ secrets.OPENROUTER_MODEL }}" | npx --yes wrangler@4 secret put OPENROUTER_MODEL
-          fi
           if [ -n "${{ secrets.SYSTEM_PROMPT }}" ]; then
             printf "%s" "${{ secrets.SYSTEM_PROMPT }}" | npx --yes wrangler@4 secret put SYSTEM_PROMPT
           fi
