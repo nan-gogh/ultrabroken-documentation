@@ -11,10 +11,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Fail early if Cloudflare secrets missing
+      - name: Fail early if required secrets are missing
         run: |
           if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] || [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
             echo "Missing Cloudflare secrets (CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID)."
+            exit 1
+          fi
+          if [ -z "${{ secrets.OPENROUTER_API_KEY }}" ]; then
+            echo "Missing OpenRouter API key (OPENROUTER_API_KEY)."
             exit 1
           fi
 
@@ -54,15 +58,15 @@ jobs:
           fi
           export CF_API_TOKEN="${{ env.CLOUDFLARE_API_TOKEN }}"
           if [ -n "${{ secrets.OPENROUTER_API_KEY }}" ]; then
-            printf "%s" "${{ secrets.OPENROUTER_API_KEY }}" | npx --yes wrangler@4 secret put OPENROUTER_API_KEY || true
+            printf "%s" "${{ secrets.OPENROUTER_API_KEY }}" | npx --yes wrangler@4 secret put OPENROUTER_API_KEY
           fi
           if [ -n "${{ secrets.OPENROUTER_MODEL }}" ]; then
-            printf "%s" "${{ secrets.OPENROUTER_MODEL }}" | npx --yes wrangler@4 secret put OPENROUTER_MODEL || true
+            printf "%s" "${{ secrets.OPENROUTER_MODEL }}" | npx --yes wrangler@4 secret put OPENROUTER_MODEL
           fi
           if [ -n "${{ secrets.SYSTEM_PROMPT }}" ]; then
-            printf "%s" "${{ secrets.SYSTEM_PROMPT }}" | npx --yes wrangler@4 secret put SYSTEM_PROMPT || true
+            printf "%s" "${{ secrets.SYSTEM_PROMPT }}" | npx --yes wrangler@4 secret put SYSTEM_PROMPT
           fi
           if [ -n "${{ secrets.ALLOWED_ORIGIN }}" ]; then
-            printf "%s" "${{ secrets.ALLOWED_ORIGIN }}" | npx --yes wrangler@4 secret put ALLOWED_ORIGIN || true
+            printf "%s" "${{ secrets.ALLOWED_ORIGIN }}" | npx --yes wrangler@4 secret put ALLOWED_ORIGIN
           fi
           npx --yes wrangler@4 deploy
