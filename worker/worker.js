@@ -643,8 +643,8 @@ export default {
               return entries;
             };
 
-            // If the model response lacks the preferred Sources block, attempt one immediate re-query.
-            // Keep the original answer if the retry also omits it; retrieval evidence remains authoritative.
+            // If the model response lacks the required Sources block, attempt one immediate re-query.
+            // If retry also fails to produce Sources, return canonical silence.
             if (!hasSources(modelText)){
               try{
                 // Re-run the exact same request once (quick retry) to attempt a complete reply.
@@ -665,11 +665,16 @@ export default {
                   retryModelText = retryText;
                 }
                 retryModelText = String(retryModelText || '').trim();
-                if (hasSources(retryModelText)){
-                  modelText = retryModelText;
+                if (!hasSources(retryModelText)){
+                  // Second attempt failed to produce Sources — return canonical silence to caller
+                  return makeSilence();
                 }
+                // Use the retryModelText as the final modelText if it contains Sources
+                modelText = retryModelText;
               }catch(retryErr){
                 console.warn('OpenRouter Sources retry failed', retryErr);
+                // Retry threw an error and original lacked sources, so return silence
+                return makeSilence();
               }
             }
 
