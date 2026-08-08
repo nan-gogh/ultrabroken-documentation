@@ -511,8 +511,7 @@ export default {
           temperature: 0.0,
           max_tokens: 800
         };
-        // Use explicit model if configured, otherwise fall back to OpenRouter auto-router
-        payloadBody.model = env.OPENROUTER_MODEL || 'openrouter/auto';
+        payloadBody.model = 'openrouter/free';
         // Call OpenRouter and capture detailed debug info (timing, status, headers, truncated body)
         let or_debug = { request_payload_excerpt: null, status: null, duration_ms: null, response_excerpt: null, response_json_keys: null, headers: null };
         try {
@@ -549,6 +548,16 @@ export default {
           if (!orRes.ok){
             openrouter_error = `openrouter status ${orRes.status}`;
             console.error('OpenRouter non-OK response', { status: orRes.status, duration_ms: or_debug.duration_ms });
+            const upstreamMessage = orJson && orJson.error && orJson.error.message
+              ? String(orJson.error.message)
+              : openrouter_error;
+            return new Response(JSON.stringify({
+              error: `AI provider error: ${upstreamMessage}`,
+              upstream_status: orRes.status
+            }), {
+              status: 502,
+              headers: Object.assign({'Content-Type':'application/json'}, CORS_HEADERS)
+            });
           }
 
           let modelText = '';
@@ -560,6 +569,20 @@ export default {
             modelText = orText;
           }
           modelText = String(modelText || '').trim();
+          if (!modelText) {
+            const selectedModel = orJson && orJson.model ? String(orJson.model) : payloadBody.model;
+            const finishReason = orJson && orJson.choices && orJson.choices[0]
+              ? orJson.choices[0].finish_reason || null
+              : null;
+            return new Response(JSON.stringify({
+              error: 'AI provider returned no answer',
+              model: selectedModel,
+              finish_reason: finishReason
+            }), {
+              status: 502,
+              headers: Object.assign({'Content-Type':'application/json'}, CORS_HEADERS)
+            });
+          }
           if (modelText && modelText.length >= 4 && !/^(silence|no_relevant_info|no_relevant_information|noinfo)$/i.test(modelText)){
             // Helper to detect the canonical Sources block (a single line 'Sources:' followed by entries)
             const hasSources = (txt) => { try{ return /(^|\n)Sources:\s*($|\n)/m.test(String(txt||'')); }catch(e){ return false; } };
