@@ -1561,6 +1561,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condensed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condensed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expanded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expanded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verbose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verbose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1703,10 +1742,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#steps_6" class="md-nav__link">
+  <a href="#part-1-creating-the-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Steps
+        Part 1: Creating the dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2-permaculling-the-shields_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2: Permaculling the shields
       
     </span>
   </a>
@@ -1753,7 +1803,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#steps_7" class="md-nav__link">
+  <a href="#steps_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         Steps
@@ -3259,7 +3309,7 @@
 </div>
 </div>
 <h2 class="collapse" id="instructions-rewrite-hole">instructions rewrite hole</h2>
-<p>new philosophy: This page, once ported to the live page, will contain only the "basic" instructions, plus a section on use-cases. Any use-case involved enough to have its own special instructions is involved enough to have its own page on accomplishing it.</p>
+<p>new philosophy: This page, once ported to the live page, will contain only the "basic" instructions, plus a section on use-cases, and the usual supplemental info. Any use-case involved enough to have its own special instructions is involved enough to have its own page on accomplishing it.</p>
 <div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Local</label><label for="__tabbed_12_2">Persistent</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -3273,21 +3323,35 @@
 <h4 class="tab-toc-heading" id="batch-normal-di">Batch-&gt;Normal DI</h4>
 <ul>
 <li>Likely the fastest method on this page for versions <code>1.2.0+</code>.</li>
+<li>Technically this method is meant to call for torch culling. But I hate torch culling and I will die on this hill.</li>
+<li>If you want to make the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">batch DI</a> faster, use Slotted <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/L54/" class="glitch-autolink" title="SDC" target="_blank" rel="noopener noreferrer">SDC</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/9R8/" class="glitch-autolink" title="Pyroculling" target="_blank" rel="noopener noreferrer">Pyroculling</a>. There are no other good options, and don't let anyone tell you otherwise.</li>
 </ul>
 <h5 class="collapse" id="gist">Gist</h5>
 <ol>
-<li>Use overload and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> (<code>A</code>) to create a batch of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapons (<code>D</code>) that all share the same parent (<code>C</code>)</li>
-<li>Place all <code>D</code> in purgatory so that they can be "equipped" all at once via <code>C</code></li>
-<li>Use <code>D</code> and a set of normal weapons (<code>E</code>) to create a set of DI Ghosts (<code>F</code>)</li>
+<li>Use overload and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> (<code>A1</code>) to create a batch of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapons (<code>C</code>) that all share the same parent (<code>A3</code>)</li>
+<li>Place all <code>C</code> in purgatory so that they can be "equipped" all at once via <code>A3</code></li>
+<li>Use <code>C</code> and a set of normal weapons (<code>D</code>) to create a set of DI Ghosts (<code>E</code>)</li>
 </ol>
 <h5 id="requirements_14">Requirements</h5>
 <ul>
-<li>Overload</li>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Shield <code>A</code></li>
-<li>Ideally, a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapon to dupe with</li>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Weapon (<code>A1</code>)</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Shield (<code>B1</code>)</li>
+<li>A second DI Ghost weapon will simplify duplication</li>
 </ul>
 <h5 id="steps_1">Steps</h5>
-<p>[placeholder]</p>
+<ol>
+<li><code>A1</code> and weapon <code>A2</code> make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> shield <code>A3</code></li>
+<li><code>B1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> shield <code>B2</code>; leave <code>B1</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped</li>
+<li><code>A2</code>, <code>A3</code>, and <code>B2</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a> 30 weapons <code>C1-C30</code></li>
+<li>Delete <code>B2</code> and <code>A2</code>, and fuse-over detangle <code>A3</code> from <code>A1</code>, then delete <code>A1</code></li>
+<li>Use standard means to create 2 more <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost weapons <code>C31-C32</code> with <code>A3</code> as DI parent, and delete the normal parents</li>
+<li>Throw purgatorize <code>C1-C32</code></li>
+<li>Zuggle Drop <code>A3</code> to attach <code>C1-C32</code></li>
+<li>Dupe weapons (<code>D1-D[n]</code>) off <code>A1</code> and use them to Ghost DI random materials/equipment (<code>E1-E[n]</code>) until <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> occurs</li>
+<li>Equip one more weapon and fuse something to it, but let it fully despawn. This will clear any potential Reference FE connections, averting the possibility of a game crash</li>
+<li>Pick up and drop <code>A3</code> to undo its zuggle drop</li>
+</ol>
 </div>
 <div class="tabbed-block">
 <h4 class="tab-toc-heading" id="overload-cf">Overload CF</h4>
@@ -3301,12 +3365,26 @@
 </ol>
 <h5 id="requirements_15">Requirements</h5>
 <ul>
-<li>Overload</li>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a> (9 on <code>1.0.0</code>)</li>
 <li>Some of each equipment type</li>
 <li>25+ materials</li>
 </ul>
 <h5 id="steps_2">Steps</h5>
-<p>[placeholder]</p>
+<ol>
+<li>Overload Drop a weapon (<code>A</code>) and fuse it to a shield (<code>B</code>)</li>
+<li>Drop <code>B</code>, then duplicate 26 shields (<code>C1-C26</code>) using Overload (up to 20 of these may be dropped on the ground during this step, just be careful not to despawn <code>B</code>)</li>
+<li>Pick up B and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> <code>C1-C26</code> to <code>A</code></li>
+<li>Faildrop <code>A</code> and drop <code>B</code></li>
+<li>Overload Pickup <code>C1</code></li>
+<li>Hold and drop 5 materials (<code>D1-D5</code>), <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a> them to <code>C1</code>, then repeat until there are 25 materials (<code>D1-D25</code>) on the ground</li>
+<li>Faildrop <code>C1</code> and drop it aside</li>
+<li>Repeat steps 7-9 with each <code>C[n]</code>, using the same <code>D1-D25</code></li>
+<li>After every other repetition, fuse pairs of <code>C[n]</code> together to keep under the drop limit</li>
+<li>Sometime during <code>C25</code> or <code>C26</code>, Link will begin Overload Dropping equipment inside the pause menu. <em>When you see this, move to step 13.</em></li>
+<li>Cold Fuse a random material to the current <code>C</code>. If it works correctly, collect the material and Cold Fuse the next <code>D[n]</code>, then repeat step 13. <em>If it fails, move to step 14.</em></li>
+<li>Unequip bow to free a dependency slot, then faildrop <code>C[n]</code> and drop it aside</li>
+<li>Drop <code>A</code></li>
+</ol>
 </div>
 </div>
 </div>
@@ -3322,6 +3400,7 @@
 <h4 class="tab-toc-heading" id="nested-batch-di">Nested Batch DI</h4>
 <ul>
 <li>The only persistent method on this page that can be reversed without closing the game.</li>
+<li>Technically performable on <code>1.0.0-1.1.2</code>, but the required adjustments mostly erase the upsides of the method.</li>
 </ul>
 <h5 class="collapse" id="gist_2">Gist</h5>
 <ol>
@@ -3339,30 +3418,181 @@
 <li>Ideally, a bow and an arrow (to manipulate overload and check for <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>)</li>
 </ul>
 <h5 id="steps_3">Steps</h5>
-<p>[placeholder (don't forget <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/J7X/" class="glitch-autolink" title="MinArm" target="_blank" rel="noopener noreferrer">MinArm</a>/<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TW8/" class="glitch-autolink" title="ZTorch" target="_blank" rel="noopener noreferrer">ZTorch</a> has a mistake!)]</p>
+<div data-ub-level="6" class="tabbed-set tabbed-alternate" data-tabs="15:3"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><input id="__tabbed_15_3" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">Condensed</label><label for="__tabbed_15_2">Expanded</label><label for="__tabbed_15_3">Verbose</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h6 class="tab-toc-heading" id="condensed">Condensed</h6>
+<ol>
+<li><code>A1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> shield <code>B</code> and Recall Lock it</li>
+<li><code>A2</code> and <code>B</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a> weapon <code>C</code></li>
+<li><code>A2</code> Overload FE weapon <code>D1</code>; leave <code>A2</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped</li>
+<li>Equip <code>B</code>, Smuggle <code>C</code>, and Overload Pickup <code>D1</code></li>
+<li><code>B</code>, <code>C</code>, and <code>D1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a> 25 weapons <code>E1-E25</code></li>
+<li>Drop <code>D1</code> (don't bother faildropping), then pick up and drop <code>C</code> to undo its Zuggle Drop</li>
+<li><code>A2</code> Overload FE weapon <code>D2</code>; leave <code>A2</code> Zuggle Dropped</li>
+<li>Throw purgatorize <code>E1-E25</code></li>
+<li>Equip <code>B</code> and Overload Pickup <code>D2</code></li>
+<li><code>B</code>, <code>E1-E25</code>, and <code>D2</code> Overload Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> 24 shields <code>F1-F24</code></li>
+<li>Leave <code>B</code> dropped, then faildrop <code>D2</code> and drop it once it returns, and finally pick up and drop <code>A2</code> to undo its Zuggle Drop</li>
+<li>If desired, check for "full" <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached</li>
+<li>Before leaving, either Recall Lock <code>D2</code>, or else simply glue it to <code>B</code>, to prevent it falling out of bounds</li>
+<li>To reverse SFO later, pick up and unequip each <code>F[n]</code> to delete 624 of the dependencies</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<h6 class="tab-toc-heading" id="expanded">Expanded</h6>
+<ol>
+<li><code>A1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> shield <code>B</code> and Recall Lock it</li>
+<li><code>A2</code> and <code>B</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a> weapon <code>C</code></li>
+<li><code>A2</code> Overload FE weapon <code>D1</code>; leave <code>A2</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped</li>
+<li>Equip <code>B</code>, Smuggle <code>C</code>, and Overload Pickup <code>D1</code></li>
+<li><code>B</code>, <code>C</code>, and <code>D1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a> 25 weapons <code>E1-E25</code>:<ol>
+<li>Fuse <code>E[n]</code> to weapons twice and pause 2-7 frames after the second Fuse input</li>
+<li>Drop-swap-unequip <code>B</code> to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> <code>E[n]</code>; can use faildrop-swap-unequip to not have to pick up <code>B</code> every cycle</li>
+<li>Pick up <code>B</code> (if needed) and repeat 5a-5b with the next <code>E[n]</code></li>
+</ol>
+</li>
+<li>Drop <code>D1</code> (don't bother faildropping), then pick up and drop <code>C</code> to undo its Zuggle Drop</li>
+<li><code>A2</code> Overload FE weapon <code>D2</code>; leave <code>A2</code> Zuggle Dropped</li>
+<li>Throw purgatorize <code>E1-E25</code>:<ol>
+<li>Smuggle <code>E1</code></li>
+<li>Pick up E2 and throw it</li>
+<li>Unsheathe E2 to return it to hand</li>
+<li>Repeat 8a-8c with each E, using any random weapon for the last throw</li>
+<li>If there are fewer than 25 weapons, don't worry about it</li>
+</ol>
+</li>
+<li>Equip <code>B</code> and Overload Pickup <code>D2</code></li>
+<li><code>B</code>, <code>E1-E25</code>, and <code>D2</code> Overload Batch DI 24 shields <code>F1-F24</code>:<ol>
+<li>Fuse <code>F[n]</code> to weapons twice and pause 2-7 frames after the second Fuse input</li>
+<li>Starting with <code>F2</code>, the second Fuse input will cause a strong lag spike, so pausing with the D-Pad is easier</li>
+<li>Drop-swap-unequip <code>B</code> to DI <code>F[n]</code>; <em>faildrop is not advised</em> due to the risk of dropping the D-Pad input</li>
+<li>Pick up <code>B</code> and repeat 10a-10c with the next <code>F[n]</code></li>
+<li>If there were more/fewer than 25 weapons in Step 9, fewer/more shields may be needed to compensate</li>
+<li>For the last few fuses, check on Menu Link after each DI. When he starts looking folded, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> is likely complete</li>
+</ol>
+</li>
+<li>Leave <code>B</code> dropped, then faildrop <code>D2</code> and drop it once it returns, and finally pick up and drop <code>A2</code> to undo its Zuggle Drop</li>
+<li>If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached</li>
+<li>Before leaving, either Recall Lock <code>D2</code>, or else simply glue it to <code>B</code>, to prevent it falling out of bounds</li>
+<li>To reverse SFO later, pick up and unequip each <code>F[n]</code> to delete 624 of the dependencies</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<h6 class="tab-toc-heading" id="verbose">Verbose</h6>
+<ol>
+<li><code>A1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> shield <code>B</code> and Recall Lock it:<ol>
+<li>Smuggle <code>A1</code></li>
+<li>Overload Drop a weapon and fuse it to a shield</li>
+<li>Fuse <code>B</code> to weapons just once</li>
+<li>Swap weapon to resync, then drop it</li>
+<li>Pick up and drop <code>A1</code> to remove its <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Drop</li>
+<li>Position <code>B</code> where desired, Recall it, and load a save while Recall is active</li>
+</ol>
+</li>
+<li><code>A2</code> and <code>B</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a> weapon <code>C</code>:<ol>
+<li>Smuggle <code>A2</code> and equip <code>B</code></li>
+<li>Fuse <code>C</code> to shields and pause a few frames later</li>
+<li>Drop-swap-unequip <code>B</code> to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> <code>C</code></li>
+</ol>
+</li>
+<li><code>A2</code> Overload FE weapon <code>D1</code>; leave <code>A2</code> Zuggle Dropped:<ol>
+<li>Smuggle <code>A2</code></li>
+<li>Overload Drop a shield and fuse it to a weapon</li>
+<li>Fuse <code>D1</code> to shields just once</li>
+<li>Swap shield to resync, then drop it</li>
+</ol>
+</li>
+<li>Equip <code>B</code>, Smuggle <code>C</code>, and Overload Pickup <code>D1</code>:<ol>
+<li>Ensure neither a weapon nor a shield are equipped</li>
+<li>Pick up <code>B</code> and <code>C</code></li>
+<li>Drop-swap-unequip <code>C</code> to smuggle it</li>
+<li>Nock an arrow and pick up <code>D1</code></li>
+</ol>
+</li>
+<li><code>B</code>, <code>C</code>, and <code>D1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a> 25 weapons <code>E1-E25</code>:<ol>
+<li>Fuse <code>E[n]</code> to weapons twice and pause 2-7 frames after the second Fuse input</li>
+<li>Drop-swap-unequip <code>B</code> to DI <code>E[n]</code>; can use faildrop-swap-unequip to not have to pick up <code>B</code> every cycle</li>
+<li>Pick up <code>B</code> (if needed) and repeat 5a-5b with the next <code>E[n]</code></li>
+</ol>
+</li>
+<li>Drop <code>D1</code> (don't bother faildropping), then pick up and drop <code>C</code> to undo its Zuggle Drop</li>
+<li><code>A2</code> Overload FE weapon <code>D2</code>; leave <code>A2</code> Zuggle Dropped:<ol>
+<li>Smuggle <code>A2</code></li>
+<li>Overload Drop a shield and fuse it to a weapon</li>
+<li>Fuse <code>D2</code> to shields just once</li>
+<li>Swap shield to resync, then drop it</li>
+</ol>
+</li>
+<li>Throw purgatorize <code>E1-E25</code>:<ol>
+<li>Smuggle <code>E1</code></li>
+<li>Pick up E2 and throw it</li>
+<li>Unsheathe E2 to return it to hand</li>
+<li>Repeat 8a-8c with each E, using any random weapon for the last throw</li>
+<li>If there are fewer than 25 weapons, don't worry about it as long as there are at least 20</li>
+</ol>
+</li>
+<li>Equip <code>B</code> and Overload Pickup <code>D2</code>:<ol>
+<li>Ensure neither a weapon nor a shield are equipped</li>
+<li>Pick up <code>B</code></li>
+<li>Nock an arrow, drop-swap bow, and pick up <code>D2</code> before the dropped bow unculls</li>
+</ol>
+</li>
+<li><code>B</code>, <code>E1-E25</code>, and <code>D2</code> Overload Batch DI 24 shields <code>F1-F24</code>:<ol>
+<li>Fuse <code>F[n]</code> to weapons twice and pause 2-7 frames after the second Fuse input</li>
+<li>Starting with <code>F2</code>, the second Fuse input will cause a strong lag spike, so pausing with the D-Pad is easier</li>
+<li>Drop-swap-unequip <code>B</code> to DI <code>F[n]</code>; <em>faildrop is not advised</em> due to the risk of dropping the D-Pad input</li>
+<li>Pick up <code>B</code> and repeat 10a-10c with the next <code>F[n]</code></li>
+<li>If there were more/fewer than 25 weapons in Step 9, fewer/more shields may be needed to compensate</li>
+<li>For the last few fuses, check on Menu Link after each DI. When he starts looking folded, <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> is likely complete</li>
+</ol>
+</li>
+<li>Leave <code>B</code> dropped, then faildrop <code>D2</code> and drop it once it returns, and finally pick up and drop <code>A2</code> to undo its Zuggle Drop</li>
+<li>If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached</li>
+<li>Before leaving, either Recall Lock <code>D2</code>, or else simply glue it to <code>B</code>, to prevent it falling out of bounds</li>
+<li>To reverse SFO later, pick up and unequip each <code>F[n]</code> to delete 624 of the dependencies</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 <div class="tabbed-block">
 <h4 class="tab-toc-heading" id="batch-normal-di-detangle">Batch-&gt;Normal DI-&gt;Detangle</h4>
 <ul>
 <li>Most likely the fastest persistent method on this page.</li>
+<li>Technically this method is meant to call for torch culling. But I hate torch culling and I will die on this hill.</li>
+<li>If you want to make the <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">batch DI</a> faster, use Slotted <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/L54/" class="glitch-autolink" title="SDC" target="_blank" rel="noopener noreferrer">SDC</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/9R8/" class="glitch-autolink" title="Pyroculling" target="_blank" rel="noopener noreferrer">Pyroculling</a>. There are no other good options, and don't let anyone tell you otherwise.</li>
 </ul>
 <h5 class="collapse" id="gist_3">Gist</h5>
 <ol>
-<li>Use overload and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> (<code>A</code>) to create a batch of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapons (<code>D</code>) that all share the same parent (<code>C</code>)</li>
-<li>Place all <code>D</code> in purgatory so that they can be "equipped" all at once via <code>C</code></li>
-<li>Use <code>D</code> and a set of normal weapons (<code>E</code>) to create DI Ghost Hover Stones (<code>F</code>) in Ihen-A</li>
-<li>Throw each <code>E</code> to detangle each <code>F</code>, leaving only the dependencies between each <code>D</code> and each <code>F</code></li>
-<li>Create &amp; detangle a couple more <code>F</code> to make up for the dependencies lost in step 4</li>
+<li>Use overload and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> (<code>A1</code>) to create a batch of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapons (<code>C</code>) that all share the same parent (<code>A3</code>)</li>
+<li>Place all <code>C</code> in purgatory so that they can be "equipped" all at once via <code>A3</code></li>
+<li>Use <code>C</code> and a set of normal weapons (<code>D</code>) to create DI Ghost Hover Stones (<code>E</code>) in Ihen-A</li>
+<li>Throw each <code>D</code> to detangle each <code>E</code>, leaving only the dependencies between each <code>C</code> and each <code>E</code></li>
+<li>Create &amp; detangle a couple more <code>E</code> to make up for the dependencies lost in step 4</li>
 </ol>
 <h5 id="requirements_17">Requirements</h5>
 <ul>
-<li>Overload</li>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Shield (<code>A</code>)</li>
-<li>Ideally, a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapon to dupe with</li>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Weapon (<code>A1</code>)</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Shield (<code>B1</code>)</li>
+<li>A second DI Ghost weapon will simplify duplication</li>
 <li>At least 21 Hover Stones</li>
 </ul>
 <h5 id="steps_4">Steps</h5>
-<p>[placeholder]</p>
+<ol>
+<li><code>A1</code> and weapon <code>A2</code> make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> shield <code>A3</code></li>
+<li><code>B1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> shield <code>B2</code>; leave <code>B1</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped</li>
+<li><code>A2</code>, <code>A3</code>, and <code>B2</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a> 30 weapons <code>C1-C30</code></li>
+<li>Delete <code>B2</code> and <code>A2</code>, and fuse-over detangle <code>A3</code> from <code>A1</code></li>
+<li>Throw purgatorize <code>C1-C30</code></li>
+<li>Zuggle Drop <code>A3</code> to attach <code>C1-C30</code></li>
+<li>Dupe weapons (<code>D1-D[n]</code>) off <code>A1</code> and use them to Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Hover Stones (<code>E1-E[n]</code>) until <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> occurs</li>
+<li>Throw each <code>D[n]</code> to detangle the hover stones</li>
+<li>Repeat steps 7-8 with 1-2 more DIs to make up for these detangled dependencies</li>
+<li>Equip one more weapon and fuse something to it, but let it fully despawn. This will clear any potential Reference FE connections, averting the possibility of a game crash</li>
+<li>Pick up and drop <code>A3</code> to undo its zuggle drop</li>
+</ol>
 </div>
 <div class="tabbed-block">
 <h4 class="tab-toc-heading" id="di-break-detanglement">DI Break Detanglement</h4>
@@ -3371,21 +3601,34 @@
 </ul>
 <h5 class="collapse" id="gist_4">Gist</h5>
 <ol>
-<li>Use overload and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> (<code>A</code>) to create a batch of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts (<code>D</code>) that all share the same parent (<code>C</code>)</li>
-<li>Place all <code>D</code> in purgatory so that they can be "equipped" all at once via <code>C</code></li>
-<li>Use <code>D</code> and a set of normal items (<code>E</code>) to create DI Ghosts of fragile fuses (<code>F</code>)</li>
-<li>Break each <code>E</code> to detangle each <code>F</code>, leaving only the dependencies between each <code>D</code> and each <code>F</code></li>
-<li>Create &amp; detangle a couple more <code>F</code> to make up for the dependencies lost in step 4</li>
+<li>Use overload and a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> (<code>A1</code>) to create a batch of <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts (<code>C</code>) that all share the same parent (<code>A3</code>)</li>
+<li>Place all <code>C</code> in purgatory so that they can be "equipped" all at once via <code>A3</code></li>
+<li>Use <code>C</code> and a set of normal items (<code>D</code>) to create DI Ghosts of fragile fuses (<code>E</code>)</li>
+<li>Break each <code>D</code> to detangle each <code>E</code>, leaving only the dependencies between each <code>C</code> and each <code>E</code></li>
+<li>Create &amp; detangle a couple more <code>E</code> to make up for the dependencies lost in step 4</li>
 </ol>
 <h5 id="requirements_18">Requirements</h5>
 <ul>
-<li>Overload</li>
-<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Shield (<code>A</code>)</li>
-<li>Ideally, a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Weapon to dupe with</li>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a></li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> Weapon (<code>A1</code>)</li>
+<li>A <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghost Shield (<code>B1</code>)</li>
+<li>A second DI Ghost weapon will simplify duplication</li>
 <li>At least 21 "fragile fuses" (Must not be replacement actors(link it))</li>
 </ul>
 <h5 id="steps_5">Steps</h5>
-<p>[placeholder]</p>
+<ol>
+<li><code>A1</code> and weapon <code>A2</code> make <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a> shield <code>A3</code></li>
+<li><code>B1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> shield <code>B2</code>; leave <code>B1</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped</li>
+<li><code>A2</code>, <code>A3</code>, and <code>B2</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a> 30 weapons <code>C1-C30</code></li>
+<li>Delete <code>B2</code> and <code>A2</code>, and fuse-over detangle <code>A3</code> from <code>A1</code></li>
+<li>Throw purgatorize <code>C1-C30</code></li>
+<li>Zuggle Drop <code>A3</code> to attach <code>C1-C30</code></li>
+<li>Dupe weapons (<code>D1-D[n]</code>) off <code>A1</code> and use them to Ghost <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> the fragile fuses (<code>E1-E[n]</code>) until <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> occurs</li>
+<li>Throw each <code>D[n]</code> at bees or another enemy to break detangle the fuses</li>
+<li>Repeat steps 7-8 with 1-2 more DIs to make up for the detangled dependencies</li>
+<li>Equip one more weapon and fuse something to it, but let it fully despawn. This will clear any potential Reference FE connections, averting the possibility of a game crash</li>
+<li>Pick up and drop <code>A3</code> to undo its zuggle drop</li>
+</ol>
 </div>
 <div class="tabbed-block">
 <h4 class="tab-toc-heading" id="overload-cf-pcull">Overload CF-&gt;Pcull</h4>
@@ -3401,18 +3644,43 @@
 </ol>
 <h5 id="requirements_19">Requirements</h5>
 <ul>
-<li>Overload</li>
-<li>A culling tech (advised: Mulberry's Flickering Flame (Fused <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/L54/" class="glitch-autolink" title="SDC" target="_blank" rel="noopener noreferrer">SDC</a> Type))</li>
+<li>13 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a> (9 on <code>1.0.0</code>)</li>
+<li>Slotted <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/L54/" class="glitch-autolink" title="SDC" target="_blank" rel="noopener noreferrer">SDC</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/9R8/" class="glitch-autolink" title="Pyroculling" target="_blank" rel="noopener noreferrer">Pyroculling</a> (Fused SDC Type), with parent equipment <code>P</code></li>
 </ul>
-<h5 id="steps_6">Steps</h5>
-<p>[placeholder]</p>
+<h5 id="part-1-creating-the-dependencies">Part 1: Creating the dependencies</h5>
+<ol>
+<li>Drop <code>P</code> so that Link culls whenever the game is paused</li>
+<li>Overload Drop a weapon (<code>A1</code>) and fuse it to a shield (<code>B</code>)</li>
+<li>Drop <code>B</code>, then duplicate 25 shields (<code>D1-D25</code>) using overload (up to 19 of these may be dropped on the ground during this step, just be careful not to despawn <code>B</code> or <code>P</code>)</li>
+<li>Pick up <code>B</code> and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/O64/" class="glitch-autolink" title="Overload Cold Fuse" target="_blank" rel="noopener noreferrer">Overload Cold Fuse</a> <code>D1-D25</code> to <code>A1</code>. This will protect them against the drop limit as long as you don't pick any of them up</li>
+<li>Swap weapons to delete <code>A1</code>, then overload drop a new weapon (<code>A2</code>) and fuse it to <code>B</code></li>
+<li>Drop <code>B</code>, then duplicate 26 shields (<code>C1-C26</code>) using overload (up to 20 of these may be dropped on the ground during this step, just be careful not to despawn <code>B</code>)</li>
+<li>Pick up <code>B</code> and <strong>Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7KZ/" class="glitch-autolink" title="Cold Fuse" target="_blank" rel="noopener noreferrer">Cold Fuse</a></strong> <code>C1-C26</code> to <code>A2</code></li>
+<li><strong>Fail-drop</strong> <code>A2</code> and drop <code>B</code></li>
+<li>Overload Pickup <code>C1</code></li>
+<li><strong>Overload Cold Fuse</strong> <code>D1-D25</code> to <code>C1</code></li>
+<li><strong>Fail-drop</strong> <code>C1</code> and <strong>drop</strong> it aside</li>
+<li>Repeat steps 8-10 with each <code>C[n]</code>, using the <strong>same</strong> <code>D1-D25</code> instead of duping a new set</li>
+<li>After every other repetition, fuse pairs of <code>C[n]</code> together to keep under the drop limit</li>
+<li>Sometime during <code>C25</code> or <code>C26</code> (possibly earlier in busy areas), Link will begin Overload Dropping equipment inside the pause menu. <em>When you see this, move to step 13.</em></li>
+<li><strong>Overload Cold Fuse</strong> an unrelated material to <code>C[n]</code>. If it works, <strong>Collect it</strong> and <strong>Overload Cold Fuse</strong> the next <code>D[n]</code>, then repeat. If it fails, <em>proceed to step 12</em></li>
+<li><strong>Fail-drop</strong> <code>C[n]</code> and <strong>drop</strong> it. You may have to <strong>unequip your bow</strong> for it to return. <strong>Be sure it returns before dropping it.</strong></li>
+<li><strong>Drop</strong> <code>A</code></li>
+</ol>
+<h5 id="part-2-permaculling-the-shields_3">Part 2: Permaculling the shields</h5>
+<ol>
+<li><a href="../0YL/">Drop Zuggle</a> a shield. If <code>E</code> was prepared, it can be used.</li>
+<li>Pick up one of <code>B</code>, <code>C[n]</code>, or <code>D[n]</code> and drop it. The pause culling will intervene and permacull the equipped shield</li>
+<li>Repeat steps 2 for <em>all</em> <code>B</code>, <code>C[n]</code>, and <code>D[n]</code>, ultimately resulting in the entire setup being permaculled</li>
+<li>Ensure it can be equipped, then pick up <code>P</code> to prevent it and its child dependencies from despawning</li>
+</ol>
 </div>
 <div class="tabbed-block">
 <h4 class="tab-toc-heading" id="pcull-only">Pcull Only</h4>
 <ul>
-<li>Don't... do this one. It's extremely simple and easy to understand, but that's because it's extremely inefficient.</li>
-<li>I don't think MFF helps, because it improves every other method too.</li>
-<li>If you're on 1.2.0+ don't even read the instructions. Go learn a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> method, I'm actually begging you.</li>
+<li>Extremely simple, and possibly actually surprisingly fast?</li>
+<li>But due to the very large number of items, it is very laggy compared to the other methods on this page, which may well erase any quickness.</li>
+<li>So idk. I guess I need to try it, which I don't want to do right now. Check back.</li>
 </ul>
 <h5 class="collapse" id="gist_6">Gist</h5>
 <ol>
@@ -3424,10 +3692,20 @@
 <ul>
 <li>A way to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/9HN/" class="glitch-autolink" title="Drop Zuggle" target="_blank" rel="noopener noreferrer">Drop Zuggle</a> (advised: Overload)</li>
 <li>A duplication method (advised: a <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">DI Ghost</a>)</li>
-<li>A culling tech (advised: Mulberry's Flickering Flame (Fused <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/L54/" class="glitch-autolink" title="SDC" target="_blank" rel="noopener noreferrer">SDC</a> Type))</li>
+<li>Slotted <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/L54/" class="glitch-autolink" title="SDC" target="_blank" rel="noopener noreferrer">SDC</a> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/9R8/" class="glitch-autolink" title="Pyroculling" target="_blank" rel="noopener noreferrer">Pyroculling</a> (Fused SDC Type), with parent equipment <code>P</code></li>
+<li>Other culling tech works, but will be <em>much</em> slower and likely less consistent</li>
 </ul>
-<h5 id="steps_7">Steps</h5>
-<p>[placeholder]</p>
+<h5 id="steps_6">Steps</h5>
+<ol>
+<li>Drop <code>P</code> so that Link culls whenever the game is paused</li>
+<li><a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/9HN/" class="glitch-autolink" title="Drop Zuggle" target="_blank" rel="noopener noreferrer">Drop Zuggle</a> a weapon and shield. It is very highly advised that these be fused <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> Ghosts, as they can then also be used as an extremely rapid duplication method</li>
+<li>Duplicate fused weapons and shields until the pouch is full. If the Drop Zuggles are DI Ghosts, this is as simple as equipping a weapon and shield and spamming A</li>
+<li>Equip a fused weapon and shield, then unpause the game (to sync the equips) and pause again while Link is unculled</li>
+<li>Drop the weapon and shield and unpause. The pause culling will intervene and permacull both</li>
+<li>Repeat steps 4-5 until the duped equipment is exhausted, then dupe more and continue</li>
+<li>Eventually, Link will stop being able to sync the newly-equipped weapon and/or shield. <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a> is done.</li>
+<li>Make a dependency space (unequip stuff) and pick up <code>P</code> to prevent it and its child dependencies from despawning</li>
+</ol>
 </div>
 </div>
 </div>
