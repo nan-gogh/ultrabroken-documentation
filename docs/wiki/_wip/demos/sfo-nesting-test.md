@@ -1528,7 +1528,7 @@ notoc: true
 
 ## instructions rewrite hole ?
 
-new philosophy: This page, once ported to the live page, will contain only the "basic" instructions, plus a section on use-cases. Any use-case involved enough to have its own special instructions is involved enough to have its own page on accomplishing it.
+new philosophy: This page, once ported to the live page, will contain only the "basic" instructions, plus a section on use-cases, and the usual supplemental info. Any use-case involved enough to have its own special instructions is involved enough to have its own page on accomplishing it.
 
 === "Local" ###
 
@@ -1537,22 +1537,34 @@ new philosophy: This page, once ported to the live page, will contain only the "
 	=== "Batch->Normal DI" ####
 
 		- Likely the fastest method on this page for versions `1.2.0+`.
+		- Technically this method is meant to call for torch culling. But I hate torch culling and I will die on this hill.
+		- If you want to make the batch DI faster, use Slotted SDC Pyroculling. There are no other good options, and don't let anyone tell you otherwise.
 
 		##### Gist ?
 
-		1. Use overload and a DI Ghost (`A`) to create a batch of DI Ghost Weapons (`D`) that all share the same parent (`C`)
-		2. Place all `D` in purgatory so that they can be "equipped" all at once via `C`
-		3. Use `D` and a set of normal weapons (`E`) to create a set of DI Ghosts (`F`)
+		1. Use overload and a DI Ghost (`A1`) to create a batch of DI Ghost Weapons (`C`) that all share the same parent (`A3`)
+		2. Place all `C` in purgatory so that they can be "equipped" all at once via `A3`
+		3. Use `C` and a set of normal weapons (`D`) to create a set of DI Ghosts (`E`)
 
 		##### Requirements
 
-		- Overload
-		- A DI Ghost Shield `A`
-		- Ideally, a DI Ghost Weapon to dupe with
+		- 13 Zuggle Overload
+		- A DI Ghost Weapon (`A1`)
+		- A DI Ghost Shield (`B1`)
+		- A second DI Ghost weapon will simplify duplication
 
 		##### Steps
 
-		[placeholder]
+		1. `A1` and weapon `A2` make DI Ghost shield `A3`
+		2. `B1` Overload FE shield `B2`; leave `B1` Zuggle Dropped
+		3. `A2`, `A3`, and `B2` Batch DI 30 weapons `C1-C30`
+		4. Delete `B2` and `A2`, and fuse-over detangle `A3` from `A1`, then delete `A1`
+		5. Use standard means to create 2 more DI Ghost weapons `C31-C32` with `A3` as DI parent, and delete the normal parents
+		5. Throw purgatorize `C1-C32`
+		6. Zuggle Drop `A3` to attach `C1-C32`
+		7. Dupe weapons (`D1-D[n]`) off `A1` and use them to Ghost DI random materials/equipment (`E1-E[n]`) until SFO occurs
+		8. Equip one more weapon and fuse something to it, but let it fully despawn. This will clear any potential Reference FE connections, averting the possibility of a game crash
+		9. Pick up and drop `A3` to undo its zuggle drop
 
 	=== "Overload CF" ####
 
@@ -1565,13 +1577,25 @@ new philosophy: This page, once ported to the live page, will contain only the "
 
 		##### Requirements
 
-		- Overload
+		- 13 Zuggle Overload (9 on `1.0.0`)
 		- Some of each equipment type
 		- 25+ materials
 
 		##### Steps
 
-		[placeholder]
+		1. Overload Drop a weapon (`A`) and fuse it to a shield (`B`)
+		2. Drop `B`, then duplicate 26 shields (`C1-C26`) using Overload (up to 20 of these may be dropped on the ground during this step, just be careful not to despawn `B`)
+		3. Pick up B and Overload Cold Fuse `C1-C26` to `A`
+		4. Faildrop `A` and drop `B`
+		5. Overload Pickup `C1`
+		6. Hold and drop 5 materials (`D1-D5`), Cold Fuse them to `C1`, then repeat until there are 25 materials (`D1-D25`) on the ground
+		7. Faildrop `C1` and drop it aside
+		8. Repeat steps 7-9 with each `C[n]`, using the same `D1-D25`
+		9. After every other repetition, fuse pairs of `C[n]` together to keep under the drop limit
+		10. Sometime during `C25` or `C26`, Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 13._
+		11. Cold Fuse a random material to the current `C`. If it works correctly, collect the material and Cold Fuse the next `D[n]`, then repeat step 13. _If it fails, move to step 14._
+		12. Unequip bow to free a dependency slot, then faildrop `C[n]` and drop it aside
+		13. Drop `A`
 
 === "Persistent" ###
 
@@ -1580,6 +1604,7 @@ new philosophy: This page, once ported to the live page, will contain only the "
 	=== "Nested Batch DI" ####
 
 		- The only persistent method on this page that can be reversed without closing the game.
+		- Technically performable on `1.0.0-1.1.2`, but the required adjustments mostly erase the upsides of the method.
 
 		##### Gist ?
 
@@ -1598,30 +1623,144 @@ new philosophy: This page, once ported to the live page, will contain only the "
 		
 		##### Steps
 
-		[placeholder (don't forget MinArm/ZTorch has a mistake!)]
+		=== "Condensed" ######
+	
+			1. `A1` Overload FE shield `B` and Recall Lock it
+			2. `A2` and `B` Ghost DI weapon `C`
+			3. `A2` Overload FE weapon `D1`; leave `A2` Zuggle Dropped
+			4. Equip `B`, Smuggle `C`, and Overload Pickup `D1`
+			5. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`
+			6. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop
+			7. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped
+			8. Throw purgatorize `E1-E25`
+			9. Equip `B` and Overload Pickup `D2`
+			10. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`
+			11. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop
+			12. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached
+			13. Before leaving, either Recall Lock `D2`, or else simply glue it to `B`, to prevent it falling out of bounds
+			14. To reverse SFO later, pick up and unequip each `F[n]` to delete 624 of the dependencies
+
+		=== "Expanded" ######
+	
+			1. `A1` Overload FE shield `B` and Recall Lock it
+			2. `A2` and `B` Ghost DI weapon `C`
+			3. `A2` Overload FE weapon `D1`; leave `A2` Zuggle Dropped
+			4. Equip `B`, Smuggle `C`, and Overload Pickup `D1`
+			5. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`:
+				1. Fuse `E[n]` to weapons twice and pause 2-7 frames after the second Fuse input
+				2. Drop-swap-unequip `B` to DI `E[n]`; can use faildrop-swap-unequip to not have to pick up `B` every cycle
+				3. Pick up `B` (if needed) and repeat 5a-5b with the next `E[n]`
+			6. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop
+			7. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped
+			8. Throw purgatorize `E1-E25`:
+				1. Smuggle `E1`
+				2. Pick up E2 and throw it
+				3. Unsheathe E2 to return it to hand
+				4. Repeat 8a-8c with each E, using any random weapon for the last throw
+				5. If there are fewer than 25 weapons, don't worry about it
+			9. Equip `B` and Overload Pickup `D2`
+			10. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`:
+				1. Fuse `F[n]` to weapons twice and pause 2-7 frames after the second Fuse input
+				2. Starting with `F2`, the second Fuse input will cause a strong lag spike, so pausing with the D-Pad is easier
+				3. Drop-swap-unequip `B` to DI `F[n]`; _faildrop is not advised_ due to the risk of dropping the D-Pad input
+				4. Pick up `B` and repeat 10a-10c with the next `F[n]`
+				5. If there were more/fewer than 25 weapons in Step 9, fewer/more shields may be needed to compensate
+				6. For the last few fuses, check on Menu Link after each DI. When he starts looking folded, SFO is likely complete
+			11. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop
+			12. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached
+			13. Before leaving, either Recall Lock `D2`, or else simply glue it to `B`, to prevent it falling out of bounds
+			14. To reverse SFO later, pick up and unequip each `F[n]` to delete 624 of the dependencies
+
+		=== "Verbose" ######
+
+			1. `A1` Overload FE shield `B` and Recall Lock it:
+				1. Smuggle `A1`
+				2. Overload Drop a weapon and fuse it to a shield
+				3. Fuse `B` to weapons just once
+				4. Swap weapon to resync, then drop it
+				5. Pick up and drop `A1` to remove its Zuggle Drop
+				6. Position `B` where desired, Recall it, and load a save while Recall is active
+			2. `A2` and `B` Ghost DI weapon `C`:
+				1. Smuggle `A2` and equip `B`
+				2. Fuse `C` to shields and pause a few frames later
+				3. Drop-swap-unequip `B` to DI `C`
+			3. `A2` Overload FE weapon `D1`; leave `A2` Zuggle Dropped:
+				1. Smuggle `A2`
+				2. Overload Drop a shield and fuse it to a weapon
+				3. Fuse `D1` to shields just once
+				4. Swap shield to resync, then drop it
+			4. Equip `B`, Smuggle `C`, and Overload Pickup `D1`:
+				1. Ensure neither a weapon nor a shield are equipped
+				2. Pick up `B` and `C`
+				3. Drop-swap-unequip `C` to smuggle it
+				4. Nock an arrow and pick up `D1`
+			5. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`:
+				1. Fuse `E[n]` to weapons twice and pause 2-7 frames after the second Fuse input
+				2. Drop-swap-unequip `B` to DI `E[n]`; can use faildrop-swap-unequip to not have to pick up `B` every cycle
+				3. Pick up `B` (if needed) and repeat 5a-5b with the next `E[n]`
+			6. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop
+			7. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped:
+				1. Smuggle `A2`
+				2. Overload Drop a shield and fuse it to a weapon
+				3. Fuse `D2` to shields just once
+				4. Swap shield to resync, then drop it
+			8. Throw purgatorize `E1-E25`:
+				1. Smuggle `E1`
+				2. Pick up E2 and throw it
+				3. Unsheathe E2 to return it to hand
+				4. Repeat 8a-8c with each E, using any random weapon for the last throw
+				5. If there are fewer than 25 weapons, don't worry about it as long as there are at least 20
+			9. Equip `B` and Overload Pickup `D2`:
+				1. Ensure neither a weapon nor a shield are equipped
+				2. Pick up `B`
+				3. Nock an arrow, drop-swap bow, and pick up `D2` before the dropped bow unculls
+			10. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`:
+				1. Fuse `F[n]` to weapons twice and pause 2-7 frames after the second Fuse input
+				2. Starting with `F2`, the second Fuse input will cause a strong lag spike, so pausing with the D-Pad is easier
+				3. Drop-swap-unequip `B` to DI `F[n]`; _faildrop is not advised_ due to the risk of dropping the D-Pad input
+				4. Pick up `B` and repeat 10a-10c with the next `F[n]`
+				5. If there were more/fewer than 25 weapons in Step 9, fewer/more shields may be needed to compensate
+				6. For the last few fuses, check on Menu Link after each DI. When he starts looking folded, SFO is likely complete
+			11. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop
+			12. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached
+			13. Before leaving, either Recall Lock `D2`, or else simply glue it to `B`, to prevent it falling out of bounds
+			14. To reverse SFO later, pick up and unequip each `F[n]` to delete 624 of the dependencies
 
 	=== "Batch->Normal DI->Detangle" ####
 
 		- Most likely the fastest persistent method on this page.
+		- Technically this method is meant to call for torch culling. But I hate torch culling and I will die on this hill.
+		- If you want to make the batch DI faster, use Slotted SDC Pyroculling. There are no other good options, and don't let anyone tell you otherwise.
 
 		##### Gist ?
 
-		1. Use overload and a DI Ghost (`A`) to create a batch of DI Ghost Weapons (`D`) that all share the same parent (`C`)
-		2. Place all `D` in purgatory so that they can be "equipped" all at once via `C`
-		3. Use `D` and a set of normal weapons (`E`) to create DI Ghost Hover Stones (`F`) in Ihen-A
-		4. Throw each `E` to detangle each `F`, leaving only the dependencies between each `D` and each `F`
-		5. Create & detangle a couple more `F` to make up for the dependencies lost in step 4
+		1. Use overload and a DI Ghost (`A1`) to create a batch of DI Ghost Weapons (`C`) that all share the same parent (`A3`)
+		2. Place all `C` in purgatory so that they can be "equipped" all at once via `A3`
+		3. Use `C` and a set of normal weapons (`D`) to create DI Ghost Hover Stones (`E`) in Ihen-A
+		4. Throw each `D` to detangle each `E`, leaving only the dependencies between each `C` and each `E`
+		5. Create & detangle a couple more `E` to make up for the dependencies lost in step 4
 
 		##### Requirements
 
-		- Overload
-		- A DI Ghost Shield (`A`)
-		- Ideally, a DI Ghost Weapon to dupe with
+		- 13 Zuggle Overload
+		- A DI Ghost Weapon (`A1`)
+		- A DI Ghost Shield (`B1`)
+		- A second DI Ghost weapon will simplify duplication
 		- At least 21 Hover Stones
 
 		##### Steps
 
-		[placeholder]
+		1. `A1` and weapon `A2` make DI Ghost shield `A3`
+		2. `B1` Overload FE shield `B2`; leave `B1` Zuggle Dropped
+		3. `A2`, `A3`, and `B2` Batch DI 30 weapons `C1-C30`
+		4. Delete `B2` and `A2`, and fuse-over detangle `A3` from `A1`
+		5. Throw purgatorize `C1-C30`
+		6. Zuggle Drop `A3` to attach `C1-C30`
+		7. Dupe weapons (`D1-D[n]`) off `A1` and use them to Ghost DI Hover Stones (`E1-E[n]`) until SFO occurs
+		8. Throw each `D[n]` to detangle the hover stones
+		9. Repeat steps 7-8 with 1-2 more DIs to make up for these detangled dependencies
+		10. Equip one more weapon and fuse something to it, but let it fully despawn. This will clear any potential Reference FE connections, averting the possibility of a game crash
+		11. Pick up and drop `A3` to undo its zuggle drop
 
 	=== "DI Break Detanglement" ####
 
@@ -1629,22 +1768,33 @@ new philosophy: This page, once ported to the live page, will contain only the "
 
 		##### Gist ?
 
-		1. Use overload and a DI Ghost (`A`) to create a batch of DI Ghosts (`D`) that all share the same parent (`C`)
-		2. Place all `D` in purgatory so that they can be "equipped" all at once via `C`
-		3. Use `D` and a set of normal items (`E`) to create DI Ghosts of fragile fuses (`F`)
-		4. Break each `E` to detangle each `F`, leaving only the dependencies between each `D` and each `F`
-		5. Create & detangle a couple more `F` to make up for the dependencies lost in step 4
+		1. Use overload and a DI Ghost (`A1`) to create a batch of DI Ghosts (`C`) that all share the same parent (`A3`)
+		2. Place all `C` in purgatory so that they can be "equipped" all at once via `A3`
+		3. Use `C` and a set of normal items (`D`) to create DI Ghosts of fragile fuses (`E`)
+		4. Break each `D` to detangle each `E`, leaving only the dependencies between each `C` and each `E`
+		5. Create & detangle a couple more `E` to make up for the dependencies lost in step 4
 
 		##### Requirements
 
-		- Overload
-		- A DI Ghost Shield (`A`)
-		- Ideally, a DI Ghost Weapon to dupe with
+		- 13 Zuggle Overload
+		- A DI Ghost Weapon (`A1`)
+		- A DI Ghost Shield (`B1`)
+		- A second DI Ghost weapon will simplify duplication
 		- At least 21 "fragile fuses" (Must not be replacement actors(link it))
 
 		##### Steps
 
-		[placeholder]
+		1. `A1` and weapon `A2` make DI Ghost shield `A3`
+		2. `B1` Overload FE shield `B2`; leave `B1` Zuggle Dropped
+		3. `A2`, `A3`, and `B2` Batch DI 30 weapons `C1-C30`
+		4. Delete `B2` and `A2`, and fuse-over detangle `A3` from `A1`
+		5. Throw purgatorize `C1-C30`
+		6. Zuggle Drop `A3` to attach `C1-C30`
+		7. Dupe weapons (`D1-D[n]`) off `A1` and use them to Ghost DI the fragile fuses (`E1-E[n]`) until SFO occurs
+		8. Throw each `D[n]` at bees or another enemy to break detangle the fuses
+		9. Repeat steps 7-8 with 1-2 more DIs to make up for the detangled dependencies
+		10. Equip one more weapon and fuse something to it, but let it fully despawn. This will clear any potential Reference FE connections, averting the possibility of a game crash
+		11. Pick up and drop `A3` to undo its zuggle drop
 
 	=== "Overload CF->Pcull" ####
 
@@ -1659,18 +1809,41 @@ new philosophy: This page, once ported to the live page, will contain only the "
 
 		##### Requirements
 
-		- Overload
-		- A culling tech (advised: Mulberry's Flickering Flame (Fused SDC Type))
+		- 13 Zuggle Overload (9 on `1.0.0`)
+		- Slotted SDC Pyroculling (Fused SDC Type), with parent equipment `P`
 
-		##### Steps
+		##### Part 1: Creating the dependencies
 
-		[placeholder]
-		
+		1. Drop `P` so that Link culls whenever the game is paused
+		2. Overload Drop a weapon (`A1`) and fuse it to a shield (`B`)
+		3. Drop `B`, then duplicate 25 shields (`D1-D25`) using overload (up to 19 of these may be dropped on the ground during this step, just be careful not to despawn `B` or `P`)
+		4. Pick up `B` and Overload Cold Fuse `D1-D25` to `A1`. This will protect them against the drop limit as long as you don't pick any of them up
+		5. Swap weapons to delete `A1`, then overload drop a new weapon (`A2`) and fuse it to `B`
+		6. Drop `B`, then duplicate 26 shields (`C1-C26`) using overload (up to 20 of these may be dropped on the ground during this step, just be careful not to despawn `B`)
+		7. Pick up `B` and **Overload Cold Fuse** `C1-C26` to `A2`
+		8. **Fail-drop** `A2` and drop `B`
+		9. Overload Pickup `C1`
+		10. **Overload Cold Fuse** `D1-D25` to `C1`
+		11. **Fail-drop** `C1` and **drop** it aside
+		12. Repeat steps 8-10 with each `C[n]`, using the **same** `D1-D25` instead of duping a new set
+		13. After every other repetition, fuse pairs of `C[n]` together to keep under the drop limit
+		14. Sometime during `C25` or `C26` (possibly earlier in busy areas), Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 13._
+		15. **Overload Cold Fuse** an unrelated material to `C[n]`. If it works, **Collect it** and **Overload Cold Fuse** the next `D[n]`, then repeat. If it fails, _proceed to step 12_
+		16. **Fail-drop** `C[n]` and **drop** it. You may have to **unequip your bow** for it to return. **Be sure it returns before dropping it.**
+		17. **Drop** `A`
+
+		##### Part 2: Permaculling the shields
+
+		1. [Drop Zuggle](uid:0YL) a shield. If `E` was prepared, it can be used.
+		2. Pick up one of `B`, `C[n]`, or `D[n]` and drop it. The pause culling will intervene and permacull the equipped shield
+		3. Repeat steps 2 for _all_ `B`, `C[n]`, and `D[n]`, ultimately resulting in the entire setup being permaculled
+		4. Ensure it can be equipped, then pick up `P` to prevent it and its child dependencies from despawning
+
 	=== "Pcull Only" ####
 
-		- Don't... do this one. It's extremely simple and easy to understand, but that's because it's extremely inefficient.
-		- I don't think MFF helps, because it improves every other method too.
-		- If you're on 1.2.0+ don't even read the instructions. Go learn a DI method, I'm actually begging you.
+		- Extremely simple, and possibly actually surprisingly fast?
+		- But due to the very large number of items, it is very laggy compared to the other methods on this page, which may well erase any quickness.
+		- So idk. I guess I need to try it, which I don't want to do right now. Check back.
 
 		##### Gist ?
 
@@ -1682,8 +1855,16 @@ new philosophy: This page, once ported to the live page, will contain only the "
 
 		- A way to Drop Zuggle (advised: Overload)
 		- A duplication method (advised: a DI Ghost)
-		- A culling tech (advised: Mulberry's Flickering Flame (Fused SDC Type))
+		- Slotted SDC Pyroculling (Fused SDC Type), with parent equipment `P`
+		- Other culling tech works, but will be _much_ slower and likely less consistent
 
 		##### Steps
 
-		[placeholder]
+		1. Drop `P` so that Link culls whenever the game is paused
+		2. Drop Zuggle a weapon and shield. It is very highly advised that these be fused DI Ghosts, as they can then also be used as an extremely rapid duplication method
+		3. Duplicate fused weapons and shields until the pouch is full. If the Drop Zuggles are DI Ghosts, this is as simple as equipping a weapon and shield and spamming A
+		4. Equip a fused weapon and shield, then unpause the game (to sync the equips) and pause again while Link is unculled
+		5. Drop the weapon and shield and unpause. The pause culling will intervene and permacull both
+		6. Repeat steps 4-5 until the duped equipment is exhausted, then dupe more and continue
+		7. Eventually, Link will stop being able to sync the newly-equipped weapon and/or shield. SFO is done.
+		8. Make a dependency space (unequip stuff) and pick up `P` to prevent it and its child dependencies from despawning
