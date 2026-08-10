@@ -122,12 +122,10 @@ Culling Link right after holding a material detaches the material (until Link un
 	8. Unpause and drop the now-destroyed item on the ground
 	9. Pick up the original egg left on the ground in step 1
 
-	!!! note "Note"
-
-		An alternative approach to steps 7 and 8, which doesn't require dropping excess equipment:
-		1. Drop portacull item and swap to a different item of the same type
-		2. Pause buffer and switch equipment again
-		3. When the egg drops and breaks, drop the currently equipped item to uncull Link
+  An alternative approach to steps 7 and 8, which doesn't require dropping excess equipment:
+  1. Drop portacull item and swap to a different item of the same type
+  2. Pause buffer and switch equipment again
+  3. When the egg drops and breaks, drop the currently equipped item to uncull Link
 
 === "Portacull BID" ###
 	---
