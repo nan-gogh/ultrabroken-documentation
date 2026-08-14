@@ -4,8 +4,8 @@ uid: "TK3"
 label: "TC"
 versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
 credits: ["Quelfth"]
-date: "Unknown"
-description: "Allows you to cancel the ending animation of throwing via Runes, allowing you to throw faster _Quelfth_"
+date: "2023-06-17"
+description: "Allows you to cancel the ending animation of throwing via Runes, allowing you to throw faster"
 aliases: ["throw-cancelling"]
 tags: ["animation"]
 ---
@@ -15,7 +15,7 @@ tags: ["animation"]
 ## Summary
 Allows you to cancel the ending animation of throwing via Runes, allowing you to throw faster
 
-_Quelfth_
+_Quelfth - 17 June 2023_
 
 ## Instructions
 1. Throw an item
@@ -26,7 +26,7 @@ _Quelfth_
 —
 
 ## Resources
-—
+[Discord](https://discord.com/channels/1086729144307564648/1105598687167664239/1119501775435739278)
 
 ## Related
 —
