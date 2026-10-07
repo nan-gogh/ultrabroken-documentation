@@ -25,6 +25,9 @@ Every WST method is ultimately just the following steps:
 - Pick up the donor to apply WST to the inventory item, although Link will still have the donor equipped
 - Optionally, unequip and re-equip to remove that desync
 
+!!! warning
+    Version `1.0.0` requires the donor equipment to be a zuggle drop.
+
 ## Credits
 
 _Collision method: BigDUCCO, kurocat471, ElDuende, Mentor_Kurt - 19 May 2023_
