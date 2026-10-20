@@ -3,7 +3,7 @@ title: "Mount Lock Weapon Flight"
 uid: "OX7"
 label: "MLWF"
 versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
-credits: ["mulberry", "Totisauce", "Squidwest"]
+credits: ["mulberry", "Toti Sauce", "Squidwest"]
 date: "2026-10-18"
 description: "By performing Mount Lock on a Steering Stick, regaining collision, and Fusing it to a weapon, Link will controllably fly through the air and terrain whenever the weapon is equipped."
 aliases: ["Mount Lock Flight"]
@@ -25,7 +25,7 @@ Mount Lock Weapon Flight: A Complete Guide for Glitchcraft Beginners
 
 - This guide goes over every step of the process in exhaustive detail... I hope. I probably still made an assumption about something you need or something you know, because I'm human.
 - The specific glitches to be used in this guide are tailored to make the setup accessible to glitch novices. Seasoned glitch users will be able to perform shortcuts, safeguards, and extra flight techniques that this guide doesn't go over.
-- I recommend reading the entire guide through before starting, and in particular performing a "dry run" of Mount Lock (Part 3) to make sure you're doing it right, as failing it is a full failure of the entire guide.
+- I recommend reading the entire guide through before starting, and in particular performing a "dry run" of Mount Lock (see Part 3b) to make sure you're doing it right, as failing it is a full failure of the entire guide.
 
 #### Requirements ?
 ---
@@ -359,6 +359,18 @@ Full (stops all Mount Lock effects)
 - Drowning or hitting Voidouts, Lava, or the Lost Fog can result in long load times, but has not been observed to softlock.
 - Moving sideways too close to -155 vertically can cause Link to pass above and below the depths load height every couple frames, resulting in extreme loads and lag.
 - Paraglider Oscillation can also cause extreme loads and lag if held too long, especially in certain places and ESPECIALLY in Biased Oscillation.
+
+### For experts ?
+
+1. Cold Fuse a Steering Stick to a weapon or shield
+2. Do Gerudo Town Mount Lock
+3. Delete CF Parent to detach from the Steering Stick
+4. Start Sand Seal Surfing (either position one at the Steering Stick, or do a Step Up next to one elsewhere)
+5. Stop surfing, start climbing a wall, and back-jump off
+6. Surf to clip back in bounds and ascend back to the Steering Stick
+7. Fuse the Steering Stick to a weapon to start flying
+
+For controls, refer to the beginner guide. I need to go get helper screenshots and videos.
 
 ## References
 
