@@ -1117,6 +1117,12 @@
       "label": "MW"
     },
     {
+      "id": "wiki/OX7/",
+      "uid": "OX7",
+      "name": "Mount Lock Weapon Flight",
+      "label": "MLWF"
+    },
+    {
       "id": "wiki/540/",
       "uid": "540",
       "name": "Mount Lock",
@@ -4195,6 +4201,26 @@
     {
       "source": "wiki/OUX/",
       "target": "wiki/SU2/"
+    },
+    {
+      "source": "wiki/OX7/",
+      "target": "wiki/540/"
+    },
+    {
+      "source": "wiki/OX7/",
+      "target": "wiki/7KZ/"
+    },
+    {
+      "source": "wiki/OX7/",
+      "target": "wiki/IG2/"
+    },
+    {
+      "source": "wiki/OX7/",
+      "target": "wiki/K4F/"
+    },
+    {
+      "source": "wiki/OX7/",
+      "target": "wiki/WMG/"
     },
     {
       "source": "wiki/P2F/",
