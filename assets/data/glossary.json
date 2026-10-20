@@ -1912,6 +1912,16 @@
     "filename": "moobe-warping.md"
   },
   {
+    "name": "Mount Lock Weapon Flight",
+    "uid": "OX7",
+    "label": "MLWF",
+    "aliases": [
+      "Mount Lock Flight"
+    ],
+    "path": "wiki/OX7/",
+    "filename": "mount-lock-weapon-flight.md"
+  },
+  {
     "name": "Mount Lock",
     "uid": "540",
     "label": "ML",

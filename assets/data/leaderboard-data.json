@@ -1,12 +1,12 @@
 {
-  "total": 141,
-  "updated": "2026-10-07",
+  "total": 142,
+  "updated": "2026-10-20",
   "entries": [
     {
       "rank": 1,
       "name": "mulberry",
       "url": null,
-      "count": 67
+      "count": 68
     },
     {
       "rank": 2,
@@ -58,6 +58,12 @@
     },
     {
       "rank": 8,
+      "name": "Squidwest",
+      "url": null,
+      "count": 11
+    },
+    {
+      "rank": 8,
       "name": "WinnerBoi77",
       "url": null,
       "count": 11
@@ -71,12 +77,6 @@
     {
       "rank": 9,
       "name": "pyuk",
-      "url": null,
-      "count": 10
-    },
-    {
-      "rank": 9,
-      "name": "Squidwest",
       "url": null,
       "count": 10
     },
@@ -779,6 +779,12 @@
     {
       "rank": 18,
       "name": "tori",
+      "url": null,
+      "count": 1
+    },
+    {
+      "rank": 18,
+      "name": "Totisauce",
       "url": null,
       "count": 1
     },
