@@ -98,9 +98,9 @@ All methods require a weapon currently held by a Depths Ghost, which will be ref
 
 === "Overload Pickup Methods" ###
     ---
-    ["1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
+    versions: ["1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
     ---
-    
+
     These Methods use Overload Pickup to move the target to a distance where the depths ghost can't detect it being tampered with.
 
     #### Method 4: Basic Loadless ?
@@ -159,7 +159,7 @@ All methods require a weapon currently held by a Depths Ghost, which will be ref
 
 === "Other Methods" ###
     ---
-    ["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
+    versions: ["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
     ---
 
     These methods share nothing in common with the other methods on this page. They are usually inefficent, except on `1.0.0`, where they are the only working methods.
@@ -182,7 +182,7 @@ All methods require a weapon currently held by a Depths Ghost, which will be ref
     9. Use Ultrahand on the Kinematic Weapon to undo the resulting Zuggle Drop
     10. Walk out of the Depths Ghost's spawn range and pick up the Kinematic Weapon during the Depths Ghost's despawn animation
     11. Performed correctly, the New Item Prompt will protect the Kinematic Weapon from being destroyed by the Depths Ghost
-    
+
     #### Method 8: Lift Storage Warp ?
 
     - This method uses Lift Storage Warp to teleport Link out of the Depths Ghosts' spawn area during the New Item Prompt. Said prompt protects the Kinematic Weapon from despawning.
