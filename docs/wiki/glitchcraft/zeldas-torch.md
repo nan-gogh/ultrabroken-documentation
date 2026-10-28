@@ -65,20 +65,20 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 		###### 2a: Performing SFO
 
 		1. Use the Aerophasing setup to ensure it has a cull stored; this will allow the setup to continue working within a shrine.
-		2. Map Zuggle the Aeroculling base; this will keep the cull stored through loading screens.
+		2. Map Zuggle `P`; this will keep the cull stored through loading screens.
 		3. Warp to Marakuguc Shrine in Goron City. It has a large and early overlap with the prologue. Defeat the construct inside and destroy its bow.
 		4. Drop `P` so that Link culls and unculls repeatedly whenever standing on an unglued object, and prepare one such object for use (the "platform").
 		5. Overload Drop a weapon (`A`) and fuse it to a shield (`B`).
-		6. Drop `B`, then duplicate 26 shields (`C1-C26`) using Overload (up to 19 of these may be dropped on the ground during this step, just be careful not to despawn `B` or `P`).
-		7. Pick up `B` and Overload Cold Fuse `C1-C26` to `A`.
+		6. Duplicate 26 shields (`C1-C25`) off `E` (up to 19 of these may be dropped on the ground during this step, just be careful not to despawn `B` or `P`).
+		7. Overload Cold Fuse `C1-C25` to `A`.
 		8. Faildrop `A` and drop `B`.
 		9. Overload Pickup `C1`.
 		10. Duplicate 25 shields `D1-D25` off `E`, dropping each on the ground and **Overload Cold Fusing** them to `C1` as you go.
 		11. **Fail-drop** `C1` and **drop** it aside.
 		12. Repeat steps 8-10 with each `C[n]`, using the **same** `D1-D25` instead of duping a new set.
 		13. After every other repetition, fuse pairs of `C[n]` together to keep under the drop limit.
-		14. Sometime during `C25` or `C26`, Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 13._
-		15. **Overload Cold Fuse** an unrelated material to `C[n]`. If it works, **Collect it** and **Overload Cold Fuse** the next `D[n]`, then repeat. If it fails, _proceed to step 12_
+		14. Sometime during `C24` or `C25`, Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 15._
+		15. **Overload Cold Fuse** an unrelated material to `C[n]`. If it works, **Collect it** and **Overload Cold Fuse** the next `D[n]`, then repeat. If it fails, _proceed to step 16._
 		16. **Fail-drop** `C[n]` and **drop** it. You may have to **unequip your bow** for it to return. **Be sure it returns before dropping it.**
 		17. **Drop** `A`
 	
@@ -104,14 +104,14 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 		###### Steps
 
 		1. Use the Aerophasing setup to ensure it has a cull stored; this will allow the setup to continue working within a shrine.
-		2. Map Zuggle the Aeroculling base; this will keep the cull stored through loading screens.
+		2. Map Zuggle `P`; this will keep the cull stored through loading screens.
 		3. Warp to Marakuguc Shrine in Goron City. It has a large and early overlap with the prologue. Defeat the construct inside and destroy its bow.
-		4. Drop Zuggle `E`, then Fuse Entangle something to it. This allows fused shields to be duplicated from it en-masse.
+		4. Drop Zuggle `E`, then (Null) Fuse Entangle something to it. This allows fused shields to be duplicated from it en-masse.
 		5. Drop `P` so that Link culls and unculls repeatedly whenever standing on an unglued object, and prepare one such object for use (the "platform").
 		6. Duplicate fused shields until the inventory is full.
 		7. Step onto the platform to begin phasing.
 		8. Equip a fused shield, then unpause, and finally pause again while Link is **culled.** This will cause Link to consistently be **unculled when the game is unpaused**.
-		9. Wait a moment, then **pause buffer** (unpause and puase again quickly) so that Link is still **unculled** behind the menu. After re-pausing, promptly **drop** the equipped shield to permacull it.
+		9. Wait a moment, then **pause buffer** (unpause and pause again quickly) so that Link is still **unculled** behind the menu. After re-pausing, promptly **drop** the equipped shield to permacull it.
 		10. Repaat steps 8-9 until the duplicated shields are expended, then dupe more and continue.
 		11. Eventually, Link will stop being able to sync the newly-equipped shield. SFO is done.
 		12. Make a dependency space (unequip stuff), then pick up and Map Zuggle `P` to prevent it and its child dependencies from despawning.
@@ -229,7 +229,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 	6. Once the torch has been obtained, continue until another prologue autosave is received
 	7. **Close the game** to end SFO
 
-	As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. Please. I don't want to be responsible for someone losing their file.
+	As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. **Please**. I don't want to be responsible for someone losing their file.
 
 	#### Part 3: Cull Detachment Zuggle and Retrieval
 	---
@@ -429,7 +429,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 	6. Once the torch has been obtained, continue until another prologue autosave is received, then load the Marakuguc autosave
 	7. One by one, **pick up** and **unequip** all `F[n]` to destroy them, deleting all the dependencies and ending SFO
 
-	As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. Please. I don't want to be responsible for someone losing their file.
+	As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. **Please**. I don't want to be responsible for someone losing their file.
 
 	#### Part 3: Cull Detachment Zuggle and Retrieval
 	---
@@ -457,7 +457,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 	3. After a moment, Link should cull and stay culled. **Pause**.
 	4. Drop every unequipped shield and weapon except for one spare weapon besides Zelda's Torch (this can be the mnf or a copy of `W2`)
 	5. Finally, drop Zelda's Torch and swap to the last remaining weapon
-	6. **Pause Buffer**, but with lenient timing. Specifically, assuming 3 shields and 6 weapons were dropped before dropping Zelda's Torch, you have **12 frames** to pause again after unpausing (=0.4 seconds)
+	6. **Pause Buffer**, but with lenient timing. Specifically, assuming 3 shields and 6 weapons were dropped before dropping Zelda's Torch, you have **12 frames** to pause again after unpausing (=0.4 seconds, or 0.2 on Switch 2 Edition).
 	7. Unequip and re-equip `S2`. The unequip will destroy `A`, forcing `S3` to uncull (and thus instantly unculling Link while still paused), and the equip will thus resync the swapped-to weapon
 	8. Drop the equipped weapon, and without unpausing, load a progressed save
 
