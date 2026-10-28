@@ -27,8 +27,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 ## Instructions
 
 - This page will offer four guides, each tailored for a specific version range.
-- There are other combinations of SFO Methods and transfer methods that will work on each version, but something had to go to make this page readable and I chose variations.
-- The provided combinations are the most efficient on the listed version ranges.
+- There are other combinations of SFO Methods and transfer methods that will work on each version, but the provided combinations are considered the most efficient for their listed versions.
 
 === "Permacull SFO + Save Load Dupe" ###
 	---
@@ -37,16 +36,16 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 	- This version range will make use of "Intangible Aeroculling" to perform some form of Permacull SFO, with two variants provided.
 	- Once SFO has been performed, it's a simple matter of collecting Zelda's Torch in the prologue and performing a Save Load Dupe to transfer it to your progressed file.
-	
+
 	#### Part 1: Preparations
 	---
 	notoc: true
 	---
-	
-	  1. By whichever means desired, get 13 Zuggle Overload (9 on `1.0.0`).
-	  2. Prepare a [DI Ghost](uid:BEW) Shield (`E`). This is technically optional, but it saves lots of time and complexity. As such, the steps assume you have it.
-	  3. Create an Intangible Aeroculling setup, with Steering Stick parent `P`. Any surface culling area may be used, but it _must_ have a recall-locked platform *or* use a special "Ghost" variant to prevent the steering stick from falling.
-	  4. You will also need several unfused weapons and shields, a bow, at least one arrow, and a material.
+
+		1. By whichever means desired, get 13 Zuggle Overload (9 on `1.0.0`).
+		2. Prepare a [DI Ghost](uid:BEW) Shield (`E`). This is technically optional, but it saves lots of time and complexity. As such, the steps assume you have it.
+		3. Create an Intangible Aeroculling setup, with Steering Stick parent `P`. Any surface culling area may be used, but the setup _must_ include a recall-locked platform (or use a special "Ghost" variant) to prevent the steering stick from falling.
+		4. You will also need several unfused weapons and shields, a bow, at least one arrow, and a material.
 
 	#### Part 2: Performing SFO
 	---
@@ -55,7 +54,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 	=== "Overload CF + Permacull" #####
 
-		- This variant requires far fewer permaculls, but requires a *lot* of Cold Fusing instead.
+		- This variant requires far fewer permaculls, but requires a _lot_ of Cold Fusing instead.
 
 		###### Variant Summary
 
@@ -64,23 +63,24 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 		3. Ensure the Aeroculling setup itself does not unload
 
 		###### 2a: Performing SFO
-	
+
 		1. Use the Aerophasing setup to ensure it has a cull stored; this will allow the setup to continue working within a shrine.
 		2. Map Zuggle the Aeroculling base; this will keep the cull stored through loading screens.
 		3. Warp to Marakuguc Shrine in Goron City. It has a large and early overlap with the prologue. Defeat the construct inside and destroy its bow.
-		4. Drop `P` aside, then Overload Drop a weapon (`A`) and fuse it to a shield (`B`).
-		5. Drop `B`, then duplicate 26 shields (`C1-C26`) using Overload (up to 19 of these may be dropped on the ground during this step, just be careful not to despawn `B` or `P`).
-		6. Pick up `B` and Overload Cold Fuse `C1-C26` to `A`.
-		7. Faildrop `A` and drop `B`.
-		8. Overload Pickup `C1`.
-		9. Duplicate 25 shields `D1-D25` off `E`, dropping each on the ground and **Overload Cold Fusing** them to `C1` as you go.
-		10. **Fail-drop** `C1` and **drop** it aside.
-		11. Repeat steps 8-10 with each `C[n]`, using the **same** `D1-D25` instead of duping a new set.
-		12. After every other repetition, fuse pairs of `C[n]` together to keep under the drop limit.
-		13. Sometime during `C25` or `C26`, Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 13._
-		14. **Overload Cold Fuse** an unrelated material to `C[n]`. If it works, **Collect it** and **Overload Cold Fuse** the next `D[n]`, then repeat. If it fails, _proceed to step 12_
-		15. **Fail-drop** `C[n]` and **drop** it. You may have to **unequip your bow** for it to return. **Be sure it returns before dropping it.**
-		16. **Drop** `A`
+		4. Drop `P` so that Link culls and unculls repeatedly whenever standing on an unglued object, and prepare one such object for use (the "platform").
+		5. Overload Drop a weapon (`A`) and fuse it to a shield (`B`).
+		6. Drop `B`, then duplicate 26 shields (`C1-C26`) using Overload (up to 19 of these may be dropped on the ground during this step, just be careful not to despawn `B` or `P`).
+		7. Pick up `B` and Overload Cold Fuse `C1-C26` to `A`.
+		8. Faildrop `A` and drop `B`.
+		9. Overload Pickup `C1`.
+		10. Duplicate 25 shields `D1-D25` off `E`, dropping each on the ground and **Overload Cold Fusing** them to `C1` as you go.
+		11. **Fail-drop** `C1` and **drop** it aside.
+		12. Repeat steps 8-10 with each `C[n]`, using the **same** `D1-D25` instead of duping a new set.
+		13. After every other repetition, fuse pairs of `C[n]` together to keep under the drop limit.
+		14. Sometime during `C25` or `C26`, Link will begin Overload Dropping equipment inside the pause menu. _When you see this, move to step 13._
+		15. **Overload Cold Fuse** an unrelated material to `C[n]`. If it works, **Collect it** and **Overload Cold Fuse** the next `D[n]`, then repeat. If it fails, _proceed to step 12_
+		16. **Fail-drop** `C[n]` and **drop** it. You may have to **unequip your bow** for it to return. **Be sure it returns before dropping it.**
+		17. **Drop** `A`
 	
 		###### 2b: Permaculling the shields
 	
@@ -95,13 +95,13 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 		- This variant requires far more permaculls, but does not require significant amounts of Cold Fusing.
 
-		###### Variant Summary ?
+		###### Variant Summary
 
 		1. Use some kind of duplication to repeatedly duplicate fused equipment items
 		2. Use the Aeroculling to permacull these duped items, preventing them from unloading
 		3. Ensure the Aeroculling setup itself does not unload
 
-		###### Steps ?
+		###### Steps
 
 		1. Use the Aerophasing setup to ensure it has a cull stored; this will allow the setup to continue working within a shrine.
 		2. Map Zuggle the Aeroculling base; this will keep the cull stored through loading screens.
