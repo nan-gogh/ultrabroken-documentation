@@ -42,10 +42,10 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 	notoc: true
 	---
 
-		1. By whichever means desired, get 13 Zuggle Overload (9 on `1.0.0`).
-		2. Prepare a [DI Ghost](uid:BEW) Shield (`E`). This is technically optional, but it saves lots of time and complexity. As such, the steps assume you have it.
-		3. Create an Intangible Aeroculling setup, with Steering Stick parent `P`. Any surface culling area may be used, but the setup _must_ include a recall-locked platform (or use a special "Ghost" variant) to prevent the steering stick from falling.
-		4. You will also need several unfused weapons and shields, a bow, at least one arrow, and a material.
+	1. By whichever means desired, get 13 Zuggle Overload (9 on `1.0.0`).
+	2. Prepare a [DI Ghost](uid:BEW) Shield (`E`). This is technically optional, but it saves lots of time and complexity. As such, the steps assume you have it.
+	3. Create an Intangible Aeroculling setup, with Steering Stick parent `P`. Any surface culling area may be used, but the setup _must_ include a recall-locked platform (or use a special "Ghost" variant) to prevent the steering stick from falling.
+	4. You will also need several unfused weapons and shields, a bow, at least one arrow, and a material.
 
 	#### Part 2: Performing SFO
 	---
@@ -93,7 +93,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 	=== "Permacull Only" #####
 
-		- This variant requires far more permaculls, but does not require significant amounts of Cold Fusing.
+		- This variant requires far more permaculls, but does not require (much) Cold Fusing.
 
 		###### Variant Summary
 
