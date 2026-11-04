@@ -352,7 +352,9 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 	1. By whichever means desired, prepare 13 Zuggle Overload (such that having all equipment equipped acts normal, but drawing bow causes swaps to overload drop).
 	2. Prepare 4 "Gen 2" DI Ghosts: 2 shields and 2 weapons. One of each will be used in the SFO process, with the others just for easy duping.
 	3. It's possibly important that the working shield and weapon don't share any dependency relations to each other.
-	4. Zuggle the 4 items (you will need to unequip bow) and enter Rasitakiwak Shrine (next to Link's House).
+	4. Zuggle the 4 items (you will need to unequip your bow to make room) and enter a Shrine.
+		- Most shrines will work fine, but Rasitakiwak Shrine at Link's House is known to be stable around its exterior during Super Fuse Overload.
+		- In contrast, some shrines (like Marakuguc Shrine at Goron City) are stable only in the interior, and will crash outside during SFO, so additional care is needed.
 
 	#### Part 2: SFO and Torch Collection
 	---
@@ -370,30 +372,31 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 	=== "Condensed" ######
 
-		1. Defeat all the constructs and destroy their equipment
-		2. `A1` Overload FE shield `B` and Recall Lock it
-		3. `A2` and `B` Ghost DI weapon `C`
-		4. `A2` Overload FE weapon `D1`; leave `A2` Zuggle Dropped
-		5. Equip `B`, Smuggle `C`, and Overload Pickup `D1`, then glue `D1` to something (say, one of the wooden boxes) with the blade facing out
-		6. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`
-		7. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop
-		8. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped
-		9. Throw purgatorize `E1-E25`
-		10. Equip `B` and Overload Pickup `D2`, then glue `D2` to something (say, one of the wooden boxes) with the blade facing out
-		11. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`
-		12. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop
-		13. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached
+		1. Defeat any constructs present in the shrine, and collect an additional autosave with them cleared.
+		2. `A1` Overload FE shield `B` and Recall Lock it.
+		3. `A2` and `B` Ghost DI weapon `C`.
+		4. `A2` Overload FE weapon `D1`; leave `A2` Zuggle Dropped.
+		5. Equip `B`, Smuggle `C`, and Overload Pickup `D1`, then glue `D1` to something. The blade should face away from the object and from terrain.
+		6. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`.
+		7. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop.
+		8. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped.
+		9. Throw purgatorize `E1-E25`.
+		10. Equip `B` and Overload Pickup `D2`, then glue `D2` to something, again with the blade free of obstructions.
+		11. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`.
+		12. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop.
+		13. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached.
+		14. `D2` needs to be Recall Locked. If desired, you can do this as a separate step now.
 
 	=== "Verbose" ######
 
-		1. Defeat all the constructs and destroy their equipment
+		1. Defeat any constructs present in the shrine, and collect an additional autosave with them cleared.
 		2. `A1` Overload FE shield `B` and Recall Lock it:
 			1. Drop-Swap-Unequip `A1` to smuggle it
 			2. Overload Drop a random weapon and fuse it to a shield
 			3. Fuse `B` to said weapon to FE it to `A1`
 			4. Swap weapon to resync it, then drop the new weapon to drop `A1`
 			5. Pick up and drop `A1` to undo its Zuggle Drop
-			6. Position `B` where desired, then Recall it, pause while Recall is active, and load any save
+			6. Position `B` where desired, then Recall it, pause while Recall is active, and load any save.
 		3. `A2` and `B` Ghost DI weapon `C`:
 			1. Smuggle `A2` and equip `B`
 			2. Fuse `C` to `B` and pause a few frames later
@@ -404,7 +407,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 			2. Overload Drop a random shield and fuse it to a weapon
 			3. Fuse `D1` to said shield to FE it to `A2`
 			4. Swap shield to resync it, then drop the new shield to drop `A2`
-		5. Equip `B`, Smuggle `C`, and Overload Pickup `D1`, then glue `D1` to something (say, one of the wooden boxes) with the blade facing out
+		5. Equip `B`, Smuggle `C`, and Overload Pickup `D1`, then glue `D1` to something. The blade should face away from the object and from terrain.
 		6. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`:
 			1. Optionally put your back to a wall
 			2. Fuse `E1` to `D1` to FE it to `C`
@@ -412,7 +415,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 			4. (Fail)drop-Swap-Unequip `B` to DI `E1`
 			5. Repeat 6b-6d with each `E[n]`
 			6. If it turns out later you missed a few, don't worry about it. As long as you have at least 20, you can just compensate with additional `F[n]` shields later
-		7. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop
+		7. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop.
 		8. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped:
 			1. Drop-Swap-Unequip `A2` to smuggle it
 			2. Overload Drop a random shield and fuse it to a weapon
@@ -423,27 +426,29 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 			2. Equip `E2` and throw it
 			3. Press Y or R to return `E2` to Link's hand
 			4. Repeat 9a-9c with each `E[n]`, throwing any random weapon for the final purgatorization
-		10. Equip `B` and Overload Pickup `D2`, then glue `D2` to something (say, one of the wooden boxes) with the blade facing out.
+		10. Equip `B` and Overload Pickup `D2`, then glue `D2` to something, again with the blade free of obstructions.
 		11. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`:
 			1. Optionally put your back to a wall
 			2. Fuse `F1` to `D2` to FE it to `E1-25`, all at once
 			3. Fuse `F1` to `D2` again. This time, it will Pseudo Fuse and begin fading, so pause a few frames after pressing Y
 			4. (Fail)drop-Swap-Unequip `B` to DI `F1`
 			5. Repeat 11b-11d with each `F[n]`
-			6. If you didn't end up with 25 parents, you will need more than 24 children
-			7. Tip: It may be easier to pause and perform the drop-swap-unequip with the D-Pad, due to a strong lag spike on each second fuse. But if you do, **_don't_** put your back to a wall, due to the risk of letting the Quick Menu close prematurely.
-		12. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop
-		13. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached
+				- If you didn't end up with 25 parents, you will need more than 24 children. 
+				- Tip: It may be easier to pause and perform the drop-swap-unequip with the D-Pad, due to a strong lag spike on each second fuse. But if you do, **_don't_** put your back to a wall, due to the risk of letting the Quick Menu close prematurely.
+		12. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop.
+		13. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached.
+		14. `D2` needs to be Recall Locked. If desired, you can do this as a separate step now.
 
 	##### 2b: Collecting Zelda's Torch in the Prologue
 
-	1. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5, but typically 4), so don't fret about your progressed file
-	2. As soon as the prologue is entered and an autosave received, reload to Marakuguc Shrine
-	3. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there)
-	4. Load back to the prologue. Zelda will drop her torch, so pick it up. Provided you were at absolute maximum SFO before loading, she should always drop it
-	5. ...But if not, any SFO strong enough to generate menu effects will do, given enough tries. Thus, spam-reloading the first prologue autosave is also a viable (if random) option
-	6. Once the torch has been obtained, continue until another prologue autosave is received, then load the Marakuguc autosave
-	7. One by one, **pick up** and **unequip** all `F[n]` to destroy them, deleting all the dependencies and ending SFO
+	1. If `D2` has not yet been Recall Locked, Recall it now and pause the game.
+	2. Return to the title screen and begin a new file. This will only enter the prologue scenario and create occasional autosaves (up to 5, but typically 4), so don't fret about your progressed file.
+	3. As soon as the prologue is entered and an autosave received, reload to Marakuguc Shrine.
+	4. Use the D-Pad to unequip all equipment, then resync Link's armor, and finally use the D-Pad to re-equip items until a nocked arrow fails to attach to the bow (and instead just floats there).
+	5. Load back to the prologue. Zelda will drop her torch, so pick it up. Provided you were at absolute maximum SFO before loading, she should always drop it.
+	6. ...But if not, any SFO strong enough to generate menu effects will do, given enough tries. Thus, spam-reloading the first prologue autosave is also a viable (if random) option.
+	7. Once the torch has been obtained, continue until another prologue autosave is received, then load the Marakuguc autosave.
+	8. One by one, **pick up** and **unequip** all `F[n]` to destroy them, deleting all the dependencies and ending SFO.
 
 	As an aside, most of the rest of the setup will be spent in your progressed save. If desired, you may create a prologue hard save with the torch obtained, in order to prevent the save that has it from being overwritten. Just, please check and make sure you have a progressed autosave to load to before doing this. **Please**. I don't want to be responsible for someone losing their file.
 
@@ -456,34 +461,34 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 	=== "Condensed" ######
 
-	1. Create a "Gen 1" DI weapon, `W1`, and zuggle it to the Akkala Citadel Ruins
-	2. Create a DI chain `W1`->`S1`->`W2`->`S2`, then undo `W2`'s Zuggle Drop and delete the remaining normal parents of the chain
-	3. `S1` FE Hover Stone `H`
-	4. `W1` FE `S3` fuse SDC
-	5. Place Steering Stick `A` in a culling area, then recall it and FE it to `S2` from outside the margin
-	6. Place `A` atop `H` in a culling area, then check that `A` has a cull stored: Glue an Apple (or other object that readily culls) to `A`; the Apple should still cull upon leaving the culling margin
-	7. Glue `S3` to `A` and check that Link culls when exiting the margin (either quickly re-enter, or else watch a memory to uncull)
-	8. Drop Smuggle `S2`, Drop Purgatorify `W2`, and Smuggle `W1`, then equip a random weapon and shield
-	9. Recall `H`, then pause, drop the weapon and shield, and load the save that has Zelda's Torch collected
+	1. Create a "Gen 1" DI weapon, `W1`, and zuggle it to the Akkala Citadel Ruins.
+	2. Create a DI chain `W1`->`S1`->`W2`->`S2`, then undo `W2`'s Zuggle Drop and delete the remaining normal parents of the chain.
+	3. `S1` FE Hover Stone `H`.
+	4. `W1` FE `S3` fuse SDC.
+	5. Place Steering Stick `A` in a culling area, then recall it and FE it to `S2` from outside the margin.
+	6. Place `A` atop `H` in a culling area, then check that `A` has a cull stored: Glue an Apple (or other object that readily culls) to `A`; the Apple should still cull upon leaving the culling margin.
+	7. Glue `S3` to `A` and check that Link culls when exiting the margin (either quickly re-enter, or else watch a memory to uncull).
+	8. Drop Smuggle `S2`, Drop Purgatorify `W2`, and Smuggle `W1`, then equip a random weapon and shield.
+	9. Recall `H`, then pause, drop the weapon and shield, and load the save that has Zelda's Torch collected.
 
 	##### 3b: CDZ
 
-	1. Press A repeatedly to pick up `W2` and `S2` until the weapon and shield inventories are both full and `S2` is equipped
-	2. Swap off Zelda's Torch (unpausing to ensure the swapped-to weapon is Warm Equipped), then drop-swap _to_ Zelda's Torch
+	1. Press A repeatedly to pick up `W2` and `S2` until the weapon and shield inventories are both full and `S2` is equipped.
+	2. Swap off Zelda's Torch (unpausing to ensure the swapped-to weapon is Warm Equipped), then drop-swap _to_ Zelda's Torch.
 	3. After a moment, Link should cull and stay culled. **Pause**.
-	4. Drop every unequipped shield and weapon except for one spare weapon besides Zelda's Torch (this can be the mnf or a copy of `W2`)
-	5. Finally, drop Zelda's Torch and swap to the last remaining weapon
+	4. Drop every unequipped shield and weapon except for one spare weapon besides Zelda's Torch (this can be the mnf or a copy of `W2`).
+	5. Finally, drop Zelda's Torch and swap to the last remaining weapon.
 	6. **Pause Buffer**, but with lenient timing. Specifically, assuming 3 shields and 6 weapons were dropped before dropping Zelda's Torch, you have **12 frames** to pause again after unpausing (=0.4 seconds, or 0.2 on Switch 2 Edition).
-	7. Unequip and re-equip `S2`. The unequip will destroy `A`, forcing `S3` to uncull (and thus instantly unculling Link while still paused), and the equip will thus resync the swapped-to weapon
-	8. Drop the equipped weapon, and without unpausing, load a progressed save
+	7. Unequip and re-equip `S2`. The unequip will destroy `A`, forcing `S3` to uncull (and thus instantly unculling Link while still paused), and the equip will thus resync the swapped-to weapon.
+	8. Drop the equipped weapon, and without unpausing, load a progressed save.
 
 	##### 3c: Retrieval
 
-	1. Upon arriving at the progressed file, Zelda's Torch should be visibly zuggled on Link's back
-	2. Simply stand somewhere safe and Warm Drop any weapon to drop the zuggle
-	3. However, it still has a dependency to Link, and is undiscovered. This prevents it from being picked up with an empty hand
-	4. To overcome this, either equip another weapon, or else Ultrahand the torch. The former sends it straight to the inventory, while the latter removes the lingering dependency
-	5. Save the game
+	1. Upon arriving at the progressed file, Zelda's Torch should be visibly zuggled on Link's back.
+	2. Simply stand somewhere safe and Warm Drop any weapon to drop the zuggle.
+	3. However, it still has a dependency to Link, and is undiscovered. This prevents it from being picked up with an empty hand.
+	4. To overcome this, either equip another weapon, or else Ultrahand the torch. The former sends it straight to the inventory, while the latter removes the lingering dependency.
+	5. Save the game.
 
 	#### Part 4: Bonuses
 	---
@@ -518,6 +523,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 - Like the Torch, it uses the Torch model and sounds, has 8 base durability, can be lit aflame at its tip, and will not burn out.
 - Like the Traveler's Sword✨, it uses the Traveler's Sword Sheath, deals 7 damage, and is sharp without a fuse.
 - Like other glitch weapons, it has no name or description, and usually displays "MsgNotFound" in those fields instead. However, it _does_ have a unique icon of a lit torch.
+- Unlike the Prologue Master Sword (the most well-known "MNF"), it does _not_ use the flag that prevents durability loss, and can be broken like any other weapon.
 - It can be fused to, but _cannot_ be fused to other things.
 - Uniquely to Zelda's Torch, it will automatically light if Cold Dropped (or Overload Dropped, or any other way of making the actor not equipped by Link when created).
 - Furthermore, it uses a unique color for the light it emanates when lit, yellower than the standard lit torch.
@@ -528,7 +534,7 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 - Like a Torch, it has 50 mass and is buoyant, flammable, and so on.
 - Like a Traveler's Sword✨, it acts sharp and can cut when moved quickly enough.
 - Though it sparks in the inventory during a storm, it does not actually attract electricity.
-- Uniquely, when autobuilt, it will be _lit by default_. This is most clearly useful with Balloons, but do consider the auto-detonating bomb my friend
+- Uniquely, when autobuilt, it will be _lit by default_. This is most clearly useful with Balloons, but can also be used to automatically ignite nearby parts or even a fuse on the goo torch itself (such as a Bomb Barrel or Pine Cone).
 
 #### As a tool:
 
@@ -538,7 +544,6 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 	- A Pepper or Sunshroom will instantly create a weak updraft, as long as the torch is on the ground.
 	- A roastable material can be roasted for a free portable snack! It's slow
 - You can overload or cold drop it with a bow unsheathed but not drawn and it'll light your arrow. Neat.
-- Ought to play with it more and find fun tool uses...
 
 ### Credits ?
 
