@@ -361,7 +361,12 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 
 	##### 2a: Nested Batch DI SFO
 
-	- The working weapon mentioned above is `A1`, and the working shield is `A2`
+	- The working weapon mentioned above is `A1`, and the working shield is `A2`. The two used for duping are unnamed.
+	- The goal is as follows:
+		- First, create a set of 25 DI weapons (named `E1-E25`)
+		- Then, put them in a state where they attach to Link without being equipped
+		- Finally, create a set of 24 DI shields (named `F1-F24`), but with _every_ `E[n]` being the parent of _every_ `F[n]`
+		- This creates the hundreds of dependencies we need. The steps below are meant to accomplish this as smoothly as possible, with some built-in tolerance for mistakes.
 
 	=== "Condensed" ######
 
@@ -369,12 +374,12 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 		2. `A1` Overload FE shield `B` and Recall Lock it
 		3. `A2` and `B` Ghost DI weapon `C`
 		4. `A2` Overload FE weapon `D1`; leave `A2` Zuggle Dropped
-		5. Equip `B`, Smuggle `C`, and Overload Pickup `D1`
+		5. Equip `B`, Smuggle `C`, and Overload Pickup `D1`, then glue `D1` to something (say, one of the wooden boxes) with the blade facing out
 		6. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`
 		7. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop
 		8. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped
 		9. Throw purgatorize `E1-E25`
-		10. Equip `B` and Overload Pickup `D2`
+		10. Equip `B` and Overload Pickup `D2`, then glue `D2` to something (say, one of the wooden boxes) with the blade facing out
 		11. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`
 		12. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop
 		13. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached
@@ -393,29 +398,40 @@ _(new CDZ methods credited to all of the above, plus ArmindoEmiya, Blackmars, Pe
 			1. Smuggle `A2` and equip `B`
 			2. Fuse `C` to `B` and pause a few frames later
 			3. Drop-Swap `B` to DI `C`
+			4. Don't detangle `B` from `C`
 		4. `A2` Overload FE weapon `D1`; leave `A2` Zuggle Dropped
-		5. Equip `B`, Smuggle `C`, and Overload Pickup `D1`
+			1. Drop-Swap-Unequip `A2` to smuggle it
+			2. Overload Drop a random shield and fuse it to a weapon
+			3. Fuse `D1` to said shield to FE it to `A2`
+			4. Swap shield to resync it, then drop the new shield to drop `A2`
+		5. Equip `B`, Smuggle `C`, and Overload Pickup `D1`, then glue `D1` to something (say, one of the wooden boxes) with the blade facing out
 		6. `B`, `C`, and `D1` Overload Batch DI 25 weapons `E1-E25`:
-			1. Fuse `E1` to `D1` to FE it to `C`
-			2. Fuse `E1` to `D1` again. This time, it will Pseudo Fuse and begin fading, so pause a few frames after pressing Y
-			3. (fail)Drop-Swap-Unequip `B` to DI `E1`
-			4. Repeat 6a-6c with each `E[n]`
-			5. If it turns out later you missed a few, don't worry about it. As long as you have at least 20, you can just compensate with additional `F[n]` shields later
+			1. Optionally put your back to a wall
+			2. Fuse `E1` to `D1` to FE it to `C`
+			3. Fuse `E1` to `D1` again. This time, it will Pseudo Fuse and begin fading, so pause a few frames after pressing Y
+			4. (Fail)drop-Swap-Unequip `B` to DI `E1`
+			5. Repeat 6b-6d with each `E[n]`
+			6. If it turns out later you missed a few, don't worry about it. As long as you have at least 20, you can just compensate with additional `F[n]` shields later
 		7. Drop `D1` (don't bother faildropping), then pick up and drop `C` to undo its Zuggle Drop
-		8. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped
+		8. `A2` Overload FE weapon `D2`; leave `A2` Zuggle Dropped:
+			1. Drop-Swap-Unequip `A2` to smuggle it
+			2. Overload Drop a random shield and fuse it to a weapon
+			3. Fuse `D2` to said shield to FE it to `A2`
+			4. Swap shield to resync it, then drop the new shield to drop `A2`
 		9. Throw purgatorize `E1-E25`:
 			1. Smuggle `E1`
 			2. Equip `E2` and throw it
 			3. Press Y or R to return `E2` to Link's hand
 			4. Repeat 9a-9c with each `E[n]`, throwing any random weapon for the final purgatorization
-		10. Equip `B` and Overload Pickup `D2`
+		10. Equip `B` and Overload Pickup `D2`, then glue `D2` to something (say, one of the wooden boxes) with the blade facing out.
 		11. `B`, `E1-E25`, and `D2` Overload Batch DI 24 shields `F1-F24`:
-			1. Fuse `F1` to `D2` to FE it to `E1-25`
-			2. Fuse `F2` to `D2` again. This time, it will Pseudo Fuse and begin fading, so open the shield Quick Menu a few frames after pressing Y
-			3. You will likely miss the correct pause timing and need to release the D-Pad for a couple frames
-			4. Drop-Swap-Unequip `B` (using the D-Pad) tp DI `F1`
-			5. Repeat 11a-11d with each `F[n]`
+			1. Optionally put your back to a wall
+			2. Fuse `F1` to `D2` to FE it to `E1-25`, all at once
+			3. Fuse `F1` to `D2` again. This time, it will Pseudo Fuse and begin fading, so pause a few frames after pressing Y
+			4. (Fail)drop-Swap-Unequip `B` to DI `F1`
+			5. Repeat 11b-11d with each `F[n]`
 			6. If you didn't end up with 25 parents, you will need more than 24 children
+			7. Tip: It may be easier to pause and perform the drop-swap-unequip with the D-Pad, due to a strong lag spike on each second fuse. But if you do, **_don't_** put your back to a wall, due to the risk of letting the Quick Menu close prematurely.
 		12. Leave `B` dropped, then faildrop `D2` and drop it once it returns, and finally pick up and drop `A2` to undo its Zuggle Drop
 		13. If desired, check for "full" SFO: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached
 
