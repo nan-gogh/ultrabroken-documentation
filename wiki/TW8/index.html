@@ -1580,7 +1580,14 @@
 <div class="ub-method-meta" data-versions='[]' data-obsolete="false" data-notoc="true" hidden></div>
 <h5 id="2a-nested-batch-di-sfo">2a: Nested Batch DI SFO</h5>
 <ul>
-<li>The working weapon mentioned above is <code>A1</code>, and the working shield is <code>A2</code></li>
+<li>The working weapon mentioned above is <code>A1</code>, and the working shield is <code>A2</code>. The two used for duping are unnamed.</li>
+<li>The goal is as follows:<ul>
+<li>First, create a set of 25 <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> weapons (named <code>E1-E25</code>)</li>
+<li>Then, put them in a state where they attach to Link without being equipped</li>
+<li>Finally, create a set of 24 DI shields (named <code>F1-F24</code>), but with <em>every</em> <code>E[n]</code> being the parent of <em>every</em> <code>F[n]</code></li>
+<li>This creates the hundreds of dependencies we need. The steps below are meant to accomplish this as smoothly as possible, with some built-in tolerance for mistakes.</li>
+</ul>
+</li>
 </ul>
 <div data-ub-level="6" class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Condensed</label><label for="__tabbed_4_2">Verbose</label></div>
 <div class="tabbed-content">
@@ -1591,12 +1598,12 @@
 <li><code>A1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/K4F/" class="glitch-autolink" title="FE" target="_blank" rel="noopener noreferrer">FE</a> shield <code>B</code> and Recall Lock it</li>
 <li><code>A2</code> and <code>B</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/BEW/" class="glitch-autolink" title="Ghost Despawn Interrupt" target="_blank" rel="noopener noreferrer">Ghost DI</a> weapon <code>C</code></li>
 <li><code>A2</code> Overload FE weapon <code>D1</code>; leave <code>A2</code> <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> Dropped</li>
-<li>Equip <code>B</code>, Smuggle <code>C</code>, and Overload Pickup <code>D1</code></li>
+<li>Equip <code>B</code>, Smuggle <code>C</code>, and Overload Pickup <code>D1</code>, then glue <code>D1</code> to something (say, one of the wooden boxes) with the blade facing out</li>
 <li><code>B</code>, <code>C</code>, and <code>D1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a> 25 weapons <code>E1-E25</code></li>
 <li>Drop <code>D1</code> (don't bother faildropping), then pick up and drop <code>C</code> to undo its Zuggle Drop</li>
 <li><code>A2</code> Overload FE weapon <code>D2</code>; leave <code>A2</code> Zuggle Dropped</li>
 <li>Throw purgatorize <code>E1-E25</code></li>
-<li>Equip <code>B</code> and Overload Pickup <code>D2</code></li>
+<li>Equip <code>B</code> and Overload Pickup <code>D2</code>, then glue <code>D2</code> to something (say, one of the wooden boxes) with the blade facing out</li>
 <li><code>B</code>, <code>E1-E25</code>, and <code>D2</code> Overload Batch <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> 24 shields <code>F1-F24</code></li>
 <li>Leave <code>B</code> dropped, then faildrop <code>D2</code> and drop it once it returns, and finally pick up and drop <code>A2</code> to undo its Zuggle Drop</li>
 <li>If desired, check for "full" <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/TX4/" class="glitch-autolink" title="SFO" target="_blank" rel="noopener noreferrer">SFO</a>: Use the D-Pad to equip an unfused weapon and shield, then try to nock an arrow. If it appears, but does not attach to Link's hand, full SFO is reached</li>
@@ -1619,20 +1626,34 @@
 <li>Smuggle <code>A2</code> and equip <code>B</code></li>
 <li>Fuse <code>C</code> to <code>B</code> and pause a few frames later</li>
 <li>Drop-Swap <code>B</code> to <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MG1/" class="glitch-autolink" title="DI" target="_blank" rel="noopener noreferrer">DI</a> <code>C</code></li>
+<li>Don't detangle <code>B</code> from <code>C</code></li>
 </ol>
 </li>
-<li><code>A2</code> Overload FE weapon <code>D1</code>; leave <code>A2</code> Zuggle Dropped</li>
-<li>Equip <code>B</code>, Smuggle <code>C</code>, and Overload Pickup <code>D1</code></li>
+<li><code>A2</code> Overload FE weapon <code>D1</code>; leave <code>A2</code> Zuggle Dropped<ol>
+<li>Drop-Swap-Unequip <code>A2</code> to smuggle it</li>
+<li>Overload Drop a random shield and fuse it to a weapon</li>
+<li>Fuse <code>D1</code> to said shield to FE it to <code>A2</code></li>
+<li>Swap shield to resync it, then drop the new shield to drop <code>A2</code></li>
+</ol>
+</li>
+<li>Equip <code>B</code>, Smuggle <code>C</code>, and Overload Pickup <code>D1</code>, then glue <code>D1</code> to something (say, one of the wooden boxes) with the blade facing out</li>
 <li><code>B</code>, <code>C</code>, and <code>D1</code> Overload <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/PG3/" class="glitch-autolink" title="Batch Despawn Interrupt" target="_blank" rel="noopener noreferrer">Batch DI</a> 25 weapons <code>E1-E25</code>:<ol>
+<li>Optionally put your back to a wall</li>
 <li>Fuse <code>E1</code> to <code>D1</code> to FE it to <code>C</code></li>
 <li>Fuse <code>E1</code> to <code>D1</code> again. This time, it will Pseudo Fuse and begin fading, so pause a few frames after pressing Y</li>
-<li>(fail)Drop-Swap-Unequip <code>B</code> to DI <code>E1</code></li>
-<li>Repeat 6a-6c with each <code>E[n]</code></li>
+<li>(Fail)drop-Swap-Unequip <code>B</code> to DI <code>E1</code></li>
+<li>Repeat 6b-6d with each <code>E[n]</code></li>
 <li>If it turns out later you missed a few, don't worry about it. As long as you have at least 20, you can just compensate with additional <code>F[n]</code> shields later</li>
 </ol>
 </li>
 <li>Drop <code>D1</code> (don't bother faildropping), then pick up and drop <code>C</code> to undo its Zuggle Drop</li>
-<li><code>A2</code> Overload FE weapon <code>D2</code>; leave <code>A2</code> Zuggle Dropped</li>
+<li><code>A2</code> Overload FE weapon <code>D2</code>; leave <code>A2</code> Zuggle Dropped:<ol>
+<li>Drop-Swap-Unequip <code>A2</code> to smuggle it</li>
+<li>Overload Drop a random shield and fuse it to a weapon</li>
+<li>Fuse <code>D2</code> to said shield to FE it to <code>A2</code></li>
+<li>Swap shield to resync it, then drop the new shield to drop <code>A2</code></li>
+</ol>
+</li>
 <li>Throw purgatorize <code>E1-E25</code>:<ol>
 <li>Smuggle <code>E1</code></li>
 <li>Equip <code>E2</code> and throw it</li>
@@ -1640,14 +1661,15 @@
 <li>Repeat 9a-9c with each <code>E[n]</code>, throwing any random weapon for the final purgatorization</li>
 </ol>
 </li>
-<li>Equip <code>B</code> and Overload Pickup <code>D2</code></li>
+<li>Equip <code>B</code> and Overload Pickup <code>D2</code>, then glue <code>D2</code> to something (say, one of the wooden boxes) with the blade facing out.</li>
 <li><code>B</code>, <code>E1-E25</code>, and <code>D2</code> Overload Batch DI 24 shields <code>F1-F24</code>:<ol>
-<li>Fuse <code>F1</code> to <code>D2</code> to FE it to <code>E1-25</code></li>
-<li>Fuse <code>F2</code> to <code>D2</code> again. This time, it will Pseudo Fuse and begin fading, so open the shield Quick Menu a few frames after pressing Y</li>
-<li>You will likely miss the correct pause timing and need to release the D-Pad for a couple frames</li>
-<li>Drop-Swap-Unequip <code>B</code> (using the D-Pad) tp DI <code>F1</code></li>
-<li>Repeat 11a-11d with each <code>F[n]</code></li>
+<li>Optionally put your back to a wall</li>
+<li>Fuse <code>F1</code> to <code>D2</code> to FE it to <code>E1-25</code>, all at once</li>
+<li>Fuse <code>F1</code> to <code>D2</code> again. This time, it will Pseudo Fuse and begin fading, so pause a few frames after pressing Y</li>
+<li>(Fail)drop-Swap-Unequip <code>B</code> to DI <code>F1</code></li>
+<li>Repeat 11b-11d with each <code>F[n]</code></li>
 <li>If you didn't end up with 25 parents, you will need more than 24 children</li>
+<li>Tip: It may be easier to pause and perform the drop-swap-unequip with the D-Pad, due to a strong lag spike on each second fuse. But if you do, <strong><em>don't</em></strong> put your back to a wall, due to the risk of letting the Quick Menu close prematurely.</li>
 </ol>
 </li>
 <li>Leave <code>B</code> dropped, then faildrop <code>D2</code> and drop it once it returns, and finally pick up and drop <code>A2</code> to undo its Zuggle Drop</li>
