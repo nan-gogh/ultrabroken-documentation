@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/icons/ultrabroken_rune.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -1039,6 +1039,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#throwing-with-smuggle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Throwing with smuggle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overload-double-drop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overload double-drop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#converting-to-a-zuggle" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1118,8 +1157,37 @@
 <p>This page is still being written. It may be used as-is, but some sections are incomplete, and others may contain incorrect information.</p>
 </div>
 <p>A fully equipped item in the drop <a href="../S8I/">equip position</a>.</p>
+<p>Some guides will refer to drop equips as drop <em>smuggles</em>, because the discovery of this glitched equipment state predated our full understanding of what a smuggle in this game actually is.</p>
 <h2 id="strength">Strength</h2>
-<p>Drop Equips can be <em>strong</em> or <em>weak</em> (sometimes called <em>static</em> and <em>dynamic</em>). Weak Drop Equips revert to normal equipment state when you do any input that makes Link change how he holds that equipment; strong Drop Equips don't.</p>
+<p>Drop Equips can be <em>strong</em> or <em>weak</em> (sometimes called <em>static</em> and <em>dynamic</em>). Weak Drop Equips revert to normal dynamic equipment state when you do any input that makes Link change how he holds that equipment; strong Drop Equips don't.</p>
+<h2 id="methods">Methods</h2>
+<div data-ub-level="3" class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Throwing with smuggle</label><label for="__tabbed_1_2">Overload double-drop</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h3 class="tab-toc-heading" id="throwing-with-smuggle">Throwing with smuggle</h3>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code></p>
+<p>Obtain any persistent [static] smuggle, then equip and throw (or shock-drop) the target. The target will become a weak drop equip, and the smuggle will be sent to purgatory.</p>
+</div>
+<div class="tabbed-block">
+<h3 class="tab-toc-heading" id="overload-double-drop">Overload double-drop</h3>
+<p><div class="ub-method-meta" data-versions='["1.0.0", "1.1.0", "1.1.1", "1.1.2", "1.2.0", "1.2.1", "1.3.0", "1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]' data-obsolete="false" hidden></div>
+<code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0</code> <code>1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
+<ul>
+<li>Overload drop/pickup some equipment</li>
+<li>Pause, drop-swap it</li>
+<li>Unpause and pause again <!-- TODO: membuffer can warm new equips, so does that work here? --></li>
+<li>Drop the newly equipped item to unsmuggle the original</li>
+<li>Pick up the original item for a strong drop equip</li>
+</ul>
+<p>You will end up d-pad locked after step 3 on <code>1.1.2</code> and later. You can work around this by culling Link before pausing, or for bows and shields on <code>1.1.2</code>, using the ability wheel to open the quick menu. Culling Link <em>before</em> the drop-swap will desync your equipment, but isn't a problem for this setup, and may be easier to perform for some culling sources (e.g. <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a>). Confusingly, you are just as prone to d-pad lock if the original equipment was despawn interrupted, despite that usually not happening; it does this if the equipment is the active smuggle, but has no other connection to Link.</p>
+</div>
+</div>
+</div>
+<ul>
+<li><a href="search:drop equip">Search for drop equip methods</a></li>
+<li><a href="search:drop smuggle">Search for drop smuggle methods</a></li>
+</ul>
 <h2 id="converting-to-a-zuggle">Converting to a zuggle</h2>
 <p>Drop equips can be converted to <a href="search:Drop Zuggle">drop zuggles</a> quite easily. Most methods are variants on what it takes to make a <a href="../L84/">zuggle drop</a>.</p>
 <h2 id="sending-to-purgatory">Sending to purgatory</h2>
@@ -1256,7 +1324,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.indexes", "navigation.prune", "toc.follow", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../assets/scripts/ub-base.js"></script>
       

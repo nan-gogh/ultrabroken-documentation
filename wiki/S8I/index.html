@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/icons/ultrabroken_rune.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -1121,7 +1121,7 @@
 <h2 id="dynamic"><strong>Dynamic</strong></h2>
 <p>A dynamic equip position is properly connected to Link's back, or to his hand, and properly switches between them depending on his animation state. All normal equipment is attached in this position (it's technically a dynamic equip, according to a strict reading of the terminology). It is possible to get dynamic smuggles and zuggles, but is usually more difficult than static or drop position.</p>
 <h2 id="static"><strong>Static</strong></h2>
-<p>A static equip position is properly connected to Link's back, or to his hand, but remains where it is until fully dropped. This is the most common position for zuggles and smuggles, so it gets to be the implicit default. Any <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> or smuggle method that doesn't explicitly mention one of the other positions will be referring to this one.</p>
+<p>A static equip position is properly connected to Link's back, or to his hand, but remains where it is until fully dropped. This is the most common position for zuggles and smuggles, so it gets to be the implicit default position for those. Any <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> or smuggle method that doesn't explicitly mention one of the other positions will likely be referring to this one.</p>
 <p>Static equips, although not very useful, are possible with any of these methods:</p>
 <ul>
 <li>Warp with a strong <a href="../HY9/">drop equip</a></li>
@@ -1130,9 +1130,10 @@
 <h2 id="drop"><strong>Drop</strong></h2>
 <p>A drop equip position follows Link's general position, but doesn't attach to him in any precise way, sticking out from between his feet. It's sort of the equipment equivalent of T-posing. Equipment in the drop equip position can be picked up without needing to disconnect it from Link first.</p>
 <p>It also (in the vast majority of cases) retains its collision, so picking up other items on the floor will be difficult with one of these attached to Link, as it'll often knock them away from you before you can get close enough for the correct pickup prompt to show up. Anything at chest height will get pickup prompt priority, so keeping something at that height (resting it on higher terrain, gluing it to a tall object, recalling it, etc) is a useful technique for overcoming this problem.</p>
+<p>The drop equip position has two sub-forms, <em>weak</em> and <em>strong</em> (also known as <em>dynamic</em> and <em>static</em>). The <em>weak</em>/<em>dynamic</em> form is really a dynamic equip that has been moved to the drop position once, so any input that changes how Link holds his equipment (e.g. sheathing/unsheathing a weapon, guarding with a shield) will undo the drop equip state and move it back to the regular dynamic position.</p>
 <p>Equips, smuggles and zuggles can all be in the drop position.</p>
 <h2 id="ground"><strong>Ground</strong></h2>
-<p>This term is sometimes used for states attainable from overload dropped equipment, as it has no typical connection to Link. In this case, 'ground' is a modifier for everything after it, describing what you'll end up with if you pick up and equip it. For example, a Ground Strong Drop Equip is some equipment that acts like normal dropped equipment, but if you pick it up, it'll attach to Link in the drop equip position, and changing your equipment stance won't affect this.</p>
+<p>This term doesn't refer to a real equip position, but is sometimes used for states attainable from glitches like <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/8QH/" class="glitch-autolink" title="Zuggle Overload" target="_blank" rel="noopener noreferrer">Zuggle Overload</a> and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/0QL/" class="glitch-autolink" title="Slugging" target="_blank" rel="noopener noreferrer">Sluggle</a>, as it has no typical connection to Link. In this case, 'ground' is a modifier for everything after it, describing what you'll end up with if you pick up and equip it. For example, a Ground Strong Drop Equip is some unsmuggled equipment that acts like normal dropped equipment, but if you pick it up, it'll attach to Link in the drop equip position, and changing your equipment stance won't affect this.</p>
 <p>Ground equipment has no connection to Link, with the exception of Ground Smuggles, which have the sole connection of being the active smuggle.</p>
 
 
@@ -1264,7 +1265,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.indexes", "navigation.prune", "toc.follow", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../assets/scripts/ub-base.js"></script>
       
