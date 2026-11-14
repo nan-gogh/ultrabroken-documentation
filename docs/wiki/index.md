@@ -25,6 +25,7 @@ This site is a community-driven encyclopedia of glitches, techniques, and invest
 - **[Despawn Interrupt section](uid:JEV)** - Glitches and strats that get your gear despawn interrupted
 - **[Culling section](uid:0CB)** - Explore the versatile powers of Culling in this section
 - **[Overload section](uid:WKU)** - Detailed setups and techniques for reaching Overload states
+- **[Version Differences](uid:1IR)** - Learn more about the different versions of Tears of the Kingdom, and how they affect glitch execution
 - **[Memorandum](uid:FHH)** - Leaderboard for glitch hunters and hall of fame for archivists, spreadsheet managers, informants and dataminers
 - **[Guide](uid:X01)** - Extensive guide outlining editor guidelines and explaining all features of the project
 - **[Media](uid:B4U)** - All screenshots, video clips, and social cards for this wiki are listed here alongside an in-browser video editor
