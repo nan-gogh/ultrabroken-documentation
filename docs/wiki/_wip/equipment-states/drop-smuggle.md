@@ -8,7 +8,7 @@ aliases: ["ds"]
 
 A [smuggle](uid:TGY) in the drop [equip position](uid:S8I).
 
-Note that [drop _equips_](uid:HY9) are sometimes referred to as !Drop Smuggles, despite not being true smuggles.
+Note that [drop _equips_](uid:HY9) are sometimes referred to as drop smuggles, despite not being true smuggles. Unlike drop equips though, drop smuggles have no _strong_/_weak_ distinction in practice, due to us having no known way to move a dynamic smuggle to the drop position (smuggling a weak drop equip would just make it a static drop smuggle).
 
 ## Effects
 
@@ -28,6 +28,10 @@ Equip and warm-drop any other equipment of the same type. The drop smuggle will 
 
 ## Undoing
 
-To undo a drop smuggle, equip it and fail drop it; it will then be equipped normally. You can also equip it and pick it up a second time, if you have a free equipment slot, to unequip it. Unlike with an overload drop, you won't get an inventory duplicate, or an unloaded actor for WST, but it is a convenient 
+To undo a drop smuggle, equip it and fail drop it; it will then be equipped normally. You can also equip it and pick it up a second time, if you have a free equipment slot, to unequip it. Despite this inventory requirement, the item will not duplicate.
 
-Unlike with other equip positions, dropping, throwing, or shock-dropping active equipment doesn't affect drop smuggles.
+For game versions after `1.0`, a Despawn Interrupted drop smuggle cannot be undone. It can only be unsmuggled through one of the following changes:
+- converting it to a drop zuggle;
+- deleting it by equipping and unequipping;
+- sending it to purgatory by equipping and warm-dropping;
+- reverted to non-DI by equipping it and warping (ensure it's not also smuggled first, or the equipment will be deleted).
