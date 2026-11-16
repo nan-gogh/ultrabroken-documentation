@@ -26,7 +26,7 @@ Zuggling anything out of the Prologue map can be difficult, so this page will gu
 
 ## Instructions
 
-=== "Drop SLD Methods (`1.0.0`–`1.1.1`)" ###
+=== "Drop SLD Methods" ###
     ---
     versions: ["1.0.0", "1.1.0", "1.1.1"]
     ---
@@ -75,7 +75,7 @@ Zuggling anything out of the Prologue map can be difficult, so this page will gu
 
     _method pending_
 
-=== "Cull Detachment Zuggle Method (`1.1.2`+)" ###
+=== "Cull Detachment Zuggle Method)" ###
     ---
     versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
     ---
@@ -87,13 +87,16 @@ Zuggling anything out of the Prologue map can be difficult, so this page will gu
     !!!warn "Draft"
         These writeups are a work-in-progress and have not been fully tested yet.
 
-    First, prepare your manual save:
+    #### Manual Save Preparation
+    ---
+    notoc: true
+    ---
 
     1. Warp to Domizuin Shrine and deal with Gloom Hands in the citadel, if present
         - You don't need to fight them. Stand somewhere high up where they can constantly see you but not reach you, and they'll eventually disappear and stay gone until the next blood moon
     1. Warp to Marakuguc Shrine, enter it, and manually save
 
-    === "Version `1.2.0` or later" !
+    === "Newer versions" ###
         ---
         versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
         ---
@@ -225,7 +228,7 @@ Zuggling anything out of the Prologue map can be difficult, so this page will gu
         1. Reload into the manual save inside Marakuguc
 
 
-    === "Version `1.1.2`" ?
+    === "Older versions" ###
         ---
         versions: ["1.1.2"]
         ---
