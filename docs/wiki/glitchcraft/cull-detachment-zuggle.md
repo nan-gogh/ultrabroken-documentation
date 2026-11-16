@@ -93,15 +93,9 @@ The zuggle drop frame is the frame where the game has decided that the drop-queu
 	</tbody>
 </table>
 
-The 'Master Sword' equipment subcategory applies if you are zuggling a Master Sword in contravention of the game's failsafe checks about what you should be allowed to have in the target file, which is either:
+The 'Master Sword' equipment subcategory applies if you are zuggling a regular or Decayed Master Sword. The additional steps needed to successfully unzuggle a Master Sword are documented in Master Sword Liberation.
 
-- a Decayed Master Sword into a file that has completed GSI
-- a regular Master Sword into a file that has not legitimately obtained it
-
-However, it does not apply if you are:
-
-- zuggling a Prologue Master Sword, which the game makes zero checks on;
-- playing on version `1.0`, which has none of the relevant checks in the first place.
+### Post-SLD Retrieval
 
 If you transfer with SLD, you will have to retrieve it before going through another loading screen, so you will need to load directly into a file where the target's drop point:
 
@@ -109,3 +103,4 @@ If you transfer with SLD, you will have to retrieve it before going through anot
 - is close by, if in the overworld
 
 Load Zuggle is guaranteed to transfer no matter what you select, so any file will work. You can even return to the title screen (e.g. to switch between files on Switch 2 Edition) and still zuggle successfully.
+

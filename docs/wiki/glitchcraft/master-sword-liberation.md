@@ -51,11 +51,43 @@ All methods work on all versions, but method 2 is preferred on 1.0.0-1.1.2.
     2. Go to the well, and uncull
     3. Shoot time bomb arrows at breezer
     4. Watch a memory to re-cull
-    5. Unpause and transmutate the Master Sword 
+    5. Unpause and transmutate the Master Sword
     6. When the bombs go off, the breezer cutscene will trigger and drop the Master Sword (this will also duplicate it)
 
 ## Notes
 This can be combined with decayed zuggle to transfer it through files.
+
+## Failsafe Checks
+
+On every game version except `1.0`, there are failsafe checks that limit your ability to stow a Master Sword in the inventory. When a file is loaded:
+
+- If you have completed GSI, all Decayed Master Swords are deleted.
+- Every regular Master Sword in a file that has not legitimately obtained it will be deleted.
+- All duplicate Master Swords are deleted.
+- The game will add in either Master Sword if it thinks you should have it, but it's not in your inventory.
+
+These checks can lead to Empty Slot Desync, which in turn allows [modifier-only weapon WST](uid:DUS).
+
+## Releasing a zuggled Master Sword
+
+_This does not apply to the Prologue Master Sword (MNF), which has no zuggle restrictions._
+
+Decayed and regular Master Swords will be aggressively deleted if they drop off Link, unless it happens during a game state where most of the world (but not Link) is paused.
+
+=== "Weapon Chest"
+    1. Equip a droppable weapon and fill up your weapons tab
+    1. Ensure there is space behind Link and open a chest containing a weapon
+    1. When the game asks you to drop a weapon, drop your equipped one
+
+=== "Campfire"
+    1. Equip a droppable weapon
+    1. Stand in front of a bed or lit campfire with the _Sleep_ prompt visible, and space to drop equipment behind you
+    1. Pause and buffer drop equipment
+        - Between 5 and 9 should be enough on Switch 1 Edition; double these numbers for Switch 2 Edition
+        - Drop your equipped weapon
+    1. Unpause and immediately press <kbd>A</kbd> to interact with the campfire
+    1. Wait for all equipment (including the weapon and zuggled Master Sword) to finish dropping
+    1. Cancel the sleep prompt
 
 ## Resources
 - [Discord](https://discord.com/channels/1086729144307564648/1113557914444111873/1173082845854584872)
