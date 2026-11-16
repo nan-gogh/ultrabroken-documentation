@@ -87,10 +87,7 @@ Zuggling anything out of the Prologue map can be difficult, so this page will gu
     !!!warn "Draft"
         These writeups are a work-in-progress and have not been fully tested yet.
 
-    #### Manual Save Preparation
-    ---
-    notoc: true
-    ---
+    First, prepare your manual save:
 
     1. Warp to Domizuin Shrine and deal with Gloom Hands in the citadel, if present
         - You don't need to fight them. Stand somewhere high up where they can constantly see you but not reach you, and they'll eventually disappear and stay gone until the next blood moon
