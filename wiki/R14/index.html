@@ -1058,6 +1058,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Zuggle or SLD?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-sld-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-SLD Retrieval
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1109,7 +1126,8 @@
 <p><code>1.0.0</code> <code>1.1.0</code> <code>1.1.1</code> <code>1.1.2</code> <code>1.2.0</code> <code>1.2.1</code> <code>1.3.0/1.4.0</code> <code>1.4.1</code> <code>1.4.2</code> <code>1.4.3</code> <code>Switch 2</code></p>
 <h2 id="summary">Summary</h2>
 <p>By giving us a way to uncull Link at a precise time in the pause screen, Cull Detachment and <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/A0R/" class="glitch-autolink" title="Swap Resync" target="_blank" rel="noopener noreferrer">Swap Resync</a> allow easy load <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggling</a> of any equipment. This is particularly useful for zuggling Decayed and regular Master Swords, as well as zuggling weapons on version <code>1.1.2</code>.</p>
-<p>The zuggle can also degrade into an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/P2F/" class="glitch-autolink" title="SLD" target="_blank" rel="noopener noreferrer">SLD</a> on some pause buffer timings. This is a last-chance way to avoid failure on <code>1.1.2</code> and below, but in <code>1.2.0</code> and up, with the right kind of Cull Detachment setup, failing the timing is impossible.</p>
+<p>The zuggle can also degrade into an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/P2F/" class="glitch-autolink" title="SLD" target="_blank" rel="noopener noreferrer">SLD</a> on some pause buffer timings. This extends the success range of the timing window by one or two frames. In <code>1.2.0</code> and up, with the right kind of Cull Detachment setup, the SLD timing window extends forever, guaranteeing success.</p>
+<p><em>Discovered by mulberry - July 11th, 2026</em></p>
 <h2 id="version-differences">Version differences</h2>
 <p>On version <code>1.2.0</code> and up, you need an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/L54/" class="glitch-autolink" title="SDC" target="_blank" rel="noopener noreferrer">SDC</a> <strong>parent</strong> to also be in the culling area, in order to stop every successful attempt turning into an <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/7DA/" class="glitch-autolink" title="Invizuggle" target="_blank" rel="noopener noreferrer">invizuggle</a>. Leaving the SDC in there alongside it is required for <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggling</a> out of the Prologue or minigames, and removes the limit on the timing window for <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/P2F/" class="glitch-autolink" title="SLD" target="_blank" rel="noopener noreferrer">SLD</a>. Using <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/LMB/" class="glitch-autolink" title="Portable Culling" target="_blank" rel="noopener noreferrer">portacull</a> equipment is an ideal way of doing this.</p>
 <p>The exact steps will vary depending on the setup used, and SLD may limit which save files you can reload into, but the gist of every variant is this:</p>
@@ -1180,16 +1198,14 @@
     </tbody>
 </table>
 
-<p>The 'Master Sword' equipment subcategory applies if you are zuggling a Master Sword in contravention of the game's failsafe checks about what you should be allowed to have in the target file, which is either:
-- a Decayed Master Sword into a file that has completed GSI
-- a regular Master Sword into a file that has not legitimately obtained it</p>
-<p>However, it does not apply if you are:
-- zuggling a Prologue Master Sword, which the game makes zero checks on;
-- playing on version <code>1.0</code>, which has none of the relevant checks in the first place.</p>
-<p>If you transfer with SLD, you will have to retrieve it before going through another loading screen, so you will need to load directly into a file where the target's drop point:
-- is inbounds in the new map
-- is close by, if in the overworld</p>
-<p>Load Zuggle is guaranteed to transfer no matter what you select, so any file will work. You can even return to the title screen (e.g. to switch between files on Switch 2 Edition) and still zuggle successfully.</p>
+<p>The 'Master Sword' equipment subcategory applies if you are zuggling a regular or Decayed Master Sword. The additional steps needed to successfully unzuggle a Master Sword are documented in <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/IK1/" class="glitch-autolink" title="Master Sword Liberation" target="_blank" rel="noopener noreferrer">Master Sword Liberation</a>.</p>
+<h3 id="post-sld-retrieval">Post-SLD Retrieval</h3>
+<p>If you transfer with <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/P2F/" class="glitch-autolink" title="SLD" target="_blank" rel="noopener noreferrer">SLD</a>, you will have to retrieve it before going through another loading screen, so you will need to load directly into a file where the target's drop point:</p>
+<ul>
+<li>is inbounds in the new map</li>
+<li>is close by, if in the overworld</li>
+</ul>
+<p>Load <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">Zuggle</a> is guaranteed to transfer no matter what you select, so any file will work. You can even return to the title screen (e.g. to switch between files on Switch 2 Edition) and still zuggle successfully.</p>
 
 
 

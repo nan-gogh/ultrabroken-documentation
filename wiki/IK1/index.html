@@ -1065,6 +1065,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#failsafe-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failsafe Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#releasing-a-zuggled-master-sword" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Releasing a zuggled Master Sword
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resources" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1172,7 +1194,7 @@
 <li>Go to the well, and uncull</li>
 <li>Shoot time bomb arrows at breezer</li>
 <li>Watch a memory to re-cull</li>
-<li>Unpause and transmutate the Master Sword </li>
+<li>Unpause and transmutate the Master Sword</li>
 <li>When the bombs go off, the breezer cutscene will trigger and drop the Master Sword (this will also duplicate it)</li>
 </ol>
 </div>
@@ -1180,6 +1202,43 @@
 </div>
 <h2 id="notes">Notes</h2>
 <p>This can be combined with decayed <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> to transfer it through files.</p>
+<h2 id="failsafe-checks">Failsafe Checks</h2>
+<p>On every game version except <code>1.0</code>, there are failsafe checks that limit your ability to stow a Master Sword in the inventory. When a file is loaded:</p>
+<ul>
+<li>If you have completed GSI, all Decayed Master Swords are deleted.</li>
+<li>Every regular Master Sword in a file that has not legitimately obtained it will be deleted.</li>
+<li>All duplicate Master Swords are deleted.</li>
+<li>The game will add in either Master Sword if it thinks you should have it, but it's not in your inventory.</li>
+</ul>
+<p>These checks can lead to Empty Slot Desync, which in turn allows <a href="../DUS/">modifier-only weapon WST</a>.</p>
+<h2 id="releasing-a-zuggled-master-sword">Releasing a zuggled Master Sword</h2>
+<p><em>This does not apply to the Prologue Master Sword (<a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/056/" class="glitch-autolink" title="MNF" target="_blank" rel="noopener noreferrer">MNF</a>), which has no <a href="https://nan-gogh.github.io/ultrabroken-documentation/wiki/MCM/" class="glitch-autolink" title="Zuggle" target="_blank" rel="noopener noreferrer">zuggle</a> restrictions.</em></p>
+<p>Decayed and regular Master Swords will be aggressively deleted if they drop off Link, unless it happens during a game state where most of the world (but not Link) is paused.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Weapon Chest</label><label for="__tabbed_2_2">Campfire</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>Equip a droppable weapon and fill up your weapons tab</li>
+<li>Ensure there is space behind Link and open a chest containing a weapon</li>
+<li>When the game asks you to drop a weapon, drop your equipped one</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<ol>
+<li>Equip a droppable weapon</li>
+<li>Stand in front of a bed or lit campfire with the <em>Sleep</em> prompt visible, and space to drop equipment behind you</li>
+<li>Pause and buffer drop equipment<ul>
+<li>Between 5 and 9 should be enough on Switch 1 Edition; double these numbers for Switch 2 Edition</li>
+<li>Drop your equipped weapon</li>
+</ul>
+</li>
+<li>Unpause and immediately press <kbd>A</kbd> to interact with the campfire</li>
+<li>Wait for all equipment (including the weapon and zuggled Master Sword) to finish dropping</li>
+<li>Cancel the sleep prompt</li>
+</ol>
+</div>
+</div>
+</div>
 <h2 id="resources">Resources</h2>
 <ul>
 <li><a href="https://discord.com/channels/1086729144307564648/1113557914444111873/1173082845854584872">Discord</a></li>

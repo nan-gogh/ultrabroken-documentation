@@ -1664,7 +1664,8 @@
       "message not found",
       "message not found error",
       "message-not-found",
-      "mnf"
+      "mnf",
+      "MsgNotFound"
     ],
     "path": "wiki/056/",
     "filename": "message-not-found.md"
