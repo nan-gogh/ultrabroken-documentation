@@ -17,7 +17,9 @@ tags: ["culling", "zuggling"]
 
 By giving us a way to uncull Link at a precise time in the pause screen, Cull Detachment and Swap Resync allow easy load zuggling of any equipment. This is particularly useful for zuggling Decayed and regular Master Swords, as well as zuggling weapons on version `1.1.2`.
 
-The zuggle can also degrade into an SLD on some pause buffer timings. This is a last-chance way to avoid failure on `1.1.2` and below, but in `1.2.0` and up, with the right kind of Cull Detachment setup, failing the timing is impossible.
+The zuggle can also degrade into an SLD on some pause buffer timings. This extends the success range of the timing window by one or two frames. In `1.2.0` and up, with the right kind of Cull Detachment setup, the SLD timing window extends forever, guaranteeing success.
+
+_Discovered by mulberry - July 11th, 2026_
 
 ## Version differences
 
@@ -92,14 +94,17 @@ The zuggle drop frame is the frame where the game has decided that the drop-queu
 </table>
 
 The 'Master Sword' equipment subcategory applies if you are zuggling a Master Sword in contravention of the game's failsafe checks about what you should be allowed to have in the target file, which is either:
+
 - a Decayed Master Sword into a file that has completed GSI
 - a regular Master Sword into a file that has not legitimately obtained it
 
 However, it does not apply if you are:
+
 - zuggling a Prologue Master Sword, which the game makes zero checks on;
 - playing on version `1.0`, which has none of the relevant checks in the first place.
 
 If you transfer with SLD, you will have to retrieve it before going through another loading screen, so you will need to load directly into a file where the target's drop point:
+
 - is inbounds in the new map
 - is close by, if in the overworld
 
