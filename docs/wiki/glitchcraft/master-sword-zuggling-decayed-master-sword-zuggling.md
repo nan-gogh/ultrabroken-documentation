@@ -48,7 +48,7 @@ _Cull Detachment Zuggle method discovered by mulberry - 11th July 2026_
 === "Method 3 (Cull Detachment)"
 
     === "Regular Master Sword"
-        The page on Cull Detachment Zuggle describes the method to zuggle a Master Sword with this technique.
+        The [page on Cull Detachment Zuggle](uid:R14) describes the method to zuggle a Master Sword with this technique.
 
     === "Decayed Master Sword"
         Using Cull Detachment is the easiest way to zuggle the Decayed Master Sword on version `1.1.2` and up. It will also work on older versions if the above methods aren't working for you.
@@ -62,7 +62,7 @@ _Cull Detachment Zuggle method discovered by mulberry - 11th July 2026_
         1. Complete the Prologue map normally and proceed to the Room of Awakening
         1. Examine the Decayed Master Sword to pick it up
         1. Fill up the Weapons tab:
-            - (`1.1.2`) Pick up repeated copies of the weapon at Link's feet. Once the tab is full, swap to one of them
+            - (`1.1.0`–`1.1.2`) Pick up repeated copies of the weapon at Link's feet. Once the tab is full, swap to one of them
             - (`1.2.0`+) Pick up one copy of the weapon at Link's feet. Unequip the DMS, pick up the drop zuggled weapon to equip it, then pick up more copies until the weapons tab is full
         1. Pick up shield `S2`, and up to three more copies if you want more pause buffer leniency
         1. Pause, drop the equipped weapon, and swap to the DMS
