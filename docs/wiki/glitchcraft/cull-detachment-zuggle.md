@@ -68,15 +68,11 @@ The zuggle drop frame is the frame where the game has decided that the drop-queu
 		<th>2+ frames after
 	</tr>
 	<tbody>
-		<tr><th><code>1.0.0</code> (all equipment)</th>
-			<td rowspan="6">✅ Load Zuggle</td>
-			<td colspan="2">⚠️ SLD<br /><small></small></td>
-			<td>❌ Deleted</td>
-		</tr>
-		<tr><th><code>1.1.0</code>–<code>1.1.2</code> (Master Sword)</th>
+		<tr><th><code>1.0.0</code>–<code>1.1.2</code> (Master Sword)</th>
+			<td rowspan="5">✅ Load Zuggle</td>
 			<td colspan="3">❌ Deleted</td>
 		</tr>
-		<tr><th><code>1.1.0</code>–<code>1.1.1</code> (other)</th>
+		<tr><th><code>1.0.0</code>–<code>1.1.1</code> (other)</th>
 			<td colspan="2">⚠️ SLD</td>
 			<td>❌ Deleted</td>
 		</tr>
@@ -88,7 +84,7 @@ The zuggle drop frame is the frame where the game has decided that the drop-queu
 			<td colspan="3">❌ Deleted</td>
 		</tr>
 		<tr><th><code>1.2.0</code>+ (other)</th>
-			<td colspan="3">⚠️ SLD (assuming the SDC is also in the culling area)</td>
+			<td colspan="3">⚠️ SLD (provided the SDC is also in the culling area)</td>
 		</tr>
 	</tbody>
 </table>
