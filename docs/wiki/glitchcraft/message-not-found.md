@@ -69,13 +69,16 @@ Zuggling anything out of the Prologue map can be difficult, so this page will gu
         6. Zuggle MNF
         7. Load the save in which you want to have the MNF
 
-=== "Swap Resync Zuggle method (`1.2.0+`)" ###
+=== "Swap Resync Zuggle method" ###
+    ---
+    versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
+    ---
 
-    The fastest method on the newest versions, but unforgiving.
+    The fastest method on the newest versions, but unforgiving of mistakes.
 
     _method pending_
 
-=== "Cull Detachment Zuggle Method)" ###
+=== "Cull Detachment Zuggle Method" ###
     ---
     versions: ["1.2.0", "1.2.1", "1.3.0/1.4.0", "1.4.1", "1.4.2", "1.4.3", "Switch 2"]
     ---

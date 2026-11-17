@@ -15,9 +15,9 @@ tags: ["zuggling", "desync", "weapon"]
 ## Summary
 Allows you to zuggle the master sword or decayed master sword by desyncing it.
 
-The Master Sword that Link wields in the Prologue doesn't have any special restrictions on zuggling once you have it out of its original. See _MsgNotFound_ for strategies on performing that first heist.
+The Master Sword that Link wields in the Prologue doesn't have any special restrictions on zuggling once you have it out of its original map. See _MsgNotFound_ for strategies on performing that first heist.
 
-_Original method discovered by Zas, optimiszation by mulberry - 6 November 2023_
+_Original method discovered by Zas, optimization by mulberry - 6 November 2023_
 
 _Cull Detachment Zuggle method discovered by mulberry - 11th July 2026_
 
@@ -68,7 +68,7 @@ _Cull Detachment Zuggle method discovered by mulberry - 11th July 2026_
         1. Pause, drop the equipped weapon, and swap to the DMS
         1. Unpause and wait for Link to cull
         1. Swap to another weapon and unpause to complete the desync
-        1. Pause, drop 4 of your 5 unequipped weapon copies, drop all of your unequipped shields, then drop your equipped weapon and swap to the last remaining weapon
+        1. Pause, drop 4 of your 5 unequipped weapon copies, drop all of your unequipped shields, then drop your equipped weapon and swap to the last remaining copied weapon
         1. Pause buffer
             - You **must** pause before the buffer drops complete being processed
         1. Unequip and re-equip your shield to perform Cull Detachment and Swap Resync
